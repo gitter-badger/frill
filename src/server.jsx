@@ -1,5 +1,4 @@
-import './bootstrap';
-
+import Frill from './bootstrap';
 import {join as pathJoin} from 'path';
 import pack from '../package';
 import Hapi from 'hapi';
@@ -76,7 +75,8 @@ server.ext('onPreResponse', (request, reply) => {
 		return reply.continue();
 	}
   // fire React Router
-  Router.run(routes, request.path, (Handler, state) => {
+  server.log(['info'], `Serving down to react-router with ${request.path}`);
+  Router.run(routes(), request.path, (Handler, state) => {
     // pass down frill context to handler
     const patchedState = _extend({frill: frillContext}, state);
     const handler = React.createElement(Handler, patchedState);

@@ -1,9 +1,6 @@
 import Frill from './core';
 import Stores from './stores';
-// import Actions from './actions';
-
-// export Frill to global
-global.Frill = Frill;
+import Actions from './actions';
 
 // use request service
 Frill.Action.use('request', {prefix: '/api'});
@@ -14,3 +11,5 @@ Frill.Action.use('request', {prefix: '/api'});
 // load stores and actions.
 Frill._Stores = Stores;
 Frill._Actions = Actions;
+
+export default Frill;

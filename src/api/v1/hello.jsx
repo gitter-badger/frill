@@ -1,12 +1,12 @@
-export default (server, {Joi, DynamoDB, AWS}) => {
+export default (server, {helpers, models}) => {
 
-  const {Post} = DynamoDB;
+  const {Posts} = models;
 
   return [{
     method: 'GET',
     path: '/hello',
     handler: (req, rep) => {
-      server.log(['debug'], Post);
+      server.log(['debug'], Posts);
       rep('api, hello!');
     },
     config: {

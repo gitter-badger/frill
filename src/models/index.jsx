@@ -1,4 +1,4 @@
-import DynamoDB from './DynamoDB';
+import {Posts} from './DynamoDB';
 export default {
-  DynamoDB
+  Posts
 };

@@ -1,9 +1,9 @@
 import Hello from './hello';
-export default (server, helpers, next) => {
+export default (server, {helpers, models}, next) => {
 
   const v1 = {
     register: (server, options, next) => {
-      server.route(Hello(server, helpers));
+      server.route(Hello(server, {helpers, models}));
       next();
     },
   };

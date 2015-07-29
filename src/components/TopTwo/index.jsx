@@ -1,10 +1,8 @@
 'use strict';
 
-// import Frill from 'frill';
 import React from 'react';
-// import path from 'path';
 
-module.exports = React.createClass({
+export default React.createClass({
   name: "TopTwo",
   getInitialState: function () {
       return {};

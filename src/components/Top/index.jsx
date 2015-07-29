@@ -1,35 +1,45 @@
 'use strict';
-
-// import Frill from 'frill';
 import React from 'react';
-// import path from 'path';
+import ReactMixin from 'react-mixin';
+import {Mixin, StoreWatchMixin} from '../../bootstrap';
 
-module.exports = React.createClass({
-  name: "Top",
-  mixins: [
-    Frill.Mixin(React),
-    Frill.StoreWatchMixin(["Test"])
-  ],
+export default class Top extends React.Component {
 
-  getInitialState: function () {
-      return {};
-  },
+  constructor() {
+    super();
 
-  getStateFromFrill: function () {
+    // this.state = {
+    //   count: 0
+    // };
+  }
+
+  static contextTypes() {
     return {
-      count: this.getFrill().store("Test").getCount()
-    }
-  },
+      frill: React.PropTypes.object
+    };
+  }
 
-  onClick: function () {
-    this.getFrill().action("Test").countUp()
-  },
+  static childContextTypes() {
+    return {
+      frill: React.PropTypes.object
+    };
+  }
 
-  onSock: function () {
-    this.getFrill().action("Test").socketEmitter("MESSAGE SET IN COMPONENT")
-  },
+  getStateFromFrill() {
+    return {
+      count: this.getFrill().store('Test').getCount()
+    };
+  }
 
-  render: function() {
+  onClick(e) {
+    this.getFrill().action('Test').countUp();
+  }
+
+  onSock() {
+    this.getFrill().action('Test').socketEmitter('MESSAGE SET IN COMPONENT');
+  }
+
+  render() {
     return (
       <div>
         this is Top component<br />
@@ -39,4 +49,7 @@ module.exports = React.createClass({
       </div>
     );
   }
-});
+}
+
+ReactMixin(Top.prototype, Mixin(React));
+ReactMixin(Top.prototype, StoreWatchMixin(['test']));

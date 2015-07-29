@@ -2,9 +2,9 @@
 
 // import Frill from 'frill';
 import React from 'react';
-import {Link, RouteHandler} from 'react-router'
+import {Link, RouteHandler} from 'react-router';
 
-module.exports = React.createClass({
+export default React.createClass({
   name: "App",
   render: function() {
     return (

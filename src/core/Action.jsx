@@ -4,7 +4,7 @@ import request from './services/request';
 import socketio from './services/socket';
 
 // read default services
-const services = {
+let services = {
   request: request,
   socketio: socketio,
 };
@@ -16,26 +16,33 @@ const reservedNamespaces = [
 class Action {
 
   constructor() {
-    this._services = services;
+    // this._services = services;
     if (this.setup && _isFunction(this.setup)) {
       this.setup();
     }
     return this;
   }
 
-  // static get services() {
-  //   console.log('getter!', this._services);
-  //   return this._services;
-  // }
-  //
-  // static set services(name, service) {
-  //   console.log('setter!', this._services);
-  //   return this._services;
-  // }
+  static get services() {
+    return services
+  }
+
+  static set services(_service) {
+    const {namespace, serviceFunction} = _service;
+    services[namespace] = serviceFunction;
+  }
+
+  static set initializedServices(_service) {
+    // TODO check arguments
+    const {namespace, serviceInstance} = _service;
+    this[namespace] = serviceInstance;
+  }
+
 
   // Add a custom service
   static addService(namespace, serviceFunction) {
-    if (this.services()[namespace]) {
+    let _services = this.services;
+    if (_services[namespace]) {
       throw new Error(`Service: ${namespace} already exists`);
     }
 
@@ -47,14 +54,17 @@ class Action {
       throw new TypeError('A service must be a function');
     }
 
-    this._services[namespace] = serviceFunction;
+    _services = {
+      namespace: namespace,
+      serviceFunction: serviceFunction,
+    }
 
   }
 
   // Use a service
   static use(serviceName, opts) {
-    console.log(this.services);
-    if (this.services[serviceName]) {
+    const _services = this.services;
+    if (!_services[serviceName]) {
       throw new Error('The specified service doesn\'t exist');
     }
 
@@ -63,7 +73,10 @@ class Action {
         'please provide a different namespace');
     }
 
-    this[serviceName] = this._services[serviceName](opts || {});
+    this.initializedServices = {
+      namespace: serviceName,
+      serviceInstance: _services[serviceName](opts || {}),
+    }
   }
 }
 

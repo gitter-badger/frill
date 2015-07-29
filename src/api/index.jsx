@@ -1,11 +1,12 @@
 import helpers from '../helpers';
+import models from '../models';
 import APIv1 from './v1';
 
 const apiPlugin = {
   register: (server, options, next) => {
 
     // Mount api versions here.
-    APIv1(server, helpers, next);
+    APIv1(server, {helpers, models}, next);
 
   },
 };
