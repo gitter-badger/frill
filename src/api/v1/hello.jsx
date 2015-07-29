@@ -1,9 +1,15 @@
-export default function({Validate}) {
+export default (server, {Joi, DynamoDB, AWS}) => {
+
+  const {Post} = DynamoDB;
+
   return [{
     method: 'GET',
     path: '/hello',
+    handler: (req, rep) => {
+      server.log(['debug'], Post);
+      rep('api, hello!');
+    },
     config: {
-      handler: (req, rep) => rep('api, hello!'),
       description: 'Say hello!',
       notes: 'Says hello.',
       tags: ['api', 'greeting'],
@@ -19,8 +25,8 @@ export default function({Validate}) {
   }, {
     method: 'POST',
     path: '/hello',
+    handler: (req, rep) => rep('api, hello post!'),
     config: {
-      handler: (req, rep) => rep('api, hello post!'),
       description: 'Say hello!',
       notes: 'Says hello.',
       tags: ['api', 'greeting'],

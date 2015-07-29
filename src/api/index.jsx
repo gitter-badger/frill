@@ -1,4 +1,4 @@
-import helpers from './helpers';
+import helpers from '../helpers';
 import APIv1 from './v1';
 
 const apiPlugin = {

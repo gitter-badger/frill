@@ -3,7 +3,7 @@ export default (server, helpers, next) => {
 
   const v1 = {
     register: (server, options, next) => {
-      server.route(Hello(helpers));
+      server.route(Hello(server, helpers));
       next();
     },
   };
