@@ -1,7 +1,7 @@
 'use strict';
 import React from 'react';
-import ReactMixin from 'react-mixin';
-import {Mixin, StoreWatchMixin} from '../../bootstrap';
+// import ReactMixin from 'react-mixin';
+// import {Mixin, StoreWatchMixin} from '../../bootstrap';
 
 export default class Top extends React.Component {
 
@@ -51,5 +51,5 @@ export default class Top extends React.Component {
   }
 }
 
-ReactMixin(Top.prototype, Mixin(React));
-ReactMixin(Top.prototype, StoreWatchMixin(['test']));
+// ReactMixin(Top.prototype, Mixin(React));
+// ReactMixin(Top.prototype, StoreWatchMixin(['test']));
