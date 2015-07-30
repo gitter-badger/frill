@@ -1,5 +1,4 @@
 import Frill from './bootstrap';
-import {join as pathJoin} from 'path';
 import pack from '../package';
 import Hapi from 'hapi';
 import React from 'react';
@@ -36,7 +35,8 @@ server.views({
   engines: {
     jade: Jade
   },
-  path: pathJoin(__dirname, 'templates'),
+  relativeTo: __dirname,
+  path: 'templates',
 });
 
 /**
@@ -82,7 +82,7 @@ server.ext('onPreResponse', (request, reply) => {
     const handler = React.createElement(Handler, patchedState);
     const markup = React.renderToString(handler);
     server.log(['debug'], markup);
-    reply.view('index', {
+    reply.view('default', {
       initialData: JSON.stringify(state),
       markup: markup
     });

@@ -1,9 +1,9 @@
 'use strict';
 import React from 'react';
 // import ReactMixin from 'react-mixin';
-// import {Mixin, StoreWatchMixin} from '../../bootstrap';
+import {BaseComponent, StoreWatchComponent} from '../../bootstrap';
 
-export default class Top extends React.Component {
+export default class Top extends StoreWatchComponent(['test']) {
 
   constructor() {
     super();
@@ -25,7 +25,7 @@ export default class Top extends React.Component {
     };
   }
 
-  getStateFromFrill() {
+  static getStateFromFrill() {
     return {
       count: this.getFrill().store('Test').getCount()
     };
@@ -50,6 +50,3 @@ export default class Top extends React.Component {
     );
   }
 }
-
-// ReactMixin(Top.prototype, Mixin(React));
-// ReactMixin(Top.prototype, StoreWatchMixin(['test']));
