@@ -1,12 +1,12 @@
 import _isFunction from 'lodash/lang/isFunction';
 import _contains from 'lodash/collection/contains';
 import request from './services/request';
-import socketio from './services/socket';
+import socket from './services/socket';
 
 // read default services
 let services = {
   request: request,
-  socketio: socketio,
+  socket: socket,
 };
 
 const reservedNamespaces = [
@@ -23,21 +23,19 @@ class Action {
     return this;
   }
 
-  static get services() {
+  get services() {
     return services
   }
 
-  static set services(_service) {
+  set services(_service) {
     const {namespace, serviceFunction} = _service;
     services[namespace] = serviceFunction;
   }
 
-  static set initializedServices(_service) {
+  initializeService({namespace, service}) {
     // TODO check arguments
-    const {namespace, serviceInstance} = _service;
-    this[namespace] = serviceInstance;
+    this[namespace] = service;
   }
-
 
   // Add a custom service
   static addService(namespace, serviceFunction) {
@@ -62,7 +60,7 @@ class Action {
   }
 
   // Use a service
-  static use(serviceName, opts) {
+  use(serviceName, opts) {
     const _services = this.services;
     if (!_services[serviceName]) {
       throw new Error('The specified service doesn\'t exist');
@@ -73,10 +71,10 @@ class Action {
         'please provide a different namespace');
     }
 
-    this.initializedServices = {
+    this.initializeService({
       namespace: serviceName,
-      serviceInstance: _services[serviceName](opts || {}),
-    }
+      service: _services[serviceName](opts || {})
+    });
   }
 }
 

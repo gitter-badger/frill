@@ -65,6 +65,22 @@ server.register({
 });
 
 /**
+ * Configure hapi-swagger for API documentation.
+ */
+const swaggerOptions = {
+  apiVersion: pack.version,
+  basePath: 'http://localhost:3001',
+};
+
+server.register({
+  register: swagger,
+  options: swaggerOptions
+}, (err) => {
+  if (err) console.error(`hapi-swagger load error: ${err}`);
+
+});
+
+/**
  * Catch requests to fire React Router
  */
 
@@ -88,21 +104,6 @@ server.ext('onPreResponse', (request, reply) => {
       markup: markup
     });
   });
-});
-
-/**
- * Configure hapi-swagger for API documentation.
- */
-const swaggerOptions = {
-  apiVersion: pack.version
-};
-
-server.register({
-  register: swagger,
-  options: swaggerOptions
-}, (err) => {
-  if (err) console.error(`hapi-swagger load error: ${err}`);
-
 });
 
 /**

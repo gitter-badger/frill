@@ -4,27 +4,12 @@ class TestAction extends Frill.Action {
 
   constructor() {
     super();
-    console.log(this.request);
+    this.use('request', {prefix: '/api'});
+    // this.use('socket', {url: 'http://localhost:3000'});
   }
-  // //   @socket.on("test:hello:connection", @test)
-  // //   @socket.on "test:abc", @hello
-  // }
-
-  // hello(data) {
-  //   // Frill.Log.info(data)
-  // }
-  //
-  // test(data) {
-  //   // Frill.Log.silly data
-  //   // Frill.Log.verbose data
-  //   // Frill.Log.debug data
-  //   // Frill.Log.info data
-  //   // Frill.Log.warn data
-  //   // Frill.Log.error data
-  //
-  // }
 
   countUp(data) {
+    this.request.prefix.get('/v1/hello', (err, ret) => console.log(ret.text));
     this.dispatch("COUNT_UP", data);
   }
 }

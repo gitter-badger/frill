@@ -1,6 +1,4 @@
-'use strict';
 import React from 'react';
-// import ReactMixin from 'react-mixin';
 import {BaseComponent, StoreWatchComponent} from '../../bootstrap';
 
 class Top extends new StoreWatchComponent(['Test']) {

@@ -5,5 +5,5 @@ export default (opts) => {
     throw new Error('You must specify option.url to use the socket service.');
   }
 
-  return socketioClient(url, opts);
+  return socketioClient(opts.url, opts);
 }
