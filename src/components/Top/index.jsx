@@ -3,29 +3,18 @@ import React from 'react';
 // import ReactMixin from 'react-mixin';
 import {BaseComponent, StoreWatchComponent} from '../../bootstrap';
 
-class Top extends new StoreWatchComponent(['test']) {
+class Top extends new StoreWatchComponent(['Test']) {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
-    // this.state = {
-    //   count: 0
-    // };
+    this._bind([
+      'onClick',
+      'onSock',
+    ]);
   }
 
-  static contextTypes() {
-    return {
-      frill: React.PropTypes.object
-    };
-  }
-
-  static childContextTypes() {
-    return {
-      frill: React.PropTypes.object
-    };
-  }
-
-  static getStateFromFrill() {
+  getStateFromFrill() {
     return {
       count: this.getFrill().store('Test').getCount()
     };
@@ -36,7 +25,7 @@ class Top extends new StoreWatchComponent(['test']) {
   }
 
   onSock() {
-    this.getFrill().action('Test').socketEmitter('MESSAGE SET IN COMPONENT');
+    // this.getFrill().action('Test').socketEmitter('MESSAGE SET IN COMPONENT');
   }
 
   render() {

@@ -16,8 +16,6 @@ export default (gulp, $, argv, path) => {
 
     const images = ['./src/assets/images/**'];
 
-    console.log($.browserSync.reload);
-
     return gulp.src(images)
       .pipe($.changed('public'))
       .pipe($.imagemin())

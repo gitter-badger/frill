@@ -11,7 +11,8 @@ import _findKey from 'lodash/object/findKey';
 import _uniq from 'lodash/array/uniq';
 
 const defaultDispatchInterceptor = (action, dispatch) => {
-  return {dispatch, action};
+  dispatch(action);
+  // return {dispatch, action};
 };
 
 export default class Dispatcher {
@@ -41,6 +42,7 @@ export default class Dispatcher {
   }
 
   _dispatch(action) {
+
     if (!action || !action.type) {
       throw new Error('Can only dispatch actions with a \'type\' property');
     }
@@ -100,7 +102,7 @@ export default class Dispatcher {
 
           dispatch.resolved = true;
 
-          handled = this.stores[key].__handleAction__(action);
+          const handled = this.stores[key].__handleAction__(action);
 
           if (handled) {
             wasHandled = true;
@@ -118,12 +120,12 @@ export default class Dispatcher {
     });
 
     if (_keys(this.waitingToDispatch).length && !dispatchedThisLoop.length) {
-      let storesWithCircularWaits = _keys(this.waitingToDispatch).join(', ');
+      const storesWithCircularWaits = _keys(this.waitingToDispatch).join(', ');
       throw new Error(`Indirect circular wait detected among: ${storesWithCircularWaits}`);
     }
 
     _each(removeFromDispatchQueue, (key) => {
-      this.waitingToDispatch[key] = null;
+      delete this.waitingToDispatch[key];
     });
 
     if (_size(this.waitingToDispatch)) {

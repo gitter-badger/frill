@@ -6,18 +6,15 @@ import EventEmitter from 'eventemitter3';
 
 class Store extends EventEmitter {
   constructor() {
-
     super();
 
     // list of actionTypes and handlers
     this._actions = {};
 
-    // fetch actions from this.actions and bind them to action list
-    if (this.actions) {
-      const actions = this.actions;
-      this.bindActions(actions);
-    }
+  }
 
+  set actions(actions) {
+    this.bindActions(actions);
   }
 
   // bind multiple actions
@@ -38,15 +35,15 @@ class Store extends EventEmitter {
       throw new Error(`Action handler for ${actionType} must be properly set. Must specify a method name, or a function.`);
     }
 
-    if (!_isFunction(handler)) {
-      throw new Error(`Action handler for ${actionType} must be a method name or a function.`);
-    }
-
     if (_isString(handler)) {
       if (!this[handler]) {
         throw new Error(`Action handler for ${actionType} must be properly set. Method name '${handler}' doesn't exist.`);
       }
       handler = this[handler];
+    }
+
+    if (!_isFunction(handler)) {
+      throw new Error('Action handler must be a function.');
     }
 
     // if action type already exists, push it into an array

@@ -1,4 +1,3 @@
-// import {Component as ReactComponent} from 'react';
 import BaseComponent from './BaseComponent';
 import _each from 'lodash/collection/each';
 
@@ -9,41 +8,36 @@ export default class {
       constructor(props) {
         super(props);
 
-        if (this.getStateFromFrill) {
-          this.state = this.getStateFromFrill();
-        } else {
-          this.state = {};
-        }
+        this.state = this._getInitialState();
       }
 
       componentDidMount() {
-        const frill = this.props.frill || this.context.frill;
+        let frill = this.props.frill || this.context.frill;
+
         // listen to stores and set state on change
-        _each(storeNames, (store) => frill.store(store).on("change", this._setStateFromFrill));
+        _each(storeNames, (store) => frill.store(store).on("change", this._setStateFromFrill.bind(this)));
       }
 
       componentWillUnmount() {
         const frill = this.props.frill || this.context.frill;
         // unlisten to stores and set state on change
-        _each(storeNames, (store) => frill.store(store).removeListener("change", this._setStateFromFrill));
+        _each(storeNames, (store) => frill.store(store).removeListener("change", this._setStateFromFrill.bind(this)));
       }
 
       _setStateFromFrill() {
-        // set state only when mounted
-        if (this.isMounted()) {
-          // if getStateFromFrill is set
-          if (this.getStateFromFrill) {
-            this.setState(this.getStateFromFrill());
-          }
+        // if getStateFromFrill is set
+        if (this.getStateFromFrill) {
+          this.setState(this.getStateFromFrill());
         }
       }
 
-      // getInitialState() {
-      //   if (this.getStateFromFrill) {
-      //     return this.getStateFromFrill();
-      //   }
-      //   return {};
-      // }
+      _getInitialState() {
+        if (this.getStateFromFrill) {
+          return this.getStateFromFrill();
+        }
+        return {};
+      }
+
     };
   }
 };
