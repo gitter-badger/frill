@@ -16,11 +16,14 @@ export default (gulp, $, argv, path) => {
 
     const images = ['./src/assets/images/**'];
 
+    console.log($.browserSync.reload);
+
     return gulp.src(images)
       .pipe($.changed('public'))
       .pipe($.imagemin())
       .pipe(gulp.dest('public'))
-      .pipe($.size({title: 'assets:images'}));
+      .pipe($.size({title: 'assets:images'}))
+      .pipe($.if($._watch, $.browserSync.reload));
   });
 
   gulp.task('assets:vendor', () => {
@@ -29,7 +32,8 @@ export default (gulp, $, argv, path) => {
 
     return gulp.src(vendor)
       .pipe($.changed('public'))
-      .pipe(gulp.dest('public'));
+      .pipe(gulp.dest('public'))
+      .pipe($.if($._watch, $.browserSync.reload));
   });
 
   gulp.task('assets', ['assets:images', 'assets:vendor']);

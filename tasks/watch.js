@@ -31,7 +31,7 @@ export default (gulp, $, argv, path) => {
       $._watch = true;
       gulp.watch(assets, ['assets']);
       gulp.watch(styles, ['stylus']);
-      // gulp.watch(clients, ['webpack']);
+      gulp.watch(clients, ['webpack']);
       cb();
     });
   });

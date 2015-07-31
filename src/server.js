@@ -1,3 +1,5 @@
+global.__SERVER__ = true;
+
 import Frill from './bootstrap';
 import pack from '../package';
 import Hapi from 'hapi';
@@ -12,7 +14,6 @@ import _extend from 'lodash/object/extend';
 import _isUndefined from 'lodash/lang/isUndefined';
 import apiPlugin from './api';
 import routes from './routes';
-
 
 /**
  * Configure hapi.

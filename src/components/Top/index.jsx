@@ -3,7 +3,7 @@ import React from 'react';
 // import ReactMixin from 'react-mixin';
 import {BaseComponent, StoreWatchComponent} from '../../bootstrap';
 
-export default class Top extends StoreWatchComponent(['test']) {
+class Top extends new StoreWatchComponent(['test']) {
 
   constructor() {
     super();
@@ -50,3 +50,5 @@ export default class Top extends StoreWatchComponent(['test']) {
     );
   }
 }
+
+export default Top;

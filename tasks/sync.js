@@ -27,4 +27,9 @@ export default (gulp, $, argv, path) => {
 
   });
 
+  gulp.task('sync:reload', (cb) => {
+    $.browserSync.reload();
+    cb();
+  });
+
 }

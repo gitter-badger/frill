@@ -37,7 +37,7 @@ export default (gulp, $, argv, path) => {
       .pipe($.csscomb())
       .pipe($.if(RELEASE, $.minifyCss()))
       .pipe(gulp.dest('./public'))
-      .pipe($.size({title: 'styles'}));
-      // .pipe($.if($._watch, $.browserSync.reload()));
+      .pipe($.size({title: 'styles'}))
+      .pipe($.if($._watch, $.browserSync.reload));
   });
 }

@@ -12,6 +12,6 @@
  */
 export default (gulp, $, argv, path) => {
   gulp.task('build', ['clean'], (cb) => {
-    $.runSequence(['assets', 'stylus', /* 'webpack' */], cb);
+    $.runSequence(['assets', 'stylus', 'webpack'], cb);
   });
 }
