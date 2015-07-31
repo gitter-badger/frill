@@ -14,24 +14,11 @@ import webpack, {DefinePlugin} from 'webpack';
 import minimist from 'minimist';
 
 const argv = minimist(process.argv.slice(2));
-const RELEASE = !argv.release;
-const STYLE_LOADER = 'style-loader/useable';
-const CSS_LOADER = RELEASE ? 'css-loader' : 'css-loader?minimize';
-const AUTOPREFIXER_BROWSERS = [
-  'Android 2.3',
-  'Android >= 4',
-  'Chrome >= 20',
-  'Firefox >= 24',
-  'Explorer >= 8',
-  'iOS >= 6',
-  'Opera >= 12',
-  'Safari >= 6'
-];
+const RELEASE = !!argv.release;
 const GLOBALS = {
   '__ENV__': RELEASE,
   '__SERVER__': false,
 };
-
 
 export default {
   entry: './src/client.js',

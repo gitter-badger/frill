@@ -19,11 +19,24 @@ export default (gulp, $, argv, path) => {
     const _args = process.argv.slice(2);
     let called = false;
 
+    const ignoreWatchingFiles = [
+      'src/components',
+      'src/core',
+      'src/utils',
+      'src/actions',
+      'src/stores',
+      'src/routes.jsx',
+      'src/bootstrap.js',
+      'src/client.js',
+      'src/assets',
+      'src/styles'
+    ];
+
     return $.nodemon({
       script: 'app.js',
       ext: 'js jsx jade',
       watch: ['src'],
-      ignore: ['src/client.js', 'src/assets', 'src/styles'],
+      ignore: ignoreWatchingFiles,
       args: _args,
       // tasks: (changedFiles) => {
       //   let tasks = [];

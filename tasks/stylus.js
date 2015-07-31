@@ -27,8 +27,8 @@ export default (gulp, $, argv, path) => {
   ];
 
   gulp.task('stylus', () => {
-    return gulp.src('src/styles/style.styl')
-      .pipe($.plumber())
+    return gulp.src('./src/styles/style.styl')
+      // .pipe($.plumber())
       .pipe($.stylus({
         use: [nib()]
       }))
@@ -36,8 +36,8 @@ export default (gulp, $, argv, path) => {
       .pipe($.autoprefixer({browsers: AUTOPREFIXER_BROWSERS}))
       .pipe($.csscomb())
       .pipe($.if(RELEASE, $.minifyCss()))
-      .pipe(gulp.dest('./public'))
       .pipe($.size({title: 'styles'}))
-      .pipe($.if($._watch, $.browserSync.reload));
+      .pipe(gulp.dest('./public'))
+      .pipe($.if($._watch, $.browserSync.reload({stream: true})));
   });
 }

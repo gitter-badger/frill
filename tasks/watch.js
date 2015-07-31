@@ -16,7 +16,6 @@ export default (gulp, $, argv, path) => {
     const styles = ['src/styles/**/*.{css,styl}'];
     const assets = ['./src/assets/**/*'];
     const clients = [
-      './config/**/*',
       './src/components/**/*',
       './src/core/**/*',
       './src/utils/**/*',
