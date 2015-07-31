@@ -12,7 +12,7 @@ export default class {
       }
 
       componentDidMount() {
-        let frill = this.props.frill || this.context.frill;
+        const frill = this.props.frill || this.context.frill;
 
         // listen to stores and set state on change
         _each(storeNames, (store) => frill.store(store).on("change", this._setStateFromFrill.bind(this)));
