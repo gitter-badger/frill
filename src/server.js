@@ -2,6 +2,8 @@ global.__SERVER__ = true;
 
 import Frill from './bootstrap';
 import pack from '../package';
+import apiPlugin from './api';
+import routes from './routes';
 import Hapi from 'hapi';
 import React from 'react';
 import Router from 'react-router';
@@ -12,8 +14,9 @@ import goodConsole from 'good-console';
 import swagger from 'hapi-swagger';
 import _extend from 'lodash/object/extend';
 import _isUndefined from 'lodash/lang/isUndefined';
-import apiPlugin from './api';
-import routes from './routes';
+import _argv from 'minimist';
+let argv = _argv;
+argv = _argv(process.argv.slice(2));
 
 /**
  * Configure hapi.
@@ -61,7 +64,7 @@ server.register({
     prefix: '/api',
   }
 }, (err) => {
-  if (err) console.error(`API plugin load error: ${err}`);
+  if (err) server.log(['error'], `API plugin load error: ${err}`);
 });
 
 /**
@@ -76,8 +79,7 @@ server.register({
   register: swagger,
   options: swaggerOptions
 }, (err) => {
-  if (err) console.error(`hapi-swagger load error: ${err}`);
-
+  if (err) server.log(['error'], `hapi-swagger load error: ${err}`);
 });
 
 /**
@@ -98,7 +100,7 @@ server.ext('onPreResponse', (request, reply) => {
     const patchedState = _extend({frill: frillContext}, state);
     const handler = React.createElement(Handler, patchedState);
     const markup = React.renderToString(handler);
-    server.log(['debug'], markup);
+    server.log(['verbose'], markup);
     reply.view('default', {
       initialData: JSON.stringify(state),
       markup: markup
@@ -106,15 +108,58 @@ server.ext('onPreResponse', (request, reply) => {
   });
 });
 
+// define which log level outputs which tags
+const logLevels = {
+  silent: {},
+  error: {
+    error: '*',
+    log: ['error'],
+    response: ['error'],
+  },
+  debug: {
+    error: '*',
+    log: ['debug', 'error'],
+    response: ['debug', 'error'],
+  },
+  info: {
+    error: '*',
+    log: ['info', 'debug', 'error'],
+    response: ['info', 'debug', 'error'],
+  },
+  verbose: {
+    log: '*',
+    ops: '*',
+    error: '*',
+    request: '*',
+    response: '*',
+  },
+};
+
+let logEvents;
+if (argv.verbose) {
+  logEvents = logLevels.verbose;
+} else if (argv.info) {
+  logEvents = logLevels.info;
+} else if (argv.debug) {
+  logEvents = logLevels.debug;
+} else if (argv.error) {
+  logEvents = logLevels.error;
+} else if (argv.silent) {
+  logEvents = logLevels.silent;
+} else {
+  logEvents = logLevels.info;
+}
+
 /**
  * Configure good (for logging hapi)
  */
 const goodOptions = {
   reporters: [{
       reporter: goodConsole,
-      events: {
-        log: '*',
-        response: '*',
+      events: logEvents,
+      config: {
+        format: '[[]HH:mm:ss[]][[frill]]',
+        utc: false
       }
   }],
 };
@@ -127,6 +172,6 @@ server.register({
     console.error(err);
   } else {
     // initialize server
-    server.start(() => console.info(`Server started at ${server.info.uri}`));
+    server.start(() => server.log(['info'], `Server started at ${server.info.uri}`));
   }
 });

@@ -21,7 +21,7 @@ export default (gulp, $, argv, path) => {
       notify: true,
       https: false,
       proxy: 'http://127.0.0.1:3000',
-      logLevel: "debug",
+      logLevel: argv.verbose ? 'debug' : 'silent',
       port: 3001,
     }, cb);
 

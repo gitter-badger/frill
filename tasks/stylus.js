@@ -36,7 +36,7 @@ export default (gulp, $, argv, path) => {
       .pipe($.autoprefixer({browsers: AUTOPREFIXER_BROWSERS}))
       .pipe($.csscomb())
       .pipe($.if(RELEASE, $.minifyCss()))
-      .pipe($.size({title: 'styles'}))
+      .pipe($.if(!argv.silent, $.size({title: 'styles'})))
       .pipe(gulp.dest('./public'))
       .pipe($.if($._watch, $.browserSync.reload({stream: true})));
   });

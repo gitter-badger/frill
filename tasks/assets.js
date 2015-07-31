@@ -20,7 +20,7 @@ export default (gulp, $, argv, path) => {
       .pipe($.changed('public'))
       .pipe($.imagemin())
       .pipe(gulp.dest('public'))
-      .pipe($.size({title: 'assets:images'}))
+      .pipe($.if(!argv.silent, $.size({title: 'assets:images'})))
       .pipe($.if($._watch, $.browserSync.reload));
   });
 

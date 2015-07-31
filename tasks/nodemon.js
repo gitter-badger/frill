@@ -33,20 +33,12 @@ export default (gulp, $, argv, path) => {
     ];
 
     return $.nodemon({
+      verbose: argv.verbose,
       script: 'app.js',
       ext: 'js jsx jade',
       watch: ['src'],
       ignore: ignoreWatchingFiles,
       args: _args,
-      // tasks: (changedFiles) => {
-      //   let tasks = [];
-      //   changedFiles.forEach((file) => {
-      //     // if (path.extname(file) === '.js' && !~tasks.indexOf('lint')) tasks.push('lint');
-      //     // if (path.extname(file) === '.css' && !~tasks.indexOf('cssmin')) tasks.push('cssmin');
-      //   });
-      //   tasks.push('sync:reload');
-      //   return tasks;
-      // },
     })
     .on('start', (e) => {
       if (!called) {
@@ -55,7 +47,9 @@ export default (gulp, $, argv, path) => {
       }
     })
     .on('restart', (e) => {
-      $.util.log('Server restarted by \'' + e[0] + '\'');
+      if (!argv.silent) {
+        $.util.log('Server restarted by \'' + e[0] + '\'');
+      }
       setTimeout($.browserSync.reload, RELOAD_AFTER_MS);
     });
   });
