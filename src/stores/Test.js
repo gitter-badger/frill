@@ -12,12 +12,12 @@ class TestStore extends Frill.Store {
     };
   }
 
-  countup(payload) {
+  countup(payload: any) {
     this._count = this._count + 1;
     this.change();
   }
 
-  countupBy(byCount) {
+  countupBy(byCount: number) {
     this._count = this._count + byCount;
     this.change();
   }

@@ -31,7 +31,7 @@ export default (gulp, $, argv, path) => {
       gulp.watch(assets, ['assets']);
       gulp.watch(styles, ['stylus']);
       gulp.watch(clients, ['webpack']);
-      // gulp.watch(['src/**/*.js', 'src/**/*.jsx'], ['flowtype'])
+      gulp.watch(['src/**/*.js', 'src/**/*.jsx'], ['flowtype'])
       cb();
     });
   });

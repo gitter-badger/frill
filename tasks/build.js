@@ -15,7 +15,7 @@ export default (gulp, $, argv, path) => {
     $.runSequence([
       'assets',
       'stylus',
-      // 'flowtype',
+      'flowtype',
       'webpack',
     ], cb);
   });
