@@ -7,8 +7,8 @@ class Top extends new StoreWatchComponent(['Test']) {
     super(props);
 
     this._bind([
-      'onClick',
-      'onSock',
+      'onOne',
+      'onTen',
     ]);
   }
 
@@ -18,12 +18,12 @@ class Top extends new StoreWatchComponent(['Test']) {
     };
   }
 
-  onClick(e) {
-    this.getFrill().action('Test').countUp();
+  onOne(e) {
+  this.getFrill().action('Test').countUp();
   }
 
-  onSock() {
-    // this.getFrill().action('Test').socketEmitter('MESSAGE SET IN COMPONENT');
+  onTen(e) {
+    this.getFrill().action('Test').countUpBy(10);
   }
 
   render() {
@@ -31,8 +31,8 @@ class Top extends new StoreWatchComponent(['Test']) {
       <div>
         This is Top component<br />
         <h4>{this.state.count}</h4>
-          <button onClick={this.onClick}>click!</button>
-          <button onClick={this.onSock}>socket!</button>
+          <button onClick={this.onOne}>+1</button>
+          <button onClick={this.onTen}>+10</button>
       </div>
     );
   }

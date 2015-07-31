@@ -1,5 +1,7 @@
 import Frill from '../core';
 
+/* @flow */
+
 class TestAction extends Frill.Action {
 
   constructor() {
@@ -8,9 +10,13 @@ class TestAction extends Frill.Action {
     // this.use('socket', {url: 'http://localhost:3000'});
   }
 
-  countUp(data) {
+  countUp() {
     this.request.prefix.get('/v1/hello', (err, ret) => console.log(ret.text));
-    this.dispatch("COUNT_UP", data);
+    this.dispatch("COUNT_UP");
+  }
+
+  countUpBy(count) {
+    this.dispatch("COUNT_UP_BY", count);
   }
 }
 
