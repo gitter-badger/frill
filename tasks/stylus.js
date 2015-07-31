@@ -27,9 +27,6 @@ export default (gulp, $, argv, path) => {
   ];
 
   gulp.task('stylus', () => {
-    $.src = $.src || {};
-    $.src.styles = 'src/styles/**/*.{css,styl}';
-
     return gulp.src('src/styles/style.styl')
       .pipe($.plumber())
       .pipe($.stylus({
@@ -41,6 +38,6 @@ export default (gulp, $, argv, path) => {
       .pipe($.if(RELEASE, $.minifyCss()))
       .pipe(gulp.dest('./public'))
       .pipe($.size({title: 'styles'}));
-      // .pipe($.if($._watch, $.livereload()));
+      // .pipe($.if($._watch, $.browserSync.reload()));
   });
 }

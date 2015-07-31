@@ -42,7 +42,7 @@ export default class Top extends StoreWatchComponent(['test']) {
   render() {
     return (
       <div>
-        this is Top component<br />
+        This is Top component<br />
         <h4>{this.state.count}</h4>
           <button onClick={this.onClick}>click!</button>
           <button onClick={this.onSock}>socket!</button>

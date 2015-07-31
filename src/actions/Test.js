@@ -2,8 +2,10 @@ import Frill from '../core';
 
 class TestAction extends Frill.Action {
 
-  // constructor() {
-  //   super();
+  constructor() {
+    super();
+    console.log(this.request);
+  }
   // //   @socket.on("test:hello:connection", @test)
   // //   @socket.on "test:abc", @hello
   // }

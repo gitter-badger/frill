@@ -46,7 +46,7 @@ server.route({
 	method:  '*',
 	path:    '/{params*}',
 	handler: (request, reply) => {
-		reply.file('static' + request.path);
+		reply.file('public' + request.path);
 	}
 });
 

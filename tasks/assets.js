@@ -11,19 +11,26 @@
  *
  */
 export default (gulp, $, argv, path) => {
+
   gulp.task('assets:images', () => {
-    $.src = $.src || {};
-    $.src.assets = [];
 
-    const _images = './src/assets/images/**';
-    $.src.assets.push(_images);
+    const images = ['./src/assets/images/**'];
 
-    return gulp.src(_images)
+    return gulp.src(images)
       .pipe($.changed('public'))
       .pipe($.imagemin())
       .pipe(gulp.dest('public'))
       .pipe($.size({title: 'assets:images'}));
   });
 
-  gulp.task('assets', ['assets:images']);
+  gulp.task('assets:vendor', () => {
+
+    const vendor = ['./src/assets/vendor/**'];
+
+    return gulp.src(vendor)
+      .pipe($.changed('public'))
+      .pipe(gulp.dest('public'));
+  });
+
+  gulp.task('assets', ['assets:images', 'assets:vendor']);
 }

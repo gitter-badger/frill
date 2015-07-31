@@ -16,18 +16,25 @@ import path from 'path';
 import includeAll from 'include-all';
 import _argv from 'minimist';
 import {each as _each} from 'lodash';
+import {isFunction as _isFunction} from 'lodash';
+import _$ from 'gulp-load-plugins';
+import runSequence from 'run-sequence';
+import del from 'del';
+import webpack from 'webpack';
+import browserSync from 'browser-sync';
+import vinylSourceStream from 'vinyl-source-stream';
 let argv = _argv;
 argv = _argv(process.argv.slice(2));
+const $ = _$();
 
 /**
- * Load all gulp plugins.
+ * Load all gulp plugins without 'gulp-' prefix.
  */
-const $ = require('gulp-load-plugins')();
-// $ = $ || {};
-$.runSequence = require('run-sequence');
-$.del = require('del');
-$.webpack = require('webpack');
-$.sourceStream = require('vinyl-source-stream');
+$.runSequence = runSequence;
+$.del = del;
+$.webpack = webpack;
+$.sourceStream = vinylSourceStream;
+$.browserSync = browserSync.create();
 
 /**
  * Invoke task
@@ -36,7 +43,7 @@ const invokeConfigFn = (tasks) => {
   path._gulpfileDir = __dirname;
   // for(const taskName in tasks) {
   _each(tasks, (fn, taskName) => {
-    if (fn) {
+    if (_isFunction(fn)) {
       fn(gulp, $, argv, path);
     }
     return;

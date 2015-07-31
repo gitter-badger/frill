@@ -1,1 +1,3 @@
-# frill project
+# frilljs
+
+**WIP**

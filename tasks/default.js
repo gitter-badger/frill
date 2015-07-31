@@ -13,5 +13,5 @@
  *
  */
 export default (gulp, $, argv, path) => {
-  gulp.task('default', ['server:start']);
+  gulp.task('default', ['build', 'sync']);
 }

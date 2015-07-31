@@ -9,8 +9,8 @@ export default React.createClass({
   render: function() {
     return (
       <div>
-        <h1><Link to="app">APP COMPONENT</Link></h1>
-        <Link to="toptwo">とっぷ2へのリンク</Link>
+        <h1><Link to="app">Back to top</Link></h1>
+        <Link to="toptwo">トップ2へ</Link>
         <RouteHandler {...this.props}/>
       </div>
     );

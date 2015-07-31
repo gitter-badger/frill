@@ -3,15 +3,17 @@
  * @author nanopx(@nanopx)
  *
  * ---------------------------------------------------------------
- * build.js
+ * webpack.js
  * ---------------------------------------------------------------
  *
- * Gulp task for building up application.
- * Run tasks: "clean", "assets",
+ * Watches file changes and builds the application.
  *
  */
 export default (gulp, $, argv, path) => {
-  gulp.task('build', ['clean'], (cb) => {
-    $.runSequence(['assets', 'vendor', 'stylus'], cb);
+
+
+  gulp.task('webpack', (cb) => {
+
   });
+
 }
