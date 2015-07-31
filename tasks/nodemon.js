@@ -23,7 +23,7 @@ export default (gulp, $, argv, path) => {
       script: 'app.js',
       ext: 'js jsx jade',
       watch: ['src'],
-      ignore: ['src/client.jsx', 'src/assets', 'src/styles'],
+      ignore: ['src/client.js', 'src/assets', 'src/styles'],
       args: _args
     })
     .on('start', (e) => {

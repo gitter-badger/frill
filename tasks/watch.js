@@ -23,8 +23,8 @@ export default (gulp, $, argv, path) => {
       './src/actions/**/*',
       './src/stores/**/*',
       './src/routes.jsx',
-      './src/bootstrap.jsx',
-      './src/client.jsx'
+      './src/bootstrap.js',
+      './src/client.js'
     ];
 
     $.runSequence('build', () => {
