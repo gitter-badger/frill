@@ -26,12 +26,23 @@ export default (gulp, $, argv, path) => {
       './src/client.js'
     ];
 
+    // set specific files for performance improvements
+    const checkFlowTypes = [
+      'src/**/*.js',
+      'src/**/*.jsx',
+    ];
+
+    const gazeOption = {
+      // wait for 5 sec until next execution
+      debounceDelay: 5000
+    };
+
     $.runSequence('build', () => {
       $._watch = true;
-      gulp.watch(assets, ['assets']);
-      gulp.watch(styles, ['stylus']);
-      gulp.watch(clients, ['webpack']);
-      gulp.watch(['src/**/*.js', 'src/**/*.jsx'], ['flowtype'])
+      gulp.watch(assets, gazeOption, ['assets']);
+      gulp.watch(styles, gazeOption, ['stylus']);
+      gulp.watch(clients, gazeOption, ['webpack']);
+      gulp.watch(checkFlowTypes, gazeOption, ['flowtype'])
       cb();
     });
   });
