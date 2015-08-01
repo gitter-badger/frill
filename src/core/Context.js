@@ -3,6 +3,13 @@ import _extend from 'lodash/object/extend';
 import EventEmitter from 'eventemitter3';
 import Dispatcher from './Dispatcher';
 
+/**
+ * Creates a context with a group of actions and stores.
+ * @extends {EventEmitter}
+ * @access public
+ * @example
+ * let Context = new Context();
+ */
 class Context extends EventEmitter {
 
   constructor(stores, actions) {

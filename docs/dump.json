@@ -1,0 +1,2276 @@
+[
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/actions/index.js",
+    "memberof": null,
+    "longname": "src/actions/index.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import Test from './Test';\n\nexport default {\n  Test: Test,\n};\n"
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/api/index.js",
+    "memberof": null,
+    "longname": "src/api/index.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import helpers from '../helpers';\nimport models from '../models';\nimport APIv1 from './v1';\n\nconst apiPlugin = {\n  register: (server, options, next) => {\n\n    // Mount api versions here.\n    APIv1(server, {helpers, models}, next);\n\n  },\n};\n\napiPlugin.register.attributes = {\n  name: 'api_versioning',\n  version: '1.0.0',\n};\n\nexport default apiPlugin;\n"
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "apiPlugin",
+    "memberof": "src/api/index.js",
+    "longname": "src/api/index.js~apiPlugin",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/api/index.js",
+    "importStyle": "apiPlugin",
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/api/v1/hello.js",
+    "memberof": null,
+    "longname": "src/api/v1/hello.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "export default (server, {helpers, models}) => {\n\n  const {Posts} = models;\n\n  return [{\n    method: 'GET',\n    path: '/hello',\n    handler: (req, rep) => {\n      rep('api, hello!');\n    },\n    config: {\n      description: 'Say hello!',\n      notes: 'Says hello.',\n      tags: ['api', 'greeting'],\n      plugins: {\n        'hapi-swagger': {\n            responseMessages: [\n                { code: 400, message: 'Bad Request' },\n                { code: 500, message: 'Internal Server Error'}\n            ]\n        }\n      },\n    },\n  }, {\n    method: 'POST',\n    path: '/hello',\n    handler: (req, rep) => rep('api, hello post!'),\n    config: {\n      description: 'Say hello!',\n      notes: 'Says hello.',\n      tags: ['api', 'greeting'],\n      plugins: {\n        'hapi-swagger': {\n            responseMessages: [\n                { code: 400, message: 'Bad Request' },\n                { code: 500, message: 'Internal Server Error'}\n            ]\n        }\n      },\n    },\n  }];\n}\n"
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/api/v1/index.js",
+    "memberof": null,
+    "longname": "src/api/v1/index.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import Hello from './hello';\nexport default (server, {helpers, models}, next) => {\n\n  const v1 = {\n    register: (server, options, next) => {\n      server.route(Hello(server, {helpers, models}));\n      next();\n    },\n  };\n\n  v1.register.attributes = {\n    name: 'v1',\n    version: '0.0.0',\n  };\n\n  server.register({\n    register: v1,\n  }, {\n    routes: {\n      prefix: '/v1',\n    }\n  }, next);\n}\n"
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/bootstrap.js",
+    "memberof": null,
+    "longname": "src/bootstrap.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import Frill from './core';\nimport Stores from './stores';\nimport Actions from './actions';\n\n// load stores and actions.\nFrill._Stores = Stores;\nFrill._Actions = Actions;\n\nexport default Frill;\n"
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/client.js",
+    "memberof": null,
+    "longname": "src/client.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import Frill from './bootstrap';\nimport _extend from 'lodash/object/extend';\nimport React from 'react';\nimport Router from 'react-router';\nimport routes from './routes';\n// import Logger from './core/Logger';\n// import Configs from './../config/';\n\n// Config = Configs[process.env.NODE_ENV]\n// defaultConfig = Configs['default']\n// Config = _extend defaultConfig, Config\n\n// Frill.Log = new Logger(Config, false)\n\n// TODO: make a new method for this inside Frill.\n// Frill.isClient = true;\n// Frill.isServer = false;\n\n// use socket service\n// Frill.Action.use('socket', {url: 'http://localhost:3000'});\n\n// create a frill context\nconst frillContext = Frill.attach(Frill._Stores, Frill._Actions);\n\nconst data = JSON.parse(document.getElementById('initial-data').getAttribute('data-json'));\n\nRouter.run(routes(), Router.HistoryLocation, (Handler) => {\n  React.render(React.createElement(Handler, _extend({frill: frillContext}, data)), document.getElementById('app'));\n});\n"
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "frillContext",
+    "memberof": "src/client.js",
+    "longname": "src/client.js~frillContext",
+    "access": null,
+    "export": false,
+    "importPath": "frill/src/client.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 23,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "data",
+    "memberof": "src/client.js",
+    "longname": "src/client.js~data",
+    "access": null,
+    "export": false,
+    "importPath": "frill/src/client.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 25,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/components/404.js",
+    "memberof": null,
+    "longname": "src/components/404.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "'use strict';\n\n// import Frill from 'frill';\nimport React from 'react';\nimport {Link, RouteHandler} from 'react-router';\n\nmodule.exports = React.createClass({\n  name: \"NotFound\",\n  render: () => {\n    return (\n      <div>404</div>\n    );\n  }\n});\n"
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/components/index.js",
+    "memberof": null,
+    "longname": "src/components/index.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import App from './App';\nimport Top from './Top';\nimport TopTwo from './TopTwo';\nimport NotFound from './404';\n\nexport default {\n  // Parent component\n  App: App,\n  Top: Top,\n  TopTwo: TopTwo,\n\n  /**\n   * Error handling\n   */\n\n  // 404\n  NotFound: NotFound,\n\n\n};\n"
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/core/Action.js",
+    "memberof": null,
+    "longname": "src/core/Action.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import _isFunction from 'lodash/lang/isFunction';\nimport _contains from 'lodash/collection/contains';\nimport request from './services/request';\nimport socket from './services/socket';\n\n// read default services\nlet services = {\n  request: request,\n  socket: socket,\n};\n\nconst reservedNamespaces = [\n  \"setup\"\n];\n\nclass Action {\n\n  constructor() {\n    // this._services = services;\n    if (this.setup && _isFunction(this.setup)) {\n      this.setup();\n    }\n    return this;\n  }\n\n  get services() {\n    return services\n  }\n\n  set services(_service) {\n    const {namespace, serviceFunction} = _service;\n    services[namespace] = serviceFunction;\n  }\n\n  initializeService({namespace, service}) {\n    // TODO check arguments\n    this[namespace] = service;\n  }\n\n  // Add a custom service\n  static addService(namespace, serviceFunction) {\n    let _services = this.services;\n    if (_services[namespace]) {\n      throw new Error(`Service: ${namespace} already exists`);\n    }\n\n    if (_contains(reservedNamespaces, namespace)) {\n      throw new Error(`Could not add service, ${namespace} is a reserved namespace`);\n    }\n\n    if (!_isFunction(serviceFunction)) {\n      throw new TypeError('A service must be a function');\n    }\n\n    _services = {\n      namespace: namespace,\n      serviceFunction: serviceFunction,\n    }\n\n  }\n\n  // Use a service\n  use(serviceName, opts) {\n    const _services = this.services;\n    if (!_services[serviceName]) {\n      throw new Error('The specified service doesn\\'t exist');\n    }\n\n    if (this[serviceName]) {\n      throw new Error('The specified service name already exists and started, ' +\n        'please provide a different namespace');\n    }\n\n    this.initializeService({\n      namespace: serviceName,\n      service: _services[serviceName](opts || {})\n    });\n  }\n}\n\nexport default Action;\n"
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "services",
+    "memberof": "src/core/Action.js",
+    "longname": "src/core/Action.js~services",
+    "access": null,
+    "export": false,
+    "importPath": "frill/src/core/Action.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "reservedNamespaces",
+    "memberof": "src/core/Action.js",
+    "longname": "src/core/Action.js~reservedNamespaces",
+    "access": null,
+    "export": false,
+    "importPath": "frill/src/core/Action.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 12,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Action",
+    "memberof": "src/core/Action.js",
+    "longname": "src/core/Action.js~Action",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/core/Action.js",
+    "importStyle": "Action",
+    "description": null,
+    "lineNumber": 16,
+    "undocument": true,
+    "interface": false
+  },
+  {
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "src/core/Action.js~Action",
+    "longname": "src/core/Action.js~Action#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 18,
+    "undocument": true,
+    "params": [],
+    "generator": false
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "services",
+    "memberof": "src/core/Action.js~Action",
+    "longname": "src/core/Action.js~Action#services",
+    "access": null,
+    "description": null,
+    "lineNumber": 26,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "set",
+    "static": false,
+    "variation": null,
+    "name": "services",
+    "memberof": "src/core/Action.js~Action",
+    "longname": "src/core/Action.js~Action#services",
+    "access": null,
+    "description": null,
+    "lineNumber": 30,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "initializeService",
+    "memberof": "src/core/Action.js~Action",
+    "longname": "src/core/Action.js~Action#initializeService",
+    "access": null,
+    "description": null,
+    "lineNumber": 35,
+    "undocument": true,
+    "params": [
+      {
+        "name": "objectPattern",
+        "types": [
+          "{\"namespace\": *, \"service\": *}"
+        ],
+        "defaultRaw": {
+          "namespace": null,
+          "service": null
+        },
+        "defaultValue": "{\"namespace\":null,\"service\":null}"
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "namespace",
+    "memberof": "src/core/Action.js~Action",
+    "longname": "src/core/Action.js~Action#namespace",
+    "access": null,
+    "description": null,
+    "lineNumber": 37,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "method",
+    "static": true,
+    "variation": null,
+    "name": "addService",
+    "memberof": "src/core/Action.js~Action",
+    "longname": "src/core/Action.js~Action.addService",
+    "access": null,
+    "description": null,
+    "lineNumber": 41,
+    "undocument": true,
+    "params": [
+      {
+        "name": "namespace",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "serviceFunction",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "use",
+    "memberof": "src/core/Action.js~Action",
+    "longname": "src/core/Action.js~Action#use",
+    "access": null,
+    "description": null,
+    "lineNumber": 63,
+    "undocument": true,
+    "params": [
+      {
+        "name": "serviceName",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "opts",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "action",
+    "memberof": "src/core/Action.js",
+    "longname": "src/core/Action.js~action",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/core/Action.js",
+    "importStyle": "action",
+    "description": null,
+    "lineNumber": 81,
+    "undocument": true,
+    "type": {
+      "types": [
+        "src/core/Action.js~Action"
+      ]
+    }
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/core/Context.js",
+    "memberof": null,
+    "longname": "src/core/Context.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import _each from 'lodash/collection/each';\nimport _extend from 'lodash/object/extend';\nimport EventEmitter from 'eventemitter3';\nimport Dispatcher from './Dispatcher';\n\n/**\n * Creates a context with a group of actions and stores.\n * @extends {EventEmitter}\n * @access public\n * @example\n * let Context = new Context();\n */\nclass Context extends EventEmitter {\n\n  constructor(stores, actions) {\n\n    super();\n\n    this.stores = {};\n    this.actions = {};\n    this.dispatcher = new Dispatcher();\n\n    // object to bind with actions\n    this.actionDispatchBinder = {\n      frill: this,\n      dispatch: (actionType, payload) => {\n        try {\n          this.emit('dispatch', actionType, payload);\n        } finally {\n          this.dispatcher.dispatch({type: actionType, payload: payload});\n        }\n      }\n    };\n\n    // register stores and actions to context\n    this.registerStores(stores);\n    this.registerActions(actions);\n\n    // give access to store from components\n    this.store = (storeName) => this.stores[storeName];\n\n    // give access to actions from components\n    this.action = (actionName) => this.actions[actionName];\n\n    return this;\n  }\n\n  // register multiple stores\n  registerStores(stores) {\n    _each(stores, (store, name) => {\n      this.registerStore(name, store);\n    });\n  }\n\n  // register a single store\n  registerStore(name, store) {\n    if (this.stores[name]) {\n      throw new Error(`Store: '${name}' already exists`);\n    }\n\n    store.frill = this;\n\n    this.stores[name] = store;\n    this.dispatcher.addStore(name, store);\n  }\n\n\n  // register multiple actions\n  registerActions(actions) {\n    _each(actions, (action, name) => this.registerAction(name, action));\n  }\n\n  // register an action object\n  registerAction(name, action) {\n    if (this.actions[name]) {\n      throw new Error(`Action: '${name}' already exists`);\n    }\n\n    this.actions[name] = _extend(action, this.actionDispatchBinder);\n  }\n\n  setDispatchInterceptor(fn) {\n    this.dispatcher.setDispatchInterceptor(fn);\n  }\n}\n\nexport default Context;\n"
+  },
+  {
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Context",
+    "memberof": "src/core/Context.js",
+    "longname": "src/core/Context.js~Context",
+    "access": "public",
+    "export": true,
+    "importPath": "frill/src/core/Context.js",
+    "importStyle": "Context",
+    "description": "Creates a context with a group of actions and stores.",
+    "examples": [
+      "let Context = new Context();"
+    ],
+    "lineNumber": 13,
+    "interface": false,
+    "extends": [
+      "EventEmitter"
+    ]
+  },
+  {
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "src/core/Context.js~Context",
+    "longname": "src/core/Context.js~Context#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 15,
+    "undocument": true,
+    "params": [
+      {
+        "name": "stores",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "actions",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "stores",
+    "memberof": "src/core/Context.js~Context",
+    "longname": "src/core/Context.js~Context#stores",
+    "access": null,
+    "description": null,
+    "lineNumber": 19,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "actions",
+    "memberof": "src/core/Context.js~Context",
+    "longname": "src/core/Context.js~Context#actions",
+    "access": null,
+    "description": null,
+    "lineNumber": 20,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "dispatcher",
+    "memberof": "src/core/Context.js~Context",
+    "longname": "src/core/Context.js~Context#dispatcher",
+    "access": null,
+    "description": null,
+    "lineNumber": 21,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "actionDispatchBinder",
+    "memberof": "src/core/Context.js~Context",
+    "longname": "src/core/Context.js~Context#actionDispatchBinder",
+    "access": null,
+    "description": null,
+    "lineNumber": 24,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "store",
+    "memberof": "src/core/Context.js~Context",
+    "longname": "src/core/Context.js~Context#store",
+    "access": null,
+    "description": null,
+    "lineNumber": 40,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "action",
+    "memberof": "src/core/Context.js~Context",
+    "longname": "src/core/Context.js~Context#action",
+    "access": null,
+    "description": null,
+    "lineNumber": 43,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "registerStores",
+    "memberof": "src/core/Context.js~Context",
+    "longname": "src/core/Context.js~Context#registerStores",
+    "access": null,
+    "description": null,
+    "lineNumber": 49,
+    "undocument": true,
+    "params": [
+      {
+        "name": "stores",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "registerStore",
+    "memberof": "src/core/Context.js~Context",
+    "longname": "src/core/Context.js~Context#registerStore",
+    "access": null,
+    "description": null,
+    "lineNumber": 56,
+    "undocument": true,
+    "params": [
+      {
+        "name": "name",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "store",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "registerActions",
+    "memberof": "src/core/Context.js~Context",
+    "longname": "src/core/Context.js~Context#registerActions",
+    "access": null,
+    "description": null,
+    "lineNumber": 69,
+    "undocument": true,
+    "params": [
+      {
+        "name": "actions",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "registerAction",
+    "memberof": "src/core/Context.js~Context",
+    "longname": "src/core/Context.js~Context#registerAction",
+    "access": null,
+    "description": null,
+    "lineNumber": 74,
+    "undocument": true,
+    "params": [
+      {
+        "name": "name",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "action",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "setDispatchInterceptor",
+    "memberof": "src/core/Context.js~Context",
+    "longname": "src/core/Context.js~Context#setDispatchInterceptor",
+    "access": null,
+    "description": null,
+    "lineNumber": 82,
+    "undocument": true,
+    "params": [
+      {
+        "name": "fn",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "context",
+    "memberof": "src/core/Context.js",
+    "longname": "src/core/Context.js~context",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/core/Context.js",
+    "importStyle": "context",
+    "description": null,
+    "lineNumber": 87,
+    "undocument": true,
+    "type": {
+      "types": [
+        "src/core/Context.js~Context"
+      ]
+    }
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/core/Core.js",
+    "memberof": null,
+    "longname": "src/core/Core.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import Context from './Context';\n\nexport default {\n  attach: (stores, actions) => new Context(stores, actions),\n  \n};\n"
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/core/Dispatcher.js",
+    "memberof": null,
+    "longname": "src/core/Dispatcher.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import _clone from 'lodash/lang/clone';\nimport _isArray from 'lodash/lang/isArray';\nimport _mapValues from 'lodash/object/mapValues';\nimport _forOwn from 'lodash/object/forOwn';\nimport _intersection from 'lodash/array/intersection';\nimport _keys from 'lodash/object/keys';\nimport _map from 'lodash/collection/map';\nimport _each from 'lodash/collection/forEach';\nimport _size from 'lodash/collection/size';\nimport _findKey from 'lodash/object/findKey';\nimport _uniq from 'lodash/array/uniq';\n\nconst defaultDispatchInterceptor = (action, dispatch) => {\n  dispatch(action);\n  // return {dispatch, action};\n};\n\nexport default class Dispatcher {\n\n  constructor(stores) {\n    this.stores = {};\n    this.currentDispatch = null;\n    this.currentActionType = null;\n    this.waitingToDispatch = [];\n    this.dispatchInterceptor = defaultDispatchInterceptor;\n    this._boundDispatch = this._dispatch.bind(this);\n    _each(stores, (key) => {\n      if (stores[key]) {\n        this.addStore(key, stores[key]);\n      }\n    });\n\n  }\n\n  addStore(name, store) {\n    store.dispatcher = this;\n    this.stores[name] = store;\n  }\n\n  dispatch(action) {\n    this.dispatchInterceptor(action, this._boundDispatch);\n  }\n\n  _dispatch(action) {\n\n    if (!action || !action.type) {\n      throw new Error('Can only dispatch actions with a \\'type\\' property');\n    }\n\n    if (this.currentDispatch) {\n      const complaint = `Cannot dispatch an action ('${action.type}') while` +\n        ` another action ('${this.currentActionType}') is being dispatched`;\n      throw new Error(complaint);\n    }\n\n    this.waitingToDispatch = _clone(this.stores);\n    this.currentActionType = action.type;\n\n    this.currentDispatch = _mapValues(this.stores, () => {\n      return {\n        resolved: false,\n        waitingOn: [],\n        waitCallback: null,\n      };\n    });\n\n    try {\n      this.doDispatchLoop(action);\n    } finally {\n      this.currentActionType = null;\n      this.currentDispatch = null;\n    }\n  }\n\n  doDispatchLoop(action) {\n    let wasHandled = false;\n    let removeFromDispatchQueue = [];\n    let dispatchedThisLoop = [];\n    let dispatch;\n    let canBeDispatchedTo;\n\n    _forOwn(this.waitingToDispatch, (value, key) => {\n      dispatch = this.currentDispatch[key];\n      canBeDispatchedTo = !dispatch.waitingOn.length ||\n        !_intersection(dispatch.waitingOn, _keys(this.waitingToDispatch)).length;\n\n      if (canBeDispatchedTo) {\n\n        if (dispatch.waitCallback) {\n          stores = _map(dispatch.waitingOn, (key) => {\n            return this.stores[key];\n          });\n\n          const fn = dispatch.waitCallback;\n          dispatch.waitCallback = null;\n          dispatch.waitingOn = [];\n          dispatch.resolved = true;\n          fn.apply(null, stores);\n          wasHandled = true;\n\n        } else {\n\n          dispatch.resolved = true;\n\n          const handled = this.stores[key].__handleAction__(action);\n\n          if (handled) {\n            wasHandled = true;\n          }\n        }\n        dispatchedThisLoop.push(key);\n\n        if (this.currentDispatch[key].resolved) {\n          removeFromDispatchQueue.push(key);\n        }\n\n      }\n\n\n    });\n\n    if (_keys(this.waitingToDispatch).length && !dispatchedThisLoop.length) {\n      const storesWithCircularWaits = _keys(this.waitingToDispatch).join(', ');\n      throw new Error(`Indirect circular wait detected among: ${storesWithCircularWaits}`);\n    }\n\n    _each(removeFromDispatchQueue, (key) => {\n      delete this.waitingToDispatch[key];\n    });\n\n    if (_size(this.waitingToDispatch)) {\n      this.doDispatchLoop(action);\n    }\n\n    if (!wasHandled && console && console.warn) {\n      console.warn(`An action of type ${action.type} was dispatched, but no store handled it`);\n    }\n  }\n\n  waitForStores(store, stores, fn) {\n\n    if (!this.currentDispatch) {\n      throw new Error('Cannot wait unless an action is being dispatched');\n    }\n\n    const waitingStoreName = _findKey(this.stores, (val) => {\n      return val == store;\n    });\n\n    if (stores.indexOf(waitingStoreName) > -1) {\n      throw new Error('A store cannot wait on itself');\n    }\n\n    const dispatch = this.currentDispatch[waitingStoreName];\n\n    if (dispatch.waitingOn.length) {\n      throw new Error(`${waitingStoreName} already waiting on stores`);\n    }\n\n    if (!_isArray(stores)) {\n      stores = [stores];\n    }\n\n    _each(stores, (storeName) => {\n      const storeDispatch = this.currentDispatch[storeName];\n\n      if (!this.stores[storeName]) {\n        throw new Error(`Cannot wait for non-existent store ${storeName}`);\n      }\n\n      if (storeDispatch.waitingOn.indexOf(waitingStoreName) > -1) {\n        throw new Error(`Circular wait detected between ${waitingStoreName} and ${storeName}`);\n      }\n\n    });\n\n    dispatch.resolved = false;\n    dispatch.waitingOn = _uniq(dispatch.waitingOn.concat(stores));\n    dispatch.waitCallback = fn;\n  }\n\n  setDispatchInterceptor(fn) {\n    if (fn) {\n      this.dispatchInterceptor = fn;\n    } else {\n      this.dispatchInterceptor = defaultDispatchInterceptor;\n    }\n  }\n}\n"
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "defaultDispatchInterceptor",
+    "memberof": "src/core/Dispatcher.js",
+    "longname": "src/core/Dispatcher.js~defaultDispatchInterceptor",
+    "access": null,
+    "export": false,
+    "importPath": "frill/src/core/Dispatcher.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 13,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Dispatcher",
+    "memberof": "src/core/Dispatcher.js",
+    "longname": "src/core/Dispatcher.js~Dispatcher",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/core/Dispatcher.js",
+    "importStyle": "Dispatcher",
+    "description": null,
+    "lineNumber": 18,
+    "undocument": true,
+    "interface": false
+  },
+  {
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "src/core/Dispatcher.js~Dispatcher",
+    "longname": "src/core/Dispatcher.js~Dispatcher#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 20,
+    "undocument": true,
+    "params": [
+      {
+        "name": "stores",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "stores",
+    "memberof": "src/core/Dispatcher.js~Dispatcher",
+    "longname": "src/core/Dispatcher.js~Dispatcher#stores",
+    "access": null,
+    "description": null,
+    "lineNumber": 21,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "currentDispatch",
+    "memberof": "src/core/Dispatcher.js~Dispatcher",
+    "longname": "src/core/Dispatcher.js~Dispatcher#currentDispatch",
+    "access": null,
+    "description": null,
+    "lineNumber": 22,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "currentActionType",
+    "memberof": "src/core/Dispatcher.js~Dispatcher",
+    "longname": "src/core/Dispatcher.js~Dispatcher#currentActionType",
+    "access": null,
+    "description": null,
+    "lineNumber": 23,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "waitingToDispatch",
+    "memberof": "src/core/Dispatcher.js~Dispatcher",
+    "longname": "src/core/Dispatcher.js~Dispatcher#waitingToDispatch",
+    "access": null,
+    "description": null,
+    "lineNumber": 24,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "dispatchInterceptor",
+    "memberof": "src/core/Dispatcher.js~Dispatcher",
+    "longname": "src/core/Dispatcher.js~Dispatcher#dispatchInterceptor",
+    "access": null,
+    "description": null,
+    "lineNumber": 25,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "_boundDispatch",
+    "memberof": "src/core/Dispatcher.js~Dispatcher",
+    "longname": "src/core/Dispatcher.js~Dispatcher#_boundDispatch",
+    "access": null,
+    "description": null,
+    "lineNumber": 26,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "addStore",
+    "memberof": "src/core/Dispatcher.js~Dispatcher",
+    "longname": "src/core/Dispatcher.js~Dispatcher#addStore",
+    "access": null,
+    "description": null,
+    "lineNumber": 35,
+    "undocument": true,
+    "params": [
+      {
+        "name": "name",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "store",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "dispatch",
+    "memberof": "src/core/Dispatcher.js~Dispatcher",
+    "longname": "src/core/Dispatcher.js~Dispatcher#dispatch",
+    "access": null,
+    "description": null,
+    "lineNumber": 40,
+    "undocument": true,
+    "params": [
+      {
+        "name": "action",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "_dispatch",
+    "memberof": "src/core/Dispatcher.js~Dispatcher",
+    "longname": "src/core/Dispatcher.js~Dispatcher#_dispatch",
+    "access": null,
+    "description": null,
+    "lineNumber": 44,
+    "undocument": true,
+    "params": [
+      {
+        "name": "action",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "waitingToDispatch",
+    "memberof": "src/core/Dispatcher.js~Dispatcher",
+    "longname": "src/core/Dispatcher.js~Dispatcher#waitingToDispatch",
+    "access": null,
+    "description": null,
+    "lineNumber": 56,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "currentActionType",
+    "memberof": "src/core/Dispatcher.js~Dispatcher",
+    "longname": "src/core/Dispatcher.js~Dispatcher#currentActionType",
+    "access": null,
+    "description": null,
+    "lineNumber": 57,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "currentDispatch",
+    "memberof": "src/core/Dispatcher.js~Dispatcher",
+    "longname": "src/core/Dispatcher.js~Dispatcher#currentDispatch",
+    "access": null,
+    "description": null,
+    "lineNumber": 59,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "currentActionType",
+    "memberof": "src/core/Dispatcher.js~Dispatcher",
+    "longname": "src/core/Dispatcher.js~Dispatcher#currentActionType",
+    "access": null,
+    "description": null,
+    "lineNumber": 70,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "currentDispatch",
+    "memberof": "src/core/Dispatcher.js~Dispatcher",
+    "longname": "src/core/Dispatcher.js~Dispatcher#currentDispatch",
+    "access": null,
+    "description": null,
+    "lineNumber": 71,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "doDispatchLoop",
+    "memberof": "src/core/Dispatcher.js~Dispatcher",
+    "longname": "src/core/Dispatcher.js~Dispatcher#doDispatchLoop",
+    "access": null,
+    "description": null,
+    "lineNumber": 75,
+    "undocument": true,
+    "params": [
+      {
+        "name": "action",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "waitForStores",
+    "memberof": "src/core/Dispatcher.js~Dispatcher",
+    "longname": "src/core/Dispatcher.js~Dispatcher#waitForStores",
+    "access": null,
+    "description": null,
+    "lineNumber": 140,
+    "undocument": true,
+    "params": [
+      {
+        "name": "store",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "stores",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "fn",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "setDispatchInterceptor",
+    "memberof": "src/core/Dispatcher.js~Dispatcher",
+    "longname": "src/core/Dispatcher.js~Dispatcher#setDispatchInterceptor",
+    "access": null,
+    "description": null,
+    "lineNumber": 182,
+    "undocument": true,
+    "params": [
+      {
+        "name": "fn",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "dispatchInterceptor",
+    "memberof": "src/core/Dispatcher.js~Dispatcher",
+    "longname": "src/core/Dispatcher.js~Dispatcher#dispatchInterceptor",
+    "access": null,
+    "description": null,
+    "lineNumber": 184,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "dispatchInterceptor",
+    "memberof": "src/core/Dispatcher.js~Dispatcher",
+    "longname": "src/core/Dispatcher.js~Dispatcher#dispatchInterceptor",
+    "access": null,
+    "description": null,
+    "lineNumber": 186,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/core/Store.js",
+    "memberof": null,
+    "longname": "src/core/Store.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import _isFunction from 'lodash/lang/isFunction';\nimport _isString from 'lodash/lang/isString';\nimport _isObject from 'lodash/lang/isObject';\nimport _each from 'lodash/collection/each';\nimport EventEmitter from 'eventemitter3';\n\nclass Store extends EventEmitter {\n  constructor() {\n    super();\n\n    // list of actionTypes and handlers\n    this._actions = {};\n\n  }\n\n  set actions(actions) {\n    this.bindActions(actions);\n  }\n\n  // bind multiple actions\n  bindActions(actions) {\n\n    if (!_isObject(actions)) {\n      throw new TypeError('actions must be an object');\n    }\n\n    // bind each actions\n    _each(actions, (handler, actionType) => this.bindAction(actionType, handler));\n\n  }\n\n  // bind one action\n  bindAction(actionType, handler) {\n    if (!handler) {\n      throw new Error(`Action handler for ${actionType} must be properly set. Must specify a method name, or a function.`);\n    }\n\n    if (_isString(handler)) {\n      if (!this[handler]) {\n        throw new Error(`Action handler for ${actionType} must be properly set. Method name '${handler}' doesn't exist.`);\n      }\n      handler = this[handler];\n    }\n\n    if (!_isFunction(handler)) {\n      throw new Error('Action handler must be a function.');\n    }\n\n    // if action type already exists, push it into an array\n    if (this._actions[actionType]) {\n      this._actions[actionType].push(handler);\n    } else {\n      // create a new array with the handler\n      this._actions[actionType] = [handler];\n    }\n\n  }\n\n  // small helper for notifying changes\n  change(props) {\n    this.emit('change', props);\n  }\n\n  waitFor(stores, fn) {\n    if (!this.dispatcher) {\n      throw new Error('Dispatcher not set on store. Something went wrong.');\n    }\n    this.dispatcher.waitForStores(this, stores, fn.bind(this));\n  }\n\n  // handle actions by actionType\n  __handleAction__(action) {\n\n    if (!action) {\n      throw new Error('Must give a valid action.');\n    }\n\n    if (!action.type) {\n      throw new Error('Must give a valid action.');\n    }\n\n    if (!action.payload) {\n      action.payload = null;\n    }\n\n    // handler to execute. From actions or an empty function\n    const handler = this._actions[action.type] || function(){};\n\n    // execute handlers one at a time\n    _each(handler, (handlerFn) => handlerFn.call(this, action.payload, action.type));\n    return true;\n  }\n\n}\n\nexport default Store;\n"
+  },
+  {
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "Store",
+    "memberof": "src/core/Store.js",
+    "longname": "src/core/Store.js~Store",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/core/Store.js",
+    "importStyle": "Store",
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "interface": false,
+    "extends": [
+      "eventemitter3~EventEmitter"
+    ]
+  },
+  {
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "src/core/Store.js~Store",
+    "longname": "src/core/Store.js~Store#constructor",
+    "access": null,
+    "description": null,
+    "lineNumber": 8,
+    "undocument": true,
+    "params": [],
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "_actions",
+    "memberof": "src/core/Store.js~Store",
+    "longname": "src/core/Store.js~Store#_actions",
+    "access": null,
+    "description": null,
+    "lineNumber": 12,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "set",
+    "static": false,
+    "variation": null,
+    "name": "actions",
+    "memberof": "src/core/Store.js~Store",
+    "longname": "src/core/Store.js~Store#actions",
+    "access": null,
+    "description": null,
+    "lineNumber": 16,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "bindActions",
+    "memberof": "src/core/Store.js~Store",
+    "longname": "src/core/Store.js~Store#bindActions",
+    "access": null,
+    "description": null,
+    "lineNumber": 21,
+    "undocument": true,
+    "params": [
+      {
+        "name": "actions",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "bindAction",
+    "memberof": "src/core/Store.js~Store",
+    "longname": "src/core/Store.js~Store#bindAction",
+    "access": null,
+    "description": null,
+    "lineNumber": 33,
+    "undocument": true,
+    "params": [
+      {
+        "name": "actionType",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "handler",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "change",
+    "memberof": "src/core/Store.js~Store",
+    "longname": "src/core/Store.js~Store#change",
+    "access": null,
+    "description": null,
+    "lineNumber": 60,
+    "undocument": true,
+    "params": [
+      {
+        "name": "props",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "waitFor",
+    "memberof": "src/core/Store.js~Store",
+    "longname": "src/core/Store.js~Store#waitFor",
+    "access": null,
+    "description": null,
+    "lineNumber": 64,
+    "undocument": true,
+    "params": [
+      {
+        "name": "stores",
+        "types": [
+          "*"
+        ]
+      },
+      {
+        "name": "fn",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "__handleAction__",
+    "memberof": "src/core/Store.js~Store",
+    "longname": "src/core/Store.js~Store#__handleAction__",
+    "access": null,
+    "description": null,
+    "lineNumber": 72,
+    "undocument": true,
+    "params": [
+      {
+        "name": "action",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "return": {
+      "types": [
+        "boolean"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "store",
+    "memberof": "src/core/Store.js",
+    "longname": "src/core/Store.js~store",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/core/Store.js",
+    "importStyle": "store",
+    "description": null,
+    "lineNumber": 96,
+    "undocument": true,
+    "type": {
+      "types": [
+        "src/core/Store.js~Store"
+      ]
+    }
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/core/index.js",
+    "memberof": null,
+    "longname": "src/core/index.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import {extend as _extend} from 'lodash';\nimport Core from './Core';\nimport Dispatcher from './Dispatcher';\nimport Action from './Action';\nimport Store from './Store';\nimport BaseComponent from './BaseComponent';\nimport StoreWatchComponent from './StoreWatchComponent';\n\nexport default _extend(Core, {\n  Dispatcher: Dispatcher,\n  Store: Store,\n  Action: Action,\n  BaseComponent: BaseComponent,\n  StoreWatchComponent: StoreWatchComponent,\n});\n"
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/core/services/request.js",
+    "memberof": null,
+    "longname": "src/core/services/request.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import _isFunction from 'lodash/lang/isFunction';\nimport _extend from 'lodash/object/extend';\nimport request from 'superagent';\n\nexport default (opts) => {\n  if (opts && opts.prefix) {\n    const patchRequest = (method) => {\n      return (path, fn) => {\n        if (_isFunction(fn)) {\n          return request[method](opts.prefix + path, fn);\n        }\n        return request[method](opts.prefix + path);\n      };\n    };\n\n    return _extend(request, {\n      prefix: {\n        get: patchRequest('get'),\n        put: patchRequest('put'),\n        post: patchRequest('post'),\n        del: patchRequest('del'),\n        patch: patchRequest('patch'),\n      }\n    });\n  }\n\n  return request;\n\n}\n"
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/core/services/socket.js",
+    "memberof": null,
+    "longname": "src/core/services/socket.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import socketioClient from 'socket.io-client';\n\nexport default (opts) => {\n  if (!opts || !opts.url) {\n    throw new Error('You must specify option.url to use the socket service.');\n  }\n\n  return socketioClient(opts.url, opts);\n}\n"
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/helpers/aws.js",
+    "memberof": null,
+    "longname": "src/helpers/aws.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 4,
+    "content": "/**\n * AmazonWebServices Helper\n */\nimport AWS from 'aws-sdk';\nAWS.config.update({ accessKeyId: \"myKeyId\", secretAccessKey: \"secretKey\", region: \"us-east-1\" });\nexport default AWS;\n"
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/helpers/index.js",
+    "memberof": null,
+    "longname": "src/helpers/index.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 5,
+    "content": "/**\n * Setup helpers to use from the 'api'\n */\n\nimport Joi from 'joi';\nimport AWS from './aws';\n\nexport default {\n  Joi,\n  AWS,\n};\n"
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/models/DynamoDB/Posts.js",
+    "memberof": null,
+    "longname": "src/models/DynamoDB/Posts.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import vogels from '../vogels';\nimport Joi from 'Joi';\n\nexport default vogels.define('Post', {\n  hashKey : 'email',\n  rangeKey : 'title',\n  schema : {\n    email   : Joi.string().email(),\n    title   : Joi.string(),\n    content : Joi.binary(),\n    tags   : vogels.types.stringSet(),\n  }\n});\n"
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/models/DynamoDB/index.js",
+    "memberof": null,
+    "longname": "src/models/DynamoDB/index.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import Posts from './Posts';\n\nexport default {\n  Posts\n};\n"
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/models/index.js",
+    "memberof": null,
+    "longname": "src/models/index.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import {Posts} from './DynamoDB';\nexport default {\n  Posts\n};\n"
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/models/vogels.js",
+    "memberof": null,
+    "longname": "src/models/vogels.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import vogels from 'vogels';\nimport {AWS} from './../helpers';\n\n// setup vogels\nvogels.dynamoDriver(new AWS.DynamoDB({\n  endpoint: 'http://localhost:8000'\n}));\n\nexport default vogels;\n"
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/server.js",
+    "memberof": null,
+    "longname": "src/server.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "global.__SERVER__ = true;\n\nimport Frill from './bootstrap';\nimport pack from '../package';\nimport apiPlugin from './api';\nimport routes from './routes';\nimport Hapi from 'hapi';\nimport React from 'react';\nimport Router from 'react-router';\nimport Redis from 'catbox-redis';\nimport Jade from 'jade';\nimport good from 'good';\nimport goodConsole from 'good-console';\nimport swagger from 'hapi-swagger';\nimport _extend from 'lodash/object/extend';\nimport _isUndefined from 'lodash/lang/isUndefined';\nimport _argv from 'minimist';\nlet argv = _argv;\nargv = _argv(process.argv.slice(2));\n\n/**\n * Configure hapi.\n */\nconst SERVER_PORT = 3000;\nconst server = new Hapi.Server({\n  cache: [{\n    name: 'redis',\n    engine: Redis,\n    host: '127.0.0.1',\n    // partition: 'cache',\n  }]\n});\nserver.connection({port: SERVER_PORT});\n\n/**\n * Configure hapi views\n */\nserver.views({\n  engines: {\n    jade: Jade\n  },\n  relativeTo: __dirname,\n  path: 'templates',\n});\n\n/**\n * Attempt to serve static files\n */\nserver.route({\n\tmethod:  '*',\n\tpath:    '/{params*}',\n\thandler: (request, reply) => {\n\t\treply.file('public' + request.path);\n\t}\n});\n\n/**\n * Mount all the APIs to hapi\n */\nserver.register({\n  register: apiPlugin,\n}, {\n  routes: {\n    prefix: '/api',\n  }\n}, (err) => {\n  if (err) server.log(['error'], `API plugin load error: ${err}`);\n});\n\n/**\n * Configure hapi-swagger for API documentation.\n */\nconst swaggerOptions = {\n  apiVersion: pack.version,\n  basePath: 'http://localhost:3001',\n};\n\nserver.register({\n  register: swagger,\n  options: swaggerOptions\n}, (err) => {\n  if (err) server.log(['error'], `hapi-swagger load error: ${err}`);\n});\n\n/**\n * Catch requests to fire React Router\n */\n\n// create context\nconst frillContext = Frill.attach(Frill._Stores, Frill._Actions);\n\nserver.ext('onPreResponse', (request, reply) => {\n\tif (!_isUndefined(request.response.statusCode)) {\n\t\treturn reply.continue();\n\t}\n  // fire React Router\n  server.log(['info'], `Serving down to react-router with ${request.path}`);\n  Router.run(routes(), request.path, (Handler, state) => {\n    // pass down frill context to handler\n    const patchedState = _extend({frill: frillContext}, state);\n    const handler = React.createElement(Handler, patchedState);\n    const markup = React.renderToString(handler);\n    server.log(['verbose'], markup);\n    reply.view('default', {\n      initialData: JSON.stringify(state),\n      markup: markup\n    });\n  });\n});\n\n// define which log level outputs which tags\nconst logLevels = {\n  silent: {},\n  error: {\n    error: '*',\n    log: ['error'],\n    response: ['error'],\n  },\n  debug: {\n    error: '*',\n    log: ['debug', 'error'],\n    response: ['debug', 'error'],\n  },\n  info: {\n    error: '*',\n    log: ['info', 'debug', 'error'],\n    response: ['info', 'debug', 'error'],\n  },\n  verbose: {\n    log: '*',\n    ops: '*',\n    error: '*',\n    request: '*',\n    response: '*',\n  },\n};\n\nlet logEvents;\nif (argv.verbose) {\n  logEvents = logLevels.verbose;\n} else if (argv.info) {\n  logEvents = logLevels.info;\n} else if (argv.debug) {\n  logEvents = logLevels.debug;\n} else if (argv.error) {\n  logEvents = logLevels.error;\n} else if (argv.silent) {\n  logEvents = logLevels.silent;\n} else {\n  logEvents = logLevels.info;\n}\n\n/**\n * Configure good (for logging hapi)\n */\nconst goodOptions = {\n  reporters: [{\n      reporter: goodConsole,\n      events: logEvents,\n      config: {\n        format: '[[]HH:mm:ss[]][[frill]]',\n        utc: false\n      }\n  }],\n};\n\nserver.register({\n  register: good,\n  options: goodOptions\n}, (err) => {\n  if (err) {\n    console.error(err);\n  } else {\n    // initialize server\n    server.start(() => server.log(['info'], `Server started at ${server.info.uri}`));\n  }\n});\n"
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "argv",
+    "memberof": "src/server.js",
+    "longname": "src/server.js~argv",
+    "access": null,
+    "export": false,
+    "importPath": "frill/src/server.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 18,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "SERVER_PORT",
+    "memberof": "src/server.js",
+    "longname": "src/server.js~SERVER_PORT",
+    "access": null,
+    "export": false,
+    "importPath": "frill/src/server.js",
+    "importStyle": null,
+    "description": "Configure hapi.",
+    "lineNumber": 24,
+    "type": {
+      "types": [
+        "number"
+      ]
+    }
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "server",
+    "memberof": "src/server.js",
+    "longname": "src/server.js~server",
+    "access": null,
+    "export": false,
+    "importPath": "frill/src/server.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 25,
+    "undocument": true,
+    "type": {
+      "types": [
+        null
+      ]
+    }
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "swaggerOptions",
+    "memberof": "src/server.js",
+    "longname": "src/server.js~swaggerOptions",
+    "access": null,
+    "export": false,
+    "importPath": "frill/src/server.js",
+    "importStyle": null,
+    "description": "Configure hapi-swagger for API documentation.",
+    "lineNumber": 73,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "frillContext",
+    "memberof": "src/server.js",
+    "longname": "src/server.js~frillContext",
+    "access": null,
+    "export": false,
+    "importPath": "frill/src/server.js",
+    "importStyle": null,
+    "description": "Catch requests to fire React Router",
+    "lineNumber": 90,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "logLevels",
+    "memberof": "src/server.js",
+    "longname": "src/server.js~logLevels",
+    "access": null,
+    "export": false,
+    "importPath": "frill/src/server.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 112,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "goodOptions",
+    "memberof": "src/server.js",
+    "longname": "src/server.js~goodOptions",
+    "access": null,
+    "export": false,
+    "importPath": "frill/src/server.js",
+    "importStyle": null,
+    "description": "Configure good (for logging hapi)",
+    "lineNumber": 156,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/stores/index.js",
+    "memberof": null,
+    "longname": "src/stores/index.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import Test from './Test';\n\nexport default {\n  Test: Test,\n};\n"
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Infinity",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Infinity",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Infinity",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "NaN",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/NaN",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~NaN",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "undefined",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/undefined",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~undefined",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "null",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/null",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~null",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Object",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "object",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~object",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Function",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "function",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~function",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Boolean",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "boolean",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~boolean",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Symbol",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Symbol",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Symbol",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Error",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Error",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "EvalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/EvalError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~EvalError",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "InternalError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/InternalError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~InternalError",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "RangeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RangeError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~RangeError",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "ReferenceError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ReferenceError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~ReferenceError",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "SyntaxError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/SyntaxError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~SyntaxError",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "TypeError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~TypeError",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "URIError",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/URIError",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~URIError",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Number",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "number",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~number",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Date",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Date",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "String",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~String",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "string",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~string",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "RegExp",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~RegExp",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Int8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int8Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Int8Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Uint8Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint8Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Uint8ClampedArray",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8ClampedArray",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint8ClampedArray",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Int16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int16Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Int16Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Uint16Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint16Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint16Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Int32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Int32Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Int32Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Uint32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint32Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Uint32Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Float32Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float32Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Float32Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Float64Array",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Float64Array",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Float64Array",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Map",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Map",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Map",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Set",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Set",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Set",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "WeakMap",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~WeakMap",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "WeakSet",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakSet",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~WeakSet",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "ArrayBuffer",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~ArrayBuffer",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "DataView",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/DataView",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~DataView",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "JSON",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/JSON",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~JSON",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Promise",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Promise",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Generator",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Generator",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Generator",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "GeneratorFunction",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/GeneratorFunction",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~GeneratorFunction",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Reflect",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Reflect",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Reflect",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Proxy",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Proxy",
+    "memberof": "BuiltinExternal/ECMAScriptExternal.js",
+    "longname": "BuiltinExternal/ECMAScriptExternal.js~Proxy",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "CanvasRenderingContext2D",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~CanvasRenderingContext2D",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "DocumentFragment",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~DocumentFragment",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Element",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Element",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~Element",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Event",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Event",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~Event",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Node",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/Node",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~Node",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "NodeList",
+    "externalLink": "https://developer.mozilla.org/en-US/docs/Web/API/NodeList",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~NodeList",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "XMLHttpRequest",
+    "externalLink": "https://developer.mozilla.org/en/docs/Web/API/XMLHttpRequest",
+    "memberof": "BuiltinExternal/WebAPIExternal.js",
+    "longname": "BuiltinExternal/WebAPIExternal.js~XMLHttpRequest",
+    "access": null,
+    "description": null,
+    "builtinExternal": true
+  }
+]

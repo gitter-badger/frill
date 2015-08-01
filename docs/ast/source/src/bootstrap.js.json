@@ -1,0 +1,550 @@
+{
+  "type": "Program",
+  "body": [
+    {
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "Frill",
+            "range": [
+              7,
+              12
+            ],
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 7
+              },
+              "end": {
+                "line": 1,
+                "column": 12
+              }
+            }
+          },
+          "range": [
+            7,
+            12
+          ],
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 7
+            },
+            "end": {
+              "line": 1,
+              "column": 12
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./core",
+        "raw": "'./core'",
+        "range": [
+          18,
+          26
+        ],
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 18
+          },
+          "end": {
+            "line": 1,
+            "column": 26
+          }
+        }
+      },
+      "range": [
+        0,
+        27
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 27
+        }
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "Stores",
+            "range": [
+              35,
+              41
+            ],
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 7
+              },
+              "end": {
+                "line": 2,
+                "column": 13
+              }
+            }
+          },
+          "range": [
+            35,
+            41
+          ],
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 7
+            },
+            "end": {
+              "line": 2,
+              "column": 13
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./stores",
+        "raw": "'./stores'",
+        "range": [
+          47,
+          57
+        ],
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 19
+          },
+          "end": {
+            "line": 2,
+            "column": 29
+          }
+        }
+      },
+      "range": [
+        28,
+        58
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 30
+        }
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "Actions",
+            "range": [
+              66,
+              73
+            ],
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 7
+              },
+              "end": {
+                "line": 3,
+                "column": 14
+              }
+            }
+          },
+          "range": [
+            66,
+            73
+          ],
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 7
+            },
+            "end": {
+              "line": 3,
+              "column": 14
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./actions",
+        "raw": "'./actions'",
+        "range": [
+          79,
+          90
+        ],
+        "loc": {
+          "start": {
+            "line": 3,
+            "column": 20
+          },
+          "end": {
+            "line": 3,
+            "column": 31
+          }
+        }
+      },
+      "range": [
+        59,
+        91
+      ],
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 0
+        },
+        "end": {
+          "line": 3,
+          "column": 32
+        }
+      },
+      "trailingComments": [
+        {
+          "type": "Line",
+          "value": " load stores and actions.",
+          "range": [
+            93,
+            120
+          ],
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 0
+            },
+            "end": {
+              "line": 5,
+              "column": 27
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "ExpressionStatement",
+      "expression": {
+        "type": "AssignmentExpression",
+        "operator": "=",
+        "left": {
+          "type": "MemberExpression",
+          "computed": false,
+          "object": {
+            "type": "Identifier",
+            "name": "Frill",
+            "range": [
+              121,
+              126
+            ],
+            "loc": {
+              "start": {
+                "line": 6,
+                "column": 0
+              },
+              "end": {
+                "line": 6,
+                "column": 5
+              }
+            }
+          },
+          "property": {
+            "type": "Identifier",
+            "name": "_Stores",
+            "range": [
+              127,
+              134
+            ],
+            "loc": {
+              "start": {
+                "line": 6,
+                "column": 6
+              },
+              "end": {
+                "line": 6,
+                "column": 13
+              }
+            }
+          },
+          "range": [
+            121,
+            134
+          ],
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 0
+            },
+            "end": {
+              "line": 6,
+              "column": 13
+            }
+          }
+        },
+        "right": {
+          "type": "Identifier",
+          "name": "Stores",
+          "range": [
+            137,
+            143
+          ],
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 16
+            },
+            "end": {
+              "line": 6,
+              "column": 22
+            }
+          }
+        },
+        "range": [
+          121,
+          143
+        ],
+        "loc": {
+          "start": {
+            "line": 6,
+            "column": 0
+          },
+          "end": {
+            "line": 6,
+            "column": 22
+          }
+        }
+      },
+      "range": [
+        121,
+        144
+      ],
+      "loc": {
+        "start": {
+          "line": 6,
+          "column": 0
+        },
+        "end": {
+          "line": 6,
+          "column": 23
+        }
+      },
+      "leadingComments": [
+        {
+          "type": "Line",
+          "value": " load stores and actions.",
+          "range": [
+            93,
+            120
+          ],
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 0
+            },
+            "end": {
+              "line": 5,
+              "column": 27
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "ExpressionStatement",
+      "expression": {
+        "type": "AssignmentExpression",
+        "operator": "=",
+        "left": {
+          "type": "MemberExpression",
+          "computed": false,
+          "object": {
+            "type": "Identifier",
+            "name": "Frill",
+            "range": [
+              145,
+              150
+            ],
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 0
+              },
+              "end": {
+                "line": 7,
+                "column": 5
+              }
+            }
+          },
+          "property": {
+            "type": "Identifier",
+            "name": "_Actions",
+            "range": [
+              151,
+              159
+            ],
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 6
+              },
+              "end": {
+                "line": 7,
+                "column": 14
+              }
+            }
+          },
+          "range": [
+            145,
+            159
+          ],
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 0
+            },
+            "end": {
+              "line": 7,
+              "column": 14
+            }
+          }
+        },
+        "right": {
+          "type": "Identifier",
+          "name": "Actions",
+          "range": [
+            162,
+            169
+          ],
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 17
+            },
+            "end": {
+              "line": 7,
+              "column": 24
+            }
+          }
+        },
+        "range": [
+          145,
+          169
+        ],
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 0
+          },
+          "end": {
+            "line": 7,
+            "column": 24
+          }
+        }
+      },
+      "range": [
+        145,
+        170
+      ],
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 0
+        },
+        "end": {
+          "line": 7,
+          "column": 25
+        }
+      }
+    },
+    {
+      "type": "ExportDefaultDeclaration",
+      "declaration": {
+        "type": "Identifier",
+        "name": "Frill",
+        "range": [
+          187,
+          192
+        ],
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 15
+          },
+          "end": {
+            "line": 9,
+            "column": 20
+          }
+        },
+        "leadingComments": [],
+        "trailingComments": []
+      },
+      "range": [
+        172,
+        193
+      ],
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 0
+        },
+        "end": {
+          "line": 9,
+          "column": 21
+        }
+      }
+    }
+  ],
+  "sourceType": "module",
+  "range": [
+    0,
+    193
+  ],
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 9,
+      "column": 21
+    }
+  },
+  "comments": [
+    {
+      "type": "Line",
+      "value": " load stores and actions.",
+      "range": [
+        93,
+        120
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 27
+        }
+      }
+    }
+  ]
+}

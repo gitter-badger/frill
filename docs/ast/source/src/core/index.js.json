@@ -1,0 +1,928 @@
+{
+  "type": "Program",
+  "body": [
+    {
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
+          "type": "ImportSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "_extend",
+            "range": [
+              18,
+              25
+            ],
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 18
+              },
+              "end": {
+                "line": 1,
+                "column": 25
+              }
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "name": "extend",
+            "range": [
+              8,
+              14
+            ],
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 8
+              },
+              "end": {
+                "line": 1,
+                "column": 14
+              }
+            }
+          },
+          "range": [
+            8,
+            25
+          ],
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 8
+            },
+            "end": {
+              "line": 1,
+              "column": 25
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "lodash",
+        "raw": "'lodash'",
+        "range": [
+          32,
+          40
+        ],
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 32
+          },
+          "end": {
+            "line": 1,
+            "column": 40
+          }
+        }
+      },
+      "range": [
+        0,
+        41
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 41
+        }
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "Core",
+            "range": [
+              49,
+              53
+            ],
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 7
+              },
+              "end": {
+                "line": 2,
+                "column": 11
+              }
+            }
+          },
+          "range": [
+            49,
+            53
+          ],
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 7
+            },
+            "end": {
+              "line": 2,
+              "column": 11
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./Core",
+        "raw": "'./Core'",
+        "range": [
+          59,
+          67
+        ],
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 17
+          },
+          "end": {
+            "line": 2,
+            "column": 25
+          }
+        }
+      },
+      "range": [
+        42,
+        68
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 26
+        }
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "Dispatcher",
+            "range": [
+              76,
+              86
+            ],
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 7
+              },
+              "end": {
+                "line": 3,
+                "column": 17
+              }
+            }
+          },
+          "range": [
+            76,
+            86
+          ],
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 7
+            },
+            "end": {
+              "line": 3,
+              "column": 17
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./Dispatcher",
+        "raw": "'./Dispatcher'",
+        "range": [
+          92,
+          106
+        ],
+        "loc": {
+          "start": {
+            "line": 3,
+            "column": 23
+          },
+          "end": {
+            "line": 3,
+            "column": 37
+          }
+        }
+      },
+      "range": [
+        69,
+        107
+      ],
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 0
+        },
+        "end": {
+          "line": 3,
+          "column": 38
+        }
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "Action",
+            "range": [
+              115,
+              121
+            ],
+            "loc": {
+              "start": {
+                "line": 4,
+                "column": 7
+              },
+              "end": {
+                "line": 4,
+                "column": 13
+              }
+            }
+          },
+          "range": [
+            115,
+            121
+          ],
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 7
+            },
+            "end": {
+              "line": 4,
+              "column": 13
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./Action",
+        "raw": "'./Action'",
+        "range": [
+          127,
+          137
+        ],
+        "loc": {
+          "start": {
+            "line": 4,
+            "column": 19
+          },
+          "end": {
+            "line": 4,
+            "column": 29
+          }
+        }
+      },
+      "range": [
+        108,
+        138
+      ],
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 0
+        },
+        "end": {
+          "line": 4,
+          "column": 30
+        }
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "Store",
+            "range": [
+              146,
+              151
+            ],
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 7
+              },
+              "end": {
+                "line": 5,
+                "column": 12
+              }
+            }
+          },
+          "range": [
+            146,
+            151
+          ],
+          "loc": {
+            "start": {
+              "line": 5,
+              "column": 7
+            },
+            "end": {
+              "line": 5,
+              "column": 12
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./Store",
+        "raw": "'./Store'",
+        "range": [
+          157,
+          166
+        ],
+        "loc": {
+          "start": {
+            "line": 5,
+            "column": 18
+          },
+          "end": {
+            "line": 5,
+            "column": 27
+          }
+        }
+      },
+      "range": [
+        139,
+        167
+      ],
+      "loc": {
+        "start": {
+          "line": 5,
+          "column": 0
+        },
+        "end": {
+          "line": 5,
+          "column": 28
+        }
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "BaseComponent",
+            "range": [
+              175,
+              188
+            ],
+            "loc": {
+              "start": {
+                "line": 6,
+                "column": 7
+              },
+              "end": {
+                "line": 6,
+                "column": 20
+              }
+            }
+          },
+          "range": [
+            175,
+            188
+          ],
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 7
+            },
+            "end": {
+              "line": 6,
+              "column": 20
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./BaseComponent",
+        "raw": "'./BaseComponent'",
+        "range": [
+          194,
+          211
+        ],
+        "loc": {
+          "start": {
+            "line": 6,
+            "column": 26
+          },
+          "end": {
+            "line": 6,
+            "column": 43
+          }
+        }
+      },
+      "range": [
+        168,
+        212
+      ],
+      "loc": {
+        "start": {
+          "line": 6,
+          "column": 0
+        },
+        "end": {
+          "line": 6,
+          "column": 44
+        }
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "StoreWatchComponent",
+            "range": [
+              220,
+              239
+            ],
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 7
+              },
+              "end": {
+                "line": 7,
+                "column": 26
+              }
+            }
+          },
+          "range": [
+            220,
+            239
+          ],
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 7
+            },
+            "end": {
+              "line": 7,
+              "column": 26
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./StoreWatchComponent",
+        "raw": "'./StoreWatchComponent'",
+        "range": [
+          245,
+          268
+        ],
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 32
+          },
+          "end": {
+            "line": 7,
+            "column": 55
+          }
+        }
+      },
+      "range": [
+        213,
+        269
+      ],
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 0
+        },
+        "end": {
+          "line": 7,
+          "column": 56
+        }
+      }
+    },
+    {
+      "type": "ExportDefaultDeclaration",
+      "declaration": {
+        "type": "CallExpression",
+        "callee": {
+          "type": "Identifier",
+          "name": "_extend",
+          "range": [
+            286,
+            293
+          ],
+          "loc": {
+            "start": {
+              "line": 9,
+              "column": 15
+            },
+            "end": {
+              "line": 9,
+              "column": 22
+            }
+          }
+        },
+        "arguments": [
+          {
+            "type": "Identifier",
+            "name": "Core",
+            "range": [
+              294,
+              298
+            ],
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 23
+              },
+              "end": {
+                "line": 9,
+                "column": 27
+              }
+            }
+          },
+          {
+            "type": "ObjectExpression",
+            "properties": [
+              {
+                "type": "Property",
+                "key": {
+                  "type": "Identifier",
+                  "name": "Dispatcher",
+                  "range": [
+                    304,
+                    314
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 10,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 10,
+                      "column": 12
+                    }
+                  }
+                },
+                "value": {
+                  "type": "Identifier",
+                  "name": "Dispatcher",
+                  "range": [
+                    316,
+                    326
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 10,
+                      "column": 14
+                    },
+                    "end": {
+                      "line": 10,
+                      "column": 24
+                    }
+                  }
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "computed": false,
+                "range": [
+                  304,
+                  326
+                ],
+                "loc": {
+                  "start": {
+                    "line": 10,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 10,
+                    "column": 24
+                  }
+                }
+              },
+              {
+                "type": "Property",
+                "key": {
+                  "type": "Identifier",
+                  "name": "Store",
+                  "range": [
+                    330,
+                    335
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 11,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 11,
+                      "column": 7
+                    }
+                  }
+                },
+                "value": {
+                  "type": "Identifier",
+                  "name": "Store",
+                  "range": [
+                    337,
+                    342
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 11,
+                      "column": 9
+                    },
+                    "end": {
+                      "line": 11,
+                      "column": 14
+                    }
+                  }
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "computed": false,
+                "range": [
+                  330,
+                  342
+                ],
+                "loc": {
+                  "start": {
+                    "line": 11,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 11,
+                    "column": 14
+                  }
+                }
+              },
+              {
+                "type": "Property",
+                "key": {
+                  "type": "Identifier",
+                  "name": "Action",
+                  "range": [
+                    346,
+                    352
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 12,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 12,
+                      "column": 8
+                    }
+                  }
+                },
+                "value": {
+                  "type": "Identifier",
+                  "name": "Action",
+                  "range": [
+                    354,
+                    360
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 12,
+                      "column": 10
+                    },
+                    "end": {
+                      "line": 12,
+                      "column": 16
+                    }
+                  }
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "computed": false,
+                "range": [
+                  346,
+                  360
+                ],
+                "loc": {
+                  "start": {
+                    "line": 12,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 12,
+                    "column": 16
+                  }
+                }
+              },
+              {
+                "type": "Property",
+                "key": {
+                  "type": "Identifier",
+                  "name": "BaseComponent",
+                  "range": [
+                    364,
+                    377
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 13,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 13,
+                      "column": 15
+                    }
+                  }
+                },
+                "value": {
+                  "type": "Identifier",
+                  "name": "BaseComponent",
+                  "range": [
+                    379,
+                    392
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 13,
+                      "column": 17
+                    },
+                    "end": {
+                      "line": 13,
+                      "column": 30
+                    }
+                  }
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "computed": false,
+                "range": [
+                  364,
+                  392
+                ],
+                "loc": {
+                  "start": {
+                    "line": 13,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 13,
+                    "column": 30
+                  }
+                }
+              },
+              {
+                "type": "Property",
+                "key": {
+                  "type": "Identifier",
+                  "name": "StoreWatchComponent",
+                  "range": [
+                    396,
+                    415
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 14,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 14,
+                      "column": 21
+                    }
+                  }
+                },
+                "value": {
+                  "type": "Identifier",
+                  "name": "StoreWatchComponent",
+                  "range": [
+                    417,
+                    436
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 14,
+                      "column": 23
+                    },
+                    "end": {
+                      "line": 14,
+                      "column": 42
+                    }
+                  }
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "computed": false,
+                "range": [
+                  396,
+                  436
+                ],
+                "loc": {
+                  "start": {
+                    "line": 14,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 14,
+                    "column": 42
+                  }
+                }
+              }
+            ],
+            "range": [
+              300,
+              439
+            ],
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 29
+              },
+              "end": {
+                "line": 15,
+                "column": 1
+              }
+            }
+          }
+        ],
+        "range": [
+          286,
+          440
+        ],
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 15
+          },
+          "end": {
+            "line": 15,
+            "column": 2
+          }
+        },
+        "leadingComments": [],
+        "trailingComments": []
+      },
+      "range": [
+        271,
+        441
+      ],
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 0
+        },
+        "end": {
+          "line": 15,
+          "column": 3
+        }
+      }
+    }
+  ],
+  "sourceType": "module",
+  "range": [
+    0,
+    441
+  ],
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 15,
+      "column": 3
+    }
+  },
+  "comments": []
+}
