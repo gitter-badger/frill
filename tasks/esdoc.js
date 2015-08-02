@@ -1,9 +1,21 @@
+/**
+ * Frill
+ * @author nanopx(@nanopx)
+ *
+ * ---------------------------------------------------------------
+ * esdoc.js
+ * ---------------------------------------------------------------
+ *
+ * Auto-generate documents using ESDoc.
+ *
+ */
+
 import ESdoc from './_esdoc';
 
 export default (gulp, $, argv, path) => {
 
   gulp.task('doc', () => {
-    return gulp.src("./src")
+    return gulp.src(["./src"])
       .pipe(ESdoc({
         destination: "./docs",
         title: 'FrillJS',
