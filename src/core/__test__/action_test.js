@@ -20,34 +20,22 @@ describe('#src/core/Action', () => {
       class testActionClass extends Action {
         constructor() {
           super();
-          this.isStartedSetup = false;
         }
         setup() {
           this.isStartedSetup = true;
         }
       }
 
-      console.log(new testActionClass());
-      expect(new testActionClass().isStartedSetup).to.equal(true);
+      const TestActionClass = new testActionClass();
+
+      expect(TestActionClass.isStartedSetup).to.exist;
+      expect(TestActionClass.isStartedSetup).to.equal(true);
     });
   });
+  // describe('Action.addService', () => {});
 
 });
-//
-// describe 'src/Action.coffee', ->
-//
-//   describe 'class Action', ->
-//
-//     it "should execute setup() at construction if exists", ->
-//
-//       class testActionClass extends Action
-//         isStartedSetup: false
-//         setup: ->
-//           @isStartedSetup = true
-//
-//       expect(new testActionClass().isStartedSetup).to.equal(true)
-//
-//   describe 'Action.addService', ->
+
 //
 //     it "should be accecible", ->
 //       expect(Action.addService).to.be.a('function')
