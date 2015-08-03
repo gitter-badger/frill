@@ -79,6 +79,7 @@ class Action {
   constructor() {
     // this._services = services;
     if (this.setup &amp;&amp; _isFunction(this.setup)) {
+      // this.setup = this.setup.bind(this);
       this.setup();
     }
     return this;

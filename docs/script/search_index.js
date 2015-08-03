@@ -666,6 +666,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/core/__test__/action_test.js",
+    "file/src/core/__test__/action_test.js.html",
+    "src/core/__test__/action_test.js",
+    "file"
+  ],
+  [
     "src/core/index.js",
     "file/src/core/index.js.html",
     "src/core/index.js",

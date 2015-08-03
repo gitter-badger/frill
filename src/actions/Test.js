@@ -14,8 +14,9 @@ class TestAction extends Frill.Action {
     this.dispatch("COUNT_UP");
   }
 
-  countUpBy(count: number) {
+  countUpBy(count: number) : number {
     this.dispatch("COUNT_UP_BY", count);
+    return count;
   }
 }
 

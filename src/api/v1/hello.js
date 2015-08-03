@@ -6,7 +6,7 @@ export default (server, {helpers, models}) => {
     method: 'GET',
     path: '/hello',
     handler: (req, rep) => {
-      rep('api, hello!');
+      rep('api, hello! ---');
     },
     config: {
       description: 'Say hello!',

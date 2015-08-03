@@ -31,6 +31,21 @@ describe('#src/core/Action', () => {
       expect(TestActionClass.isStartedSetup).to.exist;
       expect(TestActionClass.isStartedSetup).to.equal(true);
     });
+    it('should execute setup() at construction if exists B', () => {
+      class testActionClass extends Action {
+        constructor() {
+          super();
+        }
+        setup() {
+          this.isStartedSetup = true;
+        }
+      }
+
+      const TestActionClass = new testActionClass();
+
+      expect(TestActionClass.isStartedSetup).to.exist;
+      expect(TestActionClass.isStartedSetup).to.equal(true);
+    });
   });
   // describe('Action.addService', () => {});
 

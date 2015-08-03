@@ -53,7 +53,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "export default (server, {helpers, models}) => {\n\n  const {Posts} = models;\n\n  return [{\n    method: 'GET',\n    path: '/hello',\n    handler: (req, rep) => {\n      rep('api, hello!');\n    },\n    config: {\n      description: 'Say hello!',\n      notes: 'Says hello.',\n      tags: ['api', 'greeting'],\n      plugins: {\n        'hapi-swagger': {\n            responseMessages: [\n                { code: 400, message: 'Bad Request' },\n                { code: 500, message: 'Internal Server Error'}\n            ]\n        }\n      },\n    },\n  }, {\n    method: 'POST',\n    path: '/hello',\n    handler: (req, rep) => rep('api, hello post!'),\n    config: {\n      description: 'Say hello!',\n      notes: 'Says hello.',\n      tags: ['api', 'greeting'],\n      plugins: {\n        'hapi-swagger': {\n            responseMessages: [\n                { code: 400, message: 'Bad Request' },\n                { code: 500, message: 'Internal Server Error'}\n            ]\n        }\n      },\n    },\n  }];\n}\n"
+    "content": "export default (server, {helpers, models}) => {\n\n  const {Posts} = models;\n\n  return [{\n    method: 'GET',\n    path: '/hello',\n    handler: (req, rep) => {\n      rep('api, hello! ---');\n    },\n    config: {\n      description: 'Say hello!',\n      notes: 'Says hello.',\n      tags: ['api', 'greeting'],\n      plugins: {\n        'hapi-swagger': {\n            responseMessages: [\n                { code: 400, message: 'Bad Request' },\n                { code: 500, message: 'Internal Server Error'}\n            ]\n        }\n      },\n    },\n  }, {\n    method: 'POST',\n    path: '/hello',\n    handler: (req, rep) => rep('api, hello post!'),\n    config: {\n      description: 'Say hello!',\n      notes: 'Says hello.',\n      tags: ['api', 'greeting'],\n      plugins: {\n        'hapi-swagger': {\n            responseMessages: [\n                { code: 400, message: 'Bad Request' },\n                { code: 500, message: 'Internal Server Error'}\n            ]\n        }\n      },\n    },\n  }];\n}\n"
   },
   {
     "kind": "file",
@@ -165,7 +165,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import _isFunction from 'lodash/lang/isFunction';\nimport _contains from 'lodash/collection/contains';\nimport request from './services/request';\nimport socket from './services/socket';\n\n// read default services\nlet services = {\n  request: request,\n  socket: socket,\n};\n\nconst reservedNamespaces = [\n  \"setup\"\n];\n\nclass Action {\n\n  constructor() {\n    // this._services = services;\n    if (this.setup && _isFunction(this.setup)) {\n      this.setup();\n    }\n    return this;\n  }\n\n  get services() {\n    return services\n  }\n\n  set services(_service) {\n    const {namespace, serviceFunction} = _service;\n    services[namespace] = serviceFunction;\n  }\n\n  initializeService({namespace, service}) {\n    // TODO check arguments\n    this[namespace] = service;\n  }\n\n  // Add a custom service\n  static addService(namespace, serviceFunction) {\n    let _services = this.services;\n    if (_services[namespace]) {\n      throw new Error(`Service: ${namespace} already exists`);\n    }\n\n    if (_contains(reservedNamespaces, namespace)) {\n      throw new Error(`Could not add service, ${namespace} is a reserved namespace`);\n    }\n\n    if (!_isFunction(serviceFunction)) {\n      throw new TypeError('A service must be a function');\n    }\n\n    _services = {\n      namespace: namespace,\n      serviceFunction: serviceFunction,\n    }\n\n  }\n\n  // Use a service\n  use(serviceName, opts) {\n    const _services = this.services;\n    if (!_services[serviceName]) {\n      throw new Error('The specified service doesn\\'t exist');\n    }\n\n    if (this[serviceName]) {\n      throw new Error('The specified service name already exists and started, ' +\n        'please provide a different namespace');\n    }\n\n    this.initializeService({\n      namespace: serviceName,\n      service: _services[serviceName](opts || {})\n    });\n  }\n}\n\nexport default Action;\n"
+    "content": "import _isFunction from 'lodash/lang/isFunction';\nimport _contains from 'lodash/collection/contains';\nimport request from './services/request';\nimport socket from './services/socket';\n\n// read default services\nlet services = {\n  request: request,\n  socket: socket,\n};\n\nconst reservedNamespaces = [\n  \"setup\"\n];\n\nclass Action {\n\n  constructor() {\n    // this._services = services;\n    if (this.setup && _isFunction(this.setup)) {\n      // this.setup = this.setup.bind(this);\n      this.setup();\n    }\n    return this;\n  }\n\n  get services() {\n    return services\n  }\n\n  set services(_service) {\n    const {namespace, serviceFunction} = _service;\n    services[namespace] = serviceFunction;\n  }\n\n  initializeService({namespace, service}) {\n    // TODO check arguments\n    this[namespace] = service;\n  }\n\n  // Add a custom service\n  static addService(namespace, serviceFunction) {\n    let _services = this.services;\n    if (_services[namespace]) {\n      throw new Error(`Service: ${namespace} already exists`);\n    }\n\n    if (_contains(reservedNamespaces, namespace)) {\n      throw new Error(`Could not add service, ${namespace} is a reserved namespace`);\n    }\n\n    if (!_isFunction(serviceFunction)) {\n      throw new TypeError('A service must be a function');\n    }\n\n    _services = {\n      namespace: namespace,\n      serviceFunction: serviceFunction,\n    }\n\n  }\n\n  // Use a service\n  use(serviceName, opts) {\n    const _services = this.services;\n    if (!_services[serviceName]) {\n      throw new Error('The specified service doesn\\'t exist');\n    }\n\n    if (this[serviceName]) {\n      throw new Error('The specified service name already exists and started, ' +\n        'please provide a different namespace');\n    }\n\n    this.initializeService({\n      namespace: serviceName,\n      service: _services[serviceName](opts || {})\n    });\n  }\n}\n\nexport default Action;\n"
   },
   {
     "kind": "variable",
@@ -246,7 +246,7 @@
     "longname": "src/core/Action.js~Action#services",
     "access": null,
     "description": null,
-    "lineNumber": 26,
+    "lineNumber": 27,
     "undocument": true,
     "type": {
       "types": [
@@ -264,7 +264,7 @@
     "longname": "src/core/Action.js~Action#services",
     "access": null,
     "description": null,
-    "lineNumber": 30,
+    "lineNumber": 31,
     "undocument": true,
     "type": {
       "types": [
@@ -282,7 +282,7 @@
     "longname": "src/core/Action.js~Action#initializeService",
     "access": null,
     "description": null,
-    "lineNumber": 35,
+    "lineNumber": 36,
     "undocument": true,
     "params": [
       {
@@ -308,7 +308,7 @@
     "longname": "src/core/Action.js~Action#namespace",
     "access": null,
     "description": null,
-    "lineNumber": 37,
+    "lineNumber": 38,
     "undocument": true,
     "type": {
       "types": [
@@ -325,7 +325,7 @@
     "longname": "src/core/Action.js~Action.addService",
     "access": null,
     "description": null,
-    "lineNumber": 41,
+    "lineNumber": 42,
     "undocument": true,
     "params": [
       {
@@ -352,7 +352,7 @@
     "longname": "src/core/Action.js~Action#use",
     "access": null,
     "description": null,
-    "lineNumber": 63,
+    "lineNumber": 64,
     "undocument": true,
     "params": [
       {
@@ -382,7 +382,7 @@
     "importPath": "frill/src/core/Action.js",
     "importStyle": "action",
     "description": null,
-    "lineNumber": 81,
+    "lineNumber": 82,
     "undocument": true,
     "type": {
       "types": [
@@ -1354,6 +1354,78 @@
     "type": {
       "types": [
         "src/core/Store.js~Store"
+      ]
+    }
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/core/__test__/action_test.js",
+    "memberof": null,
+    "longname": "src/core/__test__/action_test.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import '../../../__test__/spec_helper.js';\nimport Action from '../Action';\n\nconst services = [\n  'socket',\n  'request',\n];\n\nconst reservedNamespaces = [\n  'setup',\n];\n\nconst testServiceOptions = {\n  key: 'value',\n};\n\ndescribe('#src/core/Action', () => {\n  describe('class Action', () => {\n    it('should execute setup() at construction if exists', () => {\n      class testActionClass extends Action {\n        constructor() {\n          super();\n        }\n        setup() {\n          this.isStartedSetup = true;\n        }\n      }\n\n      const TestActionClass = new testActionClass();\n\n      expect(TestActionClass.isStartedSetup).to.exist;\n      expect(TestActionClass.isStartedSetup).to.equal(true);\n    });\n  });\n  // describe('Action.addService', () => {});\n\n});\n\n//\n//     it \"should be accecible\", ->\n//       expect(Action.addService).to.be.a('function')\n//\n//     it \"should be able to add a custom service\", ->\n//       Action.addService \"newService\", (opts) ->\n//         return opts\n//       expect(Action.prototype._services.newService).to.be.a(\"function\")\n//\n//     it \"should be able to access options from service\", ->\n//\n//       expect(Action.prototype._services.newService(testServiceOptions)).to.equal(testServiceOptions)\n//\n//       # remove the new service (for other tests to work)\n//       delete Action.prototype._services.newService\n//\n//     it \"should not be able to add existing namespace\", ->\n//       services.forEach (service) ->\n//         expect ->\n//           Action.addService service, ->\n//             return\n//         .to.throw(\"Service: #{service} already exists.\")\n//\n//     it \"should not be able to add a non-function service\", ->\n//       expect ->\n//         Action.addService \"test-service\", \"aString\"\n//       .to.throw(\"A service must be a function.\")\n//\n//     it \"should not be able to add a service when the namespace is reserved\", ->\n//       reservedNamespaces.forEach (reserved) ->\n//         expect ->\n//           Action.addService reserved, ()->\n//             return\n//         .to.throw(\"Could not add service. '#{reserved}' is a reserved namespace.\")\n//\n//   describe 'Action.use', ->\n//\n//     it \"should be accecible\", ->\n//       expect(Action.use).to.be.a('function')\n//\n//     it \"should contain a list of integrated services\", ->\n//       expect(Action.prototype._services).to.have.all.keys(services)\n//\n//     it \"should not be able to use a service which does not exist\", ->\n//       expect ->\n//         Action.use(\"serviceNotExisting\")\n//       .to.throw(\"The specified service doesn\\'t exist.\")\n//\n//     it \"should not be able to use the 'request' service before using the 'use' method\", ->\n//       expect(Action.prototype.request).to.be.a('undefined')\n//\n//     it \"should not be able to use the 'socket' service before using the 'use' method\", ->\n//       expect(Action.prototype.socket).to.be.a('undefined')\n//\n//     it \"should be able to use the 'request' service\", ->\n//       Action.use(\"request\", null)\n//       expect(Action.prototype.request).to.be.a('function')\n//\n//     it \"should be able to use the 'socket' service\", ->\n//       Action.use(\"socket\", {url: \"localhost\"})\n//       expect(Action.prototype.socket).to.be.a('object')\n//\n//     it \"should not be able to start a service twice\", ->\n//       expect ->\n//         Action.use(\"request\", null)\n//       .to.throw(\"The specified service name already exists and started. Please provide a different namespace.\")\n"
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "services",
+    "memberof": "src/core/__test__/action_test.js",
+    "longname": "src/core/__test__/action_test.js~services",
+    "access": null,
+    "export": false,
+    "importPath": "frill/src/core/__test__/action_test.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 4,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "reservedNamespaces",
+    "memberof": "src/core/__test__/action_test.js",
+    "longname": "src/core/__test__/action_test.js~reservedNamespaces",
+    "access": null,
+    "export": false,
+    "importPath": "frill/src/core/__test__/action_test.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 9,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "testServiceOptions",
+    "memberof": "src/core/__test__/action_test.js",
+    "longname": "src/core/__test__/action_test.js~testServiceOptions",
+    "access": null,
+    "export": false,
+    "importPath": "frill/src/core/__test__/action_test.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 13,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
       ]
     }
   },

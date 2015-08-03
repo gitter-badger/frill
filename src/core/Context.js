@@ -12,6 +12,9 @@ import Dispatcher from './Dispatcher';
  */
 class Context extends EventEmitter {
 
+  /**
+   *
+   */
   constructor(stores, actions) {
 
     super();
