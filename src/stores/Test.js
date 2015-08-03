@@ -1,6 +1,5 @@
 import Frill from '../core';
 
-/* @flow */
 class TestStore extends Frill.Store {
 
   constructor() {
@@ -12,17 +11,17 @@ class TestStore extends Frill.Store {
     };
   }
 
-  countup(payload: any) {
+  countup(payload) {
     this._count = this._count + 1;
     this.change();
   }
 
-  countupBy(byCount: number) {
+  countupBy(byCount) {
     this._count = this._count + byCount;
     this.change();
   }
 
-  getCount(): number {
+  getCount() {
     return this._count;
   }
 

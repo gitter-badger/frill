@@ -9,14 +9,11 @@
  * Auto-generate documents using ESDoc.
  *
  */
-
-import ESdoc from './_esdoc';
-
 export default (gulp, $, argv, path) => {
 
   gulp.task('doc', () => {
     return gulp.src(["./src"])
-      .pipe(ESdoc({
+      .pipe($.esdoc({
         destination: "./docs",
         title: 'FrillJS',
         // includes: ['\\.(js|es6)$'],

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../../">
-  <title data-ice="title">Store | FrillJS API Document</title>
+  <title data-ice="title">TestStore | FrillJS API Document</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -63,27 +63,27 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import Store from &apos;<span><a href="file/src/core/Store.js.html#lineNumber7">frill/src/core/Store.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode"></code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/core/Store.js.html#lineNumber7">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/stores/Test.js.html#lineNumber3">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
-  <h1 data-ice="name">Store</h1>
+  <h1 data-ice="name">TestStore</h1>
 
   <div data-ice="instanceDocs" class="instance-docs">
     <span>You can directly use instance of this class.</span>
     
-  <span data-ice="instanceDoc"><span><a href="variable/index.html#static-variable-store">store</a></span></span>
+  <span data-ice="instanceDoc"><span><a href="variable/index.html#static-variable-testStore">testStore</a></span></span>
 </div>
 
   
   
-  <div class="flat-list" data-ice="extendsChain"><h4>Extends:</h4><div><span>eventemitter3~EventEmitter</span> &#x2192; Store</div></div>
+  <div class="flat-list" data-ice="extendsChain"><h4>Extends:</h4><div><span>src/core~Frill.Store</span> &#x2192; TestStore</div></div>
   
   
   
@@ -121,7 +121,7 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/core/Store.js~Store.html#instance-constructor-constructor">constructor</a></span></span>
+           <span data-ice="name"><span><a href="class/src/stores/Test.js~TestStore.html#instance-constructor-constructor">constructor</a></span></span>
         </p>
       </div>
       <div>
@@ -146,14 +146,14 @@
     <td>
       <span class="access" data-ice="access">public</span>
       
-      <span class="kind" data-ice="kind">set</span>
+      
       
       <span class="override" data-ice="override"></span>
     </td>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/core/Store.js~Store.html#instance-set-actions">actions</a></span></span><span data-ice="signature">: <span>*</span></span>
+           <span data-ice="name"><span><a href="class/src/stores/Test.js~TestStore.html#instance-member-actions">actions</a></span></span><span data-ice="signature">: <span>*</span></span>
         </p>
       </div>
       <div>
@@ -185,7 +185,7 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/core/Store.js~Store.html#instance-method-bindAction">bindAction</a></span></span><span data-ice="signature">(actionType: <span>*</span>, handler: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/src/stores/Test.js~TestStore.html#instance-method-countup">countup</a></span></span><span data-ice="signature">(payload: <span>*</span>)</span>
         </p>
       </div>
       <div>
@@ -210,7 +210,7 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/core/Store.js~Store.html#instance-method-bindActions">bindActions</a></span></span><span data-ice="signature">(actions: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/src/stores/Test.js~TestStore.html#instance-method-countupBy">countupBy</a></span></span><span data-ice="signature">(byCount: <span>*</span>)</span>
         </p>
       </div>
       <div>
@@ -235,32 +235,7 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/core/Store.js~Store.html#instance-method-change">change</a></span></span><span data-ice="signature">(props: <span>*</span>)</span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="class/src/core/Store.js~Store.html#instance-method-waitFor">waitFor</a></span></span><span data-ice="signature">(stores: <span>*</span>, fn: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/src/stores/Test.js~TestStore.html#instance-method-getCount">getCount</a></span></span><span data-ice="signature">(): <span>*</span></span>
         </p>
       </div>
       <div>
@@ -295,7 +270,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/core/Store.js.html#lineNumber8">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/stores/Test.js.html#lineNumber5">source</a></span></span>
     </span>
   </h3>
 
@@ -328,17 +303,17 @@
 <div data-ice="memberDetails"><h2 data-ice="title">Public Members</h2>
 
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-set-actions">
+  <h3 data-ice="anchor" id="instance-member-actions">
     <span class="access" data-ice="access">public</span>
     
-    <span class="kind" data-ice="kind">set</span>
+    
     
     
     <span data-ice="name">actions</span><span data-ice="signature">: <span>*</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/core/Store.js.html#lineNumber16">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/stores/Test.js.html#lineNumber8">source</a></span></span>
     </span>
   </h3>
 
@@ -371,17 +346,17 @@
 <div data-ice="methodDetails"><h2 data-ice="title">Public Methods</h2>
 
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-bindAction">
+  <h3 data-ice="anchor" id="instance-method-countup">
     <span class="access" data-ice="access">public</span>
     
     
     
     
-    <span data-ice="name">bindAction</span><span data-ice="signature">(actionType: <span>*</span>, handler: <span>*</span>)</span>
+    <span data-ice="name">countup</span><span data-ice="signature">(payload: <span>*</span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/core/Store.js.html#lineNumber33">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/stores/Test.js.html#lineNumber14">source</a></span></span>
     </span>
   </h3>
 
@@ -401,13 +376,7 @@
     <tbody>
     
     <tr data-ice="property" data-depth="0">
-      <td data-ice="name" data-depth="0">actionType</td>
-      <td data-ice="type"><span>*</span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
-    </tr>
-<tr data-ice="property" data-depth="0">
-      <td data-ice="name" data-depth="0">handler</td>
+      <td data-ice="name" data-depth="0">payload</td>
       <td data-ice="type"><span>*</span></td>
       <td data-ice="appendix"></td>
       <td data-ice="description"></td>
@@ -433,17 +402,17 @@
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-bindActions">
+  <h3 data-ice="anchor" id="instance-method-countupBy">
     <span class="access" data-ice="access">public</span>
     
     
     
     
-    <span data-ice="name">bindActions</span><span data-ice="signature">(actions: <span>*</span>)</span>
+    <span data-ice="name">countupBy</span><span data-ice="signature">(byCount: <span>*</span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/core/Store.js.html#lineNumber21">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/stores/Test.js.html#lineNumber19">source</a></span></span>
     </span>
   </h3>
 
@@ -463,7 +432,7 @@
     <tbody>
     
     <tr data-ice="property" data-depth="0">
-      <td data-ice="name" data-depth="0">actions</td>
+      <td data-ice="name" data-depth="0">byCount</td>
       <td data-ice="type"><span>*</span></td>
       <td data-ice="appendix"></td>
       <td data-ice="description"></td>
@@ -489,17 +458,17 @@
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-change">
+  <h3 data-ice="anchor" id="instance-method-getCount">
     <span class="access" data-ice="access">public</span>
     
     
     
     
-    <span data-ice="name">change</span><span data-ice="signature">(props: <span>*</span>)</span>
+    <span data-ice="name">getCount</span><span data-ice="signature">(): <span>*</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/core/Store.js.html#lineNumber60">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/stores/Test.js.html#lineNumber24">source</a></span></span>
     </span>
   </h3>
 
@@ -510,88 +479,20 @@
 
   
 
-  <div data-ice="properties"><div data-ice="properties">
-  <h4 data-ice="title">Params:</h4>
-  <table class="params">
-    <thead>
-    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-    
-    <tr data-ice="property" data-depth="0">
-      <td data-ice="name" data-depth="0">props</td>
-      <td data-ice="type"><span>*</span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
-    </tr>
-</tbody>
-  </table>
-</div>
+  <div data-ice="properties">
 </div>
 
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span>*</span></td>
+        
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
 </div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-waitFor">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    <span data-ice="name">waitFor</span><span data-ice="signature">(stores: <span>*</span>, fn: <span>*</span>)</span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/core/Store.js.html#lineNumber64">source</a></span></span>
-    </span>
-  </h3>
-
-  
-  
-  
-  
-
-  
-
-  <div data-ice="properties"><div data-ice="properties">
-  <h4 data-ice="title">Params:</h4>
-  <table class="params">
-    <thead>
-    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
-    </thead>
-    <tbody>
-    
-    <tr data-ice="property" data-depth="0">
-      <td data-ice="name" data-depth="0">stores</td>
-      <td data-ice="type"><span>*</span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
-    </tr>
-<tr data-ice="property" data-depth="0">
-      <td data-ice="name" data-depth="0">fn</td>
-      <td data-ice="type"><span>*</span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
-    </tr>
-</tbody>
-  </table>
-</div>
-</div>
-
-  
+  </div>
 
   
 

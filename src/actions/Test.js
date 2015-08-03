@@ -1,6 +1,5 @@
 import Frill from '../core';
 
-/* @flow */
 class TestAction extends Frill.Action {
 
   constructor() {
@@ -14,7 +13,7 @@ class TestAction extends Frill.Action {
     this.dispatch("COUNT_UP");
   }
 
-  countUpBy(count: number) : number {
+  countUpBy(count) {
     this.dispatch("COUNT_UP_BY", count);
     return count;
   }

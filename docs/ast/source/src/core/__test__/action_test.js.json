@@ -1534,11 +1534,1000 @@
                                   "column": 7
                                 }
                               }
+                            },
+                            {
+                              "type": "ExpressionStatement",
+                              "expression": {
+                                "type": "CallExpression",
+                                "callee": {
+                                  "type": "Identifier",
+                                  "name": "it",
+                                  "range": [
+                                    711,
+                                    713
+                                  ],
+                                  "loc": {
+                                    "start": {
+                                      "line": 34,
+                                      "column": 4
+                                    },
+                                    "end": {
+                                      "line": 34,
+                                      "column": 6
+                                    }
+                                  }
+                                },
+                                "arguments": [
+                                  {
+                                    "type": "Literal",
+                                    "value": "should execute setup() at construction if exists B",
+                                    "raw": "'should execute setup() at construction if exists B'",
+                                    "range": [
+                                      714,
+                                      766
+                                    ],
+                                    "loc": {
+                                      "start": {
+                                        "line": 34,
+                                        "column": 7
+                                      },
+                                      "end": {
+                                        "line": 34,
+                                        "column": 59
+                                      }
+                                    }
+                                  },
+                                  {
+                                    "type": "ArrowFunctionExpression",
+                                    "id": null,
+                                    "params": [],
+                                    "body": {
+                                      "type": "BlockStatement",
+                                      "body": [
+                                        {
+                                          "type": "ClassDeclaration",
+                                          "id": {
+                                            "type": "Identifier",
+                                            "name": "testActionClass",
+                                            "range": [
+                                              788,
+                                              803
+                                            ],
+                                            "loc": {
+                                              "start": {
+                                                "line": 35,
+                                                "column": 12
+                                              },
+                                              "end": {
+                                                "line": 35,
+                                                "column": 27
+                                              }
+                                            }
+                                          },
+                                          "superClass": {
+                                            "type": "Identifier",
+                                            "name": "Action",
+                                            "range": [
+                                              812,
+                                              818
+                                            ],
+                                            "loc": {
+                                              "start": {
+                                                "line": 35,
+                                                "column": 36
+                                              },
+                                              "end": {
+                                                "line": 35,
+                                                "column": 42
+                                              }
+                                            }
+                                          },
+                                          "body": {
+                                            "type": "ClassBody",
+                                            "body": [
+                                              {
+                                                "type": "MethodDefinition",
+                                                "key": {
+                                                  "type": "Identifier",
+                                                  "name": "constructor",
+                                                  "range": [
+                                                    829,
+                                                    840
+                                                  ],
+                                                  "loc": {
+                                                    "start": {
+                                                      "line": 36,
+                                                      "column": 8
+                                                    },
+                                                    "end": {
+                                                      "line": 36,
+                                                      "column": 19
+                                                    }
+                                                  }
+                                                },
+                                                "value": {
+                                                  "type": "FunctionExpression",
+                                                  "id": null,
+                                                  "params": [],
+                                                  "body": {
+                                                    "type": "BlockStatement",
+                                                    "body": [
+                                                      {
+                                                        "type": "ExpressionStatement",
+                                                        "expression": {
+                                                          "type": "CallExpression",
+                                                          "callee": {
+                                                            "type": "Super",
+                                                            "range": [
+                                                              855,
+                                                              860
+                                                            ],
+                                                            "loc": {
+                                                              "start": {
+                                                                "line": 37,
+                                                                "column": 10
+                                                              },
+                                                              "end": {
+                                                                "line": 37,
+                                                                "column": 15
+                                                              }
+                                                            }
+                                                          },
+                                                          "arguments": [],
+                                                          "range": [
+                                                            855,
+                                                            862
+                                                          ],
+                                                          "loc": {
+                                                            "start": {
+                                                              "line": 37,
+                                                              "column": 10
+                                                            },
+                                                            "end": {
+                                                              "line": 37,
+                                                              "column": 17
+                                                            }
+                                                          }
+                                                        },
+                                                        "range": [
+                                                          855,
+                                                          863
+                                                        ],
+                                                        "loc": {
+                                                          "start": {
+                                                            "line": 37,
+                                                            "column": 10
+                                                          },
+                                                          "end": {
+                                                            "line": 37,
+                                                            "column": 18
+                                                          }
+                                                        }
+                                                      }
+                                                    ],
+                                                    "range": [
+                                                      843,
+                                                      873
+                                                    ],
+                                                    "loc": {
+                                                      "start": {
+                                                        "line": 36,
+                                                        "column": 22
+                                                      },
+                                                      "end": {
+                                                        "line": 38,
+                                                        "column": 9
+                                                      }
+                                                    }
+                                                  },
+                                                  "generator": false,
+                                                  "expression": false,
+                                                  "range": [
+                                                    840,
+                                                    873
+                                                  ],
+                                                  "loc": {
+                                                    "start": {
+                                                      "line": 36,
+                                                      "column": 19
+                                                    },
+                                                    "end": {
+                                                      "line": 38,
+                                                      "column": 9
+                                                    }
+                                                  }
+                                                },
+                                                "kind": "constructor",
+                                                "computed": false,
+                                                "range": [
+                                                  829,
+                                                  873
+                                                ],
+                                                "loc": {
+                                                  "start": {
+                                                    "line": 36,
+                                                    "column": 8
+                                                  },
+                                                  "end": {
+                                                    "line": 38,
+                                                    "column": 9
+                                                  }
+                                                },
+                                                "static": false
+                                              },
+                                              {
+                                                "type": "MethodDefinition",
+                                                "key": {
+                                                  "type": "Identifier",
+                                                  "name": "setup",
+                                                  "range": [
+                                                    882,
+                                                    887
+                                                  ],
+                                                  "loc": {
+                                                    "start": {
+                                                      "line": 39,
+                                                      "column": 8
+                                                    },
+                                                    "end": {
+                                                      "line": 39,
+                                                      "column": 13
+                                                    }
+                                                  }
+                                                },
+                                                "value": {
+                                                  "type": "FunctionExpression",
+                                                  "id": null,
+                                                  "params": [],
+                                                  "body": {
+                                                    "type": "BlockStatement",
+                                                    "body": [
+                                                      {
+                                                        "type": "ExpressionStatement",
+                                                        "expression": {
+                                                          "type": "AssignmentExpression",
+                                                          "operator": "=",
+                                                          "left": {
+                                                            "type": "MemberExpression",
+                                                            "computed": false,
+                                                            "object": {
+                                                              "type": "ThisExpression",
+                                                              "range": [
+                                                                902,
+                                                                906
+                                                              ],
+                                                              "loc": {
+                                                                "start": {
+                                                                  "line": 40,
+                                                                  "column": 10
+                                                                },
+                                                                "end": {
+                                                                  "line": 40,
+                                                                  "column": 14
+                                                                }
+                                                              }
+                                                            },
+                                                            "property": {
+                                                              "type": "Identifier",
+                                                              "name": "isStartedSetup",
+                                                              "range": [
+                                                                907,
+                                                                921
+                                                              ],
+                                                              "loc": {
+                                                                "start": {
+                                                                  "line": 40,
+                                                                  "column": 15
+                                                                },
+                                                                "end": {
+                                                                  "line": 40,
+                                                                  "column": 29
+                                                                }
+                                                              }
+                                                            },
+                                                            "range": [
+                                                              902,
+                                                              921
+                                                            ],
+                                                            "loc": {
+                                                              "start": {
+                                                                "line": 40,
+                                                                "column": 10
+                                                              },
+                                                              "end": {
+                                                                "line": 40,
+                                                                "column": 29
+                                                              }
+                                                            }
+                                                          },
+                                                          "right": {
+                                                            "type": "Literal",
+                                                            "value": true,
+                                                            "raw": "true",
+                                                            "range": [
+                                                              924,
+                                                              928
+                                                            ],
+                                                            "loc": {
+                                                              "start": {
+                                                                "line": 40,
+                                                                "column": 32
+                                                              },
+                                                              "end": {
+                                                                "line": 40,
+                                                                "column": 36
+                                                              }
+                                                            }
+                                                          },
+                                                          "range": [
+                                                            902,
+                                                            928
+                                                          ],
+                                                          "loc": {
+                                                            "start": {
+                                                              "line": 40,
+                                                              "column": 10
+                                                            },
+                                                            "end": {
+                                                              "line": 40,
+                                                              "column": 36
+                                                            }
+                                                          }
+                                                        },
+                                                        "range": [
+                                                          902,
+                                                          929
+                                                        ],
+                                                        "loc": {
+                                                          "start": {
+                                                            "line": 40,
+                                                            "column": 10
+                                                          },
+                                                          "end": {
+                                                            "line": 40,
+                                                            "column": 37
+                                                          }
+                                                        }
+                                                      }
+                                                    ],
+                                                    "range": [
+                                                      890,
+                                                      939
+                                                    ],
+                                                    "loc": {
+                                                      "start": {
+                                                        "line": 39,
+                                                        "column": 16
+                                                      },
+                                                      "end": {
+                                                        "line": 41,
+                                                        "column": 9
+                                                      }
+                                                    }
+                                                  },
+                                                  "generator": false,
+                                                  "expression": false,
+                                                  "range": [
+                                                    887,
+                                                    939
+                                                  ],
+                                                  "loc": {
+                                                    "start": {
+                                                      "line": 39,
+                                                      "column": 13
+                                                    },
+                                                    "end": {
+                                                      "line": 41,
+                                                      "column": 9
+                                                    }
+                                                  }
+                                                },
+                                                "kind": "method",
+                                                "computed": false,
+                                                "range": [
+                                                  882,
+                                                  939
+                                                ],
+                                                "loc": {
+                                                  "start": {
+                                                    "line": 39,
+                                                    "column": 8
+                                                  },
+                                                  "end": {
+                                                    "line": 41,
+                                                    "column": 9
+                                                  }
+                                                },
+                                                "static": false
+                                              }
+                                            ],
+                                            "range": [
+                                              819,
+                                              947
+                                            ],
+                                            "loc": {
+                                              "start": {
+                                                "line": 35,
+                                                "column": 43
+                                              },
+                                              "end": {
+                                                "line": 42,
+                                                "column": 7
+                                              }
+                                            }
+                                          },
+                                          "range": [
+                                            782,
+                                            947
+                                          ],
+                                          "loc": {
+                                            "start": {
+                                              "line": 35,
+                                              "column": 6
+                                            },
+                                            "end": {
+                                              "line": 42,
+                                              "column": 7
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "type": "VariableDeclaration",
+                                          "declarations": [
+                                            {
+                                              "type": "VariableDeclarator",
+                                              "id": {
+                                                "type": "Identifier",
+                                                "name": "TestActionClass",
+                                                "range": [
+                                                  961,
+                                                  976
+                                                ],
+                                                "loc": {
+                                                  "start": {
+                                                    "line": 44,
+                                                    "column": 12
+                                                  },
+                                                  "end": {
+                                                    "line": 44,
+                                                    "column": 27
+                                                  }
+                                                }
+                                              },
+                                              "init": {
+                                                "type": "NewExpression",
+                                                "callee": {
+                                                  "type": "Identifier",
+                                                  "name": "testActionClass",
+                                                  "range": [
+                                                    983,
+                                                    998
+                                                  ],
+                                                  "loc": {
+                                                    "start": {
+                                                      "line": 44,
+                                                      "column": 34
+                                                    },
+                                                    "end": {
+                                                      "line": 44,
+                                                      "column": 49
+                                                    }
+                                                  }
+                                                },
+                                                "arguments": [],
+                                                "range": [
+                                                  979,
+                                                  1000
+                                                ],
+                                                "loc": {
+                                                  "start": {
+                                                    "line": 44,
+                                                    "column": 30
+                                                  },
+                                                  "end": {
+                                                    "line": 44,
+                                                    "column": 51
+                                                  }
+                                                }
+                                              },
+                                              "range": [
+                                                961,
+                                                1000
+                                              ],
+                                              "loc": {
+                                                "start": {
+                                                  "line": 44,
+                                                  "column": 12
+                                                },
+                                                "end": {
+                                                  "line": 44,
+                                                  "column": 51
+                                                }
+                                              }
+                                            }
+                                          ],
+                                          "kind": "const",
+                                          "range": [
+                                            955,
+                                            1001
+                                          ],
+                                          "loc": {
+                                            "start": {
+                                              "line": 44,
+                                              "column": 6
+                                            },
+                                            "end": {
+                                              "line": 44,
+                                              "column": 52
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "type": "ExpressionStatement",
+                                          "expression": {
+                                            "type": "MemberExpression",
+                                            "computed": false,
+                                            "object": {
+                                              "type": "MemberExpression",
+                                              "computed": false,
+                                              "object": {
+                                                "type": "CallExpression",
+                                                "callee": {
+                                                  "type": "Identifier",
+                                                  "name": "expect",
+                                                  "range": [
+                                                    1009,
+                                                    1015
+                                                  ],
+                                                  "loc": {
+                                                    "start": {
+                                                      "line": 46,
+                                                      "column": 6
+                                                    },
+                                                    "end": {
+                                                      "line": 46,
+                                                      "column": 12
+                                                    }
+                                                  }
+                                                },
+                                                "arguments": [
+                                                  {
+                                                    "type": "MemberExpression",
+                                                    "computed": false,
+                                                    "object": {
+                                                      "type": "Identifier",
+                                                      "name": "TestActionClass",
+                                                      "range": [
+                                                        1016,
+                                                        1031
+                                                      ],
+                                                      "loc": {
+                                                        "start": {
+                                                          "line": 46,
+                                                          "column": 13
+                                                        },
+                                                        "end": {
+                                                          "line": 46,
+                                                          "column": 28
+                                                        }
+                                                      }
+                                                    },
+                                                    "property": {
+                                                      "type": "Identifier",
+                                                      "name": "isStartedSetup",
+                                                      "range": [
+                                                        1032,
+                                                        1046
+                                                      ],
+                                                      "loc": {
+                                                        "start": {
+                                                          "line": 46,
+                                                          "column": 29
+                                                        },
+                                                        "end": {
+                                                          "line": 46,
+                                                          "column": 43
+                                                        }
+                                                      }
+                                                    },
+                                                    "range": [
+                                                      1016,
+                                                      1046
+                                                    ],
+                                                    "loc": {
+                                                      "start": {
+                                                        "line": 46,
+                                                        "column": 13
+                                                      },
+                                                      "end": {
+                                                        "line": 46,
+                                                        "column": 43
+                                                      }
+                                                    }
+                                                  }
+                                                ],
+                                                "range": [
+                                                  1009,
+                                                  1047
+                                                ],
+                                                "loc": {
+                                                  "start": {
+                                                    "line": 46,
+                                                    "column": 6
+                                                  },
+                                                  "end": {
+                                                    "line": 46,
+                                                    "column": 44
+                                                  }
+                                                }
+                                              },
+                                              "property": {
+                                                "type": "Identifier",
+                                                "name": "to",
+                                                "range": [
+                                                  1048,
+                                                  1050
+                                                ],
+                                                "loc": {
+                                                  "start": {
+                                                    "line": 46,
+                                                    "column": 45
+                                                  },
+                                                  "end": {
+                                                    "line": 46,
+                                                    "column": 47
+                                                  }
+                                                }
+                                              },
+                                              "range": [
+                                                1009,
+                                                1050
+                                              ],
+                                              "loc": {
+                                                "start": {
+                                                  "line": 46,
+                                                  "column": 6
+                                                },
+                                                "end": {
+                                                  "line": 46,
+                                                  "column": 47
+                                                }
+                                              }
+                                            },
+                                            "property": {
+                                              "type": "Identifier",
+                                              "name": "exist",
+                                              "range": [
+                                                1051,
+                                                1056
+                                              ],
+                                              "loc": {
+                                                "start": {
+                                                  "line": 46,
+                                                  "column": 48
+                                                },
+                                                "end": {
+                                                  "line": 46,
+                                                  "column": 53
+                                                }
+                                              }
+                                            },
+                                            "range": [
+                                              1009,
+                                              1056
+                                            ],
+                                            "loc": {
+                                              "start": {
+                                                "line": 46,
+                                                "column": 6
+                                              },
+                                              "end": {
+                                                "line": 46,
+                                                "column": 53
+                                              }
+                                            }
+                                          },
+                                          "range": [
+                                            1009,
+                                            1057
+                                          ],
+                                          "loc": {
+                                            "start": {
+                                              "line": 46,
+                                              "column": 6
+                                            },
+                                            "end": {
+                                              "line": 46,
+                                              "column": 54
+                                            }
+                                          }
+                                        },
+                                        {
+                                          "type": "ExpressionStatement",
+                                          "expression": {
+                                            "type": "CallExpression",
+                                            "callee": {
+                                              "type": "MemberExpression",
+                                              "computed": false,
+                                              "object": {
+                                                "type": "MemberExpression",
+                                                "computed": false,
+                                                "object": {
+                                                  "type": "CallExpression",
+                                                  "callee": {
+                                                    "type": "Identifier",
+                                                    "name": "expect",
+                                                    "range": [
+                                                      1064,
+                                                      1070
+                                                    ],
+                                                    "loc": {
+                                                      "start": {
+                                                        "line": 47,
+                                                        "column": 6
+                                                      },
+                                                      "end": {
+                                                        "line": 47,
+                                                        "column": 12
+                                                      }
+                                                    }
+                                                  },
+                                                  "arguments": [
+                                                    {
+                                                      "type": "MemberExpression",
+                                                      "computed": false,
+                                                      "object": {
+                                                        "type": "Identifier",
+                                                        "name": "TestActionClass",
+                                                        "range": [
+                                                          1071,
+                                                          1086
+                                                        ],
+                                                        "loc": {
+                                                          "start": {
+                                                            "line": 47,
+                                                            "column": 13
+                                                          },
+                                                          "end": {
+                                                            "line": 47,
+                                                            "column": 28
+                                                          }
+                                                        }
+                                                      },
+                                                      "property": {
+                                                        "type": "Identifier",
+                                                        "name": "isStartedSetup",
+                                                        "range": [
+                                                          1087,
+                                                          1101
+                                                        ],
+                                                        "loc": {
+                                                          "start": {
+                                                            "line": 47,
+                                                            "column": 29
+                                                          },
+                                                          "end": {
+                                                            "line": 47,
+                                                            "column": 43
+                                                          }
+                                                        }
+                                                      },
+                                                      "range": [
+                                                        1071,
+                                                        1101
+                                                      ],
+                                                      "loc": {
+                                                        "start": {
+                                                          "line": 47,
+                                                          "column": 13
+                                                        },
+                                                        "end": {
+                                                          "line": 47,
+                                                          "column": 43
+                                                        }
+                                                      }
+                                                    }
+                                                  ],
+                                                  "range": [
+                                                    1064,
+                                                    1102
+                                                  ],
+                                                  "loc": {
+                                                    "start": {
+                                                      "line": 47,
+                                                      "column": 6
+                                                    },
+                                                    "end": {
+                                                      "line": 47,
+                                                      "column": 44
+                                                    }
+                                                  }
+                                                },
+                                                "property": {
+                                                  "type": "Identifier",
+                                                  "name": "to",
+                                                  "range": [
+                                                    1103,
+                                                    1105
+                                                  ],
+                                                  "loc": {
+                                                    "start": {
+                                                      "line": 47,
+                                                      "column": 45
+                                                    },
+                                                    "end": {
+                                                      "line": 47,
+                                                      "column": 47
+                                                    }
+                                                  }
+                                                },
+                                                "range": [
+                                                  1064,
+                                                  1105
+                                                ],
+                                                "loc": {
+                                                  "start": {
+                                                    "line": 47,
+                                                    "column": 6
+                                                  },
+                                                  "end": {
+                                                    "line": 47,
+                                                    "column": 47
+                                                  }
+                                                }
+                                              },
+                                              "property": {
+                                                "type": "Identifier",
+                                                "name": "equal",
+                                                "range": [
+                                                  1106,
+                                                  1111
+                                                ],
+                                                "loc": {
+                                                  "start": {
+                                                    "line": 47,
+                                                    "column": 48
+                                                  },
+                                                  "end": {
+                                                    "line": 47,
+                                                    "column": 53
+                                                  }
+                                                }
+                                              },
+                                              "range": [
+                                                1064,
+                                                1111
+                                              ],
+                                              "loc": {
+                                                "start": {
+                                                  "line": 47,
+                                                  "column": 6
+                                                },
+                                                "end": {
+                                                  "line": 47,
+                                                  "column": 53
+                                                }
+                                              }
+                                            },
+                                            "arguments": [
+                                              {
+                                                "type": "Literal",
+                                                "value": true,
+                                                "raw": "true",
+                                                "range": [
+                                                  1112,
+                                                  1116
+                                                ],
+                                                "loc": {
+                                                  "start": {
+                                                    "line": 47,
+                                                    "column": 54
+                                                  },
+                                                  "end": {
+                                                    "line": 47,
+                                                    "column": 58
+                                                  }
+                                                }
+                                              }
+                                            ],
+                                            "range": [
+                                              1064,
+                                              1117
+                                            ],
+                                            "loc": {
+                                              "start": {
+                                                "line": 47,
+                                                "column": 6
+                                              },
+                                              "end": {
+                                                "line": 47,
+                                                "column": 59
+                                              }
+                                            }
+                                          },
+                                          "range": [
+                                            1064,
+                                            1118
+                                          ],
+                                          "loc": {
+                                            "start": {
+                                              "line": 47,
+                                              "column": 6
+                                            },
+                                            "end": {
+                                              "line": 47,
+                                              "column": 60
+                                            }
+                                          }
+                                        }
+                                      ],
+                                      "range": [
+                                        774,
+                                        1124
+                                      ],
+                                      "loc": {
+                                        "start": {
+                                          "line": 34,
+                                          "column": 67
+                                        },
+                                        "end": {
+                                          "line": 48,
+                                          "column": 5
+                                        }
+                                      }
+                                    },
+                                    "generator": false,
+                                    "expression": false,
+                                    "range": [
+                                      768,
+                                      1124
+                                    ],
+                                    "loc": {
+                                      "start": {
+                                        "line": 34,
+                                        "column": 61
+                                      },
+                                      "end": {
+                                        "line": 48,
+                                        "column": 5
+                                      }
+                                    }
+                                  }
+                                ],
+                                "range": [
+                                  711,
+                                  1125
+                                ],
+                                "loc": {
+                                  "start": {
+                                    "line": 34,
+                                    "column": 4
+                                  },
+                                  "end": {
+                                    "line": 48,
+                                    "column": 6
+                                  }
+                                }
+                              },
+                              "range": [
+                                711,
+                                1126
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 34,
+                                  "column": 4
+                                },
+                                "end": {
+                                  "line": 48,
+                                  "column": 7
+                                }
+                              }
                             }
                           ],
                           "range": [
                             287,
-                            710
+                            1130
                           ],
                           "loc": {
                             "start": {
@@ -1546,7 +2535,7 @@
                               "column": 33
                             },
                             "end": {
-                              "line": 34,
+                              "line": 49,
                               "column": 3
                             }
                           }
@@ -1555,7 +2544,7 @@
                         "expression": false,
                         "range": [
                           281,
-                          710
+                          1130
                         ],
                         "loc": {
                           "start": {
@@ -1563,7 +2552,7 @@
                             "column": 27
                           },
                           "end": {
-                            "line": 34,
+                            "line": 49,
                             "column": 3
                           }
                         }
@@ -1571,7 +2560,7 @@
                     ],
                     "range": [
                       256,
-                      711
+                      1131
                     ],
                     "loc": {
                       "start": {
@@ -1579,14 +2568,14 @@
                         "column": 2
                       },
                       "end": {
-                        "line": 34,
+                        "line": 49,
                         "column": 4
                       }
                     }
                   },
                   "range": [
                     256,
-                    712
+                    1132
                   ],
                   "loc": {
                     "start": {
@@ -1594,7 +2583,7 @@
                       "column": 2
                     },
                     "end": {
-                      "line": 34,
+                      "line": 49,
                       "column": 5
                     }
                   },
@@ -1603,16 +2592,16 @@
                       "type": "Line",
                       "value": " describe('Action.addService', () => {});",
                       "range": [
-                        715,
-                        758
+                        1135,
+                        1178
                       ],
                       "loc": {
                         "start": {
-                          "line": 35,
+                          "line": 50,
                           "column": 2
                         },
                         "end": {
-                          "line": 35,
+                          "line": 50,
                           "column": 45
                         }
                       }
@@ -1622,7 +2611,7 @@
               ],
               "range": [
                 252,
-                761
+                1181
               ],
               "loc": {
                 "start": {
@@ -1630,7 +2619,7 @@
                   "column": 35
                 },
                 "end": {
-                  "line": 37,
+                  "line": 52,
                   "column": 1
                 }
               }
@@ -1639,7 +2628,7 @@
             "expression": false,
             "range": [
               246,
-              761
+              1181
             ],
             "loc": {
               "start": {
@@ -1647,7 +2636,7 @@
                 "column": 29
               },
               "end": {
-                "line": 37,
+                "line": 52,
                 "column": 1
               }
             }
@@ -1655,7 +2644,7 @@
         ],
         "range": [
           217,
-          762
+          1182
         ],
         "loc": {
           "start": {
@@ -1663,14 +2652,14 @@
             "column": 0
           },
           "end": {
-            "line": 37,
+            "line": 52,
             "column": 2
           }
         }
       },
       "range": [
         217,
-        763
+        1183
       ],
       "loc": {
         "start": {
@@ -1678,7 +2667,7 @@
           "column": 0
         },
         "end": {
-          "line": 37,
+          "line": 52,
           "column": 3
         }
       },
@@ -1687,16 +2676,16 @@
           "type": "Line",
           "value": "",
           "range": [
-            765,
-            767
+            1185,
+            1187
           ],
           "loc": {
             "start": {
-              "line": 39,
+              "line": 54,
               "column": 0
             },
             "end": {
-              "line": 39,
+              "line": 54,
               "column": 2
             }
           }
@@ -1705,16 +2694,16 @@
           "type": "Line",
           "value": "     it \"should be accecible\", ->",
           "range": [
-            768,
-            803
+            1188,
+            1223
           ],
           "loc": {
             "start": {
-              "line": 40,
+              "line": 55,
               "column": 0
             },
             "end": {
-              "line": 40,
+              "line": 55,
               "column": 35
             }
           }
@@ -1723,16 +2712,16 @@
           "type": "Line",
           "value": "       expect(Action.addService).to.be.a('function')",
           "range": [
-            804,
-            858
+            1224,
+            1278
           ],
           "loc": {
             "start": {
-              "line": 41,
+              "line": 56,
               "column": 0
             },
             "end": {
-              "line": 41,
+              "line": 56,
               "column": 54
             }
           }
@@ -1741,16 +2730,16 @@
           "type": "Line",
           "value": "",
           "range": [
-            859,
-            861
+            1279,
+            1281
           ],
           "loc": {
             "start": {
-              "line": 42,
+              "line": 57,
               "column": 0
             },
             "end": {
-              "line": 42,
+              "line": 57,
               "column": 2
             }
           }
@@ -1759,16 +2748,16 @@
           "type": "Line",
           "value": "     it \"should be able to add a custom service\", ->",
           "range": [
-            862,
-            916
+            1282,
+            1336
           ],
           "loc": {
             "start": {
-              "line": 43,
+              "line": 58,
               "column": 0
             },
             "end": {
-              "line": 43,
+              "line": 58,
               "column": 54
             }
           }
@@ -1777,16 +2766,16 @@
           "type": "Line",
           "value": "       Action.addService \"newService\", (opts) ->",
           "range": [
-            917,
-            967
+            1337,
+            1387
           ],
           "loc": {
             "start": {
-              "line": 44,
+              "line": 59,
               "column": 0
             },
             "end": {
-              "line": 44,
+              "line": 59,
               "column": 50
             }
           }
@@ -1795,16 +2784,16 @@
           "type": "Line",
           "value": "         return opts",
           "range": [
-            968,
-            990
+            1388,
+            1410
           ],
           "loc": {
             "start": {
-              "line": 45,
+              "line": 60,
               "column": 0
             },
             "end": {
-              "line": 45,
+              "line": 60,
               "column": 22
             }
           }
@@ -1813,16 +2802,16 @@
           "type": "Line",
           "value": "       expect(Action.prototype._services.newService).to.be.a(\"function\")",
           "range": [
-            991,
-            1065
+            1411,
+            1485
           ],
           "loc": {
             "start": {
-              "line": 46,
+              "line": 61,
               "column": 0
             },
             "end": {
-              "line": 46,
+              "line": 61,
               "column": 74
             }
           }
@@ -1831,16 +2820,16 @@
           "type": "Line",
           "value": "",
           "range": [
-            1066,
-            1068
+            1486,
+            1488
           ],
           "loc": {
             "start": {
-              "line": 47,
+              "line": 62,
               "column": 0
             },
             "end": {
-              "line": 47,
+              "line": 62,
               "column": 2
             }
           }
@@ -1849,16 +2838,16 @@
           "type": "Line",
           "value": "     it \"should be able to access options from service\", ->",
           "range": [
-            1069,
-            1130
+            1489,
+            1550
           ],
           "loc": {
             "start": {
-              "line": 48,
+              "line": 63,
               "column": 0
             },
             "end": {
-              "line": 48,
+              "line": 63,
               "column": 61
             }
           }
@@ -1867,16 +2856,16 @@
           "type": "Line",
           "value": "",
           "range": [
-            1131,
-            1133
+            1551,
+            1553
           ],
           "loc": {
             "start": {
-              "line": 49,
+              "line": 64,
               "column": 0
             },
             "end": {
-              "line": 49,
+              "line": 64,
               "column": 2
             }
           }
@@ -1885,16 +2874,16 @@
           "type": "Line",
           "value": "       expect(Action.prototype._services.newService(testServiceOptions)).to.equal(testServiceOptions)",
           "range": [
-            1134,
-            1237
+            1554,
+            1657
           ],
           "loc": {
             "start": {
-              "line": 50,
+              "line": 65,
               "column": 0
             },
             "end": {
-              "line": 50,
+              "line": 65,
               "column": 103
             }
           }
@@ -1903,16 +2892,16 @@
           "type": "Line",
           "value": "",
           "range": [
-            1238,
-            1240
+            1658,
+            1660
           ],
           "loc": {
             "start": {
-              "line": 51,
+              "line": 66,
               "column": 0
             },
             "end": {
-              "line": 51,
+              "line": 66,
               "column": 2
             }
           }
@@ -1921,16 +2910,16 @@
           "type": "Line",
           "value": "       # remove the new service (for other tests to work)",
           "range": [
-            1241,
-            1300
+            1661,
+            1720
           ],
           "loc": {
             "start": {
-              "line": 52,
+              "line": 67,
               "column": 0
             },
             "end": {
-              "line": 52,
+              "line": 67,
               "column": 59
             }
           }
@@ -1939,16 +2928,16 @@
           "type": "Line",
           "value": "       delete Action.prototype._services.newService",
           "range": [
-            1301,
-            1354
+            1721,
+            1774
           ],
           "loc": {
             "start": {
-              "line": 53,
+              "line": 68,
               "column": 0
             },
             "end": {
-              "line": 53,
+              "line": 68,
               "column": 53
             }
           }
@@ -1957,16 +2946,16 @@
           "type": "Line",
           "value": "",
           "range": [
-            1355,
-            1357
+            1775,
+            1777
           ],
           "loc": {
             "start": {
-              "line": 54,
+              "line": 69,
               "column": 0
             },
             "end": {
-              "line": 54,
+              "line": 69,
               "column": 2
             }
           }
@@ -1975,16 +2964,16 @@
           "type": "Line",
           "value": "     it \"should not be able to add existing namespace\", ->",
           "range": [
-            1358,
-            1418
+            1778,
+            1838
           ],
           "loc": {
             "start": {
-              "line": 55,
+              "line": 70,
               "column": 0
             },
             "end": {
-              "line": 55,
+              "line": 70,
               "column": 60
             }
           }
@@ -1993,16 +2982,16 @@
           "type": "Line",
           "value": "       services.forEach (service) ->",
           "range": [
-            1419,
-            1457
+            1839,
+            1877
           ],
           "loc": {
             "start": {
-              "line": 56,
+              "line": 71,
               "column": 0
             },
             "end": {
-              "line": 56,
+              "line": 71,
               "column": 38
             }
           }
@@ -2011,16 +3000,16 @@
           "type": "Line",
           "value": "         expect ->",
           "range": [
-            1458,
-            1478
+            1878,
+            1898
           ],
           "loc": {
             "start": {
-              "line": 57,
+              "line": 72,
               "column": 0
             },
             "end": {
-              "line": 57,
+              "line": 72,
               "column": 20
             }
           }
@@ -2029,16 +3018,16 @@
           "type": "Line",
           "value": "           Action.addService service, ->",
           "range": [
-            1479,
-            1521
+            1899,
+            1941
           ],
           "loc": {
             "start": {
-              "line": 58,
+              "line": 73,
               "column": 0
             },
             "end": {
-              "line": 58,
+              "line": 73,
               "column": 42
             }
           }
@@ -2047,16 +3036,16 @@
           "type": "Line",
           "value": "             return",
           "range": [
-            1522,
-            1543
+            1942,
+            1963
           ],
           "loc": {
             "start": {
-              "line": 59,
+              "line": 74,
               "column": 0
             },
             "end": {
-              "line": 59,
+              "line": 74,
               "column": 21
             }
           }
@@ -2065,16 +3054,16 @@
           "type": "Line",
           "value": "         .to.throw(\"Service: #{service} already exists.\")",
           "range": [
-            1544,
-            1603
+            1964,
+            2023
           ],
           "loc": {
             "start": {
-              "line": 60,
+              "line": 75,
               "column": 0
             },
             "end": {
-              "line": 60,
+              "line": 75,
               "column": 59
             }
           }
@@ -2083,16 +3072,16 @@
           "type": "Line",
           "value": "",
           "range": [
-            1604,
-            1606
+            2024,
+            2026
           ],
           "loc": {
             "start": {
-              "line": 61,
+              "line": 76,
               "column": 0
             },
             "end": {
-              "line": 61,
+              "line": 76,
               "column": 2
             }
           }
@@ -2101,16 +3090,16 @@
           "type": "Line",
           "value": "     it \"should not be able to add a non-function service\", ->",
           "range": [
-            1607,
-            1671
+            2027,
+            2091
           ],
           "loc": {
             "start": {
-              "line": 62,
+              "line": 77,
               "column": 0
             },
             "end": {
-              "line": 62,
+              "line": 77,
               "column": 64
             }
           }
@@ -2119,16 +3108,16 @@
           "type": "Line",
           "value": "       expect ->",
           "range": [
-            1672,
-            1690
+            2092,
+            2110
           ],
           "loc": {
             "start": {
-              "line": 63,
+              "line": 78,
               "column": 0
             },
             "end": {
-              "line": 63,
+              "line": 78,
               "column": 18
             }
           }
@@ -2137,16 +3126,16 @@
           "type": "Line",
           "value": "         Action.addService \"test-service\", \"aString\"",
           "range": [
-            1691,
-            1745
+            2111,
+            2165
           ],
           "loc": {
             "start": {
-              "line": 64,
+              "line": 79,
               "column": 0
             },
             "end": {
-              "line": 64,
+              "line": 79,
               "column": 54
             }
           }
@@ -2155,16 +3144,16 @@
           "type": "Line",
           "value": "       .to.throw(\"A service must be a function.\")",
           "range": [
-            1746,
-            1797
+            2166,
+            2217
           ],
           "loc": {
             "start": {
-              "line": 65,
+              "line": 80,
               "column": 0
             },
             "end": {
-              "line": 65,
+              "line": 80,
               "column": 51
             }
           }
@@ -2173,16 +3162,16 @@
           "type": "Line",
           "value": "",
           "range": [
-            1798,
-            1800
+            2218,
+            2220
           ],
           "loc": {
             "start": {
-              "line": 66,
+              "line": 81,
               "column": 0
             },
             "end": {
-              "line": 66,
+              "line": 81,
               "column": 2
             }
           }
@@ -2191,16 +3180,16 @@
           "type": "Line",
           "value": "     it \"should not be able to add a service when the namespace is reserved\", ->",
           "range": [
-            1801,
-            1883
+            2221,
+            2303
           ],
           "loc": {
             "start": {
-              "line": 67,
+              "line": 82,
               "column": 0
             },
             "end": {
-              "line": 67,
+              "line": 82,
               "column": 82
             }
           }
@@ -2209,16 +3198,16 @@
           "type": "Line",
           "value": "       reservedNamespaces.forEach (reserved) ->",
           "range": [
-            1884,
-            1933
+            2304,
+            2353
           ],
           "loc": {
             "start": {
-              "line": 68,
+              "line": 83,
               "column": 0
             },
             "end": {
-              "line": 68,
+              "line": 83,
               "column": 49
             }
           }
@@ -2227,16 +3216,16 @@
           "type": "Line",
           "value": "         expect ->",
           "range": [
-            1934,
-            1954
+            2354,
+            2374
           ],
           "loc": {
             "start": {
-              "line": 69,
+              "line": 84,
               "column": 0
             },
             "end": {
-              "line": 69,
+              "line": 84,
               "column": 20
             }
           }
@@ -2245,16 +3234,16 @@
           "type": "Line",
           "value": "           Action.addService reserved, ()->",
           "range": [
-            1955,
-            2000
+            2375,
+            2420
           ],
           "loc": {
             "start": {
-              "line": 70,
+              "line": 85,
               "column": 0
             },
             "end": {
-              "line": 70,
+              "line": 85,
               "column": 45
             }
           }
@@ -2263,16 +3252,16 @@
           "type": "Line",
           "value": "             return",
           "range": [
-            2001,
-            2022
+            2421,
+            2442
           ],
           "loc": {
             "start": {
-              "line": 71,
+              "line": 86,
               "column": 0
             },
             "end": {
-              "line": 71,
+              "line": 86,
               "column": 21
             }
           }
@@ -2281,16 +3270,16 @@
           "type": "Line",
           "value": "         .to.throw(\"Could not add service. '#{reserved}' is a reserved namespace.\")",
           "range": [
-            2023,
-            2108
+            2443,
+            2528
           ],
           "loc": {
             "start": {
-              "line": 72,
+              "line": 87,
               "column": 0
             },
             "end": {
-              "line": 72,
+              "line": 87,
               "column": 85
             }
           }
@@ -2299,16 +3288,16 @@
           "type": "Line",
           "value": "",
           "range": [
-            2109,
-            2111
+            2529,
+            2531
           ],
           "loc": {
             "start": {
-              "line": 73,
+              "line": 88,
               "column": 0
             },
             "end": {
-              "line": 73,
+              "line": 88,
               "column": 2
             }
           }
@@ -2317,16 +3306,16 @@
           "type": "Line",
           "value": "   describe 'Action.use', ->",
           "range": [
-            2112,
-            2142
+            2532,
+            2562
           ],
           "loc": {
             "start": {
-              "line": 74,
+              "line": 89,
               "column": 0
             },
             "end": {
-              "line": 74,
+              "line": 89,
               "column": 30
             }
           }
@@ -2335,16 +3324,16 @@
           "type": "Line",
           "value": "",
           "range": [
-            2143,
-            2145
+            2563,
+            2565
           ],
           "loc": {
             "start": {
-              "line": 75,
+              "line": 90,
               "column": 0
             },
             "end": {
-              "line": 75,
+              "line": 90,
               "column": 2
             }
           }
@@ -2353,16 +3342,16 @@
           "type": "Line",
           "value": "     it \"should be accecible\", ->",
           "range": [
-            2146,
-            2181
+            2566,
+            2601
           ],
           "loc": {
             "start": {
-              "line": 76,
+              "line": 91,
               "column": 0
             },
             "end": {
-              "line": 76,
+              "line": 91,
               "column": 35
             }
           }
@@ -2371,16 +3360,16 @@
           "type": "Line",
           "value": "       expect(Action.use).to.be.a('function')",
           "range": [
-            2182,
-            2229
+            2602,
+            2649
           ],
           "loc": {
             "start": {
-              "line": 77,
+              "line": 92,
               "column": 0
             },
             "end": {
-              "line": 77,
+              "line": 92,
               "column": 47
             }
           }
@@ -2389,16 +3378,16 @@
           "type": "Line",
           "value": "",
           "range": [
-            2230,
-            2232
+            2650,
+            2652
           ],
           "loc": {
             "start": {
-              "line": 78,
+              "line": 93,
               "column": 0
             },
             "end": {
-              "line": 78,
+              "line": 93,
               "column": 2
             }
           }
@@ -2407,16 +3396,16 @@
           "type": "Line",
           "value": "     it \"should contain a list of integrated services\", ->",
           "range": [
-            2233,
-            2293
+            2653,
+            2713
           ],
           "loc": {
             "start": {
-              "line": 79,
+              "line": 94,
               "column": 0
             },
             "end": {
-              "line": 79,
+              "line": 94,
               "column": 60
             }
           }
@@ -2425,16 +3414,16 @@
           "type": "Line",
           "value": "       expect(Action.prototype._services).to.have.all.keys(services)",
           "range": [
-            2294,
-            2364
+            2714,
+            2784
           ],
           "loc": {
             "start": {
-              "line": 80,
+              "line": 95,
               "column": 0
             },
             "end": {
-              "line": 80,
+              "line": 95,
               "column": 70
             }
           }
@@ -2443,16 +3432,16 @@
           "type": "Line",
           "value": "",
           "range": [
-            2365,
-            2367
+            2785,
+            2787
           ],
           "loc": {
             "start": {
-              "line": 81,
+              "line": 96,
               "column": 0
             },
             "end": {
-              "line": 81,
+              "line": 96,
               "column": 2
             }
           }
@@ -2461,16 +3450,16 @@
           "type": "Line",
           "value": "     it \"should not be able to use a service which does not exist\", ->",
           "range": [
-            2368,
-            2440
+            2788,
+            2860
           ],
           "loc": {
             "start": {
-              "line": 82,
+              "line": 97,
               "column": 0
             },
             "end": {
-              "line": 82,
+              "line": 97,
               "column": 72
             }
           }
@@ -2479,16 +3468,16 @@
           "type": "Line",
           "value": "       expect ->",
           "range": [
-            2441,
-            2459
+            2861,
+            2879
           ],
           "loc": {
             "start": {
-              "line": 83,
+              "line": 98,
               "column": 0
             },
             "end": {
-              "line": 83,
+              "line": 98,
               "column": 18
             }
           }
@@ -2497,16 +3486,16 @@
           "type": "Line",
           "value": "         Action.use(\"serviceNotExisting\")",
           "range": [
-            2460,
-            2503
+            2880,
+            2923
           ],
           "loc": {
             "start": {
-              "line": 84,
+              "line": 99,
               "column": 0
             },
             "end": {
-              "line": 84,
+              "line": 99,
               "column": 43
             }
           }
@@ -2515,16 +3504,16 @@
           "type": "Line",
           "value": "       .to.throw(\"The specified service doesn\\'t exist.\")",
           "range": [
-            2504,
-            2563
+            2924,
+            2983
           ],
           "loc": {
             "start": {
-              "line": 85,
+              "line": 100,
               "column": 0
             },
             "end": {
-              "line": 85,
+              "line": 100,
               "column": 59
             }
           }
@@ -2533,16 +3522,16 @@
           "type": "Line",
           "value": "",
           "range": [
-            2564,
-            2566
+            2984,
+            2986
           ],
           "loc": {
             "start": {
-              "line": 86,
+              "line": 101,
               "column": 0
             },
             "end": {
-              "line": 86,
+              "line": 101,
               "column": 2
             }
           }
@@ -2551,16 +3540,16 @@
           "type": "Line",
           "value": "     it \"should not be able to use the 'request' service before using the 'use' method\", ->",
           "range": [
-            2567,
-            2660
+            2987,
+            3080
           ],
           "loc": {
             "start": {
-              "line": 87,
+              "line": 102,
               "column": 0
             },
             "end": {
-              "line": 87,
+              "line": 102,
               "column": 93
             }
           }
@@ -2569,16 +3558,16 @@
           "type": "Line",
           "value": "       expect(Action.prototype.request).to.be.a('undefined')",
           "range": [
-            2661,
-            2723
+            3081,
+            3143
           ],
           "loc": {
             "start": {
-              "line": 88,
+              "line": 103,
               "column": 0
             },
             "end": {
-              "line": 88,
+              "line": 103,
               "column": 62
             }
           }
@@ -2587,16 +3576,16 @@
           "type": "Line",
           "value": "",
           "range": [
-            2724,
-            2726
+            3144,
+            3146
           ],
           "loc": {
             "start": {
-              "line": 89,
+              "line": 104,
               "column": 0
             },
             "end": {
-              "line": 89,
+              "line": 104,
               "column": 2
             }
           }
@@ -2605,16 +3594,16 @@
           "type": "Line",
           "value": "     it \"should not be able to use the 'socket' service before using the 'use' method\", ->",
           "range": [
-            2727,
-            2819
+            3147,
+            3239
           ],
           "loc": {
             "start": {
-              "line": 90,
+              "line": 105,
               "column": 0
             },
             "end": {
-              "line": 90,
+              "line": 105,
               "column": 92
             }
           }
@@ -2623,16 +3612,16 @@
           "type": "Line",
           "value": "       expect(Action.prototype.socket).to.be.a('undefined')",
           "range": [
-            2820,
-            2881
+            3240,
+            3301
           ],
           "loc": {
             "start": {
-              "line": 91,
+              "line": 106,
               "column": 0
             },
             "end": {
-              "line": 91,
+              "line": 106,
               "column": 61
             }
           }
@@ -2641,16 +3630,16 @@
           "type": "Line",
           "value": "",
           "range": [
-            2882,
-            2884
+            3302,
+            3304
           ],
           "loc": {
             "start": {
-              "line": 92,
+              "line": 107,
               "column": 0
             },
             "end": {
-              "line": 92,
+              "line": 107,
               "column": 2
             }
           }
@@ -2659,16 +3648,16 @@
           "type": "Line",
           "value": "     it \"should be able to use the 'request' service\", ->",
           "range": [
-            2885,
-            2944
+            3305,
+            3364
           ],
           "loc": {
             "start": {
-              "line": 93,
+              "line": 108,
               "column": 0
             },
             "end": {
-              "line": 93,
+              "line": 108,
               "column": 59
             }
           }
@@ -2677,16 +3666,16 @@
           "type": "Line",
           "value": "       Action.use(\"request\", null)",
           "range": [
-            2945,
-            2981
+            3365,
+            3401
           ],
           "loc": {
             "start": {
-              "line": 94,
+              "line": 109,
               "column": 0
             },
             "end": {
-              "line": 94,
+              "line": 109,
               "column": 36
             }
           }
@@ -2695,16 +3684,16 @@
           "type": "Line",
           "value": "       expect(Action.prototype.request).to.be.a('function')",
           "range": [
-            2982,
-            3043
+            3402,
+            3463
           ],
           "loc": {
             "start": {
-              "line": 95,
+              "line": 110,
               "column": 0
             },
             "end": {
-              "line": 95,
+              "line": 110,
               "column": 61
             }
           }
@@ -2713,16 +3702,16 @@
           "type": "Line",
           "value": "",
           "range": [
-            3044,
-            3046
+            3464,
+            3466
           ],
           "loc": {
             "start": {
-              "line": 96,
+              "line": 111,
               "column": 0
             },
             "end": {
-              "line": 96,
+              "line": 111,
               "column": 2
             }
           }
@@ -2731,16 +3720,16 @@
           "type": "Line",
           "value": "     it \"should be able to use the 'socket' service\", ->",
           "range": [
-            3047,
-            3105
+            3467,
+            3525
           ],
           "loc": {
             "start": {
-              "line": 97,
+              "line": 112,
               "column": 0
             },
             "end": {
-              "line": 97,
+              "line": 112,
               "column": 58
             }
           }
@@ -2749,16 +3738,16 @@
           "type": "Line",
           "value": "       Action.use(\"socket\", {url: \"localhost\"})",
           "range": [
-            3106,
-            3155
+            3526,
+            3575
           ],
           "loc": {
             "start": {
-              "line": 98,
+              "line": 113,
               "column": 0
             },
             "end": {
-              "line": 98,
+              "line": 113,
               "column": 49
             }
           }
@@ -2767,16 +3756,16 @@
           "type": "Line",
           "value": "       expect(Action.prototype.socket).to.be.a('object')",
           "range": [
-            3156,
-            3214
+            3576,
+            3634
           ],
           "loc": {
             "start": {
-              "line": 99,
+              "line": 114,
               "column": 0
             },
             "end": {
-              "line": 99,
+              "line": 114,
               "column": 58
             }
           }
@@ -2785,16 +3774,16 @@
           "type": "Line",
           "value": "",
           "range": [
-            3215,
-            3217
+            3635,
+            3637
           ],
           "loc": {
             "start": {
-              "line": 100,
+              "line": 115,
               "column": 0
             },
             "end": {
-              "line": 100,
+              "line": 115,
               "column": 2
             }
           }
@@ -2803,16 +3792,16 @@
           "type": "Line",
           "value": "     it \"should not be able to start a service twice\", ->",
           "range": [
-            3218,
-            3277
+            3638,
+            3697
           ],
           "loc": {
             "start": {
-              "line": 101,
+              "line": 116,
               "column": 0
             },
             "end": {
-              "line": 101,
+              "line": 116,
               "column": 59
             }
           }
@@ -2821,16 +3810,16 @@
           "type": "Line",
           "value": "       expect ->",
           "range": [
-            3278,
-            3296
+            3698,
+            3716
           ],
           "loc": {
             "start": {
-              "line": 102,
+              "line": 117,
               "column": 0
             },
             "end": {
-              "line": 102,
+              "line": 117,
               "column": 18
             }
           }
@@ -2839,16 +3828,16 @@
           "type": "Line",
           "value": "         Action.use(\"request\", null)",
           "range": [
-            3297,
-            3335
+            3717,
+            3755
           ],
           "loc": {
             "start": {
-              "line": 103,
+              "line": 118,
               "column": 0
             },
             "end": {
-              "line": 103,
+              "line": 118,
               "column": 38
             }
           }
@@ -2857,16 +3846,16 @@
           "type": "Line",
           "value": "       .to.throw(\"The specified service name already exists and started. Please provide a different namespace.\")",
           "range": [
-            3336,
-            3450
+            3756,
+            3870
           ],
           "loc": {
             "start": {
-              "line": 104,
+              "line": 119,
               "column": 0
             },
             "end": {
-              "line": 104,
+              "line": 119,
               "column": 114
             }
           }
@@ -2877,7 +3866,7 @@
   "sourceType": "module",
   "range": [
     0,
-    763
+    1183
   ],
   "loc": {
     "start": {
@@ -2885,7 +3874,7 @@
       "column": 0
     },
     "end": {
-      "line": 37,
+      "line": 52,
       "column": 3
     }
   },
@@ -2894,16 +3883,16 @@
       "type": "Line",
       "value": " describe('Action.addService', () => {});",
       "range": [
-        715,
-        758
+        1135,
+        1178
       ],
       "loc": {
         "start": {
-          "line": 35,
+          "line": 50,
           "column": 2
         },
         "end": {
-          "line": 35,
+          "line": 50,
           "column": 45
         }
       }
@@ -2912,16 +3901,16 @@
       "type": "Line",
       "value": "",
       "range": [
-        765,
-        767
+        1185,
+        1187
       ],
       "loc": {
         "start": {
-          "line": 39,
+          "line": 54,
           "column": 0
         },
         "end": {
-          "line": 39,
+          "line": 54,
           "column": 2
         }
       }
@@ -2930,16 +3919,16 @@
       "type": "Line",
       "value": "     it \"should be accecible\", ->",
       "range": [
-        768,
-        803
+        1188,
+        1223
       ],
       "loc": {
         "start": {
-          "line": 40,
+          "line": 55,
           "column": 0
         },
         "end": {
-          "line": 40,
+          "line": 55,
           "column": 35
         }
       }
@@ -2948,16 +3937,16 @@
       "type": "Line",
       "value": "       expect(Action.addService).to.be.a('function')",
       "range": [
-        804,
-        858
+        1224,
+        1278
       ],
       "loc": {
         "start": {
-          "line": 41,
+          "line": 56,
           "column": 0
         },
         "end": {
-          "line": 41,
+          "line": 56,
           "column": 54
         }
       }
@@ -2966,16 +3955,16 @@
       "type": "Line",
       "value": "",
       "range": [
-        859,
-        861
+        1279,
+        1281
       ],
       "loc": {
         "start": {
-          "line": 42,
+          "line": 57,
           "column": 0
         },
         "end": {
-          "line": 42,
+          "line": 57,
           "column": 2
         }
       }
@@ -2984,16 +3973,16 @@
       "type": "Line",
       "value": "     it \"should be able to add a custom service\", ->",
       "range": [
-        862,
-        916
+        1282,
+        1336
       ],
       "loc": {
         "start": {
-          "line": 43,
+          "line": 58,
           "column": 0
         },
         "end": {
-          "line": 43,
+          "line": 58,
           "column": 54
         }
       }
@@ -3002,16 +3991,16 @@
       "type": "Line",
       "value": "       Action.addService \"newService\", (opts) ->",
       "range": [
-        917,
-        967
+        1337,
+        1387
       ],
       "loc": {
         "start": {
-          "line": 44,
+          "line": 59,
           "column": 0
         },
         "end": {
-          "line": 44,
+          "line": 59,
           "column": 50
         }
       }
@@ -3020,16 +4009,16 @@
       "type": "Line",
       "value": "         return opts",
       "range": [
-        968,
-        990
+        1388,
+        1410
       ],
       "loc": {
         "start": {
-          "line": 45,
+          "line": 60,
           "column": 0
         },
         "end": {
-          "line": 45,
+          "line": 60,
           "column": 22
         }
       }
@@ -3038,16 +4027,16 @@
       "type": "Line",
       "value": "       expect(Action.prototype._services.newService).to.be.a(\"function\")",
       "range": [
-        991,
-        1065
+        1411,
+        1485
       ],
       "loc": {
         "start": {
-          "line": 46,
+          "line": 61,
           "column": 0
         },
         "end": {
-          "line": 46,
+          "line": 61,
           "column": 74
         }
       }
@@ -3056,16 +4045,16 @@
       "type": "Line",
       "value": "",
       "range": [
-        1066,
-        1068
+        1486,
+        1488
       ],
       "loc": {
         "start": {
-          "line": 47,
+          "line": 62,
           "column": 0
         },
         "end": {
-          "line": 47,
+          "line": 62,
           "column": 2
         }
       }
@@ -3074,16 +4063,16 @@
       "type": "Line",
       "value": "     it \"should be able to access options from service\", ->",
       "range": [
-        1069,
-        1130
+        1489,
+        1550
       ],
       "loc": {
         "start": {
-          "line": 48,
+          "line": 63,
           "column": 0
         },
         "end": {
-          "line": 48,
+          "line": 63,
           "column": 61
         }
       }
@@ -3092,16 +4081,16 @@
       "type": "Line",
       "value": "",
       "range": [
-        1131,
-        1133
+        1551,
+        1553
       ],
       "loc": {
         "start": {
-          "line": 49,
+          "line": 64,
           "column": 0
         },
         "end": {
-          "line": 49,
+          "line": 64,
           "column": 2
         }
       }
@@ -3110,16 +4099,16 @@
       "type": "Line",
       "value": "       expect(Action.prototype._services.newService(testServiceOptions)).to.equal(testServiceOptions)",
       "range": [
-        1134,
-        1237
+        1554,
+        1657
       ],
       "loc": {
         "start": {
-          "line": 50,
+          "line": 65,
           "column": 0
         },
         "end": {
-          "line": 50,
+          "line": 65,
           "column": 103
         }
       }
@@ -3128,16 +4117,16 @@
       "type": "Line",
       "value": "",
       "range": [
-        1238,
-        1240
+        1658,
+        1660
       ],
       "loc": {
         "start": {
-          "line": 51,
+          "line": 66,
           "column": 0
         },
         "end": {
-          "line": 51,
+          "line": 66,
           "column": 2
         }
       }
@@ -3146,16 +4135,16 @@
       "type": "Line",
       "value": "       # remove the new service (for other tests to work)",
       "range": [
-        1241,
-        1300
+        1661,
+        1720
       ],
       "loc": {
         "start": {
-          "line": 52,
+          "line": 67,
           "column": 0
         },
         "end": {
-          "line": 52,
+          "line": 67,
           "column": 59
         }
       }
@@ -3164,16 +4153,16 @@
       "type": "Line",
       "value": "       delete Action.prototype._services.newService",
       "range": [
-        1301,
-        1354
+        1721,
+        1774
       ],
       "loc": {
         "start": {
-          "line": 53,
+          "line": 68,
           "column": 0
         },
         "end": {
-          "line": 53,
+          "line": 68,
           "column": 53
         }
       }
@@ -3182,16 +4171,16 @@
       "type": "Line",
       "value": "",
       "range": [
-        1355,
-        1357
+        1775,
+        1777
       ],
       "loc": {
         "start": {
-          "line": 54,
+          "line": 69,
           "column": 0
         },
         "end": {
-          "line": 54,
+          "line": 69,
           "column": 2
         }
       }
@@ -3200,16 +4189,16 @@
       "type": "Line",
       "value": "     it \"should not be able to add existing namespace\", ->",
       "range": [
-        1358,
-        1418
+        1778,
+        1838
       ],
       "loc": {
         "start": {
-          "line": 55,
+          "line": 70,
           "column": 0
         },
         "end": {
-          "line": 55,
+          "line": 70,
           "column": 60
         }
       }
@@ -3218,16 +4207,16 @@
       "type": "Line",
       "value": "       services.forEach (service) ->",
       "range": [
-        1419,
-        1457
+        1839,
+        1877
       ],
       "loc": {
         "start": {
-          "line": 56,
+          "line": 71,
           "column": 0
         },
         "end": {
-          "line": 56,
+          "line": 71,
           "column": 38
         }
       }
@@ -3236,16 +4225,16 @@
       "type": "Line",
       "value": "         expect ->",
       "range": [
-        1458,
-        1478
+        1878,
+        1898
       ],
       "loc": {
         "start": {
-          "line": 57,
+          "line": 72,
           "column": 0
         },
         "end": {
-          "line": 57,
+          "line": 72,
           "column": 20
         }
       }
@@ -3254,16 +4243,16 @@
       "type": "Line",
       "value": "           Action.addService service, ->",
       "range": [
-        1479,
-        1521
+        1899,
+        1941
       ],
       "loc": {
         "start": {
-          "line": 58,
+          "line": 73,
           "column": 0
         },
         "end": {
-          "line": 58,
+          "line": 73,
           "column": 42
         }
       }
@@ -3272,16 +4261,16 @@
       "type": "Line",
       "value": "             return",
       "range": [
-        1522,
-        1543
+        1942,
+        1963
       ],
       "loc": {
         "start": {
-          "line": 59,
+          "line": 74,
           "column": 0
         },
         "end": {
-          "line": 59,
+          "line": 74,
           "column": 21
         }
       }
@@ -3290,16 +4279,16 @@
       "type": "Line",
       "value": "         .to.throw(\"Service: #{service} already exists.\")",
       "range": [
-        1544,
-        1603
+        1964,
+        2023
       ],
       "loc": {
         "start": {
-          "line": 60,
+          "line": 75,
           "column": 0
         },
         "end": {
-          "line": 60,
+          "line": 75,
           "column": 59
         }
       }
@@ -3308,16 +4297,16 @@
       "type": "Line",
       "value": "",
       "range": [
-        1604,
-        1606
+        2024,
+        2026
       ],
       "loc": {
         "start": {
-          "line": 61,
+          "line": 76,
           "column": 0
         },
         "end": {
-          "line": 61,
+          "line": 76,
           "column": 2
         }
       }
@@ -3326,16 +4315,16 @@
       "type": "Line",
       "value": "     it \"should not be able to add a non-function service\", ->",
       "range": [
-        1607,
-        1671
+        2027,
+        2091
       ],
       "loc": {
         "start": {
-          "line": 62,
+          "line": 77,
           "column": 0
         },
         "end": {
-          "line": 62,
+          "line": 77,
           "column": 64
         }
       }
@@ -3344,16 +4333,16 @@
       "type": "Line",
       "value": "       expect ->",
       "range": [
-        1672,
-        1690
+        2092,
+        2110
       ],
       "loc": {
         "start": {
-          "line": 63,
+          "line": 78,
           "column": 0
         },
         "end": {
-          "line": 63,
+          "line": 78,
           "column": 18
         }
       }
@@ -3362,16 +4351,16 @@
       "type": "Line",
       "value": "         Action.addService \"test-service\", \"aString\"",
       "range": [
-        1691,
-        1745
+        2111,
+        2165
       ],
       "loc": {
         "start": {
-          "line": 64,
+          "line": 79,
           "column": 0
         },
         "end": {
-          "line": 64,
+          "line": 79,
           "column": 54
         }
       }
@@ -3380,16 +4369,16 @@
       "type": "Line",
       "value": "       .to.throw(\"A service must be a function.\")",
       "range": [
-        1746,
-        1797
+        2166,
+        2217
       ],
       "loc": {
         "start": {
-          "line": 65,
+          "line": 80,
           "column": 0
         },
         "end": {
-          "line": 65,
+          "line": 80,
           "column": 51
         }
       }
@@ -3398,16 +4387,16 @@
       "type": "Line",
       "value": "",
       "range": [
-        1798,
-        1800
+        2218,
+        2220
       ],
       "loc": {
         "start": {
-          "line": 66,
+          "line": 81,
           "column": 0
         },
         "end": {
-          "line": 66,
+          "line": 81,
           "column": 2
         }
       }
@@ -3416,16 +4405,16 @@
       "type": "Line",
       "value": "     it \"should not be able to add a service when the namespace is reserved\", ->",
       "range": [
-        1801,
-        1883
+        2221,
+        2303
       ],
       "loc": {
         "start": {
-          "line": 67,
+          "line": 82,
           "column": 0
         },
         "end": {
-          "line": 67,
+          "line": 82,
           "column": 82
         }
       }
@@ -3434,16 +4423,16 @@
       "type": "Line",
       "value": "       reservedNamespaces.forEach (reserved) ->",
       "range": [
-        1884,
-        1933
+        2304,
+        2353
       ],
       "loc": {
         "start": {
-          "line": 68,
+          "line": 83,
           "column": 0
         },
         "end": {
-          "line": 68,
+          "line": 83,
           "column": 49
         }
       }
@@ -3452,16 +4441,16 @@
       "type": "Line",
       "value": "         expect ->",
       "range": [
-        1934,
-        1954
+        2354,
+        2374
       ],
       "loc": {
         "start": {
-          "line": 69,
+          "line": 84,
           "column": 0
         },
         "end": {
-          "line": 69,
+          "line": 84,
           "column": 20
         }
       }
@@ -3470,16 +4459,16 @@
       "type": "Line",
       "value": "           Action.addService reserved, ()->",
       "range": [
-        1955,
-        2000
+        2375,
+        2420
       ],
       "loc": {
         "start": {
-          "line": 70,
+          "line": 85,
           "column": 0
         },
         "end": {
-          "line": 70,
+          "line": 85,
           "column": 45
         }
       }
@@ -3488,16 +4477,16 @@
       "type": "Line",
       "value": "             return",
       "range": [
-        2001,
-        2022
+        2421,
+        2442
       ],
       "loc": {
         "start": {
-          "line": 71,
+          "line": 86,
           "column": 0
         },
         "end": {
-          "line": 71,
+          "line": 86,
           "column": 21
         }
       }
@@ -3506,16 +4495,16 @@
       "type": "Line",
       "value": "         .to.throw(\"Could not add service. '#{reserved}' is a reserved namespace.\")",
       "range": [
-        2023,
-        2108
+        2443,
+        2528
       ],
       "loc": {
         "start": {
-          "line": 72,
+          "line": 87,
           "column": 0
         },
         "end": {
-          "line": 72,
+          "line": 87,
           "column": 85
         }
       }
@@ -3524,16 +4513,16 @@
       "type": "Line",
       "value": "",
       "range": [
-        2109,
-        2111
+        2529,
+        2531
       ],
       "loc": {
         "start": {
-          "line": 73,
+          "line": 88,
           "column": 0
         },
         "end": {
-          "line": 73,
+          "line": 88,
           "column": 2
         }
       }
@@ -3542,16 +4531,16 @@
       "type": "Line",
       "value": "   describe 'Action.use', ->",
       "range": [
-        2112,
-        2142
+        2532,
+        2562
       ],
       "loc": {
         "start": {
-          "line": 74,
+          "line": 89,
           "column": 0
         },
         "end": {
-          "line": 74,
+          "line": 89,
           "column": 30
         }
       }
@@ -3560,16 +4549,16 @@
       "type": "Line",
       "value": "",
       "range": [
-        2143,
-        2145
+        2563,
+        2565
       ],
       "loc": {
         "start": {
-          "line": 75,
+          "line": 90,
           "column": 0
         },
         "end": {
-          "line": 75,
+          "line": 90,
           "column": 2
         }
       }
@@ -3578,16 +4567,16 @@
       "type": "Line",
       "value": "     it \"should be accecible\", ->",
       "range": [
-        2146,
-        2181
+        2566,
+        2601
       ],
       "loc": {
         "start": {
-          "line": 76,
+          "line": 91,
           "column": 0
         },
         "end": {
-          "line": 76,
+          "line": 91,
           "column": 35
         }
       }
@@ -3596,16 +4585,16 @@
       "type": "Line",
       "value": "       expect(Action.use).to.be.a('function')",
       "range": [
-        2182,
-        2229
+        2602,
+        2649
       ],
       "loc": {
         "start": {
-          "line": 77,
+          "line": 92,
           "column": 0
         },
         "end": {
-          "line": 77,
+          "line": 92,
           "column": 47
         }
       }
@@ -3614,16 +4603,16 @@
       "type": "Line",
       "value": "",
       "range": [
-        2230,
-        2232
+        2650,
+        2652
       ],
       "loc": {
         "start": {
-          "line": 78,
+          "line": 93,
           "column": 0
         },
         "end": {
-          "line": 78,
+          "line": 93,
           "column": 2
         }
       }
@@ -3632,16 +4621,16 @@
       "type": "Line",
       "value": "     it \"should contain a list of integrated services\", ->",
       "range": [
-        2233,
-        2293
+        2653,
+        2713
       ],
       "loc": {
         "start": {
-          "line": 79,
+          "line": 94,
           "column": 0
         },
         "end": {
-          "line": 79,
+          "line": 94,
           "column": 60
         }
       }
@@ -3650,16 +4639,16 @@
       "type": "Line",
       "value": "       expect(Action.prototype._services).to.have.all.keys(services)",
       "range": [
-        2294,
-        2364
+        2714,
+        2784
       ],
       "loc": {
         "start": {
-          "line": 80,
+          "line": 95,
           "column": 0
         },
         "end": {
-          "line": 80,
+          "line": 95,
           "column": 70
         }
       }
@@ -3668,16 +4657,16 @@
       "type": "Line",
       "value": "",
       "range": [
-        2365,
-        2367
+        2785,
+        2787
       ],
       "loc": {
         "start": {
-          "line": 81,
+          "line": 96,
           "column": 0
         },
         "end": {
-          "line": 81,
+          "line": 96,
           "column": 2
         }
       }
@@ -3686,16 +4675,16 @@
       "type": "Line",
       "value": "     it \"should not be able to use a service which does not exist\", ->",
       "range": [
-        2368,
-        2440
+        2788,
+        2860
       ],
       "loc": {
         "start": {
-          "line": 82,
+          "line": 97,
           "column": 0
         },
         "end": {
-          "line": 82,
+          "line": 97,
           "column": 72
         }
       }
@@ -3704,16 +4693,16 @@
       "type": "Line",
       "value": "       expect ->",
       "range": [
-        2441,
-        2459
+        2861,
+        2879
       ],
       "loc": {
         "start": {
-          "line": 83,
+          "line": 98,
           "column": 0
         },
         "end": {
-          "line": 83,
+          "line": 98,
           "column": 18
         }
       }
@@ -3722,16 +4711,16 @@
       "type": "Line",
       "value": "         Action.use(\"serviceNotExisting\")",
       "range": [
-        2460,
-        2503
+        2880,
+        2923
       ],
       "loc": {
         "start": {
-          "line": 84,
+          "line": 99,
           "column": 0
         },
         "end": {
-          "line": 84,
+          "line": 99,
           "column": 43
         }
       }
@@ -3740,16 +4729,16 @@
       "type": "Line",
       "value": "       .to.throw(\"The specified service doesn\\'t exist.\")",
       "range": [
-        2504,
-        2563
+        2924,
+        2983
       ],
       "loc": {
         "start": {
-          "line": 85,
+          "line": 100,
           "column": 0
         },
         "end": {
-          "line": 85,
+          "line": 100,
           "column": 59
         }
       }
@@ -3758,16 +4747,16 @@
       "type": "Line",
       "value": "",
       "range": [
-        2564,
-        2566
+        2984,
+        2986
       ],
       "loc": {
         "start": {
-          "line": 86,
+          "line": 101,
           "column": 0
         },
         "end": {
-          "line": 86,
+          "line": 101,
           "column": 2
         }
       }
@@ -3776,16 +4765,16 @@
       "type": "Line",
       "value": "     it \"should not be able to use the 'request' service before using the 'use' method\", ->",
       "range": [
-        2567,
-        2660
+        2987,
+        3080
       ],
       "loc": {
         "start": {
-          "line": 87,
+          "line": 102,
           "column": 0
         },
         "end": {
-          "line": 87,
+          "line": 102,
           "column": 93
         }
       }
@@ -3794,16 +4783,16 @@
       "type": "Line",
       "value": "       expect(Action.prototype.request).to.be.a('undefined')",
       "range": [
-        2661,
-        2723
+        3081,
+        3143
       ],
       "loc": {
         "start": {
-          "line": 88,
+          "line": 103,
           "column": 0
         },
         "end": {
-          "line": 88,
+          "line": 103,
           "column": 62
         }
       }
@@ -3812,16 +4801,16 @@
       "type": "Line",
       "value": "",
       "range": [
-        2724,
-        2726
+        3144,
+        3146
       ],
       "loc": {
         "start": {
-          "line": 89,
+          "line": 104,
           "column": 0
         },
         "end": {
-          "line": 89,
+          "line": 104,
           "column": 2
         }
       }
@@ -3830,16 +4819,16 @@
       "type": "Line",
       "value": "     it \"should not be able to use the 'socket' service before using the 'use' method\", ->",
       "range": [
-        2727,
-        2819
+        3147,
+        3239
       ],
       "loc": {
         "start": {
-          "line": 90,
+          "line": 105,
           "column": 0
         },
         "end": {
-          "line": 90,
+          "line": 105,
           "column": 92
         }
       }
@@ -3848,16 +4837,16 @@
       "type": "Line",
       "value": "       expect(Action.prototype.socket).to.be.a('undefined')",
       "range": [
-        2820,
-        2881
+        3240,
+        3301
       ],
       "loc": {
         "start": {
-          "line": 91,
+          "line": 106,
           "column": 0
         },
         "end": {
-          "line": 91,
+          "line": 106,
           "column": 61
         }
       }
@@ -3866,16 +4855,16 @@
       "type": "Line",
       "value": "",
       "range": [
-        2882,
-        2884
+        3302,
+        3304
       ],
       "loc": {
         "start": {
-          "line": 92,
+          "line": 107,
           "column": 0
         },
         "end": {
-          "line": 92,
+          "line": 107,
           "column": 2
         }
       }
@@ -3884,16 +4873,16 @@
       "type": "Line",
       "value": "     it \"should be able to use the 'request' service\", ->",
       "range": [
-        2885,
-        2944
+        3305,
+        3364
       ],
       "loc": {
         "start": {
-          "line": 93,
+          "line": 108,
           "column": 0
         },
         "end": {
-          "line": 93,
+          "line": 108,
           "column": 59
         }
       }
@@ -3902,16 +4891,16 @@
       "type": "Line",
       "value": "       Action.use(\"request\", null)",
       "range": [
-        2945,
-        2981
+        3365,
+        3401
       ],
       "loc": {
         "start": {
-          "line": 94,
+          "line": 109,
           "column": 0
         },
         "end": {
-          "line": 94,
+          "line": 109,
           "column": 36
         }
       }
@@ -3920,16 +4909,16 @@
       "type": "Line",
       "value": "       expect(Action.prototype.request).to.be.a('function')",
       "range": [
-        2982,
-        3043
+        3402,
+        3463
       ],
       "loc": {
         "start": {
-          "line": 95,
+          "line": 110,
           "column": 0
         },
         "end": {
-          "line": 95,
+          "line": 110,
           "column": 61
         }
       }
@@ -3938,16 +4927,16 @@
       "type": "Line",
       "value": "",
       "range": [
-        3044,
-        3046
+        3464,
+        3466
       ],
       "loc": {
         "start": {
-          "line": 96,
+          "line": 111,
           "column": 0
         },
         "end": {
-          "line": 96,
+          "line": 111,
           "column": 2
         }
       }
@@ -3956,16 +4945,16 @@
       "type": "Line",
       "value": "     it \"should be able to use the 'socket' service\", ->",
       "range": [
-        3047,
-        3105
+        3467,
+        3525
       ],
       "loc": {
         "start": {
-          "line": 97,
+          "line": 112,
           "column": 0
         },
         "end": {
-          "line": 97,
+          "line": 112,
           "column": 58
         }
       }
@@ -3974,16 +4963,16 @@
       "type": "Line",
       "value": "       Action.use(\"socket\", {url: \"localhost\"})",
       "range": [
-        3106,
-        3155
+        3526,
+        3575
       ],
       "loc": {
         "start": {
-          "line": 98,
+          "line": 113,
           "column": 0
         },
         "end": {
-          "line": 98,
+          "line": 113,
           "column": 49
         }
       }
@@ -3992,16 +4981,16 @@
       "type": "Line",
       "value": "       expect(Action.prototype.socket).to.be.a('object')",
       "range": [
-        3156,
-        3214
+        3576,
+        3634
       ],
       "loc": {
         "start": {
-          "line": 99,
+          "line": 114,
           "column": 0
         },
         "end": {
-          "line": 99,
+          "line": 114,
           "column": 58
         }
       }
@@ -4010,16 +4999,16 @@
       "type": "Line",
       "value": "",
       "range": [
-        3215,
-        3217
+        3635,
+        3637
       ],
       "loc": {
         "start": {
-          "line": 100,
+          "line": 115,
           "column": 0
         },
         "end": {
-          "line": 100,
+          "line": 115,
           "column": 2
         }
       }
@@ -4028,16 +5017,16 @@
       "type": "Line",
       "value": "     it \"should not be able to start a service twice\", ->",
       "range": [
-        3218,
-        3277
+        3638,
+        3697
       ],
       "loc": {
         "start": {
-          "line": 101,
+          "line": 116,
           "column": 0
         },
         "end": {
-          "line": 101,
+          "line": 116,
           "column": 59
         }
       }
@@ -4046,16 +5035,16 @@
       "type": "Line",
       "value": "       expect ->",
       "range": [
-        3278,
-        3296
+        3698,
+        3716
       ],
       "loc": {
         "start": {
-          "line": 102,
+          "line": 117,
           "column": 0
         },
         "end": {
-          "line": 102,
+          "line": 117,
           "column": 18
         }
       }
@@ -4064,16 +5053,16 @@
       "type": "Line",
       "value": "         Action.use(\"request\", null)",
       "range": [
-        3297,
-        3335
+        3717,
+        3755
       ],
       "loc": {
         "start": {
-          "line": 103,
+          "line": 118,
           "column": 0
         },
         "end": {
-          "line": 103,
+          "line": 118,
           "column": 38
         }
       }
@@ -4082,16 +5071,16 @@
       "type": "Line",
       "value": "       .to.throw(\"The specified service name already exists and started. Please provide a different namespace.\")",
       "range": [
-        3336,
-        3450
+        3756,
+        3870
       ],
       "loc": {
         "start": {
-          "line": 104,
+          "line": 119,
           "column": 0
         },
         "end": {
-          "line": 104,
+          "line": 119,
           "column": 114
         }
       }

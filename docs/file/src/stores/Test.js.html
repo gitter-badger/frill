@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl" href="../../">
-  <title data-ice="title">src/bootstrap.js | FrillJS API Document</title>
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/stores/Test.js | FrillJS API Document</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -62,16 +62,37 @@
 
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">src/bootstrap.js</h1>
-<pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">import Frill from &apos;./core&apos;;
-import Stores from &apos;./stores&apos;;
-import Actions from &apos;./actions&apos;;
+<div class="content" data-ice="content"><h1 data-ice="title">src/stores/Test.js</h1>
+<pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">import Frill from &apos;../core&apos;;
 
-// load stores and actions.
-Frill._Stores = Stores;
-Frill._Actions = Actions;
+class TestStore extends Frill.Store {
 
-export default Frill;
+  constructor() {
+    super();
+    this._count = 10;
+    this.actions = {
+      &quot;COUNT_UP&quot;: &quot;countup&quot;,
+      &quot;COUNT_UP_BY&quot;: &quot;countupBy&quot;
+    };
+  }
+
+  countup(payload) {
+    this._count = this._count + 1;
+    this.change();
+  }
+
+  countupBy(byCount) {
+    this._count = this._count + byCount;
+    this.change();
+  }
+
+  getCount() {
+    return this._count;
+  }
+
+}
+
+export default new TestStore();
 </code></pre>
 </div>
 

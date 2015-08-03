@@ -24,6 +24,18 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "frill/src/actions/test.js~testaction",
+    "class/src/actions/Test.js~TestAction.html",
+    "<span>TestAction</span> <span class=\"search-result-import-path\">frill/src/actions/Test.js</span>",
+    "class"
+  ],
+  [
+    "frill/src/stores/test.js~teststore",
+    "class/src/stores/Test.js~TestStore.html",
+    "<span>TestStore</span> <span class=\"search-result-import-path\">frill/src/stores/Test.js</span>",
+    "class"
+  ],
+  [
     "frill/src/core/action.js~action",
     "variable/index.html#static-variable-action",
     "<span>action</span> <span class=\"search-result-import-path\">frill/src/core/Action.js</span>",
@@ -45,6 +57,18 @@ window.esdocSearchIndex = [
     "frill/src/core/store.js~store",
     "variable/index.html#static-variable-store",
     "<span>store</span> <span class=\"search-result-import-path\">frill/src/core/Store.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/actions/test.js~testaction",
+    "variable/index.html#static-variable-testAction",
+    "<span>testAction</span> <span class=\"search-result-import-path\">frill/src/actions/Test.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/stores/test.js~teststore",
+    "variable/index.html#static-variable-testStore",
+    "<span>testStore</span> <span class=\"search-result-import-path\">frill/src/stores/Test.js</span>",
     "variable"
   ],
   [
@@ -370,6 +394,30 @@ window.esdocSearchIndex = [
     "external/index.html",
     "BuiltinExternal/WebAPIExternal.js~XMLHttpRequest",
     "external"
+  ],
+  [
+    "src/actions/test.js",
+    "file/src/actions/Test.js.html",
+    "src/actions/Test.js",
+    "file"
+  ],
+  [
+    "src/actions/test.js~testaction#constructor",
+    "class/src/actions/Test.js~TestAction.html#instance-constructor-constructor",
+    "src/actions/Test.js~TestAction#constructor",
+    "method"
+  ],
+  [
+    "src/actions/test.js~testaction#countup",
+    "class/src/actions/Test.js~TestAction.html#instance-method-countUp",
+    "src/actions/Test.js~TestAction#countUp",
+    "method"
+  ],
+  [
+    "src/actions/test.js~testaction#countupby",
+    "class/src/actions/Test.js~TestAction.html#instance-method-countUpBy",
+    "src/actions/Test.js~TestAction#countUpBy",
+    "method"
   ],
   [
     "src/actions/index.js",
@@ -730,6 +778,42 @@ window.esdocSearchIndex = [
     "file/src/server.js.html",
     "src/server.js",
     "file"
+  ],
+  [
+    "src/stores/test.js",
+    "file/src/stores/Test.js.html",
+    "src/stores/Test.js",
+    "file"
+  ],
+  [
+    "src/stores/test.js~teststore#actions",
+    "class/src/stores/Test.js~TestStore.html#instance-member-actions",
+    "src/stores/Test.js~TestStore#actions",
+    "member"
+  ],
+  [
+    "src/stores/test.js~teststore#constructor",
+    "class/src/stores/Test.js~TestStore.html#instance-constructor-constructor",
+    "src/stores/Test.js~TestStore#constructor",
+    "method"
+  ],
+  [
+    "src/stores/test.js~teststore#countup",
+    "class/src/stores/Test.js~TestStore.html#instance-method-countup",
+    "src/stores/Test.js~TestStore#countup",
+    "method"
+  ],
+  [
+    "src/stores/test.js~teststore#countupby",
+    "class/src/stores/Test.js~TestStore.html#instance-method-countupBy",
+    "src/stores/Test.js~TestStore#countupBy",
+    "method"
+  ],
+  [
+    "src/stores/test.js~teststore#getcount",
+    "class/src/stores/Test.js~TestStore.html#instance-method-getCount",
+    "src/stores/Test.js~TestStore#getCount",
+    "method"
   ],
   [
     "src/stores/index.js",
