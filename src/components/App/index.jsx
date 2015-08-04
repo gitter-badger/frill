@@ -11,7 +11,7 @@ export default class App extends React.Component {
   render() {
     return (
       <div>
-        <h1><Link to="app">Back to top</Link></h1>
+        <h1><Link to="app">FrillJS</Link></h1>
         <Link to="toptwo">トップ2へ</Link>
         <RouteHandler {...this.props}/>
       </div>

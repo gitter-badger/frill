@@ -18,14 +18,9 @@ export default (gulp, $, argv, path) => {
     let called = false;
 
     const ignoreWatching = [
-      'src/components',
-      'src/core',
       'src/utils',
       'src/actions',
       'src/stores',
-      'src/routes.jsx',
-      'src/bootstrap.js',
-      'src/client.js',
       'src/assets',
       'src/styles',
     ];
