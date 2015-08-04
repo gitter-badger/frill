@@ -4,13 +4,13 @@ import request from './services/request';
 import socket from './services/socket';
 
 // read default services
-let services = {
+const services = {
   request: request,
   socket: socket,
 };
 
 const reservedNamespaces = [
-  "setup"
+  'setup',
 ];
 
 class Action {
@@ -25,7 +25,7 @@ class Action {
   }
 
   get services() {
-    return services
+    return services;
   }
 
   set services(_service) {
@@ -40,13 +40,14 @@ class Action {
 
   // Add a custom service
   static addService(namespace, serviceFunction) {
-    let _services = this.services;
+    let _services = services;
     if (_services[namespace]) {
       throw new Error(`Service: ${namespace} already exists`);
     }
 
     if (_contains(reservedNamespaces, namespace)) {
-      throw new Error(`Could not add service, ${namespace} is a reserved namespace`);
+      throw new Error(`Could not add service,' +
+        ' ${namespace} is a reserved namespace`);
     }
 
     if (!_isFunction(serviceFunction)) {
@@ -56,8 +57,7 @@ class Action {
     _services = {
       namespace: namespace,
       serviceFunction: serviceFunction,
-    }
-
+    };
   }
 
   // Use a service
@@ -68,13 +68,13 @@ class Action {
     }
 
     if (this[serviceName]) {
-      throw new Error('The specified service name already exists and started, ' +
-        'please provide a different namespace');
+      throw new Error('The specified service name already exists and started,' +
+        ' please provide a different namespace');
     }
 
     this.initializeService({
       namespace: serviceName,
-      service: _services[serviceName](opts || {})
+      service: _services[serviceName](opts || {}),
     });
   }
 }

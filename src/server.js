@@ -28,7 +28,7 @@ const server = new Hapi.Server({
     engine: Redis,
     host: '127.0.0.1',
     // partition: 'cache',
-  }]
+  }],
 });
 server.connection({port: SERVER_PORT});
 
@@ -37,7 +37,7 @@ server.connection({port: SERVER_PORT});
  */
 server.views({
   engines: {
-    jade: Jade
+    jade: Jade,
   },
   relativeTo: __dirname,
   path: 'templates',
@@ -47,11 +47,11 @@ server.views({
  * Attempt to serve static files
  */
 server.route({
-	method:  '*',
-	path:    '/{params*}',
-	handler: (request, reply) => {
-		reply.file('public' + request.path);
-	}
+  method: '*',
+  path: '/{params*}',
+  handler: (request, reply) => {
+    reply.file('public' + request.path);
+  },
 });
 
 /**
@@ -62,7 +62,7 @@ server.register({
 }, {
   routes: {
     prefix: '/api',
-  }
+  },
 }, (err) => {
   if (err) server.log(['error'], `API plugin load error: ${err}`);
 });
@@ -77,7 +77,7 @@ const swaggerOptions = {
 
 server.register({
   register: swagger,
-  options: swaggerOptions
+  options: swaggerOptions,
 }, (err) => {
   if (err) server.log(['error'], `hapi-swagger load error: ${err}`);
 });
@@ -90,9 +90,9 @@ server.register({
 const frillContext = Frill.attach(Frill._Stores, Frill._Actions);
 
 server.ext('onPreResponse', (request, reply) => {
-	if (!_isUndefined(request.response.statusCode)) {
-		return reply.continue();
-	}
+  if (!_isUndefined(request.response.statusCode)) {
+    return reply.continue();
+  }
   // fire React Router
   server.log(['info'], `Serving down to react-router with ${request.path}`);
   Router.run(routes(), request.path, (Handler, state) => {
@@ -103,7 +103,7 @@ server.ext('onPreResponse', (request, reply) => {
     server.log(['verbose'], markup);
     reply.view('default', {
       initialData: JSON.stringify(state),
-      markup: markup
+      markup: markup,
     });
   });
 });
@@ -155,23 +155,25 @@ if (argv.verbose) {
  */
 const goodOptions = {
   reporters: [{
-      reporter: goodConsole,
-      events: logEvents,
-      config: {
-        format: '[[]HH:mm:ss[]][[frill]]',
-        utc: false
-      }
+    reporter: goodConsole,
+    events: logEvents,
+    config: {
+      format: '[[]HH:mm:ss[]][[frill]]',
+      utc: false,
+    },
   }],
 };
 
 server.register({
   register: good,
-  options: goodOptions
+  options: goodOptions,
 }, (err) => {
   if (err) {
     console.error(err);
   } else {
     // initialize server
-    server.start(() => server.log(['info'], `Server started at ${server.info.uri}`));
+    server.start(() => {
+      server.log(['info'], `Server started at ${server.info.uri}`);
+    });
   }
 });

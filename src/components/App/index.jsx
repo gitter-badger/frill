@@ -1,12 +1,14 @@
-'use strict';
-
-// import Frill from 'frill';
 import React from 'react';
 import {Link, RouteHandler} from 'react-router';
 
-export default React.createClass({
-  name: "App",
-  render: function() {
+export default class App extends React.Component {
+
+  constructor() {
+    super();
+    this.name = 'App';
+  }
+
+  render() {
     return (
       <div>
         <h1><Link to="app">Back to top</Link></h1>
@@ -15,4 +17,4 @@ export default React.createClass({
       </div>
     );
   }
-});
+}

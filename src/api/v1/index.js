@@ -1,23 +1,22 @@
-import Hello from './hello';
+import hello from './hello';
 export default (server, {helpers, models}, next) => {
-
-  const v1 = {
-    register: (server, options, next) => {
-      server.route(Hello(server, {helpers, models}));
-      next();
+  const apiV1 = {
+    register: (_server, options, _next) => {
+      _server.route(hello(server, {helpers, models}));
+      _next();
     },
   };
 
-  v1.register.attributes = {
+  apiV1.register.attributes = {
     name: 'v1',
     version: '0.0.0',
   };
 
   server.register({
-    register: v1,
+    register: apiV1,
   }, {
     routes: {
       prefix: '/v1',
-    }
+    },
   }, next);
-}
+};

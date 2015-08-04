@@ -1,23 +1,23 @@
 import '../../../__test__/spec_helper.js';
 import Action from '../Action';
 
-const services = [
-  'socket',
-  'request',
-];
-
-const reservedNamespaces = [
-  'setup',
-];
-
-const testServiceOptions = {
-  key: 'value',
-};
+// const services = [
+//   'socket',
+//   'request',
+// ];
+//
+// const reservedNamespaces = [
+//   'setup',
+// ];
+//
+// const testServiceOptions = {
+//   key: 'value',
+// };
 
 describe('#src/core/Action', () => {
   describe('class Action', () => {
     it('should execute setup() at construction if exists', () => {
-      class testActionClass extends Action {
+      class TestActionClass extends Action {
         constructor() {
           super();
         }
@@ -26,13 +26,13 @@ describe('#src/core/Action', () => {
         }
       }
 
-      const TestActionClass = new testActionClass();
+      const testActionClass = new TestActionClass();
 
-      expect(TestActionClass.isStartedSetup).to.exist;
-      expect(TestActionClass.isStartedSetup).to.equal(true);
+      expect(testActionClass.isStartedSetup).to.exist;
+      expect(testActionClass.isStartedSetup).to.equal(true);
     });
     it('should execute setup() at construction if exists B', () => {
-      class testActionClass extends Action {
+      class TestActionClass extends Action {
         constructor() {
           super();
         }
@@ -41,14 +41,13 @@ describe('#src/core/Action', () => {
         }
       }
 
-      const TestActionClass = new testActionClass();
+      const testActionClass = new TestActionClass();
 
-      expect(TestActionClass.isStartedSetup).to.exist;
-      expect(TestActionClass.isStartedSetup).to.equal(true);
+      expect(testActionClass.isStartedSetup).to.exist;
+      expect(testActionClass.isStartedSetup).to.equal(true);
     });
   });
   // describe('Action.addService', () => {});
-
 });
 
 //

@@ -16,8 +16,6 @@ chai.should();
 global.sinon = sinon;
 global.$$ = (html) => cheerio.load(html);
 
-console.log(beforeEach);
-
 beforeEach(() => {
   global.sandbox = sinon.sandbox.create();
 });

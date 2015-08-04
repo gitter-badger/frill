@@ -2,7 +2,7 @@ import _clone from 'lodash/lang/clone';
 import _isArray from 'lodash/lang/isArray';
 import _mapValues from 'lodash/object/mapValues';
 import _forOwn from 'lodash/object/forOwn';
-import _intersection from 'lodash/array/intersection';
+import _intersect from 'lodash/array/intersection';
 import _keys from 'lodash/object/keys';
 import _map from 'lodash/collection/map';
 import _each from 'lodash/collection/forEach';
@@ -10,7 +10,7 @@ import _size from 'lodash/collection/size';
 import _findKey from 'lodash/object/findKey';
 import _uniq from 'lodash/array/uniq';
 
-const defaultDispatchInterceptor = (action, dispatch) => {
+const defaultInterceptor = (action, dispatch) => {
   dispatch(action);
   // return {dispatch, action};
 };
@@ -22,14 +22,13 @@ export default class Dispatcher {
     this.currentDispatch = null;
     this.currentActionType = null;
     this.waitingToDispatch = [];
-    this.dispatchInterceptor = defaultDispatchInterceptor;
+    this.dispatchInterceptor = defaultInterceptor;
     this._boundDispatch = this._dispatch.bind(this);
     _each(stores, (key) => {
       if (stores[key]) {
         this.addStore(key, stores[key]);
       }
     });
-
   }
 
   addStore(name, store) {
@@ -42,7 +41,6 @@ export default class Dispatcher {
   }
 
   _dispatch(action) {
-
     if (!action || !action.type) {
       throw new Error('Can only dispatch actions with a \'type\' property');
     }
@@ -74,32 +72,29 @@ export default class Dispatcher {
 
   doDispatchLoop(action) {
     let wasHandled = false;
-    let removeFromDispatchQueue = [];
-    let dispatchedThisLoop = [];
+    const removeFromQueue = [];
+    const dispatchedThisLoop = [];
     let dispatch;
     let canBeDispatchedTo;
 
     _forOwn(this.waitingToDispatch, (value, key) => {
       dispatch = this.currentDispatch[key];
       canBeDispatchedTo = !dispatch.waitingOn.length ||
-        !_intersection(dispatch.waitingOn, _keys(this.waitingToDispatch)).length;
+        !_intersect(dispatch.waitingOn, _keys(this.waitingToDispatch)).length;
 
       if (canBeDispatchedTo) {
-
         if (dispatch.waitCallback) {
-          stores = _map(dispatch.waitingOn, (key) => {
-            return this.stores[key];
+          stores = _map(dispatch.waitingOn, (_key) => {
+            return this.stores[_key];
           });
 
-          const fn = dispatch.waitCallback;
+          const dispatchFn = dispatch.waitCallback;
           dispatch.waitCallback = null;
           dispatch.waitingOn = [];
           dispatch.resolved = true;
-          fn.apply(null, stores);
+          dispatchFn(...stores);
           wasHandled = true;
-
         } else {
-
           dispatch.resolved = true;
 
           const handled = this.stores[key].__handleAction__(action);
@@ -111,20 +106,18 @@ export default class Dispatcher {
         dispatchedThisLoop.push(key);
 
         if (this.currentDispatch[key].resolved) {
-          removeFromDispatchQueue.push(key);
+          removeFromQueue.push(key);
         }
-
       }
-
-
     });
 
     if (_keys(this.waitingToDispatch).length && !dispatchedThisLoop.length) {
-      const storesWithCircularWaits = _keys(this.waitingToDispatch).join(', ');
-      throw new Error(`Indirect circular wait detected among: ${storesWithCircularWaits}`);
+      const storesCircularWaits = _keys(this.waitingToDispatch).join(', ');
+      throw new Error(`Indirect circular wait detected among:` +
+        ` ${storesCircularWaits}`);
     }
 
-    _each(removeFromDispatchQueue, (key) => {
+    _each(removeFromQueue, (key) => {
       delete this.waitingToDispatch[key];
     });
 
@@ -133,18 +126,18 @@ export default class Dispatcher {
     }
 
     if (!wasHandled && console && console.warn) {
-      console.warn(`An action of type ${action.type} was dispatched, but no store handled it`);
+      console.warn(`An action of type ${action.type} was dispatched,` +
+        ` but no store handled it`);
     }
   }
 
-  waitForStores(store, stores, fn) {
-
+  waitForStores(store, stores, cb) {
     if (!this.currentDispatch) {
       throw new Error('Cannot wait unless an action is being dispatched');
     }
 
     const waitingStoreName = _findKey(this.stores, (val) => {
-      return val == store;
+      return val === store;
     });
 
     if (stores.indexOf(waitingStoreName) > -1) {
@@ -157,11 +150,12 @@ export default class Dispatcher {
       throw new Error(`${waitingStoreName} already waiting on stores`);
     }
 
+    let _stores = stores;
     if (!_isArray(stores)) {
-      stores = [stores];
+      _stores = [stores];
     }
 
-    _each(stores, (storeName) => {
+    _each(_stores, (storeName) => {
       const storeDispatch = this.currentDispatch[storeName];
 
       if (!this.stores[storeName]) {
@@ -169,21 +163,21 @@ export default class Dispatcher {
       }
 
       if (storeDispatch.waitingOn.indexOf(waitingStoreName) > -1) {
-        throw new Error(`Circular wait detected between ${waitingStoreName} and ${storeName}`);
+        throw new Error(`Circular wait detected between ${waitingStoreName}` +
+          ` and ${storeName}`);
       }
-
     });
 
     dispatch.resolved = false;
     dispatch.waitingOn = _uniq(dispatch.waitingOn.concat(stores));
-    dispatch.waitCallback = fn;
+    dispatch.waitCallback = cb;
   }
 
-  setDispatchInterceptor(fn) {
-    if (fn) {
-      this.dispatchInterceptor = fn;
+  setDispatchInterceptor(cb) {
+    if (cb) {
+      this.dispatchInterceptor = cb;
     } else {
-      this.dispatchInterceptor = defaultDispatchInterceptor;
+      this.dispatchInterceptor = defaultInterceptor;
     }
   }
 }

@@ -11,11 +11,8 @@
  */
 
 export default (gulp, $, argv, path) => {
-
   // Launch BrowserSync development server
   gulp.task('sync', ['nodemon'], (cb) => {
-    const server = ['src'];
-
     $.browserSync.init({
       // logPrefix: 'BS',
       notify: true,
@@ -24,12 +21,10 @@ export default (gulp, $, argv, path) => {
       logLevel: argv.verbose ? 'debug' : 'silent',
       port: 3001,
     }, cb);
-
   });
 
   gulp.task('sync:reload', (cb) => {
     $.browserSync.reload();
     cb();
   });
-
-}
+};

@@ -6,7 +6,6 @@
  * gulpfile.jsx
  * ---------------------------------------------------------------
  */
-"use strict";
 
 /**
  * Module dependencies
@@ -42,7 +41,7 @@ $.browserSync = browserSync.create();
 const invokeConfigFn = (tasks) => {
   path._gulpfileDir = __dirname;
   // for(const taskName in tasks) {
-  _each(tasks, (fn, taskName) => {
+  _each(tasks, (fn) => {
     if (_isFunction(fn)) {
       fn(gulp, $, argv, path);
     }
@@ -56,21 +55,21 @@ const invokeConfigFn = (tasks) => {
 const loadTasks = (relPath) => {
   return includeAll({
     dirname: path.resolve(__dirname, relPath),
-    filter: /(.+)\.js(x?)$/
+    filter: /(.+)\.js(x?)$/,
   }) || {};
 };
 
 /**
  * Load task directory
  */
-const taskConfigurations = loadTasks('./tasks');
+const taskConfig = loadTasks('./tasks');
 
 /**
  * Create default task
  */
-if (!taskConfigurations.default) {
-  taskConfigurations.default = (gulp) => {
-    gulp.task("default", () => $.util.log('Could not find "default" task.'));
+if (!taskConfig.default) {
+  taskConfig.default = (_gulp) => {
+    _gulp.task('default', () => $.util.log('Could not find "default" task.'));
     return;
   };
 }
@@ -78,4 +77,4 @@ if (!taskConfigurations.default) {
 /**
  * Invoke tasks
  */
-invokeConfigFn(taskConfigurations);
+invokeConfigFn(taskConfig);

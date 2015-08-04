@@ -1,6 +1,5 @@
 export default (server, {helpers, models}) => {
-
-  const {Posts} = models;
+  // const {Posts} = models;
 
   return [{
     method: 'GET',
@@ -14,11 +13,11 @@ export default (server, {helpers, models}) => {
       tags: ['api', 'greeting'],
       plugins: {
         'hapi-swagger': {
-            responseMessages: [
-                { code: 400, message: 'Bad Request' },
-                { code: 500, message: 'Internal Server Error'}
-            ]
-        }
+          responseMessages: [
+            { code: 400, message: 'Bad Request' },
+            { code: 500, message: 'Internal Server Error'},
+          ],
+        },
       },
     },
   }, {
@@ -31,12 +30,12 @@ export default (server, {helpers, models}) => {
       tags: ['api', 'greeting'],
       plugins: {
         'hapi-swagger': {
-            responseMessages: [
-                { code: 400, message: 'Bad Request' },
-                { code: 500, message: 'Internal Server Error'}
-            ]
-        }
+          responseMessages: [
+            { code: 400, message: 'Bad Request' },
+            { code: 500, message: 'Internal Server Error'},
+          ],
+        },
       },
     },
   }];
-}
+};

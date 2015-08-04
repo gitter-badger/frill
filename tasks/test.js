@@ -18,4 +18,4 @@ export default (gulp, $, argv, path) => {
     ], {read: false})
       .pipe($.mocha({}));
   });
-}
+};

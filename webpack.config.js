@@ -9,12 +9,11 @@
  * Webpack configuration for client bundle.
  *
  */
-import path from 'path';
 import webpack, {DefinePlugin} from 'webpack';
 import minimist from 'minimist';
 
 const argv = minimist(process.argv.slice(2));
-const RELEASE = !!argv.release;
+const RELEASE = Boolean(argv.release);
 const GLOBALS = {
   '__ENV__': RELEASE,
   '__SERVER__': false,
@@ -29,18 +28,23 @@ export default {
   debug: RELEASE,
   stats: {
     colors: true,
-    reasons: RELEASE
+    reasons: RELEASE,
   },
   resolve: {
-    extensions: ['', '.js', '.jsx', '.es6']
+    extensions: [
+      '',
+      '.js',
+      '.jsx',
+      '.es6',
+    ],
   },
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
-    new DefinePlugin(GLOBALS)
+    new DefinePlugin(GLOBALS),
   ].concat(RELEASE ? [] : [
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin(),
-    new webpack.optimize.AggressiveMergingPlugin()
+    new webpack.optimize.AggressiveMergingPlugin(),
   ]),
   devtool: RELEASE ? 'source-map' : false,
   module: {
@@ -54,12 +58,10 @@ export default {
         test: /\.jsx$/,
         exclude: /node_modules/,
         loader: 'babel-loader',
-      }
+      },
     ],
   },
   externals: {
-    // Use external version of React (from CDN for client-side, or
-    // bundled with ReactJS.NET for server-side)
-    react: 'React'
+    react: 'React',
   },
 };

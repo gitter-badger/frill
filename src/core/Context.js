@@ -16,7 +16,6 @@ class Context extends EventEmitter {
    *
    */
   constructor(stores, actions) {
-
     super();
 
     this.stores = {};
@@ -32,7 +31,7 @@ class Context extends EventEmitter {
         } finally {
           this.dispatcher.dispatch({type: actionType, payload: payload});
         }
-      }
+      },
     };
 
     // register stores and actions to context
@@ -82,8 +81,8 @@ class Context extends EventEmitter {
     this.actions[name] = _extend(action, this.actionDispatchBinder);
   }
 
-  setDispatchInterceptor(fn) {
-    this.dispatcher.setDispatchInterceptor(fn);
+  setDispatchInterceptor(cb) {
+    this.dispatcher.setDispatchInterceptor(cb);
   }
 }
 

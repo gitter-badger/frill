@@ -20,10 +20,9 @@ export default (opts) => {
         post: patchRequest('post'),
         del: patchRequest('del'),
         patch: patchRequest('patch'),
-      }
+      },
     });
   }
 
   return request;
-
-}
+};

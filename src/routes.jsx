@@ -10,4 +10,4 @@ export default () => {
       <NotFoundRoute name="NotFound" handler={C.NotFound}/>
     </Route>
   );
-}
+};
