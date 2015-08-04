@@ -2,12 +2,14 @@ global.__SERVER__ = true;
 
 import Frill from './bootstrap';
 import pack from '../package';
-import apiPlugin from './api';
+import api from './api';
 import routes from './routes';
 import Hapi from 'hapi';
 import React from 'react';
 import Router from 'react-router';
 import Redis from 'catbox-redis';
+import Session from 'yar';
+import Authentication from 'bell';
 import Jade from 'jade';
 import good from 'good';
 import goodConsole from 'good-console';
@@ -31,6 +33,32 @@ const server = new Hapi.Server({
   }],
 });
 server.connection({port: SERVER_PORT});
+
+/**
+ * Configure sessions
+ */
+server.register({
+  register: Session,
+  options: {
+    maxCookieSize: 0,
+    cookieOptions: {
+      password: 'SOME_PASSWORD', // @TODO send options to a config
+      isSecure: false, // @TODO cannot do this at production
+    },
+  },
+}, (err) => {
+  if (err) server.log(['error'], `session load error: ${err}`);
+});
+
+/**
+ * Configure authentication strategies
+ */
+server.register([
+  Authentication,
+], (err) => {
+  if (err) server.log(['error'], `authentication load error: ${err}`);
+});
+
 
 /**
  * Configure hapi views
@@ -57,18 +85,12 @@ server.route({
 /**
  * Mount all the APIs to hapi
  */
-server.register({
-  register: apiPlugin,
-}, {
-  routes: {
-    prefix: '/api',
-  },
-}, (err) => {
-  if (err) server.log(['error'], `API plugin load error: ${err}`);
-});
+api(server);
+
 
 /**
  * Configure hapi-swagger for API documentation.
+ * TODO: disable at production
  */
 const swaggerOptions = {
   apiVersion: pack.version,
@@ -85,7 +107,6 @@ server.register({
 /**
  * Catch requests to fire React Router
  */
-
 // create context
 const frillContext = Frill.attach(Frill._Stores, Frill._Actions);
 
@@ -108,6 +129,11 @@ server.ext('onPreResponse', (request, reply) => {
   });
 });
 
+
+/**
+ * Configure good (for logging hapi)
+ * TODO: disable at production
+ */
 // define which log level outputs which tags
 const logLevels = {
   silent: {},
@@ -150,9 +176,6 @@ if (argv.verbose) {
   logEvents = logLevels.info;
 }
 
-/**
- * Configure good (for logging hapi)
- */
 const goodOptions = {
   reporters: [{
     reporter: goodConsole,
