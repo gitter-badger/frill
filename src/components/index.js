@@ -1,7 +1,7 @@
 import App from './App';
 import Top from './Top';
 import TopTwo from './TopTwo';
-import NotFound from './404';
+import NotFound from './NotFound';
 
 export default {
   // Parent component
@@ -15,6 +15,5 @@ export default {
 
   // 404
   NotFound: NotFound,
-
 
 };

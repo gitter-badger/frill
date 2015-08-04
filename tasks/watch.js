@@ -10,7 +10,6 @@
  *
  */
 export default (gulp, $, argv, path) => {
-
   gulp.task('watch', (cb) => {
     $._watch = false;
     const styles = ['src/styles/**/*.{css,styl}'];
@@ -23,18 +22,31 @@ export default (gulp, $, argv, path) => {
       './src/stores/**/*',
       './src/routes.jsx',
       './src/bootstrap.js',
-      './src/client.js'
+      './src/client.js',
     ];
 
     // set specific files for performance improvements
-    const checkFlowTypes = [
+    // const checkFlowTypes = [
+    //   'src/**/*.js',
+    //   'src/**/*.jsx',
+    // ];
+
+    // set specific files for performance improvements
+    const checkLint = [
+      'app.js',
+      'gulpfile.babel.js',
+      'webpack.config.js',
+      '__test__/**/*.js',
+      '__test__/**/*.jsx',
+      'tasks/**/*.js',
+      'tasks/**/*.jsx',
       'src/**/*.js',
       'src/**/*.jsx',
     ];
 
     const gazeOption = {
       // wait for 5 sec until next execution
-      debounceDelay: 5000
+      debounceDelay: 5000,
     };
 
     $.runSequence('build', () => {
@@ -43,7 +55,8 @@ export default (gulp, $, argv, path) => {
       gulp.watch(styles, gazeOption, ['stylus']);
       gulp.watch(clients, gazeOption, ['webpack']);
       // gulp.watch(checkFlowTypes, gazeOption, ['flowtype'])
+      gulp.watch(checkLint, gazeOption, ['lint']);
       cb();
     });
   });
-}
+};

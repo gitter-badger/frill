@@ -10,10 +10,8 @@
  * Copy assets and templates into build folder.
  *
  */
-export default (gulp, $, argv, path) => {
-
+export default (gulp, $, argv) => {
   gulp.task('assets:images', () => {
-
     const images = ['./src/assets/images/**'];
 
     return gulp.src(images)
@@ -25,7 +23,6 @@ export default (gulp, $, argv, path) => {
   });
 
   gulp.task('assets:vendor', () => {
-
     const vendor = ['./src/assets/vendor/**'];
 
     return gulp.src(vendor)
@@ -35,4 +32,4 @@ export default (gulp, $, argv, path) => {
   });
 
   gulp.task('assets', ['assets:images', 'assets:vendor']);
-}
+};

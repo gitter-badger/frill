@@ -10,11 +10,10 @@
  *
  */
 export default (gulp, $, argv, path) => {
-
   gulp.task('doc', () => {
-    return gulp.src(["./src"])
+    return gulp.src(['./src'])
       .pipe($.esdoc({
-        destination: "./docs",
+        destination: './docs',
         title: 'FrillJS',
         // includes: ['\\.(js|es6)$'],
         // excludes: ['\\.config\\.(js|es6)$'],
@@ -39,9 +38,7 @@ export default (gulp, $, argv, path) => {
   });
 
   gulp.task('doc:open', () => {
-    var openPath = path.resolve(__dirname, '../docs/index.html');
     return gulp.src('./docs/index.html')
       .pipe($.open());
   });
-
-}
+};

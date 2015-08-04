@@ -10,11 +10,11 @@ class TestAction extends Frill.Action {
 
   countUp() {
     this.request.prefix.get('/v1/hello', (err, ret) => console.log(ret.text));
-    this.dispatch("COUNT_UP");
+    this.dispatch('COUNT_UP');
   }
 
   countUpBy(count) {
-    this.dispatch("COUNT_UP_BY", count);
+    this.dispatch('COUNT_UP_BY', count);
     return count;
   }
 }

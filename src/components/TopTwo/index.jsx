@@ -1,17 +1,19 @@
-'use strict';
-
 import React from 'react';
 
-export default React.createClass({
-  name: "TopTwo",
-  getInitialState: function () {
-      return {};
-  },
-  render: function() {
+export default class TopTwo extends React.Component {
+  constructor() {
+    super();
+    this.name = 'TopTwo';
+  }
+  getInitialState() {
+    return {};
+  }
+
+  render() {
     return (
       <div>
         this is TopTwo component
       </div>
     );
   }
-});
+}

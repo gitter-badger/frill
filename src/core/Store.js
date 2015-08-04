@@ -7,10 +7,8 @@ import EventEmitter from 'eventemitter3';
 class Store extends EventEmitter {
   constructor() {
     super();
-
     // list of actionTypes and handlers
     this._actions = {};
-
   }
 
   set actions(actions) {
@@ -19,41 +17,44 @@ class Store extends EventEmitter {
 
   // bind multiple actions
   bindActions(actions) {
-
     if (!_isObject(actions)) {
       throw new TypeError('actions must be an object');
     }
 
     // bind each actions
-    _each(actions, (handler, actionType) => this.bindAction(actionType, handler));
-
+    _each(actions, (handler, actionType) => {
+      this.bindAction(actionType, handler);
+    });
   }
 
   // bind one action
   bindAction(actionType, handler) {
     if (!handler) {
-      throw new Error(`Action handler for ${actionType} must be properly set. Must specify a method name, or a function.`);
+      throw new Error(`Action handler for ${actionType} must be properly set.` +
+        ` Must specify a method name, or a function.`);
     }
 
-    if (_isString(handler)) {
-      if (!this[handler]) {
-        throw new Error(`Action handler for ${actionType} must be properly set. Method name '${handler}' doesn't exist.`);
+    let _handler = handler;
+
+    if (_isString(_handler)) {
+      if (!this[_handler]) {
+        throw new Error(`Action handler for ${actionType} must be properly` +
+          ` set. Method name '${_handler}' doesn't exist.`);
       }
-      handler = this[handler];
+      _handler = this[_handler];
     }
 
-    if (!_isFunction(handler)) {
+    if (!_isFunction(_handler)) {
       throw new Error('Action handler must be a function.');
     }
 
     // if action type already exists, push it into an array
     if (this._actions[actionType]) {
-      this._actions[actionType].push(handler);
+      this._actions[actionType].push(_handler);
     } else {
       // create a new array with the handler
-      this._actions[actionType] = [handler];
+      this._actions[actionType] = [_handler];
     }
-
   }
 
   // small helper for notifying changes
@@ -61,16 +62,15 @@ class Store extends EventEmitter {
     this.emit('change', props);
   }
 
-  waitFor(stores, fn) {
+  waitFor(stores, cb) {
     if (!this.dispatcher) {
       throw new Error('Dispatcher not set on store. Something went wrong.');
     }
-    this.dispatcher.waitForStores(this, stores, fn.bind(this));
+    this.dispatcher.waitForStores(this, stores, cb.bind(this));
   }
 
   // handle actions by actionType
   __handleAction__(action) {
-
     if (!action) {
       throw new Error('Must give a valid action.');
     }
@@ -84,13 +84,14 @@ class Store extends EventEmitter {
     }
 
     // handler to execute. From actions or an empty function
-    const handler = this._actions[action.type] || function(){};
+    const handler = this._actions[action.type] || () => {};
 
     // execute handlers one at a time
-    _each(handler, (handlerFn) => handlerFn.call(this, action.payload, action.type));
+    _each(handler, (handlerFn) => {
+      handlerFn.call(this, action.payload, action.type);
+    });
     return true;
   }
-
 }
 
 export default Store;

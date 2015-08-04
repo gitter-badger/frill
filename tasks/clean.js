@@ -15,4 +15,4 @@ export default (gulp, $, argv, path) => {
   gulp.task('clean', $.del.bind(
     null, ['.tmp', 'public/*', '!public/.git'], {dot: true}
   ));
-}
+};

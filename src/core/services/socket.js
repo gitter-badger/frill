@@ -6,4 +6,4 @@ export default (opts) => {
   }
 
   return socketioClient(opts.url, opts);
-}
+};

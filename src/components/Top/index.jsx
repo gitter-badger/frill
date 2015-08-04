@@ -1,5 +1,5 @@
 import React from 'react';
-import {BaseComponent, StoreWatchComponent} from '../../bootstrap';
+import {StoreWatchComponent} from '../../bootstrap';
 
 class Top extends new StoreWatchComponent(['Test']) {
 
@@ -12,18 +12,18 @@ class Top extends new StoreWatchComponent(['Test']) {
     ]);
   }
 
+  onOne() {
+    this.getFrill().action('Test').countUp();
+  }
+
+  onTen() {
+    this.getFrill().action('Test').countUpBy(10);
+  }
+
   getStateFromFrill() {
     return {
-      count: this.getFrill().store('Test').getCount()
+      count: this.getFrill().store('Test').getCount(),
     };
-  }
-
-  onOne(e) {
-  this.getFrill().action('Test').countUp();
-  }
-
-  onTen(e) {
-    this.getFrill().action('Test').countUpBy(10);
   }
 
   render() {

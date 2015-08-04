@@ -8,14 +8,18 @@ class BaseComponent extends ReactComponent {
   }
 
   _bind(methods, ...rest) {
+    let _methods = methods;
+    if (!_isArray(_methods)) {
+      _methods = [methods].concat(rest);
+    }
 
-    if (!_isArray(methods)) methods = [methods].concat(rest);
-
-    methods.forEach((method) => {
-      if (!this[method]) throw new Error(`Method '${method}' not implemented in your component.`);
+    _methods.forEach((method) => {
+      if (!this[method]) {
+        throw new Error(`Method '${method}' not implemented` +
+          ` in your component.`);
+      }
       this[method] = this[method].bind(this);
     });
-
   }
 
   componentWillMount() {

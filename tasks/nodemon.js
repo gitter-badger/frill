@@ -10,16 +10,14 @@
  *
  */
 export default (gulp, $, argv, path) => {
-
   // Increase this when script gets slower at loading
   const RELOAD_AFTER_MS = 3000;
 
   gulp.task('nodemon', ['watch'], (cb) => {
-
     const _args = process.argv.slice(2);
     let called = false;
 
-    const ignoreWatchingFiles = [
+    const ignoreWatching = [
       'src/components',
       'src/core',
       'src/utils',
@@ -29,7 +27,7 @@ export default (gulp, $, argv, path) => {
       'src/bootstrap.js',
       'src/client.js',
       'src/assets',
-      'src/styles'
+      'src/styles',
     ];
 
     return $.nodemon({
@@ -37,10 +35,10 @@ export default (gulp, $, argv, path) => {
       script: 'app.js',
       ext: 'js jsx jade',
       watch: ['src'],
-      ignore: ignoreWatchingFiles,
+      ignore: ignoreWatching,
       args: _args,
     })
-    .on('start', (e) => {
+    .on('start', () => {
       if (!called) {
         called = true;
         setTimeout(cb, RELOAD_AFTER_MS);
@@ -53,4 +51,4 @@ export default (gulp, $, argv, path) => {
       setTimeout($.browserSync.reload, RELOAD_AFTER_MS);
     });
   });
-}
+};

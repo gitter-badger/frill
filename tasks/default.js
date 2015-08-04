@@ -14,4 +14,4 @@
  */
 export default (gulp, $, argv, path) => {
   gulp.task('default', ['sync']);
-}
+};

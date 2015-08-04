@@ -13,7 +13,6 @@
 import webpackConfig from '../webpack.config.js';
 
 export default (gulp, $, argv, path) => {
-
   gulp.task('webpack', (cb) => {
     const bundler = $.webpack(webpackConfig);
     bundler.run(() => {
@@ -21,5 +20,4 @@ export default (gulp, $, argv, path) => {
       cb();
     });
   });
-
-}
+};
