@@ -28,8 +28,8 @@ class Top extends new StoreWatchComponent(['Test']) {
 
   render() {
     return (
-      <div>
-        <h2>FrillJS</h2>
+      <div className="Top">
+        <h2>Sample Counter</h2>
         <h4>{this.state.count}</h4>
           <button onClick={this.onOne}>+1</button>
           <button onClick={this.onTen}>+10</button>

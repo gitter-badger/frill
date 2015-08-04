@@ -10,10 +10,18 @@ export default class App extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1><Link to="app">FrillJS</Link></h1>
-        <Link to="toptwo">トップ2へ</Link>
+      <div className="App">
+        <header>
+          <h1>Welcome to FrillJS!</h1>
+        </header>
+        <nav>
+          <ul>
+            <li><Link to="app">FrillJS</Link></li>
+            <li><Link to="toptwo">トップ2へ</Link></li>
+          </ul>
+        </nav>
         <RouteHandler {...this.props}/>
+        <footer>footer</footer>
       </div>
     );
   }

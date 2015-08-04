@@ -5,13 +5,13 @@ export default class TopTwo extends React.Component {
     super();
     this.name = 'TopTwo';
   }
-  getInitialState() {
-    return {};
-  }
+  // getInitialState() {
+  //   return {};
+  // }
 
   render() {
     return (
-      <div>
+      <div className="TopTwo">
         this is TopTwo component
       </div>
     );

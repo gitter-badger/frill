@@ -1,0 +1,42 @@
+// base styles
+
+global-reset()
+
+html
+  font-size: 62.5%
+  height: 100%
+
+body
+  min-height: 100%
+  position: relative
+
+a
+  color: $sub-color
+  text-decoration: none
+
+  &:hover
+    text-decoration: underline
+
+  // &.active
+  //   font-weight: bold
+
+button
+  background-color: #fff
+  border: 1px solid rgba(0, 0, 0, 0.3)
+  border-radius: 3px
+  font-size: 1.4rem
+  outline: none
+  padding: 0.3em 1em
+
+  &:hover
+    border-color: $main-color
+
+  &:active
+    background-color: $main-color
+    color: #fff
+
+h2
+  border-left: 0.4em solid $main-color
+  font-size: 1.6rem
+  margin-bottom: 1.5em
+  padding: 0.5em 0.2em 0.5em 0.8em
