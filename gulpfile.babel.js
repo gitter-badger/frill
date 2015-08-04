@@ -21,7 +21,6 @@ import runSequence from 'run-sequence';
 import del from 'del';
 import webpack from 'webpack';
 import browserSync from 'browser-sync';
-import vinylSourceStream from 'vinyl-source-stream';
 let argv = _argv;
 argv = _argv(process.argv.slice(2));
 const $ = _$();
@@ -32,7 +31,6 @@ const $ = _$();
 $.runSequence = runSequence;
 $.del = del;
 $.webpack = webpack;
-$.sourceStream = vinylSourceStream;
 $.browserSync = browserSync.create();
 
 /**

@@ -1,6 +1,6 @@
-import Frill from '../core';
+import {Store} from 'frill-core';
 
-class TestStore extends Frill.Store {
+class TestStore extends Store {
 
   constructor() {
     super();

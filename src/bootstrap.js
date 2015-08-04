@@ -1,4 +1,4 @@
-import Frill from './core';
+import Frill from 'frill-core';
 import Stores from './stores';
 import Actions from './actions';
 

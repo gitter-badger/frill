@@ -1,6 +1,6 @@
-import Frill from '../core';
+import {Action} from 'frill-core';
 
-class TestAction extends Frill.Action {
+class TestAction extends Action {
 
   constructor() {
     super();
