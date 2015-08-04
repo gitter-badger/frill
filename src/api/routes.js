@@ -1,25 +1,12 @@
-import Auth from './auth';
+import auth from './auth';
 import apiV1 from './v1';
+import {routePrefixer} from '../helpers';
 
 export default (server) => {
-  return [{
-    '/api': {
-      '/v1': [{
-        method: ['GET', 'POST'], path: '/hello',
-        config: apiV1.hello(server),
-      }, {
-        method: ['GET', 'POST'], path: '/hellotwo',
-        config: apiV1.hello(server),
-      }],
-    },
-    '/auth': [{
-      method: ['GET', 'POST'], path: '/logout',
-      config: apiV1.hello(server),
-    }, {
-      '/twitter': [{
-        method: ['GET', 'POST'], path: '/login',
-        config: Auth.twitter(server),
-      }],
-    }],
-  }];
+  return {
+    authRoutes: auth(server),
+    apiRoutes: [
+      ...routePrefixer('/api', apiV1(server)),
+    ],
+  };
 };

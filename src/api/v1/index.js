@@ -1,4 +1,8 @@
 import hello from './hello';
-export default {
-  hello,
+import {routePrefixer} from '../../helpers';
+
+export default (server) => {
+  return routePrefixer('/v1', [
+    hello(server),
+  ]);
 };

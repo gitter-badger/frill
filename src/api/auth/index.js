@@ -1,7 +1,14 @@
+import {twitterStrategy} from './strategies';
 import twitter from './twitter';
+import {routePrefixer} from '../../helpers';
 
-export default {
-  twitter,
+export default (server) => {
+  // use Twitter strategy
+  twitterStrategy(server);
+
+  return routePrefixer('/auth', [
+    twitter,
+  ]);
 };
 
 // export default (server, {helpers, models}) => {
