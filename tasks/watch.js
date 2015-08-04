@@ -42,7 +42,7 @@ export default (gulp, $, argv, path) => {
       gulp.watch(assets, gazeOption, ['assets']);
       gulp.watch(styles, gazeOption, ['stylus']);
       gulp.watch(clients, gazeOption, ['webpack']);
-      gulp.watch(checkFlowTypes, gazeOption, ['flowtype'])
+      // gulp.watch(checkFlowTypes, gazeOption, ['flowtype'])
       cb();
     });
   });
