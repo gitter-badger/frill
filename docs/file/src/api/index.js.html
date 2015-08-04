@@ -31,11 +31,7 @@
   <h2>Class</h2>
   <ul>
     
-  <li data-ice="classDoc"><span><a href="class/src/core/Action.js~Action.html">Action</a></span></li>
-<li data-ice="classDoc"><span><a href="class/src/core/Context.js~Context.html">Context</a></span></li>
-<li data-ice="classDoc"><span><a href="class/src/core/Dispatcher.js~Dispatcher.html">Dispatcher</a></span></li>
-<li data-ice="classDoc"><span><a href="class/src/core/Store.js~Store.html">Store</a></span></li>
-<li data-ice="classDoc"><span><a href="class/src/actions/Test.js~TestAction.html">TestAction</a></span></li>
+  <li data-ice="classDoc"><span><a href="class/src/actions/Test.js~TestAction.html">TestAction</a></span></li>
 <li data-ice="classDoc"><span><a href="class/src/stores/Test.js~TestStore.html">TestStore</a></span></li>
 </ul>
 </div>
@@ -48,10 +44,8 @@
   <h2><a href="variable/">Variable</a></h2>
   <ul>
     
-  <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-action">action</a></span></li>
-<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-apiPlugin">apiPlugin</a></span></li>
-<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-context">context</a></span></li>
-<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-store">store</a></span></li>
+  <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-api">api</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-routePrefixer">routePrefixer</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-testAction">testAction</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-testStore">testStore</a></span></li>
 </ul>
@@ -63,25 +57,28 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/api/index.js</h1>
-<pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">import helpers from &apos;../helpers&apos;;
-import models from &apos;../models&apos;;
-import APIv1 from &apos;./v1&apos;;
+<pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">import routes from &apos;./routes&apos;;
 
-const apiPlugin = {
-  register: (server, options, next) =&gt; {
+const api = (server) =&gt; {
+  const {apiRoutes, authRoutes} = routes(server);
 
-    // Mount api versions here.
-    APIv1(server, {helpers, models}, next);
+  console.log(apiRoutes);
+  // Authentication
+  server.route(authRoutes);
+  // APIs
+  server.route(apiRoutes);
 
-  },
+
+  // server.register([
+  //   apiPlugin,
+  // ], {
+  //   routes: {prefix: &apos;/api&apos;},
+  // }, (err) =&gt; {
+  //   if (err) server.log([&apos;error&apos;], `routes: api load error: ${err}`);
+  // });
 };
 
-apiPlugin.register.attributes = {
-  name: &apos;api_versioning&apos;,
-  version: &apos;1.0.0&apos;,
-};
-
-export default apiPlugin;
+export default api;
 </code></pre>
 </div>
 

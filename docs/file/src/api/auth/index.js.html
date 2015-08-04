@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl" href="../../../">
-  <title data-ice="title">src/helpers/index.js | FrillJS API Document</title>
+  <base data-ice="baseUrl" href="../../../../">
+  <title data-ice="title">src/api/auth/index.js | FrillJS API Document</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -56,20 +56,69 @@
 
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">src/helpers/index.js</h1>
-<pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">/**
- * Setup helpers to use from the &apos;api&apos;
- */
+<div class="content" data-ice="content"><h1 data-ice="title">src/api/auth/index.js</h1>
+<pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">import {twitterStrategy} from &apos;./strategies&apos;;
+import twitter from &apos;./twitter&apos;;
+import {routePrefixer} from &apos;../../helpers&apos;;
 
-import Joi from &apos;joi&apos;;
-import AWS from &apos;./aws&apos;;
-import routePrefixer from &apos;./routePrefixer&apos;;
+export default (server) =&gt; {
+  // use Twitter strategy
+  twitterStrategy(server);
 
-export default {
-  Joi,
-  AWS,
-  routePrefixer,
+  return routePrefixer(&apos;/auth&apos;, [
+    twitter,
+  ]);
 };
+
+// export default (server, {helpers, models}) =&gt; {
+//   const authPlugin = {
+//     register: (_server, _options, next) =&gt; {
+//       // mount auths here
+//       _server.route([
+//         twitter(server, {helpers, models}),
+//       ]);
+//       next();
+//     },
+//   };
+//   authPlugin.register.attributes = {
+//     name: &apos;auth&apos;,
+//     version: &apos;1.0.0&apos;,
+//   };
+//
+//   return authPlugin;
+// };
+
+//
+// export default (server, {helpers, models}, next) =&gt; {
+//   // add auth strategy
+//   server.auth.strategy(&apos;twitter&apos;, &apos;bell&apos;, {
+//     provider: &apos;twitter&apos;,
+//     password: &apos;cookie_encryption_password&apos;,
+//     clientId: &apos;yKcHqLNOXe2xKgvOTFuXCeyN3&apos;,
+//     clientSecret: &apos;woM83S28cvHcf8Ut5AcHBiX4ifqPGMnrze1VkH07QiFLVaIO7y&apos;,
+//     isSecure: false,
+//   });
+//
+//   const auth = {
+//     register: (_server, options, _next) =&gt; {
+//       _server.route(twitter(server, {helpers, models}));
+//       _next();
+//     },
+//   };
+//
+//   auth.register.attributes = {
+//     name: &apos;auth&apos;,
+//     version: &apos;0.0.0&apos;,
+//   };
+//
+//   server.register({
+//     register: auth,
+//   }, {
+//     routes: {
+//       prefix: &apos;/auth&apos;,
+//     },
+//   }, next);
+// };
 </code></pre>
 </div>
 

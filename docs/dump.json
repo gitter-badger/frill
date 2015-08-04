@@ -9,7 +9,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Frill from '../core';\n\nclass TestAction extends Frill.Action {\n\n  constructor() {\n    super();\n    this.use('request', {prefix: '/api'});\n    // this.use('socket', {url: 'http://localhost:3000'});\n  }\n\n  countUp() {\n    this.request.prefix.get('/v1/hello', (err, ret) => console.log(ret.text));\n    this.dispatch(\"COUNT_UP\");\n  }\n\n  countUpBy(count) {\n    this.dispatch(\"COUNT_UP_BY\", count);\n    return count;\n  }\n}\n\nexport default new TestAction();\n"
+    "content": "import {Action} from 'frill-core';\n\nclass TestAction extends Action {\n\n  constructor() {\n    super();\n    this.use('request', {prefix: '/api'});\n    // this.use('socket', {url: 'http://localhost:3000'});\n  }\n\n  countUp() {\n    this.request.prefix.get('/v1/hello', (err, ret) => console.log(ret.text));\n    this.dispatch('COUNT_UP');\n  }\n\n  countUpBy(count) {\n    this.dispatch('COUNT_UP_BY', count);\n    return count;\n  }\n}\n\nexport default new TestAction();\n"
   },
   {
     "kind": "class",
@@ -28,7 +28,7 @@
     "undocument": true,
     "interface": false,
     "extends": [
-      "src/core~Frill.Action"
+      "frill-core~Action"
     ]
   },
   {
@@ -121,27 +121,87 @@
     "kind": "file",
     "static": true,
     "variation": null,
+    "name": "src/api/auth/base.js",
+    "memberof": null,
+    "longname": "src/api/auth/base.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 0,
+    "content": ""
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/api/auth/index.js",
+    "memberof": null,
+    "longname": "src/api/auth/index.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import {twitterStrategy} from './strategies';\nimport twitter from './twitter';\nimport {routePrefixer} from '../../helpers';\n\nexport default (server) => {\n  // use Twitter strategy\n  twitterStrategy(server);\n\n  return routePrefixer('/auth', [\n    twitter,\n  ]);\n};\n\n// export default (server, {helpers, models}) => {\n//   const authPlugin = {\n//     register: (_server, _options, next) => {\n//       // mount auths here\n//       _server.route([\n//         twitter(server, {helpers, models}),\n//       ]);\n//       next();\n//     },\n//   };\n//   authPlugin.register.attributes = {\n//     name: 'auth',\n//     version: '1.0.0',\n//   };\n//\n//   return authPlugin;\n// };\n\n//\n// export default (server, {helpers, models}, next) => {\n//   // add auth strategy\n//   server.auth.strategy('twitter', 'bell', {\n//     provider: 'twitter',\n//     password: 'cookie_encryption_password',\n//     clientId: 'yKcHqLNOXe2xKgvOTFuXCeyN3',\n//     clientSecret: 'woM83S28cvHcf8Ut5AcHBiX4ifqPGMnrze1VkH07QiFLVaIO7y',\n//     isSecure: false,\n//   });\n//\n//   const auth = {\n//     register: (_server, options, _next) => {\n//       _server.route(twitter(server, {helpers, models}));\n//       _next();\n//     },\n//   };\n//\n//   auth.register.attributes = {\n//     name: 'auth',\n//     version: '0.0.0',\n//   };\n//\n//   server.register({\n//     register: auth,\n//   }, {\n//     routes: {\n//       prefix: '/auth',\n//     },\n//   }, next);\n// };\n"
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/api/auth/strategies/index.js",
+    "memberof": null,
+    "longname": "src/api/auth/strategies/index.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import twitterStrategy from './twitter';\n\nexport default {\n  twitterStrategy,\n};\n"
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/api/auth/strategies/twitter.js",
+    "memberof": null,
+    "longname": "src/api/auth/strategies/twitter.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "export default (server) => {\n  // const {Posts} = models;\n  server.auth.strategy('twitter', 'bell', {\n    provider: 'twitter',\n    password: 'cookie_encryption_password',\n    clientId: 'yKcHqLNOXe2xKgvOTFuXCeyN3',\n    clientSecret: 'woM83S28cvHcf8Ut5AcHBiX4ifqPGMnrze1VkH07QiFLVaIO7y',\n    isSecure: false,\n  });\n};\n"
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/api/auth/twitter.js",
+    "memberof": null,
+    "longname": "src/api/auth/twitter.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "export default {\n  method: ['GET', 'POST'],\n  path: '/twitter/login',\n  config: {\n    tags: ['api', 'auth'],\n    auth: { strategy: 'twitter', mode: 'try' },\n  },\n  handler: (request, reply) => {\n    console.log(request.auth);\n    if (!request.auth.isAuthenticated) {\n      return reply(\n        'Authentication failed due to: ' + request.auth.error.message\n      );\n    }\n    return reply.redirect('/');\n  },\n};\n"
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
     "name": "src/api/index.js",
     "memberof": null,
     "longname": "src/api/index.js",
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import helpers from '../helpers';\nimport models from '../models';\nimport APIv1 from './v1';\n\nconst apiPlugin = {\n  register: (server, options, next) => {\n\n    // Mount api versions here.\n    APIv1(server, {helpers, models}, next);\n\n  },\n};\n\napiPlugin.register.attributes = {\n  name: 'api_versioning',\n  version: '1.0.0',\n};\n\nexport default apiPlugin;\n"
+    "content": "import routes from './routes';\n\nconst api = (server) => {\n  const {apiRoutes, authRoutes} = routes(server);\n\n  console.log(apiRoutes);\n  // Authentication\n  server.route(authRoutes);\n  // APIs\n  server.route(apiRoutes);\n\n\n  // server.register([\n  //   apiPlugin,\n  // ], {\n  //   routes: {prefix: '/api'},\n  // }, (err) => {\n  //   if (err) server.log(['error'], `routes: api load error: ${err}`);\n  // });\n};\n\nexport default api;\n"
   },
   {
     "kind": "variable",
     "static": true,
     "variation": null,
-    "name": "apiPlugin",
+    "name": "api",
     "memberof": "src/api/index.js",
-    "longname": "src/api/index.js~apiPlugin",
+    "longname": "src/api/index.js~api",
     "access": null,
     "export": true,
     "importPath": "frill/src/api/index.js",
-    "importStyle": "apiPlugin",
+    "importStyle": "api",
     "description": null,
-    "lineNumber": 5,
+    "lineNumber": 3,
     "undocument": true,
     "type": {
       "types": [
@@ -153,13 +213,25 @@
     "kind": "file",
     "static": true,
     "variation": null,
+    "name": "src/api/routes.js",
+    "memberof": null,
+    "longname": "src/api/routes.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import auth from './auth';\nimport apiV1 from './v1';\nimport {routePrefixer} from '../helpers';\n\nexport default (server) => {\n  return {\n    authRoutes: auth(server),\n    apiRoutes: [\n      ...routePrefixer('/api', apiV1(server)),\n    ],\n  };\n};\n"
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
     "name": "src/api/v1/hello.js",
     "memberof": null,
     "longname": "src/api/v1/hello.js",
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "export default (server, {helpers, models}) => {\n\n  const {Posts} = models;\n\n  return [{\n    method: 'GET',\n    path: '/hello',\n    handler: (req, rep) => {\n      rep('api, hello! ---');\n    },\n    config: {\n      description: 'Say hello!',\n      notes: 'Says hello.',\n      tags: ['api', 'greeting'],\n      plugins: {\n        'hapi-swagger': {\n            responseMessages: [\n                { code: 400, message: 'Bad Request' },\n                { code: 500, message: 'Internal Server Error'}\n            ]\n        }\n      },\n    },\n  }, {\n    method: 'POST',\n    path: '/hello',\n    handler: (req, rep) => rep('api, hello post!'),\n    config: {\n      description: 'Say hello!',\n      notes: 'Says hello.',\n      tags: ['api', 'greeting'],\n      plugins: {\n        'hapi-swagger': {\n            responseMessages: [\n                { code: 400, message: 'Bad Request' },\n                { code: 500, message: 'Internal Server Error'}\n            ]\n        }\n      },\n    },\n  }];\n}\n"
+    "content": "export default (server) => {\n  return {\n    method: ['GET'],\n    path: ['/hello'],\n    config: {\n      description: 'Say hello!',\n      notes: 'Says hello.',\n      tags: ['api', 'greeting'],\n      plugins: {\n        'hapi-swagger': {\n          responseMessages: [\n            { code: 400, message: 'Bad Request' },\n            { code: 500, message: 'Internal Server Error'},\n          ],\n        },\n      },\n    },\n    handler: (req, rep) => {\n      rep('api, hello! ---');\n    },\n  };\n};\n"
   },
   {
     "kind": "file",
@@ -171,7 +243,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Hello from './hello';\nexport default (server, {helpers, models}, next) => {\n\n  const v1 = {\n    register: (server, options, next) => {\n      server.route(Hello(server, {helpers, models}));\n      next();\n    },\n  };\n\n  v1.register.attributes = {\n    name: 'v1',\n    version: '0.0.0',\n  };\n\n  server.register({\n    register: v1,\n  }, {\n    routes: {\n      prefix: '/v1',\n    }\n  }, next);\n}\n"
+    "content": "import hello from './hello';\nimport {routePrefixer} from '../../helpers';\n\nexport default (server) => {\n  return routePrefixer('/v1', [\n    hello(server),\n  ]);\n};\n"
   },
   {
     "kind": "file",
@@ -183,7 +255,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Frill from './core';\nimport Stores from './stores';\nimport Actions from './actions';\n\n// load stores and actions.\nFrill._Stores = Stores;\nFrill._Actions = Actions;\n\nexport default Frill;\n"
+    "content": "import Frill from 'frill-core';\nimport Stores from './stores';\nimport Actions from './actions';\n\n// load stores and actions.\nFrill._Stores = Stores;\nFrill._Actions = Actions;\n\nexport default Frill;\n"
   },
   {
     "kind": "file",
@@ -195,7 +267,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Frill from './bootstrap';\nimport _extend from 'lodash/object/extend';\nimport React from 'react';\nimport Router from 'react-router';\nimport routes from './routes';\n// import Logger from './core/Logger';\n// import Configs from './../config/';\n\n// Config = Configs[process.env.NODE_ENV]\n// defaultConfig = Configs['default']\n// Config = _extend defaultConfig, Config\n\n// Frill.Log = new Logger(Config, false)\n\n// TODO: make a new method for this inside Frill.\n// Frill.isClient = true;\n// Frill.isServer = false;\n\n// use socket service\n// Frill.Action.use('socket', {url: 'http://localhost:3000'});\n\n// create a frill context\nconst frillContext = Frill.attach(Frill._Stores, Frill._Actions);\n\nconst data = JSON.parse(document.getElementById('initial-data').getAttribute('data-json'));\n\nRouter.run(routes(), Router.HistoryLocation, (Handler) => {\n  React.render(React.createElement(Handler, _extend({frill: frillContext}, data)), document.getElementById('app'));\n});\n"
+    "content": "import Frill from './bootstrap';\nimport _extend from 'lodash/object/extend';\nimport React from 'react';\nimport Router from 'react-router';\nimport routes from './routes';\n// import Logger from './core/Logger';\n// import Configs from './../config/';\n\n// Config = Configs[process.env.NODE_ENV]\n// defaultConfig = Configs['default']\n// Config = _extend defaultConfig, Config\n\n// Frill.Log = new Logger(Config, false)\n\n// TODO: make a new method for this inside Frill.\n// Frill.isClient = true;\n// Frill.isServer = false;\n\n// use socket service\n// Frill.Action.use('socket', {url: 'http://localhost:3000'});\n\n// create a frill context\nconst frillContext = Frill.attach(Frill._Stores, Frill._Actions);\n\nconst data = JSON.parse(\n  document.getElementById('initial-data').getAttribute('data-json')\n);\n\nRouter.run(routes(), Router.HistoryLocation, (Handler) => {\n  React.render(\n    React.createElement(\n      Handler, _extend({frill: frillContext}, data)\n    ), document.getElementById('app')\n  );\n});\n"
   },
   {
     "kind": "variable",
@@ -241,1334 +313,13 @@
     "kind": "file",
     "static": true,
     "variation": null,
-    "name": "src/components/404.js",
-    "memberof": null,
-    "longname": "src/components/404.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 1,
-    "content": "'use strict';\n\n// import Frill from 'frill';\nimport React from 'react';\nimport {Link, RouteHandler} from 'react-router';\n\nmodule.exports = React.createClass({\n  name: \"NotFound\",\n  render: () => {\n    return (\n      <div>404</div>\n    );\n  }\n});\n"
-  },
-  {
-    "kind": "file",
-    "static": true,
-    "variation": null,
     "name": "src/components/index.js",
     "memberof": null,
     "longname": "src/components/index.js",
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import App from './App';\nimport Top from './Top';\nimport TopTwo from './TopTwo';\nimport NotFound from './404';\n\nexport default {\n  // Parent component\n  App: App,\n  Top: Top,\n  TopTwo: TopTwo,\n\n  /**\n   * Error handling\n   */\n\n  // 404\n  NotFound: NotFound,\n\n\n};\n"
-  },
-  {
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/core/Action.js",
-    "memberof": null,
-    "longname": "src/core/Action.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 1,
-    "content": "import _isFunction from 'lodash/lang/isFunction';\nimport _contains from 'lodash/collection/contains';\nimport request from './services/request';\nimport socket from './services/socket';\n\n// read default services\nlet services = {\n  request: request,\n  socket: socket,\n};\n\nconst reservedNamespaces = [\n  \"setup\"\n];\n\nclass Action {\n\n  constructor() {\n    // this._services = services;\n    if (this.setup && _isFunction(this.setup)) {\n      // this.setup = this.setup.bind(this);\n      this.setup();\n    }\n    return this;\n  }\n\n  get services() {\n    return services\n  }\n\n  set services(_service) {\n    const {namespace, serviceFunction} = _service;\n    services[namespace] = serviceFunction;\n  }\n\n  initializeService({namespace, service}) {\n    // TODO check arguments\n    this[namespace] = service;\n  }\n\n  // Add a custom service\n  static addService(namespace, serviceFunction) {\n    let _services = this.services;\n    if (_services[namespace]) {\n      throw new Error(`Service: ${namespace} already exists`);\n    }\n\n    if (_contains(reservedNamespaces, namespace)) {\n      throw new Error(`Could not add service, ${namespace} is a reserved namespace`);\n    }\n\n    if (!_isFunction(serviceFunction)) {\n      throw new TypeError('A service must be a function');\n    }\n\n    _services = {\n      namespace: namespace,\n      serviceFunction: serviceFunction,\n    }\n\n  }\n\n  // Use a service\n  use(serviceName, opts) {\n    const _services = this.services;\n    if (!_services[serviceName]) {\n      throw new Error('The specified service doesn\\'t exist');\n    }\n\n    if (this[serviceName]) {\n      throw new Error('The specified service name already exists and started, ' +\n        'please provide a different namespace');\n    }\n\n    this.initializeService({\n      namespace: serviceName,\n      service: _services[serviceName](opts || {})\n    });\n  }\n}\n\nexport default Action;\n"
-  },
-  {
-    "kind": "variable",
-    "static": true,
-    "variation": null,
-    "name": "services",
-    "memberof": "src/core/Action.js",
-    "longname": "src/core/Action.js~services",
-    "access": null,
-    "export": false,
-    "importPath": "frill/src/core/Action.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 7,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "kind": "variable",
-    "static": true,
-    "variation": null,
-    "name": "reservedNamespaces",
-    "memberof": "src/core/Action.js",
-    "longname": "src/core/Action.js~reservedNamespaces",
-    "access": null,
-    "export": false,
-    "importPath": "frill/src/core/Action.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 12,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "kind": "class",
-    "static": true,
-    "variation": null,
-    "name": "Action",
-    "memberof": "src/core/Action.js",
-    "longname": "src/core/Action.js~Action",
-    "access": null,
-    "export": true,
-    "importPath": "frill/src/core/Action.js",
-    "importStyle": "Action",
-    "description": null,
-    "lineNumber": 16,
-    "undocument": true,
-    "interface": false
-  },
-  {
-    "kind": "constructor",
-    "static": false,
-    "variation": null,
-    "name": "constructor",
-    "memberof": "src/core/Action.js~Action",
-    "longname": "src/core/Action.js~Action#constructor",
-    "access": null,
-    "description": null,
-    "lineNumber": 18,
-    "undocument": true,
-    "params": [],
-    "generator": false
-  },
-  {
-    "kind": "get",
-    "static": false,
-    "variation": null,
-    "name": "services",
-    "memberof": "src/core/Action.js~Action",
-    "longname": "src/core/Action.js~Action#services",
-    "access": null,
-    "description": null,
-    "lineNumber": 27,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "kind": "set",
-    "static": false,
-    "variation": null,
-    "name": "services",
-    "memberof": "src/core/Action.js~Action",
-    "longname": "src/core/Action.js~Action#services",
-    "access": null,
-    "description": null,
-    "lineNumber": 31,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "kind": "method",
-    "static": false,
-    "variation": null,
-    "name": "initializeService",
-    "memberof": "src/core/Action.js~Action",
-    "longname": "src/core/Action.js~Action#initializeService",
-    "access": null,
-    "description": null,
-    "lineNumber": 36,
-    "undocument": true,
-    "params": [
-      {
-        "name": "objectPattern",
-        "types": [
-          "{\"namespace\": *, \"service\": *}"
-        ],
-        "defaultRaw": {
-          "namespace": null,
-          "service": null
-        },
-        "defaultValue": "{\"namespace\":null,\"service\":null}"
-      }
-    ],
-    "generator": false
-  },
-  {
-    "kind": "member",
-    "static": false,
-    "variation": null,
-    "name": "namespace",
-    "memberof": "src/core/Action.js~Action",
-    "longname": "src/core/Action.js~Action#namespace",
-    "access": null,
-    "description": null,
-    "lineNumber": 38,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "kind": "method",
-    "static": true,
-    "variation": null,
-    "name": "addService",
-    "memberof": "src/core/Action.js~Action",
-    "longname": "src/core/Action.js~Action.addService",
-    "access": null,
-    "description": null,
-    "lineNumber": 42,
-    "undocument": true,
-    "params": [
-      {
-        "name": "namespace",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "serviceFunction",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "generator": false
-  },
-  {
-    "kind": "method",
-    "static": false,
-    "variation": null,
-    "name": "use",
-    "memberof": "src/core/Action.js~Action",
-    "longname": "src/core/Action.js~Action#use",
-    "access": null,
-    "description": null,
-    "lineNumber": 64,
-    "undocument": true,
-    "params": [
-      {
-        "name": "serviceName",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "opts",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "generator": false
-  },
-  {
-    "kind": "variable",
-    "static": true,
-    "variation": null,
-    "name": "action",
-    "memberof": "src/core/Action.js",
-    "longname": "src/core/Action.js~action",
-    "access": null,
-    "export": true,
-    "importPath": "frill/src/core/Action.js",
-    "importStyle": "action",
-    "description": null,
-    "lineNumber": 82,
-    "undocument": true,
-    "type": {
-      "types": [
-        "src/core/Action.js~Action"
-      ]
-    }
-  },
-  {
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/core/Context.js",
-    "memberof": null,
-    "longname": "src/core/Context.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 1,
-    "content": "import _each from 'lodash/collection/each';\nimport _extend from 'lodash/object/extend';\nimport EventEmitter from 'eventemitter3';\nimport Dispatcher from './Dispatcher';\n\n/**\n * Creates a context with a group of actions and stores.\n * @extends {EventEmitter}\n * @access public\n * @example\n * let Context = new Context();\n */\nclass Context extends EventEmitter {\n\n  /**\n   *\n   */\n  constructor(stores, actions) {\n\n    super();\n\n    this.stores = {};\n    this.actions = {};\n    this.dispatcher = new Dispatcher();\n\n    // object to bind with actions\n    this.actionDispatchBinder = {\n      frill: this,\n      dispatch: (actionType, payload) => {\n        try {\n          this.emit('dispatch', actionType, payload);\n        } finally {\n          this.dispatcher.dispatch({type: actionType, payload: payload});\n        }\n      }\n    };\n\n    // register stores and actions to context\n    this.registerStores(stores);\n    this.registerActions(actions);\n\n    // give access to store from components\n    this.store = (storeName) => this.stores[storeName];\n\n    // give access to actions from components\n    this.action = (actionName) => this.actions[actionName];\n\n    return this;\n  }\n\n  // register multiple stores\n  registerStores(stores) {\n    _each(stores, (store, name) => {\n      this.registerStore(name, store);\n    });\n  }\n\n  // register a single store\n  registerStore(name, store) {\n    if (this.stores[name]) {\n      throw new Error(`Store: '${name}' already exists`);\n    }\n\n    store.frill = this;\n\n    this.stores[name] = store;\n    this.dispatcher.addStore(name, store);\n  }\n\n\n  // register multiple actions\n  registerActions(actions) {\n    _each(actions, (action, name) => this.registerAction(name, action));\n  }\n\n  // register an action object\n  registerAction(name, action) {\n    if (this.actions[name]) {\n      throw new Error(`Action: '${name}' already exists`);\n    }\n\n    this.actions[name] = _extend(action, this.actionDispatchBinder);\n  }\n\n  setDispatchInterceptor(fn) {\n    this.dispatcher.setDispatchInterceptor(fn);\n  }\n}\n\nexport default Context;\n"
-  },
-  {
-    "kind": "class",
-    "static": true,
-    "variation": null,
-    "name": "Context",
-    "memberof": "src/core/Context.js",
-    "longname": "src/core/Context.js~Context",
-    "access": "public",
-    "export": true,
-    "importPath": "frill/src/core/Context.js",
-    "importStyle": "Context",
-    "description": "Creates a context with a group of actions and stores.",
-    "examples": [
-      "let Context = new Context();"
-    ],
-    "lineNumber": 13,
-    "interface": false,
-    "extends": [
-      "EventEmitter"
-    ]
-  },
-  {
-    "kind": "constructor",
-    "static": false,
-    "variation": null,
-    "name": "constructor",
-    "memberof": "src/core/Context.js~Context",
-    "longname": "src/core/Context.js~Context#constructor",
-    "access": null,
-    "description": "",
-    "lineNumber": 18,
-    "params": [
-      {
-        "name": "stores",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "actions",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "generator": false
-  },
-  {
-    "kind": "member",
-    "static": false,
-    "variation": null,
-    "name": "stores",
-    "memberof": "src/core/Context.js~Context",
-    "longname": "src/core/Context.js~Context#stores",
-    "access": null,
-    "description": null,
-    "lineNumber": 22,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "kind": "member",
-    "static": false,
-    "variation": null,
-    "name": "actions",
-    "memberof": "src/core/Context.js~Context",
-    "longname": "src/core/Context.js~Context#actions",
-    "access": null,
-    "description": null,
-    "lineNumber": 23,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "kind": "member",
-    "static": false,
-    "variation": null,
-    "name": "dispatcher",
-    "memberof": "src/core/Context.js~Context",
-    "longname": "src/core/Context.js~Context#dispatcher",
-    "access": null,
-    "description": null,
-    "lineNumber": 24,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "kind": "member",
-    "static": false,
-    "variation": null,
-    "name": "actionDispatchBinder",
-    "memberof": "src/core/Context.js~Context",
-    "longname": "src/core/Context.js~Context#actionDispatchBinder",
-    "access": null,
-    "description": null,
-    "lineNumber": 27,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "kind": "member",
-    "static": false,
-    "variation": null,
-    "name": "store",
-    "memberof": "src/core/Context.js~Context",
-    "longname": "src/core/Context.js~Context#store",
-    "access": null,
-    "description": null,
-    "lineNumber": 43,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "kind": "member",
-    "static": false,
-    "variation": null,
-    "name": "action",
-    "memberof": "src/core/Context.js~Context",
-    "longname": "src/core/Context.js~Context#action",
-    "access": null,
-    "description": null,
-    "lineNumber": 46,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "kind": "method",
-    "static": false,
-    "variation": null,
-    "name": "registerStores",
-    "memberof": "src/core/Context.js~Context",
-    "longname": "src/core/Context.js~Context#registerStores",
-    "access": null,
-    "description": null,
-    "lineNumber": 52,
-    "undocument": true,
-    "params": [
-      {
-        "name": "stores",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "generator": false
-  },
-  {
-    "kind": "method",
-    "static": false,
-    "variation": null,
-    "name": "registerStore",
-    "memberof": "src/core/Context.js~Context",
-    "longname": "src/core/Context.js~Context#registerStore",
-    "access": null,
-    "description": null,
-    "lineNumber": 59,
-    "undocument": true,
-    "params": [
-      {
-        "name": "name",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "store",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "generator": false
-  },
-  {
-    "kind": "method",
-    "static": false,
-    "variation": null,
-    "name": "registerActions",
-    "memberof": "src/core/Context.js~Context",
-    "longname": "src/core/Context.js~Context#registerActions",
-    "access": null,
-    "description": null,
-    "lineNumber": 72,
-    "undocument": true,
-    "params": [
-      {
-        "name": "actions",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "generator": false
-  },
-  {
-    "kind": "method",
-    "static": false,
-    "variation": null,
-    "name": "registerAction",
-    "memberof": "src/core/Context.js~Context",
-    "longname": "src/core/Context.js~Context#registerAction",
-    "access": null,
-    "description": null,
-    "lineNumber": 77,
-    "undocument": true,
-    "params": [
-      {
-        "name": "name",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "action",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "generator": false
-  },
-  {
-    "kind": "method",
-    "static": false,
-    "variation": null,
-    "name": "setDispatchInterceptor",
-    "memberof": "src/core/Context.js~Context",
-    "longname": "src/core/Context.js~Context#setDispatchInterceptor",
-    "access": null,
-    "description": null,
-    "lineNumber": 85,
-    "undocument": true,
-    "params": [
-      {
-        "name": "fn",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "generator": false
-  },
-  {
-    "kind": "variable",
-    "static": true,
-    "variation": null,
-    "name": "context",
-    "memberof": "src/core/Context.js",
-    "longname": "src/core/Context.js~context",
-    "access": null,
-    "export": true,
-    "importPath": "frill/src/core/Context.js",
-    "importStyle": "context",
-    "description": null,
-    "lineNumber": 90,
-    "undocument": true,
-    "type": {
-      "types": [
-        "src/core/Context.js~Context"
-      ]
-    }
-  },
-  {
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/core/Core.js",
-    "memberof": null,
-    "longname": "src/core/Core.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 1,
-    "content": "import Context from './Context';\n\nexport default {\n  attach: (stores, actions) => new Context(stores, actions),\n  \n};\n"
-  },
-  {
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/core/Dispatcher.js",
-    "memberof": null,
-    "longname": "src/core/Dispatcher.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 1,
-    "content": "import _clone from 'lodash/lang/clone';\nimport _isArray from 'lodash/lang/isArray';\nimport _mapValues from 'lodash/object/mapValues';\nimport _forOwn from 'lodash/object/forOwn';\nimport _intersection from 'lodash/array/intersection';\nimport _keys from 'lodash/object/keys';\nimport _map from 'lodash/collection/map';\nimport _each from 'lodash/collection/forEach';\nimport _size from 'lodash/collection/size';\nimport _findKey from 'lodash/object/findKey';\nimport _uniq from 'lodash/array/uniq';\n\nconst defaultDispatchInterceptor = (action, dispatch) => {\n  dispatch(action);\n  // return {dispatch, action};\n};\n\nexport default class Dispatcher {\n\n  constructor(stores) {\n    this.stores = {};\n    this.currentDispatch = null;\n    this.currentActionType = null;\n    this.waitingToDispatch = [];\n    this.dispatchInterceptor = defaultDispatchInterceptor;\n    this._boundDispatch = this._dispatch.bind(this);\n    _each(stores, (key) => {\n      if (stores[key]) {\n        this.addStore(key, stores[key]);\n      }\n    });\n\n  }\n\n  addStore(name, store) {\n    store.dispatcher = this;\n    this.stores[name] = store;\n  }\n\n  dispatch(action) {\n    this.dispatchInterceptor(action, this._boundDispatch);\n  }\n\n  _dispatch(action) {\n\n    if (!action || !action.type) {\n      throw new Error('Can only dispatch actions with a \\'type\\' property');\n    }\n\n    if (this.currentDispatch) {\n      const complaint = `Cannot dispatch an action ('${action.type}') while` +\n        ` another action ('${this.currentActionType}') is being dispatched`;\n      throw new Error(complaint);\n    }\n\n    this.waitingToDispatch = _clone(this.stores);\n    this.currentActionType = action.type;\n\n    this.currentDispatch = _mapValues(this.stores, () => {\n      return {\n        resolved: false,\n        waitingOn: [],\n        waitCallback: null,\n      };\n    });\n\n    try {\n      this.doDispatchLoop(action);\n    } finally {\n      this.currentActionType = null;\n      this.currentDispatch = null;\n    }\n  }\n\n  doDispatchLoop(action) {\n    let wasHandled = false;\n    let removeFromDispatchQueue = [];\n    let dispatchedThisLoop = [];\n    let dispatch;\n    let canBeDispatchedTo;\n\n    _forOwn(this.waitingToDispatch, (value, key) => {\n      dispatch = this.currentDispatch[key];\n      canBeDispatchedTo = !dispatch.waitingOn.length ||\n        !_intersection(dispatch.waitingOn, _keys(this.waitingToDispatch)).length;\n\n      if (canBeDispatchedTo) {\n\n        if (dispatch.waitCallback) {\n          stores = _map(dispatch.waitingOn, (key) => {\n            return this.stores[key];\n          });\n\n          const fn = dispatch.waitCallback;\n          dispatch.waitCallback = null;\n          dispatch.waitingOn = [];\n          dispatch.resolved = true;\n          fn.apply(null, stores);\n          wasHandled = true;\n\n        } else {\n\n          dispatch.resolved = true;\n\n          const handled = this.stores[key].__handleAction__(action);\n\n          if (handled) {\n            wasHandled = true;\n          }\n        }\n        dispatchedThisLoop.push(key);\n\n        if (this.currentDispatch[key].resolved) {\n          removeFromDispatchQueue.push(key);\n        }\n\n      }\n\n\n    });\n\n    if (_keys(this.waitingToDispatch).length && !dispatchedThisLoop.length) {\n      const storesWithCircularWaits = _keys(this.waitingToDispatch).join(', ');\n      throw new Error(`Indirect circular wait detected among: ${storesWithCircularWaits}`);\n    }\n\n    _each(removeFromDispatchQueue, (key) => {\n      delete this.waitingToDispatch[key];\n    });\n\n    if (_size(this.waitingToDispatch)) {\n      this.doDispatchLoop(action);\n    }\n\n    if (!wasHandled && console && console.warn) {\n      console.warn(`An action of type ${action.type} was dispatched, but no store handled it`);\n    }\n  }\n\n  waitForStores(store, stores, fn) {\n\n    if (!this.currentDispatch) {\n      throw new Error('Cannot wait unless an action is being dispatched');\n    }\n\n    const waitingStoreName = _findKey(this.stores, (val) => {\n      return val == store;\n    });\n\n    if (stores.indexOf(waitingStoreName) > -1) {\n      throw new Error('A store cannot wait on itself');\n    }\n\n    const dispatch = this.currentDispatch[waitingStoreName];\n\n    if (dispatch.waitingOn.length) {\n      throw new Error(`${waitingStoreName} already waiting on stores`);\n    }\n\n    if (!_isArray(stores)) {\n      stores = [stores];\n    }\n\n    _each(stores, (storeName) => {\n      const storeDispatch = this.currentDispatch[storeName];\n\n      if (!this.stores[storeName]) {\n        throw new Error(`Cannot wait for non-existent store ${storeName}`);\n      }\n\n      if (storeDispatch.waitingOn.indexOf(waitingStoreName) > -1) {\n        throw new Error(`Circular wait detected between ${waitingStoreName} and ${storeName}`);\n      }\n\n    });\n\n    dispatch.resolved = false;\n    dispatch.waitingOn = _uniq(dispatch.waitingOn.concat(stores));\n    dispatch.waitCallback = fn;\n  }\n\n  setDispatchInterceptor(fn) {\n    if (fn) {\n      this.dispatchInterceptor = fn;\n    } else {\n      this.dispatchInterceptor = defaultDispatchInterceptor;\n    }\n  }\n}\n"
-  },
-  {
-    "kind": "variable",
-    "static": true,
-    "variation": null,
-    "name": "defaultDispatchInterceptor",
-    "memberof": "src/core/Dispatcher.js",
-    "longname": "src/core/Dispatcher.js~defaultDispatchInterceptor",
-    "access": null,
-    "export": false,
-    "importPath": "frill/src/core/Dispatcher.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 13,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "kind": "class",
-    "static": true,
-    "variation": null,
-    "name": "Dispatcher",
-    "memberof": "src/core/Dispatcher.js",
-    "longname": "src/core/Dispatcher.js~Dispatcher",
-    "access": null,
-    "export": true,
-    "importPath": "frill/src/core/Dispatcher.js",
-    "importStyle": "Dispatcher",
-    "description": null,
-    "lineNumber": 18,
-    "undocument": true,
-    "interface": false
-  },
-  {
-    "kind": "constructor",
-    "static": false,
-    "variation": null,
-    "name": "constructor",
-    "memberof": "src/core/Dispatcher.js~Dispatcher",
-    "longname": "src/core/Dispatcher.js~Dispatcher#constructor",
-    "access": null,
-    "description": null,
-    "lineNumber": 20,
-    "undocument": true,
-    "params": [
-      {
-        "name": "stores",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "generator": false
-  },
-  {
-    "kind": "member",
-    "static": false,
-    "variation": null,
-    "name": "stores",
-    "memberof": "src/core/Dispatcher.js~Dispatcher",
-    "longname": "src/core/Dispatcher.js~Dispatcher#stores",
-    "access": null,
-    "description": null,
-    "lineNumber": 21,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "kind": "member",
-    "static": false,
-    "variation": null,
-    "name": "currentDispatch",
-    "memberof": "src/core/Dispatcher.js~Dispatcher",
-    "longname": "src/core/Dispatcher.js~Dispatcher#currentDispatch",
-    "access": null,
-    "description": null,
-    "lineNumber": 22,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "kind": "member",
-    "static": false,
-    "variation": null,
-    "name": "currentActionType",
-    "memberof": "src/core/Dispatcher.js~Dispatcher",
-    "longname": "src/core/Dispatcher.js~Dispatcher#currentActionType",
-    "access": null,
-    "description": null,
-    "lineNumber": 23,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "kind": "member",
-    "static": false,
-    "variation": null,
-    "name": "waitingToDispatch",
-    "memberof": "src/core/Dispatcher.js~Dispatcher",
-    "longname": "src/core/Dispatcher.js~Dispatcher#waitingToDispatch",
-    "access": null,
-    "description": null,
-    "lineNumber": 24,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "kind": "member",
-    "static": false,
-    "variation": null,
-    "name": "dispatchInterceptor",
-    "memberof": "src/core/Dispatcher.js~Dispatcher",
-    "longname": "src/core/Dispatcher.js~Dispatcher#dispatchInterceptor",
-    "access": null,
-    "description": null,
-    "lineNumber": 25,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "kind": "member",
-    "static": false,
-    "variation": null,
-    "name": "_boundDispatch",
-    "memberof": "src/core/Dispatcher.js~Dispatcher",
-    "longname": "src/core/Dispatcher.js~Dispatcher#_boundDispatch",
-    "access": null,
-    "description": null,
-    "lineNumber": 26,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "kind": "method",
-    "static": false,
-    "variation": null,
-    "name": "addStore",
-    "memberof": "src/core/Dispatcher.js~Dispatcher",
-    "longname": "src/core/Dispatcher.js~Dispatcher#addStore",
-    "access": null,
-    "description": null,
-    "lineNumber": 35,
-    "undocument": true,
-    "params": [
-      {
-        "name": "name",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "store",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "generator": false
-  },
-  {
-    "kind": "method",
-    "static": false,
-    "variation": null,
-    "name": "dispatch",
-    "memberof": "src/core/Dispatcher.js~Dispatcher",
-    "longname": "src/core/Dispatcher.js~Dispatcher#dispatch",
-    "access": null,
-    "description": null,
-    "lineNumber": 40,
-    "undocument": true,
-    "params": [
-      {
-        "name": "action",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "generator": false
-  },
-  {
-    "kind": "method",
-    "static": false,
-    "variation": null,
-    "name": "_dispatch",
-    "memberof": "src/core/Dispatcher.js~Dispatcher",
-    "longname": "src/core/Dispatcher.js~Dispatcher#_dispatch",
-    "access": null,
-    "description": null,
-    "lineNumber": 44,
-    "undocument": true,
-    "params": [
-      {
-        "name": "action",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "generator": false
-  },
-  {
-    "kind": "member",
-    "static": false,
-    "variation": null,
-    "name": "waitingToDispatch",
-    "memberof": "src/core/Dispatcher.js~Dispatcher",
-    "longname": "src/core/Dispatcher.js~Dispatcher#waitingToDispatch",
-    "access": null,
-    "description": null,
-    "lineNumber": 56,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "kind": "member",
-    "static": false,
-    "variation": null,
-    "name": "currentActionType",
-    "memberof": "src/core/Dispatcher.js~Dispatcher",
-    "longname": "src/core/Dispatcher.js~Dispatcher#currentActionType",
-    "access": null,
-    "description": null,
-    "lineNumber": 57,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "kind": "member",
-    "static": false,
-    "variation": null,
-    "name": "currentDispatch",
-    "memberof": "src/core/Dispatcher.js~Dispatcher",
-    "longname": "src/core/Dispatcher.js~Dispatcher#currentDispatch",
-    "access": null,
-    "description": null,
-    "lineNumber": 59,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "kind": "member",
-    "static": false,
-    "variation": null,
-    "name": "currentActionType",
-    "memberof": "src/core/Dispatcher.js~Dispatcher",
-    "longname": "src/core/Dispatcher.js~Dispatcher#currentActionType",
-    "access": null,
-    "description": null,
-    "lineNumber": 70,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "kind": "member",
-    "static": false,
-    "variation": null,
-    "name": "currentDispatch",
-    "memberof": "src/core/Dispatcher.js~Dispatcher",
-    "longname": "src/core/Dispatcher.js~Dispatcher#currentDispatch",
-    "access": null,
-    "description": null,
-    "lineNumber": 71,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "kind": "method",
-    "static": false,
-    "variation": null,
-    "name": "doDispatchLoop",
-    "memberof": "src/core/Dispatcher.js~Dispatcher",
-    "longname": "src/core/Dispatcher.js~Dispatcher#doDispatchLoop",
-    "access": null,
-    "description": null,
-    "lineNumber": 75,
-    "undocument": true,
-    "params": [
-      {
-        "name": "action",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "generator": false
-  },
-  {
-    "kind": "method",
-    "static": false,
-    "variation": null,
-    "name": "waitForStores",
-    "memberof": "src/core/Dispatcher.js~Dispatcher",
-    "longname": "src/core/Dispatcher.js~Dispatcher#waitForStores",
-    "access": null,
-    "description": null,
-    "lineNumber": 140,
-    "undocument": true,
-    "params": [
-      {
-        "name": "store",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "stores",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "fn",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "generator": false
-  },
-  {
-    "kind": "method",
-    "static": false,
-    "variation": null,
-    "name": "setDispatchInterceptor",
-    "memberof": "src/core/Dispatcher.js~Dispatcher",
-    "longname": "src/core/Dispatcher.js~Dispatcher#setDispatchInterceptor",
-    "access": null,
-    "description": null,
-    "lineNumber": 182,
-    "undocument": true,
-    "params": [
-      {
-        "name": "fn",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "generator": false
-  },
-  {
-    "kind": "member",
-    "static": false,
-    "variation": null,
-    "name": "dispatchInterceptor",
-    "memberof": "src/core/Dispatcher.js~Dispatcher",
-    "longname": "src/core/Dispatcher.js~Dispatcher#dispatchInterceptor",
-    "access": null,
-    "description": null,
-    "lineNumber": 184,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "kind": "member",
-    "static": false,
-    "variation": null,
-    "name": "dispatchInterceptor",
-    "memberof": "src/core/Dispatcher.js~Dispatcher",
-    "longname": "src/core/Dispatcher.js~Dispatcher#dispatchInterceptor",
-    "access": null,
-    "description": null,
-    "lineNumber": 186,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/core/Store.js",
-    "memberof": null,
-    "longname": "src/core/Store.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 1,
-    "content": "import _isFunction from 'lodash/lang/isFunction';\nimport _isString from 'lodash/lang/isString';\nimport _isObject from 'lodash/lang/isObject';\nimport _each from 'lodash/collection/each';\nimport EventEmitter from 'eventemitter3';\n\nclass Store extends EventEmitter {\n  constructor() {\n    super();\n\n    // list of actionTypes and handlers\n    this._actions = {};\n\n  }\n\n  set actions(actions) {\n    this.bindActions(actions);\n  }\n\n  // bind multiple actions\n  bindActions(actions) {\n\n    if (!_isObject(actions)) {\n      throw new TypeError('actions must be an object');\n    }\n\n    // bind each actions\n    _each(actions, (handler, actionType) => this.bindAction(actionType, handler));\n\n  }\n\n  // bind one action\n  bindAction(actionType, handler) {\n    if (!handler) {\n      throw new Error(`Action handler for ${actionType} must be properly set. Must specify a method name, or a function.`);\n    }\n\n    if (_isString(handler)) {\n      if (!this[handler]) {\n        throw new Error(`Action handler for ${actionType} must be properly set. Method name '${handler}' doesn't exist.`);\n      }\n      handler = this[handler];\n    }\n\n    if (!_isFunction(handler)) {\n      throw new Error('Action handler must be a function.');\n    }\n\n    // if action type already exists, push it into an array\n    if (this._actions[actionType]) {\n      this._actions[actionType].push(handler);\n    } else {\n      // create a new array with the handler\n      this._actions[actionType] = [handler];\n    }\n\n  }\n\n  // small helper for notifying changes\n  change(props) {\n    this.emit('change', props);\n  }\n\n  waitFor(stores, fn) {\n    if (!this.dispatcher) {\n      throw new Error('Dispatcher not set on store. Something went wrong.');\n    }\n    this.dispatcher.waitForStores(this, stores, fn.bind(this));\n  }\n\n  // handle actions by actionType\n  __handleAction__(action) {\n\n    if (!action) {\n      throw new Error('Must give a valid action.');\n    }\n\n    if (!action.type) {\n      throw new Error('Must give a valid action.');\n    }\n\n    if (!action.payload) {\n      action.payload = null;\n    }\n\n    // handler to execute. From actions or an empty function\n    const handler = this._actions[action.type] || function(){};\n\n    // execute handlers one at a time\n    _each(handler, (handlerFn) => handlerFn.call(this, action.payload, action.type));\n    return true;\n  }\n\n}\n\nexport default Store;\n"
-  },
-  {
-    "kind": "class",
-    "static": true,
-    "variation": null,
-    "name": "Store",
-    "memberof": "src/core/Store.js",
-    "longname": "src/core/Store.js~Store",
-    "access": null,
-    "export": true,
-    "importPath": "frill/src/core/Store.js",
-    "importStyle": "Store",
-    "description": null,
-    "lineNumber": 7,
-    "undocument": true,
-    "interface": false,
-    "extends": [
-      "eventemitter3~EventEmitter"
-    ]
-  },
-  {
-    "kind": "constructor",
-    "static": false,
-    "variation": null,
-    "name": "constructor",
-    "memberof": "src/core/Store.js~Store",
-    "longname": "src/core/Store.js~Store#constructor",
-    "access": null,
-    "description": null,
-    "lineNumber": 8,
-    "undocument": true,
-    "params": [],
-    "generator": false
-  },
-  {
-    "kind": "member",
-    "static": false,
-    "variation": null,
-    "name": "_actions",
-    "memberof": "src/core/Store.js~Store",
-    "longname": "src/core/Store.js~Store#_actions",
-    "access": null,
-    "description": null,
-    "lineNumber": 12,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "kind": "set",
-    "static": false,
-    "variation": null,
-    "name": "actions",
-    "memberof": "src/core/Store.js~Store",
-    "longname": "src/core/Store.js~Store#actions",
-    "access": null,
-    "description": null,
-    "lineNumber": 16,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "kind": "method",
-    "static": false,
-    "variation": null,
-    "name": "bindActions",
-    "memberof": "src/core/Store.js~Store",
-    "longname": "src/core/Store.js~Store#bindActions",
-    "access": null,
-    "description": null,
-    "lineNumber": 21,
-    "undocument": true,
-    "params": [
-      {
-        "name": "actions",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "generator": false
-  },
-  {
-    "kind": "method",
-    "static": false,
-    "variation": null,
-    "name": "bindAction",
-    "memberof": "src/core/Store.js~Store",
-    "longname": "src/core/Store.js~Store#bindAction",
-    "access": null,
-    "description": null,
-    "lineNumber": 33,
-    "undocument": true,
-    "params": [
-      {
-        "name": "actionType",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "handler",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "generator": false
-  },
-  {
-    "kind": "method",
-    "static": false,
-    "variation": null,
-    "name": "change",
-    "memberof": "src/core/Store.js~Store",
-    "longname": "src/core/Store.js~Store#change",
-    "access": null,
-    "description": null,
-    "lineNumber": 60,
-    "undocument": true,
-    "params": [
-      {
-        "name": "props",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "generator": false
-  },
-  {
-    "kind": "method",
-    "static": false,
-    "variation": null,
-    "name": "waitFor",
-    "memberof": "src/core/Store.js~Store",
-    "longname": "src/core/Store.js~Store#waitFor",
-    "access": null,
-    "description": null,
-    "lineNumber": 64,
-    "undocument": true,
-    "params": [
-      {
-        "name": "stores",
-        "types": [
-          "*"
-        ]
-      },
-      {
-        "name": "fn",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "generator": false
-  },
-  {
-    "kind": "method",
-    "static": false,
-    "variation": null,
-    "name": "__handleAction__",
-    "memberof": "src/core/Store.js~Store",
-    "longname": "src/core/Store.js~Store#__handleAction__",
-    "access": null,
-    "description": null,
-    "lineNumber": 72,
-    "undocument": true,
-    "params": [
-      {
-        "name": "action",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "return": {
-      "types": [
-        "boolean"
-      ]
-    },
-    "generator": false
-  },
-  {
-    "kind": "variable",
-    "static": true,
-    "variation": null,
-    "name": "store",
-    "memberof": "src/core/Store.js",
-    "longname": "src/core/Store.js~store",
-    "access": null,
-    "export": true,
-    "importPath": "frill/src/core/Store.js",
-    "importStyle": "store",
-    "description": null,
-    "lineNumber": 96,
-    "undocument": true,
-    "type": {
-      "types": [
-        "src/core/Store.js~Store"
-      ]
-    }
-  },
-  {
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/core/__test__/action_test.js",
-    "memberof": null,
-    "longname": "src/core/__test__/action_test.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 1,
-    "content": "import '../../../__test__/spec_helper.js';\nimport Action from '../Action';\n\nconst services = [\n  'socket',\n  'request',\n];\n\nconst reservedNamespaces = [\n  'setup',\n];\n\nconst testServiceOptions = {\n  key: 'value',\n};\n\ndescribe('#src/core/Action', () => {\n  describe('class Action', () => {\n    it('should execute setup() at construction if exists', () => {\n      class testActionClass extends Action {\n        constructor() {\n          super();\n        }\n        setup() {\n          this.isStartedSetup = true;\n        }\n      }\n\n      const TestActionClass = new testActionClass();\n\n      expect(TestActionClass.isStartedSetup).to.exist;\n      expect(TestActionClass.isStartedSetup).to.equal(true);\n    });\n    it('should execute setup() at construction if exists B', () => {\n      class testActionClass extends Action {\n        constructor() {\n          super();\n        }\n        setup() {\n          this.isStartedSetup = true;\n        }\n      }\n\n      const TestActionClass = new testActionClass();\n\n      expect(TestActionClass.isStartedSetup).to.exist;\n      expect(TestActionClass.isStartedSetup).to.equal(true);\n    });\n  });\n  // describe('Action.addService', () => {});\n\n});\n\n//\n//     it \"should be accecible\", ->\n//       expect(Action.addService).to.be.a('function')\n//\n//     it \"should be able to add a custom service\", ->\n//       Action.addService \"newService\", (opts) ->\n//         return opts\n//       expect(Action.prototype._services.newService).to.be.a(\"function\")\n//\n//     it \"should be able to access options from service\", ->\n//\n//       expect(Action.prototype._services.newService(testServiceOptions)).to.equal(testServiceOptions)\n//\n//       # remove the new service (for other tests to work)\n//       delete Action.prototype._services.newService\n//\n//     it \"should not be able to add existing namespace\", ->\n//       services.forEach (service) ->\n//         expect ->\n//           Action.addService service, ->\n//             return\n//         .to.throw(\"Service: #{service} already exists.\")\n//\n//     it \"should not be able to add a non-function service\", ->\n//       expect ->\n//         Action.addService \"test-service\", \"aString\"\n//       .to.throw(\"A service must be a function.\")\n//\n//     it \"should not be able to add a service when the namespace is reserved\", ->\n//       reservedNamespaces.forEach (reserved) ->\n//         expect ->\n//           Action.addService reserved, ()->\n//             return\n//         .to.throw(\"Could not add service. '#{reserved}' is a reserved namespace.\")\n//\n//   describe 'Action.use', ->\n//\n//     it \"should be accecible\", ->\n//       expect(Action.use).to.be.a('function')\n//\n//     it \"should contain a list of integrated services\", ->\n//       expect(Action.prototype._services).to.have.all.keys(services)\n//\n//     it \"should not be able to use a service which does not exist\", ->\n//       expect ->\n//         Action.use(\"serviceNotExisting\")\n//       .to.throw(\"The specified service doesn\\'t exist.\")\n//\n//     it \"should not be able to use the 'request' service before using the 'use' method\", ->\n//       expect(Action.prototype.request).to.be.a('undefined')\n//\n//     it \"should not be able to use the 'socket' service before using the 'use' method\", ->\n//       expect(Action.prototype.socket).to.be.a('undefined')\n//\n//     it \"should be able to use the 'request' service\", ->\n//       Action.use(\"request\", null)\n//       expect(Action.prototype.request).to.be.a('function')\n//\n//     it \"should be able to use the 'socket' service\", ->\n//       Action.use(\"socket\", {url: \"localhost\"})\n//       expect(Action.prototype.socket).to.be.a('object')\n//\n//     it \"should not be able to start a service twice\", ->\n//       expect ->\n//         Action.use(\"request\", null)\n//       .to.throw(\"The specified service name already exists and started. Please provide a different namespace.\")\n"
-  },
-  {
-    "kind": "variable",
-    "static": true,
-    "variation": null,
-    "name": "services",
-    "memberof": "src/core/__test__/action_test.js",
-    "longname": "src/core/__test__/action_test.js~services",
-    "access": null,
-    "export": false,
-    "importPath": "frill/src/core/__test__/action_test.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 4,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "kind": "variable",
-    "static": true,
-    "variation": null,
-    "name": "reservedNamespaces",
-    "memberof": "src/core/__test__/action_test.js",
-    "longname": "src/core/__test__/action_test.js~reservedNamespaces",
-    "access": null,
-    "export": false,
-    "importPath": "frill/src/core/__test__/action_test.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 9,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "kind": "variable",
-    "static": true,
-    "variation": null,
-    "name": "testServiceOptions",
-    "memberof": "src/core/__test__/action_test.js",
-    "longname": "src/core/__test__/action_test.js~testServiceOptions",
-    "access": null,
-    "export": false,
-    "importPath": "frill/src/core/__test__/action_test.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 13,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/core/index.js",
-    "memberof": null,
-    "longname": "src/core/index.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 1,
-    "content": "import {extend as _extend} from 'lodash';\nimport Core from './Core';\nimport Dispatcher from './Dispatcher';\nimport Action from './Action';\nimport Store from './Store';\nimport BaseComponent from './BaseComponent';\nimport StoreWatchComponent from './StoreWatchComponent';\n\nexport default _extend(Core, {\n  Dispatcher: Dispatcher,\n  Store: Store,\n  Action: Action,\n  BaseComponent: BaseComponent,\n  StoreWatchComponent: StoreWatchComponent,\n});\n"
-  },
-  {
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/core/services/request.js",
-    "memberof": null,
-    "longname": "src/core/services/request.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 1,
-    "content": "import _isFunction from 'lodash/lang/isFunction';\nimport _extend from 'lodash/object/extend';\nimport request from 'superagent';\n\nexport default (opts) => {\n  if (opts && opts.prefix) {\n    const patchRequest = (method) => {\n      return (path, fn) => {\n        if (_isFunction(fn)) {\n          return request[method](opts.prefix + path, fn);\n        }\n        return request[method](opts.prefix + path);\n      };\n    };\n\n    return _extend(request, {\n      prefix: {\n        get: patchRequest('get'),\n        put: patchRequest('put'),\n        post: patchRequest('post'),\n        del: patchRequest('del'),\n        patch: patchRequest('patch'),\n      }\n    });\n  }\n\n  return request;\n\n}\n"
-  },
-  {
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/core/services/socket.js",
-    "memberof": null,
-    "longname": "src/core/services/socket.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 1,
-    "content": "import socketioClient from 'socket.io-client';\n\nexport default (opts) => {\n  if (!opts || !opts.url) {\n    throw new Error('You must specify option.url to use the socket service.');\n  }\n\n  return socketioClient(opts.url, opts);\n}\n"
+    "content": "import App from './App';\nimport Top from './Top';\nimport TopTwo from './TopTwo';\nimport NotFound from './NotFound';\n\nexport default {\n  // Parent component\n  App: App,\n  Top: Top,\n  TopTwo: TopTwo,\n\n  /**\n   * Error handling\n   */\n\n  // 404\n  NotFound: NotFound,\n\n};\n"
   },
   {
     "kind": "file",
@@ -1580,7 +331,7 @@
     "access": null,
     "description": null,
     "lineNumber": 4,
-    "content": "/**\n * AmazonWebServices Helper\n */\nimport AWS from 'aws-sdk';\nAWS.config.update({ accessKeyId: \"myKeyId\", secretAccessKey: \"secretKey\", region: \"us-east-1\" });\nexport default AWS;\n"
+    "content": "/**\n * AmazonWebServices Helper\n */\nimport AWS from 'aws-sdk';\nAWS.config.update({\n  accessKeyId: 'myKeyId',\n  secretAccessKey: 'secretKey',\n  region: 'us-east-1',\n});\nexport default AWS;\n"
   },
   {
     "kind": "file",
@@ -1592,7 +343,91 @@
     "access": null,
     "description": null,
     "lineNumber": 5,
-    "content": "/**\n * Setup helpers to use from the 'api'\n */\n\nimport Joi from 'joi';\nimport AWS from './aws';\n\nexport default {\n  Joi,\n  AWS,\n};\n"
+    "content": "/**\n * Setup helpers to use from the 'api'\n */\n\nimport Joi from 'joi';\nimport AWS from './aws';\nimport routePrefixer from './routePrefixer';\n\nexport default {\n  Joi,\n  AWS,\n  routePrefixer,\n};\n"
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/helpers/routePrefixer.js",
+    "memberof": null,
+    "longname": "src/helpers/routePrefixer.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import {isArray as _isArray} from 'lodash';\nimport {isObject as _isObject} from 'lodash';\n\n/**\n * @desc Prefixes route.path\n * @example\n * routePrefixer('/api', [{path: '/a'}, {path: '/b'}]);\n *\n * @param {string} prefix - A string to prefix paths\n * @param {Array|Object} routes - Collection of routes or a single route\n * @param {string} route.path - Collection of routes or a single route\n * @throws {Error} throw error when route.path doesn't exist\n * @throws {TypeError} throw error when route is not an Array\n * @return {Array}\n */\nexport default routePrefixer = (prefix, routes) => {\n  let _routes = routes;\n  if (_isObject(routes)) {\n    if (!routes.path) {\n      throw new Error('A route must have routes.path');\n    }\n    _routes = [_routes];\n  }\n  if (!_isArray(routes)) {\n    throw new TypeError('Unable to prefix routes. route must be an Array');\n  }\n  return routes.map((route) => {\n    route.path = prefix + route.path;\n    return route;\n  });\n};\n"
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "routePrefixer",
+    "memberof": "src/helpers/routePrefixer.js",
+    "longname": "src/helpers/routePrefixer.js~routePrefixer",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/helpers/routePrefixer.js",
+    "importStyle": "routePrefixer",
+    "description": "Prefixes route.path",
+    "examples": [
+      "routePrefixer('/api', [{path: '/a'}, {path: '/b'}]);"
+    ],
+    "lineNumber": 16,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "prefix",
+        "description": "A string to prefix paths"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Array",
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "routes",
+        "description": "Collection of routes or a single route"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "route.path",
+        "description": "Collection of routes or a single route"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Array"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "throws": [
+      {
+        "types": [
+          "Error"
+        ],
+        "description": "throw error when route.path doesn't exist"
+      },
+      {
+        "types": [
+          "TypeError"
+        ],
+        "description": "throw error when route is not an Array"
+      }
+    ]
   },
   {
     "kind": "file",
@@ -1604,7 +439,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import vogels from '../vogels';\nimport Joi from 'Joi';\n\nexport default vogels.define('Post', {\n  hashKey : 'email',\n  rangeKey : 'title',\n  schema : {\n    email   : Joi.string().email(),\n    title   : Joi.string(),\n    content : Joi.binary(),\n    tags   : vogels.types.stringSet(),\n  }\n});\n"
+    "content": "import vogels from '../vogels';\nimport Joi from 'Joi';\n\nexport default vogels.define('Post', {\n  hashKey: 'email',\n  rangeKey: 'title',\n  schema: {\n    email: Joi.string().email(),\n    title: Joi.string(),\n    content: Joi.binary(),\n    tags: vogels.types.stringSet(),\n  },\n});\n"
   },
   {
     "kind": "file",
@@ -1616,7 +451,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Posts from './Posts';\n\nexport default {\n  Posts\n};\n"
+    "content": "import Posts from './Posts';\n\nexport default {\n  Posts,\n};\n"
   },
   {
     "kind": "file",
@@ -1628,7 +463,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import {Posts} from './DynamoDB';\nexport default {\n  Posts\n};\n"
+    "content": "import {Posts} from './DynamoDB';\nexport default {\n  Posts,\n};\n"
   },
   {
     "kind": "file",
@@ -1640,7 +475,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import vogels from 'vogels';\nimport {AWS} from './../helpers';\n\n// setup vogels\nvogels.dynamoDriver(new AWS.DynamoDB({\n  endpoint: 'http://localhost:8000'\n}));\n\nexport default vogels;\n"
+    "content": "import vogels from 'vogels';\nimport {AWS} from './../helpers';\n\n// setup vogels\nvogels.dynamoDriver(new AWS.DynamoDB({\n  endpoint: 'http://localhost:8000',\n}));\n\nexport default vogels;\n"
   },
   {
     "kind": "file",
@@ -1652,7 +487,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "global.__SERVER__ = true;\n\nimport Frill from './bootstrap';\nimport pack from '../package';\nimport apiPlugin from './api';\nimport routes from './routes';\nimport Hapi from 'hapi';\nimport React from 'react';\nimport Router from 'react-router';\nimport Redis from 'catbox-redis';\nimport Jade from 'jade';\nimport good from 'good';\nimport goodConsole from 'good-console';\nimport swagger from 'hapi-swagger';\nimport _extend from 'lodash/object/extend';\nimport _isUndefined from 'lodash/lang/isUndefined';\nimport _argv from 'minimist';\nlet argv = _argv;\nargv = _argv(process.argv.slice(2));\n\n/**\n * Configure hapi.\n */\nconst SERVER_PORT = 3000;\nconst server = new Hapi.Server({\n  cache: [{\n    name: 'redis',\n    engine: Redis,\n    host: '127.0.0.1',\n    // partition: 'cache',\n  }]\n});\nserver.connection({port: SERVER_PORT});\n\n/**\n * Configure hapi views\n */\nserver.views({\n  engines: {\n    jade: Jade\n  },\n  relativeTo: __dirname,\n  path: 'templates',\n});\n\n/**\n * Attempt to serve static files\n */\nserver.route({\n\tmethod:  '*',\n\tpath:    '/{params*}',\n\thandler: (request, reply) => {\n\t\treply.file('public' + request.path);\n\t}\n});\n\n/**\n * Mount all the APIs to hapi\n */\nserver.register({\n  register: apiPlugin,\n}, {\n  routes: {\n    prefix: '/api',\n  }\n}, (err) => {\n  if (err) server.log(['error'], `API plugin load error: ${err}`);\n});\n\n/**\n * Configure hapi-swagger for API documentation.\n */\nconst swaggerOptions = {\n  apiVersion: pack.version,\n  basePath: 'http://localhost:3001',\n};\n\nserver.register({\n  register: swagger,\n  options: swaggerOptions\n}, (err) => {\n  if (err) server.log(['error'], `hapi-swagger load error: ${err}`);\n});\n\n/**\n * Catch requests to fire React Router\n */\n\n// create context\nconst frillContext = Frill.attach(Frill._Stores, Frill._Actions);\n\nserver.ext('onPreResponse', (request, reply) => {\n\tif (!_isUndefined(request.response.statusCode)) {\n\t\treturn reply.continue();\n\t}\n  // fire React Router\n  server.log(['info'], `Serving down to react-router with ${request.path}`);\n  Router.run(routes(), request.path, (Handler, state) => {\n    // pass down frill context to handler\n    const patchedState = _extend({frill: frillContext}, state);\n    const handler = React.createElement(Handler, patchedState);\n    const markup = React.renderToString(handler);\n    server.log(['verbose'], markup);\n    reply.view('default', {\n      initialData: JSON.stringify(state),\n      markup: markup\n    });\n  });\n});\n\n// define which log level outputs which tags\nconst logLevels = {\n  silent: {},\n  error: {\n    error: '*',\n    log: ['error'],\n    response: ['error'],\n  },\n  debug: {\n    error: '*',\n    log: ['debug', 'error'],\n    response: ['debug', 'error'],\n  },\n  info: {\n    error: '*',\n    log: ['info', 'debug', 'error'],\n    response: ['info', 'debug', 'error'],\n  },\n  verbose: {\n    log: '*',\n    ops: '*',\n    error: '*',\n    request: '*',\n    response: '*',\n  },\n};\n\nlet logEvents;\nif (argv.verbose) {\n  logEvents = logLevels.verbose;\n} else if (argv.info) {\n  logEvents = logLevels.info;\n} else if (argv.debug) {\n  logEvents = logLevels.debug;\n} else if (argv.error) {\n  logEvents = logLevels.error;\n} else if (argv.silent) {\n  logEvents = logLevels.silent;\n} else {\n  logEvents = logLevels.info;\n}\n\n/**\n * Configure good (for logging hapi)\n */\nconst goodOptions = {\n  reporters: [{\n      reporter: goodConsole,\n      events: logEvents,\n      config: {\n        format: '[[]HH:mm:ss[]][[frill]]',\n        utc: false\n      }\n  }],\n};\n\nserver.register({\n  register: good,\n  options: goodOptions\n}, (err) => {\n  if (err) {\n    console.error(err);\n  } else {\n    // initialize server\n    server.start(() => server.log(['info'], `Server started at ${server.info.uri}`));\n  }\n});\n"
+    "content": "global.__SERVER__ = true;\n\nimport Frill from './bootstrap';\nimport pack from '../package';\nimport api from './api';\nimport routes from './routes';\nimport Hapi from 'hapi';\nimport React from 'react';\nimport Router from 'react-router';\nimport Redis from 'catbox-redis';\nimport Session from 'yar';\nimport Authentication from 'bell';\nimport Jade from 'jade';\nimport good from 'good';\nimport goodConsole from 'good-console';\nimport swagger from 'hapi-swagger';\nimport _extend from 'lodash/object/extend';\nimport _isUndefined from 'lodash/lang/isUndefined';\nimport _argv from 'minimist';\nlet argv = _argv;\nargv = _argv(process.argv.slice(2));\n\n/**\n * Configure hapi.\n */\nconst SERVER_PORT = 3000;\nconst server = new Hapi.Server({\n  cache: [{\n    name: 'redis',\n    engine: Redis,\n    host: '127.0.0.1',\n    // partition: 'cache',\n  }],\n});\nserver.connection({port: SERVER_PORT});\n\n/**\n * Configure sessions\n */\nserver.register({\n  register: Session,\n  options: {\n    maxCookieSize: 0,\n    cookieOptions: {\n      password: 'SOME_PASSWORD', // @TODO send options to a config\n      isSecure: false, // @TODO cannot do this at production\n    },\n  },\n}, (err) => {\n  if (err) server.log(['error'], `session load error: ${err}`);\n});\n\n/**\n * Configure authentication strategies\n */\nserver.register([\n  Authentication,\n], (err) => {\n  if (err) server.log(['error'], `authentication load error: ${err}`);\n});\n\n\n/**\n * Configure hapi views\n */\nserver.views({\n  engines: {\n    jade: Jade,\n  },\n  relativeTo: __dirname,\n  path: 'templates',\n});\n\n/**\n * Attempt to serve static files\n */\nserver.route({\n  method: '*',\n  path: '/{params*}',\n  handler: (request, reply) => {\n    reply.file('public' + request.path);\n  },\n});\n\n/**\n * Mount all the APIs to hapi\n */\napi(server);\n\n\n/**\n * Configure hapi-swagger for API documentation.\n * TODO: disable at production\n */\nconst swaggerOptions = {\n  apiVersion: pack.version,\n  basePath: 'http://localhost:3001',\n};\n\nserver.register({\n  register: swagger,\n  options: swaggerOptions,\n}, (err) => {\n  if (err) server.log(['error'], `hapi-swagger load error: ${err}`);\n});\n\n/**\n * Catch requests to fire React Router\n */\n// create context\nconst frillContext = Frill.attach(Frill._Stores, Frill._Actions);\n\nserver.ext('onPreResponse', (request, reply) => {\n  if (!_isUndefined(request.response.statusCode)) {\n    return reply.continue();\n  }\n  // fire React Router\n  server.log(['info'], `Serving down to react-router with ${request.path}`);\n  Router.run(routes(), request.path, (Handler, state) => {\n    // pass down frill context to handler\n    const patchedState = _extend({frill: frillContext}, state);\n    const handler = React.createElement(Handler, patchedState);\n    const markup = React.renderToString(handler);\n    server.log(['verbose'], markup);\n    reply.view('default', {\n      initialData: JSON.stringify(state),\n      markup: markup,\n    });\n  });\n});\n\n\n/**\n * Configure good (for logging hapi)\n * TODO: disable at production\n */\n// define which log level outputs which tags\nconst logLevels = {\n  silent: {},\n  error: {\n    error: '*',\n    log: ['error'],\n    response: ['error'],\n  },\n  debug: {\n    error: '*',\n    log: ['debug', 'error'],\n    response: ['debug', 'error'],\n  },\n  info: {\n    error: '*',\n    log: ['info', 'debug', 'error'],\n    response: ['info', 'debug', 'error'],\n  },\n  verbose: {\n    log: '*',\n    ops: '*',\n    error: '*',\n    request: '*',\n    response: '*',\n  },\n};\n\nlet logEvents;\nif (argv.verbose) {\n  logEvents = logLevels.verbose;\n} else if (argv.info) {\n  logEvents = logLevels.info;\n} else if (argv.debug) {\n  logEvents = logLevels.debug;\n} else if (argv.error) {\n  logEvents = logLevels.error;\n} else if (argv.silent) {\n  logEvents = logLevels.silent;\n} else {\n  logEvents = logLevels.info;\n}\n\nconst goodOptions = {\n  reporters: [{\n    reporter: goodConsole,\n    events: logEvents,\n    config: {\n      format: '[[]HH:mm:ss[]][[frill]]',\n      utc: false,\n    },\n  }],\n};\n\nserver.register({\n  register: good,\n  options: goodOptions,\n}, (err) => {\n  if (err) {\n    console.error(err);\n  } else {\n    // initialize server\n    server.start(() => {\n      server.log(['info'], `Server started at ${server.info.uri}`);\n    });\n  }\n});\n"
   },
   {
     "kind": "variable",
@@ -1666,7 +501,7 @@
     "importPath": "frill/src/server.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 18,
+    "lineNumber": 20,
     "undocument": true,
     "type": {
       "types": [
@@ -1686,7 +521,7 @@
     "importPath": "frill/src/server.js",
     "importStyle": null,
     "description": "Configure hapi.",
-    "lineNumber": 24,
+    "lineNumber": 26,
     "type": {
       "types": [
         "number"
@@ -1705,7 +540,7 @@
     "importPath": "frill/src/server.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 25,
+    "lineNumber": 27,
     "undocument": true,
     "type": {
       "types": [
@@ -1724,8 +559,8 @@
     "export": false,
     "importPath": "frill/src/server.js",
     "importStyle": null,
-    "description": "Configure hapi-swagger for API documentation.",
-    "lineNumber": 73,
+    "description": "Configure hapi-swagger for API documentation.\nTODO: disable at production",
+    "lineNumber": 95,
     "type": {
       "types": [
         "*"
@@ -1744,7 +579,7 @@
     "importPath": "frill/src/server.js",
     "importStyle": null,
     "description": "Catch requests to fire React Router",
-    "lineNumber": 90,
+    "lineNumber": 111,
     "type": {
       "types": [
         "*"
@@ -1762,9 +597,8 @@
     "export": false,
     "importPath": "frill/src/server.js",
     "importStyle": null,
-    "description": null,
-    "lineNumber": 112,
-    "undocument": true,
+    "description": "Configure good (for logging hapi)\nTODO: disable at production",
+    "lineNumber": 138,
     "type": {
       "types": [
         "*"
@@ -1782,8 +616,9 @@
     "export": false,
     "importPath": "frill/src/server.js",
     "importStyle": null,
-    "description": "Configure good (for logging hapi)",
-    "lineNumber": 156,
+    "description": null,
+    "lineNumber": 179,
+    "undocument": true,
     "type": {
       "types": [
         "*"
@@ -1800,7 +635,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Frill from '../core';\n\nclass TestStore extends Frill.Store {\n\n  constructor() {\n    super();\n    this._count = 10;\n    this.actions = {\n      \"COUNT_UP\": \"countup\",\n      \"COUNT_UP_BY\": \"countupBy\"\n    };\n  }\n\n  countup(payload) {\n    this._count = this._count + 1;\n    this.change();\n  }\n\n  countupBy(byCount) {\n    this._count = this._count + byCount;\n    this.change();\n  }\n\n  getCount() {\n    return this._count;\n  }\n\n}\n\nexport default new TestStore();\n"
+    "content": "import {Store} from 'frill-core';\n\nclass TestStore extends Store {\n\n  constructor() {\n    super();\n    this._count = 10;\n    this.actions = {\n      'COUNT_UP': 'countup',\n      'COUNT_UP_BY': 'countupBy',\n    };\n  }\n\n  countup() {\n    this._count = this._count + 1;\n    this.change();\n  }\n\n  countupBy(byCount) {\n    this._count = this._count + byCount;\n    this.change();\n  }\n\n  getCount() {\n    return this._count;\n  }\n\n}\n\nexport default new TestStore();\n"
   },
   {
     "kind": "class",
@@ -1819,7 +654,7 @@
     "undocument": true,
     "interface": false,
     "extends": [
-      "src/core~Frill.Store"
+      "frill-core~Store"
     ]
   },
   {
@@ -1881,14 +716,7 @@
     "description": null,
     "lineNumber": 14,
     "undocument": true,
-    "params": [
-      {
-        "name": "payload",
-        "types": [
-          "*"
-        ]
-      }
-    ],
+    "params": [],
     "generator": false
   },
   {

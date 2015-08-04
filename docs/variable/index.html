@@ -31,11 +31,7 @@
   <h2>Class</h2>
   <ul>
     
-  <li data-ice="classDoc"><span><a href="class/src/core/Action.js~Action.html">Action</a></span></li>
-<li data-ice="classDoc"><span><a href="class/src/core/Context.js~Context.html">Context</a></span></li>
-<li data-ice="classDoc"><span><a href="class/src/core/Dispatcher.js~Dispatcher.html">Dispatcher</a></span></li>
-<li data-ice="classDoc"><span><a href="class/src/core/Store.js~Store.html">Store</a></span></li>
-<li data-ice="classDoc"><span><a href="class/src/actions/Test.js~TestAction.html">TestAction</a></span></li>
+  <li data-ice="classDoc"><span><a href="class/src/actions/Test.js~TestAction.html">TestAction</a></span></li>
 <li data-ice="classDoc"><span><a href="class/src/stores/Test.js~TestStore.html">TestStore</a></span></li>
 </ul>
 </div>
@@ -48,10 +44,8 @@
   <h2><a href="variable/">Variable</a></h2>
   <ul>
     
-  <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-action">action</a></span></li>
-<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-apiPlugin">apiPlugin</a></span></li>
-<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-context">context</a></span></li>
-<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-store">store</a></span></li>
+  <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-api">api</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-routePrefixer">routePrefixer</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-testAction">testAction</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-testStore">testStore</a></span></li>
 </ul>
@@ -78,7 +72,7 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="variable/index.html#static-variable-action">action</a></span></span><span data-ice="signature">: <span><a href="class/src/core/Action.js~Action.html">Action</a></span></span>
+           <span data-ice="name"><span><a href="variable/index.html#static-variable-api">api</a></span></span><span data-ice="signature">: <span>*</span></span>
         </p>
       </div>
       <div>
@@ -103,63 +97,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="variable/index.html#static-variable-apiPlugin">apiPlugin</a></span></span><span data-ice="signature">: <span>*</span></span>
+           <span data-ice="name"><span><a href="variable/index.html#static-variable-routePrefixer">routePrefixer</a></span></span><span data-ice="signature">(prefix: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, routes: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span></span>
         </p>
       </div>
       <div>
         
         
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="variable/index.html#static-variable-context">context</a></span></span><span data-ice="signature">: <span><a href="class/src/core/Context.js~Context.html">Context</a></span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
-      </div>
-    </td>
-    <td>
-      
-      
-    </td>
-  </tr>
-<tr data-ice="target">
-    <td>
-      <span class="access" data-ice="access">public</span>
-      
-      
-      
-      <span class="override" data-ice="override"></span>
-    </td>
-    <td>
-      <div>
-        <p>
-           <span data-ice="name"><span><a href="variable/index.html#static-variable-store">store</a></span></span><span data-ice="signature">: <span><a href="class/src/core/Store.js~Store.html">Store</a></span></span>
-        </p>
-      </div>
-      <div>
-        
-        
-        
+        <div data-ice="description"><p>Prefixes route.path</p>
+</div>
       </div>
     </td>
     <td>
@@ -223,21 +168,21 @@
 <div data-ice="details"><h2 data-ice="title">Static Public </h2>
 
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="static-variable-action">
+  <h3 data-ice="anchor" id="static-variable-api">
     <span class="access" data-ice="access">public</span>
     
     
     
     
-    <span data-ice="name">action</span><span data-ice="signature">: <span><a href="class/src/core/Action.js~Action.html">Action</a></span></span>
+    <span data-ice="name">api</span><span data-ice="signature">: <span>*</span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/core/Action.js.html#lineNumber82">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/api/index.js.html#lineNumber3">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import action from &apos;<span><a href="file/src/core/Action.js.html#lineNumber82">frill/src/core/Action.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import api from &apos;<span><a href="file/src/api/index.js.html#lineNumber3">frill/src/api/index.js</a></span>&apos;</code></pre></div>
   
   
   
@@ -263,119 +208,74 @@
   
 </div>
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="static-variable-apiPlugin">
+  <h3 data-ice="anchor" id="static-variable-routePrefixer">
     <span class="access" data-ice="access">public</span>
     
     
     
     
-    <span data-ice="name">apiPlugin</span><span data-ice="signature">: <span>*</span></span>
+    <span data-ice="name">routePrefixer</span><span data-ice="signature">(prefix: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, routes: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span> | <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">Object</a></span>): <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span></span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/api/index.js.html#lineNumber5">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/helpers/routePrefixer.js.html#lineNumber16">source</a></span></span>
     </span>
   </h3>
 
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import apiPlugin from &apos;<span><a href="file/src/api/index.js.html#lineNumber5">frill/src/api/index.js</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import routePrefixer from &apos;<span><a href="file/src/helpers/routePrefixer.js.html#lineNumber16">frill/src/helpers/routePrefixer.js</a></span>&apos;</code></pre></div>
   
   
-  
+  <div data-ice="description"><p>Prefixes route.path</p>
+</div>
 
   
 
   <div data-ice="properties">
 </div>
 
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array">Array</a></span></td>
+        
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
 </div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="static-variable-context">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    <span data-ice="name">context</span><span data-ice="signature">: <span><a href="class/src/core/Context.js~Context.html">Context</a></span></span>
-    <span class="right-info">
+  </div>
+
+  
+
+  
+
+  <div data-ice="throwWrap">
+    <h4>Throw:</h4>
+    <table>
+      <tbody>
       
+      <tr class="throw" data-ice="throw">
+        <td><p data-ice="throwName"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error">Error</a></span></p></td>
+        <td data-ice="throwDesc"><p>throw error when route.path doesn&apos;t exist</p>
+</td>
+      </tr>
+<tr class="throw" data-ice="throw">
+        <td><p data-ice="throwName"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/TypeError">TypeError</a></span></p></td>
+        <td data-ice="throwDesc"><p>throw error when route is not an Array</p>
+</td>
+      </tr>
+</tbody>
+    </table>
+  </div>
+
+  <div data-ice="example">
+    <h4>Example:</h4>
+    
+  <div class="example-doc" data-ice="exampleDoc">
       
-      <span data-ice="source"><span><a href="file/src/core/Context.js.html#lineNumber90">source</a></span></span>
-    </span>
-  </h3>
-
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import context from &apos;<span><a href="file/src/core/Context.js.html#lineNumber90">frill/src/core/Context.js</a></span>&apos;</code></pre></div>
-  
-  
-  
-
-  
-
-  <div data-ice="properties">
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">routePrefixer(&apos;/api&apos;, [{path: &apos;/a&apos;}, {path: &apos;/b&apos;}]);</code></pre>
+    </div>
 </div>
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-  
-</div>
-<div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="static-variable-store">
-    <span class="access" data-ice="access">public</span>
-    
-    
-    
-    
-    <span data-ice="name">store</span><span data-ice="signature">: <span><a href="class/src/core/Store.js~Store.html">Store</a></span></span>
-    <span class="right-info">
-      
-      
-      <span data-ice="source"><span><a href="file/src/core/Store.js.html#lineNumber96">source</a></span></span>
-    </span>
-  </h3>
-
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import store from &apos;<span><a href="file/src/core/Store.js.html#lineNumber96">frill/src/core/Store.js</a></span>&apos;</code></pre></div>
-  
-  
-  
-
-  
-
-  <div data-ice="properties">
-</div>
-
-  
-
-  
-
-  
-
-  
-
-  
 
   
 
