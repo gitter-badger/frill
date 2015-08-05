@@ -1,11 +1,18 @@
+import Joi from 'joi';
 import {authHandler} from './authHelper';
 
 export default [{
-  method: ['GET', 'POST'],
-  path: '/twitter/login',
+  method: ['POST'],
+  path: '/local/login',
   config: {
+    validate: {
+      payload: {
+        username: Joi.string().min(5).required(),
+        password: Joi.string().min(5).required(),
+      },
+    },
     tags: ['api', 'auth'],
-    auth: { strategy: 'twitter', mode: 'try' },
+    auth: 'local',
     // auth: 'twitter',
     plugins: {
       'hapi-swagger': {

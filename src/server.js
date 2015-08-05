@@ -110,6 +110,10 @@ server.register({
 const frillContext = Frill.attach(Frill._Stores, Frill._Actions);
 
 server.ext('onPreResponse', (request, reply) => {
+  const response = request.response;
+  if (response.isBoom && response.data.name === 'ValidationError') {
+    return reply.continue();
+  }
   if (!_isUndefined(request.response.statusCode)) {
     return reply.continue();
   }

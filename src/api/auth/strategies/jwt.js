@@ -1,11 +1,8 @@
 import {where as _where} from 'lodash';
 import hapiAuthJwt from 'hapi-auth-jwt2';
 
-const accounts = [{
-  id: 1,
-  name: 'nanopx',
-  password: 'hello',
-}];
+// Test data
+import accounts from '../../../helpers/testUserData';
 
 const validator = (decoded, request, callback) => {
   if (!_where(accounts, {id: decoded.id})) {

@@ -5,15 +5,13 @@ import {routePrefixer} from '../helpers';
 export default (server) => {
   // Authentication routes
   const authRoutes = auth(server);
+
   // API routes
   const apiRoutes = [
     ...routePrefixer('/api', apiV1(server)),
   ];
+
   // Stack up routes
-  console.log([
-    ...authRoutes,
-    ...apiRoutes,
-  ]);
   return [
     ...authRoutes,
     ...apiRoutes,

@@ -1,4 +1,5 @@
 import jwtStrategy from './jwt';
+import localStrategy from './local';
 import twitterStrategy from './twitter';
 import facebookStrategy from './facebook';
 import googleStrategy from './google';
@@ -6,6 +7,7 @@ import googleStrategy from './google';
 
 export default {
   jwtStrategy,
+  localStrategy,
   twitterStrategy,
   facebookStrategy,
   googleStrategy,

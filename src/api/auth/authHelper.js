@@ -13,7 +13,7 @@ const authHandler = (request, reply) => {
   // console.log(token);
 
   console.log(request.auth);
-  console.log(request.auth.credentials.profile);
+  // console.log(request.auth.credentials.profile);
   if (!request.auth.isAuthenticated) {
     return reply(
       'Authentication failed due to: ' + request.auth.error.message
