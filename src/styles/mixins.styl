@@ -1,6 +1,15 @@
-content-box()
+content-block()
   box-sizing: border-box
   margin: 0 auto
-  padding: $block-spacing
+  max-width: $max-width
+  padding: ($block-spacing + 10px) $block-spacing ($block-spacing * 2.5)
   text-align: left
-  width: $max-width
+  width: 100%
+
+form-base(_bg-color = #fff, _border-color = rgba(#000, $border-opacity))
+  background-color: _bg-color
+  border: 1px solid _border-color
+  border-radius: $form-border-radius
+  font-size: 1.4rem
+  line-height: 1
+  outline: none

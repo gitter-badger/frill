@@ -7,6 +7,7 @@ html
   height: 100%
 
 body
+  color: $base-black
   min-height: 100%
   position: relative
 
@@ -17,26 +18,60 @@ a
   &:hover
     text-decoration: underline
 
-  // &.active
-  //   font-weight: bold
+  &.active
+    font-weight: bold
 
-button
-  background-color: #fff
-  border: 1px solid rgba(0, 0, 0, 0.3)
-  border-radius: 3px
-  font-size: 1.4rem
-  outline: none
-  padding: 0.3em 1em
-
-  &:hover
-    border-color: $main-color
-
-  &:active
-    background-color: $main-color
-    color: #fff
+section
+  margin-bottom: 2.5em
 
 h2
-  border-left: 0.4em solid $main-color
-  font-size: 1.6rem
+  border-left: 5px solid $main-color
+  font-size: 2rem
+  font-weight: bold
   margin-bottom: 1.5em
   padding: 0.5em 0.2em 0.5em 0.8em
+
+h3
+  border-left: 0.2em solid $main-color
+  font-weight: bold
+  margin-bottom: 1em
+  padding: 0.3em 0.2em 0.3em 0.8em
+
+button
+  form-base($main-color, $main-color)
+  color: #fff
+  margin-right: 0.5em
+  padding: $form-input-spacing 1em
+
+  &:hover
+    opacity: $form-hover-opacity
+
+  &:active
+    background-color: #fff
+    color: $main-color
+    opacity: 1
+
+  &.button-sub
+    background-color: _bg-sub = $sub-color
+    border-color: _bg-sub
+
+    &:active
+      background-color: #fff
+      color: _bg-sub
+
+input[type='text']
+  form-base()
+  height: ($form-input-spacing * 2 + 1em)
+
+  &:focus
+    border-color: $main-color
+
+textarea
+  form-base()
+  height: 180px
+  line-height: 1.5
+  padding: $form-input-spacing
+  width: 250px
+
+  &:focus
+    border-color: $main-color

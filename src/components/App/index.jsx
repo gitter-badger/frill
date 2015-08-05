@@ -16,12 +16,14 @@ export default class App extends React.Component {
         </header>
         <nav>
           <ul>
-            <li><Link to="app">FrillJS</Link></li>
-            <li><Link to="toptwo">トップ2へ</Link></li>
+            <li><Link to="top">Top page</Link></li>
+            <li><Link to="toptwo">Another page</Link></li>
           </ul>
         </nav>
         <RouteHandler {...this.props}/>
-        <footer>footer</footer>
+        <footer>
+          <p>FrillJS</p>
+        </footer>
       </div>
     );
   }
