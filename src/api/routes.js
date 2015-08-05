@@ -3,10 +3,19 @@ import apiV1 from './v1';
 import {routePrefixer} from '../helpers';
 
 export default (server) => {
-  return {
-    authRoutes: auth(server),
-    apiRoutes: [
-      ...routePrefixer('/api', apiV1(server)),
-    ],
-  };
+  // Authentication routes
+  const authRoutes = auth(server);
+  // API routes
+  const apiRoutes = [
+    ...routePrefixer('/api', apiV1(server)),
+  ];
+  // Stack up routes
+  console.log([
+    ...authRoutes,
+    ...apiRoutes,
+  ]);
+  return [
+    ...authRoutes,
+    ...apiRoutes,
+  ];
 };

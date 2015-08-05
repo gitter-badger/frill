@@ -1,5 +1,5 @@
 import {isArray as _isArray} from 'lodash';
-import {isObject as _isObject} from 'lodash';
+import {isPlainObject as _isPlainObject} from 'lodash';
 
 /**
  * @desc Prefixes route.path
@@ -13,10 +13,10 @@ import {isObject as _isObject} from 'lodash';
  * @throws {TypeError} throw error when route is not an Array
  * @return {Array}
  */
-export default routePrefixer = (prefix, routes) => {
+const routePrefixer = (prefix, routes) => {
   let _routes = routes;
-  if (_isObject(routes)) {
-    if (!routes.path) {
+  if (_isPlainObject(_routes)) {
+    if (!_routes.path) {
       throw new Error('A route must have routes.path');
     }
     _routes = [_routes];
@@ -29,3 +29,5 @@ export default routePrefixer = (prefix, routes) => {
     return route;
   });
 };
+
+export default routePrefixer;

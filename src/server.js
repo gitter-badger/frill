@@ -1,5 +1,3 @@
-global.__SERVER__ = true;
-
 import Frill from './bootstrap';
 import pack from '../package';
 import api from './api';
@@ -14,6 +12,7 @@ import Jade from 'jade';
 import good from 'good';
 import goodConsole from 'good-console';
 import swagger from 'hapi-swagger';
+import _find from 'lodash/collection/find';
 import _extend from 'lodash/object/extend';
 import _isUndefined from 'lodash/lang/isUndefined';
 import _argv from 'minimist';
@@ -59,7 +58,6 @@ server.register([
   if (err) server.log(['error'], `authentication load error: ${err}`);
 });
 
-
 /**
  * Configure hapi views
  */
@@ -77,6 +75,8 @@ server.views({
 server.route({
   method: '*',
   path: '/{params*}',
+  // don't use authentication strategy
+  config: { auth: false },
   handler: (request, reply) => {
     reply.file('public' + request.path);
   },
@@ -86,7 +86,6 @@ server.route({
  * Mount all the APIs to hapi
  */
 api(server);
-
 
 /**
  * Configure hapi-swagger for API documentation.
@@ -117,15 +116,21 @@ server.ext('onPreResponse', (request, reply) => {
   // fire React Router
   server.log(['info'], `Serving down to react-router with ${request.path}`);
   Router.run(routes(), request.path, (Handler, state) => {
+    // find route from request.path
+    const isFoundRoute = _find(state.routes, { path: request.path });
+    // set status code to 200 if route found, else 404
+    const statusCode = isFoundRoute ? 200 : 404;
     // pass down frill context to handler
     const patchedState = _extend({frill: frillContext}, state);
+    // create handler
     const handler = React.createElement(Handler, patchedState);
+    // construct markup
     const markup = React.renderToString(handler);
     server.log(['verbose'], markup);
     reply.view('default', {
       initialData: JSON.stringify(state),
       markup: markup,
-    });
+    }).code(statusCode);
   });
 });
 
