@@ -17,7 +17,7 @@ export default class App extends React.Component {
         <nav>
           <ul>
             <li><Link to="top">Top page</Link></li>
-            <li><Link to="toptwo">Another page</Link></li>
+            <li><Link to="another">Another page</Link></li>
           </ul>
         </nav>
         <RouteHandler {...this.props}/>

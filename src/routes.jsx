@@ -6,7 +6,7 @@ export default () => {
   return (
     <Route name="app" path="/" handler={C.App}>
       <DefaultRoute name="top" handler={C.Top} />
-      <Route name="toptwo" handler={C.TopTwo} />
+      <Route name="another" handler={C.Another} />
       <NotFoundRoute name="NotFound" handler={C.NotFound}/>
     </Route>
   );
