@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import {authHandler} from './authHelper';
+import {authHandler} from './authHandlers';
 
 export default [{
   method: ['POST'],

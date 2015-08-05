@@ -38,6 +38,8 @@ export default (server) => {
       },
     },
     handler: (req, rep) => {
+      console.log('hander');
+      
       console.log(req.auth);
       rep('api, restricted. Hello!');
     },

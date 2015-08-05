@@ -1,4 +1,4 @@
-import {authHandler} from './authHelper';
+import {authHandler} from './authHandlers';
 
 export default [{
   method: ['GET', 'POST'],

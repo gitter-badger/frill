@@ -16,12 +16,13 @@ import twitter from './twitter';
 // import google from './google';
 
 export default (server) => {
-  // use JsonWebTokens (you shouldn't remove this)
-  jwtStrategy(server);
-
   /**
    * Define strategies to use
    */
+
+  // use JsonWebTokens (you shouldn't remove this)
+  jwtStrategy(server);
+
   // use Local strategy
   localStrategy(server);
 

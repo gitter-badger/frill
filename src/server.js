@@ -111,12 +111,19 @@ const frillContext = Frill.attach(Frill._Stores, Frill._Actions);
 
 server.ext('onPreResponse', (request, reply) => {
   const response = request.response;
-  if (response.isBoom && response.data.name === 'ValidationError') {
-    return reply.continue();
+
+  // if response is an error
+  if (response.isBoom) {
+    // and only if the error is not 'EISDIR'
+    if (response.data !== 'EISDIR') {
+      return reply.continue();
+    }
   }
+
   if (!_isUndefined(request.response.statusCode)) {
     return reply.continue();
   }
+
   // fire React Router
   server.log(['info'], `Serving down to react-router with ${request.path}`);
   Router.run(routes(), request.path, (Handler, state) => {
@@ -130,6 +137,9 @@ server.ext('onPreResponse', (request, reply) => {
     const handler = React.createElement(Handler, patchedState);
     // construct markup
     const markup = React.renderToString(handler);
+
+    state.token = request.session.flash('token')[0];
+
     server.log(['verbose'], markup);
     reply.view('default', {
       initialData: JSON.stringify(state),

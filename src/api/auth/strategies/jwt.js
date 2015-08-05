@@ -1,14 +1,20 @@
-import {where as _where} from 'lodash';
 import hapiAuthJwt from 'hapi-auth-jwt2';
+import {where as _where} from 'lodash';
 
 // Test data
 import accounts from '../../../helpers/testUserData';
 
 const validator = (decoded, request, callback) => {
-  if (!_where(accounts, {id: decoded.id})) {
+  // TODO: search from session
+  // construct search query
+
+  const query = {
+    id: parseInt(decoded.userId, 10),
+  };
+  const user = _where(accounts, query);
+  if (user.length === 0) {
     return callback(null, false);
   } else {
-    console.log(decoded);
     return callback(null, true);
   }
 };
