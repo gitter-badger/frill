@@ -1,58 +1,66 @@
 import React from 'react';
 
 export default class ScrollBlock extends React.Component {
-  static get propTypes() {
-    return {
-      count: React.PropTypes.number,
-      onScrolledToBottom: React.PropTypes.func,
-    };
-  }
-
   constructor() {
     super();
     this.name = 'ScrollBlock';
 
     this.state = {
       isLoading: false,
+      isAllLoaded: false,
     };
 
     this.onScroll = this.onScroll.bind(this);
   }
 
-  componentWillReceiveProps() {
+  componentDidMount() {
     this.setState({
-      isLoading: false,
+      isLoading: true,
     });
+
+    this.props.fetchData();
+  }
+
+  componentWillReceiveProps(newProps) {
+    if (newProps.children) {
+      this.setState({
+        isLoading: false,
+      });
+    }
   }
 
   onScroll() {
-    if (!this.state.isLoading) {
+    if (!this.state.isLoading && !this.state.isAllLoaded) {
       const _elem = React.findDOMNode(this.refs.scrollBlock);
 
       if (_elem.scrollHeight - _elem.scrollTop === _elem.clientHeight) {
-        console.log('reached bottom!');
-
         this.setState({
           isLoading: true,
         });
-      }
 
-      this.props.onScrolledToBottom();
+        this.props.fetchData();
+      }
     }
   }
 
   render() {
+    const style = {
+      opacity: Number(this.state.isLoading),
+    };
+
     return (
       <div>
-        <p>{this.state.isLoading}</p>
         <div className="ScrollBlock" onScroll={this.onScroll} ref="scrollBlock">
-          ああああああああ
-          <br /><br /><br /><br /><br />
-          <br /><br /><br /><br /><br /><br /><br />
-          <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-          ああああああ
+          {this.props.children}
+          <p style={style}>
+            loading ...
+          </p>
         </div>
       </div>
     );
   }
 }
+ScrollBlock.propTypes = {
+  onScrolledToBottom: React.PropTypes.func,
+  retrieve: React.PropTypes.number,
+};
