@@ -18,6 +18,11 @@ export default class App extends React.Component {
           <ul>
             <li><Link to="top">Top page</Link></li>
             <li><Link to="another">Another page</Link></li>
+            <li>
+              <a href="http://localhost:3000/auth/twitter/login">
+                Twitter Auth Test
+              </a>
+            </li>
           </ul>
         </nav>
         <RouteHandler {...this.props}/>
