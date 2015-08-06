@@ -1,0 +1,77 @@
+// base styles
+
+global-reset()
+
+html
+  font-size: 62.5%
+  height: 100%
+
+body
+  color: $base-black
+  min-height: 100%
+  position: relative
+
+a
+  color: $sub-color
+  text-decoration: none
+
+  &:hover
+    text-decoration: underline
+
+  &.active
+    font-weight: bold
+
+section
+  margin-bottom: 2.5em
+
+h2
+  border-left: 5px solid $main-color
+  font-size: 2rem
+  font-weight: bold
+  margin-bottom: 1.5em
+  padding: 0.5em 0.2em 0.5em 0.8em
+
+h3
+  border-left: 0.2em solid $main-color
+  font-weight: bold
+  margin-bottom: 1em
+  padding: 0.3em 0.2em 0.3em 0.8em
+
+button
+  form-base($main-color, $main-color)
+  color: #fff
+  margin-right: 0.5em
+  padding: $form-input-spacing 1em
+
+  &:hover
+    opacity: $form-hover-opacity
+
+  &:active
+    background-color: #fff
+    color: $main-color
+    opacity: 1
+
+  &.button-sub
+    background-color: _bg-sub = $sub-color
+    border-color: _bg-sub
+
+    &:active
+      background-color: #fff
+      color: _bg-sub
+
+input[type='text']
+  form-base()
+  height: ($form-input-spacing * 2 + 1em)
+
+  &:focus
+    border-color: $main-color
+
+textarea
+  form-base()
+  height: 180px
+  line-height: 1.5
+  padding: $form-input-spacing
+  width: 250px
+
+  &:focus
+    border-color: $main-color

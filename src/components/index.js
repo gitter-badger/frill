@@ -1,13 +1,13 @@
 import App from './App';
 import Top from './Top';
-import TopTwo from './TopTwo';
+import Another from './Another';
 import NotFound from './NotFound';
 
 export default {
   // Parent component
   App: App,
   Top: Top,
-  TopTwo: TopTwo,
+  Another: Another,
 
   /**
    * Error handling

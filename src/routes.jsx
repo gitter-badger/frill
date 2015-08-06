@@ -5,8 +5,8 @@ import C from './components';
 export default () => {
   return (
     <Route name="app" path="/" handler={C.App}>
-      <DefaultRoute handler={C.Top} />
-      <Route name="toptwo" handler={C.TopTwo} />
+      <DefaultRoute name="top" handler={C.Top} />
+      <Route name="another" handler={C.Another} />
       <NotFoundRoute name="NotFound" handler={C.NotFound}/>
     </Route>
   );

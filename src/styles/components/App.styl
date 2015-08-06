@@ -1,7 +1,33 @@
-//
-@require
-$component-name = App
-$prefix = '.' + $class-prefix + $component-name
+// styles for App component
 
-{$prefix}
-  color: red
+.App
+  font-size: 1.4rem
+  text-align: center
+
+  header
+    background-color: $main-color
+    color: #fff
+    padding: 100px $block-spacing
+
+    h1
+      font-size: 2rem
+      letter-spacing: 1px
+
+  nav
+    border-bottom: 1px solid rgba(#000, $border-opacity)
+
+    ul
+      margin: $block-spacing
+
+      li
+        display: inline-block
+        margin: 0 0.8em
+
+  footer
+    background-color: $main-color
+    box-sizing: border-box
+    color: #fff
+    padding: $block-spacing
+    position: absolute
+    bottom: 0
+    width: 100%
