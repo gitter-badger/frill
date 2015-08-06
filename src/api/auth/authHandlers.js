@@ -5,6 +5,8 @@ import aguid from 'aguid';
 const authHandler = (request, reply) => {
   console.log(request.auth);
 
+  console.log(request.query);
+
   // reply error when authentication fails
   if (!request.auth.isAuthenticated) {
     return reply(
@@ -28,7 +30,7 @@ const authHandler = (request, reply) => {
   const token = JWT.sign(session, 'NeverShareYourSecret');
   console.log(token);
   request.session.flash('token', token);
-  return reply.redirect('/');
+  return reply.redirect(request.query.ref || '/');
 };
 
 const loginHandler = () => {

@@ -139,16 +139,16 @@ server.ext('onPreResponse', (request, reply) => {
     // create temporary output status
     let status = { statusCode: _status, error: '', message: '' };
 
-    if (_status === 200) {
-      status.message = 'OK';
-    } else if (_status === 404) {
-      status.error = 'NotFound';
-      status.message = 'Page not found.';
-    }
-
     // if response is an Error
     if (response.isBoom && response.output.statusCode !== 404) {
       status = response.output.payload;
+    } else {
+      if (_status === 200) {
+        status.message = 'OK';
+      } else if (_status === 404) {
+        status.error = 'NotFound';
+        status.message = 'Page not found.';
+      }
     }
 
     // set status to state
