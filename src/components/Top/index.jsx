@@ -1,5 +1,6 @@
 import React from 'react';
 import {StoreWatchComponent} from '../../bootstrap';
+import ScrollBlock from '../ScrollBlock';
 
 class Top extends new StoreWatchComponent(['Test']) {
 
@@ -42,12 +43,15 @@ class Top extends new StoreWatchComponent(['Test']) {
         </section>
         <section>
           <h3>Infinite Scroll</h3>
-          <div className="scrollable-block">
-            ああああああああ
-          </div>
+          <ScrollBlock
+            onScrolledToBottom={this.loadItem} />
         </section>
       </div>
     );
+  }
+  
+  loadItem() {
+    console.log('scroll reached!');
   }
 }
 
