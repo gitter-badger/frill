@@ -78,9 +78,13 @@ server.route({
   // don't use authentication strategy
   config: { auth: false },
   handler: (request, reply) => {
+    if (request.path === '/') {
+      return reply.continue();
+    }
     reply.file('public' + request.path);
   },
 });
+
 
 /**
  * Mount all the APIs to hapi
@@ -112,39 +116,61 @@ const frillContext = Frill.attach(Frill._Stores, Frill._Actions);
 server.ext('onPreResponse', (request, reply) => {
   const response = request.response;
 
-  // if response is an error
-  if (response.isBoom) {
-    // and only if the error is not 'EISDIR'
-    if (response.data !== 'EISDIR') {
-      return reply.continue();
-    }
+  // if API request
+  if (response.isBoom && request.path.substring(0, 5) === '/api/') {
+    return reply.continue();
   }
 
-  if (!_isUndefined(request.response.statusCode)) {
+  // if status code exists and request.path set to '/'
+  if (!_isUndefined(request.response.statusCode) && request.path !== '/') {
     return reply.continue();
   }
 
   // fire React Router
   server.log(['info'], `Serving down to react-router with ${request.path}`);
+
   Router.run(routes(), request.path, (Handler, state) => {
     // find route from request.path
     const isFoundRoute = _find(state.routes, { path: request.path });
-    // set status code to 200 if route found, else 404
-    const statusCode = isFoundRoute ? 200 : 404;
+
+    // 200 if route found, else 404
+    const _status = isFoundRoute ? 200 : 404;
+
+    // create temporary output status
+    let status = { statusCode: _status, error: '', message: '' };
+
+    if (_status === 200) {
+      status.message = 'OK';
+    } else if (_status === 404) {
+      status.error = 'NotFound';
+      status.message = 'Page not found.';
+    }
+
+    // if response is an Error
+    if (response.isBoom && response.output.statusCode !== 404) {
+      status = response.output.payload;
+    }
+
+    // set status to state
+    state.status = status;
+
+    // set auth token if exists
+    state.token = request.session.flash('token')[0];
+
     // pass down frill context to handler
     const patchedState = _extend({frill: frillContext}, state);
+
     // create handler
     const handler = React.createElement(Handler, patchedState);
+
     // construct markup
     const markup = React.renderToString(handler);
-
-    state.token = request.session.flash('token')[0];
 
     server.log(['verbose'], markup);
     reply.view('default', {
       initialData: JSON.stringify(state),
       markup: markup,
-    }).code(statusCode);
+    }).code(status.statusCode);
   });
 });
 

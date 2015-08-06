@@ -3,6 +3,8 @@ import Boom from 'boom';
 import aguid from 'aguid';
 
 const authHandler = (request, reply) => {
+  console.log(request.auth);
+
   // reply error when authentication fails
   if (!request.auth.isAuthenticated) {
     return reply(

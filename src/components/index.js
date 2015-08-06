@@ -1,19 +1,17 @@
+import Page from './Page';
 import App from './App';
 import Top from './Top';
 import Another from './Another';
-import NotFound from './NotFound';
+import Error from './Error';
 
 export default {
   // Parent component
+  Page: Page,
   App: App,
   Top: Top,
   Another: Another,
 
-  /**
-   * Error handling
-   */
-
-  // 404
-  NotFound: NotFound,
+  // Error handler
+  Error: Error,
 
 };
