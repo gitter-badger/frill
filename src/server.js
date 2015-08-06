@@ -1,17 +1,18 @@
-global.__SERVER__ = true;
-
 import Frill from './bootstrap';
 import pack from '../package';
-import apiPlugin from './api';
+import api from './api';
 import routes from './routes';
 import Hapi from 'hapi';
 import React from 'react';
 import Router from 'react-router';
 import Redis from 'catbox-redis';
+import Session from 'yar';
+import Authentication from 'bell';
 import Jade from 'jade';
 import good from 'good';
 import goodConsole from 'good-console';
 import swagger from 'hapi-swagger';
+import _find from 'lodash/collection/find';
 import _extend from 'lodash/object/extend';
 import _isUndefined from 'lodash/lang/isUndefined';
 import _argv from 'minimist';
@@ -33,6 +34,31 @@ const server = new Hapi.Server({
 server.connection({port: SERVER_PORT});
 
 /**
+ * Configure sessions
+ */
+server.register({
+  register: Session,
+  options: {
+    maxCookieSize: 0,
+    cookieOptions: {
+      password: 'SOME_PASSWORD', // @TODO send options to a config
+      isSecure: false, // @TODO cannot do this at production
+    },
+  },
+}, (err) => {
+  if (err) server.log(['error'], `session load error: ${err}`);
+});
+
+/**
+ * Configure authentication strategies
+ */
+server.register([
+  Authentication,
+], (err) => {
+  if (err) server.log(['error'], `authentication load error: ${err}`);
+});
+
+/**
  * Configure hapi views
  */
 server.views({
@@ -49,6 +75,8 @@ server.views({
 server.route({
   method: '*',
   path: '/{params*}',
+  // don't use authentication strategy
+  config: { auth: false },
   handler: (request, reply) => {
     reply.file('public' + request.path);
   },
@@ -57,18 +85,11 @@ server.route({
 /**
  * Mount all the APIs to hapi
  */
-server.register({
-  register: apiPlugin,
-}, {
-  routes: {
-    prefix: '/api',
-  },
-}, (err) => {
-  if (err) server.log(['error'], `API plugin load error: ${err}`);
-});
+api(server);
 
 /**
  * Configure hapi-swagger for API documentation.
+ * TODO: disable at production
  */
 const swaggerOptions = {
   apiVersion: pack.version,
@@ -85,29 +106,53 @@ server.register({
 /**
  * Catch requests to fire React Router
  */
-
 // create context
 const frillContext = Frill.attach(Frill._Stores, Frill._Actions);
 
 server.ext('onPreResponse', (request, reply) => {
+  const response = request.response;
+
+  // if response is an error
+  if (response.isBoom) {
+    // and only if the error is not 'EISDIR'
+    if (response.data !== 'EISDIR') {
+      return reply.continue();
+    }
+  }
+
   if (!_isUndefined(request.response.statusCode)) {
     return reply.continue();
   }
+
   // fire React Router
   server.log(['info'], `Serving down to react-router with ${request.path}`);
   Router.run(routes(), request.path, (Handler, state) => {
+    // find route from request.path
+    const isFoundRoute = _find(state.routes, { path: request.path });
+    // set status code to 200 if route found, else 404
+    const statusCode = isFoundRoute ? 200 : 404;
     // pass down frill context to handler
     const patchedState = _extend({frill: frillContext}, state);
+    // create handler
     const handler = React.createElement(Handler, patchedState);
+    // construct markup
     const markup = React.renderToString(handler);
+
+    state.token = request.session.flash('token')[0];
+
     server.log(['verbose'], markup);
     reply.view('default', {
       initialData: JSON.stringify(state),
       markup: markup,
-    });
+    }).code(statusCode);
   });
 });
 
+
+/**
+ * Configure good (for logging hapi)
+ * TODO: disable at production
+ */
 // define which log level outputs which tags
 const logLevels = {
   silent: {},
@@ -150,9 +195,6 @@ if (argv.verbose) {
   logEvents = logLevels.info;
 }
 
-/**
- * Configure good (for logging hapi)
- */
 const goodOptions = {
   reporters: [{
     reporter: goodConsole,

@@ -1,29 +1,5 @@
 window.esdocSearchIndex = [
   [
-    "frill/src/core/action.js~action",
-    "class/src/core/Action.js~Action.html",
-    "<span>Action</span> <span class=\"search-result-import-path\">frill/src/core/Action.js</span>",
-    "class"
-  ],
-  [
-    "frill/src/core/context.js~context",
-    "class/src/core/Context.js~Context.html",
-    "<span>Context</span> <span class=\"search-result-import-path\">frill/src/core/Context.js</span>",
-    "class"
-  ],
-  [
-    "frill/src/core/dispatcher.js~dispatcher",
-    "class/src/core/Dispatcher.js~Dispatcher.html",
-    "<span>Dispatcher</span> <span class=\"search-result-import-path\">frill/src/core/Dispatcher.js</span>",
-    "class"
-  ],
-  [
-    "frill/src/core/store.js~store",
-    "class/src/core/Store.js~Store.html",
-    "<span>Store</span> <span class=\"search-result-import-path\">frill/src/core/Store.js</span>",
-    "class"
-  ],
-  [
     "frill/src/actions/test.js~testaction",
     "class/src/actions/Test.js~TestAction.html",
     "<span>TestAction</span> <span class=\"search-result-import-path\">frill/src/actions/Test.js</span>",
@@ -36,27 +12,15 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
-    "frill/src/core/action.js~action",
-    "variable/index.html#static-variable-action",
-    "<span>action</span> <span class=\"search-result-import-path\">frill/src/core/Action.js</span>",
+    "frill/src/api/index.js~api",
+    "variable/index.html#static-variable-api",
+    "<span>api</span> <span class=\"search-result-import-path\">frill/src/api/index.js</span>",
     "variable"
   ],
   [
-    "frill/src/api/index.js~apiplugin",
-    "variable/index.html#static-variable-apiPlugin",
-    "<span>apiPlugin</span> <span class=\"search-result-import-path\">frill/src/api/index.js</span>",
-    "variable"
-  ],
-  [
-    "frill/src/core/context.js~context",
-    "variable/index.html#static-variable-context",
-    "<span>context</span> <span class=\"search-result-import-path\">frill/src/core/Context.js</span>",
-    "variable"
-  ],
-  [
-    "frill/src/core/store.js~store",
-    "variable/index.html#static-variable-store",
-    "<span>store</span> <span class=\"search-result-import-path\">frill/src/core/Store.js</span>",
+    "frill/src/helpers/routeprefixer.js~routeprefixer",
+    "variable/index.html#static-variable-routePrefixer",
+    "<span>routePrefixer</span> <span class=\"search-result-import-path\">frill/src/helpers/routePrefixer.js</span>",
     "variable"
   ],
   [
@@ -426,9 +390,45 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/api/auth/base.js",
+    "file/src/api/auth/base.js.html",
+    "src/api/auth/base.js",
+    "file"
+  ],
+  [
+    "src/api/auth/index.js",
+    "file/src/api/auth/index.js.html",
+    "src/api/auth/index.js",
+    "file"
+  ],
+  [
+    "src/api/auth/strategies/index.js",
+    "file/src/api/auth/strategies/index.js.html",
+    "src/api/auth/strategies/index.js",
+    "file"
+  ],
+  [
+    "src/api/auth/strategies/twitter.js",
+    "file/src/api/auth/strategies/twitter.js.html",
+    "src/api/auth/strategies/twitter.js",
+    "file"
+  ],
+  [
+    "src/api/auth/twitter.js",
+    "file/src/api/auth/twitter.js.html",
+    "src/api/auth/twitter.js",
+    "file"
+  ],
+  [
     "src/api/index.js",
     "file/src/api/index.js.html",
     "src/api/index.js",
+    "file"
+  ],
+  [
+    "src/api/routes.js",
+    "file/src/api/routes.js.html",
+    "src/api/routes.js",
     "file"
   ],
   [
@@ -456,285 +456,9 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/components/404.js",
-    "file/src/components/404.js.html",
-    "src/components/404.js",
-    "file"
-  ],
-  [
     "src/components/index.js",
     "file/src/components/index.js.html",
     "src/components/index.js",
-    "file"
-  ],
-  [
-    "src/core/action.js",
-    "file/src/core/Action.js.html",
-    "src/core/Action.js",
-    "file"
-  ],
-  [
-    "src/core/action.js~action#constructor",
-    "class/src/core/Action.js~Action.html#instance-constructor-constructor",
-    "src/core/Action.js~Action#constructor",
-    "method"
-  ],
-  [
-    "src/core/action.js~action#initializeservice",
-    "class/src/core/Action.js~Action.html#instance-method-initializeService",
-    "src/core/Action.js~Action#initializeService",
-    "method"
-  ],
-  [
-    "src/core/action.js~action#namespace",
-    "class/src/core/Action.js~Action.html#instance-member-namespace",
-    "src/core/Action.js~Action#namespace",
-    "member"
-  ],
-  [
-    "src/core/action.js~action#services",
-    "class/src/core/Action.js~Action.html#instance-get-services",
-    "src/core/Action.js~Action#services",
-    "member"
-  ],
-  [
-    "src/core/action.js~action#services",
-    "class/src/core/Action.js~Action.html#instance-set-services",
-    "src/core/Action.js~Action#services",
-    "member"
-  ],
-  [
-    "src/core/action.js~action#use",
-    "class/src/core/Action.js~Action.html#instance-method-use",
-    "src/core/Action.js~Action#use",
-    "method"
-  ],
-  [
-    "src/core/action.js~action.addservice",
-    "class/src/core/Action.js~Action.html#static-method-addService",
-    "src/core/Action.js~Action.addService",
-    "method"
-  ],
-  [
-    "src/core/context.js",
-    "file/src/core/Context.js.html",
-    "src/core/Context.js",
-    "file"
-  ],
-  [
-    "src/core/context.js~context#action",
-    "class/src/core/Context.js~Context.html#instance-member-action",
-    "src/core/Context.js~Context#action",
-    "member"
-  ],
-  [
-    "src/core/context.js~context#actiondispatchbinder",
-    "class/src/core/Context.js~Context.html#instance-member-actionDispatchBinder",
-    "src/core/Context.js~Context#actionDispatchBinder",
-    "member"
-  ],
-  [
-    "src/core/context.js~context#actions",
-    "class/src/core/Context.js~Context.html#instance-member-actions",
-    "src/core/Context.js~Context#actions",
-    "member"
-  ],
-  [
-    "src/core/context.js~context#constructor",
-    "class/src/core/Context.js~Context.html#instance-constructor-constructor",
-    "src/core/Context.js~Context#constructor",
-    "method"
-  ],
-  [
-    "src/core/context.js~context#dispatcher",
-    "class/src/core/Context.js~Context.html#instance-member-dispatcher",
-    "src/core/Context.js~Context#dispatcher",
-    "member"
-  ],
-  [
-    "src/core/context.js~context#registeraction",
-    "class/src/core/Context.js~Context.html#instance-method-registerAction",
-    "src/core/Context.js~Context#registerAction",
-    "method"
-  ],
-  [
-    "src/core/context.js~context#registeractions",
-    "class/src/core/Context.js~Context.html#instance-method-registerActions",
-    "src/core/Context.js~Context#registerActions",
-    "method"
-  ],
-  [
-    "src/core/context.js~context#registerstore",
-    "class/src/core/Context.js~Context.html#instance-method-registerStore",
-    "src/core/Context.js~Context#registerStore",
-    "method"
-  ],
-  [
-    "src/core/context.js~context#registerstores",
-    "class/src/core/Context.js~Context.html#instance-method-registerStores",
-    "src/core/Context.js~Context#registerStores",
-    "method"
-  ],
-  [
-    "src/core/context.js~context#setdispatchinterceptor",
-    "class/src/core/Context.js~Context.html#instance-method-setDispatchInterceptor",
-    "src/core/Context.js~Context#setDispatchInterceptor",
-    "method"
-  ],
-  [
-    "src/core/context.js~context#store",
-    "class/src/core/Context.js~Context.html#instance-member-store",
-    "src/core/Context.js~Context#store",
-    "member"
-  ],
-  [
-    "src/core/context.js~context#stores",
-    "class/src/core/Context.js~Context.html#instance-member-stores",
-    "src/core/Context.js~Context#stores",
-    "member"
-  ],
-  [
-    "src/core/core.js",
-    "file/src/core/Core.js.html",
-    "src/core/Core.js",
-    "file"
-  ],
-  [
-    "src/core/dispatcher.js",
-    "file/src/core/Dispatcher.js.html",
-    "src/core/Dispatcher.js",
-    "file"
-  ],
-  [
-    "src/core/dispatcher.js~dispatcher#addstore",
-    "class/src/core/Dispatcher.js~Dispatcher.html#instance-method-addStore",
-    "src/core/Dispatcher.js~Dispatcher#addStore",
-    "method"
-  ],
-  [
-    "src/core/dispatcher.js~dispatcher#constructor",
-    "class/src/core/Dispatcher.js~Dispatcher.html#instance-constructor-constructor",
-    "src/core/Dispatcher.js~Dispatcher#constructor",
-    "method"
-  ],
-  [
-    "src/core/dispatcher.js~dispatcher#currentactiontype",
-    "class/src/core/Dispatcher.js~Dispatcher.html#instance-member-currentActionType",
-    "src/core/Dispatcher.js~Dispatcher#currentActionType",
-    "member"
-  ],
-  [
-    "src/core/dispatcher.js~dispatcher#currentdispatch",
-    "class/src/core/Dispatcher.js~Dispatcher.html#instance-member-currentDispatch",
-    "src/core/Dispatcher.js~Dispatcher#currentDispatch",
-    "member"
-  ],
-  [
-    "src/core/dispatcher.js~dispatcher#dispatch",
-    "class/src/core/Dispatcher.js~Dispatcher.html#instance-method-dispatch",
-    "src/core/Dispatcher.js~Dispatcher#dispatch",
-    "method"
-  ],
-  [
-    "src/core/dispatcher.js~dispatcher#dispatchinterceptor",
-    "class/src/core/Dispatcher.js~Dispatcher.html#instance-member-dispatchInterceptor",
-    "src/core/Dispatcher.js~Dispatcher#dispatchInterceptor",
-    "member"
-  ],
-  [
-    "src/core/dispatcher.js~dispatcher#dodispatchloop",
-    "class/src/core/Dispatcher.js~Dispatcher.html#instance-method-doDispatchLoop",
-    "src/core/Dispatcher.js~Dispatcher#doDispatchLoop",
-    "method"
-  ],
-  [
-    "src/core/dispatcher.js~dispatcher#setdispatchinterceptor",
-    "class/src/core/Dispatcher.js~Dispatcher.html#instance-method-setDispatchInterceptor",
-    "src/core/Dispatcher.js~Dispatcher#setDispatchInterceptor",
-    "method"
-  ],
-  [
-    "src/core/dispatcher.js~dispatcher#stores",
-    "class/src/core/Dispatcher.js~Dispatcher.html#instance-member-stores",
-    "src/core/Dispatcher.js~Dispatcher#stores",
-    "member"
-  ],
-  [
-    "src/core/dispatcher.js~dispatcher#waitforstores",
-    "class/src/core/Dispatcher.js~Dispatcher.html#instance-method-waitForStores",
-    "src/core/Dispatcher.js~Dispatcher#waitForStores",
-    "method"
-  ],
-  [
-    "src/core/dispatcher.js~dispatcher#waitingtodispatch",
-    "class/src/core/Dispatcher.js~Dispatcher.html#instance-member-waitingToDispatch",
-    "src/core/Dispatcher.js~Dispatcher#waitingToDispatch",
-    "member"
-  ],
-  [
-    "src/core/store.js",
-    "file/src/core/Store.js.html",
-    "src/core/Store.js",
-    "file"
-  ],
-  [
-    "src/core/store.js~store#actions",
-    "class/src/core/Store.js~Store.html#instance-set-actions",
-    "src/core/Store.js~Store#actions",
-    "member"
-  ],
-  [
-    "src/core/store.js~store#bindaction",
-    "class/src/core/Store.js~Store.html#instance-method-bindAction",
-    "src/core/Store.js~Store#bindAction",
-    "method"
-  ],
-  [
-    "src/core/store.js~store#bindactions",
-    "class/src/core/Store.js~Store.html#instance-method-bindActions",
-    "src/core/Store.js~Store#bindActions",
-    "method"
-  ],
-  [
-    "src/core/store.js~store#change",
-    "class/src/core/Store.js~Store.html#instance-method-change",
-    "src/core/Store.js~Store#change",
-    "method"
-  ],
-  [
-    "src/core/store.js~store#constructor",
-    "class/src/core/Store.js~Store.html#instance-constructor-constructor",
-    "src/core/Store.js~Store#constructor",
-    "method"
-  ],
-  [
-    "src/core/store.js~store#waitfor",
-    "class/src/core/Store.js~Store.html#instance-method-waitFor",
-    "src/core/Store.js~Store#waitFor",
-    "method"
-  ],
-  [
-    "src/core/__test__/action_test.js",
-    "file/src/core/__test__/action_test.js.html",
-    "src/core/__test__/action_test.js",
-    "file"
-  ],
-  [
-    "src/core/index.js",
-    "file/src/core/index.js.html",
-    "src/core/index.js",
-    "file"
-  ],
-  [
-    "src/core/services/request.js",
-    "file/src/core/services/request.js.html",
-    "src/core/services/request.js",
-    "file"
-  ],
-  [
-    "src/core/services/socket.js",
-    "file/src/core/services/socket.js.html",
-    "src/core/services/socket.js",
     "file"
   ],
   [
@@ -747,6 +471,12 @@ window.esdocSearchIndex = [
     "src/helpers/index.js",
     "file/src/helpers/index.js.html",
     "src/helpers/index.js",
+    "file"
+  ],
+  [
+    "src/helpers/routeprefixer.js",
+    "file/src/helpers/routePrefixer.js.html",
+    "src/helpers/routePrefixer.js",
     "file"
   ],
   [

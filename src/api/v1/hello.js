@@ -1,15 +1,32 @@
-export default (server, {helpers, models}) => {
-  // const {Posts} = models;
-
+export default (server) => {
   return [{
-    method: 'GET',
+    method: ['GET'],
     path: '/hello',
+    config: {
+      auth: false,
+      description: 'Say hello!',
+      notes: 'Says hello.',
+      tags: ['api', 'greeting'],
+      plugins: {
+        'hapi-swagger': {
+          responseMessages: [
+            { code: 400, message: 'Bad Request' },
+            { code: 500, message: 'Internal Server Error'},
+          ],
+        },
+      },
+    },
     handler: (req, rep) => {
+      console.log(req.auth);
       rep('api, hello! ---');
     },
+  }, {
+    method: ['GET'],
+    path: '/hello/restricted',
     config: {
-      description: 'Say hello!',
-      notes: 'Says hello.',
+      auth: 'jwt',
+      description: 'Restricted route',
+      notes: 'Restricted, says hello',
       tags: ['api', 'greeting'],
       plugins: {
         'hapi-swagger': {
@@ -20,22 +37,11 @@ export default (server, {helpers, models}) => {
         },
       },
     },
-  }, {
-    method: 'POST',
-    path: '/hello',
-    handler: (req, rep) => rep('api, hello post!'),
-    config: {
-      description: 'Say hello!',
-      notes: 'Says hello.',
-      tags: ['api', 'greeting'],
-      plugins: {
-        'hapi-swagger': {
-          responseMessages: [
-            { code: 400, message: 'Bad Request' },
-            { code: 500, message: 'Internal Server Error'},
-          ],
-        },
-      },
+    handler: (req, rep) => {
+      console.log('hander');
+      
+      console.log(req.auth);
+      rep('api, restricted. Hello!');
     },
   }];
 };

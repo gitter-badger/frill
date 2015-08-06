@@ -5,63 +5,81 @@
       "type": "ImportDeclaration",
       "specifiers": [
         {
-          "type": "ImportDefaultSpecifier",
+          "type": "ImportSpecifier",
           "local": {
             "type": "Identifier",
-            "name": "Frill",
+            "name": "Action",
             "range": [
-              7,
-              12
+              8,
+              14
             ],
             "loc": {
               "start": {
                 "line": 1,
-                "column": 7
+                "column": 8
               },
               "end": {
                 "line": 1,
-                "column": 12
+                "column": 14
+              }
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "name": "Action",
+            "range": [
+              8,
+              14
+            ],
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 8
+              },
+              "end": {
+                "line": 1,
+                "column": 14
               }
             }
           },
           "range": [
-            7,
-            12
+            8,
+            14
           ],
           "loc": {
             "start": {
               "line": 1,
-              "column": 7
+              "column": 8
             },
             "end": {
               "line": 1,
-              "column": 12
+              "column": 14
             }
           }
         }
       ],
       "source": {
         "type": "Literal",
-        "value": "../core",
-        "raw": "'../core'",
+        "value": "frill-core",
+        "raw": "'frill-core'",
         "range": [
-          18,
-          27
+          21,
+          33
         ],
         "loc": {
           "start": {
             "line": 1,
-            "column": 18
+            "column": 21
           },
           "end": {
             "line": 1,
-            "column": 27
+            "column": 33
           }
         }
       },
       "range": [
         0,
-        28
+        34
       ],
       "loc": {
         "start": {
@@ -70,7 +88,7 @@
         },
         "end": {
           "line": 1,
-          "column": 28
+          "column": 34
         }
       }
     },
@@ -80,8 +98,8 @@
         "type": "Identifier",
         "name": "TestAction",
         "range": [
-          36,
-          46
+          42,
+          52
         ],
         "loc": {
           "start": {
@@ -95,46 +113,10 @@
         }
       },
       "superClass": {
-        "type": "MemberExpression",
-        "computed": false,
-        "object": {
-          "type": "Identifier",
-          "name": "Frill",
-          "range": [
-            55,
-            60
-          ],
-          "loc": {
-            "start": {
-              "line": 3,
-              "column": 25
-            },
-            "end": {
-              "line": 3,
-              "column": 30
-            }
-          }
-        },
-        "property": {
-          "type": "Identifier",
-          "name": "Action",
-          "range": [
-            61,
-            67
-          ],
-          "loc": {
-            "start": {
-              "line": 3,
-              "column": 31
-            },
-            "end": {
-              "line": 3,
-              "column": 37
-            }
-          }
-        },
+        "type": "Identifier",
+        "name": "Action",
         "range": [
-          55,
+          61,
           67
         ],
         "loc": {
@@ -144,7 +126,7 @@
           },
           "end": {
             "line": 3,
-            "column": 37
+            "column": 31
           }
         }
       },
@@ -939,7 +921,7 @@
                         {
                           "type": "Literal",
                           "value": "COUNT_UP",
-                          "raw": "\"COUNT_UP\"",
+                          "raw": "'COUNT_UP'",
                           "range": [
                             320,
                             330
@@ -1164,7 +1146,7 @@
                         {
                           "type": "Literal",
                           "value": "COUNT_UP_BY",
-                          "raw": "\"COUNT_UP_BY\"",
+                          "raw": "'COUNT_UP_BY'",
                           "range": [
                             377,
                             390
@@ -1323,7 +1305,7 @@
         "loc": {
           "start": {
             "line": 3,
-            "column": 38
+            "column": 32
           },
           "end": {
             "line": 20,
@@ -1332,7 +1314,7 @@
         }
       },
       "range": [
-        30,
+        36,
         423
       ],
       "loc": {
@@ -1413,8 +1395,8 @@
           "type": "Identifier",
           "name": "TestAction",
           "range": [
-            36,
-            46
+            42,
+            52
           ],
           "loc": {
             "start": {
@@ -1428,46 +1410,10 @@
           }
         },
         "superClass": {
-          "type": "MemberExpression",
-          "computed": false,
-          "object": {
-            "type": "Identifier",
-            "name": "Frill",
-            "range": [
-              55,
-              60
-            ],
-            "loc": {
-              "start": {
-                "line": 3,
-                "column": 25
-              },
-              "end": {
-                "line": 3,
-                "column": 30
-              }
-            }
-          },
-          "property": {
-            "type": "Identifier",
-            "name": "Action",
-            "range": [
-              61,
-              67
-            ],
-            "loc": {
-              "start": {
-                "line": 3,
-                "column": 31
-              },
-              "end": {
-                "line": 3,
-                "column": 37
-              }
-            }
-          },
+          "type": "Identifier",
+          "name": "Action",
           "range": [
-            55,
+            61,
             67
           ],
           "loc": {
@@ -1477,7 +1423,7 @@
             },
             "end": {
               "line": 3,
-              "column": 37
+              "column": 31
             }
           }
         },
@@ -2272,7 +2218,7 @@
                           {
                             "type": "Literal",
                             "value": "COUNT_UP",
-                            "raw": "\"COUNT_UP\"",
+                            "raw": "'COUNT_UP'",
                             "range": [
                               320,
                               330
@@ -2497,7 +2443,7 @@
                           {
                             "type": "Literal",
                             "value": "COUNT_UP_BY",
-                            "raw": "\"COUNT_UP_BY\"",
+                            "raw": "'COUNT_UP_BY'",
                             "range": [
                               377,
                               390
@@ -2656,7 +2602,7 @@
           "loc": {
             "start": {
               "line": 3,
-              "column": 38
+              "column": 32
             },
             "end": {
               "line": 20,
@@ -2665,7 +2611,7 @@
           }
         },
         "range": [
-          30,
+          36,
           423
         ],
         "loc": {

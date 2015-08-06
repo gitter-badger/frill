@@ -1,0 +1,1398 @@
+{
+  "type": "Program",
+  "body": [
+    {
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
+          "type": "ImportSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "_isArray",
+            "range": [
+              19,
+              27
+            ],
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 19
+              },
+              "end": {
+                "line": 1,
+                "column": 27
+              }
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "name": "isArray",
+            "range": [
+              8,
+              15
+            ],
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 8
+              },
+              "end": {
+                "line": 1,
+                "column": 15
+              }
+            }
+          },
+          "range": [
+            8,
+            27
+          ],
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 8
+            },
+            "end": {
+              "line": 1,
+              "column": 27
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "lodash",
+        "raw": "'lodash'",
+        "range": [
+          34,
+          42
+        ],
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 34
+          },
+          "end": {
+            "line": 1,
+            "column": 42
+          }
+        }
+      },
+      "range": [
+        0,
+        43
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 43
+        }
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
+          "type": "ImportSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "_isObject",
+            "range": [
+              64,
+              73
+            ],
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 20
+              },
+              "end": {
+                "line": 2,
+                "column": 29
+              }
+            }
+          },
+          "imported": {
+            "type": "Identifier",
+            "name": "isObject",
+            "range": [
+              52,
+              60
+            ],
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 8
+              },
+              "end": {
+                "line": 2,
+                "column": 16
+              }
+            }
+          },
+          "range": [
+            52,
+            73
+          ],
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 8
+            },
+            "end": {
+              "line": 2,
+              "column": 29
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "lodash",
+        "raw": "'lodash'",
+        "range": [
+          80,
+          88
+        ],
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 36
+          },
+          "end": {
+            "line": 2,
+            "column": 44
+          }
+        }
+      },
+      "range": [
+        44,
+        89
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 45
+        }
+      },
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * @desc Prefixes route.path\n * @example\n * routePrefixer('/api', [{path: '/a'}, {path: '/b'}]);\n *\n * @param {string} prefix - A string to prefix paths\n * @param {Array|Object} routes - Collection of routes or a single route\n * @param {string} route.path - Collection of routes or a single route\n * @throws {Error} throw error when route.path doesn't exist\n * @throws {TypeError} throw error when route is not an Array\n * @return {Array}\n ",
+          "range": [
+            91,
+            537
+          ],
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 0
+            },
+            "end": {
+              "line": 15,
+              "column": 3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "ExportDefaultDeclaration",
+      "declaration": {
+        "type": "AssignmentExpression",
+        "operator": "=",
+        "left": {
+          "type": "Identifier",
+          "name": "routePrefixer",
+          "range": [
+            553,
+            566
+          ],
+          "loc": {
+            "start": {
+              "line": 16,
+              "column": 15
+            },
+            "end": {
+              "line": 16,
+              "column": 28
+            }
+          }
+        },
+        "right": {
+          "type": "ArrowFunctionExpression",
+          "id": null,
+          "params": [
+            {
+              "type": "Identifier",
+              "name": "prefix",
+              "range": [
+                570,
+                576
+              ],
+              "loc": {
+                "start": {
+                  "line": 16,
+                  "column": 32
+                },
+                "end": {
+                  "line": 16,
+                  "column": 38
+                }
+              }
+            },
+            {
+              "type": "Identifier",
+              "name": "routes",
+              "range": [
+                578,
+                584
+              ],
+              "loc": {
+                "start": {
+                  "line": 16,
+                  "column": 40
+                },
+                "end": {
+                  "line": 16,
+                  "column": 46
+                }
+              }
+            }
+          ],
+          "body": {
+            "type": "BlockStatement",
+            "body": [
+              {
+                "type": "VariableDeclaration",
+                "declarations": [
+                  {
+                    "type": "VariableDeclarator",
+                    "id": {
+                      "type": "Identifier",
+                      "name": "_routes",
+                      "range": [
+                        597,
+                        604
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 17,
+                          "column": 6
+                        },
+                        "end": {
+                          "line": 17,
+                          "column": 13
+                        }
+                      }
+                    },
+                    "init": {
+                      "type": "Identifier",
+                      "name": "routes",
+                      "range": [
+                        607,
+                        613
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 17,
+                          "column": 16
+                        },
+                        "end": {
+                          "line": 17,
+                          "column": 22
+                        }
+                      }
+                    },
+                    "range": [
+                      597,
+                      613
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 17,
+                        "column": 6
+                      },
+                      "end": {
+                        "line": 17,
+                        "column": 22
+                      }
+                    }
+                  }
+                ],
+                "kind": "let",
+                "range": [
+                  593,
+                  614
+                ],
+                "loc": {
+                  "start": {
+                    "line": 17,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 17,
+                    "column": 23
+                  }
+                }
+              },
+              {
+                "type": "IfStatement",
+                "test": {
+                  "type": "CallExpression",
+                  "callee": {
+                    "type": "Identifier",
+                    "name": "_isObject",
+                    "range": [
+                      621,
+                      630
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 18,
+                        "column": 6
+                      },
+                      "end": {
+                        "line": 18,
+                        "column": 15
+                      }
+                    }
+                  },
+                  "arguments": [
+                    {
+                      "type": "Identifier",
+                      "name": "routes",
+                      "range": [
+                        631,
+                        637
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 18,
+                          "column": 16
+                        },
+                        "end": {
+                          "line": 18,
+                          "column": 22
+                        }
+                      }
+                    }
+                  ],
+                  "range": [
+                    621,
+                    638
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 18,
+                      "column": 6
+                    },
+                    "end": {
+                      "line": 18,
+                      "column": 23
+                    }
+                  }
+                },
+                "consequent": {
+                  "type": "BlockStatement",
+                  "body": [
+                    {
+                      "type": "IfStatement",
+                      "test": {
+                        "type": "UnaryExpression",
+                        "operator": "!",
+                        "argument": {
+                          "type": "MemberExpression",
+                          "computed": false,
+                          "object": {
+                            "type": "Identifier",
+                            "name": "routes",
+                            "range": [
+                              651,
+                              657
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 19,
+                                "column": 9
+                              },
+                              "end": {
+                                "line": 19,
+                                "column": 15
+                              }
+                            }
+                          },
+                          "property": {
+                            "type": "Identifier",
+                            "name": "path",
+                            "range": [
+                              658,
+                              662
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 19,
+                                "column": 16
+                              },
+                              "end": {
+                                "line": 19,
+                                "column": 20
+                              }
+                            }
+                          },
+                          "range": [
+                            651,
+                            662
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 19,
+                              "column": 9
+                            },
+                            "end": {
+                              "line": 19,
+                              "column": 20
+                            }
+                          }
+                        },
+                        "prefix": true,
+                        "range": [
+                          650,
+                          662
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 19,
+                            "column": 8
+                          },
+                          "end": {
+                            "line": 19,
+                            "column": 20
+                          }
+                        }
+                      },
+                      "consequent": {
+                        "type": "BlockStatement",
+                        "body": [
+                          {
+                            "type": "ThrowStatement",
+                            "argument": {
+                              "type": "NewExpression",
+                              "callee": {
+                                "type": "Identifier",
+                                "name": "Error",
+                                "range": [
+                                  682,
+                                  687
+                                ],
+                                "loc": {
+                                  "start": {
+                                    "line": 20,
+                                    "column": 16
+                                  },
+                                  "end": {
+                                    "line": 20,
+                                    "column": 21
+                                  }
+                                }
+                              },
+                              "arguments": [
+                                {
+                                  "type": "Literal",
+                                  "value": "A route must have routes.path",
+                                  "raw": "'A route must have routes.path'",
+                                  "range": [
+                                    688,
+                                    719
+                                  ],
+                                  "loc": {
+                                    "start": {
+                                      "line": 20,
+                                      "column": 22
+                                    },
+                                    "end": {
+                                      "line": 20,
+                                      "column": 53
+                                    }
+                                  }
+                                }
+                              ],
+                              "range": [
+                                678,
+                                720
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 20,
+                                  "column": 12
+                                },
+                                "end": {
+                                  "line": 20,
+                                  "column": 54
+                                }
+                              }
+                            },
+                            "range": [
+                              672,
+                              721
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 20,
+                                "column": 6
+                              },
+                              "end": {
+                                "line": 20,
+                                "column": 55
+                              }
+                            }
+                          }
+                        ],
+                        "range": [
+                          664,
+                          727
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 19,
+                            "column": 22
+                          },
+                          "end": {
+                            "line": 21,
+                            "column": 5
+                          }
+                        }
+                      },
+                      "alternate": null,
+                      "range": [
+                        646,
+                        727
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 19,
+                          "column": 4
+                        },
+                        "end": {
+                          "line": 21,
+                          "column": 5
+                        }
+                      }
+                    },
+                    {
+                      "type": "ExpressionStatement",
+                      "expression": {
+                        "type": "AssignmentExpression",
+                        "operator": "=",
+                        "left": {
+                          "type": "Identifier",
+                          "name": "_routes",
+                          "range": [
+                            732,
+                            739
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 22,
+                              "column": 4
+                            },
+                            "end": {
+                              "line": 22,
+                              "column": 11
+                            }
+                          }
+                        },
+                        "right": {
+                          "type": "ArrayExpression",
+                          "elements": [
+                            {
+                              "type": "Identifier",
+                              "name": "_routes",
+                              "range": [
+                                743,
+                                750
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 22,
+                                  "column": 15
+                                },
+                                "end": {
+                                  "line": 22,
+                                  "column": 22
+                                }
+                              }
+                            }
+                          ],
+                          "range": [
+                            742,
+                            751
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 22,
+                              "column": 14
+                            },
+                            "end": {
+                              "line": 22,
+                              "column": 23
+                            }
+                          }
+                        },
+                        "range": [
+                          732,
+                          751
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 22,
+                            "column": 4
+                          },
+                          "end": {
+                            "line": 22,
+                            "column": 23
+                          }
+                        }
+                      },
+                      "range": [
+                        732,
+                        752
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 22,
+                          "column": 4
+                        },
+                        "end": {
+                          "line": 22,
+                          "column": 24
+                        }
+                      }
+                    }
+                  ],
+                  "range": [
+                    640,
+                    756
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 18,
+                      "column": 25
+                    },
+                    "end": {
+                      "line": 23,
+                      "column": 3
+                    }
+                  }
+                },
+                "alternate": null,
+                "range": [
+                  617,
+                  756
+                ],
+                "loc": {
+                  "start": {
+                    "line": 18,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 23,
+                    "column": 3
+                  }
+                }
+              },
+              {
+                "type": "IfStatement",
+                "test": {
+                  "type": "UnaryExpression",
+                  "operator": "!",
+                  "argument": {
+                    "type": "CallExpression",
+                    "callee": {
+                      "type": "Identifier",
+                      "name": "_isArray",
+                      "range": [
+                        764,
+                        772
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 24,
+                          "column": 7
+                        },
+                        "end": {
+                          "line": 24,
+                          "column": 15
+                        }
+                      }
+                    },
+                    "arguments": [
+                      {
+                        "type": "Identifier",
+                        "name": "routes",
+                        "range": [
+                          773,
+                          779
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 24,
+                            "column": 16
+                          },
+                          "end": {
+                            "line": 24,
+                            "column": 22
+                          }
+                        }
+                      }
+                    ],
+                    "range": [
+                      764,
+                      780
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 24,
+                        "column": 7
+                      },
+                      "end": {
+                        "line": 24,
+                        "column": 23
+                      }
+                    }
+                  },
+                  "prefix": true,
+                  "range": [
+                    763,
+                    780
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 24,
+                      "column": 6
+                    },
+                    "end": {
+                      "line": 24,
+                      "column": 23
+                    }
+                  }
+                },
+                "consequent": {
+                  "type": "BlockStatement",
+                  "body": [
+                    {
+                      "type": "ThrowStatement",
+                      "argument": {
+                        "type": "NewExpression",
+                        "callee": {
+                          "type": "Identifier",
+                          "name": "TypeError",
+                          "range": [
+                            798,
+                            807
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 25,
+                              "column": 14
+                            },
+                            "end": {
+                              "line": 25,
+                              "column": 23
+                            }
+                          }
+                        },
+                        "arguments": [
+                          {
+                            "type": "Literal",
+                            "value": "Unable to prefix routes. route must be an Array",
+                            "raw": "'Unable to prefix routes. route must be an Array'",
+                            "range": [
+                              808,
+                              857
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 25,
+                                "column": 24
+                              },
+                              "end": {
+                                "line": 25,
+                                "column": 73
+                              }
+                            }
+                          }
+                        ],
+                        "range": [
+                          794,
+                          858
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 25,
+                            "column": 10
+                          },
+                          "end": {
+                            "line": 25,
+                            "column": 74
+                          }
+                        }
+                      },
+                      "range": [
+                        788,
+                        859
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 25,
+                          "column": 4
+                        },
+                        "end": {
+                          "line": 25,
+                          "column": 75
+                        }
+                      }
+                    }
+                  ],
+                  "range": [
+                    782,
+                    863
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 24,
+                      "column": 25
+                    },
+                    "end": {
+                      "line": 26,
+                      "column": 3
+                    }
+                  }
+                },
+                "alternate": null,
+                "range": [
+                  759,
+                  863
+                ],
+                "loc": {
+                  "start": {
+                    "line": 24,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 26,
+                    "column": 3
+                  }
+                }
+              },
+              {
+                "type": "ReturnStatement",
+                "argument": {
+                  "type": "CallExpression",
+                  "callee": {
+                    "type": "MemberExpression",
+                    "computed": false,
+                    "object": {
+                      "type": "Identifier",
+                      "name": "routes",
+                      "range": [
+                        873,
+                        879
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 27,
+                          "column": 9
+                        },
+                        "end": {
+                          "line": 27,
+                          "column": 15
+                        }
+                      }
+                    },
+                    "property": {
+                      "type": "Identifier",
+                      "name": "map",
+                      "range": [
+                        880,
+                        883
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 27,
+                          "column": 16
+                        },
+                        "end": {
+                          "line": 27,
+                          "column": 19
+                        }
+                      }
+                    },
+                    "range": [
+                      873,
+                      883
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 27,
+                        "column": 9
+                      },
+                      "end": {
+                        "line": 27,
+                        "column": 19
+                      }
+                    }
+                  },
+                  "arguments": [
+                    {
+                      "type": "ArrowFunctionExpression",
+                      "id": null,
+                      "params": [
+                        {
+                          "type": "Identifier",
+                          "name": "route",
+                          "range": [
+                            885,
+                            890
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 27,
+                              "column": 21
+                            },
+                            "end": {
+                              "line": 27,
+                              "column": 26
+                            }
+                          }
+                        }
+                      ],
+                      "body": {
+                        "type": "BlockStatement",
+                        "body": [
+                          {
+                            "type": "ExpressionStatement",
+                            "expression": {
+                              "type": "AssignmentExpression",
+                              "operator": "=",
+                              "left": {
+                                "type": "MemberExpression",
+                                "computed": false,
+                                "object": {
+                                  "type": "Identifier",
+                                  "name": "route",
+                                  "range": [
+                                    901,
+                                    906
+                                  ],
+                                  "loc": {
+                                    "start": {
+                                      "line": 28,
+                                      "column": 4
+                                    },
+                                    "end": {
+                                      "line": 28,
+                                      "column": 9
+                                    }
+                                  }
+                                },
+                                "property": {
+                                  "type": "Identifier",
+                                  "name": "path",
+                                  "range": [
+                                    907,
+                                    911
+                                  ],
+                                  "loc": {
+                                    "start": {
+                                      "line": 28,
+                                      "column": 10
+                                    },
+                                    "end": {
+                                      "line": 28,
+                                      "column": 14
+                                    }
+                                  }
+                                },
+                                "range": [
+                                  901,
+                                  911
+                                ],
+                                "loc": {
+                                  "start": {
+                                    "line": 28,
+                                    "column": 4
+                                  },
+                                  "end": {
+                                    "line": 28,
+                                    "column": 14
+                                  }
+                                }
+                              },
+                              "right": {
+                                "type": "BinaryExpression",
+                                "operator": "+",
+                                "left": {
+                                  "type": "Identifier",
+                                  "name": "prefix",
+                                  "range": [
+                                    914,
+                                    920
+                                  ],
+                                  "loc": {
+                                    "start": {
+                                      "line": 28,
+                                      "column": 17
+                                    },
+                                    "end": {
+                                      "line": 28,
+                                      "column": 23
+                                    }
+                                  }
+                                },
+                                "right": {
+                                  "type": "MemberExpression",
+                                  "computed": false,
+                                  "object": {
+                                    "type": "Identifier",
+                                    "name": "route",
+                                    "range": [
+                                      923,
+                                      928
+                                    ],
+                                    "loc": {
+                                      "start": {
+                                        "line": 28,
+                                        "column": 26
+                                      },
+                                      "end": {
+                                        "line": 28,
+                                        "column": 31
+                                      }
+                                    }
+                                  },
+                                  "property": {
+                                    "type": "Identifier",
+                                    "name": "path",
+                                    "range": [
+                                      929,
+                                      933
+                                    ],
+                                    "loc": {
+                                      "start": {
+                                        "line": 28,
+                                        "column": 32
+                                      },
+                                      "end": {
+                                        "line": 28,
+                                        "column": 36
+                                      }
+                                    }
+                                  },
+                                  "range": [
+                                    923,
+                                    933
+                                  ],
+                                  "loc": {
+                                    "start": {
+                                      "line": 28,
+                                      "column": 26
+                                    },
+                                    "end": {
+                                      "line": 28,
+                                      "column": 36
+                                    }
+                                  }
+                                },
+                                "range": [
+                                  914,
+                                  933
+                                ],
+                                "loc": {
+                                  "start": {
+                                    "line": 28,
+                                    "column": 17
+                                  },
+                                  "end": {
+                                    "line": 28,
+                                    "column": 36
+                                  }
+                                }
+                              },
+                              "range": [
+                                901,
+                                933
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 28,
+                                  "column": 4
+                                },
+                                "end": {
+                                  "line": 28,
+                                  "column": 36
+                                }
+                              }
+                            },
+                            "range": [
+                              901,
+                              934
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 28,
+                                "column": 4
+                              },
+                              "end": {
+                                "line": 28,
+                                "column": 37
+                              }
+                            }
+                          },
+                          {
+                            "type": "ReturnStatement",
+                            "argument": {
+                              "type": "Identifier",
+                              "name": "route",
+                              "range": [
+                                946,
+                                951
+                              ],
+                              "loc": {
+                                "start": {
+                                  "line": 29,
+                                  "column": 11
+                                },
+                                "end": {
+                                  "line": 29,
+                                  "column": 16
+                                }
+                              }
+                            },
+                            "range": [
+                              939,
+                              952
+                            ],
+                            "loc": {
+                              "start": {
+                                "line": 29,
+                                "column": 4
+                              },
+                              "end": {
+                                "line": 29,
+                                "column": 17
+                              }
+                            }
+                          }
+                        ],
+                        "range": [
+                          895,
+                          956
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 27,
+                            "column": 31
+                          },
+                          "end": {
+                            "line": 30,
+                            "column": 3
+                          }
+                        }
+                      },
+                      "generator": false,
+                      "expression": false,
+                      "range": [
+                        884,
+                        956
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 27,
+                          "column": 20
+                        },
+                        "end": {
+                          "line": 30,
+                          "column": 3
+                        }
+                      }
+                    }
+                  ],
+                  "range": [
+                    873,
+                    957
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 27,
+                      "column": 9
+                    },
+                    "end": {
+                      "line": 30,
+                      "column": 4
+                    }
+                  }
+                },
+                "range": [
+                  866,
+                  958
+                ],
+                "loc": {
+                  "start": {
+                    "line": 27,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 30,
+                    "column": 5
+                  }
+                }
+              }
+            ],
+            "range": [
+              589,
+              960
+            ],
+            "loc": {
+              "start": {
+                "line": 16,
+                "column": 51
+              },
+              "end": {
+                "line": 31,
+                "column": 1
+              }
+            }
+          },
+          "generator": false,
+          "expression": false,
+          "range": [
+            569,
+            960
+          ],
+          "loc": {
+            "start": {
+              "line": 16,
+              "column": 31
+            },
+            "end": {
+              "line": 31,
+              "column": 1
+            }
+          }
+        },
+        "range": [
+          553,
+          960
+        ],
+        "loc": {
+          "start": {
+            "line": 16,
+            "column": 15
+          },
+          "end": {
+            "line": 31,
+            "column": 1
+          }
+        },
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * @desc Prefixes route.path\n * @example\n * routePrefixer('/api', [{path: '/a'}, {path: '/b'}]);\n *\n * @param {string} prefix - A string to prefix paths\n * @param {Array|Object} routes - Collection of routes or a single route\n * @param {string} route.path - Collection of routes or a single route\n * @throws {Error} throw error when route.path doesn't exist\n * @throws {TypeError} throw error when route is not an Array\n * @return {Array}\n ",
+            "range": [
+              91,
+              537
+            ],
+            "loc": {
+              "start": {
+                "line": 4,
+                "column": 0
+              },
+              "end": {
+                "line": 15,
+                "column": 3
+              }
+            }
+          }
+        ],
+        "trailingComments": []
+      },
+      "range": [
+        538,
+        961
+      ],
+      "loc": {
+        "start": {
+          "line": 16,
+          "column": 0
+        },
+        "end": {
+          "line": 31,
+          "column": 2
+        }
+      },
+      "leadingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * @desc Prefixes route.path\n * @example\n * routePrefixer('/api', [{path: '/a'}, {path: '/b'}]);\n *\n * @param {string} prefix - A string to prefix paths\n * @param {Array|Object} routes - Collection of routes or a single route\n * @param {string} route.path - Collection of routes or a single route\n * @throws {Error} throw error when route.path doesn't exist\n * @throws {TypeError} throw error when route is not an Array\n * @return {Array}\n ",
+          "range": [
+            91,
+            537
+          ],
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 0
+            },
+            "end": {
+              "line": 15,
+              "column": 3
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "sourceType": "module",
+  "range": [
+    0,
+    961
+  ],
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 31,
+      "column": 2
+    }
+  },
+  "comments": [
+    {
+      "type": "Block",
+      "value": "*\n * @desc Prefixes route.path\n * @example\n * routePrefixer('/api', [{path: '/a'}, {path: '/b'}]);\n *\n * @param {string} prefix - A string to prefix paths\n * @param {Array|Object} routes - Collection of routes or a single route\n * @param {string} route.path - Collection of routes or a single route\n * @throws {Error} throw error when route.path doesn't exist\n * @throws {TypeError} throw error when route is not an Array\n * @return {Array}\n ",
+      "range": [
+        91,
+        537
+      ],
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 0
+        },
+        "end": {
+          "line": 15,
+          "column": 3
+        }
+      }
+    }
+  ]
+}

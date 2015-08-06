@@ -9,7 +9,8 @@ class TestAction extends Action {
   }
 
   countUp() {
-    this.request.prefix.get('/v1/hello', (err, ret) => console.log(ret.text));
+    console.log('counting up');
+    console.log(this.frill.store('Auth').getToken());
     this.dispatch('COUNT_UP');
   }
 

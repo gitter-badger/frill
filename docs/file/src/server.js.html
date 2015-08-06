@@ -31,11 +31,7 @@
   <h2>Class</h2>
   <ul>
     
-  <li data-ice="classDoc"><span><a href="class/src/core/Action.js~Action.html">Action</a></span></li>
-<li data-ice="classDoc"><span><a href="class/src/core/Context.js~Context.html">Context</a></span></li>
-<li data-ice="classDoc"><span><a href="class/src/core/Dispatcher.js~Dispatcher.html">Dispatcher</a></span></li>
-<li data-ice="classDoc"><span><a href="class/src/core/Store.js~Store.html">Store</a></span></li>
-<li data-ice="classDoc"><span><a href="class/src/actions/Test.js~TestAction.html">TestAction</a></span></li>
+  <li data-ice="classDoc"><span><a href="class/src/actions/Test.js~TestAction.html">TestAction</a></span></li>
 <li data-ice="classDoc"><span><a href="class/src/stores/Test.js~TestStore.html">TestStore</a></span></li>
 </ul>
 </div>
@@ -48,10 +44,8 @@
   <h2><a href="variable/">Variable</a></h2>
   <ul>
     
-  <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-action">action</a></span></li>
-<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-apiPlugin">apiPlugin</a></span></li>
-<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-context">context</a></span></li>
-<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-store">store</a></span></li>
+  <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-api">api</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-routePrefixer">routePrefixer</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-testAction">testAction</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-testStore">testStore</a></span></li>
 </ul>
@@ -67,12 +61,14 @@
 
 import Frill from &apos;./bootstrap&apos;;
 import pack from &apos;../package&apos;;
-import apiPlugin from &apos;./api&apos;;
+import api from &apos;./api&apos;;
 import routes from &apos;./routes&apos;;
 import Hapi from &apos;hapi&apos;;
 import React from &apos;react&apos;;
 import Router from &apos;react-router&apos;;
 import Redis from &apos;catbox-redis&apos;;
+import Session from &apos;yar&apos;;
+import Authentication from &apos;bell&apos;;
 import Jade from &apos;jade&apos;;
 import good from &apos;good&apos;;
 import goodConsole from &apos;good-console&apos;;
@@ -93,16 +89,42 @@ const server = new Hapi.Server({
     engine: Redis,
     host: &apos;127.0.0.1&apos;,
     // partition: &apos;cache&apos;,
-  }]
+  }],
 });
 server.connection({port: SERVER_PORT});
+
+/**
+ * Configure sessions
+ */
+server.register({
+  register: Session,
+  options: {
+    maxCookieSize: 0,
+    cookieOptions: {
+      password: &apos;SOME_PASSWORD&apos;, // @TODO send options to a config
+      isSecure: false, // @TODO cannot do this at production
+    },
+  },
+}, (err) =&gt; {
+  if (err) server.log([&apos;error&apos;], `session load error: ${err}`);
+});
+
+/**
+ * Configure authentication strategies
+ */
+server.register([
+  Authentication,
+], (err) =&gt; {
+  if (err) server.log([&apos;error&apos;], `authentication load error: ${err}`);
+});
+
 
 /**
  * Configure hapi views
  */
 server.views({
   engines: {
-    jade: Jade
+    jade: Jade,
   },
   relativeTo: __dirname,
   path: &apos;templates&apos;,
@@ -112,28 +134,22 @@ server.views({
  * Attempt to serve static files
  */
 server.route({
-	method:  &apos;*&apos;,
-	path:    &apos;/{params*}&apos;,
-	handler: (request, reply) =&gt; {
-		reply.file(&apos;public&apos; + request.path);
-	}
+  method: &apos;*&apos;,
+  path: &apos;/{params*}&apos;,
+  handler: (request, reply) =&gt; {
+    reply.file(&apos;public&apos; + request.path);
+  },
 });
 
 /**
  * Mount all the APIs to hapi
  */
-server.register({
-  register: apiPlugin,
-}, {
-  routes: {
-    prefix: &apos;/api&apos;,
-  }
-}, (err) =&gt; {
-  if (err) server.log([&apos;error&apos;], `API plugin load error: ${err}`);
-});
+api(server);
+
 
 /**
  * Configure hapi-swagger for API documentation.
+ * TODO: disable at production
  */
 const swaggerOptions = {
   apiVersion: pack.version,
@@ -142,7 +158,7 @@ const swaggerOptions = {
 
 server.register({
   register: swagger,
-  options: swaggerOptions
+  options: swaggerOptions,
 }, (err) =&gt; {
   if (err) server.log([&apos;error&apos;], `hapi-swagger load error: ${err}`);
 });
@@ -150,14 +166,13 @@ server.register({
 /**
  * Catch requests to fire React Router
  */
-
 // create context
 const frillContext = Frill.attach(Frill._Stores, Frill._Actions);
 
 server.ext(&apos;onPreResponse&apos;, (request, reply) =&gt; {
-	if (!_isUndefined(request.response.statusCode)) {
-		return reply.continue();
-	}
+  if (!_isUndefined(request.response.statusCode)) {
+    return reply.continue();
+  }
   // fire React Router
   server.log([&apos;info&apos;], `Serving down to react-router with ${request.path}`);
   Router.run(routes(), request.path, (Handler, state) =&gt; {
@@ -168,11 +183,16 @@ server.ext(&apos;onPreResponse&apos;, (request, reply) =&gt; {
     server.log([&apos;verbose&apos;], markup);
     reply.view(&apos;default&apos;, {
       initialData: JSON.stringify(state),
-      markup: markup
+      markup: markup,
     });
   });
 });
 
+
+/**
+ * Configure good (for logging hapi)
+ * TODO: disable at production
+ */
 // define which log level outputs which tags
 const logLevels = {
   silent: {},
@@ -215,29 +235,28 @@ if (argv.verbose) {
   logEvents = logLevels.info;
 }
 
-/**
- * Configure good (for logging hapi)
- */
 const goodOptions = {
   reporters: [{
-      reporter: goodConsole,
-      events: logEvents,
-      config: {
-        format: &apos;[[]HH:mm:ss[]][[frill]]&apos;,
-        utc: false
-      }
+    reporter: goodConsole,
+    events: logEvents,
+    config: {
+      format: &apos;[[]HH:mm:ss[]][[frill]]&apos;,
+      utc: false,
+    },
   }],
 };
 
 server.register({
   register: good,
-  options: goodOptions
+  options: goodOptions,
 }, (err) =&gt; {
   if (err) {
     console.error(err);
   } else {
     // initialize server
-    server.start(() =&gt; server.log([&apos;info&apos;], `Server started at ${server.info.uri}`));
+    server.start(() =&gt; {
+      server.log([&apos;info&apos;], `Server started at ${server.info.uri}`);
+    });
   }
 });
 </code></pre>
