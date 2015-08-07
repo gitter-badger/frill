@@ -7,8 +7,12 @@ class AuthAction extends Action {
     this.use('request', {prefix: '/api'});
   }
 
-  setToken(token) {
-    this.dispatch('AUTH_SET_TOKEN', token);
+  login(token) {
+    this.dispatch('AUTH_LOGIN', token);
+  }
+
+  logout() {
+    this.dispatch('AUTH_LOGOUT');
   }
 }
 

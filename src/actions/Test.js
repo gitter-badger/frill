@@ -11,7 +11,7 @@ class TestAction extends Action {
 
   countUp() {
     console.log('counting up');
-    console.log(this.frill.store('Auth').getToken());
+    console.log(this.frill.store('Auth'));
     this.dispatch('COUNT_UP');
   }
 

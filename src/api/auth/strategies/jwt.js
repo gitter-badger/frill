@@ -7,9 +7,8 @@ import accounts from '../../../helpers/testUserData';
 const validator = (decoded, request, callback) => {
   // TODO: search from session
   // construct search query
-
   const query = {
-    id: parseInt(decoded.userId, 10),
+    id: parseInt(decoded.user.id, 10),
   };
   const user = _where(accounts, query);
   if (user.length === 0) {

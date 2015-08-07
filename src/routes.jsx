@@ -4,10 +4,12 @@ import C from './components';
 
 export default () => {
   return (
-    <Route name="app" path="/" handler={C.App}>
-      <DefaultRoute name="top" handler={C.Top} />
-      <Route name="login" handler={C.Login} />
-      <NotFoundRoute name="NotFound" handler={C.NotFound}/>
+    <Route handler={C.Page}>
+      <Route name="app" path="/" handler={C.App}>
+        <DefaultRoute name="top" handler={C.Top} />
+        <Route name="login" handler={C.Login} />
+      </Route>
+      <NotFoundRoute name="Error" handler={C.Error}/>
     </Route>
   );
 };
