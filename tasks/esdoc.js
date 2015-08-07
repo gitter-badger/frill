@@ -15,8 +15,9 @@ export default (gulp, $, argv, path) => {
       .pipe($.esdoc({
         destination: './docs',
         package: './package.json',
+        index: './README.md',
         title: 'FrillJS',
-        // includes: ['\\.(js|es6)$'],
+        includes: ['\\.(js|jsx)$'],
         // excludes: ['\\.config\\.(js|es6)$'],
         // access: ['public', 'protected'],
         // autoPrivate: true,
@@ -24,8 +25,6 @@ export default (gulp, $, argv, path) => {
         // undocumentIdentifier: true,
         // builtinExternal: true,
         // importPathPrefix: '',
-        // index: './README.md',
-        // package: './package.json',
         // coverage: true,
         // test: {
         //   type: 'mocha',

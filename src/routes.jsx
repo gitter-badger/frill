@@ -2,7 +2,7 @@ import React from 'react';
 import {Route, DefaultRoute, NotFoundRoute} from 'react-router';
 import C from './components';
 
-export default () => {
+const componentRoutes = () => {
   return (
     <Route handler={C.Page}>
       <Route name="app" path="/" handler={C.App}>
@@ -13,3 +13,5 @@ export default () => {
     </Route>
   );
 };
+
+export default componentRoutes;
