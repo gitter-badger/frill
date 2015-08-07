@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default class ScrollBlock extends React.Component {
+class ScrollBlock extends React.Component {
   constructor() {
     super();
     this.name = 'ScrollBlock';
@@ -64,3 +64,5 @@ ScrollBlock.propTypes = {
   fetchData: React.PropTypes.func,
   itemsCount: React.PropTypes.number,
 };
+
+export default ScrollBlock;

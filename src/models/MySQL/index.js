@@ -1,5 +1,7 @@
 import Users from './Users';
 
-export default {
+const MySQLModels = {
   Users,
 };
+
+export default MySQLModels;

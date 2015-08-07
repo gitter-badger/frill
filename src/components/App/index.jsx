@@ -1,7 +1,7 @@
 import React from 'react';
 import {Link, RouteHandler} from 'react-router';
 
-export default class App extends React.Component {
+class App extends React.Component {
 
   constructor() {
     super();
@@ -33,3 +33,5 @@ export default class App extends React.Component {
     );
   }
 }
+
+export default App;

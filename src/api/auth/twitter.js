@@ -1,6 +1,6 @@
 import {authHandler} from './authHandlers';
 
-export default [{
+const twitterAuthRoutes = [{
   method: ['GET', 'POST'],
   path: '/twitter/login',
   config: {
@@ -18,3 +18,5 @@ export default [{
   },
   handler: authHandler,
 }];
+
+export default twitterAuthRoutes;

@@ -14,6 +14,7 @@ export default (gulp, $, argv, path) => {
     return gulp.src(['./src'])
       .pipe($.esdoc({
         destination: './docs',
+        package: './package.json',
         title: 'FrillJS',
         // includes: ['\\.(js|es6)$'],
         // excludes: ['\\.config\\.(js|es6)$'],

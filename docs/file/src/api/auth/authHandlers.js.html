@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <base data-ice="baseUrl" href="../../../../">
+  <title data-ice="title">src/api/auth/authHandlers.js | FrillJS API Document</title>
+  <link type="text/css" rel="stylesheet" href="css/style.css">
+  <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
+  <script src="script/prettify/prettify.js"></script>
+  
+  
+</head>
+<body class="layout-container">
+
+<header>
+  <a href="./">Home</a>
+  <a href="identifiers.html">Identifier</a>
+  <a href="source.html">Source</a>
+  
+  <a data-ice="repoURL" href="https://github.com/nanopx/frill" class="repo-url-github">Repository</a>
+  <div class="search-box">
+  <span>
+    <img src="./image/search.png">
+    <span class="search-input-edge"></span><input class="search-input"><span class="search-input-edge"></span>
+  </span>
+    <ul class="search-result"></ul>
+  </div>
+</header>
+
+<nav class="navigation" data-ice="nav"><div data-ice="classWrap">
+  <h2>Class</h2>
+  <ul>
+    
+  <li data-ice="classDoc"><span><a href="class/src/actions/Auth.js~AuthAction.html">AuthAction</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/stores/Auth.js~AuthStore.html">AuthStore</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/actions/Test.js~TestAction.html">TestAction</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/stores/Test.js~TestStore.html">TestStore</a></span></li>
+</ul>
+</div>
+
+
+
+
+
+<div data-ice="variableWrap">
+  <h2><a href="variable/">Variable</a></h2>
+  <ul>
+    
+  <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-Actions">Actions</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-DynamoDBModels">DynamoDBModels</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-Models">Models</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-MySQLModels">MySQLModels</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-Posts">Posts</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-Stores">Stores</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-Strategies">Strategies</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-Users">Users</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-api">api</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-apiV1">apiV1</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-apiV1Hello">apiV1Hello</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-authAction">authAction</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-authHandlers">authHandlers</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-authRoutes">authRoutes</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-authStore">authStore</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-facebookStrategy">facebookStrategy</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-githubStrategy">githubStrategy</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-googleStrategy">googleStrategy</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-helpers">helpers</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-jwtStrategy">jwtStrategy</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-localAuthRoutes">localAuthRoutes</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-localStrategy">localStrategy</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-routePrefixer">routePrefixer</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-routes">routes</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-testAction">testAction</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-testStore">testStore</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-twitterAuthRoutes">twitterAuthRoutes</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-twitterStrategy">twitterStrategy</a></span></li>
+</ul>
+</div>
+
+
+
+
+</nav>
+
+<div class="content" data-ice="content"><h1 data-ice="title">src/api/auth/authHandlers.js</h1>
+<pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">import JWT from &apos;jsonwebtoken&apos;;
+import Boom from &apos;boom&apos;;
+import aguid from &apos;aguid&apos;;
+// Test data
+import {where as _where} from &apos;lodash&apos;;
+import accounts from &apos;../../helpers/testUserData&apos;;
+
+
+const authHandler = (request, reply) =&gt; {
+  // console.log(request.auth);
+  // console.log(request.query);
+
+  // reply error when authentication fails
+  if (!request.auth.isAuthenticated) {
+    return reply(
+      Boom.unauthorized(&apos;Authentication failed due to: &apos; +
+        request.auth.error.message)
+    );
+  }
+
+  const query = {
+    id: parseInt(request.auth.credentials.profile.id, 10),
+    strategy: request.auth.strategy,
+  };
+
+  const user = _where(accounts, query);
+  // console.log(user);
+
+  if (user.length === 0) {
+    console.log(&apos;needs registration&apos;);
+  }
+
+  delete user[0].password;
+
+  // TODO create and set JWT into session
+  const session = {
+    valid: true,
+    id: aguid(), // a random session id
+    user: user[0],
+    exp: new Date().getTime() + 30 * 60 * 1000, // expires in 30 minutes time
+  };
+
+  // // create the session in Redis
+  // redisClient.set(session.id, JSON.stringify(session));
+  request.session.set(session.id, session);
+  // sign the session as a JWT
+  const token = JWT.sign(session, &apos;NeverShareYourSecret&apos;);
+  // console.log(token);
+  request.session.flash(&apos;token&apos;, token);
+  return reply.redirect(request.query.ref || &apos;/&apos;);
+};
+
+const loginHandler = () =&gt; {
+
+};
+
+const registrationHandler = () =&gt; {
+
+};
+
+const authHandlers = {
+  authHandler,
+  loginHandler,
+  registrationHandler,
+};
+
+export default authHandlers;
+</code></pre>
+</div>
+
+<footer class="footer">
+  Generated by <a href="https://esdoc.org">ESDoc<span data-ice="esdocVersion">(0.2.0)</span></a>
+</footer>
+
+<script src="script/search_index.js"></script>
+<script src="script/search.js"></script>
+<script src="script/pretty-print.js"></script>
+<script src="script/inherited-summary.js"></script>
+<script src="script/test-summary.js"></script>
+<script src="script/inner-link.js"></script>
+<script src="script/patch-for-local.js"></script>
+</body>
+</html>

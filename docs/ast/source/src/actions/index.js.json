@@ -8,7 +8,7 @@
           "type": "ImportDefaultSpecifier",
           "local": {
             "type": "Identifier",
-            "name": "Test",
+            "name": "Auth",
             "range": [
               7,
               11
@@ -42,8 +42,8 @@
       ],
       "source": {
         "type": "Literal",
-        "value": "./Test",
-        "raw": "'./Test'",
+        "value": "./Auth",
+        "raw": "'./Auth'",
         "range": [
           17,
           25
@@ -75,97 +75,511 @@
       }
     },
     {
-      "type": "ExportDefaultDeclaration",
-      "declaration": {
-        "type": "ObjectExpression",
-        "properties": [
-          {
-            "type": "Property",
-            "key": {
-              "type": "Identifier",
-              "name": "Test",
-              "range": [
-                47,
-                51
-              ],
-              "loc": {
-                "start": {
-                  "line": 4,
-                  "column": 2
-                },
-                "end": {
-                  "line": 4,
-                  "column": 6
-                }
-              }
-            },
-            "value": {
-              "type": "Identifier",
-              "name": "Test",
-              "range": [
-                53,
-                57
-              ],
-              "loc": {
-                "start": {
-                  "line": 4,
-                  "column": 8
-                },
-                "end": {
-                  "line": 4,
-                  "column": 12
-                }
-              }
-            },
-            "kind": "init",
-            "method": false,
-            "shorthand": false,
-            "computed": false,
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "Test",
             "range": [
-              47,
-              57
+              34,
+              38
+            ],
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 7
+              },
+              "end": {
+                "line": 2,
+                "column": 11
+              }
+            }
+          },
+          "range": [
+            34,
+            38
+          ],
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 7
+            },
+            "end": {
+              "line": 2,
+              "column": 11
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./Test",
+        "raw": "'./Test'",
+        "range": [
+          44,
+          52
+        ],
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 17
+          },
+          "end": {
+            "line": 2,
+            "column": 25
+          }
+        }
+      },
+      "range": [
+        27,
+        53
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 26
+        }
+      }
+    },
+    {
+      "type": "Identifier",
+      "declarations": [
+        {
+          "type": "VariableDeclarator",
+          "id": {
+            "type": "Identifier",
+            "name": "Actions",
+            "range": [
+              61,
+              68
             ],
             "loc": {
               "start": {
                 "line": 4,
-                "column": 2
+                "column": 6
               },
               "end": {
                 "line": 4,
-                "column": 12
+                "column": 13
+              }
+            }
+          },
+          "init": {
+            "type": "ObjectExpression",
+            "properties": [
+              {
+                "type": "Property",
+                "key": {
+                  "type": "Identifier",
+                  "name": "Auth",
+                  "range": [
+                    75,
+                    79
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 5,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 5,
+                      "column": 6
+                    }
+                  }
+                },
+                "value": {
+                  "type": "Identifier",
+                  "name": "Auth",
+                  "range": [
+                    81,
+                    85
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 5,
+                      "column": 8
+                    },
+                    "end": {
+                      "line": 5,
+                      "column": 12
+                    }
+                  }
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "computed": false,
+                "range": [
+                  75,
+                  85
+                ],
+                "loc": {
+                  "start": {
+                    "line": 5,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 5,
+                    "column": 12
+                  }
+                }
+              },
+              {
+                "type": "Property",
+                "key": {
+                  "type": "Identifier",
+                  "name": "Test",
+                  "range": [
+                    89,
+                    93
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 6,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 6,
+                      "column": 6
+                    }
+                  }
+                },
+                "value": {
+                  "type": "Identifier",
+                  "name": "Test",
+                  "range": [
+                    95,
+                    99
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 6,
+                      "column": 8
+                    },
+                    "end": {
+                      "line": 6,
+                      "column": 12
+                    }
+                  }
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "computed": false,
+                "range": [
+                  89,
+                  99
+                ],
+                "loc": {
+                  "start": {
+                    "line": 6,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 6,
+                    "column": 12
+                  }
+                }
+              }
+            ],
+            "range": [
+              71,
+              102
+            ],
+            "loc": {
+              "start": {
+                "line": 4,
+                "column": 16
+              },
+              "end": {
+                "line": 7,
+                "column": 1
+              }
+            }
+          },
+          "range": [
+            61,
+            102
+          ],
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 6
+            },
+            "end": {
+              "line": 7,
+              "column": 1
+            }
+          }
+        }
+      ],
+      "kind": "const",
+      "range": [
+        55,
+        103
+      ],
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 0
+        },
+        "end": {
+          "line": 7,
+          "column": 2
+        }
+      },
+      "name": "_",
+      "leadingComments": [],
+      "trailingComments": []
+    },
+    {
+      "type": "Identifier",
+      "declaration": {
+        "type": "Identifier",
+        "name": "Actions",
+        "range": [
+          120,
+          127
+        ],
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 15
+          },
+          "end": {
+            "line": 9,
+            "column": 22
+          }
+        }
+      },
+      "range": [
+        105,
+        128
+      ],
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 0
+        },
+        "end": {
+          "line": 9,
+          "column": 23
+        }
+      },
+      "name": "_",
+      "leadingComments": [],
+      "trailingComments": []
+    },
+    {
+      "type": "ExportDefaultDeclaration",
+      "declaration": {
+        "type": "VariableDeclaration",
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "id": {
+              "type": "Identifier",
+              "name": "Actions",
+              "range": [
+                61,
+                68
+              ],
+              "loc": {
+                "start": {
+                  "line": 4,
+                  "column": 6
+                },
+                "end": {
+                  "line": 4,
+                  "column": 13
+                }
+              }
+            },
+            "init": {
+              "type": "ObjectExpression",
+              "properties": [
+                {
+                  "type": "Property",
+                  "key": {
+                    "type": "Identifier",
+                    "name": "Auth",
+                    "range": [
+                      75,
+                      79
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 5,
+                        "column": 2
+                      },
+                      "end": {
+                        "line": 5,
+                        "column": 6
+                      }
+                    }
+                  },
+                  "value": {
+                    "type": "Identifier",
+                    "name": "Auth",
+                    "range": [
+                      81,
+                      85
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 5,
+                        "column": 8
+                      },
+                      "end": {
+                        "line": 5,
+                        "column": 12
+                      }
+                    }
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": false,
+                  "computed": false,
+                  "range": [
+                    75,
+                    85
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 5,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 5,
+                      "column": 12
+                    }
+                  }
+                },
+                {
+                  "type": "Property",
+                  "key": {
+                    "type": "Identifier",
+                    "name": "Test",
+                    "range": [
+                      89,
+                      93
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 6,
+                        "column": 2
+                      },
+                      "end": {
+                        "line": 6,
+                        "column": 6
+                      }
+                    }
+                  },
+                  "value": {
+                    "type": "Identifier",
+                    "name": "Test",
+                    "range": [
+                      95,
+                      99
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 6,
+                        "column": 8
+                      },
+                      "end": {
+                        "line": 6,
+                        "column": 12
+                      }
+                    }
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": false,
+                  "computed": false,
+                  "range": [
+                    89,
+                    99
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 6,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 6,
+                      "column": 12
+                    }
+                  }
+                }
+              ],
+              "range": [
+                71,
+                102
+              ],
+              "loc": {
+                "start": {
+                  "line": 4,
+                  "column": 16
+                },
+                "end": {
+                  "line": 7,
+                  "column": 1
+                }
+              }
+            },
+            "range": [
+              61,
+              102
+            ],
+            "loc": {
+              "start": {
+                "line": 4,
+                "column": 6
+              },
+              "end": {
+                "line": 7,
+                "column": 1
               }
             }
           }
         ],
+        "kind": "const",
         "range": [
-          43,
-          60
+          55,
+          103
         ],
         "loc": {
           "start": {
-            "line": 3,
-            "column": 15
+            "line": 4,
+            "column": 0
           },
           "end": {
-            "line": 5,
-            "column": 1
+            "line": 7,
+            "column": 2
           }
         },
         "leadingComments": [],
         "trailingComments": []
       },
       "range": [
-        28,
-        61
+        105,
+        128
       ],
       "loc": {
         "start": {
-          "line": 3,
+          "line": 9,
           "column": 0
         },
         "end": {
-          "line": 5,
-          "column": 2
+          "line": 9,
+          "column": 23
         }
       }
     }
@@ -173,7 +587,7 @@
   "sourceType": "module",
   "range": [
     0,
-    61
+    128
   ],
   "loc": {
     "start": {
@@ -181,8 +595,8 @@
       "column": 0
     },
     "end": {
-      "line": 5,
-      "column": 2
+      "line": 9,
+      "column": 23
     }
   },
   "comments": []

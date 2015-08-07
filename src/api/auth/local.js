@@ -1,7 +1,7 @@
 import Joi from 'joi';
 import {authHandler} from './authHandlers';
 
-export default [{
+const localAuthRoutes = [{
   method: ['POST'],
   path: '/local/login',
   config: {
@@ -28,3 +28,5 @@ export default [{
   },
   handler: authHandler,
 }];
+
+export default localAuthRoutes;

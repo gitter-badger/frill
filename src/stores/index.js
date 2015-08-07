@@ -1,7 +1,9 @@
 import Auth from './Auth';
 import Test from './Test';
 
-export default {
+const Stores = {
   Auth: Auth,
   Test: Test,
 };
+
+export default Stores;

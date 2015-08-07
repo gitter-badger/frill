@@ -1,0 +1,322 @@
+{
+  "type": "Program",
+  "body": [
+    {
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "Sequelize",
+            "range": [
+              7,
+              16
+            ],
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 7
+              },
+              "end": {
+                "line": 1,
+                "column": 16
+              }
+            }
+          },
+          "range": [
+            7,
+            16
+          ],
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 7
+            },
+            "end": {
+              "line": 1,
+              "column": 16
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "sequelize",
+        "raw": "'sequelize'",
+        "range": [
+          22,
+          33
+        ],
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 22
+          },
+          "end": {
+            "line": 1,
+            "column": 33
+          }
+        }
+      },
+      "range": [
+        0,
+        34
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 34
+        }
+      },
+      "trailingComments": [
+        {
+          "type": "Line",
+          "value": " setup sequelize",
+          "range": [
+            36,
+            54
+          ],
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 0
+            },
+            "end": {
+              "line": 3,
+              "column": 18
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "Identifier",
+      "declarations": [
+        {
+          "type": "VariableDeclarator",
+          "id": {
+            "type": "Identifier",
+            "name": "sequelize",
+            "range": [
+              61,
+              70
+            ],
+            "loc": {
+              "start": {
+                "line": 4,
+                "column": 6
+              },
+              "end": {
+                "line": 4,
+                "column": 15
+              }
+            }
+          },
+          "init": {
+            "type": "NewExpression",
+            "callee": {
+              "type": "Identifier",
+              "name": "Sequelize",
+              "range": [
+                77,
+                86
+              ],
+              "loc": {
+                "start": {
+                  "line": 4,
+                  "column": 22
+                },
+                "end": {
+                  "line": 4,
+                  "column": 31
+                }
+              }
+            },
+            "arguments": [
+              {
+                "type": "Literal",
+                "value": "database",
+                "raw": "'database'",
+                "range": [
+                  87,
+                  97
+                ],
+                "loc": {
+                  "start": {
+                    "line": 4,
+                    "column": 32
+                  },
+                  "end": {
+                    "line": 4,
+                    "column": 42
+                  }
+                }
+              },
+              {
+                "type": "Literal",
+                "value": "username",
+                "raw": "'username'",
+                "range": [
+                  99,
+                  109
+                ],
+                "loc": {
+                  "start": {
+                    "line": 4,
+                    "column": 44
+                  },
+                  "end": {
+                    "line": 4,
+                    "column": 54
+                  }
+                }
+              },
+              {
+                "type": "Literal",
+                "value": "password",
+                "raw": "'password'",
+                "range": [
+                  111,
+                  121
+                ],
+                "loc": {
+                  "start": {
+                    "line": 4,
+                    "column": 56
+                  },
+                  "end": {
+                    "line": 4,
+                    "column": 66
+                  }
+                }
+              }
+            ],
+            "range": [
+              73,
+              122
+            ],
+            "loc": {
+              "start": {
+                "line": 4,
+                "column": 18
+              },
+              "end": {
+                "line": 4,
+                "column": 67
+              }
+            }
+          },
+          "range": [
+            61,
+            122
+          ],
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 6
+            },
+            "end": {
+              "line": 4,
+              "column": 67
+            }
+          }
+        }
+      ],
+      "kind": "const",
+      "range": [
+        55,
+        123
+      ],
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 0
+        },
+        "end": {
+          "line": 4,
+          "column": 68
+        }
+      },
+      "leadingComments": [],
+      "name": "_",
+      "trailingComments": []
+    },
+    {
+      "type": "ExportDefaultDeclaration",
+      "declaration": {
+        "type": "Identifier",
+        "name": "sequelize",
+        "range": [
+          140,
+          149
+        ],
+        "loc": {
+          "start": {
+            "line": 6,
+            "column": 15
+          },
+          "end": {
+            "line": 6,
+            "column": 24
+          }
+        },
+        "leadingComments": [],
+        "trailingComments": []
+      },
+      "range": [
+        125,
+        150
+      ],
+      "loc": {
+        "start": {
+          "line": 6,
+          "column": 0
+        },
+        "end": {
+          "line": 6,
+          "column": 25
+        }
+      }
+    }
+  ],
+  "sourceType": "module",
+  "range": [
+    0,
+    150
+  ],
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 6,
+      "column": 25
+    }
+  },
+  "comments": [
+    {
+      "type": "Line",
+      "value": " setup sequelize",
+      "range": [
+        36,
+        54
+      ],
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 0
+        },
+        "end": {
+          "line": 3,
+          "column": 18
+        }
+      }
+    }
+  ]
+}

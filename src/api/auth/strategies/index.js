@@ -5,7 +5,7 @@ import facebookStrategy from './facebook';
 import googleStrategy from './google';
 // import githubStrategy from './github';
 
-export default {
+const Strategies = {
   jwtStrategy,
   localStrategy,
   twitterStrategy,
@@ -13,3 +13,5 @@ export default {
   googleStrategy,
   // githubStrategy,
 };
+
+export default Strategies;

@@ -1,13 +1,5 @@
 import {routePrefixer} from '../../helpers';
-
-// import strategies to use
-import {
-  jwtStrategy,
-  localStrategy,
-  twitterStrategy,
-  googleStrategy,
-  facebookStrategy,
-} from './strategies';
+import Strategies from './strategies';
 
 // import authentication routes
 import local from './local';
@@ -15,28 +7,26 @@ import twitter from './twitter';
 // import facebook from './facebook';
 // import google from './google';
 
-export default (server) => {
-  /**
-   * Define strategies to use
-   */
-
+const authRoutes = (server) => {
   // use JsonWebTokens (you shouldn't remove this)
-  jwtStrategy(server);
+  Strategies.jwtStrategy(server);
 
   // use Local strategy
-  localStrategy(server);
+  Strategies.localStrategy(server);
 
   // use Twitter strategy
-  twitterStrategy(server);
+  Strategies.twitterStrategy(server);
 
   // use facebookStrategy
-  facebookStrategy(server);
+  Strategies.facebookStrategy(server);
 
   // use googleStrategy
-  googleStrategy(server);
+  Strategies.googleStrategy(server);
 
   return routePrefixer('/auth', [
     ...local,
     ...twitter,
   ]);
 };
+
+export default authRoutes;

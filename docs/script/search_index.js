@@ -1,5 +1,59 @@
 window.esdocSearchIndex = [
   [
+    "frill/src/actions/index.js~actions",
+    "variable/index.html#static-variable-Actions",
+    "<span>Actions</span> <span class=\"search-result-import-path\">frill/src/actions/index.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/actions/auth.js~authaction",
+    "class/src/actions/Auth.js~AuthAction.html",
+    "<span>AuthAction</span> <span class=\"search-result-import-path\">frill/src/actions/Auth.js</span>",
+    "class"
+  ],
+  [
+    "frill/src/stores/auth.js~authstore",
+    "class/src/stores/Auth.js~AuthStore.html",
+    "<span>AuthStore</span> <span class=\"search-result-import-path\">frill/src/stores/Auth.js</span>",
+    "class"
+  ],
+  [
+    "frill/src/models/dynamodb/index.js~dynamodbmodels",
+    "variable/index.html#static-variable-DynamoDBModels",
+    "<span>DynamoDBModels</span> <span class=\"search-result-import-path\">frill/src/models/DynamoDB/index.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/models/index.js~models",
+    "variable/index.html#static-variable-Models",
+    "<span>Models</span> <span class=\"search-result-import-path\">frill/src/models/index.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/models/mysql/index.js~mysqlmodels",
+    "variable/index.html#static-variable-MySQLModels",
+    "<span>MySQLModels</span> <span class=\"search-result-import-path\">frill/src/models/MySQL/index.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/models/dynamodb/posts.js~posts",
+    "variable/index.html#static-variable-Posts",
+    "<span>Posts</span> <span class=\"search-result-import-path\">frill/src/models/DynamoDB/Posts.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/stores/index.js~stores",
+    "variable/index.html#static-variable-Stores",
+    "<span>Stores</span> <span class=\"search-result-import-path\">frill/src/stores/index.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/api/auth/strategies/index.js~strategies",
+    "variable/index.html#static-variable-Strategies",
+    "<span>Strategies</span> <span class=\"search-result-import-path\">frill/src/api/auth/strategies/index.js</span>",
+    "variable"
+  ],
+  [
     "frill/src/actions/test.js~testaction",
     "class/src/actions/Test.js~TestAction.html",
     "<span>TestAction</span> <span class=\"search-result-import-path\">frill/src/actions/Test.js</span>",
@@ -12,15 +66,105 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "frill/src/models/mysql/users.js~users",
+    "variable/index.html#static-variable-Users",
+    "<span>Users</span> <span class=\"search-result-import-path\">frill/src/models/MySQL/Users.js</span>",
+    "variable"
+  ],
+  [
     "frill/src/api/index.js~api",
     "variable/index.html#static-variable-api",
     "<span>api</span> <span class=\"search-result-import-path\">frill/src/api/index.js</span>",
     "variable"
   ],
   [
+    "frill/src/api/v1/index.js~apiv1",
+    "variable/index.html#static-variable-apiV1",
+    "<span>apiV1</span> <span class=\"search-result-import-path\">frill/src/api/v1/index.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/api/v1/hello.js~apiv1hello",
+    "variable/index.html#static-variable-apiV1Hello",
+    "<span>apiV1Hello</span> <span class=\"search-result-import-path\">frill/src/api/v1/hello.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/actions/auth.js~authaction",
+    "variable/index.html#static-variable-authAction",
+    "<span>authAction</span> <span class=\"search-result-import-path\">frill/src/actions/Auth.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/api/auth/authhandlers.js~authhandlers",
+    "variable/index.html#static-variable-authHandlers",
+    "<span>authHandlers</span> <span class=\"search-result-import-path\">frill/src/api/auth/authHandlers.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/api/auth/index.js~authroutes",
+    "variable/index.html#static-variable-authRoutes",
+    "<span>authRoutes</span> <span class=\"search-result-import-path\">frill/src/api/auth/index.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/stores/auth.js~authstore",
+    "variable/index.html#static-variable-authStore",
+    "<span>authStore</span> <span class=\"search-result-import-path\">frill/src/stores/Auth.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/api/auth/strategies/facebook.js~facebookstrategy",
+    "variable/index.html#static-variable-facebookStrategy",
+    "<span>facebookStrategy</span> <span class=\"search-result-import-path\">frill/src/api/auth/strategies/facebook.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/api/auth/strategies/github.js~githubstrategy",
+    "variable/index.html#static-variable-githubStrategy",
+    "<span>githubStrategy</span> <span class=\"search-result-import-path\">frill/src/api/auth/strategies/github.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/api/auth/strategies/google.js~googlestrategy",
+    "variable/index.html#static-variable-googleStrategy",
+    "<span>googleStrategy</span> <span class=\"search-result-import-path\">frill/src/api/auth/strategies/google.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/helpers/index.js~helpers",
+    "variable/index.html#static-variable-helpers",
+    "<span>helpers</span> <span class=\"search-result-import-path\">frill/src/helpers/index.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/api/auth/strategies/jwt.js~jwtstrategy",
+    "variable/index.html#static-variable-jwtStrategy",
+    "<span>jwtStrategy</span> <span class=\"search-result-import-path\">frill/src/api/auth/strategies/jwt.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/api/auth/local.js~localauthroutes",
+    "variable/index.html#static-variable-localAuthRoutes",
+    "<span>localAuthRoutes</span> <span class=\"search-result-import-path\">frill/src/api/auth/local.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/api/auth/strategies/local.js~localstrategy",
+    "variable/index.html#static-variable-localStrategy",
+    "<span>localStrategy</span> <span class=\"search-result-import-path\">frill/src/api/auth/strategies/local.js</span>",
+    "variable"
+  ],
+  [
     "frill/src/helpers/routeprefixer.js~routeprefixer",
     "variable/index.html#static-variable-routePrefixer",
     "<span>routePrefixer</span> <span class=\"search-result-import-path\">frill/src/helpers/routePrefixer.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/api/routes.js~routes",
+    "variable/index.html#static-variable-routes",
+    "<span>routes</span> <span class=\"search-result-import-path\">frill/src/api/routes.js</span>",
     "variable"
   ],
   [
@@ -33,6 +177,18 @@ window.esdocSearchIndex = [
     "frill/src/stores/test.js~teststore",
     "variable/index.html#static-variable-testStore",
     "<span>testStore</span> <span class=\"search-result-import-path\">frill/src/stores/Test.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/api/auth/twitter.js~twitterauthroutes",
+    "variable/index.html#static-variable-twitterAuthRoutes",
+    "<span>twitterAuthRoutes</span> <span class=\"search-result-import-path\">frill/src/api/auth/twitter.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/api/auth/strategies/twitter.js~twitterstrategy",
+    "variable/index.html#static-variable-twitterStrategy",
+    "<span>twitterStrategy</span> <span class=\"search-result-import-path\">frill/src/api/auth/strategies/twitter.js</span>",
     "variable"
   ],
   [
@@ -360,6 +516,30 @@ window.esdocSearchIndex = [
     "external"
   ],
   [
+    "src/actions/auth.js",
+    "file/src/actions/Auth.js.html",
+    "src/actions/Auth.js",
+    "file"
+  ],
+  [
+    "src/actions/auth.js~authaction#constructor",
+    "class/src/actions/Auth.js~AuthAction.html#instance-constructor-constructor",
+    "src/actions/Auth.js~AuthAction#constructor",
+    "method"
+  ],
+  [
+    "src/actions/auth.js~authaction#login",
+    "class/src/actions/Auth.js~AuthAction.html#instance-method-login",
+    "src/actions/Auth.js~AuthAction#login",
+    "method"
+  ],
+  [
+    "src/actions/auth.js~authaction#logout",
+    "class/src/actions/Auth.js~AuthAction.html#instance-method-logout",
+    "src/actions/Auth.js~AuthAction#logout",
+    "method"
+  ],
+  [
     "src/actions/test.js",
     "file/src/actions/Test.js.html",
     "src/actions/Test.js",
@@ -384,15 +564,21 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/actions/test.js~testaction#loadscrollitems",
+    "class/src/actions/Test.js~TestAction.html#instance-method-loadScrollItems",
+    "src/actions/Test.js~TestAction#loadScrollItems",
+    "method"
+  ],
+  [
     "src/actions/index.js",
     "file/src/actions/index.js.html",
     "src/actions/index.js",
     "file"
   ],
   [
-    "src/api/auth/base.js",
-    "file/src/api/auth/base.js.html",
-    "src/api/auth/base.js",
+    "src/api/auth/authhandlers.js",
+    "file/src/api/auth/authHandlers.js.html",
+    "src/api/auth/authHandlers.js",
     "file"
   ],
   [
@@ -402,9 +588,45 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/api/auth/local.js",
+    "file/src/api/auth/local.js.html",
+    "src/api/auth/local.js",
+    "file"
+  ],
+  [
+    "src/api/auth/strategies/facebook.js",
+    "file/src/api/auth/strategies/facebook.js.html",
+    "src/api/auth/strategies/facebook.js",
+    "file"
+  ],
+  [
+    "src/api/auth/strategies/github.js",
+    "file/src/api/auth/strategies/github.js.html",
+    "src/api/auth/strategies/github.js",
+    "file"
+  ],
+  [
+    "src/api/auth/strategies/google.js",
+    "file/src/api/auth/strategies/google.js.html",
+    "src/api/auth/strategies/google.js",
+    "file"
+  ],
+  [
     "src/api/auth/strategies/index.js",
     "file/src/api/auth/strategies/index.js.html",
     "src/api/auth/strategies/index.js",
+    "file"
+  ],
+  [
+    "src/api/auth/strategies/jwt.js",
+    "file/src/api/auth/strategies/jwt.js.html",
+    "src/api/auth/strategies/jwt.js",
+    "file"
+  ],
+  [
+    "src/api/auth/strategies/local.js",
+    "file/src/api/auth/strategies/local.js.html",
+    "src/api/auth/strategies/local.js",
     "file"
   ],
   [
@@ -480,6 +702,18 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/helpers/testscrollitemsdata.js",
+    "file/src/helpers/testScrollItemsData.js.html",
+    "src/helpers/testScrollItemsData.js",
+    "file"
+  ],
+  [
+    "src/helpers/testuserdata.js",
+    "file/src/helpers/testUserData.js.html",
+    "src/helpers/testUserData.js",
+    "file"
+  ],
+  [
     "src/models/dynamodb/posts.js",
     "file/src/models/DynamoDB/Posts.js.html",
     "src/models/DynamoDB/Posts.js",
@@ -492,9 +726,27 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/models/mysql/users.js",
+    "file/src/models/MySQL/Users.js.html",
+    "src/models/MySQL/Users.js",
+    "file"
+  ],
+  [
+    "src/models/mysql/index.js",
+    "file/src/models/MySQL/index.js.html",
+    "src/models/MySQL/index.js",
+    "file"
+  ],
+  [
     "src/models/index.js",
     "file/src/models/index.js.html",
     "src/models/index.js",
+    "file"
+  ],
+  [
+    "src/models/sequelize.js",
+    "file/src/models/sequelize.js.html",
+    "src/models/sequelize.js",
     "file"
   ],
   [
@@ -508,6 +760,54 @@ window.esdocSearchIndex = [
     "file/src/server.js.html",
     "src/server.js",
     "file"
+  ],
+  [
+    "src/stores/auth.js",
+    "file/src/stores/Auth.js.html",
+    "src/stores/Auth.js",
+    "file"
+  ],
+  [
+    "src/stores/auth.js~authstore#actions",
+    "class/src/stores/Auth.js~AuthStore.html#instance-member-actions",
+    "src/stores/Auth.js~AuthStore#actions",
+    "member"
+  ],
+  [
+    "src/stores/auth.js~authstore#constructor",
+    "class/src/stores/Auth.js~AuthStore.html#instance-constructor-constructor",
+    "src/stores/Auth.js~AuthStore#constructor",
+    "method"
+  ],
+  [
+    "src/stores/auth.js~authstore#isloggedin",
+    "class/src/stores/Auth.js~AuthStore.html#instance-method-isLoggedIn",
+    "src/stores/Auth.js~AuthStore#isLoggedIn",
+    "method"
+  ],
+  [
+    "src/stores/auth.js~authstore#jwt",
+    "class/src/stores/Auth.js~AuthStore.html#instance-get-jwt",
+    "src/stores/Auth.js~AuthStore#jwt",
+    "member"
+  ],
+  [
+    "src/stores/auth.js~authstore#login",
+    "class/src/stores/Auth.js~AuthStore.html#instance-method-login",
+    "src/stores/Auth.js~AuthStore#login",
+    "method"
+  ],
+  [
+    "src/stores/auth.js~authstore#logout",
+    "class/src/stores/Auth.js~AuthStore.html#instance-method-logout",
+    "src/stores/Auth.js~AuthStore#logout",
+    "method"
+  ],
+  [
+    "src/stores/auth.js~authstore#user",
+    "class/src/stores/Auth.js~AuthStore.html#instance-get-user",
+    "src/stores/Auth.js~AuthStore#user",
+    "member"
   ],
   [
     "src/stores/test.js",
@@ -543,6 +843,24 @@ window.esdocSearchIndex = [
     "src/stores/test.js~teststore#getcount",
     "class/src/stores/Test.js~TestStore.html#instance-method-getCount",
     "src/stores/Test.js~TestStore#getCount",
+    "method"
+  ],
+  [
+    "src/stores/test.js~teststore#getscrollitems",
+    "class/src/stores/Test.js~TestStore.html#instance-method-getScrollItems",
+    "src/stores/Test.js~TestStore#getScrollItems",
+    "method"
+  ],
+  [
+    "src/stores/test.js~teststore#getscrollitemscount",
+    "class/src/stores/Test.js~TestStore.html#instance-method-getScrollItemsCount",
+    "src/stores/Test.js~TestStore#getScrollItemsCount",
+    "method"
+  ],
+  [
+    "src/stores/test.js~teststore#loadscrollitems",
+    "class/src/stores/Test.js~TestStore.html#instance-method-loadScrollItems",
+    "src/stores/Test.js~TestStore#loadScrollItems",
     "method"
   ],
   [

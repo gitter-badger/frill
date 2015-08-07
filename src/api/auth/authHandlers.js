@@ -58,8 +58,10 @@ const registrationHandler = () => {
 
 };
 
-export default {
+const authHandlers = {
   authHandler,
   loginHandler,
   registrationHandler,
 };
+
+export default authHandlers;

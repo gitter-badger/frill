@@ -1,5 +1,7 @@
 import Posts from './Posts';
 
-export default {
+const DynamoDBModels = {
   Posts,
 };
+
+export default DynamoDBModels;

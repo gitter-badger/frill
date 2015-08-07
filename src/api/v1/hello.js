@@ -1,4 +1,4 @@
-export default (server) => {
+const apiV1Hello = (server) => {
   return [{
     method: ['GET'],
     path: '/hello',
@@ -45,3 +45,5 @@ export default (server) => {
     },
   }];
 };
+
+export default apiV1Hello;

@@ -124,160 +124,81 @@
               "type": "BlockStatement",
               "body": [
                 {
-                  "type": "VariableDeclaration",
-                  "declarations": [
-                    {
-                      "type": "VariableDeclarator",
-                      "id": {
-                        "type": "ObjectPattern",
-                        "properties": [
-                          {
-                            "type": "Property",
-                            "key": {
-                              "type": "Identifier",
-                              "name": "apiRoutes",
-                              "range": [
-                                67,
-                                76
-                              ],
-                              "loc": {
-                                "start": {
-                                  "line": 4,
-                                  "column": 9
-                                },
-                                "end": {
-                                  "line": 4,
-                                  "column": 18
-                                }
-                              }
-                            },
-                            "value": {
-                              "type": "Identifier",
-                              "name": "apiRoutes",
-                              "range": [
-                                67,
-                                76
-                              ],
-                              "loc": {
-                                "start": {
-                                  "line": 4,
-                                  "column": 9
-                                },
-                                "end": {
-                                  "line": 4,
-                                  "column": 18
-                                }
-                              }
-                            },
-                            "kind": "init",
-                            "method": false,
-                            "shorthand": true,
-                            "computed": false,
-                            "range": [
-                              67,
-                              76
-                            ],
-                            "loc": {
-                              "start": {
-                                "line": 4,
-                                "column": 9
-                              },
-                              "end": {
-                                "line": 4,
-                                "column": 18
-                              }
-                            }
-                          },
-                          {
-                            "type": "Property",
-                            "key": {
-                              "type": "Identifier",
-                              "name": "authRoutes",
-                              "range": [
-                                78,
-                                88
-                              ],
-                              "loc": {
-                                "start": {
-                                  "line": 4,
-                                  "column": 20
-                                },
-                                "end": {
-                                  "line": 4,
-                                  "column": 30
-                                }
-                              }
-                            },
-                            "value": {
-                              "type": "Identifier",
-                              "name": "authRoutes",
-                              "range": [
-                                78,
-                                88
-                              ],
-                              "loc": {
-                                "start": {
-                                  "line": 4,
-                                  "column": 20
-                                },
-                                "end": {
-                                  "line": 4,
-                                  "column": 30
-                                }
-                              }
-                            },
-                            "kind": "init",
-                            "method": false,
-                            "shorthand": true,
-                            "computed": false,
-                            "range": [
-                              78,
-                              88
-                            ],
-                            "loc": {
-                              "start": {
-                                "line": 4,
-                                "column": 20
-                              },
-                              "end": {
-                                "line": 4,
-                                "column": 30
-                              }
-                            }
-                          }
-                        ],
+                  "type": "ExpressionStatement",
+                  "expression": {
+                    "type": "CallExpression",
+                    "callee": {
+                      "type": "MemberExpression",
+                      "computed": false,
+                      "object": {
+                        "type": "Identifier",
+                        "name": "server",
                         "range": [
-                          66,
-                          89
+                          60,
+                          66
                         ],
                         "loc": {
                           "start": {
                             "line": 4,
-                            "column": 8
+                            "column": 2
                           },
                           "end": {
                             "line": 4,
-                            "column": 31
+                            "column": 8
                           }
                         }
                       },
-                      "init": {
+                      "property": {
+                        "type": "Identifier",
+                        "name": "route",
+                        "range": [
+                          67,
+                          72
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 4,
+                            "column": 9
+                          },
+                          "end": {
+                            "line": 4,
+                            "column": 14
+                          }
+                        }
+                      },
+                      "range": [
+                        60,
+                        72
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 4,
+                          "column": 2
+                        },
+                        "end": {
+                          "line": 4,
+                          "column": 14
+                        }
+                      }
+                    },
+                    "arguments": [
+                      {
                         "type": "CallExpression",
                         "callee": {
                           "type": "Identifier",
                           "name": "routes",
                           "range": [
-                            92,
-                            98
+                            73,
+                            79
                           ],
                           "loc": {
                             "start": {
                               "line": 4,
-                              "column": 34
+                              "column": 15
                             },
                             "end": {
                               "line": 4,
-                              "column": 40
+                              "column": 21
                             }
                           }
                         },
@@ -286,56 +207,55 @@
                             "type": "Identifier",
                             "name": "server",
                             "range": [
-                              99,
-                              105
+                              80,
+                              86
                             ],
                             "loc": {
                               "start": {
                                 "line": 4,
-                                "column": 41
+                                "column": 22
                               },
                               "end": {
                                 "line": 4,
-                                "column": 47
+                                "column": 28
                               }
                             }
                           }
                         ],
                         "range": [
-                          92,
-                          106
+                          73,
+                          87
                         ],
                         "loc": {
                           "start": {
                             "line": 4,
-                            "column": 34
+                            "column": 15
                           },
                           "end": {
                             "line": 4,
-                            "column": 48
+                            "column": 29
                           }
                         }
+                      }
+                    ],
+                    "range": [
+                      60,
+                      88
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 4,
+                        "column": 2
                       },
-                      "range": [
-                        66,
-                        106
-                      ],
-                      "loc": {
-                        "start": {
-                          "line": 4,
-                          "column": 8
-                        },
-                        "end": {
-                          "line": 4,
-                          "column": 48
-                        }
+                      "end": {
+                        "line": 4,
+                        "column": 30
                       }
                     }
-                  ],
-                  "kind": "const",
+                  },
                   "range": [
                     60,
-                    107
+                    89
                   ],
                   "loc": {
                     "start": {
@@ -344,546 +264,14 @@
                     },
                     "end": {
                       "line": 4,
-                      "column": 49
+                      "column": 31
                     }
                   }
-                },
-                {
-                  "type": "ExpressionStatement",
-                  "expression": {
-                    "type": "CallExpression",
-                    "callee": {
-                      "type": "MemberExpression",
-                      "computed": false,
-                      "object": {
-                        "type": "Identifier",
-                        "name": "console",
-                        "range": [
-                          111,
-                          118
-                        ],
-                        "loc": {
-                          "start": {
-                            "line": 6,
-                            "column": 2
-                          },
-                          "end": {
-                            "line": 6,
-                            "column": 9
-                          }
-                        }
-                      },
-                      "property": {
-                        "type": "Identifier",
-                        "name": "log",
-                        "range": [
-                          119,
-                          122
-                        ],
-                        "loc": {
-                          "start": {
-                            "line": 6,
-                            "column": 10
-                          },
-                          "end": {
-                            "line": 6,
-                            "column": 13
-                          }
-                        }
-                      },
-                      "range": [
-                        111,
-                        122
-                      ],
-                      "loc": {
-                        "start": {
-                          "line": 6,
-                          "column": 2
-                        },
-                        "end": {
-                          "line": 6,
-                          "column": 13
-                        }
-                      }
-                    },
-                    "arguments": [
-                      {
-                        "type": "Identifier",
-                        "name": "apiRoutes",
-                        "range": [
-                          123,
-                          132
-                        ],
-                        "loc": {
-                          "start": {
-                            "line": 6,
-                            "column": 14
-                          },
-                          "end": {
-                            "line": 6,
-                            "column": 23
-                          }
-                        }
-                      }
-                    ],
-                    "range": [
-                      111,
-                      133
-                    ],
-                    "loc": {
-                      "start": {
-                        "line": 6,
-                        "column": 2
-                      },
-                      "end": {
-                        "line": 6,
-                        "column": 24
-                      }
-                    }
-                  },
-                  "range": [
-                    111,
-                    134
-                  ],
-                  "loc": {
-                    "start": {
-                      "line": 6,
-                      "column": 2
-                    },
-                    "end": {
-                      "line": 6,
-                      "column": 25
-                    }
-                  },
-                  "trailingComments": [
-                    {
-                      "type": "Line",
-                      "value": " Authentication",
-                      "range": [
-                        137,
-                        154
-                      ],
-                      "loc": {
-                        "start": {
-                          "line": 7,
-                          "column": 2
-                        },
-                        "end": {
-                          "line": 7,
-                          "column": 19
-                        }
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "ExpressionStatement",
-                  "expression": {
-                    "type": "CallExpression",
-                    "callee": {
-                      "type": "MemberExpression",
-                      "computed": false,
-                      "object": {
-                        "type": "Identifier",
-                        "name": "server",
-                        "range": [
-                          157,
-                          163
-                        ],
-                        "loc": {
-                          "start": {
-                            "line": 8,
-                            "column": 2
-                          },
-                          "end": {
-                            "line": 8,
-                            "column": 8
-                          }
-                        }
-                      },
-                      "property": {
-                        "type": "Identifier",
-                        "name": "route",
-                        "range": [
-                          164,
-                          169
-                        ],
-                        "loc": {
-                          "start": {
-                            "line": 8,
-                            "column": 9
-                          },
-                          "end": {
-                            "line": 8,
-                            "column": 14
-                          }
-                        }
-                      },
-                      "range": [
-                        157,
-                        169
-                      ],
-                      "loc": {
-                        "start": {
-                          "line": 8,
-                          "column": 2
-                        },
-                        "end": {
-                          "line": 8,
-                          "column": 14
-                        }
-                      }
-                    },
-                    "arguments": [
-                      {
-                        "type": "Identifier",
-                        "name": "authRoutes",
-                        "range": [
-                          170,
-                          180
-                        ],
-                        "loc": {
-                          "start": {
-                            "line": 8,
-                            "column": 15
-                          },
-                          "end": {
-                            "line": 8,
-                            "column": 25
-                          }
-                        }
-                      }
-                    ],
-                    "range": [
-                      157,
-                      181
-                    ],
-                    "loc": {
-                      "start": {
-                        "line": 8,
-                        "column": 2
-                      },
-                      "end": {
-                        "line": 8,
-                        "column": 26
-                      }
-                    }
-                  },
-                  "range": [
-                    157,
-                    182
-                  ],
-                  "loc": {
-                    "start": {
-                      "line": 8,
-                      "column": 2
-                    },
-                    "end": {
-                      "line": 8,
-                      "column": 27
-                    }
-                  },
-                  "leadingComments": [
-                    {
-                      "type": "Line",
-                      "value": " Authentication",
-                      "range": [
-                        137,
-                        154
-                      ],
-                      "loc": {
-                        "start": {
-                          "line": 7,
-                          "column": 2
-                        },
-                        "end": {
-                          "line": 7,
-                          "column": 19
-                        }
-                      }
-                    }
-                  ],
-                  "trailingComments": [
-                    {
-                      "type": "Line",
-                      "value": " APIs",
-                      "range": [
-                        185,
-                        192
-                      ],
-                      "loc": {
-                        "start": {
-                          "line": 9,
-                          "column": 2
-                        },
-                        "end": {
-                          "line": 9,
-                          "column": 9
-                        }
-                      }
-                    }
-                  ]
-                },
-                {
-                  "type": "ExpressionStatement",
-                  "expression": {
-                    "type": "CallExpression",
-                    "callee": {
-                      "type": "MemberExpression",
-                      "computed": false,
-                      "object": {
-                        "type": "Identifier",
-                        "name": "server",
-                        "range": [
-                          195,
-                          201
-                        ],
-                        "loc": {
-                          "start": {
-                            "line": 10,
-                            "column": 2
-                          },
-                          "end": {
-                            "line": 10,
-                            "column": 8
-                          }
-                        }
-                      },
-                      "property": {
-                        "type": "Identifier",
-                        "name": "route",
-                        "range": [
-                          202,
-                          207
-                        ],
-                        "loc": {
-                          "start": {
-                            "line": 10,
-                            "column": 9
-                          },
-                          "end": {
-                            "line": 10,
-                            "column": 14
-                          }
-                        }
-                      },
-                      "range": [
-                        195,
-                        207
-                      ],
-                      "loc": {
-                        "start": {
-                          "line": 10,
-                          "column": 2
-                        },
-                        "end": {
-                          "line": 10,
-                          "column": 14
-                        }
-                      }
-                    },
-                    "arguments": [
-                      {
-                        "type": "Identifier",
-                        "name": "apiRoutes",
-                        "range": [
-                          208,
-                          217
-                        ],
-                        "loc": {
-                          "start": {
-                            "line": 10,
-                            "column": 15
-                          },
-                          "end": {
-                            "line": 10,
-                            "column": 24
-                          }
-                        }
-                      }
-                    ],
-                    "range": [
-                      195,
-                      218
-                    ],
-                    "loc": {
-                      "start": {
-                        "line": 10,
-                        "column": 2
-                      },
-                      "end": {
-                        "line": 10,
-                        "column": 25
-                      }
-                    }
-                  },
-                  "range": [
-                    195,
-                    219
-                  ],
-                  "loc": {
-                    "start": {
-                      "line": 10,
-                      "column": 2
-                    },
-                    "end": {
-                      "line": 10,
-                      "column": 26
-                    }
-                  },
-                  "leadingComments": [
-                    {
-                      "type": "Line",
-                      "value": " APIs",
-                      "range": [
-                        185,
-                        192
-                      ],
-                      "loc": {
-                        "start": {
-                          "line": 9,
-                          "column": 2
-                        },
-                        "end": {
-                          "line": 9,
-                          "column": 9
-                        }
-                      }
-                    }
-                  ],
-                  "trailingComments": [
-                    {
-                      "type": "Line",
-                      "value": " server.register([",
-                      "range": [
-                        224,
-                        244
-                      ],
-                      "loc": {
-                        "start": {
-                          "line": 13,
-                          "column": 2
-                        },
-                        "end": {
-                          "line": 13,
-                          "column": 22
-                        }
-                      }
-                    },
-                    {
-                      "type": "Line",
-                      "value": "   apiPlugin,",
-                      "range": [
-                        247,
-                        262
-                      ],
-                      "loc": {
-                        "start": {
-                          "line": 14,
-                          "column": 2
-                        },
-                        "end": {
-                          "line": 14,
-                          "column": 17
-                        }
-                      }
-                    },
-                    {
-                      "type": "Line",
-                      "value": " ], {",
-                      "range": [
-                        265,
-                        272
-                      ],
-                      "loc": {
-                        "start": {
-                          "line": 15,
-                          "column": 2
-                        },
-                        "end": {
-                          "line": 15,
-                          "column": 9
-                        }
-                      }
-                    },
-                    {
-                      "type": "Line",
-                      "value": "   routes: {prefix: '/api'},",
-                      "range": [
-                        275,
-                        305
-                      ],
-                      "loc": {
-                        "start": {
-                          "line": 16,
-                          "column": 2
-                        },
-                        "end": {
-                          "line": 16,
-                          "column": 32
-                        }
-                      }
-                    },
-                    {
-                      "type": "Line",
-                      "value": " }, (err) => {",
-                      "range": [
-                        308,
-                        324
-                      ],
-                      "loc": {
-                        "start": {
-                          "line": 17,
-                          "column": 2
-                        },
-                        "end": {
-                          "line": 17,
-                          "column": 18
-                        }
-                      }
-                    },
-                    {
-                      "type": "Line",
-                      "value": "   if (err) server.log(['error'], `routes: api load error: ${err}`);",
-                      "range": [
-                        327,
-                        397
-                      ],
-                      "loc": {
-                        "start": {
-                          "line": 18,
-                          "column": 2
-                        },
-                        "end": {
-                          "line": 18,
-                          "column": 72
-                        }
-                      }
-                    },
-                    {
-                      "type": "Line",
-                      "value": " });",
-                      "range": [
-                        400,
-                        406
-                      ],
-                      "loc": {
-                        "start": {
-                          "line": 19,
-                          "column": 2
-                        },
-                        "end": {
-                          "line": 19,
-                          "column": 8
-                        }
-                      }
-                    }
-                  ]
                 }
               ],
               "range": [
                 56,
-                408
+                91
               ],
               "loc": {
                 "start": {
@@ -891,7 +279,7 @@
                   "column": 24
                 },
                 "end": {
-                  "line": 20,
+                  "line": 5,
                   "column": 1
                 }
               }
@@ -900,7 +288,7 @@
             "expression": false,
             "range": [
               44,
-              408
+              91
             ],
             "loc": {
               "start": {
@@ -908,14 +296,14 @@
                 "column": 12
               },
               "end": {
-                "line": 20,
+                "line": 5,
                 "column": 1
               }
             }
           },
           "range": [
             38,
-            408
+            91
           ],
           "loc": {
             "start": {
@@ -923,7 +311,7 @@
               "column": 6
             },
             "end": {
-              "line": 20,
+              "line": 5,
               "column": 1
             }
           }
@@ -932,7 +320,7 @@
       "kind": "const",
       "range": [
         32,
-        409
+        92
       ],
       "loc": {
         "start": {
@@ -940,7 +328,7 @@
           "column": 0
         },
         "end": {
-          "line": 20,
+          "line": 5,
           "column": 2
         }
       },
@@ -954,36 +342,36 @@
         "type": "Identifier",
         "name": "api",
         "range": [
-          426,
-          429
+          109,
+          112
         ],
         "loc": {
           "start": {
-            "line": 22,
+            "line": 7,
             "column": 15
           },
           "end": {
-            "line": 22,
+            "line": 7,
             "column": 18
           }
         }
       },
       "range": [
-        411,
-        430
+        94,
+        113
       ],
       "loc": {
         "start": {
-          "line": 22,
+          "line": 7,
           "column": 0
         },
         "end": {
-          "line": 22,
+          "line": 7,
           "column": 19
         }
       },
-      "leadingComments": [],
       "name": "_",
+      "leadingComments": [],
       "trailingComments": []
     },
     {
@@ -1038,160 +426,81 @@
                 "type": "BlockStatement",
                 "body": [
                   {
-                    "type": "VariableDeclaration",
-                    "declarations": [
-                      {
-                        "type": "VariableDeclarator",
-                        "id": {
-                          "type": "ObjectPattern",
-                          "properties": [
-                            {
-                              "type": "Property",
-                              "key": {
-                                "type": "Identifier",
-                                "name": "apiRoutes",
-                                "range": [
-                                  67,
-                                  76
-                                ],
-                                "loc": {
-                                  "start": {
-                                    "line": 4,
-                                    "column": 9
-                                  },
-                                  "end": {
-                                    "line": 4,
-                                    "column": 18
-                                  }
-                                }
-                              },
-                              "value": {
-                                "type": "Identifier",
-                                "name": "apiRoutes",
-                                "range": [
-                                  67,
-                                  76
-                                ],
-                                "loc": {
-                                  "start": {
-                                    "line": 4,
-                                    "column": 9
-                                  },
-                                  "end": {
-                                    "line": 4,
-                                    "column": 18
-                                  }
-                                }
-                              },
-                              "kind": "init",
-                              "method": false,
-                              "shorthand": true,
-                              "computed": false,
-                              "range": [
-                                67,
-                                76
-                              ],
-                              "loc": {
-                                "start": {
-                                  "line": 4,
-                                  "column": 9
-                                },
-                                "end": {
-                                  "line": 4,
-                                  "column": 18
-                                }
-                              }
-                            },
-                            {
-                              "type": "Property",
-                              "key": {
-                                "type": "Identifier",
-                                "name": "authRoutes",
-                                "range": [
-                                  78,
-                                  88
-                                ],
-                                "loc": {
-                                  "start": {
-                                    "line": 4,
-                                    "column": 20
-                                  },
-                                  "end": {
-                                    "line": 4,
-                                    "column": 30
-                                  }
-                                }
-                              },
-                              "value": {
-                                "type": "Identifier",
-                                "name": "authRoutes",
-                                "range": [
-                                  78,
-                                  88
-                                ],
-                                "loc": {
-                                  "start": {
-                                    "line": 4,
-                                    "column": 20
-                                  },
-                                  "end": {
-                                    "line": 4,
-                                    "column": 30
-                                  }
-                                }
-                              },
-                              "kind": "init",
-                              "method": false,
-                              "shorthand": true,
-                              "computed": false,
-                              "range": [
-                                78,
-                                88
-                              ],
-                              "loc": {
-                                "start": {
-                                  "line": 4,
-                                  "column": 20
-                                },
-                                "end": {
-                                  "line": 4,
-                                  "column": 30
-                                }
-                              }
-                            }
-                          ],
+                    "type": "ExpressionStatement",
+                    "expression": {
+                      "type": "CallExpression",
+                      "callee": {
+                        "type": "MemberExpression",
+                        "computed": false,
+                        "object": {
+                          "type": "Identifier",
+                          "name": "server",
                           "range": [
-                            66,
-                            89
+                            60,
+                            66
                           ],
                           "loc": {
                             "start": {
                               "line": 4,
-                              "column": 8
+                              "column": 2
                             },
                             "end": {
                               "line": 4,
-                              "column": 31
+                              "column": 8
                             }
                           }
                         },
-                        "init": {
+                        "property": {
+                          "type": "Identifier",
+                          "name": "route",
+                          "range": [
+                            67,
+                            72
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 4,
+                              "column": 9
+                            },
+                            "end": {
+                              "line": 4,
+                              "column": 14
+                            }
+                          }
+                        },
+                        "range": [
+                          60,
+                          72
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 4,
+                            "column": 2
+                          },
+                          "end": {
+                            "line": 4,
+                            "column": 14
+                          }
+                        }
+                      },
+                      "arguments": [
+                        {
                           "type": "CallExpression",
                           "callee": {
                             "type": "Identifier",
                             "name": "routes",
                             "range": [
-                              92,
-                              98
+                              73,
+                              79
                             ],
                             "loc": {
                               "start": {
                                 "line": 4,
-                                "column": 34
+                                "column": 15
                               },
                               "end": {
                                 "line": 4,
-                                "column": 40
+                                "column": 21
                               }
                             }
                           },
@@ -1200,56 +509,55 @@
                               "type": "Identifier",
                               "name": "server",
                               "range": [
-                                99,
-                                105
+                                80,
+                                86
                               ],
                               "loc": {
                                 "start": {
                                   "line": 4,
-                                  "column": 41
+                                  "column": 22
                                 },
                                 "end": {
                                   "line": 4,
-                                  "column": 47
+                                  "column": 28
                                 }
                               }
                             }
                           ],
                           "range": [
-                            92,
-                            106
+                            73,
+                            87
                           ],
                           "loc": {
                             "start": {
                               "line": 4,
-                              "column": 34
+                              "column": 15
                             },
                             "end": {
                               "line": 4,
-                              "column": 48
+                              "column": 29
                             }
                           }
+                        }
+                      ],
+                      "range": [
+                        60,
+                        88
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 4,
+                          "column": 2
                         },
-                        "range": [
-                          66,
-                          106
-                        ],
-                        "loc": {
-                          "start": {
-                            "line": 4,
-                            "column": 8
-                          },
-                          "end": {
-                            "line": 4,
-                            "column": 48
-                          }
+                        "end": {
+                          "line": 4,
+                          "column": 30
                         }
                       }
-                    ],
-                    "kind": "const",
+                    },
                     "range": [
                       60,
-                      107
+                      89
                     ],
                     "loc": {
                       "start": {
@@ -1258,546 +566,14 @@
                       },
                       "end": {
                         "line": 4,
-                        "column": 49
+                        "column": 31
                       }
                     }
-                  },
-                  {
-                    "type": "ExpressionStatement",
-                    "expression": {
-                      "type": "CallExpression",
-                      "callee": {
-                        "type": "MemberExpression",
-                        "computed": false,
-                        "object": {
-                          "type": "Identifier",
-                          "name": "console",
-                          "range": [
-                            111,
-                            118
-                          ],
-                          "loc": {
-                            "start": {
-                              "line": 6,
-                              "column": 2
-                            },
-                            "end": {
-                              "line": 6,
-                              "column": 9
-                            }
-                          }
-                        },
-                        "property": {
-                          "type": "Identifier",
-                          "name": "log",
-                          "range": [
-                            119,
-                            122
-                          ],
-                          "loc": {
-                            "start": {
-                              "line": 6,
-                              "column": 10
-                            },
-                            "end": {
-                              "line": 6,
-                              "column": 13
-                            }
-                          }
-                        },
-                        "range": [
-                          111,
-                          122
-                        ],
-                        "loc": {
-                          "start": {
-                            "line": 6,
-                            "column": 2
-                          },
-                          "end": {
-                            "line": 6,
-                            "column": 13
-                          }
-                        }
-                      },
-                      "arguments": [
-                        {
-                          "type": "Identifier",
-                          "name": "apiRoutes",
-                          "range": [
-                            123,
-                            132
-                          ],
-                          "loc": {
-                            "start": {
-                              "line": 6,
-                              "column": 14
-                            },
-                            "end": {
-                              "line": 6,
-                              "column": 23
-                            }
-                          }
-                        }
-                      ],
-                      "range": [
-                        111,
-                        133
-                      ],
-                      "loc": {
-                        "start": {
-                          "line": 6,
-                          "column": 2
-                        },
-                        "end": {
-                          "line": 6,
-                          "column": 24
-                        }
-                      }
-                    },
-                    "range": [
-                      111,
-                      134
-                    ],
-                    "loc": {
-                      "start": {
-                        "line": 6,
-                        "column": 2
-                      },
-                      "end": {
-                        "line": 6,
-                        "column": 25
-                      }
-                    },
-                    "trailingComments": [
-                      {
-                        "type": "Line",
-                        "value": " Authentication",
-                        "range": [
-                          137,
-                          154
-                        ],
-                        "loc": {
-                          "start": {
-                            "line": 7,
-                            "column": 2
-                          },
-                          "end": {
-                            "line": 7,
-                            "column": 19
-                          }
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "type": "ExpressionStatement",
-                    "expression": {
-                      "type": "CallExpression",
-                      "callee": {
-                        "type": "MemberExpression",
-                        "computed": false,
-                        "object": {
-                          "type": "Identifier",
-                          "name": "server",
-                          "range": [
-                            157,
-                            163
-                          ],
-                          "loc": {
-                            "start": {
-                              "line": 8,
-                              "column": 2
-                            },
-                            "end": {
-                              "line": 8,
-                              "column": 8
-                            }
-                          }
-                        },
-                        "property": {
-                          "type": "Identifier",
-                          "name": "route",
-                          "range": [
-                            164,
-                            169
-                          ],
-                          "loc": {
-                            "start": {
-                              "line": 8,
-                              "column": 9
-                            },
-                            "end": {
-                              "line": 8,
-                              "column": 14
-                            }
-                          }
-                        },
-                        "range": [
-                          157,
-                          169
-                        ],
-                        "loc": {
-                          "start": {
-                            "line": 8,
-                            "column": 2
-                          },
-                          "end": {
-                            "line": 8,
-                            "column": 14
-                          }
-                        }
-                      },
-                      "arguments": [
-                        {
-                          "type": "Identifier",
-                          "name": "authRoutes",
-                          "range": [
-                            170,
-                            180
-                          ],
-                          "loc": {
-                            "start": {
-                              "line": 8,
-                              "column": 15
-                            },
-                            "end": {
-                              "line": 8,
-                              "column": 25
-                            }
-                          }
-                        }
-                      ],
-                      "range": [
-                        157,
-                        181
-                      ],
-                      "loc": {
-                        "start": {
-                          "line": 8,
-                          "column": 2
-                        },
-                        "end": {
-                          "line": 8,
-                          "column": 26
-                        }
-                      }
-                    },
-                    "range": [
-                      157,
-                      182
-                    ],
-                    "loc": {
-                      "start": {
-                        "line": 8,
-                        "column": 2
-                      },
-                      "end": {
-                        "line": 8,
-                        "column": 27
-                      }
-                    },
-                    "leadingComments": [
-                      {
-                        "type": "Line",
-                        "value": " Authentication",
-                        "range": [
-                          137,
-                          154
-                        ],
-                        "loc": {
-                          "start": {
-                            "line": 7,
-                            "column": 2
-                          },
-                          "end": {
-                            "line": 7,
-                            "column": 19
-                          }
-                        }
-                      }
-                    ],
-                    "trailingComments": [
-                      {
-                        "type": "Line",
-                        "value": " APIs",
-                        "range": [
-                          185,
-                          192
-                        ],
-                        "loc": {
-                          "start": {
-                            "line": 9,
-                            "column": 2
-                          },
-                          "end": {
-                            "line": 9,
-                            "column": 9
-                          }
-                        }
-                      }
-                    ]
-                  },
-                  {
-                    "type": "ExpressionStatement",
-                    "expression": {
-                      "type": "CallExpression",
-                      "callee": {
-                        "type": "MemberExpression",
-                        "computed": false,
-                        "object": {
-                          "type": "Identifier",
-                          "name": "server",
-                          "range": [
-                            195,
-                            201
-                          ],
-                          "loc": {
-                            "start": {
-                              "line": 10,
-                              "column": 2
-                            },
-                            "end": {
-                              "line": 10,
-                              "column": 8
-                            }
-                          }
-                        },
-                        "property": {
-                          "type": "Identifier",
-                          "name": "route",
-                          "range": [
-                            202,
-                            207
-                          ],
-                          "loc": {
-                            "start": {
-                              "line": 10,
-                              "column": 9
-                            },
-                            "end": {
-                              "line": 10,
-                              "column": 14
-                            }
-                          }
-                        },
-                        "range": [
-                          195,
-                          207
-                        ],
-                        "loc": {
-                          "start": {
-                            "line": 10,
-                            "column": 2
-                          },
-                          "end": {
-                            "line": 10,
-                            "column": 14
-                          }
-                        }
-                      },
-                      "arguments": [
-                        {
-                          "type": "Identifier",
-                          "name": "apiRoutes",
-                          "range": [
-                            208,
-                            217
-                          ],
-                          "loc": {
-                            "start": {
-                              "line": 10,
-                              "column": 15
-                            },
-                            "end": {
-                              "line": 10,
-                              "column": 24
-                            }
-                          }
-                        }
-                      ],
-                      "range": [
-                        195,
-                        218
-                      ],
-                      "loc": {
-                        "start": {
-                          "line": 10,
-                          "column": 2
-                        },
-                        "end": {
-                          "line": 10,
-                          "column": 25
-                        }
-                      }
-                    },
-                    "range": [
-                      195,
-                      219
-                    ],
-                    "loc": {
-                      "start": {
-                        "line": 10,
-                        "column": 2
-                      },
-                      "end": {
-                        "line": 10,
-                        "column": 26
-                      }
-                    },
-                    "leadingComments": [
-                      {
-                        "type": "Line",
-                        "value": " APIs",
-                        "range": [
-                          185,
-                          192
-                        ],
-                        "loc": {
-                          "start": {
-                            "line": 9,
-                            "column": 2
-                          },
-                          "end": {
-                            "line": 9,
-                            "column": 9
-                          }
-                        }
-                      }
-                    ],
-                    "trailingComments": [
-                      {
-                        "type": "Line",
-                        "value": " server.register([",
-                        "range": [
-                          224,
-                          244
-                        ],
-                        "loc": {
-                          "start": {
-                            "line": 13,
-                            "column": 2
-                          },
-                          "end": {
-                            "line": 13,
-                            "column": 22
-                          }
-                        }
-                      },
-                      {
-                        "type": "Line",
-                        "value": "   apiPlugin,",
-                        "range": [
-                          247,
-                          262
-                        ],
-                        "loc": {
-                          "start": {
-                            "line": 14,
-                            "column": 2
-                          },
-                          "end": {
-                            "line": 14,
-                            "column": 17
-                          }
-                        }
-                      },
-                      {
-                        "type": "Line",
-                        "value": " ], {",
-                        "range": [
-                          265,
-                          272
-                        ],
-                        "loc": {
-                          "start": {
-                            "line": 15,
-                            "column": 2
-                          },
-                          "end": {
-                            "line": 15,
-                            "column": 9
-                          }
-                        }
-                      },
-                      {
-                        "type": "Line",
-                        "value": "   routes: {prefix: '/api'},",
-                        "range": [
-                          275,
-                          305
-                        ],
-                        "loc": {
-                          "start": {
-                            "line": 16,
-                            "column": 2
-                          },
-                          "end": {
-                            "line": 16,
-                            "column": 32
-                          }
-                        }
-                      },
-                      {
-                        "type": "Line",
-                        "value": " }, (err) => {",
-                        "range": [
-                          308,
-                          324
-                        ],
-                        "loc": {
-                          "start": {
-                            "line": 17,
-                            "column": 2
-                          },
-                          "end": {
-                            "line": 17,
-                            "column": 18
-                          }
-                        }
-                      },
-                      {
-                        "type": "Line",
-                        "value": "   if (err) server.log(['error'], `routes: api load error: ${err}`);",
-                        "range": [
-                          327,
-                          397
-                        ],
-                        "loc": {
-                          "start": {
-                            "line": 18,
-                            "column": 2
-                          },
-                          "end": {
-                            "line": 18,
-                            "column": 72
-                          }
-                        }
-                      },
-                      {
-                        "type": "Line",
-                        "value": " });",
-                        "range": [
-                          400,
-                          406
-                        ],
-                        "loc": {
-                          "start": {
-                            "line": 19,
-                            "column": 2
-                          },
-                          "end": {
-                            "line": 19,
-                            "column": 8
-                          }
-                        }
-                      }
-                    ]
                   }
                 ],
                 "range": [
                   56,
-                  408
+                  91
                 ],
                 "loc": {
                   "start": {
@@ -1805,7 +581,7 @@
                     "column": 24
                   },
                   "end": {
-                    "line": 20,
+                    "line": 5,
                     "column": 1
                   }
                 }
@@ -1814,7 +590,7 @@
               "expression": false,
               "range": [
                 44,
-                408
+                91
               ],
               "loc": {
                 "start": {
@@ -1822,14 +598,14 @@
                   "column": 12
                 },
                 "end": {
-                  "line": 20,
+                  "line": 5,
                   "column": 1
                 }
               }
             },
             "range": [
               38,
-              408
+              91
             ],
             "loc": {
               "start": {
@@ -1837,7 +613,7 @@
                 "column": 6
               },
               "end": {
-                "line": 20,
+                "line": 5,
                 "column": 1
               }
             }
@@ -1846,7 +622,7 @@
         "kind": "const",
         "range": [
           32,
-          409
+          92
         ],
         "loc": {
           "start": {
@@ -1854,288 +630,33 @@
             "column": 0
           },
           "end": {
-            "line": 20,
+            "line": 5,
             "column": 2
           }
         },
-        "leadingComments": [
-          {
-            "type": "Line",
-            "value": " server.register([",
-            "range": [
-              224,
-              244
-            ],
-            "loc": {
-              "start": {
-                "line": 13,
-                "column": 2
-              },
-              "end": {
-                "line": 13,
-                "column": 22
-              }
-            }
-          },
-          {
-            "type": "Line",
-            "value": "   apiPlugin,",
-            "range": [
-              247,
-              262
-            ],
-            "loc": {
-              "start": {
-                "line": 14,
-                "column": 2
-              },
-              "end": {
-                "line": 14,
-                "column": 17
-              }
-            }
-          },
-          {
-            "type": "Line",
-            "value": " ], {",
-            "range": [
-              265,
-              272
-            ],
-            "loc": {
-              "start": {
-                "line": 15,
-                "column": 2
-              },
-              "end": {
-                "line": 15,
-                "column": 9
-              }
-            }
-          },
-          {
-            "type": "Line",
-            "value": "   routes: {prefix: '/api'},",
-            "range": [
-              275,
-              305
-            ],
-            "loc": {
-              "start": {
-                "line": 16,
-                "column": 2
-              },
-              "end": {
-                "line": 16,
-                "column": 32
-              }
-            }
-          },
-          {
-            "type": "Line",
-            "value": " }, (err) => {",
-            "range": [
-              308,
-              324
-            ],
-            "loc": {
-              "start": {
-                "line": 17,
-                "column": 2
-              },
-              "end": {
-                "line": 17,
-                "column": 18
-              }
-            }
-          },
-          {
-            "type": "Line",
-            "value": "   if (err) server.log(['error'], `routes: api load error: ${err}`);",
-            "range": [
-              327,
-              397
-            ],
-            "loc": {
-              "start": {
-                "line": 18,
-                "column": 2
-              },
-              "end": {
-                "line": 18,
-                "column": 72
-              }
-            }
-          },
-          {
-            "type": "Line",
-            "value": " });",
-            "range": [
-              400,
-              406
-            ],
-            "loc": {
-              "start": {
-                "line": 19,
-                "column": 2
-              },
-              "end": {
-                "line": 19,
-                "column": 8
-              }
-            }
-          }
-        ],
+        "leadingComments": [],
         "trailingComments": []
       },
       "range": [
-        411,
-        430
+        94,
+        113
       ],
       "loc": {
         "start": {
-          "line": 22,
+          "line": 7,
           "column": 0
         },
         "end": {
-          "line": 22,
+          "line": 7,
           "column": 19
         }
-      },
-      "leadingComments": [
-        {
-          "type": "Line",
-          "value": " server.register([",
-          "range": [
-            224,
-            244
-          ],
-          "loc": {
-            "start": {
-              "line": 13,
-              "column": 2
-            },
-            "end": {
-              "line": 13,
-              "column": 22
-            }
-          }
-        },
-        {
-          "type": "Line",
-          "value": "   apiPlugin,",
-          "range": [
-            247,
-            262
-          ],
-          "loc": {
-            "start": {
-              "line": 14,
-              "column": 2
-            },
-            "end": {
-              "line": 14,
-              "column": 17
-            }
-          }
-        },
-        {
-          "type": "Line",
-          "value": " ], {",
-          "range": [
-            265,
-            272
-          ],
-          "loc": {
-            "start": {
-              "line": 15,
-              "column": 2
-            },
-            "end": {
-              "line": 15,
-              "column": 9
-            }
-          }
-        },
-        {
-          "type": "Line",
-          "value": "   routes: {prefix: '/api'},",
-          "range": [
-            275,
-            305
-          ],
-          "loc": {
-            "start": {
-              "line": 16,
-              "column": 2
-            },
-            "end": {
-              "line": 16,
-              "column": 32
-            }
-          }
-        },
-        {
-          "type": "Line",
-          "value": " }, (err) => {",
-          "range": [
-            308,
-            324
-          ],
-          "loc": {
-            "start": {
-              "line": 17,
-              "column": 2
-            },
-            "end": {
-              "line": 17,
-              "column": 18
-            }
-          }
-        },
-        {
-          "type": "Line",
-          "value": "   if (err) server.log(['error'], `routes: api load error: ${err}`);",
-          "range": [
-            327,
-            397
-          ],
-          "loc": {
-            "start": {
-              "line": 18,
-              "column": 2
-            },
-            "end": {
-              "line": 18,
-              "column": 72
-            }
-          }
-        },
-        {
-          "type": "Line",
-          "value": " });",
-          "range": [
-            400,
-            406
-          ],
-          "loc": {
-            "start": {
-              "line": 19,
-              "column": 2
-            },
-            "end": {
-              "line": 19,
-              "column": 8
-            }
-          }
-        }
-      ]
+      }
     }
   ],
   "sourceType": "module",
   "range": [
     0,
-    430
+    113
   ],
   "loc": {
     "start": {
@@ -2143,172 +664,9 @@
       "column": 0
     },
     "end": {
-      "line": 22,
+      "line": 7,
       "column": 19
     }
   },
-  "comments": [
-    {
-      "type": "Line",
-      "value": " Authentication",
-      "range": [
-        137,
-        154
-      ],
-      "loc": {
-        "start": {
-          "line": 7,
-          "column": 2
-        },
-        "end": {
-          "line": 7,
-          "column": 19
-        }
-      }
-    },
-    {
-      "type": "Line",
-      "value": " APIs",
-      "range": [
-        185,
-        192
-      ],
-      "loc": {
-        "start": {
-          "line": 9,
-          "column": 2
-        },
-        "end": {
-          "line": 9,
-          "column": 9
-        }
-      }
-    },
-    {
-      "type": "Line",
-      "value": " server.register([",
-      "range": [
-        224,
-        244
-      ],
-      "loc": {
-        "start": {
-          "line": 13,
-          "column": 2
-        },
-        "end": {
-          "line": 13,
-          "column": 22
-        }
-      }
-    },
-    {
-      "type": "Line",
-      "value": "   apiPlugin,",
-      "range": [
-        247,
-        262
-      ],
-      "loc": {
-        "start": {
-          "line": 14,
-          "column": 2
-        },
-        "end": {
-          "line": 14,
-          "column": 17
-        }
-      }
-    },
-    {
-      "type": "Line",
-      "value": " ], {",
-      "range": [
-        265,
-        272
-      ],
-      "loc": {
-        "start": {
-          "line": 15,
-          "column": 2
-        },
-        "end": {
-          "line": 15,
-          "column": 9
-        }
-      }
-    },
-    {
-      "type": "Line",
-      "value": "   routes: {prefix: '/api'},",
-      "range": [
-        275,
-        305
-      ],
-      "loc": {
-        "start": {
-          "line": 16,
-          "column": 2
-        },
-        "end": {
-          "line": 16,
-          "column": 32
-        }
-      }
-    },
-    {
-      "type": "Line",
-      "value": " }, (err) => {",
-      "range": [
-        308,
-        324
-      ],
-      "loc": {
-        "start": {
-          "line": 17,
-          "column": 2
-        },
-        "end": {
-          "line": 17,
-          "column": 18
-        }
-      }
-    },
-    {
-      "type": "Line",
-      "value": "   if (err) server.log(['error'], `routes: api load error: ${err}`);",
-      "range": [
-        327,
-        397
-      ],
-      "loc": {
-        "start": {
-          "line": 18,
-          "column": 2
-        },
-        "end": {
-          "line": 18,
-          "column": 72
-        }
-      }
-    },
-    {
-      "type": "Line",
-      "value": " });",
-      "range": [
-        400,
-        406
-      ],
-      "loc": {
-        "start": {
-          "line": 19,
-          "column": 2
-        },
-        "end": {
-          "line": 19,
-          "column": 8
-        }
-      }
-    }
-  ]
+  "comments": []
 }

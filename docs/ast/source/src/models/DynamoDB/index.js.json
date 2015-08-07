@@ -75,88 +75,124 @@
       }
     },
     {
-      "type": "ExportDefaultDeclaration",
-      "declaration": {
-        "type": "ObjectExpression",
-        "properties": [
-          {
-            "type": "Property",
-            "key": {
-              "type": "Identifier",
-              "name": "Posts",
-              "range": [
-                49,
-                54
-              ],
-              "loc": {
-                "start": {
-                  "line": 4,
-                  "column": 2
-                },
-                "end": {
-                  "line": 4,
-                  "column": 7
-                }
-              }
-            },
-            "value": {
-              "type": "Identifier",
-              "name": "Posts",
-              "range": [
-                49,
-                54
-              ],
-              "loc": {
-                "start": {
-                  "line": 4,
-                  "column": 2
-                },
-                "end": {
-                  "line": 4,
-                  "column": 7
-                }
-              }
-            },
-            "kind": "init",
-            "method": false,
-            "shorthand": true,
-            "computed": false,
+      "type": "Identifier",
+      "declarations": [
+        {
+          "type": "VariableDeclarator",
+          "id": {
+            "type": "Identifier",
+            "name": "DynamoDBModels",
             "range": [
-              49,
-              54
+              36,
+              50
             ],
             "loc": {
               "start": {
-                "line": 4,
-                "column": 2
+                "line": 3,
+                "column": 6
               },
               "end": {
-                "line": 4,
-                "column": 7
+                "line": 3,
+                "column": 20
               }
             }
-          }
-        ],
-        "range": [
-          45,
-          57
-        ],
-        "loc": {
-          "start": {
-            "line": 3,
-            "column": 15
           },
-          "end": {
-            "line": 5,
-            "column": 1
+          "init": {
+            "type": "ObjectExpression",
+            "properties": [
+              {
+                "type": "Property",
+                "key": {
+                  "type": "Identifier",
+                  "name": "Posts",
+                  "range": [
+                    57,
+                    62
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 4,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 4,
+                      "column": 7
+                    }
+                  }
+                },
+                "value": {
+                  "type": "Identifier",
+                  "name": "Posts",
+                  "range": [
+                    57,
+                    62
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 4,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 4,
+                      "column": 7
+                    }
+                  }
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": true,
+                "computed": false,
+                "range": [
+                  57,
+                  62
+                ],
+                "loc": {
+                  "start": {
+                    "line": 4,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 4,
+                    "column": 7
+                  }
+                }
+              }
+            ],
+            "range": [
+              53,
+              65
+            ],
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 23
+              },
+              "end": {
+                "line": 5,
+                "column": 1
+              }
+            }
+          },
+          "range": [
+            36,
+            65
+          ],
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 6
+            },
+            "end": {
+              "line": 5,
+              "column": 1
+            }
           }
-        },
-        "leadingComments": [],
-        "trailingComments": []
-      },
+        }
+      ],
+      "kind": "const",
       "range": [
         30,
-        58
+        66
       ],
       "loc": {
         "start": {
@@ -167,13 +203,204 @@
           "line": 5,
           "column": 2
         }
+      },
+      "name": "_",
+      "leadingComments": [],
+      "trailingComments": []
+    },
+    {
+      "type": "Identifier",
+      "declaration": {
+        "type": "Identifier",
+        "name": "DynamoDBModels",
+        "range": [
+          83,
+          97
+        ],
+        "loc": {
+          "start": {
+            "line": 7,
+            "column": 15
+          },
+          "end": {
+            "line": 7,
+            "column": 29
+          }
+        }
+      },
+      "range": [
+        68,
+        98
+      ],
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 0
+        },
+        "end": {
+          "line": 7,
+          "column": 30
+        }
+      },
+      "name": "_",
+      "leadingComments": [],
+      "trailingComments": []
+    },
+    {
+      "type": "ExportDefaultDeclaration",
+      "declaration": {
+        "type": "VariableDeclaration",
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "id": {
+              "type": "Identifier",
+              "name": "DynamoDBModels",
+              "range": [
+                36,
+                50
+              ],
+              "loc": {
+                "start": {
+                  "line": 3,
+                  "column": 6
+                },
+                "end": {
+                  "line": 3,
+                  "column": 20
+                }
+              }
+            },
+            "init": {
+              "type": "ObjectExpression",
+              "properties": [
+                {
+                  "type": "Property",
+                  "key": {
+                    "type": "Identifier",
+                    "name": "Posts",
+                    "range": [
+                      57,
+                      62
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 4,
+                        "column": 2
+                      },
+                      "end": {
+                        "line": 4,
+                        "column": 7
+                      }
+                    }
+                  },
+                  "value": {
+                    "type": "Identifier",
+                    "name": "Posts",
+                    "range": [
+                      57,
+                      62
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 4,
+                        "column": 2
+                      },
+                      "end": {
+                        "line": 4,
+                        "column": 7
+                      }
+                    }
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": true,
+                  "computed": false,
+                  "range": [
+                    57,
+                    62
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 4,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 4,
+                      "column": 7
+                    }
+                  }
+                }
+              ],
+              "range": [
+                53,
+                65
+              ],
+              "loc": {
+                "start": {
+                  "line": 3,
+                  "column": 23
+                },
+                "end": {
+                  "line": 5,
+                  "column": 1
+                }
+              }
+            },
+            "range": [
+              36,
+              65
+            ],
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 6
+              },
+              "end": {
+                "line": 5,
+                "column": 1
+              }
+            }
+          }
+        ],
+        "kind": "const",
+        "range": [
+          30,
+          66
+        ],
+        "loc": {
+          "start": {
+            "line": 3,
+            "column": 0
+          },
+          "end": {
+            "line": 5,
+            "column": 2
+          }
+        },
+        "leadingComments": [],
+        "trailingComments": []
+      },
+      "range": [
+        68,
+        98
+      ],
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 0
+        },
+        "end": {
+          "line": 7,
+          "column": 30
+        }
       }
     }
   ],
   "sourceType": "module",
   "range": [
     0,
-    58
+    98
   ],
   "loc": {
     "start": {
@@ -181,8 +408,8 @@
       "column": 0
     },
     "end": {
-      "line": 5,
-      "column": 2
+      "line": 7,
+      "column": 30
     }
   },
   "comments": []

@@ -6,8 +6,10 @@ import Joi from 'joi';
 import AWS from './aws';
 import routePrefixer from './routePrefixer';
 
-export default {
+const helpers = {
   Joi,
   AWS,
   routePrefixer,
 };
+
+export default helpers;

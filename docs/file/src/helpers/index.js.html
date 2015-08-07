@@ -31,7 +31,9 @@
   <h2>Class</h2>
   <ul>
     
-  <li data-ice="classDoc"><span><a href="class/src/actions/Test.js~TestAction.html">TestAction</a></span></li>
+  <li data-ice="classDoc"><span><a href="class/src/actions/Auth.js~AuthAction.html">AuthAction</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/stores/Auth.js~AuthStore.html">AuthStore</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/actions/Test.js~TestAction.html">TestAction</a></span></li>
 <li data-ice="classDoc"><span><a href="class/src/stores/Test.js~TestStore.html">TestStore</a></span></li>
 </ul>
 </div>
@@ -44,10 +46,34 @@
   <h2><a href="variable/">Variable</a></h2>
   <ul>
     
-  <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-api">api</a></span></li>
+  <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-Actions">Actions</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-DynamoDBModels">DynamoDBModels</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-Models">Models</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-MySQLModels">MySQLModels</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-Posts">Posts</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-Stores">Stores</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-Strategies">Strategies</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-Users">Users</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-api">api</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-apiV1">apiV1</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-apiV1Hello">apiV1Hello</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-authAction">authAction</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-authHandlers">authHandlers</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-authRoutes">authRoutes</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-authStore">authStore</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-facebookStrategy">facebookStrategy</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-githubStrategy">githubStrategy</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-googleStrategy">googleStrategy</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-helpers">helpers</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-jwtStrategy">jwtStrategy</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-localAuthRoutes">localAuthRoutes</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-localStrategy">localStrategy</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-routePrefixer">routePrefixer</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-routes">routes</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-testAction">testAction</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-testStore">testStore</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-twitterAuthRoutes">twitterAuthRoutes</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-twitterStrategy">twitterStrategy</a></span></li>
 </ul>
 </div>
 
@@ -65,11 +91,13 @@ import Joi from &apos;joi&apos;;
 import AWS from &apos;./aws&apos;;
 import routePrefixer from &apos;./routePrefixer&apos;;
 
-export default {
+const helpers = {
   Joi,
   AWS,
   routePrefixer,
 };
+
+export default helpers;
 </code></pre>
 </div>
 
