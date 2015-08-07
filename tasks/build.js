@@ -17,7 +17,7 @@ export default (gulp, $, argv, path) => {
       'assets',
       'stylus',
       // 'flowtype',
-      `lint`,
+      // `lint`,
       'webpack',
     ], cb);
   });

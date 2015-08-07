@@ -16,6 +16,12 @@ export default (gulp, $, argv, path) => {
       '**/__test__/*.js',
       '**/__test__/*.jsx',
     ], {read: false})
-      .pipe($.mocha({}));
+      .pipe($.mocha({}))
+      .once('error', () => {
+        process.exit(1);
+      })
+      .once('end', () => {
+        process.exit();
+      });
   });
 };
