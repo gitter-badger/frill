@@ -12,6 +12,7 @@
  */
 export default (gulp, $, argv, path) => {
   gulp.task('build', ['clean'], (cb) => {
+    $._watch = false;
     $.runSequence([
       'assets',
       'stylus',

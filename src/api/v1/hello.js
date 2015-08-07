@@ -18,7 +18,7 @@ export default (server) => {
     },
     handler: (req, rep) => {
       console.log(req.auth);
-      rep('api, hello! ---');
+      rep({msg: 'api, hello'});
     },
   }, {
     method: ['GET'],
@@ -39,9 +39,9 @@ export default (server) => {
     },
     handler: (req, rep) => {
       console.log('hander');
-      
+
       console.log(req.auth);
-      rep('api, restricted. Hello!');
+      rep({msg: 'restricted api, hello'});
     },
   }];
 };
