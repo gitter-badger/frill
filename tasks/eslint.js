@@ -23,6 +23,7 @@ export default (gulp, $, argv, path) => {
       'src/**/*.jsx',
     ])
     .pipe($.eslint())
-    .pipe($.eslint.format());
+    .pipe($.eslint.format())
+    .pipe($.if(!$._watch, $.eslint.failOnError()));
   });
 };
