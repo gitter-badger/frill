@@ -18,20 +18,20 @@ export default (gulp, $, argv, path) => {
         index: './README.md',
         title: 'FrillJS',
         includes: ['\\.(js|jsx)$'],
-        // excludes: ['\\.config\\.(js|es6)$'],
+        coverage: true,
+        // excludes: ['\\.config\\.(js|jsx)$'],
         // access: ['public', 'protected'],
         // autoPrivate: true,
         // unexportIdentifier: false,
         // undocumentIdentifier: true,
         // builtinExternal: true,
         // importPathPrefix: '',
-        // coverage: true,
-        // test: {
-        //   type: 'mocha',
-        //   source: './test/src',
-        //   includes: ['Test\\.(js|es6)$'],
-        //   excludes: ['\\.config\\.(js|es6)$']
-        // }
+        test: {
+          type: 'mocha',
+          source: './test',
+          includes: ['Test\\.(js|jsx)$'],
+          excludes: ['\\.config\\.(js|jsx)$'],
+        },
         // styles: ['./path/to/style.css'],
         // scripts: ['./path/to/script.js']
       }));

@@ -3610,5 +3610,43 @@
     "access": null,
     "description": null,
     "builtinExternal": true
+  },
+  {
+    "kind": "testFile",
+    "static": true,
+    "variation": null,
+    "name": "test/docTest.js",
+    "memberof": null,
+    "longname": "test/docTest.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "describe('A test for Documentation purpose', () => {\n  it('hello', () => {\n    const foo = 'a';\n    expect(foo).to.equal('a');\n  });\n});\n"
+  },
+  {
+    "kind": "testDescribe",
+    "static": true,
+    "variation": null,
+    "name": "describe0",
+    "testId": 0,
+    "memberof": "test/docTest.js",
+    "testDepth": 0,
+    "longname": "test/docTest.js~describe0",
+    "access": null,
+    "description": "A test for Documentation purpose",
+    "lineNumber": 1
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it1",
+    "testId": 1,
+    "memberof": "test/docTest.js~describe0",
+    "testDepth": 1,
+    "longname": "test/docTest.js~describe0.it1",
+    "access": null,
+    "description": "hello",
+    "lineNumber": 2
   }
 ]

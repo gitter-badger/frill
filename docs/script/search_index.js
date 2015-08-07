@@ -282,6 +282,18 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
+    "",
+    "test-file/test/docTest.js.html#lineNumber1",
+    "A test for Documentation purpose",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/docTest.js.html#lineNumber2",
+    "A test for Documentation purpose hello",
+    "test"
+  ],
+  [
     "builtinexternal/ecmascriptexternal.js~array",
     "external/index.html",
     "BuiltinExternal/ECMAScriptExternal.js~Array",
@@ -1150,5 +1162,11 @@ window.esdocSearchIndex = [
     "file/src/stores/index.js.html",
     "src/stores/index.js",
     "file"
+  ],
+  [
+    "test/doctest.js",
+    "test-file/test/docTest.js.html",
+    "test/docTest.js",
+    "testFile"
   ]
 ]
