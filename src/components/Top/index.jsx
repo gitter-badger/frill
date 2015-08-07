@@ -10,6 +10,7 @@ class Top extends new StoreWatchComponent(['Test']) {
     this._bind([
       'onOne',
       'onTen',
+      'loadScrollItems',
     ]);
   }
 
@@ -24,10 +25,23 @@ class Top extends new StoreWatchComponent(['Test']) {
   getStateFromFrill() {
     return {
       count: this.getFrill().store('Test').getCount(),
+      scrollItems: this.getFrill().store('Test').getScrollItems(),
+      scrollItemsCount: this.getFrill().store('Test').getScrollItemsCount(),
     };
   }
 
   render() {
+    const items = [];
+
+    this.state.scrollItems.map((item) => {
+      items.push(
+        <li key={item.id}>
+          <p>ID : {item.id}</p>
+          <p>title : {item.title}</p>
+        </li>
+      );
+    });
+
     return (
       <div className="Top">
         <h2>Samples</h2>
@@ -44,14 +58,22 @@ class Top extends new StoreWatchComponent(['Test']) {
         <section>
           <h3>Infinite Scroll</h3>
           <ScrollBlock
-            onScrolledToBottom={this.loadItem} />
+            fetchData={this.loadScrollItems}
+            itemsCount={this.state.scrollItemsCount}>
+              <h4>Scroll down the box ...</h4>
+              <ul className="scroll-list">
+                {items}
+              </ul>
+          </ScrollBlock>
         </section>
       </div>
     );
   }
 
-  loadItem() {
-    console.log('scroll reached!');
+  loadScrollItems() {
+    this.getFrill()
+      .action('Test')
+      .loadScrollItems(this.state.scrollItemsCount, 5);
   }
 }
 

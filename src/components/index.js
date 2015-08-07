@@ -1,7 +1,7 @@
 import Page from './Page';
 import App from './App';
 import Top from './Top';
-import Another from './Another';
+import Login from './Login';
 import Error from './Error';
 
 export default {
@@ -9,7 +9,7 @@ export default {
   Page: Page,
   App: App,
   Top: Top,
-  Another: Another,
+  Login: Login,
 
   // Error handler
   Error: Error,

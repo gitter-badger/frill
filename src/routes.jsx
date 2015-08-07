@@ -7,7 +7,7 @@ export default () => {
     <Route handler={C.Page}>
       <Route name="app" path="/" handler={C.App}>
         <DefaultRoute name="top" handler={C.Top} />
-        <Route name="another" handler={C.Another} />
+        <Route name="login" handler={C.Login} />
       </Route>
       <NotFoundRoute name="Error" handler={C.Error}/>
     </Route>

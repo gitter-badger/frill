@@ -59,9 +59,11 @@ button
       background-color: #fff
       color: _bg-sub
 
-input[type='text']
+input[type='text'],
+input[type="password"]
   form-base()
   height: ($form-input-spacing * 2 + 1em)
+  padding: 0 $form-input-spacing
 
   &:focus
     border-color: $main-color

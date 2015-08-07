@@ -1,4 +1,5 @@
 import {Action} from 'frill-core';
+import scrollData from '../helpers/testScrollItemsData';
 
 class TestAction extends Action {
 
@@ -17,6 +18,13 @@ class TestAction extends Action {
   countUpBy(count) {
     this.dispatch('COUNT_UP_BY', count);
     return count;
+  }
+
+  loadScrollItems(lastIndex, retrieve) {
+    const data = scrollData.slice(lastIndex, lastIndex + retrieve);
+    setTimeout(() => {
+      this.dispatch('LOAD_SCROLL_ITEMS', data);
+    }, 1500);
   }
 }
 
