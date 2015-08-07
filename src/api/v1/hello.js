@@ -1,4 +1,4 @@
-const apiV1Hello = (server) => {
+const apiV1Hello = (/* server */) => {
   return [{
     method: ['GET'],
     path: '/hello',

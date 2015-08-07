@@ -3,6 +3,8 @@
  */
 import AWS from 'aws-sdk';
 
+// const AWS = {};
+
 AWS.config.update({
   accessKeyId: 'myKeyId',
   secretAccessKey: 'secretKey',

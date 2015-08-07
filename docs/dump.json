@@ -851,7 +851,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "const apiV1Hello = (server) => {\n  return [{\n    method: ['GET'],\n    path: '/hello',\n    config: {\n      auth: false,\n      description: 'Say hello!',\n      notes: 'Says hello.',\n      tags: ['api', 'greeting'],\n      plugins: {\n        'hapi-swagger': {\n          responseMessages: [\n            { code: 400, message: 'Bad Request' },\n            { code: 500, message: 'Internal Server Error'},\n          ],\n        },\n      },\n    },\n    handler: (req, rep) => {\n      console.log(req.auth);\n      rep({msg: 'api, hello'});\n    },\n  }, {\n    method: ['GET'],\n    path: '/hello/restricted',\n    config: {\n      auth: 'jwt',\n      description: 'Restricted route',\n      notes: 'Restricted, says hello',\n      tags: ['api', 'greeting'],\n      plugins: {\n        'hapi-swagger': {\n          responseMessages: [\n            { code: 400, message: 'Bad Request' },\n            { code: 500, message: 'Internal Server Error'},\n          ],\n        },\n      },\n    },\n    handler: (req, rep) => {\n      console.log('hander');\n\n      console.log(req.auth);\n      rep({msg: 'restricted api, hello'});\n    },\n  }];\n};\n\nexport default apiV1Hello;\n"
+    "content": "const apiV1Hello = (/* server */) => {\n  return [{\n    method: ['GET'],\n    path: '/hello',\n    config: {\n      auth: false,\n      description: 'Say hello!',\n      notes: 'Says hello.',\n      tags: ['api', 'greeting'],\n      plugins: {\n        'hapi-swagger': {\n          responseMessages: [\n            { code: 400, message: 'Bad Request' },\n            { code: 500, message: 'Internal Server Error'},\n          ],\n        },\n      },\n    },\n    handler: (req, rep) => {\n      console.log(req.auth);\n      rep({msg: 'api, hello'});\n    },\n  }, {\n    method: ['GET'],\n    path: '/hello/restricted',\n    config: {\n      auth: 'jwt',\n      description: 'Restricted route',\n      notes: 'Restricted, says hello',\n      tags: ['api', 'greeting'],\n      plugins: {\n        'hapi-swagger': {\n          responseMessages: [\n            { code: 400, message: 'Bad Request' },\n            { code: 500, message: 'Internal Server Error'},\n          ],\n        },\n      },\n    },\n    handler: (req, rep) => {\n      console.log('hander');\n\n      console.log(req.auth);\n      rep({msg: 'restricted api, hello'});\n    },\n  }];\n};\n\nexport default apiV1Hello;\n"
   },
   {
     "kind": "variable",
@@ -915,7 +915,27 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Frill from 'frill-core';\nimport Stores from './stores';\nimport Actions from './actions';\n\n// load stores and actions.\nFrill._Stores = Stores;\nFrill._Actions = Actions;\n\nexport default Frill;\n"
+    "content": "import frillCore from 'frill-core';\nimport Stores from './stores';\nimport Actions from './actions';\n\nconst Frill = frillCore;\n\n// load stores and actions.\nFrill._Stores = Stores;\nFrill._Actions = Actions;\n\nexport default Frill;\n"
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "Frill",
+    "memberof": "src/bootstrap.js",
+    "longname": "src/bootstrap.js~Frill",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/bootstrap.js",
+    "importStyle": "Frill",
+    "description": null,
+    "lineNumber": 5,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
   },
   {
     "kind": "file",
@@ -927,7 +947,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Frill from './bootstrap';\nimport _extend from 'lodash/object/extend';\nimport React from 'react';\nimport Router from 'react-router';\nimport routes from './routes';\n// import Logger from './core/Logger';\n// import Configs from './../config/';\n\n// Config = Configs[process.env.NODE_ENV]\n// defaultConfig = Configs['default']\n// Config = _extend defaultConfig, Config\n\n// Frill.Log = new Logger(Config, false)\n\n// TODO: make a new method for this inside Frill.\n// Frill.isClient = true;\n// Frill.isServer = false;\n\n// use socket service\n// Frill.Action.use('socket', {url: 'http://localhost:3000'});\n\n// create a frill context\nconst frillContext = Frill.attach(Frill._Stores, Frill._Actions);\n\nconst data = JSON.parse(\n  document.getElementById('initial-data').getAttribute('data-json')\n);\n\nRouter.run(routes(), Router.HistoryLocation, (Handler) => {\n  React.render(\n    React.createElement(\n      Handler, _extend({frill: frillContext}, data)\n    ), document.getElementById('app')\n  );\n});\n"
+    "content": "import Frill from './bootstrap';\nimport _extend from 'lodash/object/extend';\nimport React from 'react';\nimport Router from 'react-router';\nimport routes from './routes';\n\n// create a frill context\nconst frillContext = Frill.attach(Frill._Stores, Frill._Actions);\n\nconst data = JSON.parse(\n  document.getElementById('initial-data').getAttribute('data-json')\n);\n\nRouter.run(routes(), Router.HistoryLocation, (Handler) => {\n  React.render(\n    React.createElement(\n      Handler, _extend({frill: frillContext}, data)\n    ), document.getElementById('app')\n  );\n});\n"
   },
   {
     "kind": "variable",
@@ -941,7 +961,7 @@
     "importPath": "frill/src/client.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 23,
+    "lineNumber": 8,
     "undocument": true,
     "type": {
       "types": [
@@ -961,7 +981,7 @@
     "importPath": "frill/src/client.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 25,
+    "lineNumber": 10,
     "undocument": true,
     "type": {
       "types": [
@@ -979,7 +999,27 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Page from './Page';\nimport App from './App';\nimport Top from './Top';\nimport Login from './Login';\nimport Error from './Error';\n\nexport default {\n  // Parent component\n  Page: Page,\n  App: App,\n  Top: Top,\n  Login: Login,\n\n  // Error handler\n  Error: Error,\n\n};\n"
+    "content": "import Page from './Page';\nimport App from './App';\nimport Top from './Top';\nimport Login from './Login';\nimport Error from './Error';\n\nconst Components = {\n  // Parent component\n  Page: Page,\n  App: App,\n  Top: Top,\n  Login: Login,\n\n  // Error handler\n  Error: Error,\n\n};\n\nexport default Components;\n"
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "Components",
+    "memberof": "src/components/index.js",
+    "longname": "src/components/index.js~Components",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/components/index.js",
+    "importStyle": "Components",
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
   },
   {
     "kind": "file",
@@ -991,7 +1031,7 @@
     "access": null,
     "description": null,
     "lineNumber": 4,
-    "content": "/**\n * AmazonWebServices Helper\n */\nimport AWS from 'aws-sdk';\n\nAWS.config.update({\n  accessKeyId: 'myKeyId',\n  secretAccessKey: 'secretKey',\n  region: 'us-east-1',\n});\n\nexport default AWS;\n"
+    "content": "/**\n * AmazonWebServices Helper\n */\nimport AWS from 'aws-sdk';\n\n// const AWS = {};\n\nAWS.config.update({\n  accessKeyId: 'myKeyId',\n  secretAccessKey: 'secretKey',\n  region: 'us-east-1',\n});\n\nexport default AWS;\n"
   },
   {
     "kind": "file",
@@ -1348,7 +1388,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Sequelize from 'sequelize';\n\n// setup sequelize\nconst sequelize = new Sequelize('database', 'username', 'password');\n\nexport default sequelize;\n"
+    "content": "import Sequelize from 'sequelize';\n\n// setup sequelize\nconst sequelize = new Sequelize('database', 'username', 'password');\n\n/**\n * Sequelize\n */\nexport default sequelize;\n"
   },
   {
     "kind": "file",

@@ -47,7 +47,9 @@
   <ul>
     
   <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-Actions">Actions</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-Components">Components</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-DynamoDBModels">DynamoDBModels</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-Frill">Frill</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-Models">Models</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-MySQLModels">MySQLModels</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-Posts">Posts</a></span></li>
@@ -88,21 +90,6 @@ import _extend from &apos;lodash/object/extend&apos;;
 import React from &apos;react&apos;;
 import Router from &apos;react-router&apos;;
 import routes from &apos;./routes&apos;;
-// import Logger from &apos;./core/Logger&apos;;
-// import Configs from &apos;./../config/&apos;;
-
-// Config = Configs[process.env.NODE_ENV]
-// defaultConfig = Configs[&apos;default&apos;]
-// Config = _extend defaultConfig, Config
-
-// Frill.Log = new Logger(Config, false)
-
-// TODO: make a new method for this inside Frill.
-// Frill.isClient = true;
-// Frill.isServer = false;
-
-// use socket service
-// Frill.Action.use(&apos;socket&apos;, {url: &apos;http://localhost:3000&apos;});
 
 // create a frill context
 const frillContext = Frill.attach(Frill._Stores, Frill._Actions);

@@ -18,9 +18,21 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "frill/src/components/index.js~components",
+    "variable/index.html#static-variable-Components",
+    "<span>Components</span> <span class=\"search-result-import-path\">frill/src/components/index.js</span>",
+    "variable"
+  ],
+  [
     "frill/src/models/dynamodb/index.js~dynamodbmodels",
     "variable/index.html#static-variable-DynamoDBModels",
     "<span>DynamoDBModels</span> <span class=\"search-result-import-path\">frill/src/models/DynamoDB/index.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/bootstrap.js~frill",
+    "variable/index.html#static-variable-Frill",
+    "<span>Frill</span> <span class=\"search-result-import-path\">frill/src/bootstrap.js</span>",
     "variable"
   ],
   [

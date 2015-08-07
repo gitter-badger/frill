@@ -4,7 +4,7 @@ import Top from './Top';
 import Login from './Login';
 import Error from './Error';
 
-export default {
+const Components = {
   // Parent component
   Page: Page,
   App: App,
@@ -15,3 +15,5 @@ export default {
   Error: Error,
 
 };
+
+export default Components;
