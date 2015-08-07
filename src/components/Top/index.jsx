@@ -49,7 +49,7 @@ class Top extends new StoreWatchComponent(['Test']) {
       </div>
     );
   }
-  
+
   loadItem() {
     console.log('scroll reached!');
   }
