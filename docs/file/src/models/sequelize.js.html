@@ -87,12 +87,16 @@
 <div class="content" data-ice="content"><h1 data-ice="title">src/models/sequelize.js</h1>
 <pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">import Sequelize from &apos;sequelize&apos;;
 
-// setup sequelize
-const sequelize = new Sequelize(&apos;database&apos;, &apos;username&apos;, &apos;password&apos;);
+sequelize = new Sequelize(&apos;database&apos;, &apos;username&apos;, &apos;password&apos;, {
+  host: &apos;localhost&apos;,
+  dialect: &apos;mysql&apos;,
+  // pool: {
+  //   max: 5,
+  //   min: 0,
+  //   idle: 10000,
+  // },
+});
 
-/**
- * Sequelize
- */
 export default sequelize;
 </code></pre>
 </div>

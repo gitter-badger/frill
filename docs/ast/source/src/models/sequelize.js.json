@@ -72,14 +72,19 @@
           "line": 1,
           "column": 34
         }
-      },
-      "trailingComments": [
-        {
-          "type": "Line",
-          "value": " setup sequelize",
+      }
+    },
+    {
+      "type": "ExpressionStatement",
+      "expression": {
+        "type": "AssignmentExpression",
+        "operator": "=",
+        "left": {
+          "type": "Identifier",
+          "name": "sequelize",
           "range": [
             36,
-            54
+            45
           ],
           "loc": {
             "start": {
@@ -88,163 +93,268 @@
             },
             "end": {
               "line": 3,
-              "column": 18
+              "column": 9
             }
           }
-        }
-      ]
-    },
-    {
-      "type": "Identifier",
-      "declarations": [
-        {
-          "type": "VariableDeclarator",
-          "id": {
+        },
+        "right": {
+          "type": "NewExpression",
+          "callee": {
             "type": "Identifier",
-            "name": "sequelize",
+            "name": "Sequelize",
             "range": [
-              61,
-              70
+              52,
+              61
             ],
             "loc": {
               "start": {
-                "line": 4,
-                "column": 6
+                "line": 3,
+                "column": 16
               },
               "end": {
-                "line": 4,
-                "column": 15
+                "line": 3,
+                "column": 25
               }
             }
           },
-          "init": {
-            "type": "NewExpression",
-            "callee": {
-              "type": "Identifier",
-              "name": "Sequelize",
+          "arguments": [
+            {
+              "type": "Literal",
+              "value": "database",
+              "raw": "'database'",
               "range": [
-                77,
-                86
+                62,
+                72
               ],
               "loc": {
                 "start": {
-                  "line": 4,
-                  "column": 22
+                  "line": 3,
+                  "column": 26
                 },
                 "end": {
-                  "line": 4,
-                  "column": 31
+                  "line": 3,
+                  "column": 36
                 }
               }
             },
-            "arguments": [
-              {
-                "type": "Literal",
-                "value": "database",
-                "raw": "'database'",
-                "range": [
-                  87,
-                  97
-                ],
-                "loc": {
-                  "start": {
-                    "line": 4,
-                    "column": 32
-                  },
-                  "end": {
-                    "line": 4,
-                    "column": 42
-                  }
-                }
-              },
-              {
-                "type": "Literal",
-                "value": "username",
-                "raw": "'username'",
-                "range": [
-                  99,
-                  109
-                ],
-                "loc": {
-                  "start": {
-                    "line": 4,
-                    "column": 44
-                  },
-                  "end": {
-                    "line": 4,
-                    "column": 54
-                  }
-                }
-              },
-              {
-                "type": "Literal",
-                "value": "password",
-                "raw": "'password'",
-                "range": [
-                  111,
-                  121
-                ],
-                "loc": {
-                  "start": {
-                    "line": 4,
-                    "column": 56
-                  },
-                  "end": {
-                    "line": 4,
-                    "column": 66
-                  }
+            {
+              "type": "Literal",
+              "value": "username",
+              "raw": "'username'",
+              "range": [
+                74,
+                84
+              ],
+              "loc": {
+                "start": {
+                  "line": 3,
+                  "column": 38
+                },
+                "end": {
+                  "line": 3,
+                  "column": 48
                 }
               }
-            ],
-            "range": [
-              73,
-              122
-            ],
-            "loc": {
-              "start": {
-                "line": 4,
-                "column": 18
-              },
-              "end": {
-                "line": 4,
-                "column": 67
+            },
+            {
+              "type": "Literal",
+              "value": "password",
+              "raw": "'password'",
+              "range": [
+                86,
+                96
+              ],
+              "loc": {
+                "start": {
+                  "line": 3,
+                  "column": 50
+                },
+                "end": {
+                  "line": 3,
+                  "column": 60
+                }
+              }
+            },
+            {
+              "type": "ObjectExpression",
+              "properties": [
+                {
+                  "type": "Property",
+                  "key": {
+                    "type": "Identifier",
+                    "name": "host",
+                    "range": [
+                      102,
+                      106
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 4,
+                        "column": 2
+                      },
+                      "end": {
+                        "line": 4,
+                        "column": 6
+                      }
+                    }
+                  },
+                  "value": {
+                    "type": "Literal",
+                    "value": "localhost",
+                    "raw": "'localhost'",
+                    "range": [
+                      108,
+                      119
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 4,
+                        "column": 8
+                      },
+                      "end": {
+                        "line": 4,
+                        "column": 19
+                      }
+                    }
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": false,
+                  "computed": false,
+                  "range": [
+                    102,
+                    119
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 4,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 4,
+                      "column": 19
+                    }
+                  }
+                },
+                {
+                  "type": "Property",
+                  "key": {
+                    "type": "Identifier",
+                    "name": "dialect",
+                    "range": [
+                      123,
+                      130
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 5,
+                        "column": 2
+                      },
+                      "end": {
+                        "line": 5,
+                        "column": 9
+                      }
+                    }
+                  },
+                  "value": {
+                    "type": "Literal",
+                    "value": "mysql",
+                    "raw": "'mysql'",
+                    "range": [
+                      132,
+                      139
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 5,
+                        "column": 11
+                      },
+                      "end": {
+                        "line": 5,
+                        "column": 18
+                      }
+                    }
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": false,
+                  "computed": false,
+                  "range": [
+                    123,
+                    139
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 5,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 5,
+                      "column": 18
+                    }
+                  }
+                }
+              ],
+              "range": [
+                98,
+                213
+              ],
+              "loc": {
+                "start": {
+                  "line": 3,
+                  "column": 62
+                },
+                "end": {
+                  "line": 11,
+                  "column": 1
+                }
               }
             }
-          },
+          ],
           "range": [
-            61,
-            122
+            48,
+            214
           ],
           "loc": {
             "start": {
-              "line": 4,
-              "column": 6
+              "line": 3,
+              "column": 12
             },
             "end": {
-              "line": 4,
-              "column": 67
+              "line": 11,
+              "column": 2
             }
           }
+        },
+        "range": [
+          36,
+          214
+        ],
+        "loc": {
+          "start": {
+            "line": 3,
+            "column": 0
+          },
+          "end": {
+            "line": 11,
+            "column": 2
+          }
         }
-      ],
-      "kind": "const",
+      },
       "range": [
-        55,
-        123
+        36,
+        215
       ],
       "loc": {
         "start": {
-          "line": 4,
+          "line": 3,
           "column": 0
         },
         "end": {
-          "line": 4,
-          "column": 68
+          "line": 11,
+          "column": 3
         }
-      },
-      "leadingComments": [],
-      "trailingComments": [],
-      "name": "_"
+      }
     },
     {
       "type": "ExportDefaultDeclaration",
@@ -252,35 +362,107 @@
         "type": "Identifier",
         "name": "sequelize",
         "range": [
-          161,
-          170
+          232,
+          241
         ],
         "loc": {
           "start": {
-            "line": 9,
+            "line": 13,
             "column": 15
           },
           "end": {
-            "line": 9,
+            "line": 13,
             "column": 24
           }
         },
         "leadingComments": [
           {
-            "type": "Block",
-            "value": "*\n * Sequelize\n ",
+            "type": "Line",
+            "value": " pool: {",
             "range": [
-              125,
-              145
+              143,
+              153
             ],
             "loc": {
               "start": {
                 "line": 6,
-                "column": 0
+                "column": 2
+              },
+              "end": {
+                "line": 6,
+                "column": 12
+              }
+            }
+          },
+          {
+            "type": "Line",
+            "value": "   max: 5,",
+            "range": [
+              156,
+              168
+            ],
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 2
+              },
+              "end": {
+                "line": 7,
+                "column": 14
+              }
+            }
+          },
+          {
+            "type": "Line",
+            "value": "   min: 0,",
+            "range": [
+              171,
+              183
+            ],
+            "loc": {
+              "start": {
+                "line": 8,
+                "column": 2
               },
               "end": {
                 "line": 8,
-                "column": 3
+                "column": 14
+              }
+            }
+          },
+          {
+            "type": "Line",
+            "value": "   idle: 10000,",
+            "range": [
+              186,
+              203
+            ],
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 2
+              },
+              "end": {
+                "line": 9,
+                "column": 19
+              }
+            }
+          },
+          {
+            "type": "Line",
+            "value": " },",
+            "range": [
+              206,
+              211
+            ],
+            "loc": {
+              "start": {
+                "line": 10,
+                "column": 2
+              },
+              "end": {
+                "line": 10,
+                "column": 7
               }
             }
           }
@@ -288,35 +470,107 @@
         "trailingComments": []
       },
       "range": [
-        146,
-        171
+        217,
+        242
       ],
       "loc": {
         "start": {
-          "line": 9,
+          "line": 13,
           "column": 0
         },
         "end": {
-          "line": 9,
+          "line": 13,
           "column": 25
         }
       },
       "leadingComments": [
         {
-          "type": "Block",
-          "value": "*\n * Sequelize\n ",
+          "type": "Line",
+          "value": " pool: {",
           "range": [
-            125,
-            145
+            143,
+            153
           ],
           "loc": {
             "start": {
               "line": 6,
-              "column": 0
+              "column": 2
+            },
+            "end": {
+              "line": 6,
+              "column": 12
+            }
+          }
+        },
+        {
+          "type": "Line",
+          "value": "   max: 5,",
+          "range": [
+            156,
+            168
+          ],
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 2
+            },
+            "end": {
+              "line": 7,
+              "column": 14
+            }
+          }
+        },
+        {
+          "type": "Line",
+          "value": "   min: 0,",
+          "range": [
+            171,
+            183
+          ],
+          "loc": {
+            "start": {
+              "line": 8,
+              "column": 2
             },
             "end": {
               "line": 8,
-              "column": 3
+              "column": 14
+            }
+          }
+        },
+        {
+          "type": "Line",
+          "value": "   idle: 10000,",
+          "range": [
+            186,
+            203
+          ],
+          "loc": {
+            "start": {
+              "line": 9,
+              "column": 2
+            },
+            "end": {
+              "line": 9,
+              "column": 19
+            }
+          }
+        },
+        {
+          "type": "Line",
+          "value": " },",
+          "range": [
+            206,
+            211
+          ],
+          "loc": {
+            "start": {
+              "line": 10,
+              "column": 2
+            },
+            "end": {
+              "line": 10,
+              "column": 7
             }
           }
         }
@@ -326,7 +580,7 @@
   "sourceType": "module",
   "range": [
     0,
-    171
+    242
   ],
   "loc": {
     "start": {
@@ -334,44 +588,98 @@
       "column": 0
     },
     "end": {
-      "line": 9,
+      "line": 13,
       "column": 25
     }
   },
   "comments": [
     {
       "type": "Line",
-      "value": " setup sequelize",
+      "value": " pool: {",
       "range": [
-        36,
-        54
-      ],
-      "loc": {
-        "start": {
-          "line": 3,
-          "column": 0
-        },
-        "end": {
-          "line": 3,
-          "column": 18
-        }
-      }
-    },
-    {
-      "type": "Block",
-      "value": "*\n * Sequelize\n ",
-      "range": [
-        125,
-        145
+        143,
+        153
       ],
       "loc": {
         "start": {
           "line": 6,
-          "column": 0
+          "column": 2
+        },
+        "end": {
+          "line": 6,
+          "column": 12
+        }
+      }
+    },
+    {
+      "type": "Line",
+      "value": "   max: 5,",
+      "range": [
+        156,
+        168
+      ],
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 2
+        },
+        "end": {
+          "line": 7,
+          "column": 14
+        }
+      }
+    },
+    {
+      "type": "Line",
+      "value": "   min: 0,",
+      "range": [
+        171,
+        183
+      ],
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 2
         },
         "end": {
           "line": 8,
-          "column": 3
+          "column": 14
+        }
+      }
+    },
+    {
+      "type": "Line",
+      "value": "   idle: 10000,",
+      "range": [
+        186,
+        203
+      ],
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 2
+        },
+        "end": {
+          "line": 9,
+          "column": 19
+        }
+      }
+    },
+    {
+      "type": "Line",
+      "value": " },",
+      "range": [
+        206,
+        211
+      ],
+      "loc": {
+        "start": {
+          "line": 10,
+          "column": 2
+        },
+        "end": {
+          "line": 10,
+          "column": 7
         }
       }
     }

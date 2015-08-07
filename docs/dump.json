@@ -1031,7 +1031,7 @@
     "access": null,
     "description": null,
     "lineNumber": 4,
-    "content": "/**\n * AmazonWebServices Helper\n */\nimport AWS from 'aws-sdk';\n\n// const AWS = {};\n\nAWS.config.update({\n  accessKeyId: 'myKeyId',\n  secretAccessKey: 'secretKey',\n  region: 'us-east-1',\n});\n\nexport default AWS;\n"
+    "content": "/**\n * AmazonWebServices Helper\n */\nimport AWS from 'aws-sdk';\n\nAWS.config.update({\n  accessKeyId: 'myKeyId',\n  secretAccessKey: 'secretKey',\n  region: 'us-east-1',\n});\n\nexport default AWS;\n"
   },
   {
     "kind": "file",
@@ -1388,7 +1388,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Sequelize from 'sequelize';\n\n// setup sequelize\nconst sequelize = new Sequelize('database', 'username', 'password');\n\n/**\n * Sequelize\n */\nexport default sequelize;\n"
+    "content": "import Sequelize from 'sequelize';\n\nsequelize = new Sequelize('database', 'username', 'password', {\n  host: 'localhost',\n  dialect: 'mysql',\n  // pool: {\n  //   max: 5,\n  //   min: 0,\n  //   idle: 10000,\n  // },\n});\n\nexport default sequelize;\n"
   },
   {
     "kind": "file",
@@ -1400,7 +1400,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import vogels from 'vogels';\nimport {AWS} from './../helpers';\n\n// setup vogels\nvogels.dynamoDriver(new AWS.DynamoDB({\n  endpoint: 'http://localhost:8000',\n}));\n\nexport default vogels;\n"
+    "content": "import vogels from 'vogels';\nimport {AWS} from './../helpers';\n\n// setup vogels\nVogels.dynamoDriver(new AWS.DynamoDB({\n  endpoint: 'http://localhost:8000',\n}));\n\nexport default Vogels;\n"
   },
   {
     "kind": "file",
