@@ -14,11 +14,13 @@ export default class ScrollBlock extends React.Component {
   }
 
   componentDidMount() {
-    this.setState({
-      isLoading: true,
-    });
+    if (!this.props.itemsCount) {
+      this.setState({
+        isLoading: true,
+      });
 
-    this.props.fetchData();
+      this.props.fetchData();
+    }
   }
 
   componentWillReceiveProps(newProps) {
@@ -44,15 +46,13 @@ export default class ScrollBlock extends React.Component {
   }
 
   render() {
-    const style = {
-      opacity: Number(this.state.isLoading),
-    };
+    const _className = this.state.isLoading ? ' is-loading' : '';
 
     return (
       <div>
         <div className="ScrollBlock" onScroll={this.onScroll} ref="scrollBlock">
           {this.props.children}
-          <p style={style}>
+          <p className={`ScrollBlock-loading${_className}`}>
             loading ...
           </p>
         </div>
@@ -61,6 +61,6 @@ export default class ScrollBlock extends React.Component {
   }
 }
 ScrollBlock.propTypes = {
-  onScrolledToBottom: React.PropTypes.func,
-  retrieve: React.PropTypes.number,
+  fetchData: React.PropTypes.func,
+  itemsCount: React.PropTypes.number,
 };

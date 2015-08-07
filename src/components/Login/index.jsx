@@ -1,9 +1,18 @@
 import React from 'react';
+import {StoreWatchComponent} from '../../bootstrap';
 
-export default class Login extends React.Component {
-  constructor() {
-    super();
-    this.name = 'Login';
+class Login extends new StoreWatchComponent(['Test']) {
+  constructor(props) {
+    super(props);
+
+    this._bind([
+      'onClickTest',
+    ]);
+  }
+
+  onClickTest(evt) {
+    evt.preventDefault();
+    console.log('btn clicked!');
   }
 
   render() {
@@ -12,16 +21,18 @@ export default class Login extends React.Component {
         <h2>Login Sample</h2>
         <form>
           <p className="form-item">
-            <input type="text" ref="username" placeholder="ユーザー名" />
+            <input type="text" ref="username" placeholder="username" />
           </p>
           <p className="form-item">
-            <input type="password" ref="password" placeholder="パスワード" />
+            <input type="password" ref="password" placeholder="password" />
           </p>
           <p className="form-item">
-            <button>login</button>
+            <button onClick={this.onClickTest}>login</button>
           </p>
         </form>
       </div>
     );
   }
 }
+
+export default Login;

@@ -36,7 +36,8 @@ class Top extends new StoreWatchComponent(['Test']) {
     this.state.scrollItems.map((item) => {
       items.push(
         <li key={item.id}>
-          {item.id}:{item.title}
+          <p>ID : {item.id}</p>
+          <p>title : {item.title}</p>
         </li>
       );
     });
@@ -56,15 +57,13 @@ class Top extends new StoreWatchComponent(['Test']) {
         </section>
         <section>
           <h3>Infinite Scroll</h3>
-          <ScrollBlock fetchData={this.loadScrollItems}>
-            ああああああああ
-            <br /><br /><br /><br /><br />
-            <br /><br /><br /><br /><br /><br /><br />
-            <br /><br /><br /><br /><br /><br /><br /><br /><br /><br />
-            ああああああ
-            <ul>
-              {items}
-            </ul>
+          <ScrollBlock
+            fetchData={this.loadScrollItems}
+            itemsCount={this.state.scrollItemsCount}>
+              <h4>Scroll down the box ...</h4>
+              <ul className="scroll-list">
+                {items}
+              </ul>
           </ScrollBlock>
         </section>
       </div>
