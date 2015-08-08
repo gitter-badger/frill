@@ -54,12 +54,13 @@
       "min": 3,
       "max": 20,
       "exceptions": [
-        "i",
-        "$",
-        "$$",
-        "_",
-        "cb",
-        "id"
+        "i",  // counts
+        "e",  // events
+        "$",  // jquery
+        "$$", // cheerio
+        "_",  // lodash, underscore, underdash
+        "cb", // callbacks
+        "id"  // identifiers
       ]
     }],
     "accessor-pairs": 2,

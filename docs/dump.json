@@ -104,24 +104,24 @@
     "kind": "file",
     "static": true,
     "variation": null,
-    "name": "src/actions/Test.js",
+    "name": "src/actions/Example.js",
     "memberof": null,
-    "longname": "src/actions/Test.js",
+    "longname": "src/actions/Example.js",
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import {Action} from 'frill-core';\nimport scrollData from '../helpers/testScrollItemsData';\n\nclass TestAction extends Action {\n\n  constructor() {\n    super();\n    this.use('request', {prefix: '/api'});\n    // this.use('socket', {url: 'http://localhost:3000'});\n  }\n\n  countUp() {\n    console.log('counting up');\n    console.log(this.frill.store('Auth'));\n    this.dispatch('COUNT_UP');\n  }\n\n  countUpBy(count) {\n    this.dispatch('COUNT_UP_BY', count);\n    return count;\n  }\n\n  loadScrollItems(lastIndex, retrieve) {\n    const data = scrollData.slice(lastIndex, lastIndex + retrieve);\n    setTimeout(() => {\n      this.dispatch('LOAD_SCROLL_ITEMS', data);\n    }, 1500);\n  }\n}\n\nexport default new TestAction();\n"
+    "content": "import {Action} from 'frill-core';\nimport scrollData from '../helpers/testScrollItemsData';\n\nclass ExampleAction extends Action {\n\n  constructor() {\n    super();\n    this.use('request', {prefix: '/api'});\n    // this.use('socket', {url: 'http://localhost:3000'});\n  }\n\n  countUp() {\n    this.dispatch('COUNT_UP');\n  }\n\n  countUpBy(count) {\n    this.dispatch('COUNT_UP_BY', count);\n    return count;\n  }\n\n  loadScrollItems(lastIndex, retrieve) {\n    const data = scrollData.slice(lastIndex, lastIndex + retrieve);\n    setTimeout(() => {\n      this.dispatch('LOAD_SCROLL_ITEMS', {\n        data: data,\n        total: scrollData.length,\n      });\n    }, 1500);\n  }\n}\n\nexport default new ExampleAction();\n"
   },
   {
     "kind": "class",
     "static": true,
     "variation": null,
-    "name": "TestAction",
-    "memberof": "src/actions/Test.js",
-    "longname": "src/actions/Test.js~TestAction",
+    "name": "ExampleAction",
+    "memberof": "src/actions/Example.js",
+    "longname": "src/actions/Example.js~ExampleAction",
     "access": null,
     "export": true,
-    "importPath": "frill/src/actions/Test.js",
+    "importPath": "frill/src/actions/Example.js",
     "importStyle": null,
     "description": null,
     "lineNumber": 4,
@@ -137,8 +137,8 @@
     "static": false,
     "variation": null,
     "name": "constructor",
-    "memberof": "src/actions/Test.js~TestAction",
-    "longname": "src/actions/Test.js~TestAction#constructor",
+    "memberof": "src/actions/Example.js~ExampleAction",
+    "longname": "src/actions/Example.js~ExampleAction#constructor",
     "access": null,
     "description": null,
     "lineNumber": 6,
@@ -151,8 +151,8 @@
     "static": false,
     "variation": null,
     "name": "countUp",
-    "memberof": "src/actions/Test.js~TestAction",
-    "longname": "src/actions/Test.js~TestAction#countUp",
+    "memberof": "src/actions/Example.js~ExampleAction",
+    "longname": "src/actions/Example.js~ExampleAction#countUp",
     "access": null,
     "description": null,
     "lineNumber": 12,
@@ -165,11 +165,11 @@
     "static": false,
     "variation": null,
     "name": "countUpBy",
-    "memberof": "src/actions/Test.js~TestAction",
-    "longname": "src/actions/Test.js~TestAction#countUpBy",
+    "memberof": "src/actions/Example.js~ExampleAction",
+    "longname": "src/actions/Example.js~ExampleAction#countUpBy",
     "access": null,
     "description": null,
-    "lineNumber": 18,
+    "lineNumber": 16,
     "undocument": true,
     "params": [
       {
@@ -191,11 +191,11 @@
     "static": false,
     "variation": null,
     "name": "loadScrollItems",
-    "memberof": "src/actions/Test.js~TestAction",
-    "longname": "src/actions/Test.js~TestAction#loadScrollItems",
+    "memberof": "src/actions/Example.js~ExampleAction",
+    "longname": "src/actions/Example.js~ExampleAction#loadScrollItems",
     "access": null,
     "description": null,
-    "lineNumber": 23,
+    "lineNumber": 21,
     "undocument": true,
     "params": [
       {
@@ -217,19 +217,19 @@
     "kind": "variable",
     "static": true,
     "variation": null,
-    "name": "testAction",
-    "memberof": "src/actions/Test.js",
-    "longname": "src/actions/Test.js~testAction",
+    "name": "exampleAction",
+    "memberof": "src/actions/Example.js",
+    "longname": "src/actions/Example.js~exampleAction",
     "access": null,
     "export": true,
-    "importPath": "frill/src/actions/Test.js",
-    "importStyle": "testAction",
+    "importPath": "frill/src/actions/Example.js",
+    "importStyle": "exampleAction",
     "description": null,
-    "lineNumber": 31,
+    "lineNumber": 32,
     "undocument": true,
     "type": {
       "types": [
-        "src/actions/Test.js~TestAction"
+        "src/actions/Example.js~ExampleAction"
       ]
     }
   },
@@ -243,7 +243,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Auth from './Auth';\nimport Test from './Test';\n\nconst Actions = {\n  Auth: Auth,\n  Test: Test,\n};\n\nexport default Actions;\n"
+    "content": "import Auth from './Auth';\nimport Example from './Example';\n\nconst Actions = {\n  Auth: Auth,\n  Example: Example,\n};\n\nexport default Actions;\n"
   },
   {
     "kind": "variable",
@@ -1208,7 +1208,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import React from 'react';\nimport {StoreWatchComponent} from '../../bootstrap';\n\nclass Login extends new StoreWatchComponent(['Test']) {\n  constructor(props) {\n    super(props);\n\n    this._bind([\n      'onClickTest',\n    ]);\n  }\n\n  onClickTest(evt) {\n    evt.preventDefault();\n    console.log('btn clicked!');\n  }\n\n  render() {\n    return (\n      <div className=\"Login\">\n        <h2>Login Sample</h2>\n        <form>\n          <p className=\"form-item\">\n            <input type=\"text\" ref=\"username\" placeholder=\"username\" />\n          </p>\n          <p className=\"form-item\">\n            <input type=\"password\" ref=\"password\" placeholder=\"password\" />\n          </p>\n          <p className=\"form-item\">\n            <button onClick={this.onClickTest}>login</button>\n          </p>\n        </form>\n      </div>\n    );\n  }\n}\n\nexport default Login;\n"
+    "content": "import React from 'react';\nimport {BaseComponent} from 'frill-core';\n\nclass Login extends BaseComponent {\n  constructor(props) {\n    super(props);\n\n    this._bind([\n      'onClick',\n    ]);\n  }\n\n  onClick(e) {\n    e.preventDefault();\n    console.log('btn clicked!');\n  }\n\n  render() {\n    return (\n      <div className=\"Login\">\n        <h2>Login Sample</h2>\n        <form>\n          <p className=\"form-item\">\n            <input type=\"text\" ref=\"username\" placeholder=\"username\" />\n          </p>\n          <p className=\"form-item\">\n            <input type=\"password\" ref=\"password\" placeholder=\"password\" />\n          </p>\n          <p className=\"form-item\">\n            <button onClick={this.onClick}>login</button>\n          </p>\n        </form>\n      </div>\n    );\n  }\n}\n\nexport default Login;\n"
   },
   {
     "kind": "class",
@@ -1224,7 +1224,10 @@
     "description": null,
     "lineNumber": 4,
     "undocument": true,
-    "interface": false
+    "interface": false,
+    "extends": [
+      "frill-core~BaseComponent"
+    ]
   },
   {
     "kind": "constructor",
@@ -1251,16 +1254,16 @@
     "kind": "method",
     "static": false,
     "variation": null,
-    "name": "onClickTest",
+    "name": "onClick",
     "memberof": "src/components/Login/index.jsx~Login",
-    "longname": "src/components/Login/index.jsx~Login#onClickTest",
+    "longname": "src/components/Login/index.jsx~Login#onClick",
     "access": null,
     "description": null,
     "lineNumber": 13,
     "undocument": true,
     "params": [
       {
-        "name": "evt",
+        "name": "e",
         "types": [
           "*"
         ]
@@ -1425,7 +1428,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import React from 'react';\n\nclass ScrollBlock extends React.Component {\n  constructor() {\n    super();\n    this.name = 'ScrollBlock';\n\n    this.state = {\n      isLoading: false,\n      isAllLoaded: false,\n    };\n\n    this.onScroll = this.onScroll.bind(this);\n  }\n\n  componentDidMount() {\n    if (!this.props.itemsCount) {\n      this.setState({\n        isLoading: true,\n      });\n\n      this.props.fetchData();\n    }\n  }\n\n  componentWillReceiveProps(newProps) {\n    if (newProps.children) {\n      this.setState({\n        isLoading: false,\n      });\n    }\n  }\n\n  onScroll() {\n    if (!this.state.isLoading && !this.state.isAllLoaded) {\n      const _elem = React.findDOMNode(this.refs.scrollBlock);\n\n      if (_elem.scrollHeight - _elem.scrollTop === _elem.clientHeight) {\n        this.setState({\n          isLoading: true,\n        });\n\n        this.props.fetchData();\n      }\n    }\n  }\n\n  render() {\n    const _className = this.state.isLoading ? ' is-loading' : '';\n\n    return (\n      <div>\n        <div className=\"ScrollBlock\" onScroll={this.onScroll} ref=\"scrollBlock\">\n          {this.props.children}\n          <p className={`ScrollBlock-loading${_className}`}>\n            loading ...\n          </p>\n        </div>\n      </div>\n    );\n  }\n}\nScrollBlock.propTypes = {\n  fetchData: React.PropTypes.func,\n  itemsCount: React.PropTypes.number,\n};\n\nexport default ScrollBlock;\n"
+    "content": "import React from 'react';\nimport {canUseDOM} from 'react/lib/ExecutionEnvironment';\n\nclass ScrollBlock extends React.Component {\n  constructor() {\n    super();\n    this.name = 'ScrollBlock';\n\n    this.state = {\n      isLoading: false,\n      // NOTE: changed from 'isAllLoaded'\n      isLoadedAll: false,\n    };\n\n    if (canUseDOM) {\n      this.onScroll = this.onScroll.bind(this);\n    }\n  }\n\n  componentDidMount() {\n    if (!this.props.itemsCount) {\n      this.setState({\n        isLoading: true,\n      });\n\n      this.props.fetchData();\n    }\n  }\n\n  componentWillReceiveProps(newProps) {\n    if (newProps.children) {\n      this.setState({\n        isLoading: false,\n      });\n    }\n  }\n\n  onScroll() {\n    if (!this.state.isLoading && !this.state.isLoadedAll) {\n      const _elem = React.findDOMNode(this.refs.scrollBlock);\n\n      if (_elem.scrollHeight - _elem.scrollTop - 1 === _elem.clientHeight) {\n        // if items are all loaded\n        if (this.props.itemTotal &&\n          (this.props.itemTotal === this.props.itemsCount)) {\n          this.setState({\n            isLoading: true,\n            isLoadedAll: true,\n          });\n\n        // else if there are more items to load\n        } else {\n          this.setState({\n            isLoading: true,\n          });\n          this.props.fetchData();\n        }\n      }\n    }\n  }\n\n  render() {\n    const _className = this.state.isLoading ? ' is-loading' : '';\n    const isLoadedAll = this.state.isLoadedAll;\n\n    return (\n      <div>\n        <div className=\"ScrollBlock\" onScroll={this.onScroll} ref=\"scrollBlock\">\n          {this.props.children}\n          <p className={`ScrollBlock-loading${_className}`}>\n            {(!isLoadedAll ? () => {\n              // return 'loading...' when there are more items to load\n              return 'loading ...';\n            } : () => {\n              // when all items loaded\n              return 'loaded!';\n            })()}\n          </p>\n        </div>\n      </div>\n    );\n  }\n}\nScrollBlock.propTypes = {\n  fetchData: React.PropTypes.func,\n  itemsCount: React.PropTypes.number,\n  itemTotal: React.PropTypes.number,\n};\n\nexport default ScrollBlock;\n"
   },
   {
     "kind": "class",
@@ -1439,7 +1442,7 @@
     "importPath": "frill/src/components/ScrollBlock/index.jsx",
     "importStyle": "ScrollBlock",
     "description": null,
-    "lineNumber": 3,
+    "lineNumber": 4,
     "undocument": true,
     "interface": false,
     "extends": [
@@ -1455,7 +1458,7 @@
     "longname": "src/components/ScrollBlock/index.jsx~ScrollBlock#constructor",
     "access": null,
     "description": null,
-    "lineNumber": 4,
+    "lineNumber": 5,
     "undocument": true,
     "params": [],
     "generator": false
@@ -1469,7 +1472,7 @@
     "longname": "src/components/ScrollBlock/index.jsx~ScrollBlock#name",
     "access": null,
     "description": null,
-    "lineNumber": 6,
+    "lineNumber": 7,
     "undocument": true,
     "type": {
       "types": [
@@ -1486,7 +1489,7 @@
     "longname": "src/components/ScrollBlock/index.jsx~ScrollBlock#state",
     "access": null,
     "description": null,
-    "lineNumber": 8,
+    "lineNumber": 9,
     "undocument": true,
     "type": {
       "types": [
@@ -1503,7 +1506,7 @@
     "longname": "src/components/ScrollBlock/index.jsx~ScrollBlock#onScroll",
     "access": null,
     "description": null,
-    "lineNumber": 13,
+    "lineNumber": 16,
     "undocument": true,
     "type": {
       "types": [
@@ -1520,7 +1523,7 @@
     "longname": "src/components/ScrollBlock/index.jsx~ScrollBlock#componentDidMount",
     "access": null,
     "description": null,
-    "lineNumber": 16,
+    "lineNumber": 20,
     "undocument": true,
     "params": [],
     "generator": false
@@ -1534,7 +1537,7 @@
     "longname": "src/components/ScrollBlock/index.jsx~ScrollBlock#componentWillReceiveProps",
     "access": null,
     "description": null,
-    "lineNumber": 26,
+    "lineNumber": 30,
     "undocument": true,
     "params": [
       {
@@ -1555,7 +1558,7 @@
     "longname": "src/components/ScrollBlock/index.jsx~ScrollBlock#onScroll",
     "access": null,
     "description": null,
-    "lineNumber": 34,
+    "lineNumber": 38,
     "undocument": true,
     "params": [],
     "generator": false
@@ -1569,7 +1572,7 @@
     "longname": "src/components/ScrollBlock/index.jsx~ScrollBlock#render",
     "access": null,
     "description": null,
-    "lineNumber": 48,
+    "lineNumber": 62,
     "undocument": true,
     "params": [],
     "return": {
@@ -1591,7 +1594,7 @@
     "importPath": "frill/src/components/ScrollBlock/index.jsx",
     "importStyle": "scrollBlock",
     "description": null,
-    "lineNumber": 68,
+    "lineNumber": 90,
     "undocument": true,
     "type": {
       "types": [
@@ -1609,7 +1612,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import React from 'react';\nimport {StoreWatchComponent} from '../../bootstrap';\nimport ScrollBlock from '../ScrollBlock';\n\nclass Top extends new StoreWatchComponent(['Test']) {\n\n  constructor(props) {\n    super(props);\n\n    this._bind([\n      'onOne',\n      'onTen',\n      'loadScrollItems',\n    ]);\n  }\n\n  onOne() {\n    this.getFrill().action('Test').countUp();\n  }\n\n  onTen() {\n    this.getFrill().action('Test').countUpBy(10);\n  }\n\n  getStateFromFrill() {\n    return {\n      count: this.getFrill().store('Test').getCount(),\n      scrollItems: this.getFrill().store('Test').getScrollItems(),\n      scrollItemsCount: this.getFrill().store('Test').getScrollItemsCount(),\n    };\n  }\n\n  render() {\n    const items = [];\n\n    this.state.scrollItems.map((item) => {\n      items.push(\n        <li key={item.id}>\n          <p>ID : {item.id}</p>\n          <p>title : {item.title}</p>\n        </li>\n      );\n    });\n\n    return (\n      <div className=\"Top\">\n        <h2>Samples</h2>\n        <section>\n          <h3>Button - counter</h3>\n          <p className=\"count\">{this.state.count}</p>\n          <button onClick={this.onOne}>+1</button>\n          <button onClick={this.onTen}>+10</button>\n        </section>\n        <section>\n          <h3>Textarea</h3>\n          <textarea placeholder=\"type something ...\"></textarea>\n        </section>\n        <section>\n          <h3>Infinite Scroll</h3>\n          <ScrollBlock\n            fetchData={this.loadScrollItems}\n            itemsCount={this.state.scrollItemsCount}>\n              <h4>Scroll down the box ...</h4>\n              <ul className=\"scroll-list\">\n                {items}\n              </ul>\n          </ScrollBlock>\n        </section>\n      </div>\n    );\n  }\n\n  loadScrollItems() {\n    this.getFrill()\n      .action('Test')\n      .loadScrollItems(this.state.scrollItemsCount, 5);\n  }\n}\n\nexport default Top;\n"
+    "content": "import React from 'react';\nimport {StoreWatchComponent} from '../../bootstrap';\nimport ScrollBlock from '../ScrollBlock';\n\nclass Top extends new StoreWatchComponent(['Example']) {\n\n  constructor(props) {\n    super(props);\n\n    this._bind([\n      'onOne',\n      'onTen',\n      'onLoadScrollItems',\n    ]);\n  }\n\n  onOne() {\n    this.getFrill().action('Example').countUp();\n  }\n\n  onTen() {\n    this.getFrill().action('Example').countUpBy(10);\n  }\n\n  onLoadScrollItems() {\n    this.getFrill()\n      .action('Example')\n      .loadScrollItems(this.state.scrollItemsCount, 5);\n  }\n\n  getStateFromFrill() {\n    return {\n      count: this.getFrill().store('Example').getCount(),\n      scrollItems: this.getFrill().store('Example').getScrollItems(),\n      scrollItemsCount: this.getFrill().store('Example').getScrollItemsCount(),\n      scrollItemTotal: this.getFrill().store('Example').getScrollItemTotal(),\n    };\n  }\n\n  render() {\n    const items = [];\n\n    this.state.scrollItems.map((item) => {\n      items.push(\n        <li key={item.id}>\n          <p>ID : {item.id}</p>\n          <p>title : {item.title}</p>\n        </li>\n      );\n    });\n\n    return (\n      <div className=\"Top\">\n        <h2>Samples</h2>\n        <section>\n          <h3>Button - counter</h3>\n          <p className=\"count\">{this.state.count}</p>\n          <button onClick={this.onOne}>+1</button>\n          <button onClick={this.onTen}>+10</button>\n        </section>\n        <section>\n          <h3>Textarea</h3>\n          <textarea placeholder=\"type something ...\"></textarea>\n        </section>\n        <section>\n          <h3>Infinite Scroll</h3>\n          <ScrollBlock\n            fetchData={this.onLoadScrollItems}\n            itemsCount={this.state.scrollItemsCount}\n            itemTotal={this.state.scrollItemTotal}>\n              <h4>Scroll down the box ...</h4>\n              <ul className=\"scroll-list\">\n                {items}\n              </ul>\n          </ScrollBlock>\n        </section>\n      </div>\n    );\n  }\n}\n\nexport default Top;\n"
   },
   {
     "kind": "class",
@@ -1680,12 +1683,26 @@
     "kind": "method",
     "static": false,
     "variation": null,
+    "name": "onLoadScrollItems",
+    "memberof": "src/components/Top/index.jsx~Top",
+    "longname": "src/components/Top/index.jsx~Top#onLoadScrollItems",
+    "access": null,
+    "description": null,
+    "lineNumber": 25,
+    "undocument": true,
+    "params": [],
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
     "name": "getStateFromFrill",
     "memberof": "src/components/Top/index.jsx~Top",
     "longname": "src/components/Top/index.jsx~Top#getStateFromFrill",
     "access": null,
     "description": null,
-    "lineNumber": 25,
+    "lineNumber": 31,
     "undocument": true,
     "params": [],
     "return": {
@@ -1704,7 +1721,7 @@
     "longname": "src/components/Top/index.jsx~Top#render",
     "access": null,
     "description": null,
-    "lineNumber": 33,
+    "lineNumber": 40,
     "undocument": true,
     "params": [],
     "return": {
@@ -1712,20 +1729,6 @@
         "*"
       ]
     },
-    "generator": false
-  },
-  {
-    "kind": "method",
-    "static": false,
-    "variation": null,
-    "name": "loadScrollItems",
-    "memberof": "src/components/Top/index.jsx~Top",
-    "longname": "src/components/Top/index.jsx~Top#loadScrollItems",
-    "access": null,
-    "description": null,
-    "lineNumber": 73,
-    "undocument": true,
-    "params": [],
     "generator": false
   },
   {
@@ -1740,7 +1743,7 @@
     "importPath": "frill/src/components/Top/index.jsx",
     "importStyle": "top",
     "description": null,
-    "lineNumber": 80,
+    "lineNumber": 82,
     "undocument": true,
     "type": {
       "types": [
@@ -2159,7 +2162,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import vogels from 'vogels';\nimport {AWS} from './../helpers';\n\n// setup vogels\nVogels.dynamoDriver(new AWS.DynamoDB({\n  endpoint: 'http://localhost:8000',\n}));\n\nexport default Vogels;\n"
+    "content": "import vogels from 'vogels';\nimport {AWS} from './../helpers';\n\n// setup vogels\nvogels.dynamoDriver(new AWS.DynamoDB({\n  endpoint: 'http://localhost:8000',\n}));\n\nexport default vogels;\n"
   },
   {
     "kind": "file",
@@ -2620,24 +2623,24 @@
     "kind": "file",
     "static": true,
     "variation": null,
-    "name": "src/stores/Test.js",
+    "name": "src/stores/Example.js",
     "memberof": null,
-    "longname": "src/stores/Test.js",
+    "longname": "src/stores/Example.js",
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import {Store} from 'frill-core';\n\nclass TestStore extends Store {\n\n  constructor() {\n    super();\n    this._count = 10;\n    this._scrollItems = [];\n    this._scrollItemsCount = 0;\n    this.actions = {\n      'COUNT_UP': 'countup',\n      'COUNT_UP_BY': 'countupBy',\n      'LOAD_SCROLL_ITEMS': 'loadScrollItems',\n    };\n  }\n\n  countup() {\n    this._count = this._count + 1;\n    this.change();\n  }\n\n  countupBy(byCount) {\n    this._count = this._count + byCount;\n    this.change();\n  }\n\n  getCount() {\n    return this._count;\n  }\n\n  loadScrollItems(data) {\n    this._scrollItems = this._scrollItems.concat(data);\n    this._scrollItemsCount = this._scrollItemsCount + data.length;\n    this.change();\n  }\n\n  getScrollItems() {\n    return this._scrollItems;\n  }\n\n  getScrollItemsCount() {\n    return this._scrollItemsCount;\n  }\n\n}\n\nexport default new TestStore();\n"
+    "content": "import {Store} from 'frill-core';\n\nclass ExampleStore extends Store {\n\n  constructor() {\n    super();\n    this._count = 0;\n    this._scrollItems = [];\n    this._scrollItemsCount = 0;\n    this._scrollItemTotal = 0;\n    this.actions = {\n      'COUNT_UP': 'countup',\n      'COUNT_UP_BY': 'countupBy',\n      'LOAD_SCROLL_ITEMS': 'loadScrollItems',\n    };\n  }\n\n  countup() {\n    this._count = this._count + 1;\n    this.change();\n  }\n\n  countupBy(byCount) {\n    this._count = this._count + byCount;\n    this.change();\n  }\n\n  getCount() {\n    return this._count;\n  }\n\n  loadScrollItems({data, total}) {\n    this._scrollItems = this._scrollItems.concat(data);\n    this._scrollItemsCount = this._scrollItemsCount + data.length;\n    this._scrollItemTotal = total;\n    this.change();\n  }\n\n  getScrollItems() {\n    return this._scrollItems;\n  }\n\n  getScrollItemsCount() {\n    return this._scrollItemsCount;\n  }\n\n  getScrollItemTotal() {\n    return this._scrollItemTotal;\n  }\n\n}\n\nexport default new ExampleStore();\n"
   },
   {
     "kind": "class",
     "static": true,
     "variation": null,
-    "name": "TestStore",
-    "memberof": "src/stores/Test.js",
-    "longname": "src/stores/Test.js~TestStore",
+    "name": "ExampleStore",
+    "memberof": "src/stores/Example.js",
+    "longname": "src/stores/Example.js~ExampleStore",
     "access": null,
     "export": true,
-    "importPath": "frill/src/stores/Test.js",
+    "importPath": "frill/src/stores/Example.js",
     "importStyle": null,
     "description": null,
     "lineNumber": 3,
@@ -2653,8 +2656,8 @@
     "static": false,
     "variation": null,
     "name": "constructor",
-    "memberof": "src/stores/Test.js~TestStore",
-    "longname": "src/stores/Test.js~TestStore#constructor",
+    "memberof": "src/stores/Example.js~ExampleStore",
+    "longname": "src/stores/Example.js~ExampleStore#constructor",
     "access": null,
     "description": null,
     "lineNumber": 5,
@@ -2667,8 +2670,8 @@
     "static": false,
     "variation": null,
     "name": "_count",
-    "memberof": "src/stores/Test.js~TestStore",
-    "longname": "src/stores/Test.js~TestStore#_count",
+    "memberof": "src/stores/Example.js~ExampleStore",
+    "longname": "src/stores/Example.js~ExampleStore#_count",
     "access": null,
     "description": null,
     "lineNumber": 7,
@@ -2684,8 +2687,8 @@
     "static": false,
     "variation": null,
     "name": "_scrollItems",
-    "memberof": "src/stores/Test.js~TestStore",
-    "longname": "src/stores/Test.js~TestStore#_scrollItems",
+    "memberof": "src/stores/Example.js~ExampleStore",
+    "longname": "src/stores/Example.js~ExampleStore#_scrollItems",
     "access": null,
     "description": null,
     "lineNumber": 8,
@@ -2701,8 +2704,8 @@
     "static": false,
     "variation": null,
     "name": "_scrollItemsCount",
-    "memberof": "src/stores/Test.js~TestStore",
-    "longname": "src/stores/Test.js~TestStore#_scrollItemsCount",
+    "memberof": "src/stores/Example.js~ExampleStore",
+    "longname": "src/stores/Example.js~ExampleStore#_scrollItemsCount",
     "access": null,
     "description": null,
     "lineNumber": 9,
@@ -2717,12 +2720,29 @@
     "kind": "member",
     "static": false,
     "variation": null,
-    "name": "actions",
-    "memberof": "src/stores/Test.js~TestStore",
-    "longname": "src/stores/Test.js~TestStore#actions",
+    "name": "_scrollItemTotal",
+    "memberof": "src/stores/Example.js~ExampleStore",
+    "longname": "src/stores/Example.js~ExampleStore#_scrollItemTotal",
     "access": null,
     "description": null,
     "lineNumber": 10,
+    "undocument": true,
+    "type": {
+      "types": [
+        "number"
+      ]
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "actions",
+    "memberof": "src/stores/Example.js~ExampleStore",
+    "longname": "src/stores/Example.js~ExampleStore#actions",
+    "access": null,
+    "description": null,
+    "lineNumber": 11,
     "undocument": true,
     "type": {
       "types": [
@@ -2735,11 +2755,11 @@
     "static": false,
     "variation": null,
     "name": "countup",
-    "memberof": "src/stores/Test.js~TestStore",
-    "longname": "src/stores/Test.js~TestStore#countup",
+    "memberof": "src/stores/Example.js~ExampleStore",
+    "longname": "src/stores/Example.js~ExampleStore#countup",
     "access": null,
     "description": null,
-    "lineNumber": 17,
+    "lineNumber": 18,
     "undocument": true,
     "params": [],
     "generator": false
@@ -2749,11 +2769,11 @@
     "static": false,
     "variation": null,
     "name": "_count",
-    "memberof": "src/stores/Test.js~TestStore",
-    "longname": "src/stores/Test.js~TestStore#_count",
+    "memberof": "src/stores/Example.js~ExampleStore",
+    "longname": "src/stores/Example.js~ExampleStore#_count",
     "access": null,
     "description": null,
-    "lineNumber": 18,
+    "lineNumber": 19,
     "undocument": true,
     "type": {
       "types": [
@@ -2766,11 +2786,11 @@
     "static": false,
     "variation": null,
     "name": "countupBy",
-    "memberof": "src/stores/Test.js~TestStore",
-    "longname": "src/stores/Test.js~TestStore#countupBy",
+    "memberof": "src/stores/Example.js~ExampleStore",
+    "longname": "src/stores/Example.js~ExampleStore#countupBy",
     "access": null,
     "description": null,
-    "lineNumber": 22,
+    "lineNumber": 23,
     "undocument": true,
     "params": [
       {
@@ -2787,11 +2807,11 @@
     "static": false,
     "variation": null,
     "name": "_count",
-    "memberof": "src/stores/Test.js~TestStore",
-    "longname": "src/stores/Test.js~TestStore#_count",
+    "memberof": "src/stores/Example.js~ExampleStore",
+    "longname": "src/stores/Example.js~ExampleStore#_count",
     "access": null,
     "description": null,
-    "lineNumber": 23,
+    "lineNumber": 24,
     "undocument": true,
     "type": {
       "types": [
@@ -2804,11 +2824,11 @@
     "static": false,
     "variation": null,
     "name": "getCount",
-    "memberof": "src/stores/Test.js~TestStore",
-    "longname": "src/stores/Test.js~TestStore#getCount",
+    "memberof": "src/stores/Example.js~ExampleStore",
+    "longname": "src/stores/Example.js~ExampleStore#getCount",
     "access": null,
     "description": null,
-    "lineNumber": 27,
+    "lineNumber": 28,
     "undocument": true,
     "params": [],
     "return": {
@@ -2823,18 +2843,23 @@
     "static": false,
     "variation": null,
     "name": "loadScrollItems",
-    "memberof": "src/stores/Test.js~TestStore",
-    "longname": "src/stores/Test.js~TestStore#loadScrollItems",
+    "memberof": "src/stores/Example.js~ExampleStore",
+    "longname": "src/stores/Example.js~ExampleStore#loadScrollItems",
     "access": null,
     "description": null,
-    "lineNumber": 31,
+    "lineNumber": 32,
     "undocument": true,
     "params": [
       {
-        "name": "data",
+        "name": "objectPattern",
         "types": [
-          "*"
-        ]
+          "{\"data\": *, \"total\": *}"
+        ],
+        "defaultRaw": {
+          "data": null,
+          "total": null
+        },
+        "defaultValue": "{\"data\":null,\"total\":null}"
       }
     ],
     "generator": false
@@ -2844,11 +2869,11 @@
     "static": false,
     "variation": null,
     "name": "_scrollItems",
-    "memberof": "src/stores/Test.js~TestStore",
-    "longname": "src/stores/Test.js~TestStore#_scrollItems",
+    "memberof": "src/stores/Example.js~ExampleStore",
+    "longname": "src/stores/Example.js~ExampleStore#_scrollItems",
     "access": null,
     "description": null,
-    "lineNumber": 32,
+    "lineNumber": 33,
     "undocument": true,
     "type": {
       "types": [
@@ -2861,11 +2886,28 @@
     "static": false,
     "variation": null,
     "name": "_scrollItemsCount",
-    "memberof": "src/stores/Test.js~TestStore",
-    "longname": "src/stores/Test.js~TestStore#_scrollItemsCount",
+    "memberof": "src/stores/Example.js~ExampleStore",
+    "longname": "src/stores/Example.js~ExampleStore#_scrollItemsCount",
     "access": null,
     "description": null,
-    "lineNumber": 33,
+    "lineNumber": 34,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "_scrollItemTotal",
+    "memberof": "src/stores/Example.js~ExampleStore",
+    "longname": "src/stores/Example.js~ExampleStore#_scrollItemTotal",
+    "access": null,
+    "description": null,
+    "lineNumber": 35,
     "undocument": true,
     "type": {
       "types": [
@@ -2878,11 +2920,11 @@
     "static": false,
     "variation": null,
     "name": "getScrollItems",
-    "memberof": "src/stores/Test.js~TestStore",
-    "longname": "src/stores/Test.js~TestStore#getScrollItems",
+    "memberof": "src/stores/Example.js~ExampleStore",
+    "longname": "src/stores/Example.js~ExampleStore#getScrollItems",
     "access": null,
     "description": null,
-    "lineNumber": 37,
+    "lineNumber": 39,
     "undocument": true,
     "params": [],
     "return": {
@@ -2897,11 +2939,30 @@
     "static": false,
     "variation": null,
     "name": "getScrollItemsCount",
-    "memberof": "src/stores/Test.js~TestStore",
-    "longname": "src/stores/Test.js~TestStore#getScrollItemsCount",
+    "memberof": "src/stores/Example.js~ExampleStore",
+    "longname": "src/stores/Example.js~ExampleStore#getScrollItemsCount",
     "access": null,
     "description": null,
-    "lineNumber": 41,
+    "lineNumber": 43,
+    "undocument": true,
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "getScrollItemTotal",
+    "memberof": "src/stores/Example.js~ExampleStore",
+    "longname": "src/stores/Example.js~ExampleStore#getScrollItemTotal",
+    "access": null,
+    "description": null,
+    "lineNumber": 47,
     "undocument": true,
     "params": [],
     "return": {
@@ -2915,19 +2976,19 @@
     "kind": "variable",
     "static": true,
     "variation": null,
-    "name": "testStore",
-    "memberof": "src/stores/Test.js",
-    "longname": "src/stores/Test.js~testStore",
+    "name": "exampleStore",
+    "memberof": "src/stores/Example.js",
+    "longname": "src/stores/Example.js~exampleStore",
     "access": null,
     "export": true,
-    "importPath": "frill/src/stores/Test.js",
-    "importStyle": "testStore",
+    "importPath": "frill/src/stores/Example.js",
+    "importStyle": "exampleStore",
     "description": null,
-    "lineNumber": 47,
+    "lineNumber": 53,
     "undocument": true,
     "type": {
       "types": [
-        "src/stores/Test.js~TestStore"
+        "src/stores/Example.js~ExampleStore"
       ]
     }
   },
@@ -2941,7 +3002,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Auth from './Auth';\nimport Test from './Test';\n\nconst Stores = {\n  Auth: Auth,\n  Test: Test,\n};\n\nexport default Stores;\n"
+    "content": "import Auth from './Auth';\nimport Example from './Example';\n\nconst Stores = {\n  Auth: Auth,\n  Example: Example,\n};\n\nexport default Stores;\n"
   },
   {
     "kind": "variable",
@@ -3621,7 +3682,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "describe('A test for Documentation purpose', () => {\n  it('hello', () => {\n    const foo = 'a';\n    expect(foo).to.equal('a');\n  });\n});\n"
+    "content": "describe('A test for documentation purpose', () => {\n  it('hello', () => {\n    const foo = 'a';\n    expect(foo).to.equal('a');\n  });\n});\n"
   },
   {
     "kind": "testDescribe",
@@ -3633,7 +3694,7 @@
     "testDepth": 0,
     "longname": "test/docTest.js~describe0",
     "access": null,
-    "description": "A test for Documentation purpose",
+    "description": "A test for documentation purpose",
     "lineNumber": 1
   },
   {

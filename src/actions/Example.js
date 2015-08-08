@@ -1,7 +1,7 @@
 import {Action} from 'frill-core';
 import scrollData from '../helpers/testScrollItemsData';
 
-class TestAction extends Action {
+class ExampleAction extends Action {
 
   constructor() {
     super();
@@ -10,8 +10,6 @@ class TestAction extends Action {
   }
 
   countUp() {
-    console.log('counting up');
-    console.log(this.frill.store('Auth'));
     this.dispatch('COUNT_UP');
   }
 
@@ -23,9 +21,12 @@ class TestAction extends Action {
   loadScrollItems(lastIndex, retrieve) {
     const data = scrollData.slice(lastIndex, lastIndex + retrieve);
     setTimeout(() => {
-      this.dispatch('LOAD_SCROLL_ITEMS', data);
+      this.dispatch('LOAD_SCROLL_ITEMS', {
+        data: data,
+        total: scrollData.length,
+      });
     }, 1500);
   }
 }
 
-export default new TestAction();
+export default new ExampleAction();

@@ -1,17 +1,17 @@
 import React from 'react';
-import {StoreWatchComponent} from '../../bootstrap';
+import {BaseComponent} from 'frill-core';
 
-class Login extends new StoreWatchComponent(['Test']) {
+class Login extends BaseComponent {
   constructor(props) {
     super(props);
 
     this._bind([
-      'onClickTest',
+      'onClick',
     ]);
   }
 
-  onClickTest(evt) {
-    evt.preventDefault();
+  onClick(e) {
+    e.preventDefault();
     console.log('btn clicked!');
   }
 
@@ -27,7 +27,7 @@ class Login extends new StoreWatchComponent(['Test']) {
             <input type="password" ref="password" placeholder="password" />
           </p>
           <p className="form-item">
-            <button onClick={this.onClickTest}>login</button>
+            <button onClick={this.onClick}>login</button>
           </p>
         </form>
       </div>

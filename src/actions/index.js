@@ -1,9 +1,9 @@
 import Auth from './Auth';
-import Test from './Test';
+import Example from './Example';
 
 const Actions = {
   Auth: Auth,
-  Test: Test,
+  Example: Example,
 };
 
 export default Actions;

@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl" href="../../../../../">
-  <title data-ice="title">src/api/auth/strategies/local.js | FrillJS API Document</title>
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">src/actions/Example.js | FrillJS API Document</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -97,70 +97,39 @@
 
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">src/api/auth/strategies/local.js</h1>
-<pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">import Boom from &apos;boom&apos;;
-import {where as _where} from &apos;lodash&apos;;
+<div class="content" data-ice="content"><h1 data-ice="title">src/actions/Example.js</h1>
+<pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">import {Action} from &apos;frill-core&apos;;
+import scrollData from &apos;../helpers/testScrollItemsData&apos;;
 
-// Test data
-import accounts from &apos;../../../helpers/testUserData&apos;;
+class ExampleAction extends Action {
 
-const authenticate = (request, reply) =&gt; {
-  const credentials = {};
-  reply.continue({ credentials });
-};
-
-const payload = (request, reply) =&gt; {
-  // construct search query
-  const query = {
-    name: request.payload.username,
-    password: request.payload.password,
-  };
-
-  let user = _where(accounts, query);
-
-  if (user.length === 0) {
-    return reply(Boom.badRequest(&apos;invalid username or password&apos;));
+  constructor() {
+    super();
+    this.use(&apos;request&apos;, {prefix: &apos;/api&apos;});
+    // this.use(&apos;socket&apos;, {url: &apos;http://localhost:3000&apos;});
   }
 
-  user = user.pop();
+  countUp() {
+    this.dispatch(&apos;COUNT_UP&apos;);
+  }
 
-  request.auth.credentials = {
-    provider: &apos;local&apos;,
-    token: null,
-    secret: null,
-    query: {},
-    profile: {
-      id: user.id,
-      username: user.name,
-      displayName: user.displayName,
-      raw: user, // full profile
-    },
-  };
+  countUpBy(count) {
+    this.dispatch(&apos;COUNT_UP_BY&apos;, count);
+    return count;
+  }
 
-  reply.continue();
-};
+  loadScrollItems(lastIndex, retrieve) {
+    const data = scrollData.slice(lastIndex, lastIndex + retrieve);
+    setTimeout(() =&gt; {
+      this.dispatch(&apos;LOAD_SCROLL_ITEMS&apos;, {
+        data: data,
+        total: scrollData.length,
+      });
+    }, 1500);
+  }
+}
 
-const response = (request, reply) =&gt; {
-  reply.continue();
-};
-
-const scheme = () =&gt; {
-  return {
-    payload,
-    authenticate,
-    response,
-    options: {
-      payload: true,
-    },
-  };
-};
-
-const localStrategy = (server) =&gt; {
-  server.auth.scheme(&apos;local&apos;, scheme);
-  server.auth.strategy(&apos;local&apos;, &apos;local&apos;);
-};
-
-export default localStrategy;
+export default new ExampleAction();
 </code></pre>
 </div>
 

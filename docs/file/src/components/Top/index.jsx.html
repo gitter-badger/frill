@@ -35,11 +35,11 @@
 <li data-ice="classDoc"><span><a href="class/src/actions/Auth.js~AuthAction.html">AuthAction</a></span></li>
 <li data-ice="classDoc"><span><a href="class/src/stores/Auth.js~AuthStore.html">AuthStore</a></span></li>
 <li data-ice="classDoc"><span><a href="class/src/components/Error.jsx~Error.html">Error</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/actions/Example.js~ExampleAction.html">ExampleAction</a></span></li>
+<li data-ice="classDoc"><span><a href="class/src/stores/Example.js~ExampleStore.html">ExampleStore</a></span></li>
 <li data-ice="classDoc"><span><a href="class/src/components/Login/index.jsx~Login.html">Login</a></span></li>
 <li data-ice="classDoc"><span><a href="class/src/components/Page.jsx~Page.html">Page</a></span></li>
 <li data-ice="classDoc"><span><a href="class/src/components/ScrollBlock/index.jsx~ScrollBlock.html">ScrollBlock</a></span></li>
-<li data-ice="classDoc"><span><a href="class/src/actions/Test.js~TestAction.html">TestAction</a></span></li>
-<li data-ice="classDoc"><span><a href="class/src/stores/Test.js~TestStore.html">TestStore</a></span></li>
 <li data-ice="classDoc"><span><a href="class/src/components/Top/index.jsx~Top.html">Top</a></span></li>
 </ul>
 </div>
@@ -72,6 +72,8 @@
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-authStore">authStore</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-componentRoutes">componentRoutes</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-error">error</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-exampleAction">exampleAction</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-exampleStore">exampleStore</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-facebookStrategy">facebookStrategy</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-githubStrategy">githubStrategy</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-googleStrategy">googleStrategy</a></span></li>
@@ -84,8 +86,6 @@
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-routePrefixer">routePrefixer</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-routes">routes</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-scrollBlock">scrollBlock</a></span></li>
-<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-testAction">testAction</a></span></li>
-<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-testStore">testStore</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-top">top</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-twitterAuthRoutes">twitterAuthRoutes</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-twitterStrategy">twitterStrategy</a></span></li>
@@ -102,7 +102,7 @@
 import {StoreWatchComponent} from &apos;../../bootstrap&apos;;
 import ScrollBlock from &apos;../ScrollBlock&apos;;
 
-class Top extends new StoreWatchComponent([&apos;Test&apos;]) {
+class Top extends new StoreWatchComponent([&apos;Example&apos;]) {
 
   constructor(props) {
     super(props);
@@ -110,23 +110,30 @@ class Top extends new StoreWatchComponent([&apos;Test&apos;]) {
     this._bind([
       &apos;onOne&apos;,
       &apos;onTen&apos;,
-      &apos;loadScrollItems&apos;,
+      &apos;onLoadScrollItems&apos;,
     ]);
   }
 
   onOne() {
-    this.getFrill().action(&apos;Test&apos;).countUp();
+    this.getFrill().action(&apos;Example&apos;).countUp();
   }
 
   onTen() {
-    this.getFrill().action(&apos;Test&apos;).countUpBy(10);
+    this.getFrill().action(&apos;Example&apos;).countUpBy(10);
+  }
+
+  onLoadScrollItems() {
+    this.getFrill()
+      .action(&apos;Example&apos;)
+      .loadScrollItems(this.state.scrollItemsCount, 5);
   }
 
   getStateFromFrill() {
     return {
-      count: this.getFrill().store(&apos;Test&apos;).getCount(),
-      scrollItems: this.getFrill().store(&apos;Test&apos;).getScrollItems(),
-      scrollItemsCount: this.getFrill().store(&apos;Test&apos;).getScrollItemsCount(),
+      count: this.getFrill().store(&apos;Example&apos;).getCount(),
+      scrollItems: this.getFrill().store(&apos;Example&apos;).getScrollItems(),
+      scrollItemsCount: this.getFrill().store(&apos;Example&apos;).getScrollItemsCount(),
+      scrollItemTotal: this.getFrill().store(&apos;Example&apos;).getScrollItemTotal(),
     };
   }
 
@@ -158,8 +165,9 @@ class Top extends new StoreWatchComponent([&apos;Test&apos;]) {
         &lt;section&gt;
           &lt;h3&gt;Infinite Scroll&lt;/h3&gt;
           &lt;ScrollBlock
-            fetchData={this.loadScrollItems}
-            itemsCount={this.state.scrollItemsCount}&gt;
+            fetchData={this.onLoadScrollItems}
+            itemsCount={this.state.scrollItemsCount}
+            itemTotal={this.state.scrollItemTotal}&gt;
               &lt;h4&gt;Scroll down the box ...&lt;/h4&gt;
               &lt;ul className=&quot;scroll-list&quot;&gt;
                 {items}
@@ -168,12 +176,6 @@ class Top extends new StoreWatchComponent([&apos;Test&apos;]) {
         &lt;/section&gt;
       &lt;/div&gt;
     );
-  }
-
-  loadScrollItems() {
-    this.getFrill()
-      .action(&apos;Test&apos;)
-      .loadScrollItems(this.state.scrollItemsCount, 5);
   }
 }
 

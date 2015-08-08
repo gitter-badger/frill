@@ -1,4 +1,5 @@
 import React from 'react';
+import {canUseDOM} from 'react/lib/ExecutionEnvironment';
 
 class ScrollBlock extends React.Component {
   constructor() {
@@ -7,10 +8,13 @@ class ScrollBlock extends React.Component {
 
     this.state = {
       isLoading: false,
-      isAllLoaded: false,
+      // NOTE: changed from 'isAllLoaded'
+      isLoadedAll: false,
     };
 
-    this.onScroll = this.onScroll.bind(this);
+    if (canUseDOM) {
+      this.onScroll = this.onScroll.bind(this);
+    }
   }
 
   componentDidMount() {
@@ -32,28 +36,45 @@ class ScrollBlock extends React.Component {
   }
 
   onScroll() {
-    if (!this.state.isLoading && !this.state.isAllLoaded) {
+    if (!this.state.isLoading && !this.state.isLoadedAll) {
       const _elem = React.findDOMNode(this.refs.scrollBlock);
 
-      if (_elem.scrollHeight - _elem.scrollTop === _elem.clientHeight) {
-        this.setState({
-          isLoading: true,
-        });
+      if (_elem.scrollHeight - _elem.scrollTop - 1 === _elem.clientHeight) {
+        // if items are all loaded
+        if (this.props.itemTotal &&
+          (this.props.itemTotal === this.props.itemsCount)) {
+          this.setState({
+            isLoading: true,
+            isLoadedAll: true,
+          });
 
-        this.props.fetchData();
+        // else if there are more items to load
+        } else {
+          this.setState({
+            isLoading: true,
+          });
+          this.props.fetchData();
+        }
       }
     }
   }
 
   render() {
     const _className = this.state.isLoading ? ' is-loading' : '';
+    const isLoadedAll = this.state.isLoadedAll;
 
     return (
       <div>
         <div className="ScrollBlock" onScroll={this.onScroll} ref="scrollBlock">
           {this.props.children}
           <p className={`ScrollBlock-loading${_className}`}>
-            loading ...
+            {(!isLoadedAll ? () => {
+              // return 'loading...' when there are more items to load
+              return 'loading ...';
+            } : () => {
+              // when all items loaded
+              return 'loaded!';
+            })()}
           </p>
         </div>
       </div>
@@ -63,6 +84,7 @@ class ScrollBlock extends React.Component {
 ScrollBlock.propTypes = {
   fetchData: React.PropTypes.func,
   itemsCount: React.PropTypes.number,
+  itemTotal: React.PropTypes.number,
 };
 
 export default ScrollBlock;

@@ -2,7 +2,7 @@ import React from 'react';
 import {StoreWatchComponent} from '../../bootstrap';
 import ScrollBlock from '../ScrollBlock';
 
-class Top extends new StoreWatchComponent(['Test']) {
+class Top extends new StoreWatchComponent(['Example']) {
 
   constructor(props) {
     super(props);
@@ -10,23 +10,30 @@ class Top extends new StoreWatchComponent(['Test']) {
     this._bind([
       'onOne',
       'onTen',
-      'loadScrollItems',
+      'onLoadScrollItems',
     ]);
   }
 
   onOne() {
-    this.getFrill().action('Test').countUp();
+    this.getFrill().action('Example').countUp();
   }
 
   onTen() {
-    this.getFrill().action('Test').countUpBy(10);
+    this.getFrill().action('Example').countUpBy(10);
+  }
+
+  onLoadScrollItems() {
+    this.getFrill()
+      .action('Example')
+      .loadScrollItems(this.state.scrollItemsCount, 5);
   }
 
   getStateFromFrill() {
     return {
-      count: this.getFrill().store('Test').getCount(),
-      scrollItems: this.getFrill().store('Test').getScrollItems(),
-      scrollItemsCount: this.getFrill().store('Test').getScrollItemsCount(),
+      count: this.getFrill().store('Example').getCount(),
+      scrollItems: this.getFrill().store('Example').getScrollItems(),
+      scrollItemsCount: this.getFrill().store('Example').getScrollItemsCount(),
+      scrollItemTotal: this.getFrill().store('Example').getScrollItemTotal(),
     };
   }
 
@@ -58,8 +65,9 @@ class Top extends new StoreWatchComponent(['Test']) {
         <section>
           <h3>Infinite Scroll</h3>
           <ScrollBlock
-            fetchData={this.loadScrollItems}
-            itemsCount={this.state.scrollItemsCount}>
+            fetchData={this.onLoadScrollItems}
+            itemsCount={this.state.scrollItemsCount}
+            itemTotal={this.state.scrollItemTotal}>
               <h4>Scroll down the box ...</h4>
               <ul className="scroll-list">
                 {items}
@@ -68,12 +76,6 @@ class Top extends new StoreWatchComponent(['Test']) {
         </section>
       </div>
     );
-  }
-
-  loadScrollItems() {
-    this.getFrill()
-      .action('Test')
-      .loadScrollItems(this.state.scrollItemsCount, 5);
   }
 }
 

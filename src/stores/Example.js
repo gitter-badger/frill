@@ -1,12 +1,13 @@
 import {Store} from 'frill-core';
 
-class TestStore extends Store {
+class ExampleStore extends Store {
 
   constructor() {
     super();
-    this._count = 10;
+    this._count = 0;
     this._scrollItems = [];
     this._scrollItemsCount = 0;
+    this._scrollItemTotal = 0;
     this.actions = {
       'COUNT_UP': 'countup',
       'COUNT_UP_BY': 'countupBy',
@@ -28,9 +29,10 @@ class TestStore extends Store {
     return this._count;
   }
 
-  loadScrollItems(data) {
+  loadScrollItems({data, total}) {
     this._scrollItems = this._scrollItems.concat(data);
     this._scrollItemsCount = this._scrollItemsCount + data.length;
+    this._scrollItemTotal = total;
     this.change();
   }
 
@@ -42,6 +44,10 @@ class TestStore extends Store {
     return this._scrollItemsCount;
   }
 
+  getScrollItemTotal() {
+    return this._scrollItemTotal;
+  }
+
 }
 
-export default new TestStore();
+export default new ExampleStore();

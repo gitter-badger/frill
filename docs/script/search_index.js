@@ -42,6 +42,18 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
+    "frill/src/actions/example.js~exampleaction",
+    "class/src/actions/Example.js~ExampleAction.html",
+    "<span>ExampleAction</span> <span class=\"search-result-import-path\">frill/src/actions/Example.js</span>",
+    "class"
+  ],
+  [
+    "frill/src/stores/example.js~examplestore",
+    "class/src/stores/Example.js~ExampleStore.html",
+    "<span>ExampleStore</span> <span class=\"search-result-import-path\">frill/src/stores/Example.js</span>",
+    "class"
+  ],
+  [
     "frill/src/bootstrap.js~frill",
     "variable/index.html#static-variable-Frill",
     "<span>Frill</span> <span class=\"search-result-import-path\">frill/src/bootstrap.js</span>",
@@ -94,18 +106,6 @@ window.esdocSearchIndex = [
     "variable/index.html#static-variable-Strategies",
     "<span>Strategies</span> <span class=\"search-result-import-path\">frill/src/api/auth/strategies/index.js</span>",
     "variable"
-  ],
-  [
-    "frill/src/actions/test.js~testaction",
-    "class/src/actions/Test.js~TestAction.html",
-    "<span>TestAction</span> <span class=\"search-result-import-path\">frill/src/actions/Test.js</span>",
-    "class"
-  ],
-  [
-    "frill/src/stores/test.js~teststore",
-    "class/src/stores/Test.js~TestStore.html",
-    "<span>TestStore</span> <span class=\"search-result-import-path\">frill/src/stores/Test.js</span>",
-    "class"
   ],
   [
     "frill/src/components/top/index.jsx~top",
@@ -177,6 +177,18 @@ window.esdocSearchIndex = [
     "frill/src/components/error.jsx~error",
     "variable/index.html#static-variable-error",
     "<span>error</span> <span class=\"search-result-import-path\">frill/src/components/Error.jsx</span>",
+    "variable"
+  ],
+  [
+    "frill/src/actions/example.js~exampleaction",
+    "variable/index.html#static-variable-exampleAction",
+    "<span>exampleAction</span> <span class=\"search-result-import-path\">frill/src/actions/Example.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/stores/example.js~examplestore",
+    "variable/index.html#static-variable-exampleStore",
+    "<span>exampleStore</span> <span class=\"search-result-import-path\">frill/src/stores/Example.js</span>",
     "variable"
   ],
   [
@@ -252,18 +264,6 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "frill/src/actions/test.js~testaction",
-    "variable/index.html#static-variable-testAction",
-    "<span>testAction</span> <span class=\"search-result-import-path\">frill/src/actions/Test.js</span>",
-    "variable"
-  ],
-  [
-    "frill/src/stores/test.js~teststore",
-    "variable/index.html#static-variable-testStore",
-    "<span>testStore</span> <span class=\"search-result-import-path\">frill/src/stores/Test.js</span>",
-    "variable"
-  ],
-  [
     "frill/src/components/top/index.jsx~top",
     "variable/index.html#static-variable-top",
     "<span>top</span> <span class=\"search-result-import-path\">frill/src/components/Top/index.jsx</span>",
@@ -284,13 +284,13 @@ window.esdocSearchIndex = [
   [
     "",
     "test-file/test/docTest.js.html#lineNumber1",
-    "A test for Documentation purpose",
+    "A test for documentation purpose",
     "test"
   ],
   [
     "",
     "test-file/test/docTest.js.html#lineNumber2",
-    "A test for Documentation purpose hello",
+    "A test for documentation purpose hello",
     "test"
   ],
   [
@@ -642,33 +642,33 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/actions/test.js",
-    "file/src/actions/Test.js.html",
-    "src/actions/Test.js",
+    "src/actions/example.js",
+    "file/src/actions/Example.js.html",
+    "src/actions/Example.js",
     "file"
   ],
   [
-    "src/actions/test.js~testaction#constructor",
-    "class/src/actions/Test.js~TestAction.html#instance-constructor-constructor",
-    "src/actions/Test.js~TestAction#constructor",
+    "src/actions/example.js~exampleaction#constructor",
+    "class/src/actions/Example.js~ExampleAction.html#instance-constructor-constructor",
+    "src/actions/Example.js~ExampleAction#constructor",
     "method"
   ],
   [
-    "src/actions/test.js~testaction#countup",
-    "class/src/actions/Test.js~TestAction.html#instance-method-countUp",
-    "src/actions/Test.js~TestAction#countUp",
+    "src/actions/example.js~exampleaction#countup",
+    "class/src/actions/Example.js~ExampleAction.html#instance-method-countUp",
+    "src/actions/Example.js~ExampleAction#countUp",
     "method"
   ],
   [
-    "src/actions/test.js~testaction#countupby",
-    "class/src/actions/Test.js~TestAction.html#instance-method-countUpBy",
-    "src/actions/Test.js~TestAction#countUpBy",
+    "src/actions/example.js~exampleaction#countupby",
+    "class/src/actions/Example.js~ExampleAction.html#instance-method-countUpBy",
+    "src/actions/Example.js~ExampleAction#countUpBy",
     "method"
   ],
   [
-    "src/actions/test.js~testaction#loadscrollitems",
-    "class/src/actions/Test.js~TestAction.html#instance-method-loadScrollItems",
-    "src/actions/Test.js~TestAction#loadScrollItems",
+    "src/actions/example.js~exampleaction#loadscrollitems",
+    "class/src/actions/Example.js~ExampleAction.html#instance-method-loadScrollItems",
+    "src/actions/Example.js~ExampleAction#loadScrollItems",
     "method"
   ],
   [
@@ -840,9 +840,9 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/components/login/index.jsx~login#onclicktest",
-    "class/src/components/Login/index.jsx~Login.html#instance-method-onClickTest",
-    "src/components/Login/index.jsx~Login#onClickTest",
+    "src/components/login/index.jsx~login#onclick",
+    "class/src/components/Login/index.jsx~Login.html#instance-method-onClick",
+    "src/components/Login/index.jsx~Login#onClick",
     "method"
   ],
   [
@@ -942,9 +942,9 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/components/top/index.jsx~top#loadscrollitems",
-    "class/src/components/Top/index.jsx~Top.html#instance-method-loadScrollItems",
-    "src/components/Top/index.jsx~Top#loadScrollItems",
+    "src/components/top/index.jsx~top#onloadscrollitems",
+    "class/src/components/Top/index.jsx~Top.html#instance-method-onLoadScrollItems",
+    "src/components/Top/index.jsx~Top#onLoadScrollItems",
     "method"
   ],
   [
@@ -1104,57 +1104,63 @@ window.esdocSearchIndex = [
     "member"
   ],
   [
-    "src/stores/test.js",
-    "file/src/stores/Test.js.html",
-    "src/stores/Test.js",
+    "src/stores/example.js",
+    "file/src/stores/Example.js.html",
+    "src/stores/Example.js",
     "file"
   ],
   [
-    "src/stores/test.js~teststore#actions",
-    "class/src/stores/Test.js~TestStore.html#instance-member-actions",
-    "src/stores/Test.js~TestStore#actions",
+    "src/stores/example.js~examplestore#actions",
+    "class/src/stores/Example.js~ExampleStore.html#instance-member-actions",
+    "src/stores/Example.js~ExampleStore#actions",
     "member"
   ],
   [
-    "src/stores/test.js~teststore#constructor",
-    "class/src/stores/Test.js~TestStore.html#instance-constructor-constructor",
-    "src/stores/Test.js~TestStore#constructor",
+    "src/stores/example.js~examplestore#constructor",
+    "class/src/stores/Example.js~ExampleStore.html#instance-constructor-constructor",
+    "src/stores/Example.js~ExampleStore#constructor",
     "method"
   ],
   [
-    "src/stores/test.js~teststore#countup",
-    "class/src/stores/Test.js~TestStore.html#instance-method-countup",
-    "src/stores/Test.js~TestStore#countup",
+    "src/stores/example.js~examplestore#countup",
+    "class/src/stores/Example.js~ExampleStore.html#instance-method-countup",
+    "src/stores/Example.js~ExampleStore#countup",
     "method"
   ],
   [
-    "src/stores/test.js~teststore#countupby",
-    "class/src/stores/Test.js~TestStore.html#instance-method-countupBy",
-    "src/stores/Test.js~TestStore#countupBy",
+    "src/stores/example.js~examplestore#countupby",
+    "class/src/stores/Example.js~ExampleStore.html#instance-method-countupBy",
+    "src/stores/Example.js~ExampleStore#countupBy",
     "method"
   ],
   [
-    "src/stores/test.js~teststore#getcount",
-    "class/src/stores/Test.js~TestStore.html#instance-method-getCount",
-    "src/stores/Test.js~TestStore#getCount",
+    "src/stores/example.js~examplestore#getcount",
+    "class/src/stores/Example.js~ExampleStore.html#instance-method-getCount",
+    "src/stores/Example.js~ExampleStore#getCount",
     "method"
   ],
   [
-    "src/stores/test.js~teststore#getscrollitems",
-    "class/src/stores/Test.js~TestStore.html#instance-method-getScrollItems",
-    "src/stores/Test.js~TestStore#getScrollItems",
+    "src/stores/example.js~examplestore#getscrollitemtotal",
+    "class/src/stores/Example.js~ExampleStore.html#instance-method-getScrollItemTotal",
+    "src/stores/Example.js~ExampleStore#getScrollItemTotal",
     "method"
   ],
   [
-    "src/stores/test.js~teststore#getscrollitemscount",
-    "class/src/stores/Test.js~TestStore.html#instance-method-getScrollItemsCount",
-    "src/stores/Test.js~TestStore#getScrollItemsCount",
+    "src/stores/example.js~examplestore#getscrollitems",
+    "class/src/stores/Example.js~ExampleStore.html#instance-method-getScrollItems",
+    "src/stores/Example.js~ExampleStore#getScrollItems",
     "method"
   ],
   [
-    "src/stores/test.js~teststore#loadscrollitems",
-    "class/src/stores/Test.js~TestStore.html#instance-method-loadScrollItems",
-    "src/stores/Test.js~TestStore#loadScrollItems",
+    "src/stores/example.js~examplestore#getscrollitemscount",
+    "class/src/stores/Example.js~ExampleStore.html#instance-method-getScrollItemsCount",
+    "src/stores/Example.js~ExampleStore#getScrollItemsCount",
+    "method"
+  ],
+  [
+    "src/stores/example.js~examplestore#loadscrollitems",
+    "class/src/stores/Example.js~ExampleStore.html#instance-method-loadScrollItems",
+    "src/stores/Example.js~ExampleStore#loadScrollItems",
     "method"
   ],
   [
