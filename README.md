@@ -1,3 +1,6 @@
 # frilljs
-<span class="esdoc-coverage"></span>
+
+[![document coverage](./docs/badge.svg)](https://esdoc.org)
+---
+
 **WIP**

@@ -282,15 +282,15 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "",
-    "test-file/test/docTest.js.html#lineNumber1",
-    "A test for documentation purpose",
+    "testexample testexample,testexample",
+    "test-file/test/docTest.js.html#lineNumber5",
+    "An example for test documantation",
     "test"
   ],
   [
-    "",
-    "test-file/test/docTest.js.html#lineNumber2",
-    "A test for documentation purpose hello",
+    "testexample#hello testexample#hello,testexample#hello",
+    "test-file/test/docTest.js.html#lineNumber9",
+    "An example for test documantation hello",
     "test"
   ],
   [

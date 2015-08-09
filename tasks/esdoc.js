@@ -15,7 +15,7 @@ export default (gulp, $, argv, path) => {
       .pipe($.esdoc({
         destination: './docs',
         package: './package.json',
-        index: './README.md',
+        index: './README_DOC.md',
         title: 'FrillJS',
         includes: ['\\.(js|jsx)$'],
         coverage: true,

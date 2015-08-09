@@ -3969,8 +3969,8 @@
     "longname": "test/docTest.js",
     "access": null,
     "description": null,
-    "lineNumber": 1,
-    "content": "describe('A test for documentation purpose', () => {\n  it('hello', () => {\n    const foo = 'a';\n    expect(foo).to.equal('a');\n  });\n});\n"
+    "lineNumber": 5,
+    "content": "/**\n * An example for test documantation\n * @test {TestExample}\n */\ndescribe('A test for documentation purpose', () => {\n  /**\n   * @test {TestExample#hello}\n   */\n  it('hello', () => {\n    const foo = 'a';\n    expect(foo).to.equal('a');\n  });\n});\n"
   },
   {
     "kind": "testDescribe",
@@ -3982,8 +3982,17 @@
     "testDepth": 0,
     "longname": "test/docTest.js~describe0",
     "access": null,
-    "description": "A test for documentation purpose",
-    "lineNumber": 1
+    "description": "An example for test documantation",
+    "lineNumber": 5,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{TestExample}"
+      }
+    ],
+    "testTargets": [
+      "TestExample"
+    ]
   },
   {
     "kind": "testIt",
@@ -3996,6 +4005,15 @@
     "longname": "test/docTest.js~describe0.it1",
     "access": null,
     "description": "hello",
-    "lineNumber": 2
+    "lineNumber": 9,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{TestExample#hello}"
+      }
+    ],
+    "testTargets": [
+      "TestExample#hello"
+    ]
   }
 ]

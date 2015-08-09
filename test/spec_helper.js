@@ -5,10 +5,6 @@ import chai from 'chai';
 import sinon from 'sinon';
 import cheerio from 'cheerio';
 
-const specHelper = {
-  
-};
-
 global.document = jsdom('<html><body></body></html>');
 global.window = document.defaultView;
 global.navigator = window.navigator;
