@@ -1,6 +1,6 @@
 # frilljs
 
-[![document coverage](./docs/badge.svg)](https://esdoc.org)
+[![document coverage](docs/badge.svg)](https://esdoc.org)
 ---
 
 **WIP**
