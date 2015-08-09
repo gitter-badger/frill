@@ -2,7 +2,10 @@ import auth from './auth';
 import apiV1 from './v1';
 import {routePrefixer} from '../helpers';
 
-export default (server) => {
+/**
+ * Mount all routes to use
+ */
+const routes = (server) => {
   // Authentication routes
   const authRoutes = auth(server);
 
@@ -17,3 +20,5 @@ export default (server) => {
     ...apiRoutes,
   ];
 };
+
+export default routes;

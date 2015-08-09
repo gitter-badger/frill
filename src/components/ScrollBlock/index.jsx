@@ -1,18 +1,59 @@
 import React from 'react';
+import {canUseDOM} from 'react/lib/ExecutionEnvironment';
 
-export default class ScrollBlock extends React.Component {
-  constructor() {
-    super();
+/**
+ * ScrollBlock component for infinite scrolling
+ * @extends {React.Component}
+ * @example <caption>Usage in React component</caption>
+ * import ScrollBlock from 'ScrollBlock';
+ * ...
+ * render() {
+ *   return (
+ *     <ScrollBlock
+ *       fetchData={this.onLoadScrollItems}
+ *       itemsCount={this.state.scrollItemsCount}
+ *       itemTotal={this.state.scrollItemTotal}>
+ *       <ul className="scroll-list">
+ *         {items}
+ *       </ul>
+ *     </ScrollBlock>
+ *   );
+ * }
+ */
+class ScrollBlockComponent extends React.Component {
+  /**
+   * Constructor
+   * @param {any} props
+   */
+  constructor(props) {
+    super(props);
+
+    /**
+     * Name of component
+     */
     this.name = 'ScrollBlock';
 
+    /**
+     * State of component
+     */
     this.state = {
       isLoading: false,
-      isAllLoaded: false,
+      // NOTE: changed from 'isAllLoaded'
+      isLoadedAll: false,
     };
 
-    this.onScroll = this.onScroll.bind(this);
+    if (canUseDOM) {
+      /**
+       * Scroll handler (bind)
+       */
+      this.onScroll = this.onScroll.bind(this);
+    }
   }
 
+  /**
+   * componentDidMount
+   * @see https://facebook.github.io/react/docs/component-specs.html#mounting-componentdidmount
+   */
   componentDidMount() {
     if (!this.props.itemsCount) {
       this.setState({
@@ -23,6 +64,10 @@ export default class ScrollBlock extends React.Component {
     }
   }
 
+  /**
+   * componentWillReceiveProps
+   * @see https://facebook.github.io/react/docs/component-specs.html#updating-componentwillreceiveprops
+   */
   componentWillReceiveProps(newProps) {
     if (newProps.children) {
       this.setState({
@@ -31,36 +76,74 @@ export default class ScrollBlock extends React.Component {
     }
   }
 
+  /**
+   * Scroll handler
+   */
   onScroll() {
-    if (!this.state.isLoading && !this.state.isAllLoaded) {
+    if (!this.state.isLoading && !this.state.isLoadedAll) {
       const _elem = React.findDOMNode(this.refs.scrollBlock);
 
-      if (_elem.scrollHeight - _elem.scrollTop === _elem.clientHeight) {
-        this.setState({
-          isLoading: true,
-        });
+      if (_elem.scrollHeight - _elem.scrollTop - 1 === _elem.clientHeight) {
+        // if items are all loaded
+        if (this.props.itemTotal &&
+          (this.props.itemTotal === this.props.itemsCount)) {
+          this.setState({
+            isLoading: true,
+            isLoadedAll: true,
+          });
 
-        this.props.fetchData();
+        // else if there are more items to load
+        } else {
+          this.setState({
+            isLoading: true,
+          });
+          this.props.fetchData();
+        }
       }
     }
   }
 
+  /**
+   * render
+   * @return {React DOM}
+   * @see https://facebook.github.io/react/docs/component-specs.html#render
+   */
   render() {
     const _className = this.state.isLoading ? ' is-loading' : '';
+    const isLoadedAll = this.state.isLoadedAll;
 
     return (
       <div>
         <div className="ScrollBlock" onScroll={this.onScroll} ref="scrollBlock">
           {this.props.children}
           <p className={`ScrollBlock-loading${_className}`}>
-            loading ...
+            {(!isLoadedAll ? () => {
+              // return 'loading...' when there are more items to load
+              return 'loading ...';
+            } : () => {
+              // when all items loaded
+              return 'loaded!';
+            })()}
           </p>
         </div>
       </div>
     );
   }
 }
+
+/**
+ * PropTypes
+ */
 ScrollBlock.propTypes = {
+  // function to fetch new items
   fetchData: React.PropTypes.func,
+  // Count of loaded items
   itemsCount: React.PropTypes.number,
+  // Count of total items
+  itemTotal: React.PropTypes.number,
 };
+
+/**
+ * Export ScrollBlockComponent
+ */
+export default ScrollBlockComponent;

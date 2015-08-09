@@ -55,6 +55,9 @@ const scheme = () => {
   };
 };
 
+/**
+ * Authentication strategy for local authentications
+ */
 const localStrategy = (server) => {
   server.auth.scheme('local', scheme);
   server.auth.strategy('local', 'local');

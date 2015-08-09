@@ -1,20 +1,38 @@
 import React from 'react';
-import {StoreWatchComponent} from '../../bootstrap';
+import {BaseComponent} from 'frill-core';
 
-class Login extends new StoreWatchComponent(['Test']) {
+/**
+ * Login component
+ * @extends {FrillCore.BaseComponent}
+ * @example <caption>Usage in React-Router</caption>
+ * <Route name="login" path="/login" handler={LoginComponent} />
+ */
+class LoginComponent extends BaseComponent {
+  /**
+   * Constructor
+   * @param {any} props
+   */
   constructor(props) {
     super(props);
 
     this._bind([
-      'onClickTest',
+      'onClick',
     ]);
   }
 
-  onClickTest(evt) {
-    evt.preventDefault();
+  /**
+   * Click handler
+   */
+  onClick(e) {
+    e.preventDefault();
     console.log('btn clicked!');
   }
 
+  /**
+   * render
+   * @return {React DOM}
+   * @see https://facebook.github.io/react/docs/component-specs.html#render
+   */
   render() {
     return (
       <div className="Login">
@@ -27,7 +45,7 @@ class Login extends new StoreWatchComponent(['Test']) {
             <input type="password" ref="password" placeholder="password" />
           </p>
           <p className="form-item">
-            <button onClick={this.onClickTest}>login</button>
+            <button onClick={this.onClick}>login</button>
           </p>
         </form>
       </div>
@@ -35,4 +53,7 @@ class Login extends new StoreWatchComponent(['Test']) {
   }
 }
 
-export default Login;
+/**
+ * Export LoginComponent
+ */
+export default LoginComponent;

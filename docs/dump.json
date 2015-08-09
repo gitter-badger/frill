@@ -3,32 +3,34 @@
     "kind": "file",
     "static": true,
     "variation": null,
-    "name": "src/actions/Test.js",
+    "name": "src/actions/Auth.js",
     "memberof": null,
-    "longname": "src/actions/Test.js",
+    "longname": "src/actions/Auth.js",
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import {Action} from 'frill-core';\n\nclass TestAction extends Action {\n\n  constructor() {\n    super();\n    this.use('request', {prefix: '/api'});\n    // this.use('socket', {url: 'http://localhost:3000'});\n  }\n\n  countUp() {\n    this.request.prefix.get('/v1/hello', (err, ret) => console.log(ret.text));\n    this.dispatch('COUNT_UP');\n  }\n\n  countUpBy(count) {\n    this.dispatch('COUNT_UP_BY', count);\n    return count;\n  }\n}\n\nexport default new TestAction();\n"
+    "content": "import {BaseAction} from 'frill-core';\n\n/**\n * Authentication actions\n * @extends {FrillCore.BaseAction}\n * @example <caption>via react or frill component</caption>\n * // logging in\n * this.getFrill().action('Auth').login('token');\n * // logging out\n * this.getFrill().action('Auth').logout();\n */\nclass AuthAction extends BaseAction {\n\n  /**\n   * Constructor\n   */\n  constructor() {\n    super();\n    // this.use('request', {prefix: '/api'});\n  }\n\n  /**\n   * Login action\n   * @param {string} token - a valid JWT token\n   * @emits {AUTH_LOGIN}\n   */\n  login(token) {\n    this.dispatch('AUTH_LOGIN', token);\n  }\n\n  /**\n   * Login action\n   * @emits {AUTH_LOGOUT}\n   */\n  logout() {\n    this.dispatch('AUTH_LOGOUT');\n  }\n}\n\n/**\n * export AuthAction instance\n */\nexport default new AuthAction();\n"
   },
   {
     "kind": "class",
     "static": true,
     "variation": null,
-    "name": "TestAction",
-    "memberof": "src/actions/Test.js",
-    "longname": "src/actions/Test.js~TestAction",
+    "name": "AuthAction",
+    "memberof": "src/actions/Auth.js",
+    "longname": "src/actions/Auth.js~AuthAction",
     "access": null,
     "export": true,
-    "importPath": "frill/src/actions/Test.js",
+    "importPath": "frill/src/actions/Auth.js",
     "importStyle": null,
-    "description": null,
-    "lineNumber": 3,
+    "description": "Authentication actions",
+    "examples": [
+      "<caption>via react or frill component</caption>\n// logging in\nthis.getFrill().action('Auth').login('token');\n// logging out\nthis.getFrill().action('Auth').logout();"
+    ],
+    "lineNumber": 12,
     "pseudoExport": true,
-    "undocument": true,
     "interface": false,
     "extends": [
-      "frill-core~Action"
+      "FrillCore.BaseAction"
     ]
   },
   {
@@ -36,12 +38,130 @@
     "static": false,
     "variation": null,
     "name": "constructor",
-    "memberof": "src/actions/Test.js~TestAction",
-    "longname": "src/actions/Test.js~TestAction#constructor",
+    "memberof": "src/actions/Auth.js~AuthAction",
+    "longname": "src/actions/Auth.js~AuthAction#constructor",
+    "access": null,
+    "description": "Constructor",
+    "lineNumber": 17,
+    "params": [],
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "login",
+    "memberof": "src/actions/Auth.js~AuthAction",
+    "longname": "src/actions/Auth.js~AuthAction#login",
+    "access": null,
+    "description": "Login action",
+    "lineNumber": 27,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "token",
+        "description": "a valid JWT token"
+      }
+    ],
+    "emits": [
+      {
+        "types": [
+          "AUTH_LOGIN"
+        ],
+        "description": ""
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "logout",
+    "memberof": "src/actions/Auth.js~AuthAction",
+    "longname": "src/actions/Auth.js~AuthAction#logout",
+    "access": null,
+    "description": "Login action",
+    "lineNumber": 35,
+    "params": [],
+    "emits": [
+      {
+        "types": [
+          "AUTH_LOGOUT"
+        ],
+        "description": ""
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "authAction",
+    "memberof": "src/actions/Auth.js",
+    "longname": "src/actions/Auth.js~authAction",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/actions/Auth.js",
+    "importStyle": "authAction",
+    "description": "export AuthAction instance",
+    "lineNumber": 43,
+    "type": {
+      "types": [
+        "src/actions/Auth.js~AuthAction"
+      ]
+    }
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/actions/Example.js",
+    "memberof": null,
+    "longname": "src/actions/Example.js",
     "access": null,
     "description": null,
-    "lineNumber": 5,
-    "undocument": true,
+    "lineNumber": 1,
+    "content": "import {BaseAction} from 'frill-core';\nimport scrollData from '../helpers/testScrollItemsData';\n\n/**\n * Example actions\n * @extends {FrillCore.BaseAction}\n * @example <caption>via react or frill component</caption>\n * // count up counters\n * this.getFrill().action('Example').countUp();\n * // count up counters by a number given\n * this.getFrill().action('Example').countUpBy(10);\n * // load items by scroll\n * this.getFrill().action('Example').loadScrollItems(1, 5);\n */\nclass ExampleAction extends BaseAction {\n\n  /**\n   * Constructor\n   */\n  constructor() {\n    super();\n    // this.use('request', {prefix: '/api'});\n    // this.use('socket', {url: 'http://localhost:3000'});\n  }\n\n  /**\n   * Counts up counter by one.\n   * @emits {COUNT_UP}\n   */\n  countUp() {\n    this.dispatch('COUNT_UP');\n  }\n\n  /**\n   * Counts up counter by a number given.\n   * @param {number} [count=1] - a number to count up by\n   * @emits {COUNT_UP_BY}\n   */\n  countUpBy(count = 1) {\n    this.dispatch('COUNT_UP_BY', count);\n  }\n\n  /**\n   * load items by scroll (Infinite scrolling)\n   * @param {number} [lastIndex=1] - the last index of items loaded\n   * @param {number} [retrieve=5] - number of items to load\n   * @emits {LOAD_SCROLL_ITEMS}\n   */\n  loadScrollItems(lastIndex = 1, retrieve = 5) {\n    const data = scrollData.slice(lastIndex, lastIndex + retrieve);\n    setTimeout(() => {\n      this.dispatch('LOAD_SCROLL_ITEMS', {\n        data: data,\n        total: scrollData.length,\n      });\n    }, 1500);\n  }\n}\n\n/**\n * export ExampleAction instance\n */\nexport default new ExampleAction();\n"
+  },
+  {
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "ExampleAction",
+    "memberof": "src/actions/Example.js",
+    "longname": "src/actions/Example.js~ExampleAction",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/actions/Example.js",
+    "importStyle": null,
+    "description": "Example actions",
+    "examples": [
+      "<caption>via react or frill component</caption>\n// count up counters\nthis.getFrill().action('Example').countUp();\n// count up counters by a number given\nthis.getFrill().action('Example').countUpBy(10);\n// load items by scroll\nthis.getFrill().action('Example').loadScrollItems(1, 5);"
+    ],
+    "lineNumber": 15,
+    "pseudoExport": true,
+    "interface": false,
+    "extends": [
+      "FrillCore.BaseAction"
+    ]
+  },
+  {
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "src/actions/Example.js~ExampleAction",
+    "longname": "src/actions/Example.js~ExampleAction#constructor",
+    "access": null,
+    "description": "Constructor",
+    "lineNumber": 20,
     "params": [],
     "generator": false
   },
@@ -50,13 +170,20 @@
     "static": false,
     "variation": null,
     "name": "countUp",
-    "memberof": "src/actions/Test.js~TestAction",
-    "longname": "src/actions/Test.js~TestAction#countUp",
+    "memberof": "src/actions/Example.js~ExampleAction",
+    "longname": "src/actions/Example.js~ExampleAction#countUp",
     "access": null,
-    "description": null,
-    "lineNumber": 11,
-    "undocument": true,
+    "description": "Counts up counter by one.",
+    "lineNumber": 30,
     "params": [],
+    "emits": [
+      {
+        "types": [
+          "COUNT_UP"
+        ],
+        "description": ""
+      }
+    ],
     "generator": false
   },
   {
@@ -64,44 +191,97 @@
     "static": false,
     "variation": null,
     "name": "countUpBy",
-    "memberof": "src/actions/Test.js~TestAction",
-    "longname": "src/actions/Test.js~TestAction#countUpBy",
+    "memberof": "src/actions/Example.js~ExampleAction",
+    "longname": "src/actions/Example.js~ExampleAction#countUpBy",
     "access": null,
-    "description": null,
-    "lineNumber": 16,
-    "undocument": true,
+    "description": "Counts up counter by a number given.",
+    "lineNumber": 39,
     "params": [
       {
-        "name": "count",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "number"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": "1",
+        "defaultRaw": 1,
+        "name": "count",
+        "description": "a number to count up by"
       }
     ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
+    "emits": [
+      {
+        "types": [
+          "COUNT_UP_BY"
+        ],
+        "description": ""
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "loadScrollItems",
+    "memberof": "src/actions/Example.js~ExampleAction",
+    "longname": "src/actions/Example.js~ExampleAction#loadScrollItems",
+    "access": null,
+    "description": "load items by scroll (Infinite scrolling)",
+    "lineNumber": 49,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": "1",
+        "defaultRaw": 1,
+        "name": "lastIndex",
+        "description": "the last index of items loaded"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "number"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": "5",
+        "defaultRaw": 5,
+        "name": "retrieve",
+        "description": "number of items to load"
+      }
+    ],
+    "emits": [
+      {
+        "types": [
+          "LOAD_SCROLL_ITEMS"
+        ],
+        "description": ""
+      }
+    ],
     "generator": false
   },
   {
     "kind": "variable",
     "static": true,
     "variation": null,
-    "name": "testAction",
-    "memberof": "src/actions/Test.js",
-    "longname": "src/actions/Test.js~testAction",
+    "name": "exampleAction",
+    "memberof": "src/actions/Example.js",
+    "longname": "src/actions/Example.js~exampleAction",
     "access": null,
     "export": true,
-    "importPath": "frill/src/actions/Test.js",
-    "importStyle": "testAction",
-    "description": null,
-    "lineNumber": 22,
-    "undocument": true,
+    "importPath": "frill/src/actions/Example.js",
+    "importStyle": "exampleAction",
+    "description": "export ExampleAction instance",
+    "lineNumber": 63,
     "type": {
       "types": [
-        "src/actions/Test.js~TestAction"
+        "src/actions/Example.js~ExampleAction"
       ]
     }
   },
@@ -115,19 +295,114 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Test from './Test';\n\nexport default {\n  Test: Test,\n};\n"
+    "content": "import Auth from './Auth';\nimport Example from './Example';\n\n/**\n * List of all actions to use in app\n */\nconst Actions = {\n  Auth: Auth,\n  Example: Example,\n};\n\nexport default Actions;\n"
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "Actions",
+    "memberof": "src/actions/index.js",
+    "longname": "src/actions/index.js~Actions",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/actions/index.js",
+    "importStyle": "Actions",
+    "description": "List of all actions to use in app",
+    "lineNumber": 7,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
   },
   {
     "kind": "file",
     "static": true,
     "variation": null,
-    "name": "src/api/auth/base.js",
+    "name": "src/api/auth/authHandlers.js",
     "memberof": null,
-    "longname": "src/api/auth/base.js",
+    "longname": "src/api/auth/authHandlers.js",
     "access": null,
     "description": null,
-    "lineNumber": 0,
-    "content": ""
+    "lineNumber": 1,
+    "content": "import JWT from 'jsonwebtoken';\nimport Boom from 'boom';\nimport aguid from 'aguid';\nimport {where as _where} from 'lodash';\n\n// Test data\nimport accounts from '../../helpers/testUserData';\n\n/**\n * Handler for authentication\n */\nconst authHandler = (request, reply) => {\n  // reply error when authentication fails\n  if (!request.auth.isAuthenticated) {\n    return reply(\n      Boom.unauthorized('Authentication failed due to: ' +\n        request.auth.error.message)\n    );\n  }\n\n  const query = {\n    id: parseInt(request.auth.credentials.profile.id, 10),\n    strategy: request.auth.strategy,\n  };\n\n  const user = _where(accounts, query);\n  // console.log(user);\n\n  if (user.length === 0) {\n    console.log('needs registration');\n  }\n\n  delete user[0].password;\n\n  // TODO create and set JWT into session\n  const session = {\n    valid: true,\n    id: aguid(), // a random session id\n    user: user[0],\n    exp: new Date().getTime() + 30 * 60 * 1000, // expires in 30 minutes time\n  };\n\n  // // create the session in Redis\n  // redisClient.set(session.id, JSON.stringify(session));\n  request.session.set(session.id, session);\n  // sign the session as a JWT\n  const token = JWT.sign(session, 'NeverShareYourSecret');\n  // console.log(token);\n  request.session.flash('token', token);\n  return reply.redirect(request.query.ref || '/');\n};\n\n/**\n * Handler for login\n */\nconst loginHandler = () => {\n\n};\n\n/**\n * Handler for site registration\n */\nconst registrationHandler = () => {\n\n};\n\n/**\n * Export all authentication handlers\n */\nconst authHandlers = {\n  authHandler,\n  loginHandler,\n  registrationHandler,\n};\n\nexport default authHandlers;\n"
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "authHandler",
+    "memberof": "src/api/auth/authHandlers.js",
+    "longname": "src/api/auth/authHandlers.js~authHandler",
+    "access": null,
+    "export": false,
+    "importPath": "frill/src/api/auth/authHandlers.js",
+    "importStyle": null,
+    "description": "Handler for authentication",
+    "lineNumber": 12,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "loginHandler",
+    "memberof": "src/api/auth/authHandlers.js",
+    "longname": "src/api/auth/authHandlers.js~loginHandler",
+    "access": null,
+    "export": false,
+    "importPath": "frill/src/api/auth/authHandlers.js",
+    "importStyle": null,
+    "description": "Handler for login",
+    "lineNumber": 56,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "registrationHandler",
+    "memberof": "src/api/auth/authHandlers.js",
+    "longname": "src/api/auth/authHandlers.js~registrationHandler",
+    "access": null,
+    "export": false,
+    "importPath": "frill/src/api/auth/authHandlers.js",
+    "importStyle": null,
+    "description": "Handler for site registration",
+    "lineNumber": 63,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "authHandlers",
+    "memberof": "src/api/auth/authHandlers.js",
+    "longname": "src/api/auth/authHandlers.js~authHandlers",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/api/auth/authHandlers.js",
+    "importStyle": "authHandlers",
+    "description": "Export all authentication handlers",
+    "lineNumber": 70,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
   },
   {
     "kind": "file",
@@ -139,7 +414,167 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import {twitterStrategy} from './strategies';\nimport twitter from './twitter';\nimport {routePrefixer} from '../../helpers';\n\nexport default (server) => {\n  // use Twitter strategy\n  twitterStrategy(server);\n\n  return routePrefixer('/auth', [\n    twitter,\n  ]);\n};\n\n// export default (server, {helpers, models}) => {\n//   const authPlugin = {\n//     register: (_server, _options, next) => {\n//       // mount auths here\n//       _server.route([\n//         twitter(server, {helpers, models}),\n//       ]);\n//       next();\n//     },\n//   };\n//   authPlugin.register.attributes = {\n//     name: 'auth',\n//     version: '1.0.0',\n//   };\n//\n//   return authPlugin;\n// };\n\n//\n// export default (server, {helpers, models}, next) => {\n//   // add auth strategy\n//   server.auth.strategy('twitter', 'bell', {\n//     provider: 'twitter',\n//     password: 'cookie_encryption_password',\n//     clientId: 'yKcHqLNOXe2xKgvOTFuXCeyN3',\n//     clientSecret: 'woM83S28cvHcf8Ut5AcHBiX4ifqPGMnrze1VkH07QiFLVaIO7y',\n//     isSecure: false,\n//   });\n//\n//   const auth = {\n//     register: (_server, options, _next) => {\n//       _server.route(twitter(server, {helpers, models}));\n//       _next();\n//     },\n//   };\n//\n//   auth.register.attributes = {\n//     name: 'auth',\n//     version: '0.0.0',\n//   };\n//\n//   server.register({\n//     register: auth,\n//   }, {\n//     routes: {\n//       prefix: '/auth',\n//     },\n//   }, next);\n// };\n"
+    "content": "import {routePrefixer} from '../../helpers';\nimport Strategies from './strategies';\n\n// import authentication routes\nimport local from './local';\nimport twitter from './twitter';\n// import facebook from './facebook';\n// import google from './google';\n\n/**\n * All routes used in authentication\n * @return {Array<function>} - Authentication routes\n */\nconst authRoutes = (server) => {\n  // use JsonWebTokens (you shouldn't remove this)\n  Strategies.jwtStrategy(server);\n\n  // use Local strategy\n  Strategies.localStrategy(server);\n\n  // use Twitter strategy\n  Strategies.twitterStrategy(server);\n\n  // use facebookStrategy\n  Strategies.facebookStrategy(server);\n\n  // use googleStrategy\n  Strategies.googleStrategy(server);\n\n  return routePrefixer('/auth', [\n    ...local,\n    ...twitter,\n  ]);\n};\n\nexport default authRoutes;\n"
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "authRoutes",
+    "memberof": "src/api/auth/index.js",
+    "longname": "src/api/auth/index.js~authRoutes",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/api/auth/index.js",
+    "importStyle": "authRoutes",
+    "description": "All routes used in authentication",
+    "lineNumber": 14,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Array<function>"
+      ],
+      "spread": false,
+      "description": "Authentication routes"
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/api/auth/local.js",
+    "memberof": null,
+    "longname": "src/api/auth/local.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import Joi from 'joi';\nimport {authHandler} from './authHandlers';\n\n/**\n * Local authentication routes.\n */\nconst localAuthRoutes = [{\n  method: ['POST'],\n  path: '/local/login',\n  config: {\n    validate: {\n      query: {\n        ref: Joi.string(),\n      },\n      payload: {\n        username: Joi.string().min(5).required(),\n        password: Joi.string().min(5).required(),\n      },\n    },\n    tags: ['api', 'auth'],\n    auth: 'local',\n    // auth: 'twitter',\n    plugins: {\n      'hapi-swagger': {\n        responseMessages: [\n          { code: 400, message: 'Bad Request' },\n          { code: 500, message: 'Internal Server Error'},\n        ],\n      },\n    },\n  },\n  handler: authHandler,\n}];\n\nexport default localAuthRoutes;\n"
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "localAuthRoutes",
+    "memberof": "src/api/auth/local.js",
+    "longname": "src/api/auth/local.js~localAuthRoutes",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/api/auth/local.js",
+    "importStyle": "localAuthRoutes",
+    "description": "Local authentication routes.",
+    "lineNumber": 7,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/api/auth/strategies/facebook.js",
+    "memberof": null,
+    "longname": "src/api/auth/strategies/facebook.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 5,
+    "content": "/**\n * Authentication strategy for Facebook\n * @see https://developers.facebook.com/\n */\nconst facebookStrategy = (server) => {\n  server.auth.strategy('facebook', 'bell', {\n    provider: 'facebook',\n    password: 'cookie_encryption_password',\n    clientId: 'yKcHqLNOXe2xKgvOTFuXCeyN3',\n    clientSecret: 'woM83S28cvHcf8Ut5AcHBiX4ifqPGMnrze1VkH07QiFLVaIO7y',\n    isSecure: false,\n  });\n};\n\nexport default facebookStrategy;\n"
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "facebookStrategy",
+    "memberof": "src/api/auth/strategies/facebook.js",
+    "longname": "src/api/auth/strategies/facebook.js~facebookStrategy",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/api/auth/strategies/facebook.js",
+    "importStyle": "facebookStrategy",
+    "description": "Authentication strategy for Facebook",
+    "see": [
+      "https://developers.facebook.com/"
+    ],
+    "lineNumber": 5,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/api/auth/strategies/github.js",
+    "memberof": null,
+    "longname": "src/api/auth/strategies/github.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 5,
+    "content": "/**\n * Authentication strategy for GitHub\n * @see https://developer.github.com/\n */\nconst githubStrategy = (server) => {\n  server.auth.strategy('github', 'bell', {\n    provider: 'github',\n    password: 'cookie_encryption_password',\n    clientId: 'yKcHqLNOXe2xKgvOTFuXCeyN3',\n    clientSecret: 'woM83S28cvHcf8Ut5AcHBiX4ifqPGMnrze1VkH07QiFLVaIO7y',\n    isSecure: false,\n  });\n};\n\nexport default githubStrategy;\n"
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "githubStrategy",
+    "memberof": "src/api/auth/strategies/github.js",
+    "longname": "src/api/auth/strategies/github.js~githubStrategy",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/api/auth/strategies/github.js",
+    "importStyle": "githubStrategy",
+    "description": "Authentication strategy for GitHub",
+    "see": [
+      "https://developer.github.com/"
+    ],
+    "lineNumber": 5,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/api/auth/strategies/google.js",
+    "memberof": null,
+    "longname": "src/api/auth/strategies/google.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 5,
+    "content": "/**\n * Authentication strategy for Google\n * @see https://developers.google.com/\n */\nconst googleStrategy = (server) => {\n  server.auth.strategy('google', 'bell', {\n    provider: 'google',\n    password: 'cookie_encryption_password',\n    clientId: 'yKcHqLNOXe2xKgvOTFuXCeyN3',\n    clientSecret: 'woM83S28cvHcf8Ut5AcHBiX4ifqPGMnrze1VkH07QiFLVaIO7y',\n    isSecure: false,\n  });\n};\n\nexport default googleStrategy;\n"
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "googleStrategy",
+    "memberof": "src/api/auth/strategies/google.js",
+    "longname": "src/api/auth/strategies/google.js~googleStrategy",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/api/auth/strategies/google.js",
+    "importStyle": "googleStrategy",
+    "description": "Authentication strategy for Google",
+    "see": [
+      "https://developers.google.com/"
+    ],
+    "lineNumber": 5,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
   },
   {
     "kind": "file",
@@ -151,7 +586,191 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import twitterStrategy from './twitter';\n\nexport default {\n  twitterStrategy,\n};\n"
+    "content": "import jwtStrategy from './jwt';\nimport localStrategy from './local';\nimport twitterStrategy from './twitter';\nimport facebookStrategy from './facebook';\nimport googleStrategy from './google';\n// import githubStrategy from './github';\n\n/**\n * List of all strategies to use.\n */\nconst Strategies = {\n  jwtStrategy,\n  localStrategy,\n  twitterStrategy,\n  facebookStrategy,\n  googleStrategy,\n  // githubStrategy,\n};\n\nexport default Strategies;\n"
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "Strategies",
+    "memberof": "src/api/auth/strategies/index.js",
+    "longname": "src/api/auth/strategies/index.js~Strategies",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/api/auth/strategies/index.js",
+    "importStyle": "Strategies",
+    "description": "List of all strategies to use.",
+    "lineNumber": 11,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/api/auth/strategies/jwt.js",
+    "memberof": null,
+    "longname": "src/api/auth/strategies/jwt.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import hapiAuthJwt from 'hapi-auth-jwt2';\nimport {where as _where} from 'lodash';\n\n// Test data\nimport accounts from '../../../helpers/testUserData';\n\nconst validator = (decoded, request, callback) => {\n  // TODO: search from session\n  // construct search query\n  const query = {\n    id: parseInt(decoded.user.id, 10),\n  };\n  const user = _where(accounts, query);\n  if (user.length === 0) {\n    return callback(null, false);\n  } else {\n    return callback(null, true);\n  }\n};\n\n/**\n * Authentication strategy for JsonWebTokens(JWT)\n * @see http://jwt.io/\n */\nconst jwtStrategy = (server) => {\n  server.register(hapiAuthJwt, (err) => {\n    if (err) server.log(['error'], 'jwt-validator load error');\n\n    server.auth.strategy('jwt', 'jwt', true, {\n      key: 'NeverShareYourSecret',\n      // key: 'VQkdGKTWhA4FJHWYXkps7q8q8SNQGvdFjVob2hlEVjQ8AijsWAOdPxkThiDQsDg',\n      validateFunc: validator,\n      verifyOptions: { algorithms: ['HS256'] },\n    });\n  });\n};\n\nexport default jwtStrategy;\n"
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "validator",
+    "memberof": "src/api/auth/strategies/jwt.js",
+    "longname": "src/api/auth/strategies/jwt.js~validator",
+    "access": null,
+    "export": false,
+    "importPath": "frill/src/api/auth/strategies/jwt.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "jwtStrategy",
+    "memberof": "src/api/auth/strategies/jwt.js",
+    "longname": "src/api/auth/strategies/jwt.js~jwtStrategy",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/api/auth/strategies/jwt.js",
+    "importStyle": "jwtStrategy",
+    "description": "Authentication strategy for JsonWebTokens(JWT)",
+    "see": [
+      "http://jwt.io/"
+    ],
+    "lineNumber": 25,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/api/auth/strategies/local.js",
+    "memberof": null,
+    "longname": "src/api/auth/strategies/local.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import Boom from 'boom';\nimport {where as _where} from 'lodash';\n\n// Test data\nimport accounts from '../../../helpers/testUserData';\n\nconst authenticate = (request, reply) => {\n  const credentials = {};\n  reply.continue({ credentials });\n};\n\nconst payload = (request, reply) => {\n  // construct search query\n  const query = {\n    name: request.payload.username,\n    password: request.payload.password,\n  };\n\n  let user = _where(accounts, query);\n\n  if (user.length === 0) {\n    return reply(Boom.badRequest('invalid username or password'));\n  }\n\n  user = user.pop();\n\n  request.auth.credentials = {\n    provider: 'local',\n    token: null,\n    secret: null,\n    query: {},\n    profile: {\n      id: user.id,\n      username: user.name,\n      displayName: user.displayName,\n      raw: user, // full profile\n    },\n  };\n\n  reply.continue();\n};\n\nconst response = (request, reply) => {\n  reply.continue();\n};\n\nconst scheme = () => {\n  return {\n    payload,\n    authenticate,\n    response,\n    options: {\n      payload: true,\n    },\n  };\n};\n\n/**\n * Authentication strategy for local authentications\n */\nconst localStrategy = (server) => {\n  server.auth.scheme('local', scheme);\n  server.auth.strategy('local', 'local');\n};\n\nexport default localStrategy;\n"
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "authenticate",
+    "memberof": "src/api/auth/strategies/local.js",
+    "longname": "src/api/auth/strategies/local.js~authenticate",
+    "access": null,
+    "export": false,
+    "importPath": "frill/src/api/auth/strategies/local.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "payload",
+    "memberof": "src/api/auth/strategies/local.js",
+    "longname": "src/api/auth/strategies/local.js~payload",
+    "access": null,
+    "export": false,
+    "importPath": "frill/src/api/auth/strategies/local.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 12,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "response",
+    "memberof": "src/api/auth/strategies/local.js",
+    "longname": "src/api/auth/strategies/local.js~response",
+    "access": null,
+    "export": false,
+    "importPath": "frill/src/api/auth/strategies/local.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 43,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "scheme",
+    "memberof": "src/api/auth/strategies/local.js",
+    "longname": "src/api/auth/strategies/local.js~scheme",
+    "access": null,
+    "export": false,
+    "importPath": "frill/src/api/auth/strategies/local.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 47,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "localStrategy",
+    "memberof": "src/api/auth/strategies/local.js",
+    "longname": "src/api/auth/strategies/local.js~localStrategy",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/api/auth/strategies/local.js",
+    "importStyle": "localStrategy",
+    "description": "Authentication strategy for local authentications",
+    "lineNumber": 61,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
   },
   {
     "kind": "file",
@@ -162,8 +781,30 @@
     "longname": "src/api/auth/strategies/twitter.js",
     "access": null,
     "description": null,
-    "lineNumber": 1,
-    "content": "export default (server) => {\n  // const {Posts} = models;\n  server.auth.strategy('twitter', 'bell', {\n    provider: 'twitter',\n    password: 'cookie_encryption_password',\n    clientId: 'yKcHqLNOXe2xKgvOTFuXCeyN3',\n    clientSecret: 'woM83S28cvHcf8Ut5AcHBiX4ifqPGMnrze1VkH07QiFLVaIO7y',\n    isSecure: false,\n  });\n};\n"
+    "lineNumber": 5,
+    "content": "/**\n * Authentication strategy for Twitter\n * @see https://dev.twitter.com/\n */\nconst twitterStrategy = (server) => {\n  server.auth.strategy('twitter', 'bell', {\n    provider: 'twitter',\n    password: 'cookie_encryption_password',\n    clientId: 'yKcHqLNOXe2xKgvOTFuXCeyN3',\n    clientSecret: 'woM83S28cvHcf8Ut5AcHBiX4ifqPGMnrze1VkH07QiFLVaIO7y',\n    isSecure: false,\n  });\n};\n\nexport default twitterStrategy;\n"
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "twitterStrategy",
+    "memberof": "src/api/auth/strategies/twitter.js",
+    "longname": "src/api/auth/strategies/twitter.js~twitterStrategy",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/api/auth/strategies/twitter.js",
+    "importStyle": "twitterStrategy",
+    "description": "Authentication strategy for Twitter",
+    "see": [
+      "https://dev.twitter.com/"
+    ],
+    "lineNumber": 5,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
   },
   {
     "kind": "file",
@@ -175,7 +816,26 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "export default {\n  method: ['GET', 'POST'],\n  path: '/twitter/login',\n  config: {\n    tags: ['api', 'auth'],\n    auth: { strategy: 'twitter', mode: 'try' },\n  },\n  handler: (request, reply) => {\n    console.log(request.auth);\n    if (!request.auth.isAuthenticated) {\n      return reply(\n        'Authentication failed due to: ' + request.auth.error.message\n      );\n    }\n    return reply.redirect('/');\n  },\n};\n"
+    "content": "import {authHandler} from './authHandlers';\n\n/**\n * Twitter authentication routes.\n */\nconst twitterAuthRoutes = [{\n  method: ['GET', 'POST'],\n  path: '/twitter/login',\n  config: {\n    tags: ['api', 'auth'],\n    auth: { strategy: 'twitter', mode: 'try' },\n    // auth: 'twitter',\n    plugins: {\n      'hapi-swagger': {\n        responseMessages: [\n          { code: 400, message: 'Bad Request' },\n          { code: 500, message: 'Internal Server Error'},\n        ],\n      },\n    },\n  },\n  handler: authHandler,\n}];\n\nexport default twitterAuthRoutes;\n"
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "twitterAuthRoutes",
+    "memberof": "src/api/auth/twitter.js",
+    "longname": "src/api/auth/twitter.js~twitterAuthRoutes",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/api/auth/twitter.js",
+    "importStyle": "twitterAuthRoutes",
+    "description": "Twitter authentication routes.",
+    "lineNumber": 6,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
   },
   {
     "kind": "file",
@@ -187,7 +847,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import routes from './routes';\n\nconst api = (server) => {\n  const {apiRoutes, authRoutes} = routes(server);\n\n  console.log(apiRoutes);\n  // Authentication\n  server.route(authRoutes);\n  // APIs\n  server.route(apiRoutes);\n\n\n  // server.register([\n  //   apiPlugin,\n  // ], {\n  //   routes: {prefix: '/api'},\n  // }, (err) => {\n  //   if (err) server.log(['error'], `routes: api load error: ${err}`);\n  // });\n};\n\nexport default api;\n"
+    "content": "import routes from './routes';\n\n/**\n * Mount routes\n */\nconst api = (server) => {\n  server.route(routes(server));\n};\n\nexport default api;\n"
   },
   {
     "kind": "variable",
@@ -200,9 +860,8 @@
     "export": true,
     "importPath": "frill/src/api/index.js",
     "importStyle": "api",
-    "description": null,
-    "lineNumber": 3,
-    "undocument": true,
+    "description": "Mount routes",
+    "lineNumber": 6,
     "type": {
       "types": [
         "*"
@@ -219,7 +878,26 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import auth from './auth';\nimport apiV1 from './v1';\nimport {routePrefixer} from '../helpers';\n\nexport default (server) => {\n  return {\n    authRoutes: auth(server),\n    apiRoutes: [\n      ...routePrefixer('/api', apiV1(server)),\n    ],\n  };\n};\n"
+    "content": "import auth from './auth';\nimport apiV1 from './v1';\nimport {routePrefixer} from '../helpers';\n\n/**\n * Mount all routes to use\n */\nconst routes = (server) => {\n  // Authentication routes\n  const authRoutes = auth(server);\n\n  // API routes\n  const apiRoutes = [\n    ...routePrefixer('/api', apiV1(server)),\n  ];\n\n  // Stack up routes\n  return [\n    ...authRoutes,\n    ...apiRoutes,\n  ];\n};\n\nexport default routes;\n"
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "routes",
+    "memberof": "src/api/routes.js",
+    "longname": "src/api/routes.js~routes",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/api/routes.js",
+    "importStyle": "routes",
+    "description": "Mount all routes to use",
+    "lineNumber": 8,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
   },
   {
     "kind": "file",
@@ -230,8 +908,27 @@
     "longname": "src/api/v1/hello.js",
     "access": null,
     "description": null,
-    "lineNumber": 1,
-    "content": "export default (server) => {\n  return {\n    method: ['GET'],\n    path: ['/hello'],\n    config: {\n      description: 'Say hello!',\n      notes: 'Says hello.',\n      tags: ['api', 'greeting'],\n      plugins: {\n        'hapi-swagger': {\n          responseMessages: [\n            { code: 400, message: 'Bad Request' },\n            { code: 500, message: 'Internal Server Error'},\n          ],\n        },\n      },\n    },\n    handler: (req, rep) => {\n      rep('api, hello! ---');\n    },\n  };\n};\n"
+    "lineNumber": 4,
+    "content": "/**\n * API testing\n */\nconst apiV1Hello = (/* server */) => {\n  return [{\n    method: ['GET'],\n    path: '/hello',\n    config: {\n      auth: false,\n      description: 'Say hello!',\n      notes: 'Says hello.',\n      tags: ['api', 'greeting'],\n      plugins: {\n        'hapi-swagger': {\n          responseMessages: [\n            { code: 400, message: 'Bad Request' },\n            { code: 500, message: 'Internal Server Error'},\n          ],\n        },\n      },\n    },\n    handler: (req, rep) => {\n      console.log(req.auth);\n      rep({msg: 'api, hello'});\n    },\n  }, {\n    method: ['GET'],\n    path: '/hello/restricted',\n    config: {\n      auth: 'jwt',\n      description: 'Restricted route',\n      notes: 'Restricted, says hello',\n      tags: ['api', 'greeting'],\n      plugins: {\n        'hapi-swagger': {\n          responseMessages: [\n            { code: 400, message: 'Bad Request' },\n            { code: 500, message: 'Internal Server Error'},\n          ],\n        },\n      },\n    },\n    handler: (req, rep) => {\n      console.log('hander');\n\n      console.log(req.auth);\n      rep({msg: 'restricted api, hello'});\n    },\n  }];\n};\n\nexport default apiV1Hello;\n"
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "apiV1Hello",
+    "memberof": "src/api/v1/hello.js",
+    "longname": "src/api/v1/hello.js~apiV1Hello",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/api/v1/hello.js",
+    "importStyle": "apiV1Hello",
+    "description": "API testing",
+    "lineNumber": 4,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
   },
   {
     "kind": "file",
@@ -243,7 +940,26 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import hello from './hello';\nimport {routePrefixer} from '../../helpers';\n\nexport default (server) => {\n  return routePrefixer('/v1', [\n    hello(server),\n  ]);\n};\n"
+    "content": "import hello from './hello';\nimport {routePrefixer} from '../../helpers';\n\n/**\n * Mount all api v1 routes\n */\nconst apiV1 = (server) => {\n  return routePrefixer('/v1', [\n    ...hello(server),\n  ]);\n};\nexport default apiV1;\n"
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "apiV1",
+    "memberof": "src/api/v1/index.js",
+    "longname": "src/api/v1/index.js~apiV1",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/api/v1/index.js",
+    "importStyle": "apiV1",
+    "description": "Mount all api v1 routes",
+    "lineNumber": 7,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
   },
   {
     "kind": "file",
@@ -255,7 +971,26 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Frill from 'frill-core';\nimport Stores from './stores';\nimport Actions from './actions';\n\n// load stores and actions.\nFrill._Stores = Stores;\nFrill._Actions = Actions;\n\nexport default Frill;\n"
+    "content": "import frillCore from 'frill-core';\nimport Stores from './stores';\nimport Actions from './actions';\n\n/**\n * FrillCore\n */\nconst FrillCore = frillCore;\n\n// load stores and actions.\nFrillCore._Stores = Stores;\nFrillCore._Actions = Actions;\n\nexport default FrillCore;\n"
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "FrillCore",
+    "memberof": "src/bootstrap.js",
+    "longname": "src/bootstrap.js~FrillCore",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/bootstrap.js",
+    "importStyle": "FrillCore",
+    "description": "FrillCore",
+    "lineNumber": 8,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
   },
   {
     "kind": "file",
@@ -267,7 +1002,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Frill from './bootstrap';\nimport _extend from 'lodash/object/extend';\nimport React from 'react';\nimport Router from 'react-router';\nimport routes from './routes';\n// import Logger from './core/Logger';\n// import Configs from './../config/';\n\n// Config = Configs[process.env.NODE_ENV]\n// defaultConfig = Configs['default']\n// Config = _extend defaultConfig, Config\n\n// Frill.Log = new Logger(Config, false)\n\n// TODO: make a new method for this inside Frill.\n// Frill.isClient = true;\n// Frill.isServer = false;\n\n// use socket service\n// Frill.Action.use('socket', {url: 'http://localhost:3000'});\n\n// create a frill context\nconst frillContext = Frill.attach(Frill._Stores, Frill._Actions);\n\nconst data = JSON.parse(\n  document.getElementById('initial-data').getAttribute('data-json')\n);\n\nRouter.run(routes(), Router.HistoryLocation, (Handler) => {\n  React.render(\n    React.createElement(\n      Handler, _extend({frill: frillContext}, data)\n    ), document.getElementById('app')\n  );\n});\n"
+    "content": "import Frill from './bootstrap';\nimport _extend from 'lodash/object/extend';\nimport React from 'react';\nimport Router from 'react-router';\nimport routes from './routes';\n\n// create a frill context\nconst frillContext = Frill.attach(Frill._Stores, Frill._Actions);\n\nconst data = JSON.parse(\n  document.getElementById('initial-data').getAttribute('data-json')\n);\n\nRouter.run(routes(), Router.HistoryLocation, (Handler) => {\n  React.render(\n    React.createElement(\n      Handler, _extend({frill: frillContext}, data)\n    ), document.getElementById('app')\n  );\n});\n"
   },
   {
     "kind": "variable",
@@ -281,7 +1016,7 @@
     "importPath": "frill/src/client.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 23,
+    "lineNumber": 8,
     "undocument": true,
     "type": {
       "types": [
@@ -301,11 +1036,840 @@
     "importPath": "frill/src/client.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 25,
+    "lineNumber": 10,
     "undocument": true,
     "type": {
       "types": [
         "*"
+      ]
+    }
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/components/App/index.jsx",
+    "memberof": null,
+    "longname": "src/components/App/index.jsx",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import React from 'react';\nimport {Link, RouteHandler} from 'react-router';\n\n/**\n * App component\n * @extends {React.Component}\n * @example <caption>Usage in React-Router</caption>\n * <Route name=\"app\" path=\"/\" handler={AppComponent} />\n */\nclass AppComponent extends React.Component {\n\n  /**\n   * Constructor\n   * @param {any} props\n   */\n  constructor(props) {\n    super(props);\n\n    /**\n     * Name of component\n     */\n    this.name = 'App';\n  }\n\n  /**\n   * render\n   * @return {React DOM}\n   * @see https://facebook.github.io/react/docs/component-specs.html#render\n   */\n  render() {\n    return (\n      <div className=\"App\">\n        <header>\n          <h1>Welcome to FrillJS!</h1>\n        </header>\n        <nav>\n          <ul>\n            <li><Link to=\"top\">Top page</Link></li>\n            <li><Link to=\"login\">Login Sample</Link></li>\n            <li>\n              <a href=\"http://localhost:3000/auth/twitter/login\">\n                Twitter Auth Test\n              </a>\n            </li>\n          </ul>\n        </nav>\n        <RouteHandler {...this.props}/>\n        <footer>\n          <p>FrillJS</p>\n        </footer>\n      </div>\n    );\n  }\n}\n\n/**\n * Export AppComponent\n */\nexport default AppComponent;\n"
+  },
+  {
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "AppComponent",
+    "memberof": "src/components/App/index.jsx",
+    "longname": "src/components/App/index.jsx~AppComponent",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/components/App/index.jsx",
+    "importStyle": "AppComponent",
+    "description": "App component",
+    "examples": [
+      "<caption>Usage in React-Router</caption>\n<Route name=\"app\" path=\"/\" handler={AppComponent} />"
+    ],
+    "lineNumber": 10,
+    "interface": false,
+    "extends": [
+      "React.Component"
+    ]
+  },
+  {
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "src/components/App/index.jsx~AppComponent",
+    "longname": "src/components/App/index.jsx~AppComponent#constructor",
+    "access": null,
+    "description": "Constructor",
+    "lineNumber": 16,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "any"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "props",
+        "description": ""
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "name",
+    "memberof": "src/components/App/index.jsx~AppComponent",
+    "longname": "src/components/App/index.jsx~AppComponent#name",
+    "access": null,
+    "description": "Name of component",
+    "lineNumber": 22,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "render",
+    "memberof": "src/components/App/index.jsx~AppComponent",
+    "longname": "src/components/App/index.jsx~AppComponent#render",
+    "access": null,
+    "description": "render",
+    "see": [
+      "https://facebook.github.io/react/docs/component-specs.html#render"
+    ],
+    "lineNumber": 30,
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "React DOM"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "generator": false
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "appComponent",
+    "memberof": "src/components/App/index.jsx",
+    "longname": "src/components/App/index.jsx~appComponent",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/components/App/index.jsx",
+    "importStyle": "appComponent",
+    "description": "Export AppComponent",
+    "lineNumber": 59,
+    "type": {
+      "types": [
+        "src/components/App/index.jsx~AppComponent"
+      ]
+    }
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/components/Error.jsx",
+    "memberof": null,
+    "longname": "src/components/Error.jsx",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import React from 'react';\nimport {BaseComponent} from 'frill-core';\n\n/**\n * Error component - handles error with status code\n * @extends {FrillCore.BaseComponent}\n * @example <caption>Usage in React-Router</caption>\n * <NotFoundRoute name=\"Error\" handler={C.Error}/>\n */\nclass ErrorComponent extends BaseComponent {\n  /**\n   * Constructor\n   * @param {any} props\n   */\n  constructor(props) {\n    super(props);\n\n    /**\n     * Name of component\n     */\n    this.name = 'Error';\n  }\n\n  /**\n   * render\n   * @return {React DOM}\n   * @see https://facebook.github.io/react/docs/component-specs.html#render\n   */\n  render() {\n    const status = this.props.status;\n    return (\n      <div>\n        <a href=\"/\">Back to top</a>\n        <div>CODE: {status.statusCode}</div>\n        <div>ERROR: {status.error}</div>\n        <div>MESSAGE: {status.message}</div>\n      </div>\n    );\n  }\n}\n\n/**\n * Exports ErrorComponent\n */\nexport default ErrorComponent;\n"
+  },
+  {
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "ErrorComponent",
+    "memberof": "src/components/Error.jsx",
+    "longname": "src/components/Error.jsx~ErrorComponent",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/components/Error.jsx",
+    "importStyle": "ErrorComponent",
+    "description": "Error component - handles error with status code",
+    "examples": [
+      "<caption>Usage in React-Router</caption>\n<NotFoundRoute name=\"Error\" handler={C.Error}/>"
+    ],
+    "lineNumber": 10,
+    "interface": false,
+    "extends": [
+      "FrillCore.BaseComponent"
+    ]
+  },
+  {
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "src/components/Error.jsx~ErrorComponent",
+    "longname": "src/components/Error.jsx~ErrorComponent#constructor",
+    "access": null,
+    "description": "Constructor",
+    "lineNumber": 15,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "any"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "props",
+        "description": ""
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "name",
+    "memberof": "src/components/Error.jsx~ErrorComponent",
+    "longname": "src/components/Error.jsx~ErrorComponent#name",
+    "access": null,
+    "description": "Name of component",
+    "lineNumber": 21,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "render",
+    "memberof": "src/components/Error.jsx~ErrorComponent",
+    "longname": "src/components/Error.jsx~ErrorComponent#render",
+    "access": null,
+    "description": "render",
+    "see": [
+      "https://facebook.github.io/react/docs/component-specs.html#render"
+    ],
+    "lineNumber": 29,
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "React DOM"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "generator": false
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "errorComponent",
+    "memberof": "src/components/Error.jsx",
+    "longname": "src/components/Error.jsx~errorComponent",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/components/Error.jsx",
+    "importStyle": "errorComponent",
+    "description": "Exports ErrorComponent",
+    "lineNumber": 45,
+    "type": {
+      "types": [
+        "src/components/Error.jsx~ErrorComponent"
+      ]
+    }
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/components/Login/index.jsx",
+    "memberof": null,
+    "longname": "src/components/Login/index.jsx",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import React from 'react';\nimport {BaseComponent} from 'frill-core';\n\n/**\n * Login component\n * @extends {FrillCore.BaseComponent}\n * @example <caption>Usage in React-Router</caption>\n * <Route name=\"login\" path=\"/login\" handler={LoginComponent} />\n */\nclass LoginComponent extends BaseComponent {\n  /**\n   * Constructor\n   * @param {any} props\n   */\n  constructor(props) {\n    super(props);\n\n    this._bind([\n      'onClick',\n    ]);\n  }\n\n  /**\n   * Click handler\n   */\n  onClick(e) {\n    e.preventDefault();\n    console.log('btn clicked!');\n  }\n\n  /**\n   * render\n   * @return {React DOM}\n   * @see https://facebook.github.io/react/docs/component-specs.html#render\n   */\n  render() {\n    return (\n      <div className=\"Login\">\n        <h2>Login Sample</h2>\n        <form>\n          <p className=\"form-item\">\n            <input type=\"text\" ref=\"username\" placeholder=\"username\" />\n          </p>\n          <p className=\"form-item\">\n            <input type=\"password\" ref=\"password\" placeholder=\"password\" />\n          </p>\n          <p className=\"form-item\">\n            <button onClick={this.onClick}>login</button>\n          </p>\n        </form>\n      </div>\n    );\n  }\n}\n\n/**\n * Export LoginComponent\n */\nexport default LoginComponent;\n"
+  },
+  {
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "LoginComponent",
+    "memberof": "src/components/Login/index.jsx",
+    "longname": "src/components/Login/index.jsx~LoginComponent",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/components/Login/index.jsx",
+    "importStyle": "LoginComponent",
+    "description": "Login component",
+    "examples": [
+      "<caption>Usage in React-Router</caption>\n<Route name=\"login\" path=\"/login\" handler={LoginComponent} />"
+    ],
+    "lineNumber": 10,
+    "interface": false,
+    "extends": [
+      "FrillCore.BaseComponent"
+    ]
+  },
+  {
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "src/components/Login/index.jsx~LoginComponent",
+    "longname": "src/components/Login/index.jsx~LoginComponent#constructor",
+    "access": null,
+    "description": "Constructor",
+    "lineNumber": 15,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "any"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "props",
+        "description": ""
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "onClick",
+    "memberof": "src/components/Login/index.jsx~LoginComponent",
+    "longname": "src/components/Login/index.jsx~LoginComponent#onClick",
+    "access": null,
+    "description": "Click handler",
+    "lineNumber": 26,
+    "params": [
+      {
+        "name": "e",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "render",
+    "memberof": "src/components/Login/index.jsx~LoginComponent",
+    "longname": "src/components/Login/index.jsx~LoginComponent#render",
+    "access": null,
+    "description": "render",
+    "see": [
+      "https://facebook.github.io/react/docs/component-specs.html#render"
+    ],
+    "lineNumber": 36,
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "React DOM"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "generator": false
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "loginComponent",
+    "memberof": "src/components/Login/index.jsx",
+    "longname": "src/components/Login/index.jsx~loginComponent",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/components/Login/index.jsx",
+    "importStyle": "loginComponent",
+    "description": "Export LoginComponent",
+    "lineNumber": 59,
+    "type": {
+      "types": [
+        "src/components/Login/index.jsx~LoginComponent"
+      ]
+    }
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/components/Page.jsx",
+    "memberof": null,
+    "longname": "src/components/Page.jsx",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import React from 'react';\nimport {BaseComponent} from 'frill-core';\nimport {canUseDOM} from 'react/lib/ExecutionEnvironment';\nimport {RouteHandler} from 'react-router';\n// import jwtDecode from 'jwt-decode';\n\n/**\n * Page component - wraps up all pages\n * @extends {FrillCore.BaseComponent}\n * @example <caption>Usage in React-Router</caption>\n * <Route handler={C.Page}>\n *   ...\n * </Route>\n */\nclass PageComponent extends BaseComponent {\n\n  /**\n   * Constructor\n   */\n  constructor(props) {\n    super(props);\n\n    /**\n     * Name of component\n     */\n    this.name = 'App';\n\n    if (props.token) {\n      this.getFrill().action('Auth').login(props.token);\n    }\n\n    if (canUseDOM) {\n      // clear up initial-data from dom\n      document.getElementById('initial-data').outerHTML = '';\n    }\n  }\n\n  /**\n   * render\n   * @return {React DOM}\n   * @see https://facebook.github.io/react/docs/component-specs.html#render\n   */\n  render() {\n    return (\n      <RouteHandler {...this.props}/>\n    );\n  }\n}\n\n/**\n * Exports PageComponent\n */\nexport default PageComponent;\n"
+  },
+  {
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "PageComponent",
+    "memberof": "src/components/Page.jsx",
+    "longname": "src/components/Page.jsx~PageComponent",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/components/Page.jsx",
+    "importStyle": "PageComponent",
+    "description": "Page component - wraps up all pages",
+    "examples": [
+      "<caption>Usage in React-Router</caption>\n<Route handler={C.Page}>\n  ...\n</Route>"
+    ],
+    "lineNumber": 15,
+    "interface": false,
+    "extends": [
+      "FrillCore.BaseComponent"
+    ]
+  },
+  {
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "src/components/Page.jsx~PageComponent",
+    "longname": "src/components/Page.jsx~PageComponent#constructor",
+    "access": null,
+    "description": "Constructor",
+    "lineNumber": 20,
+    "params": [
+      {
+        "name": "props",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "name",
+    "memberof": "src/components/Page.jsx~PageComponent",
+    "longname": "src/components/Page.jsx~PageComponent#name",
+    "access": null,
+    "description": "Name of component",
+    "lineNumber": 26,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "render",
+    "memberof": "src/components/Page.jsx~PageComponent",
+    "longname": "src/components/Page.jsx~PageComponent#render",
+    "access": null,
+    "description": "render",
+    "see": [
+      "https://facebook.github.io/react/docs/component-specs.html#render"
+    ],
+    "lineNumber": 43,
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "React DOM"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "generator": false
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "pageComponent",
+    "memberof": "src/components/Page.jsx",
+    "longname": "src/components/Page.jsx~pageComponent",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/components/Page.jsx",
+    "importStyle": "pageComponent",
+    "description": "Exports PageComponent",
+    "lineNumber": 53,
+    "type": {
+      "types": [
+        "src/components/Page.jsx~PageComponent"
+      ]
+    }
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/components/ScrollBlock/index.jsx",
+    "memberof": null,
+    "longname": "src/components/ScrollBlock/index.jsx",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import React from 'react';\nimport {canUseDOM} from 'react/lib/ExecutionEnvironment';\n\n/**\n * ScrollBlock component for infinite scrolling\n * @extends {React.Component}\n * @example <caption>Usage in React component</caption>\n * import ScrollBlock from 'ScrollBlock';\n * ...\n * render() {\n *   return (\n *     <ScrollBlock\n *       fetchData={this.onLoadScrollItems}\n *       itemsCount={this.state.scrollItemsCount}\n *       itemTotal={this.state.scrollItemTotal}>\n *       <ul className=\"scroll-list\">\n *         {items}\n *       </ul>\n *     </ScrollBlock>\n *   );\n * }\n */\nclass ScrollBlockComponent extends React.Component {\n  /**\n   * Constructor\n   * @param {any} props\n   */\n  constructor(props) {\n    super(props);\n\n    /**\n     * Name of component\n     */\n    this.name = 'ScrollBlock';\n\n    /**\n     * State of component\n     */\n    this.state = {\n      isLoading: false,\n      // NOTE: changed from 'isAllLoaded'\n      isLoadedAll: false,\n    };\n\n    if (canUseDOM) {\n      /**\n       * Scroll handler (bind)\n       */\n      this.onScroll = this.onScroll.bind(this);\n    }\n  }\n\n  /**\n   * componentDidMount\n   * @see https://facebook.github.io/react/docs/component-specs.html#mounting-componentdidmount\n   */\n  componentDidMount() {\n    if (!this.props.itemsCount) {\n      this.setState({\n        isLoading: true,\n      });\n\n      this.props.fetchData();\n    }\n  }\n\n  /**\n   * componentWillReceiveProps\n   * @see https://facebook.github.io/react/docs/component-specs.html#updating-componentwillreceiveprops\n   */\n  componentWillReceiveProps(newProps) {\n    if (newProps.children) {\n      this.setState({\n        isLoading: false,\n      });\n    }\n  }\n\n  /**\n   * Scroll handler\n   */\n  onScroll() {\n    if (!this.state.isLoading && !this.state.isLoadedAll) {\n      const _elem = React.findDOMNode(this.refs.scrollBlock);\n\n      if (_elem.scrollHeight - _elem.scrollTop - 1 === _elem.clientHeight) {\n        // if items are all loaded\n        if (this.props.itemTotal &&\n          (this.props.itemTotal === this.props.itemsCount)) {\n          this.setState({\n            isLoading: true,\n            isLoadedAll: true,\n          });\n\n        // else if there are more items to load\n        } else {\n          this.setState({\n            isLoading: true,\n          });\n          this.props.fetchData();\n        }\n      }\n    }\n  }\n\n  /**\n   * render\n   * @return {React DOM}\n   * @see https://facebook.github.io/react/docs/component-specs.html#render\n   */\n  render() {\n    const _className = this.state.isLoading ? ' is-loading' : '';\n    const isLoadedAll = this.state.isLoadedAll;\n\n    return (\n      <div>\n        <div className=\"ScrollBlock\" onScroll={this.onScroll} ref=\"scrollBlock\">\n          {this.props.children}\n          <p className={`ScrollBlock-loading${_className}`}>\n            {(!isLoadedAll ? () => {\n              // return 'loading...' when there are more items to load\n              return 'loading ...';\n            } : () => {\n              // when all items loaded\n              return 'loaded!';\n            })()}\n          </p>\n        </div>\n      </div>\n    );\n  }\n}\n\n/**\n * PropTypes\n */\nScrollBlock.propTypes = {\n  // function to fetch new items\n  fetchData: React.PropTypes.func,\n  // Count of loaded items\n  itemsCount: React.PropTypes.number,\n  // Count of total items\n  itemTotal: React.PropTypes.number,\n};\n\n/**\n * Export ScrollBlockComponent\n */\nexport default ScrollBlockComponent;\n"
+  },
+  {
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "ScrollBlockComponent",
+    "memberof": "src/components/ScrollBlock/index.jsx",
+    "longname": "src/components/ScrollBlock/index.jsx~ScrollBlockComponent",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/components/ScrollBlock/index.jsx",
+    "importStyle": "ScrollBlockComponent",
+    "description": "ScrollBlock component for infinite scrolling",
+    "examples": [
+      "<caption>Usage in React component</caption>\nimport ScrollBlock from 'ScrollBlock';\n...\nrender() {\n  return (\n    <ScrollBlock\n      fetchData={this.onLoadScrollItems}\n      itemsCount={this.state.scrollItemsCount}\n      itemTotal={this.state.scrollItemTotal}>\n      <ul className=\"scroll-list\">\n        {items}\n      </ul>\n    </ScrollBlock>\n  );\n}"
+    ],
+    "lineNumber": 23,
+    "interface": false,
+    "extends": [
+      "React.Component"
+    ]
+  },
+  {
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "src/components/ScrollBlock/index.jsx~ScrollBlockComponent",
+    "longname": "src/components/ScrollBlock/index.jsx~ScrollBlockComponent#constructor",
+    "access": null,
+    "description": "Constructor",
+    "lineNumber": 28,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "any"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "props",
+        "description": ""
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "name",
+    "memberof": "src/components/ScrollBlock/index.jsx~ScrollBlockComponent",
+    "longname": "src/components/ScrollBlock/index.jsx~ScrollBlockComponent#name",
+    "access": null,
+    "description": "Name of component",
+    "lineNumber": 34,
+    "type": {
+      "types": [
+        "string"
+      ]
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "state",
+    "memberof": "src/components/ScrollBlock/index.jsx~ScrollBlockComponent",
+    "longname": "src/components/ScrollBlock/index.jsx~ScrollBlockComponent#state",
+    "access": null,
+    "description": "State of component",
+    "lineNumber": 39,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "onScroll",
+    "memberof": "src/components/ScrollBlock/index.jsx~ScrollBlockComponent",
+    "longname": "src/components/ScrollBlock/index.jsx~ScrollBlockComponent#onScroll",
+    "access": null,
+    "description": "Scroll handler (bind)",
+    "lineNumber": 49,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "componentDidMount",
+    "memberof": "src/components/ScrollBlock/index.jsx~ScrollBlockComponent",
+    "longname": "src/components/ScrollBlock/index.jsx~ScrollBlockComponent#componentDidMount",
+    "access": null,
+    "description": "componentDidMount",
+    "see": [
+      "https://facebook.github.io/react/docs/component-specs.html#mounting-componentdidmount"
+    ],
+    "lineNumber": 57,
+    "params": [],
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "componentWillReceiveProps",
+    "memberof": "src/components/ScrollBlock/index.jsx~ScrollBlockComponent",
+    "longname": "src/components/ScrollBlock/index.jsx~ScrollBlockComponent#componentWillReceiveProps",
+    "access": null,
+    "description": "componentWillReceiveProps",
+    "see": [
+      "https://facebook.github.io/react/docs/component-specs.html#updating-componentwillreceiveprops"
+    ],
+    "lineNumber": 71,
+    "params": [
+      {
+        "name": "newProps",
+        "types": [
+          "*"
+        ]
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "onScroll",
+    "memberof": "src/components/ScrollBlock/index.jsx~ScrollBlockComponent",
+    "longname": "src/components/ScrollBlock/index.jsx~ScrollBlockComponent#onScroll",
+    "access": null,
+    "description": "Scroll handler",
+    "lineNumber": 82,
+    "params": [],
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "render",
+    "memberof": "src/components/ScrollBlock/index.jsx~ScrollBlockComponent",
+    "longname": "src/components/ScrollBlock/index.jsx~ScrollBlockComponent#render",
+    "access": null,
+    "description": "render",
+    "see": [
+      "https://facebook.github.io/react/docs/component-specs.html#render"
+    ],
+    "lineNumber": 111,
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "React DOM"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "generator": false
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "scrollBlockComponent",
+    "memberof": "src/components/ScrollBlock/index.jsx",
+    "longname": "src/components/ScrollBlock/index.jsx~scrollBlockComponent",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/components/ScrollBlock/index.jsx",
+    "importStyle": "scrollBlockComponent",
+    "description": "Export ScrollBlockComponent",
+    "lineNumber": 149,
+    "type": {
+      "types": [
+        "src/components/ScrollBlock/index.jsx~ScrollBlockComponent"
+      ]
+    }
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/components/Top/index.jsx",
+    "memberof": null,
+    "longname": "src/components/Top/index.jsx",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import React from 'react';\nimport {StoreWatchComponent} from 'frill-core';\nimport ScrollBlock from '../ScrollBlock';\n\n/**\n * Top component\n * @extends {FrillCore.StoreWatchComponent}\n * @example <caption>Usage in React-Router</caption>\n * <Route name=\"login\" path=\"/login\" handler={LoginComponent} />\n */\nclass TopComponent extends new StoreWatchComponent(['Example']) {\n\n  /**\n   * Constructor\n   * @param {any} props\n   */\n  constructor(props) {\n    super(props);\n\n    this._bind([\n      'onOne',\n      'onTen',\n      'onFetchItems',\n    ]);\n  }\n\n  /**\n   * Count up by one\n   */\n  onOne() {\n    this.getFrill().action('Example').countUp();\n  }\n\n  /**\n   * Count up by ten\n   */\n  onTen() {\n    this.getFrill().action('Example').countUpBy(10);\n  }\n\n  /**\n   * Fetch items\n   */\n  onFetchItems() {\n    this.getFrill()\n      .action('Example')\n      .loadScrollItems(this.state.scrollItemsCount, 5);\n  }\n\n  /**\n   * getStateFromFrill\n   * @listens {ExampleStore}\n   */\n  getStateFromFrill() {\n    return {\n      count: this.getFrill().store('Example').getCount(),\n      scrollItems: this.getFrill().store('Example').getScrollItems(),\n      scrollItemsCount: this.getFrill().store('Example').getScrollItemsCount(),\n      scrollItemTotal: this.getFrill().store('Example').getScrollItemTotal(),\n    };\n  }\n\n  /**\n   * render\n   * @return {React DOM}\n   * @see https://facebook.github.io/react/docs/component-specs.html#render\n   */\n  render() {\n    const items = [];\n\n    this.state.scrollItems.map((item) => {\n      items.push(\n        <li key={item.id}>\n          <p>ID : {item.id}</p>\n          <p>title : {item.title}</p>\n        </li>\n      );\n    });\n\n    return (\n      <div className=\"Top\">\n        <h2>Samples</h2>\n        <section>\n          <h3>Button - counter</h3>\n          <p className=\"count\">{this.state.count}</p>\n          <button onClick={this.onOne}>+1</button>\n          <button onClick={this.onTen}>+10</button>\n        </section>\n        <section>\n          <h3>Textarea</h3>\n          <textarea placeholder=\"type something ...\"></textarea>\n        </section>\n        <section>\n          <h3>Infinite Scroll</h3>\n          <ScrollBlock\n            fetchData={this.onFetchItems}\n            itemsCount={this.state.scrollItemsCount}\n            itemTotal={this.state.scrollItemTotal}>\n              <h4>Scroll down the box ...</h4>\n              <ul className=\"scroll-list\">\n                {items}\n              </ul>\n          </ScrollBlock>\n        </section>\n      </div>\n    );\n  }\n}\n\n/**\n * Export TomComponent\n */\nexport default TopComponent;\n"
+  },
+  {
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "TopComponent",
+    "memberof": "src/components/Top/index.jsx",
+    "longname": "src/components/Top/index.jsx~TopComponent",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/components/Top/index.jsx",
+    "importStyle": "TopComponent",
+    "description": "Top component",
+    "examples": [
+      "<caption>Usage in React-Router</caption>\n<Route name=\"login\" path=\"/login\" handler={LoginComponent} />"
+    ],
+    "lineNumber": 11,
+    "interface": false,
+    "extends": [
+      "FrillCore.StoreWatchComponent"
+    ]
+  },
+  {
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "src/components/Top/index.jsx~TopComponent",
+    "longname": "src/components/Top/index.jsx~TopComponent#constructor",
+    "access": null,
+    "description": "Constructor",
+    "lineNumber": 17,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "any"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "props",
+        "description": ""
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "onOne",
+    "memberof": "src/components/Top/index.jsx~TopComponent",
+    "longname": "src/components/Top/index.jsx~TopComponent#onOne",
+    "access": null,
+    "description": "Count up by one",
+    "lineNumber": 30,
+    "params": [],
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "onTen",
+    "memberof": "src/components/Top/index.jsx~TopComponent",
+    "longname": "src/components/Top/index.jsx~TopComponent#onTen",
+    "access": null,
+    "description": "Count up by ten",
+    "lineNumber": 37,
+    "params": [],
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "onFetchItems",
+    "memberof": "src/components/Top/index.jsx~TopComponent",
+    "longname": "src/components/Top/index.jsx~TopComponent#onFetchItems",
+    "access": null,
+    "description": "Fetch items",
+    "lineNumber": 44,
+    "params": [],
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "getStateFromFrill",
+    "memberof": "src/components/Top/index.jsx~TopComponent",
+    "longname": "src/components/Top/index.jsx~TopComponent#getStateFromFrill",
+    "access": null,
+    "description": "getStateFromFrill",
+    "lineNumber": 54,
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "listens": [
+      {
+        "types": [
+          "ExampleStore"
+        ],
+        "description": ""
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "render",
+    "memberof": "src/components/Top/index.jsx~TopComponent",
+    "longname": "src/components/Top/index.jsx~TopComponent#render",
+    "access": null,
+    "description": "render",
+    "see": [
+      "https://facebook.github.io/react/docs/component-specs.html#render"
+    ],
+    "lineNumber": 68,
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "React DOM"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "generator": false
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "topComponent",
+    "memberof": "src/components/Top/index.jsx",
+    "longname": "src/components/Top/index.jsx~topComponent",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/components/Top/index.jsx",
+    "importStyle": "topComponent",
+    "description": "Export TomComponent",
+    "lineNumber": 113,
+    "type": {
+      "types": [
+        "src/components/Top/index.jsx~TopComponent"
       ]
     }
   },
@@ -319,7 +1883,26 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import App from './App';\nimport Top from './Top';\nimport TopTwo from './TopTwo';\nimport NotFound from './NotFound';\n\nexport default {\n  // Parent component\n  App: App,\n  Top: Top,\n  TopTwo: TopTwo,\n\n  /**\n   * Error handling\n   */\n\n  // 404\n  NotFound: NotFound,\n\n};\n"
+    "content": "import Page from './Page';\nimport App from './App';\nimport Top from './Top';\nimport Login from './Login';\nimport Error from './Error';\n\n/**\n * List of all components used in app\n */\nconst Components = {\n  // Parent component\n  Page: Page,\n  App: App,\n  Top: Top,\n  Login: Login,\n\n  // Error handler\n  Error: Error,\n};\n\nexport default Components;\n"
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "Components",
+    "memberof": "src/components/index.js",
+    "longname": "src/components/index.js~Components",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/components/index.js",
+    "importStyle": "Components",
+    "description": "List of all components used in app",
+    "lineNumber": 10,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
   },
   {
     "kind": "file",
@@ -331,7 +1914,7 @@
     "access": null,
     "description": null,
     "lineNumber": 4,
-    "content": "/**\n * AmazonWebServices Helper\n */\nimport AWS from 'aws-sdk';\nAWS.config.update({\n  accessKeyId: 'myKeyId',\n  secretAccessKey: 'secretKey',\n  region: 'us-east-1',\n});\nexport default AWS;\n"
+    "content": "/**\n * AmazonWebServices Helper\n */\nimport AWS from 'aws-sdk';\n\nAWS.config.update({\n  accessKeyId: 'myKeyId',\n  secretAccessKey: 'secretKey',\n  region: 'us-east-1',\n});\n\nexport default AWS;\n"
   },
   {
     "kind": "file",
@@ -343,7 +1926,26 @@
     "access": null,
     "description": null,
     "lineNumber": 5,
-    "content": "/**\n * Setup helpers to use from the 'api'\n */\n\nimport Joi from 'joi';\nimport AWS from './aws';\nimport routePrefixer from './routePrefixer';\n\nexport default {\n  Joi,\n  AWS,\n  routePrefixer,\n};\n"
+    "content": "/**\n * Setup helpers to use from the 'api'\n */\n\nimport Joi from 'joi';\nimport AWS from './aws';\nimport routePrefixer from './routePrefixer';\n\n/**\n * List of all helpers used in app\n */\nconst helpers = {\n  Joi,\n  AWS,\n  routePrefixer,\n};\n\nexport default helpers;\n"
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "helpers",
+    "memberof": "src/helpers/index.js",
+    "longname": "src/helpers/index.js~helpers",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/helpers/index.js",
+    "importStyle": "helpers",
+    "description": "List of all helpers used in app",
+    "lineNumber": 12,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
   },
   {
     "kind": "file",
@@ -355,7 +1957,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import {isArray as _isArray} from 'lodash';\nimport {isObject as _isObject} from 'lodash';\n\n/**\n * @desc Prefixes route.path\n * @example\n * routePrefixer('/api', [{path: '/a'}, {path: '/b'}]);\n *\n * @param {string} prefix - A string to prefix paths\n * @param {Array|Object} routes - Collection of routes or a single route\n * @param {string} route.path - Collection of routes or a single route\n * @throws {Error} throw error when route.path doesn't exist\n * @throws {TypeError} throw error when route is not an Array\n * @return {Array}\n */\nexport default routePrefixer = (prefix, routes) => {\n  let _routes = routes;\n  if (_isObject(routes)) {\n    if (!routes.path) {\n      throw new Error('A route must have routes.path');\n    }\n    _routes = [_routes];\n  }\n  if (!_isArray(routes)) {\n    throw new TypeError('Unable to prefix routes. route must be an Array');\n  }\n  return routes.map((route) => {\n    route.path = prefix + route.path;\n    return route;\n  });\n};\n"
+    "content": "import {isArray as _isArray} from 'lodash';\nimport {isPlainObject as _isPlainObject} from 'lodash';\n\n/**\n * @desc Prefixes route.path\n * @example\n * routePrefixer('/api', [{path: '/a'}, {path: '/b'}]);\n *\n * @param {string} prefix - A string to prefix paths\n * @param {Array|Object} routes - Collection of routes or a single route\n * @param {string} route.path - Collection of routes or a single route\n * @throws {Error} throw error when route.path doesn't exist\n * @throws {TypeError} throw error when route is not an Array\n * @return {Array}\n */\nconst routePrefixer = (prefix, routes) => {\n  let _routes = routes;\n  if (_isPlainObject(_routes)) {\n    if (!_routes.path) {\n      throw new Error('A route must have routes.path');\n    }\n    _routes = [_routes];\n  }\n  if (!_isArray(routes)) {\n    throw new TypeError('Unable to prefix routes. route must be an Array');\n  }\n  return routes.map((route) => {\n    route.path = prefix + route.path;\n    return route;\n  });\n};\n\nexport default routePrefixer;\n"
   },
   {
     "kind": "variable",
@@ -414,6 +2016,11 @@
       "spread": false,
       "description": ""
     },
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
     "throws": [
       {
         "types": [
@@ -433,13 +2040,59 @@
     "kind": "file",
     "static": true,
     "variation": null,
+    "name": "src/helpers/testScrollItemsData.js",
+    "memberof": null,
+    "longname": "src/helpers/testScrollItemsData.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "export default [\n  {\n    id: 1,\n    title: 'aaa',\n  },\n  {\n    id: 2,\n    title: 'bbb',\n  },\n  {\n    id: 3,\n    title: 'ccc',\n  },\n  {\n    id: 4,\n    title: 'ddd',\n  },\n  {\n    id: 5,\n    title: 'eee',\n  },\n  {\n    id: 6,\n    title: 'fff',\n  },\n  {\n    id: 7,\n    title: 'ggg',\n  },\n  {\n    id: 8,\n    title: 'hhh',\n  },\n  {\n    id: 9,\n    title: 'iii',\n  },\n  {\n    id: 10,\n    title: 'jjj',\n  },\n  {\n    id: 11,\n    title: 'kkk',\n  },\n  {\n    id: 12,\n    title: 'lll',\n  },\n  {\n    id: 13,\n    title: 'mmm',\n  },\n];\n"
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/helpers/testUserData.js",
+    "memberof": null,
+    "longname": "src/helpers/testUserData.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "export default [\n  {\n    id: 1,\n    name: 'nanopx',\n    strategy: 'local',\n    password: 'hello',\n    displayName: 'mr.nano',\n  },\n  {\n    id: 2,\n    name: 'nanopx2',\n    strategy: 'local',\n    password: 'hello',\n    displayName: 'mrs.nano',\n  },\n  {\n    id: 3,\n    name: 'nanopx3',\n    strategy: 'local',\n    password: 'hello',\n    displayName: 'sir nano',\n  },\n  {\n    id: 2524104246,\n    name: 'nanopx_twitter',\n    strategy: 'twitter',\n    password: null,\n    displayName: 'nanopx-twitter',\n  },\n\n];\n"
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
     "name": "src/models/DynamoDB/Posts.js",
     "memberof": null,
     "longname": "src/models/DynamoDB/Posts.js",
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import vogels from '../vogels';\nimport Joi from 'Joi';\n\nexport default vogels.define('Post', {\n  hashKey: 'email',\n  rangeKey: 'title',\n  schema: {\n    email: Joi.string().email(),\n    title: Joi.string(),\n    content: Joi.binary(),\n    tags: vogels.types.stringSet(),\n  },\n});\n"
+    "content": "import Vogels from '../vogels';\nimport Joi from 'Joi';\n\n/**\n * Posts model\n * @see https://github.com/ryanfitz/vogels#define-a-model\n */\nconst Posts = Vogels.define('Post', {\n  hashKey: 'email',\n  rangeKey: 'title',\n  schema: {\n    email: Joi.string().email(),\n    title: Joi.string(),\n    content: Joi.binary(),\n    tags: vogels.types.stringSet(),\n  },\n});\n\nexport default Posts;\n"
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "Posts",
+    "memberof": "src/models/DynamoDB/Posts.js",
+    "longname": "src/models/DynamoDB/Posts.js~Posts",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/models/DynamoDB/Posts.js",
+    "importStyle": "Posts",
+    "description": "Posts model",
+    "see": [
+      "https://github.com/ryanfitz/vogels#define-a-model"
+    ],
+    "lineNumber": 8,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
   },
   {
     "kind": "file",
@@ -451,7 +2104,97 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Posts from './Posts';\n\nexport default {\n  Posts,\n};\n"
+    "content": "import Posts from './Posts';\n\n/**\n * List of all DynamoDB models\n * @see {@link Posts}\n */\nconst DynamoDBModels = {\n  Posts,\n};\n\nexport default DynamoDBModels;\n"
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "DynamoDBModels",
+    "memberof": "src/models/DynamoDB/index.js",
+    "longname": "src/models/DynamoDB/index.js~DynamoDBModels",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/models/DynamoDB/index.js",
+    "importStyle": "DynamoDBModels",
+    "description": "List of all DynamoDB models",
+    "see": [
+      "{@link Posts}"
+    ],
+    "lineNumber": 7,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/models/MySQL/Users.js",
+    "memberof": null,
+    "longname": "src/models/MySQL/Users.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import Sequelize from 'sequelize';\nimport sequelize from '../sequelize';\n\n/**\n * Users model\n * @see http://docs.sequelizejs.com/en/latest/docs/models-definition/#definition\n */\nconst Users = sequelize.define('User', {\n  username: Sequelize.STRING,\n  birthday: Sequelize.DATE,\n});\n\nexport default Users;\n"
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "Users",
+    "memberof": "src/models/MySQL/Users.js",
+    "longname": "src/models/MySQL/Users.js~Users",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/models/MySQL/Users.js",
+    "importStyle": "Users",
+    "description": "Users model",
+    "see": [
+      "http://docs.sequelizejs.com/en/latest/docs/models-definition/#definition"
+    ],
+    "lineNumber": 8,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/models/MySQL/index.js",
+    "memberof": null,
+    "longname": "src/models/MySQL/index.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import Users from './Users';\n\n/**\n * List of all DynamoDB models\n * @see {@link Users}\n */\nconst MySQLModels = {\n  Users,\n};\n\nexport default MySQLModels;\n"
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "MySQLModels",
+    "memberof": "src/models/MySQL/index.js",
+    "longname": "src/models/MySQL/index.js~MySQLModels",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/models/MySQL/index.js",
+    "importStyle": "MySQLModels",
+    "description": "List of all DynamoDB models",
+    "see": [
+      "{@link Users}"
+    ],
+    "lineNumber": 7,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
   },
   {
     "kind": "file",
@@ -462,8 +2205,83 @@
     "longname": "src/models/index.js",
     "access": null,
     "description": null,
+    "lineNumber": 5,
+    "content": "/**\n * Example for using multiple type of databases\n */\n// example for DynamoDB using vogels\nimport {Posts} from './DynamoDB';\n// example for MySQL using sequelize\nimport {Users} from './MySQL';\n\nconst dynamoDb = {\n  Posts,\n};\n\nconst mySql = {\n  Users,\n};\n\n/**\n * List of all models\n * @see {@link MySQLModels}\n * @see {@link DynamoDBModels}\n */\nconst Models = {\n  dynamoDb,\n  mySql,\n};\n\nexport default Models;\n"
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "dynamoDb",
+    "memberof": "src/models/index.js",
+    "longname": "src/models/index.js~dynamoDb",
+    "access": null,
+    "export": false,
+    "importPath": "frill/src/models/index.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 9,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "mySql",
+    "memberof": "src/models/index.js",
+    "longname": "src/models/index.js~mySql",
+    "access": null,
+    "export": false,
+    "importPath": "frill/src/models/index.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 13,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "Models",
+    "memberof": "src/models/index.js",
+    "longname": "src/models/index.js~Models",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/models/index.js",
+    "importStyle": "Models",
+    "description": "List of all models",
+    "see": [
+      "{@link MySQLModels}",
+      "{@link DynamoDBModels}"
+    ],
+    "lineNumber": 22,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/models/sequelize.js",
+    "memberof": null,
+    "longname": "src/models/sequelize.js",
+    "access": null,
+    "description": null,
     "lineNumber": 1,
-    "content": "import {Posts} from './DynamoDB';\nexport default {\n  Posts,\n};\n"
+    "content": "import Sequelize from 'sequelize';\n\n/**\n * setup sequelize\n * @external {Sequelize} http://docs.sequelizejs.com/en/latest/\n */\nconst sequelize = new Sequelize('database', 'username', 'password', {\n  host: 'localhost',\n  dialect: 'mysql',\n  // pool: {\n  //   max: 5,\n  //   min: 0,\n  //   idle: 10000,\n  // },\n});\n\nexport default sequelize;\n"
   },
   {
     "kind": "file",
@@ -475,7 +2293,64 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import vogels from 'vogels';\nimport {AWS} from './../helpers';\n\n// setup vogels\nvogels.dynamoDriver(new AWS.DynamoDB({\n  endpoint: 'http://localhost:8000',\n}));\n\nexport default vogels;\n"
+    "content": "import vogels from 'vogels';\nimport {AWS} from './../helpers';\n\n/**\n * setup vogels\n * @external {Vogels} https://github.com/ryanfitz/vogels\n */\nvogels.dynamoDriver(new AWS.DynamoDB({\n  endpoint: 'http://localhost:8000',\n}));\n\nexport default vogels;\n"
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Vogels",
+    "externalLink": "https://github.com/ryanfitz/vogels",
+    "memberof": "src/models/vogels.js",
+    "longname": "src/models/vogels.js~Vogels",
+    "access": null,
+    "description": "setup vogels",
+    "lineNumber": 8
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/routes.jsx",
+    "memberof": null,
+    "longname": "src/routes.jsx",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import React from 'react';\nimport {Route, DefaultRoute, NotFoundRoute} from 'react-router';\nimport C from './components';\n\n/**\n * Routes for components\n * @returns {React DOM}\n */\nconst componentRoutes = () => {\n  return (\n    <Route handler={C.Page}>\n      <Route name=\"app\" path=\"/\" handler={C.App}>\n        <DefaultRoute name=\"top\" handler={C.Top} />\n        <Route name=\"login\" handler={C.Login} />\n      </Route>\n      <NotFoundRoute name=\"Error\" handler={C.Error}/>\n    </Route>\n  );\n};\n\nexport default componentRoutes;\n"
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "componentRoutes",
+    "memberof": "src/routes.jsx",
+    "longname": "src/routes.jsx~componentRoutes",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/routes.jsx",
+    "importStyle": "componentRoutes",
+    "description": "Routes for components",
+    "lineNumber": 9,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{React DOM}"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "React DOM"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
   },
   {
     "kind": "file",
@@ -487,7 +2362,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "global.__SERVER__ = true;\n\nimport Frill from './bootstrap';\nimport pack from '../package';\nimport api from './api';\nimport routes from './routes';\nimport Hapi from 'hapi';\nimport React from 'react';\nimport Router from 'react-router';\nimport Redis from 'catbox-redis';\nimport Session from 'yar';\nimport Authentication from 'bell';\nimport Jade from 'jade';\nimport good from 'good';\nimport goodConsole from 'good-console';\nimport swagger from 'hapi-swagger';\nimport _extend from 'lodash/object/extend';\nimport _isUndefined from 'lodash/lang/isUndefined';\nimport _argv from 'minimist';\nlet argv = _argv;\nargv = _argv(process.argv.slice(2));\n\n/**\n * Configure hapi.\n */\nconst SERVER_PORT = 3000;\nconst server = new Hapi.Server({\n  cache: [{\n    name: 'redis',\n    engine: Redis,\n    host: '127.0.0.1',\n    // partition: 'cache',\n  }],\n});\nserver.connection({port: SERVER_PORT});\n\n/**\n * Configure sessions\n */\nserver.register({\n  register: Session,\n  options: {\n    maxCookieSize: 0,\n    cookieOptions: {\n      password: 'SOME_PASSWORD', // @TODO send options to a config\n      isSecure: false, // @TODO cannot do this at production\n    },\n  },\n}, (err) => {\n  if (err) server.log(['error'], `session load error: ${err}`);\n});\n\n/**\n * Configure authentication strategies\n */\nserver.register([\n  Authentication,\n], (err) => {\n  if (err) server.log(['error'], `authentication load error: ${err}`);\n});\n\n\n/**\n * Configure hapi views\n */\nserver.views({\n  engines: {\n    jade: Jade,\n  },\n  relativeTo: __dirname,\n  path: 'templates',\n});\n\n/**\n * Attempt to serve static files\n */\nserver.route({\n  method: '*',\n  path: '/{params*}',\n  handler: (request, reply) => {\n    reply.file('public' + request.path);\n  },\n});\n\n/**\n * Mount all the APIs to hapi\n */\napi(server);\n\n\n/**\n * Configure hapi-swagger for API documentation.\n * TODO: disable at production\n */\nconst swaggerOptions = {\n  apiVersion: pack.version,\n  basePath: 'http://localhost:3001',\n};\n\nserver.register({\n  register: swagger,\n  options: swaggerOptions,\n}, (err) => {\n  if (err) server.log(['error'], `hapi-swagger load error: ${err}`);\n});\n\n/**\n * Catch requests to fire React Router\n */\n// create context\nconst frillContext = Frill.attach(Frill._Stores, Frill._Actions);\n\nserver.ext('onPreResponse', (request, reply) => {\n  if (!_isUndefined(request.response.statusCode)) {\n    return reply.continue();\n  }\n  // fire React Router\n  server.log(['info'], `Serving down to react-router with ${request.path}`);\n  Router.run(routes(), request.path, (Handler, state) => {\n    // pass down frill context to handler\n    const patchedState = _extend({frill: frillContext}, state);\n    const handler = React.createElement(Handler, patchedState);\n    const markup = React.renderToString(handler);\n    server.log(['verbose'], markup);\n    reply.view('default', {\n      initialData: JSON.stringify(state),\n      markup: markup,\n    });\n  });\n});\n\n\n/**\n * Configure good (for logging hapi)\n * TODO: disable at production\n */\n// define which log level outputs which tags\nconst logLevels = {\n  silent: {},\n  error: {\n    error: '*',\n    log: ['error'],\n    response: ['error'],\n  },\n  debug: {\n    error: '*',\n    log: ['debug', 'error'],\n    response: ['debug', 'error'],\n  },\n  info: {\n    error: '*',\n    log: ['info', 'debug', 'error'],\n    response: ['info', 'debug', 'error'],\n  },\n  verbose: {\n    log: '*',\n    ops: '*',\n    error: '*',\n    request: '*',\n    response: '*',\n  },\n};\n\nlet logEvents;\nif (argv.verbose) {\n  logEvents = logLevels.verbose;\n} else if (argv.info) {\n  logEvents = logLevels.info;\n} else if (argv.debug) {\n  logEvents = logLevels.debug;\n} else if (argv.error) {\n  logEvents = logLevels.error;\n} else if (argv.silent) {\n  logEvents = logLevels.silent;\n} else {\n  logEvents = logLevels.info;\n}\n\nconst goodOptions = {\n  reporters: [{\n    reporter: goodConsole,\n    events: logEvents,\n    config: {\n      format: '[[]HH:mm:ss[]][[frill]]',\n      utc: false,\n    },\n  }],\n};\n\nserver.register({\n  register: good,\n  options: goodOptions,\n}, (err) => {\n  if (err) {\n    console.error(err);\n  } else {\n    // initialize server\n    server.start(() => {\n      server.log(['info'], `Server started at ${server.info.uri}`);\n    });\n  }\n});\n"
+    "content": "import Frill from './bootstrap';\nimport pack from '../package';\nimport api from './api';\nimport routes from './routes';\nimport Hapi from 'hapi';\nimport React from 'react';\nimport Router from 'react-router';\nimport Redis from 'catbox-redis';\nimport Session from 'yar';\nimport Authentication from 'bell';\nimport Jade from 'jade';\nimport good from 'good';\nimport goodConsole from 'good-console';\nimport swagger from 'hapi-swagger';\nimport _find from 'lodash/collection/find';\nimport _extend from 'lodash/object/extend';\nimport _isUndefined from 'lodash/lang/isUndefined';\nimport _argv from 'minimist';\nlet argv = _argv;\nargv = _argv(process.argv.slice(2));\n\n/**\n * Configure hapi.\n */\nconst SERVER_PORT = 3000;\nconst server = new Hapi.Server({\n  cache: [{\n    name: 'redis',\n    engine: Redis,\n    host: '127.0.0.1',\n    // partition: 'cache',\n  }],\n});\nserver.connection({port: SERVER_PORT});\n\n/**\n * Configure sessions\n */\nserver.register({\n  register: Session,\n  options: {\n    maxCookieSize: 0,\n    cookieOptions: {\n      password: 'SOME_PASSWORD', // @TODO send options to a config\n      isSecure: false, // @TODO cannot do this at production\n    },\n  },\n}, (err) => {\n  if (err) server.log(['error'], `session load error: ${err}`);\n});\n\n/**\n * Configure authentication strategies\n */\nserver.register([\n  Authentication,\n], (err) => {\n  if (err) server.log(['error'], `authentication load error: ${err}`);\n});\n\n/**\n * Configure hapi views\n */\nserver.views({\n  engines: {\n    jade: Jade,\n  },\n  relativeTo: __dirname,\n  path: 'templates',\n});\n\n/**\n * Attempt to serve static files\n */\nserver.route({\n  method: '*',\n  path: '/{params*}',\n  // don't use authentication strategy\n  config: { auth: false },\n  handler: (request, reply) => {\n    if (request.path === '/') {\n      return reply.continue();\n    }\n    reply.file('public' + request.path);\n  },\n});\n\n\n/**\n * Mount all the APIs to hapi\n */\napi(server);\n\n/**\n * Configure hapi-swagger for API documentation.\n * TODO: disable at production\n */\nconst swaggerOptions = {\n  apiVersion: pack.version,\n  basePath: 'http://localhost:3001',\n};\n\nserver.register({\n  register: swagger,\n  options: swaggerOptions,\n}, (err) => {\n  if (err) server.log(['error'], `hapi-swagger load error: ${err}`);\n});\n\n/**\n * Catch requests to fire React Router\n */\n// create context\nconst frillContext = Frill.attach(Frill._Stores, Frill._Actions);\n\nserver.ext('onPreResponse', (request, reply) => {\n  const response = request.response;\n\n  // if API request\n  if (response.isBoom && request.path.substring(0, 5) === '/api/') {\n    return reply.continue();\n  }\n\n  // if status code exists and request.path set to '/'\n  if (!_isUndefined(request.response.statusCode) && request.path !== '/') {\n    return reply.continue();\n  }\n\n  // fire React Router\n  server.log(['info'], `Serving down to react-router with ${request.path}`);\n\n  Router.run(routes(), request.path, (Handler, state) => {\n    // find route from request.path\n    const isFoundRoute = _find(state.routes, { path: request.path });\n\n    // 200 if route found, else 404\n    const _status = isFoundRoute ? 200 : 404;\n\n    // create temporary output status\n    let status = { statusCode: _status, error: '', message: '' };\n\n    // if response is an Error\n    if (response.isBoom && response.output.statusCode !== 404) {\n      status = response.output.payload;\n    } else {\n      if (_status === 200) {\n        status.message = 'OK';\n      } else if (_status === 404) {\n        status.error = 'NotFound';\n        status.message = 'Page not found.';\n      }\n    }\n\n    // set status to state\n    state.status = status;\n\n    // set auth token if exists\n    state.token = request.session.flash('token')[0];\n\n    // pass down frill context to handler\n    const patchedState = _extend({frill: frillContext}, state);\n\n    // create handler\n    const handler = React.createElement(Handler, patchedState);\n\n    // construct markup\n    const markup = React.renderToString(handler);\n\n    server.log(['verbose'], markup);\n    reply.view('default', {\n      initialData: JSON.stringify(state),\n      markup: markup,\n    }).code(status.statusCode);\n  });\n});\n\n\n/**\n * Configure good (for logging hapi)\n * TODO: disable at production\n */\n// define which log level outputs which tags\nconst logLevels = {\n  silent: {},\n  error: {\n    error: '*',\n    log: ['error'],\n    response: ['error'],\n  },\n  debug: {\n    error: '*',\n    log: ['debug', 'error'],\n    response: ['debug', 'error'],\n  },\n  info: {\n    error: '*',\n    log: ['info', 'debug', 'error'],\n    response: ['info', 'debug', 'error'],\n  },\n  verbose: {\n    log: '*',\n    ops: '*',\n    error: '*',\n    request: '*',\n    response: '*',\n  },\n};\n\nlet logEvents;\nif (argv.verbose) {\n  logEvents = logLevels.verbose;\n} else if (argv.info) {\n  logEvents = logLevels.info;\n} else if (argv.debug) {\n  logEvents = logLevels.debug;\n} else if (argv.error) {\n  logEvents = logLevels.error;\n} else if (argv.silent) {\n  logEvents = logLevels.silent;\n} else {\n  logEvents = logLevels.info;\n}\n\nconst goodOptions = {\n  reporters: [{\n    reporter: goodConsole,\n    events: logEvents,\n    config: {\n      format: '[[]HH:mm:ss[]][[frill]]',\n      utc: false,\n    },\n  }],\n};\n\nserver.register({\n  register: good,\n  options: goodOptions,\n}, (err) => {\n  if (err) {\n    console.error(err);\n  } else {\n    // initialize server\n    server.start(() => {\n      server.log(['info'], `Server started at ${server.info.uri}`);\n    });\n  }\n});\n"
   },
   {
     "kind": "variable",
@@ -501,7 +2376,7 @@
     "importPath": "frill/src/server.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 20,
+    "lineNumber": 19,
     "undocument": true,
     "type": {
       "types": [
@@ -521,7 +2396,7 @@
     "importPath": "frill/src/server.js",
     "importStyle": null,
     "description": "Configure hapi.",
-    "lineNumber": 26,
+    "lineNumber": 25,
     "type": {
       "types": [
         "number"
@@ -540,7 +2415,7 @@
     "importPath": "frill/src/server.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 27,
+    "lineNumber": 26,
     "undocument": true,
     "type": {
       "types": [
@@ -560,7 +2435,7 @@
     "importPath": "frill/src/server.js",
     "importStyle": null,
     "description": "Configure hapi-swagger for API documentation.\nTODO: disable at production",
-    "lineNumber": 95,
+    "lineNumber": 98,
     "type": {
       "types": [
         "*"
@@ -579,7 +2454,7 @@
     "importPath": "frill/src/server.js",
     "importStyle": null,
     "description": "Catch requests to fire React Router",
-    "lineNumber": 111,
+    "lineNumber": 114,
     "type": {
       "types": [
         "*"
@@ -598,7 +2473,7 @@
     "importPath": "frill/src/server.js",
     "importStyle": null,
     "description": "Configure good (for logging hapi)\nTODO: disable at production",
-    "lineNumber": 138,
+    "lineNumber": 183,
     "type": {
       "types": [
         "*"
@@ -617,7 +2492,7 @@
     "importPath": "frill/src/server.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 179,
+    "lineNumber": 224,
     "undocument": true,
     "type": {
       "types": [
@@ -629,32 +2504,35 @@
     "kind": "file",
     "static": true,
     "variation": null,
-    "name": "src/stores/Test.js",
+    "name": "src/stores/Auth.js",
     "memberof": null,
-    "longname": "src/stores/Test.js",
+    "longname": "src/stores/Auth.js",
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import {Store} from 'frill-core';\n\nclass TestStore extends Store {\n\n  constructor() {\n    super();\n    this._count = 10;\n    this.actions = {\n      'COUNT_UP': 'countup',\n      'COUNT_UP_BY': 'countupBy',\n    };\n  }\n\n  countup() {\n    this._count = this._count + 1;\n    this.change();\n  }\n\n  countupBy(byCount) {\n    this._count = this._count + byCount;\n    this.change();\n  }\n\n  getCount() {\n    return this._count;\n  }\n\n}\n\nexport default new TestStore();\n"
+    "content": "import {BaseStore} from 'frill-core';\nimport jwtDecode from 'jwt-decode';\n\n/**\n * Authentication store\n * @extends {FrillCore.BaseStore}\n * @example <caption>via frill component</caption>\n * this.getFrill().store('Auth').jwt // get JWT\n * @example <caption>via frill action</caption>\n * this.dispatch('AUTH_LOGIN', token); // login with JWT\n */\nclass AuthStore extends BaseStore {\n\n  /**\n   * Constructor\n   */\n  constructor() {\n    super();\n    this._user = null;\n    this._jwt = null;\n\n    /**\n     * Actions to listen\n     * @param {Object} actions\n     * @listens {AUTH_LOGIN}\n     * @listens {AUTH_LOGOUT}\n     */\n    this.actions = {\n      'AUTH_LOGIN': 'login',\n      'AUTH_LOGOUT': 'logout',\n    };\n  }\n\n  /**\n   * Login using JWT\n   * @param {string} token - a valid JsonWebToken\n   * @emits {change}\n   * @see http://jwt.io/\n   */\n  login(token) {\n    // store these to localStorage\n    this._jwt = token;\n    this._user = jwtDecode(this._jwt);\n    this.change();\n  }\n\n  /**\n   * Logout\n   * @emits {change}\n   */\n  logout() {\n    // remove these from localStorage\n    this._jwt = null;\n    this._user = null;\n    this.change();\n  }\n\n  /**\n   * User data\n   * @type {Object}\n   */\n  get user() {\n    return this._user;\n  }\n\n  /**\n   * JsonWebToken\n   * @type {string}\n   */\n  get jwt() {\n    return this._jwt;\n  }\n\n  /**\n   * Check if logged in\n   * @returns {boolean}\n   */\n  isLoggedIn() {\n    return Boolean(this._user);\n  }\n}\n\n\n/**\n * Export AuthStore instance\n */\nexport default new AuthStore();\n"
   },
   {
     "kind": "class",
     "static": true,
     "variation": null,
-    "name": "TestStore",
-    "memberof": "src/stores/Test.js",
-    "longname": "src/stores/Test.js~TestStore",
+    "name": "AuthStore",
+    "memberof": "src/stores/Auth.js",
+    "longname": "src/stores/Auth.js~AuthStore",
     "access": null,
     "export": true,
-    "importPath": "frill/src/stores/Test.js",
+    "importPath": "frill/src/stores/Auth.js",
     "importStyle": null,
-    "description": null,
-    "lineNumber": 3,
+    "description": "Authentication store",
+    "examples": [
+      "<caption>via frill component</caption>\nthis.getFrill().store('Auth').jwt // get JWT",
+      "<caption>via frill action</caption>\nthis.dispatch('AUTH_LOGIN', token); // login with JWT"
+    ],
+    "lineNumber": 12,
     "pseudoExport": true,
-    "undocument": true,
     "interface": false,
     "extends": [
-      "frill-core~Store"
+      "FrillCore.BaseStore"
     ]
   },
   {
@@ -662,12 +2540,345 @@
     "static": false,
     "variation": null,
     "name": "constructor",
-    "memberof": "src/stores/Test.js~TestStore",
-    "longname": "src/stores/Test.js~TestStore#constructor",
+    "memberof": "src/stores/Auth.js~AuthStore",
+    "longname": "src/stores/Auth.js~AuthStore#constructor",
+    "access": null,
+    "description": "Constructor",
+    "lineNumber": 17,
+    "params": [],
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "_user",
+    "memberof": "src/stores/Auth.js~AuthStore",
+    "longname": "src/stores/Auth.js~AuthStore#_user",
     "access": null,
     "description": null,
-    "lineNumber": 5,
+    "lineNumber": 19,
     "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "_jwt",
+    "memberof": "src/stores/Auth.js~AuthStore",
+    "longname": "src/stores/Auth.js~AuthStore#_jwt",
+    "access": null,
+    "description": null,
+    "lineNumber": 20,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "actions",
+    "memberof": "src/stores/Auth.js~AuthStore",
+    "longname": "src/stores/Auth.js~AuthStore#actions",
+    "access": null,
+    "description": "Actions to listen",
+    "lineNumber": 28,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "actions",
+        "description": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "listens": [
+      {
+        "types": [
+          "AUTH_LOGIN"
+        ],
+        "description": ""
+      },
+      {
+        "types": [
+          "AUTH_LOGOUT"
+        ],
+        "description": ""
+      }
+    ]
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "login",
+    "memberof": "src/stores/Auth.js~AuthStore",
+    "longname": "src/stores/Auth.js~AuthStore#login",
+    "access": null,
+    "description": "Login using JWT",
+    "see": [
+      "http://jwt.io/"
+    ],
+    "lineNumber": 40,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "token",
+        "description": "a valid JsonWebToken"
+      }
+    ],
+    "emits": [
+      {
+        "types": [
+          "change"
+        ],
+        "description": ""
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "_jwt",
+    "memberof": "src/stores/Auth.js~AuthStore",
+    "longname": "src/stores/Auth.js~AuthStore#_jwt",
+    "access": null,
+    "description": null,
+    "lineNumber": 42,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "_user",
+    "memberof": "src/stores/Auth.js~AuthStore",
+    "longname": "src/stores/Auth.js~AuthStore#_user",
+    "access": null,
+    "description": null,
+    "lineNumber": 43,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "logout",
+    "memberof": "src/stores/Auth.js~AuthStore",
+    "longname": "src/stores/Auth.js~AuthStore#logout",
+    "access": null,
+    "description": "Logout",
+    "lineNumber": 51,
+    "params": [],
+    "emits": [
+      {
+        "types": [
+          "change"
+        ],
+        "description": ""
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "_jwt",
+    "memberof": "src/stores/Auth.js~AuthStore",
+    "longname": "src/stores/Auth.js~AuthStore#_jwt",
+    "access": null,
+    "description": null,
+    "lineNumber": 53,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "_user",
+    "memberof": "src/stores/Auth.js~AuthStore",
+    "longname": "src/stores/Auth.js~AuthStore#_user",
+    "access": null,
+    "description": null,
+    "lineNumber": 54,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "user",
+    "memberof": "src/stores/Auth.js~AuthStore",
+    "longname": "src/stores/Auth.js~AuthStore#user",
+    "access": null,
+    "description": "User data",
+    "lineNumber": 62,
+    "type": {
+      "nullable": null,
+      "types": [
+        "Object"
+      ],
+      "spread": false,
+      "description": null
+    },
+    "generator": false
+  },
+  {
+    "kind": "get",
+    "static": false,
+    "variation": null,
+    "name": "jwt",
+    "memberof": "src/stores/Auth.js~AuthStore",
+    "longname": "src/stores/Auth.js~AuthStore#jwt",
+    "access": null,
+    "description": "JsonWebToken",
+    "lineNumber": 70,
+    "type": {
+      "nullable": null,
+      "types": [
+        "string"
+      ],
+      "spread": false,
+      "description": null
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "isLoggedIn",
+    "memberof": "src/stores/Auth.js~AuthStore",
+    "longname": "src/stores/Auth.js~AuthStore#isLoggedIn",
+    "access": null,
+    "description": "Check if logged in",
+    "lineNumber": 78,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{boolean}"
+      }
+    ],
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "boolean"
+      ],
+      "spread": false,
+      "description": ""
+    },
+    "generator": false
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "authStore",
+    "memberof": "src/stores/Auth.js",
+    "longname": "src/stores/Auth.js~authStore",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/stores/Auth.js",
+    "importStyle": "authStore",
+    "description": "Export AuthStore instance",
+    "lineNumber": 87,
+    "type": {
+      "types": [
+        "src/stores/Auth.js~AuthStore"
+      ]
+    }
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/stores/Example.js",
+    "memberof": null,
+    "longname": "src/stores/Example.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import {BaseStore} from 'frill-core';\n\n/**\n * Example store\n * @extends {FrillCore.BaseStore}\n * @example <caption>via frill component</caption>\n * this.getFrill().store('Example').getCount(); // get count\n * @example <caption>via frill action</caption>\n * this.dispatch('COUNT_UP_BY', 15); // count up counter by 15\n */\nclass ExampleStore extends BaseStore {\n\n  /**\n   * Constructor\n   */\n  constructor() {\n    super();\n    this._count = 0;\n    this._scrollItems = [];\n    this._scrollItemsCount = 0;\n    this._scrollItemTotal = 0;\n\n    /**\n     * Actions to listen\n     * @param {Object} actions\n     * @listens {COUNT_UP}\n     * @listens {COUNT_UP_BY}\n     * @listens {LOAD_SCROLL_ITEMS}\n     */\n    this.actions = {\n      'COUNT_UP': 'countup',\n      'COUNT_UP_BY': 'countupBy',\n      'LOAD_SCROLL_ITEMS': 'loadScrollItems',\n    };\n  }\n\n  /**\n   * Count up by 1\n   * @emits {change}\n   */\n  countup() {\n    this._count = this._count + 1;\n    this.change();\n  }\n\n  /**\n   * Count up by a number given\n   * @param {number} byCount - a number to count up by\n   * @emits {change}\n   */\n  countupBy(byCount) {\n    this._count = this._count + byCount;\n    this.change();\n  }\n\n  /**\n   * Gets current count\n   * @TODO: should use a getter\n   * @return {number} - current count\n   */\n  getCount() {\n    return this._count;\n  }\n\n  /**\n   * Load scroll items\n   * @param {Object} payload.data - data of items\n   * @param {Object} payload.total - total count of items\n   * @emits {change}\n   */\n  loadScrollItems({data, total}) {\n    this._scrollItems = this._scrollItems.concat(data);\n    this._scrollItemsCount = this._scrollItemsCount + data.length;\n    this._scrollItemTotal = total;\n    this.change();\n  }\n\n  /**\n   * Gets items\n   * @TODO: should use a getter\n   * @return {Object} - get loaded item data\n   */\n  getScrollItems() {\n    return this._scrollItems;\n  }\n\n  /**\n   * Gets loaded items count\n   * @TODO: should use a getter\n   * @return {number} - get number of loaded items\n   */\n  getScrollItemsCount() {\n    return this._scrollItemsCount;\n  }\n\n  /**\n   * Gets total count of items\n   * @TODO: should use a getter\n   * @return {number} - get number of total items\n   */\n  getScrollItemTotal() {\n    return this._scrollItemTotal;\n  }\n}\n\n/**\n * Export ExampleStore instance\n */\nexport default new ExampleStore();\n"
+  },
+  {
+    "kind": "class",
+    "static": true,
+    "variation": null,
+    "name": "ExampleStore",
+    "memberof": "src/stores/Example.js",
+    "longname": "src/stores/Example.js~ExampleStore",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/stores/Example.js",
+    "importStyle": null,
+    "description": "Example store",
+    "examples": [
+      "<caption>via frill component</caption>\nthis.getFrill().store('Example').getCount(); // get count",
+      "<caption>via frill action</caption>\nthis.dispatch('COUNT_UP_BY', 15); // count up counter by 15"
+    ],
+    "lineNumber": 11,
+    "pseudoExport": true,
+    "interface": false,
+    "extends": [
+      "FrillCore.BaseStore"
+    ]
+  },
+  {
+    "kind": "constructor",
+    "static": false,
+    "variation": null,
+    "name": "constructor",
+    "memberof": "src/stores/Example.js~ExampleStore",
+    "longname": "src/stores/Example.js~ExampleStore#constructor",
+    "access": null,
+    "description": "Constructor",
+    "lineNumber": 16,
     "params": [],
     "generator": false
   },
@@ -676,11 +2887,62 @@
     "static": false,
     "variation": null,
     "name": "_count",
-    "memberof": "src/stores/Test.js~TestStore",
-    "longname": "src/stores/Test.js~TestStore#_count",
+    "memberof": "src/stores/Example.js~ExampleStore",
+    "longname": "src/stores/Example.js~ExampleStore#_count",
     "access": null,
     "description": null,
-    "lineNumber": 7,
+    "lineNumber": 18,
+    "undocument": true,
+    "type": {
+      "types": [
+        "number"
+      ]
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "_scrollItems",
+    "memberof": "src/stores/Example.js~ExampleStore",
+    "longname": "src/stores/Example.js~ExampleStore#_scrollItems",
+    "access": null,
+    "description": null,
+    "lineNumber": 19,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "_scrollItemsCount",
+    "memberof": "src/stores/Example.js~ExampleStore",
+    "longname": "src/stores/Example.js~ExampleStore#_scrollItemsCount",
+    "access": null,
+    "description": null,
+    "lineNumber": 20,
+    "undocument": true,
+    "type": {
+      "types": [
+        "number"
+      ]
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "_scrollItemTotal",
+    "memberof": "src/stores/Example.js~ExampleStore",
+    "longname": "src/stores/Example.js~ExampleStore#_scrollItemTotal",
+    "access": null,
+    "description": null,
+    "lineNumber": 21,
     "undocument": true,
     "type": {
       "types": [
@@ -693,30 +2955,68 @@
     "static": false,
     "variation": null,
     "name": "actions",
-    "memberof": "src/stores/Test.js~TestStore",
-    "longname": "src/stores/Test.js~TestStore#actions",
+    "memberof": "src/stores/Example.js~ExampleStore",
+    "longname": "src/stores/Example.js~ExampleStore#actions",
     "access": null,
-    "description": null,
-    "lineNumber": 8,
-    "undocument": true,
+    "description": "Actions to listen",
+    "lineNumber": 30,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "actions",
+        "description": ""
+      }
+    ],
     "type": {
       "types": [
         "*"
       ]
-    }
+    },
+    "listens": [
+      {
+        "types": [
+          "COUNT_UP"
+        ],
+        "description": ""
+      },
+      {
+        "types": [
+          "COUNT_UP_BY"
+        ],
+        "description": ""
+      },
+      {
+        "types": [
+          "LOAD_SCROLL_ITEMS"
+        ],
+        "description": ""
+      }
+    ]
   },
   {
     "kind": "method",
     "static": false,
     "variation": null,
     "name": "countup",
-    "memberof": "src/stores/Test.js~TestStore",
-    "longname": "src/stores/Test.js~TestStore#countup",
+    "memberof": "src/stores/Example.js~ExampleStore",
+    "longname": "src/stores/Example.js~ExampleStore#countup",
     "access": null,
-    "description": null,
-    "lineNumber": 14,
-    "undocument": true,
+    "description": "Count up by 1",
+    "lineNumber": 41,
     "params": [],
+    "emits": [
+      {
+        "types": [
+          "change"
+        ],
+        "description": ""
+      }
+    ],
     "generator": false
   },
   {
@@ -724,11 +3024,11 @@
     "static": false,
     "variation": null,
     "name": "_count",
-    "memberof": "src/stores/Test.js~TestStore",
-    "longname": "src/stores/Test.js~TestStore#_count",
+    "memberof": "src/stores/Example.js~ExampleStore",
+    "longname": "src/stores/Example.js~ExampleStore#_count",
     "access": null,
     "description": null,
-    "lineNumber": 15,
+    "lineNumber": 42,
     "undocument": true,
     "type": {
       "types": [
@@ -741,18 +3041,29 @@
     "static": false,
     "variation": null,
     "name": "countupBy",
-    "memberof": "src/stores/Test.js~TestStore",
-    "longname": "src/stores/Test.js~TestStore#countupBy",
+    "memberof": "src/stores/Example.js~ExampleStore",
+    "longname": "src/stores/Example.js~ExampleStore#countupBy",
     "access": null,
-    "description": null,
-    "lineNumber": 19,
-    "undocument": true,
+    "description": "Count up by a number given",
+    "lineNumber": 51,
     "params": [
       {
-        "name": "byCount",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "byCount",
+        "description": "a number to count up by"
+      }
+    ],
+    "emits": [
+      {
+        "types": [
+          "change"
+        ],
+        "description": ""
       }
     ],
     "generator": false
@@ -762,11 +3073,11 @@
     "static": false,
     "variation": null,
     "name": "_count",
-    "memberof": "src/stores/Test.js~TestStore",
-    "longname": "src/stores/Test.js~TestStore#_count",
+    "memberof": "src/stores/Example.js~ExampleStore",
+    "longname": "src/stores/Example.js~ExampleStore#_count",
     "access": null,
     "description": null,
-    "lineNumber": 20,
+    "lineNumber": 52,
     "undocument": true,
     "type": {
       "types": [
@@ -779,17 +3090,175 @@
     "static": false,
     "variation": null,
     "name": "getCount",
-    "memberof": "src/stores/Test.js~TestStore",
-    "longname": "src/stores/Test.js~TestStore#getCount",
+    "memberof": "src/stores/Example.js~ExampleStore",
+    "longname": "src/stores/Example.js~ExampleStore#getCount",
     "access": null,
-    "description": null,
-    "lineNumber": 24,
-    "undocument": true,
+    "description": "Gets current count\n@TODO: should use a getter",
+    "lineNumber": 61,
     "params": [],
     "return": {
+      "nullable": null,
+      "types": [
+        "number"
+      ],
+      "spread": false,
+      "description": "current count"
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "loadScrollItems",
+    "memberof": "src/stores/Example.js~ExampleStore",
+    "longname": "src/stores/Example.js~ExampleStore#loadScrollItems",
+    "access": null,
+    "description": "Load scroll items",
+    "lineNumber": 71,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "payload.data",
+        "description": "data of items"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "payload.total",
+        "description": "total count of items"
+      }
+    ],
+    "emits": [
+      {
+        "types": [
+          "change"
+        ],
+        "description": ""
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "_scrollItems",
+    "memberof": "src/stores/Example.js~ExampleStore",
+    "longname": "src/stores/Example.js~ExampleStore#_scrollItems",
+    "access": null,
+    "description": null,
+    "lineNumber": 72,
+    "undocument": true,
+    "type": {
       "types": [
         "*"
       ]
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "_scrollItemsCount",
+    "memberof": "src/stores/Example.js~ExampleStore",
+    "longname": "src/stores/Example.js~ExampleStore#_scrollItemsCount",
+    "access": null,
+    "description": null,
+    "lineNumber": 73,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "_scrollItemTotal",
+    "memberof": "src/stores/Example.js~ExampleStore",
+    "longname": "src/stores/Example.js~ExampleStore#_scrollItemTotal",
+    "access": null,
+    "description": null,
+    "lineNumber": 74,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "getScrollItems",
+    "memberof": "src/stores/Example.js~ExampleStore",
+    "longname": "src/stores/Example.js~ExampleStore#getScrollItems",
+    "access": null,
+    "description": "Gets items\n@TODO: should use a getter",
+    "lineNumber": 83,
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "Object"
+      ],
+      "spread": false,
+      "description": "get loaded item data"
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "getScrollItemsCount",
+    "memberof": "src/stores/Example.js~ExampleStore",
+    "longname": "src/stores/Example.js~ExampleStore#getScrollItemsCount",
+    "access": null,
+    "description": "Gets loaded items count\n@TODO: should use a getter",
+    "lineNumber": 92,
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "number"
+      ],
+      "spread": false,
+      "description": "get number of loaded items"
+    },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "getScrollItemTotal",
+    "memberof": "src/stores/Example.js~ExampleStore",
+    "longname": "src/stores/Example.js~ExampleStore#getScrollItemTotal",
+    "access": null,
+    "description": "Gets total count of items\n@TODO: should use a getter",
+    "lineNumber": 101,
+    "params": [],
+    "return": {
+      "nullable": null,
+      "types": [
+        "number"
+      ],
+      "spread": false,
+      "description": "get number of total items"
     },
     "generator": false
   },
@@ -797,19 +3266,18 @@
     "kind": "variable",
     "static": true,
     "variation": null,
-    "name": "testStore",
-    "memberof": "src/stores/Test.js",
-    "longname": "src/stores/Test.js~testStore",
+    "name": "exampleStore",
+    "memberof": "src/stores/Example.js",
+    "longname": "src/stores/Example.js~exampleStore",
     "access": null,
     "export": true,
-    "importPath": "frill/src/stores/Test.js",
-    "importStyle": "testStore",
-    "description": null,
-    "lineNumber": 30,
-    "undocument": true,
+    "importPath": "frill/src/stores/Example.js",
+    "importStyle": "exampleStore",
+    "description": "Export ExampleStore instance",
+    "lineNumber": 109,
     "type": {
       "types": [
-        "src/stores/Test.js~TestStore"
+        "src/stores/Example.js~ExampleStore"
       ]
     }
   },
@@ -823,7 +3291,26 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Test from './Test';\n\nexport default {\n  Test: Test,\n};\n"
+    "content": "import Auth from './Auth';\nimport Example from './Example';\n\n/**\n * List of all stores to use in app\n */\nconst Stores = {\n  Auth: Auth,\n  Example: Example,\n};\n\nexport default Stores;\n"
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "Stores",
+    "memberof": "src/stores/index.js",
+    "longname": "src/stores/index.js~Stores",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/stores/index.js",
+    "importStyle": "Stores",
+    "description": "List of all stores to use in app",
+    "lineNumber": 7,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
   },
   {
     "kind": "external",
@@ -1472,5 +3959,61 @@
     "access": null,
     "description": null,
     "builtinExternal": true
+  },
+  {
+    "kind": "testFile",
+    "static": true,
+    "variation": null,
+    "name": "test/docTest.js",
+    "memberof": null,
+    "longname": "test/docTest.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 5,
+    "content": "/**\n * An example for test documantation\n * @test {TestExample}\n */\ndescribe('A test for documentation purpose', () => {\n  /**\n   * @test {TestExample#hello}\n   */\n  it('hello', () => {\n    const foo = 'a';\n    expect(foo).to.equal('a');\n  });\n});\n"
+  },
+  {
+    "kind": "testDescribe",
+    "static": true,
+    "variation": null,
+    "name": "describe0",
+    "testId": 0,
+    "memberof": "test/docTest.js",
+    "testDepth": 0,
+    "longname": "test/docTest.js~describe0",
+    "access": null,
+    "description": "An example for test documantation",
+    "lineNumber": 5,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{TestExample}"
+      }
+    ],
+    "testTargets": [
+      "TestExample"
+    ]
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it1",
+    "testId": 1,
+    "memberof": "test/docTest.js~describe0",
+    "testDepth": 1,
+    "longname": "test/docTest.js~describe0.it1",
+    "access": null,
+    "description": "hello",
+    "lineNumber": 9,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{TestExample#hello}"
+      }
+    ],
+    "testTargets": [
+      "TestExample#hello"
+    ]
   }
 ]

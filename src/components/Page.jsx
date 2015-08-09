@@ -4,11 +4,27 @@ import {canUseDOM} from 'react/lib/ExecutionEnvironment';
 import {RouteHandler} from 'react-router';
 // import jwtDecode from 'jwt-decode';
 
-export default class Page extends BaseComponent {
+/**
+ * Page component - wraps up all pages
+ * @extends {FrillCore.BaseComponent}
+ * @example <caption>Usage in React-Router</caption>
+ * <Route handler={C.Page}>
+ *   ...
+ * </Route>
+ */
+class PageComponent extends BaseComponent {
 
+  /**
+   * Constructor
+   */
   constructor(props) {
     super(props);
+
+    /**
+     * Name of component
+     */
     this.name = 'App';
+
     if (props.token) {
       this.getFrill().action('Auth').login(props.token);
     }
@@ -19,9 +35,19 @@ export default class Page extends BaseComponent {
     }
   }
 
+  /**
+   * render
+   * @return {React DOM}
+   * @see https://facebook.github.io/react/docs/component-specs.html#render
+   */
   render() {
     return (
       <RouteHandler {...this.props}/>
     );
   }
 }
+
+/**
+ * Exports PageComponent
+ */
+export default PageComponent;

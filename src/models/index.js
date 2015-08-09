@@ -6,15 +6,22 @@ import {Posts} from './DynamoDB';
 // example for MySQL using sequelize
 import {Users} from './MySQL';
 
-const ddb = {
+const dynamoDb = {
   Posts,
 };
 
-const mysql = {
+const mySql = {
   Users,
 };
 
-export default {
-  ddb,
-  mysql,
+/**
+ * List of all models
+ * @see {@link MySQLModels}
+ * @see {@link DynamoDBModels}
+ */
+const Models = {
+  dynamoDb,
+  mySql,
 };
+
+export default Models;

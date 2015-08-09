@@ -8,10 +8,10 @@
           "type": "ImportDefaultSpecifier",
           "local": {
             "type": "Identifier",
-            "name": "Frill",
+            "name": "frillCore",
             "range": [
               7,
-              12
+              16
             ],
             "loc": {
               "start": {
@@ -20,13 +20,13 @@
               },
               "end": {
                 "line": 1,
-                "column": 12
+                "column": 16
               }
             }
           },
           "range": [
             7,
-            12
+            16
           ],
           "loc": {
             "start": {
@@ -35,7 +35,7 @@
             },
             "end": {
               "line": 1,
-              "column": 12
+              "column": 16
             }
           }
         }
@@ -45,23 +45,23 @@
         "value": "frill-core",
         "raw": "'frill-core'",
         "range": [
-          18,
-          30
+          22,
+          34
         ],
         "loc": {
           "start": {
             "line": 1,
-            "column": 18
+            "column": 22
           },
           "end": {
             "line": 1,
-            "column": 30
+            "column": 34
           }
         }
       },
       "range": [
         0,
-        31
+        35
       ],
       "loc": {
         "start": {
@@ -70,7 +70,7 @@
         },
         "end": {
           "line": 1,
-          "column": 31
+          "column": 35
         }
       }
     },
@@ -83,8 +83,8 @@
             "type": "Identifier",
             "name": "Stores",
             "range": [
-              39,
-              45
+              43,
+              49
             ],
             "loc": {
               "start": {
@@ -98,8 +98,8 @@
             }
           },
           "range": [
-            39,
-            45
+            43,
+            49
           ],
           "loc": {
             "start": {
@@ -118,8 +118,8 @@
         "value": "./stores",
         "raw": "'./stores'",
         "range": [
-          51,
-          61
+          55,
+          65
         ],
         "loc": {
           "start": {
@@ -133,8 +133,8 @@
         }
       },
       "range": [
-        32,
-        62
+        36,
+        66
       ],
       "loc": {
         "start": {
@@ -156,8 +156,8 @@
             "type": "Identifier",
             "name": "Actions",
             "range": [
-              70,
-              77
+              74,
+              81
             ],
             "loc": {
               "start": {
@@ -171,8 +171,8 @@
             }
           },
           "range": [
-            70,
-            77
+            74,
+            81
           ],
           "loc": {
             "start": {
@@ -191,8 +191,8 @@
         "value": "./actions",
         "raw": "'./actions'",
         "range": [
-          83,
-          94
+          87,
+          98
         ],
         "loc": {
           "start": {
@@ -206,8 +206,8 @@
         }
       },
       "range": [
-        63,
-        95
+        67,
+        99
       ],
       "loc": {
         "start": {
@@ -221,11 +221,11 @@
       },
       "trailingComments": [
         {
-          "type": "Line",
-          "value": " load stores and actions.",
+          "type": "Block",
+          "value": "*\n * FrillCore\n ",
           "range": [
-            97,
-            124
+            101,
+            121
           ],
           "loc": {
             "start": {
@@ -233,12 +233,88 @@
               "column": 0
             },
             "end": {
-              "line": 5,
-              "column": 27
+              "line": 7,
+              "column": 3
             }
           }
         }
       ]
+    },
+    {
+      "type": "Identifier",
+      "declarations": [
+        {
+          "type": "VariableDeclarator",
+          "id": {
+            "type": "Identifier",
+            "name": "FrillCore",
+            "range": [
+              128,
+              137
+            ],
+            "loc": {
+              "start": {
+                "line": 8,
+                "column": 6
+              },
+              "end": {
+                "line": 8,
+                "column": 15
+              }
+            }
+          },
+          "init": {
+            "type": "Identifier",
+            "name": "frillCore",
+            "range": [
+              140,
+              149
+            ],
+            "loc": {
+              "start": {
+                "line": 8,
+                "column": 18
+              },
+              "end": {
+                "line": 8,
+                "column": 27
+              }
+            }
+          },
+          "range": [
+            128,
+            149
+          ],
+          "loc": {
+            "start": {
+              "line": 8,
+              "column": 6
+            },
+            "end": {
+              "line": 8,
+              "column": 27
+            }
+          }
+        }
+      ],
+      "kind": "const",
+      "range": [
+        122,
+        150
+      ],
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 0
+        },
+        "end": {
+          "line": 8,
+          "column": 28
+        }
+      },
+      "leadingComments": [],
+      "trailingComments": [],
+      "name": "_"
     },
     {
       "type": "ExpressionStatement",
@@ -250,19 +326,19 @@
           "computed": false,
           "object": {
             "type": "Identifier",
-            "name": "Frill",
+            "name": "FrillCore",
             "range": [
-              125,
-              130
+              180,
+              189
             ],
             "loc": {
               "start": {
-                "line": 6,
+                "line": 11,
                 "column": 0
               },
               "end": {
-                "line": 6,
-                "column": 5
+                "line": 11,
+                "column": 9
               }
             }
           },
@@ -270,32 +346,32 @@
             "type": "Identifier",
             "name": "_Stores",
             "range": [
-              131,
-              138
+              190,
+              197
             ],
             "loc": {
               "start": {
-                "line": 6,
-                "column": 6
+                "line": 11,
+                "column": 10
               },
               "end": {
-                "line": 6,
-                "column": 13
+                "line": 11,
+                "column": 17
               }
             }
           },
           "range": [
-            125,
-            138
+            180,
+            197
           ],
           "loc": {
             "start": {
-              "line": 6,
+              "line": 11,
               "column": 0
             },
             "end": {
-              "line": 6,
-              "column": 13
+              "line": 11,
+              "column": 17
             }
           }
         },
@@ -303,47 +379,47 @@
           "type": "Identifier",
           "name": "Stores",
           "range": [
-            141,
-            147
+            200,
+            206
           ],
           "loc": {
             "start": {
-              "line": 6,
-              "column": 16
+              "line": 11,
+              "column": 20
             },
             "end": {
-              "line": 6,
-              "column": 22
+              "line": 11,
+              "column": 26
             }
           }
         },
         "range": [
-          125,
-          147
+          180,
+          206
         ],
         "loc": {
           "start": {
-            "line": 6,
+            "line": 11,
             "column": 0
           },
           "end": {
-            "line": 6,
-            "column": 22
+            "line": 11,
+            "column": 26
           }
         }
       },
       "range": [
-        125,
-        148
+        180,
+        207
       ],
       "loc": {
         "start": {
-          "line": 6,
+          "line": 11,
           "column": 0
         },
         "end": {
-          "line": 6,
-          "column": 23
+          "line": 11,
+          "column": 27
         }
       },
       "leadingComments": [
@@ -351,16 +427,16 @@
           "type": "Line",
           "value": " load stores and actions.",
           "range": [
-            97,
-            124
+            152,
+            179
           ],
           "loc": {
             "start": {
-              "line": 5,
+              "line": 10,
               "column": 0
             },
             "end": {
-              "line": 5,
+              "line": 10,
               "column": 27
             }
           }
@@ -377,19 +453,19 @@
           "computed": false,
           "object": {
             "type": "Identifier",
-            "name": "Frill",
+            "name": "FrillCore",
             "range": [
-              149,
-              154
+              208,
+              217
             ],
             "loc": {
               "start": {
-                "line": 7,
+                "line": 12,
                 "column": 0
               },
               "end": {
-                "line": 7,
-                "column": 5
+                "line": 12,
+                "column": 9
               }
             }
           },
@@ -397,32 +473,32 @@
             "type": "Identifier",
             "name": "_Actions",
             "range": [
-              155,
-              163
+              218,
+              226
             ],
             "loc": {
               "start": {
-                "line": 7,
-                "column": 6
+                "line": 12,
+                "column": 10
               },
               "end": {
-                "line": 7,
-                "column": 14
+                "line": 12,
+                "column": 18
               }
             }
           },
           "range": [
-            149,
-            163
+            208,
+            226
           ],
           "loc": {
             "start": {
-              "line": 7,
+              "line": 12,
               "column": 0
             },
             "end": {
-              "line": 7,
-              "column": 14
+              "line": 12,
+              "column": 18
             }
           }
         },
@@ -430,84 +506,215 @@
           "type": "Identifier",
           "name": "Actions",
           "range": [
-            166,
-            173
+            229,
+            236
           ],
           "loc": {
             "start": {
-              "line": 7,
-              "column": 17
+              "line": 12,
+              "column": 21
             },
             "end": {
-              "line": 7,
-              "column": 24
+              "line": 12,
+              "column": 28
             }
           }
         },
         "range": [
-          149,
-          173
+          208,
+          236
         ],
         "loc": {
           "start": {
-            "line": 7,
+            "line": 12,
             "column": 0
           },
           "end": {
-            "line": 7,
+            "line": 12,
+            "column": 28
+          }
+        }
+      },
+      "range": [
+        208,
+        237
+      ],
+      "loc": {
+        "start": {
+          "line": 12,
+          "column": 0
+        },
+        "end": {
+          "line": 12,
+          "column": 29
+        }
+      }
+    },
+    {
+      "type": "Identifier",
+      "declaration": {
+        "type": "Identifier",
+        "name": "FrillCore",
+        "range": [
+          254,
+          263
+        ],
+        "loc": {
+          "start": {
+            "line": 14,
+            "column": 15
+          },
+          "end": {
+            "line": 14,
             "column": 24
           }
         }
       },
       "range": [
-        149,
-        174
+        239,
+        264
       ],
       "loc": {
         "start": {
-          "line": 7,
+          "line": 14,
           "column": 0
         },
         "end": {
-          "line": 7,
+          "line": 14,
           "column": 25
         }
-      }
+      },
+      "name": "_",
+      "leadingComments": [],
+      "trailingComments": []
     },
     {
       "type": "ExportDefaultDeclaration",
       "declaration": {
-        "type": "Identifier",
-        "name": "Frill",
+        "type": "VariableDeclaration",
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "id": {
+              "type": "Identifier",
+              "name": "FrillCore",
+              "range": [
+                128,
+                137
+              ],
+              "loc": {
+                "start": {
+                  "line": 8,
+                  "column": 6
+                },
+                "end": {
+                  "line": 8,
+                  "column": 15
+                }
+              }
+            },
+            "init": {
+              "type": "Identifier",
+              "name": "frillCore",
+              "range": [
+                140,
+                149
+              ],
+              "loc": {
+                "start": {
+                  "line": 8,
+                  "column": 18
+                },
+                "end": {
+                  "line": 8,
+                  "column": 27
+                }
+              }
+            },
+            "range": [
+              128,
+              149
+            ],
+            "loc": {
+              "start": {
+                "line": 8,
+                "column": 6
+              },
+              "end": {
+                "line": 8,
+                "column": 27
+              }
+            }
+          }
+        ],
+        "kind": "const",
         "range": [
-          191,
-          196
+          122,
+          150
         ],
         "loc": {
           "start": {
-            "line": 9,
-            "column": 15
+            "line": 8,
+            "column": 0
           },
           "end": {
-            "line": 9,
-            "column": 20
+            "line": 8,
+            "column": 28
           }
         },
-        "leadingComments": [],
-        "trailingComments": []
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * FrillCore\n ",
+            "range": [
+              101,
+              121
+            ],
+            "loc": {
+              "start": {
+                "line": 5,
+                "column": 0
+              },
+              "end": {
+                "line": 7,
+                "column": 3
+              }
+            }
+          }
+        ],
+        "trailingComments": [
+          {
+            "type": "Line",
+            "value": " load stores and actions.",
+            "range": [
+              152,
+              179
+            ],
+            "loc": {
+              "start": {
+                "line": 10,
+                "column": 0
+              },
+              "end": {
+                "line": 10,
+                "column": 27
+              }
+            }
+          }
+        ]
       },
       "range": [
-        176,
-        197
+        239,
+        264
       ],
       "loc": {
         "start": {
-          "line": 9,
+          "line": 14,
           "column": 0
         },
         "end": {
-          "line": 9,
-          "column": 21
+          "line": 14,
+          "column": 25
         }
       }
     }
@@ -515,7 +722,7 @@
   "sourceType": "module",
   "range": [
     0,
-    197
+    264
   ],
   "loc": {
     "start": {
@@ -523,17 +730,17 @@
       "column": 0
     },
     "end": {
-      "line": 9,
-      "column": 21
+      "line": 14,
+      "column": 25
     }
   },
   "comments": [
     {
-      "type": "Line",
-      "value": " load stores and actions.",
+      "type": "Block",
+      "value": "*\n * FrillCore\n ",
       "range": [
-        97,
-        124
+        101,
+        121
       ],
       "loc": {
         "start": {
@@ -541,7 +748,25 @@
           "column": 0
         },
         "end": {
-          "line": 5,
+          "line": 7,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Line",
+      "value": " load stores and actions.",
+      "range": [
+        152,
+        179
+      ],
+      "loc": {
+        "start": {
+          "line": 10,
+          "column": 0
+        },
+        "end": {
+          "line": 10,
           "column": 27
         }
       }

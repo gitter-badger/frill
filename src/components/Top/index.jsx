@@ -1,35 +1,70 @@
 import React from 'react';
-import {StoreWatchComponent} from '../../bootstrap';
+import {StoreWatchComponent} from 'frill-core';
 import ScrollBlock from '../ScrollBlock';
 
-class Top extends new StoreWatchComponent(['Test']) {
+/**
+ * Top component
+ * @extends {FrillCore.StoreWatchComponent}
+ * @example <caption>Usage in React-Router</caption>
+ * <Route name="login" path="/login" handler={LoginComponent} />
+ */
+class TopComponent extends new StoreWatchComponent(['Example']) {
 
+  /**
+   * Constructor
+   * @param {any} props
+   */
   constructor(props) {
     super(props);
 
     this._bind([
       'onOne',
       'onTen',
-      'loadScrollItems',
+      'onFetchItems',
     ]);
   }
 
+  /**
+   * Count up by one
+   */
   onOne() {
-    this.getFrill().action('Test').countUp();
+    this.getFrill().action('Example').countUp();
   }
 
+  /**
+   * Count up by ten
+   */
   onTen() {
-    this.getFrill().action('Test').countUpBy(10);
+    this.getFrill().action('Example').countUpBy(10);
   }
 
+  /**
+   * Fetch items
+   */
+  onFetchItems() {
+    this.getFrill()
+      .action('Example')
+      .loadScrollItems(this.state.scrollItemsCount, 5);
+  }
+
+  /**
+   * getStateFromFrill
+   * @listens {ExampleStore}
+   */
   getStateFromFrill() {
     return {
-      count: this.getFrill().store('Test').getCount(),
-      scrollItems: this.getFrill().store('Test').getScrollItems(),
-      scrollItemsCount: this.getFrill().store('Test').getScrollItemsCount(),
+      count: this.getFrill().store('Example').getCount(),
+      scrollItems: this.getFrill().store('Example').getScrollItems(),
+      scrollItemsCount: this.getFrill().store('Example').getScrollItemsCount(),
+      scrollItemTotal: this.getFrill().store('Example').getScrollItemTotal(),
     };
   }
 
+  /**
+   * render
+   * @return {React DOM}
+   * @see https://facebook.github.io/react/docs/component-specs.html#render
+   */
   render() {
     const items = [];
 
@@ -58,8 +93,9 @@ class Top extends new StoreWatchComponent(['Test']) {
         <section>
           <h3>Infinite Scroll</h3>
           <ScrollBlock
-            fetchData={this.loadScrollItems}
-            itemsCount={this.state.scrollItemsCount}>
+            fetchData={this.onFetchItems}
+            itemsCount={this.state.scrollItemsCount}
+            itemTotal={this.state.scrollItemTotal}>
               <h4>Scroll down the box ...</h4>
               <ul className="scroll-list">
                 {items}
@@ -69,12 +105,9 @@ class Top extends new StoreWatchComponent(['Test']) {
       </div>
     );
   }
-
-  loadScrollItems() {
-    this.getFrill()
-      .action('Test')
-      .loadScrollItems(this.state.scrollItemsCount, 5);
-  }
 }
 
-export default Top;
+/**
+ * Export TomComponent
+ */
+export default TopComponent;

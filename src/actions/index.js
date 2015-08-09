@@ -1,7 +1,12 @@
 import Auth from './Auth';
-import Test from './Test';
+import Example from './Example';
 
-export default {
+/**
+ * List of all actions to use in app
+ */
+const Actions = {
   Auth: Auth,
-  Test: Test,
+  Example: Example,
 };
+
+export default Actions;

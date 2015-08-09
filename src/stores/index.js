@@ -1,7 +1,12 @@
 import Auth from './Auth';
-import Test from './Test';
+import Example from './Example';
 
-export default {
+/**
+ * List of all stores to use in app
+ */
+const Stores = {
   Auth: Auth,
-  Test: Test,
+  Example: Example,
 };
+
+export default Stores;

@@ -1,5 +1,11 @@
 import Users from './Users';
 
-export default {
+/**
+ * List of all DynamoDB models
+ * @see {@link Users}
+ */
+const MySQLModels = {
   Users,
 };
+
+export default MySQLModels;

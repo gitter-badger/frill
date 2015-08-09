@@ -1,20 +1,248 @@
 window.esdocSearchIndex = [
   [
-    "frill/src/actions/test.js~testaction",
-    "class/src/actions/Test.js~TestAction.html",
-    "<span>TestAction</span> <span class=\"search-result-import-path\">frill/src/actions/Test.js</span>",
+    "frill/src/actions/index.js~actions",
+    "variable/index.html#static-variable-Actions",
+    "<span>Actions</span> <span class=\"search-result-import-path\">frill/src/actions/index.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/components/app/index.jsx~appcomponent",
+    "class/src/components/App/index.jsx~AppComponent.html",
+    "<span>AppComponent</span> <span class=\"search-result-import-path\">frill/src/components/App/index.jsx</span>",
     "class"
   ],
   [
-    "frill/src/stores/test.js~teststore",
-    "class/src/stores/Test.js~TestStore.html",
-    "<span>TestStore</span> <span class=\"search-result-import-path\">frill/src/stores/Test.js</span>",
+    "frill/src/actions/auth.js~authaction",
+    "class/src/actions/Auth.js~AuthAction.html",
+    "<span>AuthAction</span> <span class=\"search-result-import-path\">frill/src/actions/Auth.js</span>",
     "class"
+  ],
+  [
+    "frill/src/stores/auth.js~authstore",
+    "class/src/stores/Auth.js~AuthStore.html",
+    "<span>AuthStore</span> <span class=\"search-result-import-path\">frill/src/stores/Auth.js</span>",
+    "class"
+  ],
+  [
+    "frill/src/components/index.js~components",
+    "variable/index.html#static-variable-Components",
+    "<span>Components</span> <span class=\"search-result-import-path\">frill/src/components/index.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/models/dynamodb/index.js~dynamodbmodels",
+    "variable/index.html#static-variable-DynamoDBModels",
+    "<span>DynamoDBModels</span> <span class=\"search-result-import-path\">frill/src/models/DynamoDB/index.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/components/error.jsx~errorcomponent",
+    "class/src/components/Error.jsx~ErrorComponent.html",
+    "<span>ErrorComponent</span> <span class=\"search-result-import-path\">frill/src/components/Error.jsx</span>",
+    "class"
+  ],
+  [
+    "frill/src/actions/example.js~exampleaction",
+    "class/src/actions/Example.js~ExampleAction.html",
+    "<span>ExampleAction</span> <span class=\"search-result-import-path\">frill/src/actions/Example.js</span>",
+    "class"
+  ],
+  [
+    "frill/src/stores/example.js~examplestore",
+    "class/src/stores/Example.js~ExampleStore.html",
+    "<span>ExampleStore</span> <span class=\"search-result-import-path\">frill/src/stores/Example.js</span>",
+    "class"
+  ],
+  [
+    "frill/src/bootstrap.js~frillcore",
+    "variable/index.html#static-variable-FrillCore",
+    "<span>FrillCore</span> <span class=\"search-result-import-path\">frill/src/bootstrap.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/components/login/index.jsx~logincomponent",
+    "class/src/components/Login/index.jsx~LoginComponent.html",
+    "<span>LoginComponent</span> <span class=\"search-result-import-path\">frill/src/components/Login/index.jsx</span>",
+    "class"
+  ],
+  [
+    "frill/src/models/index.js~models",
+    "variable/index.html#static-variable-Models",
+    "<span>Models</span> <span class=\"search-result-import-path\">frill/src/models/index.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/models/mysql/index.js~mysqlmodels",
+    "variable/index.html#static-variable-MySQLModels",
+    "<span>MySQLModels</span> <span class=\"search-result-import-path\">frill/src/models/MySQL/index.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/components/page.jsx~pagecomponent",
+    "class/src/components/Page.jsx~PageComponent.html",
+    "<span>PageComponent</span> <span class=\"search-result-import-path\">frill/src/components/Page.jsx</span>",
+    "class"
+  ],
+  [
+    "frill/src/models/dynamodb/posts.js~posts",
+    "variable/index.html#static-variable-Posts",
+    "<span>Posts</span> <span class=\"search-result-import-path\">frill/src/models/DynamoDB/Posts.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/components/scrollblock/index.jsx~scrollblockcomponent",
+    "class/src/components/ScrollBlock/index.jsx~ScrollBlockComponent.html",
+    "<span>ScrollBlockComponent</span> <span class=\"search-result-import-path\">frill/src/components/ScrollBlock/index.jsx</span>",
+    "class"
+  ],
+  [
+    "frill/src/stores/index.js~stores",
+    "variable/index.html#static-variable-Stores",
+    "<span>Stores</span> <span class=\"search-result-import-path\">frill/src/stores/index.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/api/auth/strategies/index.js~strategies",
+    "variable/index.html#static-variable-Strategies",
+    "<span>Strategies</span> <span class=\"search-result-import-path\">frill/src/api/auth/strategies/index.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/components/top/index.jsx~topcomponent",
+    "class/src/components/Top/index.jsx~TopComponent.html",
+    "<span>TopComponent</span> <span class=\"search-result-import-path\">frill/src/components/Top/index.jsx</span>",
+    "class"
+  ],
+  [
+    "frill/src/models/mysql/users.js~users",
+    "variable/index.html#static-variable-Users",
+    "<span>Users</span> <span class=\"search-result-import-path\">frill/src/models/MySQL/Users.js</span>",
+    "variable"
   ],
   [
     "frill/src/api/index.js~api",
     "variable/index.html#static-variable-api",
     "<span>api</span> <span class=\"search-result-import-path\">frill/src/api/index.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/api/v1/index.js~apiv1",
+    "variable/index.html#static-variable-apiV1",
+    "<span>apiV1</span> <span class=\"search-result-import-path\">frill/src/api/v1/index.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/api/v1/hello.js~apiv1hello",
+    "variable/index.html#static-variable-apiV1Hello",
+    "<span>apiV1Hello</span> <span class=\"search-result-import-path\">frill/src/api/v1/hello.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/components/app/index.jsx~appcomponent",
+    "variable/index.html#static-variable-appComponent",
+    "<span>appComponent</span> <span class=\"search-result-import-path\">frill/src/components/App/index.jsx</span>",
+    "variable"
+  ],
+  [
+    "frill/src/actions/auth.js~authaction",
+    "variable/index.html#static-variable-authAction",
+    "<span>authAction</span> <span class=\"search-result-import-path\">frill/src/actions/Auth.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/api/auth/authhandlers.js~authhandlers",
+    "variable/index.html#static-variable-authHandlers",
+    "<span>authHandlers</span> <span class=\"search-result-import-path\">frill/src/api/auth/authHandlers.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/api/auth/index.js~authroutes",
+    "variable/index.html#static-variable-authRoutes",
+    "<span>authRoutes</span> <span class=\"search-result-import-path\">frill/src/api/auth/index.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/stores/auth.js~authstore",
+    "variable/index.html#static-variable-authStore",
+    "<span>authStore</span> <span class=\"search-result-import-path\">frill/src/stores/Auth.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/routes.jsx~componentroutes",
+    "variable/index.html#static-variable-componentRoutes",
+    "<span>componentRoutes</span> <span class=\"search-result-import-path\">frill/src/routes.jsx</span>",
+    "variable"
+  ],
+  [
+    "frill/src/components/error.jsx~errorcomponent",
+    "variable/index.html#static-variable-errorComponent",
+    "<span>errorComponent</span> <span class=\"search-result-import-path\">frill/src/components/Error.jsx</span>",
+    "variable"
+  ],
+  [
+    "frill/src/actions/example.js~exampleaction",
+    "variable/index.html#static-variable-exampleAction",
+    "<span>exampleAction</span> <span class=\"search-result-import-path\">frill/src/actions/Example.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/stores/example.js~examplestore",
+    "variable/index.html#static-variable-exampleStore",
+    "<span>exampleStore</span> <span class=\"search-result-import-path\">frill/src/stores/Example.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/api/auth/strategies/facebook.js~facebookstrategy",
+    "variable/index.html#static-variable-facebookStrategy",
+    "<span>facebookStrategy</span> <span class=\"search-result-import-path\">frill/src/api/auth/strategies/facebook.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/api/auth/strategies/github.js~githubstrategy",
+    "variable/index.html#static-variable-githubStrategy",
+    "<span>githubStrategy</span> <span class=\"search-result-import-path\">frill/src/api/auth/strategies/github.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/api/auth/strategies/google.js~googlestrategy",
+    "variable/index.html#static-variable-googleStrategy",
+    "<span>googleStrategy</span> <span class=\"search-result-import-path\">frill/src/api/auth/strategies/google.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/helpers/index.js~helpers",
+    "variable/index.html#static-variable-helpers",
+    "<span>helpers</span> <span class=\"search-result-import-path\">frill/src/helpers/index.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/api/auth/strategies/jwt.js~jwtstrategy",
+    "variable/index.html#static-variable-jwtStrategy",
+    "<span>jwtStrategy</span> <span class=\"search-result-import-path\">frill/src/api/auth/strategies/jwt.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/api/auth/local.js~localauthroutes",
+    "variable/index.html#static-variable-localAuthRoutes",
+    "<span>localAuthRoutes</span> <span class=\"search-result-import-path\">frill/src/api/auth/local.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/api/auth/strategies/local.js~localstrategy",
+    "variable/index.html#static-variable-localStrategy",
+    "<span>localStrategy</span> <span class=\"search-result-import-path\">frill/src/api/auth/strategies/local.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/components/login/index.jsx~logincomponent",
+    "variable/index.html#static-variable-loginComponent",
+    "<span>loginComponent</span> <span class=\"search-result-import-path\">frill/src/components/Login/index.jsx</span>",
+    "variable"
+  ],
+  [
+    "frill/src/components/page.jsx~pagecomponent",
+    "variable/index.html#static-variable-pageComponent",
+    "<span>pageComponent</span> <span class=\"search-result-import-path\">frill/src/components/Page.jsx</span>",
     "variable"
   ],
   [
@@ -24,16 +252,46 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "frill/src/actions/test.js~testaction",
-    "variable/index.html#static-variable-testAction",
-    "<span>testAction</span> <span class=\"search-result-import-path\">frill/src/actions/Test.js</span>",
+    "frill/src/api/routes.js~routes",
+    "variable/index.html#static-variable-routes",
+    "<span>routes</span> <span class=\"search-result-import-path\">frill/src/api/routes.js</span>",
     "variable"
   ],
   [
-    "frill/src/stores/test.js~teststore",
-    "variable/index.html#static-variable-testStore",
-    "<span>testStore</span> <span class=\"search-result-import-path\">frill/src/stores/Test.js</span>",
+    "frill/src/components/scrollblock/index.jsx~scrollblockcomponent",
+    "variable/index.html#static-variable-scrollBlockComponent",
+    "<span>scrollBlockComponent</span> <span class=\"search-result-import-path\">frill/src/components/ScrollBlock/index.jsx</span>",
     "variable"
+  ],
+  [
+    "frill/src/components/top/index.jsx~topcomponent",
+    "variable/index.html#static-variable-topComponent",
+    "<span>topComponent</span> <span class=\"search-result-import-path\">frill/src/components/Top/index.jsx</span>",
+    "variable"
+  ],
+  [
+    "frill/src/api/auth/twitter.js~twitterauthroutes",
+    "variable/index.html#static-variable-twitterAuthRoutes",
+    "<span>twitterAuthRoutes</span> <span class=\"search-result-import-path\">frill/src/api/auth/twitter.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/api/auth/strategies/twitter.js~twitterstrategy",
+    "variable/index.html#static-variable-twitterStrategy",
+    "<span>twitterStrategy</span> <span class=\"search-result-import-path\">frill/src/api/auth/strategies/twitter.js</span>",
+    "variable"
+  ],
+  [
+    "testexample testexample,testexample",
+    "test-file/test/docTest.js.html#lineNumber5",
+    "An example for test documantation",
+    "test"
+  ],
+  [
+    "testexample#hello testexample#hello,testexample#hello",
+    "test-file/test/docTest.js.html#lineNumber9",
+    "An example for test documantation hello",
+    "test"
   ],
   [
     "builtinexternal/ecmascriptexternal.js~array",
@@ -360,27 +618,57 @@ window.esdocSearchIndex = [
     "external"
   ],
   [
-    "src/actions/test.js",
-    "file/src/actions/Test.js.html",
-    "src/actions/Test.js",
+    "src/actions/auth.js",
+    "file/src/actions/Auth.js.html",
+    "src/actions/Auth.js",
     "file"
   ],
   [
-    "src/actions/test.js~testaction#constructor",
-    "class/src/actions/Test.js~TestAction.html#instance-constructor-constructor",
-    "src/actions/Test.js~TestAction#constructor",
+    "src/actions/auth.js~authaction#constructor",
+    "class/src/actions/Auth.js~AuthAction.html#instance-constructor-constructor",
+    "src/actions/Auth.js~AuthAction#constructor",
     "method"
   ],
   [
-    "src/actions/test.js~testaction#countup",
-    "class/src/actions/Test.js~TestAction.html#instance-method-countUp",
-    "src/actions/Test.js~TestAction#countUp",
+    "src/actions/auth.js~authaction#login",
+    "class/src/actions/Auth.js~AuthAction.html#instance-method-login",
+    "src/actions/Auth.js~AuthAction#login",
     "method"
   ],
   [
-    "src/actions/test.js~testaction#countupby",
-    "class/src/actions/Test.js~TestAction.html#instance-method-countUpBy",
-    "src/actions/Test.js~TestAction#countUpBy",
+    "src/actions/auth.js~authaction#logout",
+    "class/src/actions/Auth.js~AuthAction.html#instance-method-logout",
+    "src/actions/Auth.js~AuthAction#logout",
+    "method"
+  ],
+  [
+    "src/actions/example.js",
+    "file/src/actions/Example.js.html",
+    "src/actions/Example.js",
+    "file"
+  ],
+  [
+    "src/actions/example.js~exampleaction#constructor",
+    "class/src/actions/Example.js~ExampleAction.html#instance-constructor-constructor",
+    "src/actions/Example.js~ExampleAction#constructor",
+    "method"
+  ],
+  [
+    "src/actions/example.js~exampleaction#countup",
+    "class/src/actions/Example.js~ExampleAction.html#instance-method-countUp",
+    "src/actions/Example.js~ExampleAction#countUp",
+    "method"
+  ],
+  [
+    "src/actions/example.js~exampleaction#countupby",
+    "class/src/actions/Example.js~ExampleAction.html#instance-method-countUpBy",
+    "src/actions/Example.js~ExampleAction#countUpBy",
+    "method"
+  ],
+  [
+    "src/actions/example.js~exampleaction#loadscrollitems",
+    "class/src/actions/Example.js~ExampleAction.html#instance-method-loadScrollItems",
+    "src/actions/Example.js~ExampleAction#loadScrollItems",
     "method"
   ],
   [
@@ -390,9 +678,9 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/api/auth/base.js",
-    "file/src/api/auth/base.js.html",
-    "src/api/auth/base.js",
+    "src/api/auth/authhandlers.js",
+    "file/src/api/auth/authHandlers.js.html",
+    "src/api/auth/authHandlers.js",
     "file"
   ],
   [
@@ -402,9 +690,45 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/api/auth/local.js",
+    "file/src/api/auth/local.js.html",
+    "src/api/auth/local.js",
+    "file"
+  ],
+  [
+    "src/api/auth/strategies/facebook.js",
+    "file/src/api/auth/strategies/facebook.js.html",
+    "src/api/auth/strategies/facebook.js",
+    "file"
+  ],
+  [
+    "src/api/auth/strategies/github.js",
+    "file/src/api/auth/strategies/github.js.html",
+    "src/api/auth/strategies/github.js",
+    "file"
+  ],
+  [
+    "src/api/auth/strategies/google.js",
+    "file/src/api/auth/strategies/google.js.html",
+    "src/api/auth/strategies/google.js",
+    "file"
+  ],
+  [
     "src/api/auth/strategies/index.js",
     "file/src/api/auth/strategies/index.js.html",
     "src/api/auth/strategies/index.js",
+    "file"
+  ],
+  [
+    "src/api/auth/strategies/jwt.js",
+    "file/src/api/auth/strategies/jwt.js.html",
+    "src/api/auth/strategies/jwt.js",
+    "file"
+  ],
+  [
+    "src/api/auth/strategies/local.js",
+    "file/src/api/auth/strategies/local.js.html",
+    "src/api/auth/strategies/local.js",
     "file"
   ],
   [
@@ -456,6 +780,192 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/components/app/index.jsx",
+    "file/src/components/App/index.jsx.html",
+    "src/components/App/index.jsx",
+    "file"
+  ],
+  [
+    "src/components/app/index.jsx~appcomponent#constructor",
+    "class/src/components/App/index.jsx~AppComponent.html#instance-constructor-constructor",
+    "src/components/App/index.jsx~AppComponent#constructor",
+    "method"
+  ],
+  [
+    "src/components/app/index.jsx~appcomponent#name",
+    "class/src/components/App/index.jsx~AppComponent.html#instance-member-name",
+    "src/components/App/index.jsx~AppComponent#name",
+    "member"
+  ],
+  [
+    "src/components/app/index.jsx~appcomponent#render",
+    "class/src/components/App/index.jsx~AppComponent.html#instance-method-render",
+    "src/components/App/index.jsx~AppComponent#render",
+    "method"
+  ],
+  [
+    "src/components/error.jsx",
+    "file/src/components/Error.jsx.html",
+    "src/components/Error.jsx",
+    "file"
+  ],
+  [
+    "src/components/error.jsx~errorcomponent#constructor",
+    "class/src/components/Error.jsx~ErrorComponent.html#instance-constructor-constructor",
+    "src/components/Error.jsx~ErrorComponent#constructor",
+    "method"
+  ],
+  [
+    "src/components/error.jsx~errorcomponent#name",
+    "class/src/components/Error.jsx~ErrorComponent.html#instance-member-name",
+    "src/components/Error.jsx~ErrorComponent#name",
+    "member"
+  ],
+  [
+    "src/components/error.jsx~errorcomponent#render",
+    "class/src/components/Error.jsx~ErrorComponent.html#instance-method-render",
+    "src/components/Error.jsx~ErrorComponent#render",
+    "method"
+  ],
+  [
+    "src/components/login/index.jsx",
+    "file/src/components/Login/index.jsx.html",
+    "src/components/Login/index.jsx",
+    "file"
+  ],
+  [
+    "src/components/login/index.jsx~logincomponent#constructor",
+    "class/src/components/Login/index.jsx~LoginComponent.html#instance-constructor-constructor",
+    "src/components/Login/index.jsx~LoginComponent#constructor",
+    "method"
+  ],
+  [
+    "src/components/login/index.jsx~logincomponent#onclick",
+    "class/src/components/Login/index.jsx~LoginComponent.html#instance-method-onClick",
+    "src/components/Login/index.jsx~LoginComponent#onClick",
+    "method"
+  ],
+  [
+    "src/components/login/index.jsx~logincomponent#render",
+    "class/src/components/Login/index.jsx~LoginComponent.html#instance-method-render",
+    "src/components/Login/index.jsx~LoginComponent#render",
+    "method"
+  ],
+  [
+    "src/components/page.jsx",
+    "file/src/components/Page.jsx.html",
+    "src/components/Page.jsx",
+    "file"
+  ],
+  [
+    "src/components/page.jsx~pagecomponent#constructor",
+    "class/src/components/Page.jsx~PageComponent.html#instance-constructor-constructor",
+    "src/components/Page.jsx~PageComponent#constructor",
+    "method"
+  ],
+  [
+    "src/components/page.jsx~pagecomponent#name",
+    "class/src/components/Page.jsx~PageComponent.html#instance-member-name",
+    "src/components/Page.jsx~PageComponent#name",
+    "member"
+  ],
+  [
+    "src/components/page.jsx~pagecomponent#render",
+    "class/src/components/Page.jsx~PageComponent.html#instance-method-render",
+    "src/components/Page.jsx~PageComponent#render",
+    "method"
+  ],
+  [
+    "src/components/scrollblock/index.jsx",
+    "file/src/components/ScrollBlock/index.jsx.html",
+    "src/components/ScrollBlock/index.jsx",
+    "file"
+  ],
+  [
+    "src/components/scrollblock/index.jsx~scrollblockcomponent#componentdidmount",
+    "class/src/components/ScrollBlock/index.jsx~ScrollBlockComponent.html#instance-method-componentDidMount",
+    "src/components/ScrollBlock/index.jsx~ScrollBlockComponent#componentDidMount",
+    "method"
+  ],
+  [
+    "src/components/scrollblock/index.jsx~scrollblockcomponent#componentwillreceiveprops",
+    "class/src/components/ScrollBlock/index.jsx~ScrollBlockComponent.html#instance-method-componentWillReceiveProps",
+    "src/components/ScrollBlock/index.jsx~ScrollBlockComponent#componentWillReceiveProps",
+    "method"
+  ],
+  [
+    "src/components/scrollblock/index.jsx~scrollblockcomponent#constructor",
+    "class/src/components/ScrollBlock/index.jsx~ScrollBlockComponent.html#instance-constructor-constructor",
+    "src/components/ScrollBlock/index.jsx~ScrollBlockComponent#constructor",
+    "method"
+  ],
+  [
+    "src/components/scrollblock/index.jsx~scrollblockcomponent#name",
+    "class/src/components/ScrollBlock/index.jsx~ScrollBlockComponent.html#instance-member-name",
+    "src/components/ScrollBlock/index.jsx~ScrollBlockComponent#name",
+    "member"
+  ],
+  [
+    "src/components/scrollblock/index.jsx~scrollblockcomponent#onscroll",
+    "class/src/components/ScrollBlock/index.jsx~ScrollBlockComponent.html#instance-member-onScroll",
+    "src/components/ScrollBlock/index.jsx~ScrollBlockComponent#onScroll",
+    "member"
+  ],
+  [
+    "src/components/scrollblock/index.jsx~scrollblockcomponent#render",
+    "class/src/components/ScrollBlock/index.jsx~ScrollBlockComponent.html#instance-method-render",
+    "src/components/ScrollBlock/index.jsx~ScrollBlockComponent#render",
+    "method"
+  ],
+  [
+    "src/components/scrollblock/index.jsx~scrollblockcomponent#state",
+    "class/src/components/ScrollBlock/index.jsx~ScrollBlockComponent.html#instance-member-state",
+    "src/components/ScrollBlock/index.jsx~ScrollBlockComponent#state",
+    "member"
+  ],
+  [
+    "src/components/top/index.jsx",
+    "file/src/components/Top/index.jsx.html",
+    "src/components/Top/index.jsx",
+    "file"
+  ],
+  [
+    "src/components/top/index.jsx~topcomponent#constructor",
+    "class/src/components/Top/index.jsx~TopComponent.html#instance-constructor-constructor",
+    "src/components/Top/index.jsx~TopComponent#constructor",
+    "method"
+  ],
+  [
+    "src/components/top/index.jsx~topcomponent#getstatefromfrill",
+    "class/src/components/Top/index.jsx~TopComponent.html#instance-method-getStateFromFrill",
+    "src/components/Top/index.jsx~TopComponent#getStateFromFrill",
+    "method"
+  ],
+  [
+    "src/components/top/index.jsx~topcomponent#onfetchitems",
+    "class/src/components/Top/index.jsx~TopComponent.html#instance-method-onFetchItems",
+    "src/components/Top/index.jsx~TopComponent#onFetchItems",
+    "method"
+  ],
+  [
+    "src/components/top/index.jsx~topcomponent#onone",
+    "class/src/components/Top/index.jsx~TopComponent.html#instance-method-onOne",
+    "src/components/Top/index.jsx~TopComponent#onOne",
+    "method"
+  ],
+  [
+    "src/components/top/index.jsx~topcomponent#onten",
+    "class/src/components/Top/index.jsx~TopComponent.html#instance-method-onTen",
+    "src/components/Top/index.jsx~TopComponent#onTen",
+    "method"
+  ],
+  [
+    "src/components/top/index.jsx~topcomponent#render",
+    "class/src/components/Top/index.jsx~TopComponent.html#instance-method-render",
+    "src/components/Top/index.jsx~TopComponent#render",
+    "method"
+  ],
+  [
     "src/components/index.js",
     "file/src/components/index.js.html",
     "src/components/index.js",
@@ -480,6 +990,18 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/helpers/testscrollitemsdata.js",
+    "file/src/helpers/testScrollItemsData.js.html",
+    "src/helpers/testScrollItemsData.js",
+    "file"
+  ],
+  [
+    "src/helpers/testuserdata.js",
+    "file/src/helpers/testUserData.js.html",
+    "src/helpers/testUserData.js",
+    "file"
+  ],
+  [
     "src/models/dynamodb/posts.js",
     "file/src/models/DynamoDB/Posts.js.html",
     "src/models/DynamoDB/Posts.js",
@@ -492,9 +1014,27 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/models/mysql/users.js",
+    "file/src/models/MySQL/Users.js.html",
+    "src/models/MySQL/Users.js",
+    "file"
+  ],
+  [
+    "src/models/mysql/index.js",
+    "file/src/models/MySQL/index.js.html",
+    "src/models/MySQL/index.js",
+    "file"
+  ],
+  [
     "src/models/index.js",
     "file/src/models/index.js.html",
     "src/models/index.js",
+    "file"
+  ],
+  [
+    "src/models/sequelize.js",
+    "file/src/models/sequelize.js.html",
+    "src/models/sequelize.js",
     "file"
   ],
   [
@@ -504,45 +1044,129 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/models/vogels.js~vogels",
+    "external/index.html",
+    "src/models/vogels.js~Vogels",
+    "external"
+  ],
+  [
+    "src/routes.jsx",
+    "file/src/routes.jsx.html",
+    "src/routes.jsx",
+    "file"
+  ],
+  [
     "src/server.js",
     "file/src/server.js.html",
     "src/server.js",
     "file"
   ],
   [
-    "src/stores/test.js",
-    "file/src/stores/Test.js.html",
-    "src/stores/Test.js",
+    "src/stores/auth.js",
+    "file/src/stores/Auth.js.html",
+    "src/stores/Auth.js",
     "file"
   ],
   [
-    "src/stores/test.js~teststore#actions",
-    "class/src/stores/Test.js~TestStore.html#instance-member-actions",
-    "src/stores/Test.js~TestStore#actions",
+    "src/stores/auth.js~authstore#actions",
+    "class/src/stores/Auth.js~AuthStore.html#instance-member-actions",
+    "src/stores/Auth.js~AuthStore#actions",
     "member"
   ],
   [
-    "src/stores/test.js~teststore#constructor",
-    "class/src/stores/Test.js~TestStore.html#instance-constructor-constructor",
-    "src/stores/Test.js~TestStore#constructor",
+    "src/stores/auth.js~authstore#constructor",
+    "class/src/stores/Auth.js~AuthStore.html#instance-constructor-constructor",
+    "src/stores/Auth.js~AuthStore#constructor",
     "method"
   ],
   [
-    "src/stores/test.js~teststore#countup",
-    "class/src/stores/Test.js~TestStore.html#instance-method-countup",
-    "src/stores/Test.js~TestStore#countup",
+    "src/stores/auth.js~authstore#isloggedin",
+    "class/src/stores/Auth.js~AuthStore.html#instance-method-isLoggedIn",
+    "src/stores/Auth.js~AuthStore#isLoggedIn",
     "method"
   ],
   [
-    "src/stores/test.js~teststore#countupby",
-    "class/src/stores/Test.js~TestStore.html#instance-method-countupBy",
-    "src/stores/Test.js~TestStore#countupBy",
+    "src/stores/auth.js~authstore#jwt",
+    "class/src/stores/Auth.js~AuthStore.html#instance-get-jwt",
+    "src/stores/Auth.js~AuthStore#jwt",
+    "member"
+  ],
+  [
+    "src/stores/auth.js~authstore#login",
+    "class/src/stores/Auth.js~AuthStore.html#instance-method-login",
+    "src/stores/Auth.js~AuthStore#login",
     "method"
   ],
   [
-    "src/stores/test.js~teststore#getcount",
-    "class/src/stores/Test.js~TestStore.html#instance-method-getCount",
-    "src/stores/Test.js~TestStore#getCount",
+    "src/stores/auth.js~authstore#logout",
+    "class/src/stores/Auth.js~AuthStore.html#instance-method-logout",
+    "src/stores/Auth.js~AuthStore#logout",
+    "method"
+  ],
+  [
+    "src/stores/auth.js~authstore#user",
+    "class/src/stores/Auth.js~AuthStore.html#instance-get-user",
+    "src/stores/Auth.js~AuthStore#user",
+    "member"
+  ],
+  [
+    "src/stores/example.js",
+    "file/src/stores/Example.js.html",
+    "src/stores/Example.js",
+    "file"
+  ],
+  [
+    "src/stores/example.js~examplestore#actions",
+    "class/src/stores/Example.js~ExampleStore.html#instance-member-actions",
+    "src/stores/Example.js~ExampleStore#actions",
+    "member"
+  ],
+  [
+    "src/stores/example.js~examplestore#constructor",
+    "class/src/stores/Example.js~ExampleStore.html#instance-constructor-constructor",
+    "src/stores/Example.js~ExampleStore#constructor",
+    "method"
+  ],
+  [
+    "src/stores/example.js~examplestore#countup",
+    "class/src/stores/Example.js~ExampleStore.html#instance-method-countup",
+    "src/stores/Example.js~ExampleStore#countup",
+    "method"
+  ],
+  [
+    "src/stores/example.js~examplestore#countupby",
+    "class/src/stores/Example.js~ExampleStore.html#instance-method-countupBy",
+    "src/stores/Example.js~ExampleStore#countupBy",
+    "method"
+  ],
+  [
+    "src/stores/example.js~examplestore#getcount",
+    "class/src/stores/Example.js~ExampleStore.html#instance-method-getCount",
+    "src/stores/Example.js~ExampleStore#getCount",
+    "method"
+  ],
+  [
+    "src/stores/example.js~examplestore#getscrollitemtotal",
+    "class/src/stores/Example.js~ExampleStore.html#instance-method-getScrollItemTotal",
+    "src/stores/Example.js~ExampleStore#getScrollItemTotal",
+    "method"
+  ],
+  [
+    "src/stores/example.js~examplestore#getscrollitems",
+    "class/src/stores/Example.js~ExampleStore.html#instance-method-getScrollItems",
+    "src/stores/Example.js~ExampleStore#getScrollItems",
+    "method"
+  ],
+  [
+    "src/stores/example.js~examplestore#getscrollitemscount",
+    "class/src/stores/Example.js~ExampleStore.html#instance-method-getScrollItemsCount",
+    "src/stores/Example.js~ExampleStore#getScrollItemsCount",
+    "method"
+  ],
+  [
+    "src/stores/example.js~examplestore#loadscrollitems",
+    "class/src/stores/Example.js~ExampleStore.html#instance-method-loadScrollItems",
+    "src/stores/Example.js~ExampleStore#loadScrollItems",
     "method"
   ],
   [
@@ -550,5 +1174,11 @@ window.esdocSearchIndex = [
     "file/src/stores/index.js.html",
     "src/stores/index.js",
     "file"
+  ],
+  [
+    "test/doctest.js",
+    "test-file/test/docTest.js.html",
+    "test/docTest.js",
+    "testFile"
   ]
 ]

@@ -1,7 +1,11 @@
-import vogels from '../vogels';
+import Vogels from '../vogels';
 import Joi from 'Joi';
 
-export default vogels.define('Post', {
+/**
+ * Posts model
+ * @see https://github.com/ryanfitz/vogels#define-a-model
+ */
+const Posts = Vogels.define('Post', {
   hashKey: 'email',
   rangeKey: 'title',
   schema: {
@@ -11,3 +15,5 @@ export default vogels.define('Post', {
     tags: vogels.types.stringSet(),
   },
 });
+
+export default Posts;

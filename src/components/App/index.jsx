@@ -1,13 +1,32 @@
 import React from 'react';
 import {Link, RouteHandler} from 'react-router';
 
-export default class App extends React.Component {
+/**
+ * App component
+ * @extends {React.Component}
+ * @example <caption>Usage in React-Router</caption>
+ * <Route name="app" path="/" handler={AppComponent} />
+ */
+class AppComponent extends React.Component {
 
-  constructor() {
-    super();
+  /**
+   * Constructor
+   * @param {any} props
+   */
+  constructor(props) {
+    super(props);
+
+    /**
+     * Name of component
+     */
     this.name = 'App';
   }
 
+  /**
+   * render
+   * @return {React DOM}
+   * @see https://facebook.github.io/react/docs/component-specs.html#render
+   */
   render() {
     return (
       <div className="App">
@@ -33,3 +52,8 @@ export default class App extends React.Component {
     );
   }
 }
+
+/**
+ * Export AppComponent
+ */
+export default AppComponent;

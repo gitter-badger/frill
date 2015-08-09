@@ -13,8 +13,16 @@
 export default (gulp, $, argv, path) => {
   gulp.task('test', () => {
     return gulp.src([
-      '**/__test__/*.js',
-      '**/__test__/*.jsx',
+
+      // to search through all __test__ directory,
+      // uncomment these lines
+      // '**/__test__/*.js',
+      // '**/__test__/*.jsx',
+      // and comment out paths below.
+      // NOTE: you should also comment out 'test' config in esdoc.js task file.
+      'test/**/*.js',
+      'test/**/*.jsx',
+
     ], {read: false})
       .pipe($.mocha({}))
       .once('error', () => {

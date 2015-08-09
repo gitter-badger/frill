@@ -14,24 +14,24 @@ export default (gulp, $, argv, path) => {
     return gulp.src(['./src'])
       .pipe($.esdoc({
         destination: './docs',
+        package: './package.json',
+        index: './README_DOC.md',
         title: 'FrillJS',
-        // includes: ['\\.(js|es6)$'],
-        // excludes: ['\\.config\\.(js|es6)$'],
+        includes: ['\\.(js|jsx)$'],
+        coverage: true,
+        // excludes: ['\\.config\\.(js|jsx)$'],
         // access: ['public', 'protected'],
         // autoPrivate: true,
         // unexportIdentifier: false,
         // undocumentIdentifier: true,
         // builtinExternal: true,
         // importPathPrefix: '',
-        // index: './README.md',
-        // package: './package.json',
-        // coverage: true,
-        // test: {
-        //   type: 'mocha',
-        //   source: './test/src',
-        //   includes: ['Test\\.(js|es6)$'],
-        //   excludes: ['\\.config\\.(js|es6)$']
-        // }
+        test: {
+          type: 'mocha',
+          source: './test',
+          includes: ['Test\\.(js|jsx)$'],
+          excludes: ['\\.config\\.(js|jsx)$'],
+        },
         // styles: ['./path/to/style.css'],
         // scripts: ['./path/to/script.js']
       }));

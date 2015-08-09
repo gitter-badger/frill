@@ -1,9 +1,14 @@
-import Frill from 'frill-core';
+import frillCore from 'frill-core';
 import Stores from './stores';
 import Actions from './actions';
 
-// load stores and actions.
-Frill._Stores = Stores;
-Frill._Actions = Actions;
+/**
+ * FrillCore
+ */
+const FrillCore = frillCore;
 
-export default Frill;
+// load stores and actions.
+FrillCore._Stores = Stores;
+FrillCore._Actions = Actions;
+
+export default FrillCore;

@@ -8,7 +8,7 @@
           "type": "ImportDefaultSpecifier",
           "local": {
             "type": "Identifier",
-            "name": "Test",
+            "name": "Auth",
             "range": [
               7,
               11
@@ -42,8 +42,8 @@
       ],
       "source": {
         "type": "Literal",
-        "value": "./Test",
-        "raw": "'./Test'",
+        "value": "./Auth",
+        "raw": "'./Auth'",
         "range": [
           17,
           25
@@ -75,97 +75,550 @@
       }
     },
     {
-      "type": "ExportDefaultDeclaration",
-      "declaration": {
-        "type": "ObjectExpression",
-        "properties": [
-          {
-            "type": "Property",
-            "key": {
-              "type": "Identifier",
-              "name": "Test",
-              "range": [
-                47,
-                51
-              ],
-              "loc": {
-                "start": {
-                  "line": 4,
-                  "column": 2
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "Example",
+            "range": [
+              34,
+              41
+            ],
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 7
+              },
+              "end": {
+                "line": 2,
+                "column": 14
+              }
+            }
+          },
+          "range": [
+            34,
+            41
+          ],
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 7
+            },
+            "end": {
+              "line": 2,
+              "column": 14
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./Example",
+        "raw": "'./Example'",
+        "range": [
+          47,
+          58
+        ],
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 20
+          },
+          "end": {
+            "line": 2,
+            "column": 31
+          }
+        }
+      },
+      "range": [
+        27,
+        59
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 32
+        }
+      },
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * List of all stores to use in app\n ",
+          "range": [
+            61,
+            104
+          ],
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 0
+            },
+            "end": {
+              "line": 6,
+              "column": 3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "Identifier",
+      "declarations": [
+        {
+          "type": "VariableDeclarator",
+          "id": {
+            "type": "Identifier",
+            "name": "Stores",
+            "range": [
+              111,
+              117
+            ],
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 6
+              },
+              "end": {
+                "line": 7,
+                "column": 12
+              }
+            }
+          },
+          "init": {
+            "type": "ObjectExpression",
+            "properties": [
+              {
+                "type": "Property",
+                "key": {
+                  "type": "Identifier",
+                  "name": "Auth",
+                  "range": [
+                    124,
+                    128
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 8,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 8,
+                      "column": 6
+                    }
+                  }
                 },
-                "end": {
-                  "line": 4,
-                  "column": 6
+                "value": {
+                  "type": "Identifier",
+                  "name": "Auth",
+                  "range": [
+                    130,
+                    134
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 8,
+                      "column": 8
+                    },
+                    "end": {
+                      "line": 8,
+                      "column": 12
+                    }
+                  }
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "computed": false,
+                "range": [
+                  124,
+                  134
+                ],
+                "loc": {
+                  "start": {
+                    "line": 8,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 8,
+                    "column": 12
+                  }
+                }
+              },
+              {
+                "type": "Property",
+                "key": {
+                  "type": "Identifier",
+                  "name": "Example",
+                  "range": [
+                    138,
+                    145
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 9,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 9,
+                      "column": 9
+                    }
+                  }
+                },
+                "value": {
+                  "type": "Identifier",
+                  "name": "Example",
+                  "range": [
+                    147,
+                    154
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 9,
+                      "column": 11
+                    },
+                    "end": {
+                      "line": 9,
+                      "column": 18
+                    }
+                  }
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "computed": false,
+                "range": [
+                  138,
+                  154
+                ],
+                "loc": {
+                  "start": {
+                    "line": 9,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 9,
+                    "column": 18
+                  }
                 }
               }
+            ],
+            "range": [
+              120,
+              157
+            ],
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 15
+              },
+              "end": {
+                "line": 10,
+                "column": 1
+              }
+            }
+          },
+          "range": [
+            111,
+            157
+          ],
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 6
             },
-            "value": {
+            "end": {
+              "line": 10,
+              "column": 1
+            }
+          }
+        }
+      ],
+      "kind": "const",
+      "range": [
+        105,
+        158
+      ],
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 0
+        },
+        "end": {
+          "line": 10,
+          "column": 2
+        }
+      },
+      "leadingComments": [],
+      "name": "_",
+      "trailingComments": []
+    },
+    {
+      "type": "Identifier",
+      "declaration": {
+        "type": "Identifier",
+        "name": "Stores",
+        "range": [
+          175,
+          181
+        ],
+        "loc": {
+          "start": {
+            "line": 12,
+            "column": 15
+          },
+          "end": {
+            "line": 12,
+            "column": 21
+          }
+        }
+      },
+      "range": [
+        160,
+        182
+      ],
+      "loc": {
+        "start": {
+          "line": 12,
+          "column": 0
+        },
+        "end": {
+          "line": 12,
+          "column": 22
+        }
+      },
+      "name": "_",
+      "leadingComments": [],
+      "trailingComments": []
+    },
+    {
+      "type": "ExportDefaultDeclaration",
+      "declaration": {
+        "type": "VariableDeclaration",
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "id": {
               "type": "Identifier",
-              "name": "Test",
+              "name": "Stores",
               "range": [
-                53,
-                57
+                111,
+                117
               ],
               "loc": {
                 "start": {
-                  "line": 4,
-                  "column": 8
+                  "line": 7,
+                  "column": 6
                 },
                 "end": {
-                  "line": 4,
+                  "line": 7,
                   "column": 12
                 }
               }
             },
-            "kind": "init",
-            "method": false,
-            "shorthand": false,
-            "computed": false,
+            "init": {
+              "type": "ObjectExpression",
+              "properties": [
+                {
+                  "type": "Property",
+                  "key": {
+                    "type": "Identifier",
+                    "name": "Auth",
+                    "range": [
+                      124,
+                      128
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 8,
+                        "column": 2
+                      },
+                      "end": {
+                        "line": 8,
+                        "column": 6
+                      }
+                    }
+                  },
+                  "value": {
+                    "type": "Identifier",
+                    "name": "Auth",
+                    "range": [
+                      130,
+                      134
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 8,
+                        "column": 8
+                      },
+                      "end": {
+                        "line": 8,
+                        "column": 12
+                      }
+                    }
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": false,
+                  "computed": false,
+                  "range": [
+                    124,
+                    134
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 8,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 8,
+                      "column": 12
+                    }
+                  }
+                },
+                {
+                  "type": "Property",
+                  "key": {
+                    "type": "Identifier",
+                    "name": "Example",
+                    "range": [
+                      138,
+                      145
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 9,
+                        "column": 2
+                      },
+                      "end": {
+                        "line": 9,
+                        "column": 9
+                      }
+                    }
+                  },
+                  "value": {
+                    "type": "Identifier",
+                    "name": "Example",
+                    "range": [
+                      147,
+                      154
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 9,
+                        "column": 11
+                      },
+                      "end": {
+                        "line": 9,
+                        "column": 18
+                      }
+                    }
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": false,
+                  "computed": false,
+                  "range": [
+                    138,
+                    154
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 9,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 9,
+                      "column": 18
+                    }
+                  }
+                }
+              ],
+              "range": [
+                120,
+                157
+              ],
+              "loc": {
+                "start": {
+                  "line": 7,
+                  "column": 15
+                },
+                "end": {
+                  "line": 10,
+                  "column": 1
+                }
+              }
+            },
             "range": [
-              47,
-              57
+              111,
+              157
             ],
             "loc": {
               "start": {
-                "line": 4,
-                "column": 2
+                "line": 7,
+                "column": 6
               },
               "end": {
-                "line": 4,
-                "column": 12
+                "line": 10,
+                "column": 1
               }
             }
           }
         ],
+        "kind": "const",
         "range": [
-          43,
-          60
+          105,
+          158
         ],
         "loc": {
           "start": {
-            "line": 3,
-            "column": 15
+            "line": 7,
+            "column": 0
           },
           "end": {
-            "line": 5,
-            "column": 1
+            "line": 10,
+            "column": 2
           }
         },
-        "leadingComments": [],
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * List of all stores to use in app\n ",
+            "range": [
+              61,
+              104
+            ],
+            "loc": {
+              "start": {
+                "line": 4,
+                "column": 0
+              },
+              "end": {
+                "line": 6,
+                "column": 3
+              }
+            }
+          }
+        ],
         "trailingComments": []
       },
       "range": [
-        28,
-        61
+        160,
+        182
       ],
       "loc": {
         "start": {
-          "line": 3,
+          "line": 12,
           "column": 0
         },
         "end": {
-          "line": 5,
-          "column": 2
+          "line": 12,
+          "column": 22
         }
       }
     }
@@ -173,7 +626,7 @@
   "sourceType": "module",
   "range": [
     0,
-    61
+    182
   ],
   "loc": {
     "start": {
@@ -181,9 +634,28 @@
       "column": 0
     },
     "end": {
-      "line": 5,
-      "column": 2
+      "line": 12,
+      "column": 22
     }
   },
-  "comments": []
+  "comments": [
+    {
+      "type": "Block",
+      "value": "*\n * List of all stores to use in app\n ",
+      "range": [
+        61,
+        104
+      ],
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 0
+        },
+        "end": {
+          "line": 6,
+          "column": 3
+        }
+      }
+    }
+  ]
 }

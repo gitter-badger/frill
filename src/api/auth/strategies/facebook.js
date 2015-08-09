@@ -1,3 +1,7 @@
+/**
+ * Authentication strategy for Facebook
+ * @see https://developers.facebook.com/
+ */
 const facebookStrategy = (server) => {
   server.auth.strategy('facebook', 'bell', {
     provider: 'facebook',
