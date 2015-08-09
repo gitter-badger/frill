@@ -5,13 +5,13 @@ import {Link, RouteHandler} from 'react-router';
  * App component
  * @extends {React.Component}
  * @example <caption>Usage in React-Router</caption>
- * <Route name="app" path="/" handler={App} />
+ * <Route name="app" path="/" handler={AppComponent} />
  */
 class AppComponent extends React.Component {
 
   /**
    * Constructor
-   * @param {any} props - props for components
+   * @param {any} props
    */
   constructor(props) {
     super(props);
@@ -23,8 +23,9 @@ class AppComponent extends React.Component {
   }
 
   /**
-   * Renders the App
+   * render
    * @return {React DOM}
+   * @see https://facebook.github.io/react/docs/component-specs.html#render
    */
   render() {
     return (

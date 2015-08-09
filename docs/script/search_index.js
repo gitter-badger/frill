@@ -36,9 +36,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "frill/src/components/error.jsx~error",
-    "class/src/components/Error.jsx~Error.html",
-    "<span>Error</span> <span class=\"search-result-import-path\">frill/src/components/Error.jsx</span>",
+    "frill/src/components/error.jsx~errorcomponent",
+    "class/src/components/Error.jsx~ErrorComponent.html",
+    "<span>ErrorComponent</span> <span class=\"search-result-import-path\">frill/src/components/Error.jsx</span>",
     "class"
   ],
   [
@@ -54,15 +54,15 @@ window.esdocSearchIndex = [
     "class"
   ],
   [
-    "frill/src/bootstrap.js~frill",
-    "variable/index.html#static-variable-Frill",
-    "<span>Frill</span> <span class=\"search-result-import-path\">frill/src/bootstrap.js</span>",
+    "frill/src/bootstrap.js~frillcore",
+    "variable/index.html#static-variable-FrillCore",
+    "<span>FrillCore</span> <span class=\"search-result-import-path\">frill/src/bootstrap.js</span>",
     "variable"
   ],
   [
-    "frill/src/components/login/index.jsx~login",
-    "class/src/components/Login/index.jsx~Login.html",
-    "<span>Login</span> <span class=\"search-result-import-path\">frill/src/components/Login/index.jsx</span>",
+    "frill/src/components/login/index.jsx~logincomponent",
+    "class/src/components/Login/index.jsx~LoginComponent.html",
+    "<span>LoginComponent</span> <span class=\"search-result-import-path\">frill/src/components/Login/index.jsx</span>",
     "class"
   ],
   [
@@ -78,9 +78,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "frill/src/components/page.jsx~page",
-    "class/src/components/Page.jsx~Page.html",
-    "<span>Page</span> <span class=\"search-result-import-path\">frill/src/components/Page.jsx</span>",
+    "frill/src/components/page.jsx~pagecomponent",
+    "class/src/components/Page.jsx~PageComponent.html",
+    "<span>PageComponent</span> <span class=\"search-result-import-path\">frill/src/components/Page.jsx</span>",
     "class"
   ],
   [
@@ -90,9 +90,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "frill/src/components/scrollblock/index.jsx~scrollblock",
-    "class/src/components/ScrollBlock/index.jsx~ScrollBlock.html",
-    "<span>ScrollBlock</span> <span class=\"search-result-import-path\">frill/src/components/ScrollBlock/index.jsx</span>",
+    "frill/src/components/scrollblock/index.jsx~scrollblockcomponent",
+    "class/src/components/ScrollBlock/index.jsx~ScrollBlockComponent.html",
+    "<span>ScrollBlockComponent</span> <span class=\"search-result-import-path\">frill/src/components/ScrollBlock/index.jsx</span>",
     "class"
   ],
   [
@@ -108,9 +108,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "frill/src/components/top/index.jsx~top",
-    "class/src/components/Top/index.jsx~Top.html",
-    "<span>Top</span> <span class=\"search-result-import-path\">frill/src/components/Top/index.jsx</span>",
+    "frill/src/components/top/index.jsx~topcomponent",
+    "class/src/components/Top/index.jsx~TopComponent.html",
+    "<span>TopComponent</span> <span class=\"search-result-import-path\">frill/src/components/Top/index.jsx</span>",
     "class"
   ],
   [
@@ -174,9 +174,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "frill/src/components/error.jsx~error",
-    "variable/index.html#static-variable-error",
-    "<span>error</span> <span class=\"search-result-import-path\">frill/src/components/Error.jsx</span>",
+    "frill/src/components/error.jsx~errorcomponent",
+    "variable/index.html#static-variable-errorComponent",
+    "<span>errorComponent</span> <span class=\"search-result-import-path\">frill/src/components/Error.jsx</span>",
     "variable"
   ],
   [
@@ -234,15 +234,15 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "frill/src/components/login/index.jsx~login",
-    "variable/index.html#static-variable-login",
-    "<span>login</span> <span class=\"search-result-import-path\">frill/src/components/Login/index.jsx</span>",
+    "frill/src/components/login/index.jsx~logincomponent",
+    "variable/index.html#static-variable-loginComponent",
+    "<span>loginComponent</span> <span class=\"search-result-import-path\">frill/src/components/Login/index.jsx</span>",
     "variable"
   ],
   [
-    "frill/src/components/page.jsx~page",
-    "variable/index.html#static-variable-page",
-    "<span>page</span> <span class=\"search-result-import-path\">frill/src/components/Page.jsx</span>",
+    "frill/src/components/page.jsx~pagecomponent",
+    "variable/index.html#static-variable-pageComponent",
+    "<span>pageComponent</span> <span class=\"search-result-import-path\">frill/src/components/Page.jsx</span>",
     "variable"
   ],
   [
@@ -258,15 +258,15 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "frill/src/components/scrollblock/index.jsx~scrollblock",
-    "variable/index.html#static-variable-scrollBlock",
-    "<span>scrollBlock</span> <span class=\"search-result-import-path\">frill/src/components/ScrollBlock/index.jsx</span>",
+    "frill/src/components/scrollblock/index.jsx~scrollblockcomponent",
+    "variable/index.html#static-variable-scrollBlockComponent",
+    "<span>scrollBlockComponent</span> <span class=\"search-result-import-path\">frill/src/components/ScrollBlock/index.jsx</span>",
     "variable"
   ],
   [
-    "frill/src/components/top/index.jsx~top",
-    "variable/index.html#static-variable-top",
-    "<span>top</span> <span class=\"search-result-import-path\">frill/src/components/Top/index.jsx</span>",
+    "frill/src/components/top/index.jsx~topcomponent",
+    "variable/index.html#static-variable-topComponent",
+    "<span>topComponent</span> <span class=\"search-result-import-path\">frill/src/components/Top/index.jsx</span>",
     "variable"
   ],
   [
@@ -810,21 +810,21 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/components/error.jsx~error#constructor",
-    "class/src/components/Error.jsx~Error.html#instance-constructor-constructor",
-    "src/components/Error.jsx~Error#constructor",
+    "src/components/error.jsx~errorcomponent#constructor",
+    "class/src/components/Error.jsx~ErrorComponent.html#instance-constructor-constructor",
+    "src/components/Error.jsx~ErrorComponent#constructor",
     "method"
   ],
   [
-    "src/components/error.jsx~error#name",
-    "class/src/components/Error.jsx~Error.html#instance-member-name",
-    "src/components/Error.jsx~Error#name",
+    "src/components/error.jsx~errorcomponent#name",
+    "class/src/components/Error.jsx~ErrorComponent.html#instance-member-name",
+    "src/components/Error.jsx~ErrorComponent#name",
     "member"
   ],
   [
-    "src/components/error.jsx~error#render",
-    "class/src/components/Error.jsx~Error.html#instance-method-render",
-    "src/components/Error.jsx~Error#render",
+    "src/components/error.jsx~errorcomponent#render",
+    "class/src/components/Error.jsx~ErrorComponent.html#instance-method-render",
+    "src/components/Error.jsx~ErrorComponent#render",
     "method"
   ],
   [
@@ -834,21 +834,21 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/components/login/index.jsx~login#constructor",
-    "class/src/components/Login/index.jsx~Login.html#instance-constructor-constructor",
-    "src/components/Login/index.jsx~Login#constructor",
+    "src/components/login/index.jsx~logincomponent#constructor",
+    "class/src/components/Login/index.jsx~LoginComponent.html#instance-constructor-constructor",
+    "src/components/Login/index.jsx~LoginComponent#constructor",
     "method"
   ],
   [
-    "src/components/login/index.jsx~login#onclick",
-    "class/src/components/Login/index.jsx~Login.html#instance-method-onClick",
-    "src/components/Login/index.jsx~Login#onClick",
+    "src/components/login/index.jsx~logincomponent#onclick",
+    "class/src/components/Login/index.jsx~LoginComponent.html#instance-method-onClick",
+    "src/components/Login/index.jsx~LoginComponent#onClick",
     "method"
   ],
   [
-    "src/components/login/index.jsx~login#render",
-    "class/src/components/Login/index.jsx~Login.html#instance-method-render",
-    "src/components/Login/index.jsx~Login#render",
+    "src/components/login/index.jsx~logincomponent#render",
+    "class/src/components/Login/index.jsx~LoginComponent.html#instance-method-render",
+    "src/components/Login/index.jsx~LoginComponent#render",
     "method"
   ],
   [
@@ -858,21 +858,21 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/components/page.jsx~page#constructor",
-    "class/src/components/Page.jsx~Page.html#instance-constructor-constructor",
-    "src/components/Page.jsx~Page#constructor",
+    "src/components/page.jsx~pagecomponent#constructor",
+    "class/src/components/Page.jsx~PageComponent.html#instance-constructor-constructor",
+    "src/components/Page.jsx~PageComponent#constructor",
     "method"
   ],
   [
-    "src/components/page.jsx~page#name",
-    "class/src/components/Page.jsx~Page.html#instance-member-name",
-    "src/components/Page.jsx~Page#name",
+    "src/components/page.jsx~pagecomponent#name",
+    "class/src/components/Page.jsx~PageComponent.html#instance-member-name",
+    "src/components/Page.jsx~PageComponent#name",
     "member"
   ],
   [
-    "src/components/page.jsx~page#render",
-    "class/src/components/Page.jsx~Page.html#instance-method-render",
-    "src/components/Page.jsx~Page#render",
+    "src/components/page.jsx~pagecomponent#render",
+    "class/src/components/Page.jsx~PageComponent.html#instance-method-render",
+    "src/components/Page.jsx~PageComponent#render",
     "method"
   ],
   [
@@ -882,45 +882,45 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/components/scrollblock/index.jsx~scrollblock#componentdidmount",
-    "class/src/components/ScrollBlock/index.jsx~ScrollBlock.html#instance-method-componentDidMount",
-    "src/components/ScrollBlock/index.jsx~ScrollBlock#componentDidMount",
+    "src/components/scrollblock/index.jsx~scrollblockcomponent#componentdidmount",
+    "class/src/components/ScrollBlock/index.jsx~ScrollBlockComponent.html#instance-method-componentDidMount",
+    "src/components/ScrollBlock/index.jsx~ScrollBlockComponent#componentDidMount",
     "method"
   ],
   [
-    "src/components/scrollblock/index.jsx~scrollblock#componentwillreceiveprops",
-    "class/src/components/ScrollBlock/index.jsx~ScrollBlock.html#instance-method-componentWillReceiveProps",
-    "src/components/ScrollBlock/index.jsx~ScrollBlock#componentWillReceiveProps",
+    "src/components/scrollblock/index.jsx~scrollblockcomponent#componentwillreceiveprops",
+    "class/src/components/ScrollBlock/index.jsx~ScrollBlockComponent.html#instance-method-componentWillReceiveProps",
+    "src/components/ScrollBlock/index.jsx~ScrollBlockComponent#componentWillReceiveProps",
     "method"
   ],
   [
-    "src/components/scrollblock/index.jsx~scrollblock#constructor",
-    "class/src/components/ScrollBlock/index.jsx~ScrollBlock.html#instance-constructor-constructor",
-    "src/components/ScrollBlock/index.jsx~ScrollBlock#constructor",
+    "src/components/scrollblock/index.jsx~scrollblockcomponent#constructor",
+    "class/src/components/ScrollBlock/index.jsx~ScrollBlockComponent.html#instance-constructor-constructor",
+    "src/components/ScrollBlock/index.jsx~ScrollBlockComponent#constructor",
     "method"
   ],
   [
-    "src/components/scrollblock/index.jsx~scrollblock#name",
-    "class/src/components/ScrollBlock/index.jsx~ScrollBlock.html#instance-member-name",
-    "src/components/ScrollBlock/index.jsx~ScrollBlock#name",
+    "src/components/scrollblock/index.jsx~scrollblockcomponent#name",
+    "class/src/components/ScrollBlock/index.jsx~ScrollBlockComponent.html#instance-member-name",
+    "src/components/ScrollBlock/index.jsx~ScrollBlockComponent#name",
     "member"
   ],
   [
-    "src/components/scrollblock/index.jsx~scrollblock#onscroll",
-    "class/src/components/ScrollBlock/index.jsx~ScrollBlock.html#instance-member-onScroll",
-    "src/components/ScrollBlock/index.jsx~ScrollBlock#onScroll",
+    "src/components/scrollblock/index.jsx~scrollblockcomponent#onscroll",
+    "class/src/components/ScrollBlock/index.jsx~ScrollBlockComponent.html#instance-member-onScroll",
+    "src/components/ScrollBlock/index.jsx~ScrollBlockComponent#onScroll",
     "member"
   ],
   [
-    "src/components/scrollblock/index.jsx~scrollblock#render",
-    "class/src/components/ScrollBlock/index.jsx~ScrollBlock.html#instance-method-render",
-    "src/components/ScrollBlock/index.jsx~ScrollBlock#render",
+    "src/components/scrollblock/index.jsx~scrollblockcomponent#render",
+    "class/src/components/ScrollBlock/index.jsx~ScrollBlockComponent.html#instance-method-render",
+    "src/components/ScrollBlock/index.jsx~ScrollBlockComponent#render",
     "method"
   ],
   [
-    "src/components/scrollblock/index.jsx~scrollblock#state",
-    "class/src/components/ScrollBlock/index.jsx~ScrollBlock.html#instance-member-state",
-    "src/components/ScrollBlock/index.jsx~ScrollBlock#state",
+    "src/components/scrollblock/index.jsx~scrollblockcomponent#state",
+    "class/src/components/ScrollBlock/index.jsx~ScrollBlockComponent.html#instance-member-state",
+    "src/components/ScrollBlock/index.jsx~ScrollBlockComponent#state",
     "member"
   ],
   [
@@ -930,39 +930,39 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/components/top/index.jsx~top#constructor",
-    "class/src/components/Top/index.jsx~Top.html#instance-constructor-constructor",
-    "src/components/Top/index.jsx~Top#constructor",
+    "src/components/top/index.jsx~topcomponent#constructor",
+    "class/src/components/Top/index.jsx~TopComponent.html#instance-constructor-constructor",
+    "src/components/Top/index.jsx~TopComponent#constructor",
     "method"
   ],
   [
-    "src/components/top/index.jsx~top#getstatefromfrill",
-    "class/src/components/Top/index.jsx~Top.html#instance-method-getStateFromFrill",
-    "src/components/Top/index.jsx~Top#getStateFromFrill",
+    "src/components/top/index.jsx~topcomponent#getstatefromfrill",
+    "class/src/components/Top/index.jsx~TopComponent.html#instance-method-getStateFromFrill",
+    "src/components/Top/index.jsx~TopComponent#getStateFromFrill",
     "method"
   ],
   [
-    "src/components/top/index.jsx~top#onloadscrollitems",
-    "class/src/components/Top/index.jsx~Top.html#instance-method-onLoadScrollItems",
-    "src/components/Top/index.jsx~Top#onLoadScrollItems",
+    "src/components/top/index.jsx~topcomponent#onfetchitems",
+    "class/src/components/Top/index.jsx~TopComponent.html#instance-method-onFetchItems",
+    "src/components/Top/index.jsx~TopComponent#onFetchItems",
     "method"
   ],
   [
-    "src/components/top/index.jsx~top#onone",
-    "class/src/components/Top/index.jsx~Top.html#instance-method-onOne",
-    "src/components/Top/index.jsx~Top#onOne",
+    "src/components/top/index.jsx~topcomponent#onone",
+    "class/src/components/Top/index.jsx~TopComponent.html#instance-method-onOne",
+    "src/components/Top/index.jsx~TopComponent#onOne",
     "method"
   ],
   [
-    "src/components/top/index.jsx~top#onten",
-    "class/src/components/Top/index.jsx~Top.html#instance-method-onTen",
-    "src/components/Top/index.jsx~Top#onTen",
+    "src/components/top/index.jsx~topcomponent#onten",
+    "class/src/components/Top/index.jsx~TopComponent.html#instance-method-onTen",
+    "src/components/Top/index.jsx~TopComponent#onTen",
     "method"
   ],
   [
-    "src/components/top/index.jsx~top#render",
-    "class/src/components/Top/index.jsx~Top.html#instance-method-render",
-    "src/components/Top/index.jsx~Top#render",
+    "src/components/top/index.jsx~topcomponent#render",
+    "class/src/components/Top/index.jsx~TopComponent.html#instance-method-render",
+    "src/components/Top/index.jsx~TopComponent#render",
     "method"
   ],
   [
@@ -1042,6 +1042,12 @@ window.esdocSearchIndex = [
     "file/src/models/vogels.js.html",
     "src/models/vogels.js",
     "file"
+  ],
+  [
+    "src/models/vogels.js~vogels",
+    "external/index.html",
+    "src/models/vogels.js~Vogels",
+    "external"
   ],
   [
     "src/routes.jsx",

@@ -14,6 +14,11 @@ const mySql = {
   Users,
 };
 
+/**
+ * List of all models
+ * @see {@link MySQLModels}
+ * @see {@link DynamoDBModels}
+ */
 const Models = {
   dynamoDb,
   mySql,

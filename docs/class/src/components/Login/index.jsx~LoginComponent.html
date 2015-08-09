@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../../../">
-  <title data-ice="title">src/api/auth/authHandlers.js | FrillJS API Document</title>
+  <title data-ice="title">LoginComponent | FrillJS API Document</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -103,84 +103,328 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">src/api/auth/authHandlers.js</h1>
-<pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">import JWT from &apos;jsonwebtoken&apos;;
-import Boom from &apos;boom&apos;;
-import aguid from &apos;aguid&apos;;
-import {where as _where} from &apos;lodash&apos;;
+<div class="content" data-ice="content"><div class="header-notice">
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import LoginComponent from &apos;<span><a href="file/src/components/Login/index.jsx.html#lineNumber10">frill/src/components/Login/index.jsx</a></span>&apos;</code></pre></div>
+  <span data-ice="access">public</span>
+  <span data-ice="kind">class</span>
+  
+  
+  
+  <span data-ice="source">| <span><a href="file/src/components/Login/index.jsx.html#lineNumber10">source</a></span></span>
+</div>
 
-// Test data
-import accounts from &apos;../../helpers/testUserData&apos;;
+<div class="self-detail detail">
+  <h1 data-ice="name">LoginComponent</h1>
 
-/**
- * Handler for authentication
- */
-const authHandler = (request, reply) =&gt; {
-  // reply error when authentication fails
-  if (!request.auth.isAuthenticated) {
-    return reply(
-      Boom.unauthorized(&apos;Authentication failed due to: &apos; +
-        request.auth.error.message)
-    );
-  }
+  <div data-ice="instanceDocs" class="instance-docs">
+    <span>You can directly use instance of this class.</span>
+    
+  <span data-ice="instanceDoc"><span><a href="variable/index.html#static-variable-loginComponent">loginComponent</a></span></span>
+</div>
 
-  const query = {
-    id: parseInt(request.auth.credentials.profile.id, 10),
-    strategy: request.auth.strategy,
-  };
+  
+  
+  <div class="flat-list" data-ice="extendsChain"><h4>Extends:</h4><div><span>FrillCore.BaseComponent</span> &#x2192; LoginComponent</div></div>
+  
+  
+  
+  
+  
+  
 
-  const user = _where(accounts, query);
-  // console.log(user);
+  
+  
+  <div class="description" data-ice="description"><p>Login component</p>
+</div>
 
-  if (user.length === 0) {
-    console.log(&apos;needs registration&apos;);
-  }
+  
 
-  delete user[0].password;
+  <div data-ice="exampleDocs">
+    <h4>Example:</h4>
+    
+  <div class="example-doc" data-ice="exampleDoc">
+      <div class="example-caption" data-ice="exampleCaption">Usage in React-Router</div>
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">&lt;Route name=&quot;login&quot; path=&quot;/login&quot; handler={LoginComponent} /&gt;</code></pre>
+    </div>
+</div>
 
-  // TODO create and set JWT into session
-  const session = {
-    valid: true,
-    id: aguid(), // a random session id
-    user: user[0],
-    exp: new Date().getTime() + 30 * 60 * 1000, // expires in 30 minutes time
-  };
+  
 
-  // // create the session in Redis
-  // redisClient.set(session.id, JSON.stringify(session));
-  request.session.set(session.id, session);
-  // sign the session as a JWT
-  const token = JWT.sign(session, &apos;NeverShareYourSecret&apos;);
-  // console.log(token);
-  request.session.flash(&apos;token&apos;, token);
-  return reply.redirect(request.query.ref || &apos;/&apos;);
-};
+  
+</div>
 
-/**
- * Handler for login
- */
-const loginHandler = () =&gt; {
 
-};
 
-/**
- * Handler for site registration
- */
-const registrationHandler = () =&gt; {
+<div data-ice="constructorSummary"><h2>Constructor Summary</h2><table class="summary" data-ice="summary">
+  <thead><tr><td data-ice="title" colspan="3">Public Constructor</td></tr></thead>
+  <tbody>
+  
+  <tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/components/Login/index.jsx~LoginComponent.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(props: <span>any</span>)</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Constructor</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+</tbody>
+</table>
+</div>
 
-};
+<div data-ice="methodSummary"><h2>Method Summary</h2><table class="summary" data-ice="summary">
+  <thead><tr><td data-ice="title" colspan="3">Public Methods</td></tr></thead>
+  <tbody>
+  
+  <tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/components/Login/index.jsx~LoginComponent.html#instance-method-onClick">onClick</a></span></span><span data-ice="signature">(e: <span>*</span>)</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Click handler</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/components/Login/index.jsx~LoginComponent.html#instance-method-render">render</a></span></span><span data-ice="signature">(): <span>React DOM</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>render</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+</tbody>
+</table>
+</div>
 
-/**
- * Export all authentication handlers
- */
-const authHandlers = {
-  authHandler,
-  loginHandler,
-  registrationHandler,
-};
 
-export default authHandlers;
-</code></pre>
+
+
+
+<div data-ice="constructorDetails"><h2 data-ice="title">Public Constructors</h2>
+
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-constructor-constructor">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">constructor</span><span data-ice="signature">(props: <span>any</span>)</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/components/Login/index.jsx.html#lineNumber15">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Constructor</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">props</td>
+      <td data-ice="type"><span>any</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"></td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+</div>
+
+<div data-ice="methodDetails"><h2 data-ice="title">Public Methods</h2>
+
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-onClick">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">onClick</span><span data-ice="signature">(e: <span>*</span>)</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/components/Login/index.jsx.html#lineNumber26">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Click handler</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">e</td>
+      <td data-ice="type"><span>*</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"></td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-render">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">render</span><span data-ice="signature">(): <span>React DOM</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/components/Login/index.jsx.html#lineNumber36">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>render</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span>React DOM</span></td>
+        
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://facebook.github.io/react/docs/component-specs.html#render">https://facebook.github.io/react/docs/component-specs.html#render</a></span></li></ul></div>
+  
+</div>
+</div>
 </div>
 
 <footer class="footer">

@@ -1,7 +1,17 @@
 import React from 'react';
 import {BaseComponent} from 'frill-core';
 
+/**
+ * Login component
+ * @extends {FrillCore.BaseComponent}
+ * @example <caption>Usage in React-Router</caption>
+ * <Route name="login" path="/login" handler={LoginComponent} />
+ */
 class LoginComponent extends BaseComponent {
+  /**
+   * Constructor
+   * @param {any} props
+   */
   constructor(props) {
     super(props);
 
@@ -10,11 +20,19 @@ class LoginComponent extends BaseComponent {
     ]);
   }
 
+  /**
+   * Click handler
+   */
   onClick(e) {
     e.preventDefault();
     console.log('btn clicked!');
   }
 
+  /**
+   * render
+   * @return {React DOM}
+   * @see https://facebook.github.io/react/docs/component-specs.html#render
+   */
   render() {
     return (
       <div className="Login">
@@ -35,4 +53,7 @@ class LoginComponent extends BaseComponent {
   }
 }
 
+/**
+ * Export LoginComponent
+ */
 export default LoginComponent;

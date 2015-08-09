@@ -2,6 +2,10 @@ import React from 'react';
 import {Route, DefaultRoute, NotFoundRoute} from 'react-router';
 import C from './components';
 
+/**
+ * Routes for components
+ * @returns {React DOM}
+ */
 const componentRoutes = () => {
   return (
     <Route handler={C.Page}>

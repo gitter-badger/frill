@@ -6,6 +6,9 @@ import Joi from 'joi';
 import AWS from './aws';
 import routePrefixer from './routePrefixer';
 
+/**
+ * List of all helpers used in app
+ */
 const helpers = {
   Joi,
   AWS,

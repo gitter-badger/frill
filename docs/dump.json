@@ -9,7 +9,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import {BaseAction} from 'frill-core';\n\n/**\n * Authentication actions\n * @extends {BaseAction}\n * @example <caption>via react or frill component</caption>\n * // logging in\n * this.getFrill().action('Auth').login('token');\n * // logging out\n * this.getFrill().action('Auth').logout();\n */\nclass AuthAction extends BaseAction {\n\n  /**\n   * Constructor\n   */\n  constructor() {\n    super();\n    // this.use('request', {prefix: '/api'});\n  }\n\n  /**\n   * Login action\n   * @param {string} token - a valid JWT token\n   * @emits {AUTH_LOGIN}\n   */\n  login(token) {\n    this.dispatch('AUTH_LOGIN', token);\n  }\n\n  /**\n   * Login action\n   * @emits {AUTH_LOGOUT}\n   */\n  logout() {\n    this.dispatch('AUTH_LOGOUT');\n  }\n}\n\n/**\n * export AuthAction instance\n */\nexport default new AuthAction();\n"
+    "content": "import {BaseAction} from 'frill-core';\n\n/**\n * Authentication actions\n * @extends {FrillCore.BaseAction}\n * @example <caption>via react or frill component</caption>\n * // logging in\n * this.getFrill().action('Auth').login('token');\n * // logging out\n * this.getFrill().action('Auth').logout();\n */\nclass AuthAction extends BaseAction {\n\n  /**\n   * Constructor\n   */\n  constructor() {\n    super();\n    // this.use('request', {prefix: '/api'});\n  }\n\n  /**\n   * Login action\n   * @param {string} token - a valid JWT token\n   * @emits {AUTH_LOGIN}\n   */\n  login(token) {\n    this.dispatch('AUTH_LOGIN', token);\n  }\n\n  /**\n   * Login action\n   * @emits {AUTH_LOGOUT}\n   */\n  logout() {\n    this.dispatch('AUTH_LOGOUT');\n  }\n}\n\n/**\n * export AuthAction instance\n */\nexport default new AuthAction();\n"
   },
   {
     "kind": "class",
@@ -30,7 +30,7 @@
     "pseudoExport": true,
     "interface": false,
     "extends": [
-      "BaseAction"
+      "FrillCore.BaseAction"
     ]
   },
   {
@@ -128,7 +128,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import {BaseAction} from 'frill-core';\nimport scrollData from '../helpers/testScrollItemsData';\n\n/**\n * Example actions\n * @extends {BaseAction}\n * @example <caption>via react or frill component</caption>\n * // count up counters\n * this.getFrill().action('Example').countUp();\n * // count up counters by a number given\n * this.getFrill().action('Example').countUpBy(10);\n * // load items by scroll\n * this.getFrill().action('Example').loadScrollItems(1, 5);\n */\nclass ExampleAction extends BaseAction {\n\n  /**\n   * Constructor\n   */\n  constructor() {\n    super();\n    // this.use('request', {prefix: '/api'});\n    // this.use('socket', {url: 'http://localhost:3000'});\n  }\n\n  /**\n   * Counts up counter by one.\n   * @emits {COUNT_UP}\n   */\n  countUp() {\n    this.dispatch('COUNT_UP');\n  }\n\n  /**\n   * Counts up counter by a number given.\n   * @param {number} [count=1] - a number to count up by\n   * @emits {COUNT_UP_BY}\n   */\n  countUpBy(count = 1) {\n    this.dispatch('COUNT_UP_BY', count);\n  }\n\n  /**\n   * load items by scroll (Infinite scrolling)\n   * @param {number} [lastIndex=1] - the last index of items loaded\n   * @param {number} [retrieve=5] - number of items to load\n   * @emits {COUNT_UP_BY}\n   */\n  loadScrollItems(lastIndex = 1, retrieve = 5) {\n    const data = scrollData.slice(lastIndex, lastIndex + retrieve);\n    setTimeout(() => {\n      this.dispatch('LOAD_SCROLL_ITEMS', {\n        data: data,\n        total: scrollData.length,\n      });\n    }, 1500);\n  }\n}\n\n/**\n * export ExampleAction instance\n */\nexport default new ExampleAction();\n"
+    "content": "import {BaseAction} from 'frill-core';\nimport scrollData from '../helpers/testScrollItemsData';\n\n/**\n * Example actions\n * @extends {FrillCore.BaseAction}\n * @example <caption>via react or frill component</caption>\n * // count up counters\n * this.getFrill().action('Example').countUp();\n * // count up counters by a number given\n * this.getFrill().action('Example').countUpBy(10);\n * // load items by scroll\n * this.getFrill().action('Example').loadScrollItems(1, 5);\n */\nclass ExampleAction extends BaseAction {\n\n  /**\n   * Constructor\n   */\n  constructor() {\n    super();\n    // this.use('request', {prefix: '/api'});\n    // this.use('socket', {url: 'http://localhost:3000'});\n  }\n\n  /**\n   * Counts up counter by one.\n   * @emits {COUNT_UP}\n   */\n  countUp() {\n    this.dispatch('COUNT_UP');\n  }\n\n  /**\n   * Counts up counter by a number given.\n   * @param {number} [count=1] - a number to count up by\n   * @emits {COUNT_UP_BY}\n   */\n  countUpBy(count = 1) {\n    this.dispatch('COUNT_UP_BY', count);\n  }\n\n  /**\n   * load items by scroll (Infinite scrolling)\n   * @param {number} [lastIndex=1] - the last index of items loaded\n   * @param {number} [retrieve=5] - number of items to load\n   * @emits {LOAD_SCROLL_ITEMS}\n   */\n  loadScrollItems(lastIndex = 1, retrieve = 5) {\n    const data = scrollData.slice(lastIndex, lastIndex + retrieve);\n    setTimeout(() => {\n      this.dispatch('LOAD_SCROLL_ITEMS', {\n        data: data,\n        total: scrollData.length,\n      });\n    }, 1500);\n  }\n}\n\n/**\n * export ExampleAction instance\n */\nexport default new ExampleAction();\n"
   },
   {
     "kind": "class",
@@ -149,7 +149,7 @@
     "pseudoExport": true,
     "interface": false,
     "extends": [
-      "BaseAction"
+      "FrillCore.BaseAction"
     ]
   },
   {
@@ -259,7 +259,7 @@
     "emits": [
       {
         "types": [
-          "COUNT_UP_BY"
+          "LOAD_SCROLL_ITEMS"
         ],
         "description": ""
       }
@@ -295,7 +295,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Auth from './Auth';\nimport Example from './Example';\n\n/**\n * List of all actions to use\n */\nconst Actions = {\n  Auth: Auth,\n  Example: Example,\n};\n\n/**\n * Export all actions\n */\nexport default Actions;\n"
+    "content": "import Auth from './Auth';\nimport Example from './Example';\n\n/**\n * List of all actions to use in app\n */\nconst Actions = {\n  Auth: Auth,\n  Example: Example,\n};\n\nexport default Actions;\n"
   },
   {
     "kind": "variable",
@@ -308,7 +308,7 @@
     "export": true,
     "importPath": "frill/src/actions/index.js",
     "importStyle": "Actions",
-    "description": "Export all actions",
+    "description": "List of all actions to use in app",
     "lineNumber": 7,
     "type": {
       "types": [
@@ -971,22 +971,21 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import frillCore from 'frill-core';\nimport Stores from './stores';\nimport Actions from './actions';\n\nconst Frill = frillCore;\n\n// load stores and actions.\nFrill._Stores = Stores;\nFrill._Actions = Actions;\n\nexport default Frill;\n"
+    "content": "import frillCore from 'frill-core';\nimport Stores from './stores';\nimport Actions from './actions';\n\n/**\n * FrillCore\n */\nconst FrillCore = frillCore;\n\n// load stores and actions.\nFrillCore._Stores = Stores;\nFrillCore._Actions = Actions;\n\nexport default FrillCore;\n"
   },
   {
     "kind": "variable",
     "static": true,
     "variation": null,
-    "name": "Frill",
+    "name": "FrillCore",
     "memberof": "src/bootstrap.js",
-    "longname": "src/bootstrap.js~Frill",
+    "longname": "src/bootstrap.js~FrillCore",
     "access": null,
     "export": true,
     "importPath": "frill/src/bootstrap.js",
-    "importStyle": "Frill",
-    "description": null,
-    "lineNumber": 5,
-    "undocument": true,
+    "importStyle": "FrillCore",
+    "description": "FrillCore",
+    "lineNumber": 8,
     "type": {
       "types": [
         "*"
@@ -1055,7 +1054,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import React from 'react';\nimport {Link, RouteHandler} from 'react-router';\n\n/**\n * App component\n * @extends {React.Component}\n * @example <caption>Usage in React-Router</caption>\n * <Route name=\"app\" path=\"/\" handler={App} />\n */\nclass AppComponent extends React.Component {\n\n  /**\n   * Constructor\n   * @param {any} props - props for components\n   */\n  constructor(props) {\n    super(props);\n\n    /**\n     * Name of component\n     */\n    this.name = 'App';\n  }\n\n  /**\n   * Renders the App\n   * @return {React DOM}\n   */\n  render() {\n    return (\n      <div className=\"App\">\n        <header>\n          <h1>Welcome to FrillJS!</h1>\n        </header>\n        <nav>\n          <ul>\n            <li><Link to=\"top\">Top page</Link></li>\n            <li><Link to=\"login\">Login Sample</Link></li>\n            <li>\n              <a href=\"http://localhost:3000/auth/twitter/login\">\n                Twitter Auth Test\n              </a>\n            </li>\n          </ul>\n        </nav>\n        <RouteHandler {...this.props}/>\n        <footer>\n          <p>FrillJS</p>\n        </footer>\n      </div>\n    );\n  }\n}\n\n/**\n * Export AppComponent\n */\nexport default AppComponent;\n"
+    "content": "import React from 'react';\nimport {Link, RouteHandler} from 'react-router';\n\n/**\n * App component\n * @extends {React.Component}\n * @example <caption>Usage in React-Router</caption>\n * <Route name=\"app\" path=\"/\" handler={AppComponent} />\n */\nclass AppComponent extends React.Component {\n\n  /**\n   * Constructor\n   * @param {any} props\n   */\n  constructor(props) {\n    super(props);\n\n    /**\n     * Name of component\n     */\n    this.name = 'App';\n  }\n\n  /**\n   * render\n   * @return {React DOM}\n   * @see https://facebook.github.io/react/docs/component-specs.html#render\n   */\n  render() {\n    return (\n      <div className=\"App\">\n        <header>\n          <h1>Welcome to FrillJS!</h1>\n        </header>\n        <nav>\n          <ul>\n            <li><Link to=\"top\">Top page</Link></li>\n            <li><Link to=\"login\">Login Sample</Link></li>\n            <li>\n              <a href=\"http://localhost:3000/auth/twitter/login\">\n                Twitter Auth Test\n              </a>\n            </li>\n          </ul>\n        </nav>\n        <RouteHandler {...this.props}/>\n        <footer>\n          <p>FrillJS</p>\n        </footer>\n      </div>\n    );\n  }\n}\n\n/**\n * Export AppComponent\n */\nexport default AppComponent;\n"
   },
   {
     "kind": "class",
@@ -1070,7 +1069,7 @@
     "importStyle": "AppComponent",
     "description": "App component",
     "examples": [
-      "<caption>Usage in React-Router</caption>\n<Route name=\"app\" path=\"/\" handler={App} />"
+      "<caption>Usage in React-Router</caption>\n<Route name=\"app\" path=\"/\" handler={AppComponent} />"
     ],
     "lineNumber": 10,
     "interface": false,
@@ -1097,7 +1096,7 @@
         "spread": false,
         "optional": false,
         "name": "props",
-        "description": "props for components"
+        "description": ""
       }
     ],
     "generator": false
@@ -1126,8 +1125,11 @@
     "memberof": "src/components/App/index.jsx~AppComponent",
     "longname": "src/components/App/index.jsx~AppComponent#render",
     "access": null,
-    "description": "Renders the App",
-    "lineNumber": 29,
+    "description": "render",
+    "see": [
+      "https://facebook.github.io/react/docs/component-specs.html#render"
+    ],
+    "lineNumber": 30,
     "params": [],
     "return": {
       "nullable": null,
@@ -1151,7 +1153,7 @@
     "importPath": "frill/src/components/App/index.jsx",
     "importStyle": "appComponent",
     "description": "Export AppComponent",
-    "lineNumber": 58,
+    "lineNumber": 59,
     "type": {
       "types": [
         "src/components/App/index.jsx~AppComponent"
@@ -1168,25 +1170,27 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import React from 'react';\nimport {BaseComponent} from 'frill-core';\n\nclass Error extends BaseComponent {\n    constructor(props) {\n      super(props);\n      this.name = 'Error';\n    }\n    render() {\n      const status = this.props.status;\n      return (\n        <div>\n          <a href=\"/\">Back to top</a>\n          <div>CODE: {status.statusCode}</div>\n          <div>ERROR: {status.error}</div>\n          <div>MESSAGE: {status.message}</div>\n        </div>\n      );\n    }\n}\n\nexport default Error;\n"
+    "content": "import React from 'react';\nimport {BaseComponent} from 'frill-core';\n\n/**\n * Error component - handles error with status code\n * @extends {FrillCore.BaseComponent}\n * @example <caption>Usage in React-Router</caption>\n * <NotFoundRoute name=\"Error\" handler={C.Error}/>\n */\nclass ErrorComponent extends BaseComponent {\n  /**\n   * Constructor\n   * @param {any} props\n   */\n  constructor(props) {\n    super(props);\n\n    /**\n     * Name of component\n     */\n    this.name = 'Error';\n  }\n\n  /**\n   * render\n   * @return {React DOM}\n   * @see https://facebook.github.io/react/docs/component-specs.html#render\n   */\n  render() {\n    const status = this.props.status;\n    return (\n      <div>\n        <a href=\"/\">Back to top</a>\n        <div>CODE: {status.statusCode}</div>\n        <div>ERROR: {status.error}</div>\n        <div>MESSAGE: {status.message}</div>\n      </div>\n    );\n  }\n}\n\n/**\n * Exports ErrorComponent\n */\nexport default ErrorComponent;\n"
   },
   {
     "kind": "class",
     "static": true,
     "variation": null,
-    "name": "Error",
+    "name": "ErrorComponent",
     "memberof": "src/components/Error.jsx",
-    "longname": "src/components/Error.jsx~Error",
+    "longname": "src/components/Error.jsx~ErrorComponent",
     "access": null,
     "export": true,
     "importPath": "frill/src/components/Error.jsx",
-    "importStyle": "Error",
-    "description": null,
-    "lineNumber": 4,
-    "undocument": true,
+    "importStyle": "ErrorComponent",
+    "description": "Error component - handles error with status code",
+    "examples": [
+      "<caption>Usage in React-Router</caption>\n<NotFoundRoute name=\"Error\" handler={C.Error}/>"
+    ],
+    "lineNumber": 10,
     "interface": false,
     "extends": [
-      "frill-core~BaseComponent"
+      "FrillCore.BaseComponent"
     ]
   },
   {
@@ -1194,18 +1198,21 @@
     "static": false,
     "variation": null,
     "name": "constructor",
-    "memberof": "src/components/Error.jsx~Error",
-    "longname": "src/components/Error.jsx~Error#constructor",
+    "memberof": "src/components/Error.jsx~ErrorComponent",
+    "longname": "src/components/Error.jsx~ErrorComponent#constructor",
     "access": null,
-    "description": null,
-    "lineNumber": 5,
-    "undocument": true,
+    "description": "Constructor",
+    "lineNumber": 15,
     "params": [
       {
-        "name": "props",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "any"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "props",
+        "description": ""
       }
     ],
     "generator": false
@@ -1215,12 +1222,11 @@
     "static": false,
     "variation": null,
     "name": "name",
-    "memberof": "src/components/Error.jsx~Error",
-    "longname": "src/components/Error.jsx~Error#name",
+    "memberof": "src/components/Error.jsx~ErrorComponent",
+    "longname": "src/components/Error.jsx~ErrorComponent#name",
     "access": null,
-    "description": null,
-    "lineNumber": 7,
-    "undocument": true,
+    "description": "Name of component",
+    "lineNumber": 21,
     "type": {
       "types": [
         "string"
@@ -1232,17 +1238,22 @@
     "static": false,
     "variation": null,
     "name": "render",
-    "memberof": "src/components/Error.jsx~Error",
-    "longname": "src/components/Error.jsx~Error#render",
+    "memberof": "src/components/Error.jsx~ErrorComponent",
+    "longname": "src/components/Error.jsx~ErrorComponent#render",
     "access": null,
-    "description": null,
-    "lineNumber": 9,
-    "undocument": true,
+    "description": "render",
+    "see": [
+      "https://facebook.github.io/react/docs/component-specs.html#render"
+    ],
+    "lineNumber": 29,
     "params": [],
     "return": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "React DOM"
+      ],
+      "spread": false,
+      "description": ""
     },
     "generator": false
   },
@@ -1250,19 +1261,18 @@
     "kind": "variable",
     "static": true,
     "variation": null,
-    "name": "error",
+    "name": "errorComponent",
     "memberof": "src/components/Error.jsx",
-    "longname": "src/components/Error.jsx~error",
+    "longname": "src/components/Error.jsx~errorComponent",
     "access": null,
     "export": true,
     "importPath": "frill/src/components/Error.jsx",
-    "importStyle": "error",
-    "description": null,
-    "lineNumber": 22,
-    "undocument": true,
+    "importStyle": "errorComponent",
+    "description": "Exports ErrorComponent",
+    "lineNumber": 45,
     "type": {
       "types": [
-        "src/components/Error.jsx~Error"
+        "src/components/Error.jsx~ErrorComponent"
       ]
     }
   },
@@ -1276,25 +1286,27 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import React from 'react';\nimport {BaseComponent} from 'frill-core';\n\nclass Login extends BaseComponent {\n  constructor(props) {\n    super(props);\n\n    this._bind([\n      'onClick',\n    ]);\n  }\n\n  onClick(e) {\n    e.preventDefault();\n    console.log('btn clicked!');\n  }\n\n  render() {\n    return (\n      <div className=\"Login\">\n        <h2>Login Sample</h2>\n        <form>\n          <p className=\"form-item\">\n            <input type=\"text\" ref=\"username\" placeholder=\"username\" />\n          </p>\n          <p className=\"form-item\">\n            <input type=\"password\" ref=\"password\" placeholder=\"password\" />\n          </p>\n          <p className=\"form-item\">\n            <button onClick={this.onClick}>login</button>\n          </p>\n        </form>\n      </div>\n    );\n  }\n}\n\nexport default Login;\n"
+    "content": "import React from 'react';\nimport {BaseComponent} from 'frill-core';\n\n/**\n * Login component\n * @extends {FrillCore.BaseComponent}\n * @example <caption>Usage in React-Router</caption>\n * <Route name=\"login\" path=\"/login\" handler={LoginComponent} />\n */\nclass LoginComponent extends BaseComponent {\n  /**\n   * Constructor\n   * @param {any} props\n   */\n  constructor(props) {\n    super(props);\n\n    this._bind([\n      'onClick',\n    ]);\n  }\n\n  /**\n   * Click handler\n   */\n  onClick(e) {\n    e.preventDefault();\n    console.log('btn clicked!');\n  }\n\n  /**\n   * render\n   * @return {React DOM}\n   * @see https://facebook.github.io/react/docs/component-specs.html#render\n   */\n  render() {\n    return (\n      <div className=\"Login\">\n        <h2>Login Sample</h2>\n        <form>\n          <p className=\"form-item\">\n            <input type=\"text\" ref=\"username\" placeholder=\"username\" />\n          </p>\n          <p className=\"form-item\">\n            <input type=\"password\" ref=\"password\" placeholder=\"password\" />\n          </p>\n          <p className=\"form-item\">\n            <button onClick={this.onClick}>login</button>\n          </p>\n        </form>\n      </div>\n    );\n  }\n}\n\n/**\n * Export LoginComponent\n */\nexport default LoginComponent;\n"
   },
   {
     "kind": "class",
     "static": true,
     "variation": null,
-    "name": "Login",
+    "name": "LoginComponent",
     "memberof": "src/components/Login/index.jsx",
-    "longname": "src/components/Login/index.jsx~Login",
+    "longname": "src/components/Login/index.jsx~LoginComponent",
     "access": null,
     "export": true,
     "importPath": "frill/src/components/Login/index.jsx",
-    "importStyle": "Login",
-    "description": null,
-    "lineNumber": 4,
-    "undocument": true,
+    "importStyle": "LoginComponent",
+    "description": "Login component",
+    "examples": [
+      "<caption>Usage in React-Router</caption>\n<Route name=\"login\" path=\"/login\" handler={LoginComponent} />"
+    ],
+    "lineNumber": 10,
     "interface": false,
     "extends": [
-      "frill-core~BaseComponent"
+      "FrillCore.BaseComponent"
     ]
   },
   {
@@ -1302,18 +1314,21 @@
     "static": false,
     "variation": null,
     "name": "constructor",
-    "memberof": "src/components/Login/index.jsx~Login",
-    "longname": "src/components/Login/index.jsx~Login#constructor",
+    "memberof": "src/components/Login/index.jsx~LoginComponent",
+    "longname": "src/components/Login/index.jsx~LoginComponent#constructor",
     "access": null,
-    "description": null,
-    "lineNumber": 5,
-    "undocument": true,
+    "description": "Constructor",
+    "lineNumber": 15,
     "params": [
       {
-        "name": "props",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "any"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "props",
+        "description": ""
       }
     ],
     "generator": false
@@ -1323,12 +1338,11 @@
     "static": false,
     "variation": null,
     "name": "onClick",
-    "memberof": "src/components/Login/index.jsx~Login",
-    "longname": "src/components/Login/index.jsx~Login#onClick",
+    "memberof": "src/components/Login/index.jsx~LoginComponent",
+    "longname": "src/components/Login/index.jsx~LoginComponent#onClick",
     "access": null,
-    "description": null,
-    "lineNumber": 13,
-    "undocument": true,
+    "description": "Click handler",
+    "lineNumber": 26,
     "params": [
       {
         "name": "e",
@@ -1344,17 +1358,22 @@
     "static": false,
     "variation": null,
     "name": "render",
-    "memberof": "src/components/Login/index.jsx~Login",
-    "longname": "src/components/Login/index.jsx~Login#render",
+    "memberof": "src/components/Login/index.jsx~LoginComponent",
+    "longname": "src/components/Login/index.jsx~LoginComponent#render",
     "access": null,
-    "description": null,
-    "lineNumber": 18,
-    "undocument": true,
+    "description": "render",
+    "see": [
+      "https://facebook.github.io/react/docs/component-specs.html#render"
+    ],
+    "lineNumber": 36,
     "params": [],
     "return": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "React DOM"
+      ],
+      "spread": false,
+      "description": ""
     },
     "generator": false
   },
@@ -1362,19 +1381,18 @@
     "kind": "variable",
     "static": true,
     "variation": null,
-    "name": "login",
+    "name": "loginComponent",
     "memberof": "src/components/Login/index.jsx",
-    "longname": "src/components/Login/index.jsx~login",
+    "longname": "src/components/Login/index.jsx~loginComponent",
     "access": null,
     "export": true,
     "importPath": "frill/src/components/Login/index.jsx",
-    "importStyle": "login",
-    "description": null,
-    "lineNumber": 38,
-    "undocument": true,
+    "importStyle": "loginComponent",
+    "description": "Export LoginComponent",
+    "lineNumber": 59,
     "type": {
       "types": [
-        "src/components/Login/index.jsx~Login"
+        "src/components/Login/index.jsx~LoginComponent"
       ]
     }
   },
@@ -1388,25 +1406,27 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import React from 'react';\nimport {BaseComponent} from 'frill-core';\nimport {canUseDOM} from 'react/lib/ExecutionEnvironment';\nimport {RouteHandler} from 'react-router';\n// import jwtDecode from 'jwt-decode';\n\nclass Page extends BaseComponent {\n\n  constructor(props) {\n    super(props);\n    this.name = 'App';\n    if (props.token) {\n      this.getFrill().action('Auth').login(props.token);\n    }\n\n    if (canUseDOM) {\n      // clear up initial-data from dom\n      document.getElementById('initial-data').outerHTML = '';\n    }\n  }\n\n  render() {\n    return (\n      <RouteHandler {...this.props}/>\n    );\n  }\n}\n\nexport default Page;\n"
+    "content": "import React from 'react';\nimport {BaseComponent} from 'frill-core';\nimport {canUseDOM} from 'react/lib/ExecutionEnvironment';\nimport {RouteHandler} from 'react-router';\n// import jwtDecode from 'jwt-decode';\n\n/**\n * Page component - wraps up all pages\n * @extends {FrillCore.BaseComponent}\n * @example <caption>Usage in React-Router</caption>\n * <Route handler={C.Page}>\n *   ...\n * </Route>\n */\nclass PageComponent extends BaseComponent {\n\n  /**\n   * Constructor\n   */\n  constructor(props) {\n    super(props);\n\n    /**\n     * Name of component\n     */\n    this.name = 'App';\n\n    if (props.token) {\n      this.getFrill().action('Auth').login(props.token);\n    }\n\n    if (canUseDOM) {\n      // clear up initial-data from dom\n      document.getElementById('initial-data').outerHTML = '';\n    }\n  }\n\n  /**\n   * render\n   * @return {React DOM}\n   * @see https://facebook.github.io/react/docs/component-specs.html#render\n   */\n  render() {\n    return (\n      <RouteHandler {...this.props}/>\n    );\n  }\n}\n\n/**\n * Exports PageComponent\n */\nexport default PageComponent;\n"
   },
   {
     "kind": "class",
     "static": true,
     "variation": null,
-    "name": "Page",
+    "name": "PageComponent",
     "memberof": "src/components/Page.jsx",
-    "longname": "src/components/Page.jsx~Page",
+    "longname": "src/components/Page.jsx~PageComponent",
     "access": null,
     "export": true,
     "importPath": "frill/src/components/Page.jsx",
-    "importStyle": "Page",
-    "description": null,
-    "lineNumber": 7,
-    "undocument": true,
+    "importStyle": "PageComponent",
+    "description": "Page component - wraps up all pages",
+    "examples": [
+      "<caption>Usage in React-Router</caption>\n<Route handler={C.Page}>\n  ...\n</Route>"
+    ],
+    "lineNumber": 15,
     "interface": false,
     "extends": [
-      "frill-core~BaseComponent"
+      "FrillCore.BaseComponent"
     ]
   },
   {
@@ -1414,12 +1434,11 @@
     "static": false,
     "variation": null,
     "name": "constructor",
-    "memberof": "src/components/Page.jsx~Page",
-    "longname": "src/components/Page.jsx~Page#constructor",
+    "memberof": "src/components/Page.jsx~PageComponent",
+    "longname": "src/components/Page.jsx~PageComponent#constructor",
     "access": null,
-    "description": null,
-    "lineNumber": 9,
-    "undocument": true,
+    "description": "Constructor",
+    "lineNumber": 20,
     "params": [
       {
         "name": "props",
@@ -1435,12 +1454,11 @@
     "static": false,
     "variation": null,
     "name": "name",
-    "memberof": "src/components/Page.jsx~Page",
-    "longname": "src/components/Page.jsx~Page#name",
+    "memberof": "src/components/Page.jsx~PageComponent",
+    "longname": "src/components/Page.jsx~PageComponent#name",
     "access": null,
-    "description": null,
-    "lineNumber": 11,
-    "undocument": true,
+    "description": "Name of component",
+    "lineNumber": 26,
     "type": {
       "types": [
         "string"
@@ -1452,17 +1470,22 @@
     "static": false,
     "variation": null,
     "name": "render",
-    "memberof": "src/components/Page.jsx~Page",
-    "longname": "src/components/Page.jsx~Page#render",
+    "memberof": "src/components/Page.jsx~PageComponent",
+    "longname": "src/components/Page.jsx~PageComponent#render",
     "access": null,
-    "description": null,
-    "lineNumber": 22,
-    "undocument": true,
+    "description": "render",
+    "see": [
+      "https://facebook.github.io/react/docs/component-specs.html#render"
+    ],
+    "lineNumber": 43,
     "params": [],
     "return": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "React DOM"
+      ],
+      "spread": false,
+      "description": ""
     },
     "generator": false
   },
@@ -1470,19 +1493,18 @@
     "kind": "variable",
     "static": true,
     "variation": null,
-    "name": "page",
+    "name": "pageComponent",
     "memberof": "src/components/Page.jsx",
-    "longname": "src/components/Page.jsx~page",
+    "longname": "src/components/Page.jsx~pageComponent",
     "access": null,
     "export": true,
     "importPath": "frill/src/components/Page.jsx",
-    "importStyle": "page",
-    "description": null,
-    "lineNumber": 29,
-    "undocument": true,
+    "importStyle": "pageComponent",
+    "description": "Exports PageComponent",
+    "lineNumber": 53,
     "type": {
       "types": [
-        "src/components/Page.jsx~Page"
+        "src/components/Page.jsx~PageComponent"
       ]
     }
   },
@@ -1496,25 +1518,27 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import React from 'react';\nimport {canUseDOM} from 'react/lib/ExecutionEnvironment';\n\nclass ScrollBlock extends React.Component {\n  constructor() {\n    super();\n    this.name = 'ScrollBlock';\n\n    this.state = {\n      isLoading: false,\n      // NOTE: changed from 'isAllLoaded'\n      isLoadedAll: false,\n    };\n\n    if (canUseDOM) {\n      this.onScroll = this.onScroll.bind(this);\n    }\n  }\n\n  componentDidMount() {\n    if (!this.props.itemsCount) {\n      this.setState({\n        isLoading: true,\n      });\n\n      this.props.fetchData();\n    }\n  }\n\n  componentWillReceiveProps(newProps) {\n    if (newProps.children) {\n      this.setState({\n        isLoading: false,\n      });\n    }\n  }\n\n  onScroll() {\n    if (!this.state.isLoading && !this.state.isLoadedAll) {\n      const _elem = React.findDOMNode(this.refs.scrollBlock);\n\n      if (_elem.scrollHeight - _elem.scrollTop - 1 === _elem.clientHeight) {\n        // if items are all loaded\n        if (this.props.itemTotal &&\n          (this.props.itemTotal === this.props.itemsCount)) {\n          this.setState({\n            isLoading: true,\n            isLoadedAll: true,\n          });\n\n        // else if there are more items to load\n        } else {\n          this.setState({\n            isLoading: true,\n          });\n          this.props.fetchData();\n        }\n      }\n    }\n  }\n\n  render() {\n    const _className = this.state.isLoading ? ' is-loading' : '';\n    const isLoadedAll = this.state.isLoadedAll;\n\n    return (\n      <div>\n        <div className=\"ScrollBlock\" onScroll={this.onScroll} ref=\"scrollBlock\">\n          {this.props.children}\n          <p className={`ScrollBlock-loading${_className}`}>\n            {(!isLoadedAll ? () => {\n              // return 'loading...' when there are more items to load\n              return 'loading ...';\n            } : () => {\n              // when all items loaded\n              return 'loaded!';\n            })()}\n          </p>\n        </div>\n      </div>\n    );\n  }\n}\nScrollBlock.propTypes = {\n  fetchData: React.PropTypes.func,\n  itemsCount: React.PropTypes.number,\n  itemTotal: React.PropTypes.number,\n};\n\nexport default ScrollBlock;\n"
+    "content": "import React from 'react';\nimport {canUseDOM} from 'react/lib/ExecutionEnvironment';\n\n/**\n * ScrollBlock component for infinite scrolling\n * @extends {React.Component}\n * @example <caption>Usage in React component</caption>\n * import ScrollBlock from 'ScrollBlock';\n * ...\n * render() {\n *   return (\n *     <ScrollBlock\n *       fetchData={this.onLoadScrollItems}\n *       itemsCount={this.state.scrollItemsCount}\n *       itemTotal={this.state.scrollItemTotal}>\n *       <ul className=\"scroll-list\">\n *         {items}\n *       </ul>\n *     </ScrollBlock>\n *   );\n * }\n */\nclass ScrollBlockComponent extends React.Component {\n  /**\n   * Constructor\n   * @param {any} props\n   */\n  constructor(props) {\n    super(props);\n\n    /**\n     * Name of component\n     */\n    this.name = 'ScrollBlock';\n\n    /**\n     * State of component\n     */\n    this.state = {\n      isLoading: false,\n      // NOTE: changed from 'isAllLoaded'\n      isLoadedAll: false,\n    };\n\n    if (canUseDOM) {\n      /**\n       * Scroll handler (bind)\n       */\n      this.onScroll = this.onScroll.bind(this);\n    }\n  }\n\n  /**\n   * componentDidMount\n   * @see https://facebook.github.io/react/docs/component-specs.html#mounting-componentdidmount\n   */\n  componentDidMount() {\n    if (!this.props.itemsCount) {\n      this.setState({\n        isLoading: true,\n      });\n\n      this.props.fetchData();\n    }\n  }\n\n  /**\n   * componentWillReceiveProps\n   * @see https://facebook.github.io/react/docs/component-specs.html#updating-componentwillreceiveprops\n   */\n  componentWillReceiveProps(newProps) {\n    if (newProps.children) {\n      this.setState({\n        isLoading: false,\n      });\n    }\n  }\n\n  /**\n   * Scroll handler\n   */\n  onScroll() {\n    if (!this.state.isLoading && !this.state.isLoadedAll) {\n      const _elem = React.findDOMNode(this.refs.scrollBlock);\n\n      if (_elem.scrollHeight - _elem.scrollTop - 1 === _elem.clientHeight) {\n        // if items are all loaded\n        if (this.props.itemTotal &&\n          (this.props.itemTotal === this.props.itemsCount)) {\n          this.setState({\n            isLoading: true,\n            isLoadedAll: true,\n          });\n\n        // else if there are more items to load\n        } else {\n          this.setState({\n            isLoading: true,\n          });\n          this.props.fetchData();\n        }\n      }\n    }\n  }\n\n  /**\n   * render\n   * @return {React DOM}\n   * @see https://facebook.github.io/react/docs/component-specs.html#render\n   */\n  render() {\n    const _className = this.state.isLoading ? ' is-loading' : '';\n    const isLoadedAll = this.state.isLoadedAll;\n\n    return (\n      <div>\n        <div className=\"ScrollBlock\" onScroll={this.onScroll} ref=\"scrollBlock\">\n          {this.props.children}\n          <p className={`ScrollBlock-loading${_className}`}>\n            {(!isLoadedAll ? () => {\n              // return 'loading...' when there are more items to load\n              return 'loading ...';\n            } : () => {\n              // when all items loaded\n              return 'loaded!';\n            })()}\n          </p>\n        </div>\n      </div>\n    );\n  }\n}\n\n/**\n * PropTypes\n */\nScrollBlock.propTypes = {\n  // function to fetch new items\n  fetchData: React.PropTypes.func,\n  // Count of loaded items\n  itemsCount: React.PropTypes.number,\n  // Count of total items\n  itemTotal: React.PropTypes.number,\n};\n\n/**\n * Export ScrollBlockComponent\n */\nexport default ScrollBlockComponent;\n"
   },
   {
     "kind": "class",
     "static": true,
     "variation": null,
-    "name": "ScrollBlock",
+    "name": "ScrollBlockComponent",
     "memberof": "src/components/ScrollBlock/index.jsx",
-    "longname": "src/components/ScrollBlock/index.jsx~ScrollBlock",
+    "longname": "src/components/ScrollBlock/index.jsx~ScrollBlockComponent",
     "access": null,
     "export": true,
     "importPath": "frill/src/components/ScrollBlock/index.jsx",
-    "importStyle": "ScrollBlock",
-    "description": null,
-    "lineNumber": 4,
-    "undocument": true,
+    "importStyle": "ScrollBlockComponent",
+    "description": "ScrollBlock component for infinite scrolling",
+    "examples": [
+      "<caption>Usage in React component</caption>\nimport ScrollBlock from 'ScrollBlock';\n...\nrender() {\n  return (\n    <ScrollBlock\n      fetchData={this.onLoadScrollItems}\n      itemsCount={this.state.scrollItemsCount}\n      itemTotal={this.state.scrollItemTotal}>\n      <ul className=\"scroll-list\">\n        {items}\n      </ul>\n    </ScrollBlock>\n  );\n}"
+    ],
+    "lineNumber": 23,
     "interface": false,
     "extends": [
-      "react~React.Component"
+      "React.Component"
     ]
   },
   {
@@ -1522,13 +1546,23 @@
     "static": false,
     "variation": null,
     "name": "constructor",
-    "memberof": "src/components/ScrollBlock/index.jsx~ScrollBlock",
-    "longname": "src/components/ScrollBlock/index.jsx~ScrollBlock#constructor",
+    "memberof": "src/components/ScrollBlock/index.jsx~ScrollBlockComponent",
+    "longname": "src/components/ScrollBlock/index.jsx~ScrollBlockComponent#constructor",
     "access": null,
-    "description": null,
-    "lineNumber": 5,
-    "undocument": true,
-    "params": [],
+    "description": "Constructor",
+    "lineNumber": 28,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "any"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "props",
+        "description": ""
+      }
+    ],
     "generator": false
   },
   {
@@ -1536,12 +1570,11 @@
     "static": false,
     "variation": null,
     "name": "name",
-    "memberof": "src/components/ScrollBlock/index.jsx~ScrollBlock",
-    "longname": "src/components/ScrollBlock/index.jsx~ScrollBlock#name",
+    "memberof": "src/components/ScrollBlock/index.jsx~ScrollBlockComponent",
+    "longname": "src/components/ScrollBlock/index.jsx~ScrollBlockComponent#name",
     "access": null,
-    "description": null,
-    "lineNumber": 7,
-    "undocument": true,
+    "description": "Name of component",
+    "lineNumber": 34,
     "type": {
       "types": [
         "string"
@@ -1553,12 +1586,11 @@
     "static": false,
     "variation": null,
     "name": "state",
-    "memberof": "src/components/ScrollBlock/index.jsx~ScrollBlock",
-    "longname": "src/components/ScrollBlock/index.jsx~ScrollBlock#state",
+    "memberof": "src/components/ScrollBlock/index.jsx~ScrollBlockComponent",
+    "longname": "src/components/ScrollBlock/index.jsx~ScrollBlockComponent#state",
     "access": null,
-    "description": null,
-    "lineNumber": 9,
-    "undocument": true,
+    "description": "State of component",
+    "lineNumber": 39,
     "type": {
       "types": [
         "*"
@@ -1570,12 +1602,11 @@
     "static": false,
     "variation": null,
     "name": "onScroll",
-    "memberof": "src/components/ScrollBlock/index.jsx~ScrollBlock",
-    "longname": "src/components/ScrollBlock/index.jsx~ScrollBlock#onScroll",
+    "memberof": "src/components/ScrollBlock/index.jsx~ScrollBlockComponent",
+    "longname": "src/components/ScrollBlock/index.jsx~ScrollBlockComponent#onScroll",
     "access": null,
-    "description": null,
-    "lineNumber": 16,
-    "undocument": true,
+    "description": "Scroll handler (bind)",
+    "lineNumber": 49,
     "type": {
       "types": [
         "*"
@@ -1587,12 +1618,14 @@
     "static": false,
     "variation": null,
     "name": "componentDidMount",
-    "memberof": "src/components/ScrollBlock/index.jsx~ScrollBlock",
-    "longname": "src/components/ScrollBlock/index.jsx~ScrollBlock#componentDidMount",
+    "memberof": "src/components/ScrollBlock/index.jsx~ScrollBlockComponent",
+    "longname": "src/components/ScrollBlock/index.jsx~ScrollBlockComponent#componentDidMount",
     "access": null,
-    "description": null,
-    "lineNumber": 20,
-    "undocument": true,
+    "description": "componentDidMount",
+    "see": [
+      "https://facebook.github.io/react/docs/component-specs.html#mounting-componentdidmount"
+    ],
+    "lineNumber": 57,
     "params": [],
     "generator": false
   },
@@ -1601,12 +1634,14 @@
     "static": false,
     "variation": null,
     "name": "componentWillReceiveProps",
-    "memberof": "src/components/ScrollBlock/index.jsx~ScrollBlock",
-    "longname": "src/components/ScrollBlock/index.jsx~ScrollBlock#componentWillReceiveProps",
+    "memberof": "src/components/ScrollBlock/index.jsx~ScrollBlockComponent",
+    "longname": "src/components/ScrollBlock/index.jsx~ScrollBlockComponent#componentWillReceiveProps",
     "access": null,
-    "description": null,
-    "lineNumber": 30,
-    "undocument": true,
+    "description": "componentWillReceiveProps",
+    "see": [
+      "https://facebook.github.io/react/docs/component-specs.html#updating-componentwillreceiveprops"
+    ],
+    "lineNumber": 71,
     "params": [
       {
         "name": "newProps",
@@ -1622,12 +1657,11 @@
     "static": false,
     "variation": null,
     "name": "onScroll",
-    "memberof": "src/components/ScrollBlock/index.jsx~ScrollBlock",
-    "longname": "src/components/ScrollBlock/index.jsx~ScrollBlock#onScroll",
+    "memberof": "src/components/ScrollBlock/index.jsx~ScrollBlockComponent",
+    "longname": "src/components/ScrollBlock/index.jsx~ScrollBlockComponent#onScroll",
     "access": null,
-    "description": null,
-    "lineNumber": 38,
-    "undocument": true,
+    "description": "Scroll handler",
+    "lineNumber": 82,
     "params": [],
     "generator": false
   },
@@ -1636,17 +1670,22 @@
     "static": false,
     "variation": null,
     "name": "render",
-    "memberof": "src/components/ScrollBlock/index.jsx~ScrollBlock",
-    "longname": "src/components/ScrollBlock/index.jsx~ScrollBlock#render",
+    "memberof": "src/components/ScrollBlock/index.jsx~ScrollBlockComponent",
+    "longname": "src/components/ScrollBlock/index.jsx~ScrollBlockComponent#render",
     "access": null,
-    "description": null,
-    "lineNumber": 62,
-    "undocument": true,
+    "description": "render",
+    "see": [
+      "https://facebook.github.io/react/docs/component-specs.html#render"
+    ],
+    "lineNumber": 111,
     "params": [],
     "return": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "React DOM"
+      ],
+      "spread": false,
+      "description": ""
     },
     "generator": false
   },
@@ -1654,19 +1693,18 @@
     "kind": "variable",
     "static": true,
     "variation": null,
-    "name": "scrollBlock",
+    "name": "scrollBlockComponent",
     "memberof": "src/components/ScrollBlock/index.jsx",
-    "longname": "src/components/ScrollBlock/index.jsx~scrollBlock",
+    "longname": "src/components/ScrollBlock/index.jsx~scrollBlockComponent",
     "access": null,
     "export": true,
     "importPath": "frill/src/components/ScrollBlock/index.jsx",
-    "importStyle": "scrollBlock",
-    "description": null,
-    "lineNumber": 90,
-    "undocument": true,
+    "importStyle": "scrollBlockComponent",
+    "description": "Export ScrollBlockComponent",
+    "lineNumber": 149,
     "type": {
       "types": [
-        "src/components/ScrollBlock/index.jsx~ScrollBlock"
+        "src/components/ScrollBlock/index.jsx~ScrollBlockComponent"
       ]
     }
   },
@@ -1680,41 +1718,49 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import React from 'react';\nimport {StoreWatchComponent} from '../../bootstrap';\nimport ScrollBlock from '../ScrollBlock';\n\nclass Top extends new StoreWatchComponent(['Example']) {\n\n  constructor(props) {\n    super(props);\n\n    this._bind([\n      'onOne',\n      'onTen',\n      'onLoadScrollItems',\n    ]);\n  }\n\n  onOne() {\n    this.getFrill().action('Example').countUp();\n  }\n\n  onTen() {\n    this.getFrill().action('Example').countUpBy(10);\n  }\n\n  onLoadScrollItems() {\n    this.getFrill()\n      .action('Example')\n      .loadScrollItems(this.state.scrollItemsCount, 5);\n  }\n\n  getStateFromFrill() {\n    return {\n      count: this.getFrill().store('Example').getCount(),\n      scrollItems: this.getFrill().store('Example').getScrollItems(),\n      scrollItemsCount: this.getFrill().store('Example').getScrollItemsCount(),\n      scrollItemTotal: this.getFrill().store('Example').getScrollItemTotal(),\n    };\n  }\n\n  render() {\n    const items = [];\n\n    this.state.scrollItems.map((item) => {\n      items.push(\n        <li key={item.id}>\n          <p>ID : {item.id}</p>\n          <p>title : {item.title}</p>\n        </li>\n      );\n    });\n\n    return (\n      <div className=\"Top\">\n        <h2>Samples</h2>\n        <section>\n          <h3>Button - counter</h3>\n          <p className=\"count\">{this.state.count}</p>\n          <button onClick={this.onOne}>+1</button>\n          <button onClick={this.onTen}>+10</button>\n        </section>\n        <section>\n          <h3>Textarea</h3>\n          <textarea placeholder=\"type something ...\"></textarea>\n        </section>\n        <section>\n          <h3>Infinite Scroll</h3>\n          <ScrollBlock\n            fetchData={this.onLoadScrollItems}\n            itemsCount={this.state.scrollItemsCount}\n            itemTotal={this.state.scrollItemTotal}>\n              <h4>Scroll down the box ...</h4>\n              <ul className=\"scroll-list\">\n                {items}\n              </ul>\n          </ScrollBlock>\n        </section>\n      </div>\n    );\n  }\n}\n\nexport default Top;\n"
+    "content": "import React from 'react';\nimport {StoreWatchComponent} from 'frill-core';\nimport ScrollBlock from '../ScrollBlock';\n\n/**\n * Top component\n * @extends {FrillCore.StoreWatchComponent}\n * @example <caption>Usage in React-Router</caption>\n * <Route name=\"login\" path=\"/login\" handler={LoginComponent} />\n */\nclass TopComponent extends new StoreWatchComponent(['Example']) {\n\n  /**\n   * Constructor\n   * @param {any} props\n   */\n  constructor(props) {\n    super(props);\n\n    this._bind([\n      'onOne',\n      'onTen',\n      'onFetchItems',\n    ]);\n  }\n\n  /**\n   * Count up by one\n   */\n  onOne() {\n    this.getFrill().action('Example').countUp();\n  }\n\n  /**\n   * Count up by ten\n   */\n  onTen() {\n    this.getFrill().action('Example').countUpBy(10);\n  }\n\n  /**\n   * Fetch items\n   */\n  onFetchItems() {\n    this.getFrill()\n      .action('Example')\n      .loadScrollItems(this.state.scrollItemsCount, 5);\n  }\n\n  /**\n   * getStateFromFrill\n   * @listens {ExampleStore}\n   */\n  getStateFromFrill() {\n    return {\n      count: this.getFrill().store('Example').getCount(),\n      scrollItems: this.getFrill().store('Example').getScrollItems(),\n      scrollItemsCount: this.getFrill().store('Example').getScrollItemsCount(),\n      scrollItemTotal: this.getFrill().store('Example').getScrollItemTotal(),\n    };\n  }\n\n  /**\n   * render\n   * @return {React DOM}\n   * @see https://facebook.github.io/react/docs/component-specs.html#render\n   */\n  render() {\n    const items = [];\n\n    this.state.scrollItems.map((item) => {\n      items.push(\n        <li key={item.id}>\n          <p>ID : {item.id}</p>\n          <p>title : {item.title}</p>\n        </li>\n      );\n    });\n\n    return (\n      <div className=\"Top\">\n        <h2>Samples</h2>\n        <section>\n          <h3>Button - counter</h3>\n          <p className=\"count\">{this.state.count}</p>\n          <button onClick={this.onOne}>+1</button>\n          <button onClick={this.onTen}>+10</button>\n        </section>\n        <section>\n          <h3>Textarea</h3>\n          <textarea placeholder=\"type something ...\"></textarea>\n        </section>\n        <section>\n          <h3>Infinite Scroll</h3>\n          <ScrollBlock\n            fetchData={this.onFetchItems}\n            itemsCount={this.state.scrollItemsCount}\n            itemTotal={this.state.scrollItemTotal}>\n              <h4>Scroll down the box ...</h4>\n              <ul className=\"scroll-list\">\n                {items}\n              </ul>\n          </ScrollBlock>\n        </section>\n      </div>\n    );\n  }\n}\n\n/**\n * Export TomComponent\n */\nexport default TopComponent;\n"
   },
   {
     "kind": "class",
     "static": true,
     "variation": null,
-    "name": "Top",
+    "name": "TopComponent",
     "memberof": "src/components/Top/index.jsx",
-    "longname": "src/components/Top/index.jsx~Top",
+    "longname": "src/components/Top/index.jsx~TopComponent",
     "access": null,
     "export": true,
     "importPath": "frill/src/components/Top/index.jsx",
-    "importStyle": "Top",
-    "description": null,
-    "lineNumber": 5,
-    "undocument": true,
-    "interface": false
+    "importStyle": "TopComponent",
+    "description": "Top component",
+    "examples": [
+      "<caption>Usage in React-Router</caption>\n<Route name=\"login\" path=\"/login\" handler={LoginComponent} />"
+    ],
+    "lineNumber": 11,
+    "interface": false,
+    "extends": [
+      "FrillCore.StoreWatchComponent"
+    ]
   },
   {
     "kind": "constructor",
     "static": false,
     "variation": null,
     "name": "constructor",
-    "memberof": "src/components/Top/index.jsx~Top",
-    "longname": "src/components/Top/index.jsx~Top#constructor",
+    "memberof": "src/components/Top/index.jsx~TopComponent",
+    "longname": "src/components/Top/index.jsx~TopComponent#constructor",
     "access": null,
-    "description": null,
-    "lineNumber": 7,
-    "undocument": true,
+    "description": "Constructor",
+    "lineNumber": 17,
     "params": [
       {
-        "name": "props",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "any"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "props",
+        "description": ""
       }
     ],
     "generator": false
@@ -1724,12 +1770,11 @@
     "static": false,
     "variation": null,
     "name": "onOne",
-    "memberof": "src/components/Top/index.jsx~Top",
-    "longname": "src/components/Top/index.jsx~Top#onOne",
+    "memberof": "src/components/Top/index.jsx~TopComponent",
+    "longname": "src/components/Top/index.jsx~TopComponent#onOne",
     "access": null,
-    "description": null,
-    "lineNumber": 17,
-    "undocument": true,
+    "description": "Count up by one",
+    "lineNumber": 30,
     "params": [],
     "generator": false
   },
@@ -1738,12 +1783,11 @@
     "static": false,
     "variation": null,
     "name": "onTen",
-    "memberof": "src/components/Top/index.jsx~Top",
-    "longname": "src/components/Top/index.jsx~Top#onTen",
+    "memberof": "src/components/Top/index.jsx~TopComponent",
+    "longname": "src/components/Top/index.jsx~TopComponent#onTen",
     "access": null,
-    "description": null,
-    "lineNumber": 21,
-    "undocument": true,
+    "description": "Count up by ten",
+    "lineNumber": 37,
     "params": [],
     "generator": false
   },
@@ -1751,13 +1795,12 @@
     "kind": "method",
     "static": false,
     "variation": null,
-    "name": "onLoadScrollItems",
-    "memberof": "src/components/Top/index.jsx~Top",
-    "longname": "src/components/Top/index.jsx~Top#onLoadScrollItems",
+    "name": "onFetchItems",
+    "memberof": "src/components/Top/index.jsx~TopComponent",
+    "longname": "src/components/Top/index.jsx~TopComponent#onFetchItems",
     "access": null,
-    "description": null,
-    "lineNumber": 25,
-    "undocument": true,
+    "description": "Fetch items",
+    "lineNumber": 44,
     "params": [],
     "generator": false
   },
@@ -1766,18 +1809,25 @@
     "static": false,
     "variation": null,
     "name": "getStateFromFrill",
-    "memberof": "src/components/Top/index.jsx~Top",
-    "longname": "src/components/Top/index.jsx~Top#getStateFromFrill",
+    "memberof": "src/components/Top/index.jsx~TopComponent",
+    "longname": "src/components/Top/index.jsx~TopComponent#getStateFromFrill",
     "access": null,
-    "description": null,
-    "lineNumber": 31,
-    "undocument": true,
+    "description": "getStateFromFrill",
+    "lineNumber": 54,
     "params": [],
     "return": {
       "types": [
         "*"
       ]
     },
+    "listens": [
+      {
+        "types": [
+          "ExampleStore"
+        ],
+        "description": ""
+      }
+    ],
     "generator": false
   },
   {
@@ -1785,17 +1835,22 @@
     "static": false,
     "variation": null,
     "name": "render",
-    "memberof": "src/components/Top/index.jsx~Top",
-    "longname": "src/components/Top/index.jsx~Top#render",
+    "memberof": "src/components/Top/index.jsx~TopComponent",
+    "longname": "src/components/Top/index.jsx~TopComponent#render",
     "access": null,
-    "description": null,
-    "lineNumber": 40,
-    "undocument": true,
+    "description": "render",
+    "see": [
+      "https://facebook.github.io/react/docs/component-specs.html#render"
+    ],
+    "lineNumber": 68,
     "params": [],
     "return": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "React DOM"
+      ],
+      "spread": false,
+      "description": ""
     },
     "generator": false
   },
@@ -1803,19 +1858,18 @@
     "kind": "variable",
     "static": true,
     "variation": null,
-    "name": "top",
+    "name": "topComponent",
     "memberof": "src/components/Top/index.jsx",
-    "longname": "src/components/Top/index.jsx~top",
+    "longname": "src/components/Top/index.jsx~topComponent",
     "access": null,
     "export": true,
     "importPath": "frill/src/components/Top/index.jsx",
-    "importStyle": "top",
-    "description": null,
-    "lineNumber": 82,
-    "undocument": true,
+    "importStyle": "topComponent",
+    "description": "Export TomComponent",
+    "lineNumber": 113,
     "type": {
       "types": [
-        "src/components/Top/index.jsx~Top"
+        "src/components/Top/index.jsx~TopComponent"
       ]
     }
   },
@@ -1829,7 +1883,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Page from './Page';\nimport App from './App';\nimport Top from './Top';\nimport Login from './Login';\nimport Error from './Error';\n\nconst Components = {\n  // Parent component\n  Page: Page,\n  App: App,\n  Top: Top,\n  Login: Login,\n\n  // Error handler\n  Error: Error,\n\n};\n\nexport default Components;\n"
+    "content": "import Page from './Page';\nimport App from './App';\nimport Top from './Top';\nimport Login from './Login';\nimport Error from './Error';\n\n/**\n * List of all components used in app\n */\nconst Components = {\n  // Parent component\n  Page: Page,\n  App: App,\n  Top: Top,\n  Login: Login,\n\n  // Error handler\n  Error: Error,\n};\n\nexport default Components;\n"
   },
   {
     "kind": "variable",
@@ -1842,9 +1896,8 @@
     "export": true,
     "importPath": "frill/src/components/index.js",
     "importStyle": "Components",
-    "description": null,
-    "lineNumber": 7,
-    "undocument": true,
+    "description": "List of all components used in app",
+    "lineNumber": 10,
     "type": {
       "types": [
         "*"
@@ -1873,7 +1926,7 @@
     "access": null,
     "description": null,
     "lineNumber": 5,
-    "content": "/**\n * Setup helpers to use from the 'api'\n */\n\nimport Joi from 'joi';\nimport AWS from './aws';\nimport routePrefixer from './routePrefixer';\n\nconst helpers = {\n  Joi,\n  AWS,\n  routePrefixer,\n};\n\nexport default helpers;\n"
+    "content": "/**\n * Setup helpers to use from the 'api'\n */\n\nimport Joi from 'joi';\nimport AWS from './aws';\nimport routePrefixer from './routePrefixer';\n\n/**\n * List of all helpers used in app\n */\nconst helpers = {\n  Joi,\n  AWS,\n  routePrefixer,\n};\n\nexport default helpers;\n"
   },
   {
     "kind": "variable",
@@ -1886,9 +1939,8 @@
     "export": true,
     "importPath": "frill/src/helpers/index.js",
     "importStyle": "helpers",
-    "description": null,
-    "lineNumber": 9,
-    "undocument": true,
+    "description": "List of all helpers used in app",
+    "lineNumber": 12,
     "type": {
       "types": [
         "*"
@@ -2018,7 +2070,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import vogels from '../vogels';\nimport Joi from 'Joi';\n\nconst Posts = vogels.define('Post', {\n  hashKey: 'email',\n  rangeKey: 'title',\n  schema: {\n    email: Joi.string().email(),\n    title: Joi.string(),\n    content: Joi.binary(),\n    tags: vogels.types.stringSet(),\n  },\n});\n\nexport default Posts;\n"
+    "content": "import Vogels from '../vogels';\nimport Joi from 'Joi';\n\n/**\n * Posts model\n * @see https://github.com/ryanfitz/vogels#define-a-model\n */\nconst Posts = Vogels.define('Post', {\n  hashKey: 'email',\n  rangeKey: 'title',\n  schema: {\n    email: Joi.string().email(),\n    title: Joi.string(),\n    content: Joi.binary(),\n    tags: vogels.types.stringSet(),\n  },\n});\n\nexport default Posts;\n"
   },
   {
     "kind": "variable",
@@ -2031,9 +2083,11 @@
     "export": true,
     "importPath": "frill/src/models/DynamoDB/Posts.js",
     "importStyle": "Posts",
-    "description": null,
-    "lineNumber": 4,
-    "undocument": true,
+    "description": "Posts model",
+    "see": [
+      "https://github.com/ryanfitz/vogels#define-a-model"
+    ],
+    "lineNumber": 8,
     "type": {
       "types": [
         "*"
@@ -2050,7 +2104,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Posts from './Posts';\n\nconst DynamoDBModels = {\n  Posts,\n};\n\nexport default DynamoDBModels;\n"
+    "content": "import Posts from './Posts';\n\n/**\n * List of all DynamoDB models\n * @see {@link Posts}\n */\nconst DynamoDBModels = {\n  Posts,\n};\n\nexport default DynamoDBModels;\n"
   },
   {
     "kind": "variable",
@@ -2063,9 +2117,11 @@
     "export": true,
     "importPath": "frill/src/models/DynamoDB/index.js",
     "importStyle": "DynamoDBModels",
-    "description": null,
-    "lineNumber": 3,
-    "undocument": true,
+    "description": "List of all DynamoDB models",
+    "see": [
+      "{@link Posts}"
+    ],
+    "lineNumber": 7,
     "type": {
       "types": [
         "*"
@@ -2082,7 +2138,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Sequelize from 'sequelize';\nimport sequelize from '../sequelize';\n\nconst Users = sequelize.define('User', {\n  username: Sequelize.STRING,\n  birthday: Sequelize.DATE,\n});\n\nexport default Users;\n"
+    "content": "import Sequelize from 'sequelize';\nimport sequelize from '../sequelize';\n\n/**\n * Users model\n * @see http://docs.sequelizejs.com/en/latest/docs/models-definition/#definition\n */\nconst Users = sequelize.define('User', {\n  username: Sequelize.STRING,\n  birthday: Sequelize.DATE,\n});\n\nexport default Users;\n"
   },
   {
     "kind": "variable",
@@ -2095,9 +2151,11 @@
     "export": true,
     "importPath": "frill/src/models/MySQL/Users.js",
     "importStyle": "Users",
-    "description": null,
-    "lineNumber": 4,
-    "undocument": true,
+    "description": "Users model",
+    "see": [
+      "http://docs.sequelizejs.com/en/latest/docs/models-definition/#definition"
+    ],
+    "lineNumber": 8,
     "type": {
       "types": [
         "*"
@@ -2114,7 +2172,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Users from './Users';\n\nconst MySQLModels = {\n  Users,\n};\n\nexport default MySQLModels;\n"
+    "content": "import Users from './Users';\n\n/**\n * List of all DynamoDB models\n * @see {@link Users}\n */\nconst MySQLModels = {\n  Users,\n};\n\nexport default MySQLModels;\n"
   },
   {
     "kind": "variable",
@@ -2127,9 +2185,11 @@
     "export": true,
     "importPath": "frill/src/models/MySQL/index.js",
     "importStyle": "MySQLModels",
-    "description": null,
-    "lineNumber": 3,
-    "undocument": true,
+    "description": "List of all DynamoDB models",
+    "see": [
+      "{@link Users}"
+    ],
+    "lineNumber": 7,
     "type": {
       "types": [
         "*"
@@ -2146,7 +2206,7 @@
     "access": null,
     "description": null,
     "lineNumber": 5,
-    "content": "/**\n * Example for using multiple type of databases\n */\n// example for DynamoDB using vogels\nimport {Posts} from './DynamoDB';\n// example for MySQL using sequelize\nimport {Users} from './MySQL';\n\nconst dynamoDb = {\n  Posts,\n};\n\nconst mySql = {\n  Users,\n};\n\nconst Models = {\n  dynamoDb,\n  mySql,\n};\n\nexport default Models;\n"
+    "content": "/**\n * Example for using multiple type of databases\n */\n// example for DynamoDB using vogels\nimport {Posts} from './DynamoDB';\n// example for MySQL using sequelize\nimport {Users} from './MySQL';\n\nconst dynamoDb = {\n  Posts,\n};\n\nconst mySql = {\n  Users,\n};\n\n/**\n * List of all models\n * @see {@link MySQLModels}\n * @see {@link DynamoDBModels}\n */\nconst Models = {\n  dynamoDb,\n  mySql,\n};\n\nexport default Models;\n"
   },
   {
     "kind": "variable",
@@ -2199,9 +2259,12 @@
     "export": true,
     "importPath": "frill/src/models/index.js",
     "importStyle": "Models",
-    "description": null,
-    "lineNumber": 17,
-    "undocument": true,
+    "description": "List of all models",
+    "see": [
+      "{@link MySQLModels}",
+      "{@link DynamoDBModels}"
+    ],
+    "lineNumber": 22,
     "type": {
       "types": [
         "*"
@@ -2218,7 +2281,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Sequelize from 'sequelize';\n\nsequelize = new Sequelize('database', 'username', 'password', {\n  host: 'localhost',\n  dialect: 'mysql',\n  // pool: {\n  //   max: 5,\n  //   min: 0,\n  //   idle: 10000,\n  // },\n});\n\nexport default sequelize;\n"
+    "content": "import Sequelize from 'sequelize';\n\n/**\n * setup sequelize\n * @external {Sequelize} http://docs.sequelizejs.com/en/latest/\n */\nconst sequelize = new Sequelize('database', 'username', 'password', {\n  host: 'localhost',\n  dialect: 'mysql',\n  // pool: {\n  //   max: 5,\n  //   min: 0,\n  //   idle: 10000,\n  // },\n});\n\nexport default sequelize;\n"
   },
   {
     "kind": "file",
@@ -2230,7 +2293,19 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import vogels from 'vogels';\nimport {AWS} from './../helpers';\n\n// setup vogels\nvogels.dynamoDriver(new AWS.DynamoDB({\n  endpoint: 'http://localhost:8000',\n}));\n\nexport default vogels;\n"
+    "content": "import vogels from 'vogels';\nimport {AWS} from './../helpers';\n\n/**\n * setup vogels\n * @external {Vogels} https://github.com/ryanfitz/vogels\n */\nvogels.dynamoDriver(new AWS.DynamoDB({\n  endpoint: 'http://localhost:8000',\n}));\n\nexport default vogels;\n"
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Vogels",
+    "externalLink": "https://github.com/ryanfitz/vogels",
+    "memberof": "src/models/vogels.js",
+    "longname": "src/models/vogels.js~Vogels",
+    "access": null,
+    "description": "setup vogels",
+    "lineNumber": 8
   },
   {
     "kind": "file",
@@ -2242,7 +2317,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import React from 'react';\nimport {Route, DefaultRoute, NotFoundRoute} from 'react-router';\nimport C from './components';\n\nconst componentRoutes = () => {\n  return (\n    <Route handler={C.Page}>\n      <Route name=\"app\" path=\"/\" handler={C.App}>\n        <DefaultRoute name=\"top\" handler={C.Top} />\n        <Route name=\"login\" handler={C.Login} />\n      </Route>\n      <NotFoundRoute name=\"Error\" handler={C.Error}/>\n    </Route>\n  );\n};\n\nexport default componentRoutes;\n"
+    "content": "import React from 'react';\nimport {Route, DefaultRoute, NotFoundRoute} from 'react-router';\nimport C from './components';\n\n/**\n * Routes for components\n * @returns {React DOM}\n */\nconst componentRoutes = () => {\n  return (\n    <Route handler={C.Page}>\n      <Route name=\"app\" path=\"/\" handler={C.App}>\n        <DefaultRoute name=\"top\" handler={C.Top} />\n        <Route name=\"login\" handler={C.Login} />\n      </Route>\n      <NotFoundRoute name=\"Error\" handler={C.Error}/>\n    </Route>\n  );\n};\n\nexport default componentRoutes;\n"
   },
   {
     "kind": "variable",
@@ -2255,9 +2330,22 @@
     "export": true,
     "importPath": "frill/src/routes.jsx",
     "importStyle": "componentRoutes",
-    "description": null,
-    "lineNumber": 5,
-    "undocument": true,
+    "description": "Routes for components",
+    "lineNumber": 9,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{React DOM}"
+      }
+    ],
+    "return": {
+      "nullable": null,
+      "types": [
+        "React DOM"
+      ],
+      "spread": false,
+      "description": ""
+    },
     "type": {
       "types": [
         "*"
@@ -2422,7 +2510,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import {BaseStore} from 'frill-core';\nimport jwtDecode from 'jwt-decode';\n\nclass AuthStore extends BaseStore {\n\n  constructor() {\n    super();\n    this._user = null;\n    this._jwt = null;\n    this.actions = {\n      'AUTH_LOGIN': 'login',\n      'AUTH_LOGOUT': 'logout',\n    };\n  }\n\n  login(token) {\n    // store these to localStorage\n    this._jwt = token;\n    this._user = jwtDecode(this._jwt);\n    this.change();\n  }\n\n  logout() {\n    // remove these from localStorage\n    this._jwt = null;\n    this._user = null;\n    this.change();\n  }\n\n  get user() {\n    return this._user;\n  }\n\n  get jwt() {\n    return this._jwt;\n  }\n\n  isLoggedIn() {\n    return Boolean(this._user);\n  }\n}\n\nexport default new AuthStore();\n"
+    "content": "import {BaseStore} from 'frill-core';\nimport jwtDecode from 'jwt-decode';\n\n/**\n * Authentication store\n * @extends {FrillCore.BaseStore}\n * @example <caption>via frill component</caption>\n * this.getFrill().store('Auth').jwt // get JWT\n * @example <caption>via frill action</caption>\n * this.dispatch('AUTH_LOGIN', token); // login with JWT\n */\nclass AuthStore extends BaseStore {\n\n  /**\n   * Constructor\n   */\n  constructor() {\n    super();\n    this._user = null;\n    this._jwt = null;\n\n    /**\n     * Actions to listen\n     * @param {Object} actions\n     * @listens {AUTH_LOGIN}\n     * @listens {AUTH_LOGOUT}\n     */\n    this.actions = {\n      'AUTH_LOGIN': 'login',\n      'AUTH_LOGOUT': 'logout',\n    };\n  }\n\n  /**\n   * Login using JWT\n   * @param {string} token - a valid JsonWebToken\n   * @emits {change}\n   * @see http://jwt.io/\n   */\n  login(token) {\n    // store these to localStorage\n    this._jwt = token;\n    this._user = jwtDecode(this._jwt);\n    this.change();\n  }\n\n  /**\n   * Logout\n   * @emits {change}\n   */\n  logout() {\n    // remove these from localStorage\n    this._jwt = null;\n    this._user = null;\n    this.change();\n  }\n\n  /**\n   * User data\n   * @type {Object}\n   */\n  get user() {\n    return this._user;\n  }\n\n  /**\n   * JsonWebToken\n   * @type {string}\n   */\n  get jwt() {\n    return this._jwt;\n  }\n\n  /**\n   * Check if logged in\n   * @returns {boolean}\n   */\n  isLoggedIn() {\n    return Boolean(this._user);\n  }\n}\n\n\n/**\n * Export AuthStore instance\n */\nexport default new AuthStore();\n"
   },
   {
     "kind": "class",
@@ -2435,13 +2523,16 @@
     "export": true,
     "importPath": "frill/src/stores/Auth.js",
     "importStyle": null,
-    "description": null,
-    "lineNumber": 4,
+    "description": "Authentication store",
+    "examples": [
+      "<caption>via frill component</caption>\nthis.getFrill().store('Auth').jwt // get JWT",
+      "<caption>via frill action</caption>\nthis.dispatch('AUTH_LOGIN', token); // login with JWT"
+    ],
+    "lineNumber": 12,
     "pseudoExport": true,
-    "undocument": true,
     "interface": false,
     "extends": [
-      "frill-core~BaseStore"
+      "FrillCore.BaseStore"
     ]
   },
   {
@@ -2452,100 +2543,10 @@
     "memberof": "src/stores/Auth.js~AuthStore",
     "longname": "src/stores/Auth.js~AuthStore#constructor",
     "access": null,
-    "description": null,
-    "lineNumber": 6,
-    "undocument": true,
+    "description": "Constructor",
+    "lineNumber": 17,
     "params": [],
     "generator": false
-  },
-  {
-    "kind": "member",
-    "static": false,
-    "variation": null,
-    "name": "_user",
-    "memberof": "src/stores/Auth.js~AuthStore",
-    "longname": "src/stores/Auth.js~AuthStore#_user",
-    "access": null,
-    "description": null,
-    "lineNumber": 8,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "kind": "member",
-    "static": false,
-    "variation": null,
-    "name": "_jwt",
-    "memberof": "src/stores/Auth.js~AuthStore",
-    "longname": "src/stores/Auth.js~AuthStore#_jwt",
-    "access": null,
-    "description": null,
-    "lineNumber": 9,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "kind": "member",
-    "static": false,
-    "variation": null,
-    "name": "actions",
-    "memberof": "src/stores/Auth.js~AuthStore",
-    "longname": "src/stores/Auth.js~AuthStore#actions",
-    "access": null,
-    "description": null,
-    "lineNumber": 10,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "kind": "method",
-    "static": false,
-    "variation": null,
-    "name": "login",
-    "memberof": "src/stores/Auth.js~AuthStore",
-    "longname": "src/stores/Auth.js~AuthStore#login",
-    "access": null,
-    "description": null,
-    "lineNumber": 16,
-    "undocument": true,
-    "params": [
-      {
-        "name": "token",
-        "types": [
-          "*"
-        ]
-      }
-    ],
-    "generator": false
-  },
-  {
-    "kind": "member",
-    "static": false,
-    "variation": null,
-    "name": "_jwt",
-    "memberof": "src/stores/Auth.js~AuthStore",
-    "longname": "src/stores/Auth.js~AuthStore#_jwt",
-    "access": null,
-    "description": null,
-    "lineNumber": 18,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
   },
   {
     "kind": "member",
@@ -2565,17 +2566,97 @@
     }
   },
   {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "_jwt",
+    "memberof": "src/stores/Auth.js~AuthStore",
+    "longname": "src/stores/Auth.js~AuthStore#_jwt",
+    "access": null,
+    "description": null,
+    "lineNumber": 20,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "actions",
+    "memberof": "src/stores/Auth.js~AuthStore",
+    "longname": "src/stores/Auth.js~AuthStore#actions",
+    "access": null,
+    "description": "Actions to listen",
+    "lineNumber": 28,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "actions",
+        "description": ""
+      }
+    ],
+    "type": {
+      "types": [
+        "*"
+      ]
+    },
+    "listens": [
+      {
+        "types": [
+          "AUTH_LOGIN"
+        ],
+        "description": ""
+      },
+      {
+        "types": [
+          "AUTH_LOGOUT"
+        ],
+        "description": ""
+      }
+    ]
+  },
+  {
     "kind": "method",
     "static": false,
     "variation": null,
-    "name": "logout",
+    "name": "login",
     "memberof": "src/stores/Auth.js~AuthStore",
-    "longname": "src/stores/Auth.js~AuthStore#logout",
+    "longname": "src/stores/Auth.js~AuthStore#login",
     "access": null,
-    "description": null,
-    "lineNumber": 23,
-    "undocument": true,
-    "params": [],
+    "description": "Login using JWT",
+    "see": [
+      "http://jwt.io/"
+    ],
+    "lineNumber": 40,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "token",
+        "description": "a valid JsonWebToken"
+      }
+    ],
+    "emits": [
+      {
+        "types": [
+          "change"
+        ],
+        "description": ""
+      }
+    ],
     "generator": false
   },
   {
@@ -2587,7 +2668,7 @@
     "longname": "src/stores/Auth.js~AuthStore#_jwt",
     "access": null,
     "description": null,
-    "lineNumber": 25,
+    "lineNumber": 42,
     "undocument": true,
     "type": {
       "types": [
@@ -2604,7 +2685,62 @@
     "longname": "src/stores/Auth.js~AuthStore#_user",
     "access": null,
     "description": null,
-    "lineNumber": 26,
+    "lineNumber": 43,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "logout",
+    "memberof": "src/stores/Auth.js~AuthStore",
+    "longname": "src/stores/Auth.js~AuthStore#logout",
+    "access": null,
+    "description": "Logout",
+    "lineNumber": 51,
+    "params": [],
+    "emits": [
+      {
+        "types": [
+          "change"
+        ],
+        "description": ""
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "_jwt",
+    "memberof": "src/stores/Auth.js~AuthStore",
+    "longname": "src/stores/Auth.js~AuthStore#_jwt",
+    "access": null,
+    "description": null,
+    "lineNumber": 53,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "_user",
+    "memberof": "src/stores/Auth.js~AuthStore",
+    "longname": "src/stores/Auth.js~AuthStore#_user",
+    "access": null,
+    "description": null,
+    "lineNumber": 54,
     "undocument": true,
     "type": {
       "types": [
@@ -2620,13 +2756,15 @@
     "memberof": "src/stores/Auth.js~AuthStore",
     "longname": "src/stores/Auth.js~AuthStore#user",
     "access": null,
-    "description": null,
-    "lineNumber": 30,
-    "undocument": true,
+    "description": "User data",
+    "lineNumber": 62,
     "type": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "Object"
+      ],
+      "spread": false,
+      "description": null
     },
     "generator": false
   },
@@ -2638,13 +2776,15 @@
     "memberof": "src/stores/Auth.js~AuthStore",
     "longname": "src/stores/Auth.js~AuthStore#jwt",
     "access": null,
-    "description": null,
-    "lineNumber": 34,
-    "undocument": true,
+    "description": "JsonWebToken",
+    "lineNumber": 70,
     "type": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "string"
+      ],
+      "spread": false,
+      "description": null
     },
     "generator": false
   },
@@ -2656,14 +2796,22 @@
     "memberof": "src/stores/Auth.js~AuthStore",
     "longname": "src/stores/Auth.js~AuthStore#isLoggedIn",
     "access": null,
-    "description": null,
-    "lineNumber": 38,
-    "undocument": true,
+    "description": "Check if logged in",
+    "lineNumber": 78,
+    "unknown": [
+      {
+        "tagName": "@returns",
+        "tagValue": "{boolean}"
+      }
+    ],
     "params": [],
     "return": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "boolean"
+      ],
+      "spread": false,
+      "description": ""
     },
     "generator": false
   },
@@ -2678,9 +2826,8 @@
     "export": true,
     "importPath": "frill/src/stores/Auth.js",
     "importStyle": "authStore",
-    "description": null,
-    "lineNumber": 43,
-    "undocument": true,
+    "description": "Export AuthStore instance",
+    "lineNumber": 87,
     "type": {
       "types": [
         "src/stores/Auth.js~AuthStore"
@@ -2697,7 +2844,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import {BaseStore} from 'frill-core';\n\nclass ExampleStore extends BaseStore {\n\n  constructor() {\n    super();\n    this._count = 0;\n    this._scrollItems = [];\n    this._scrollItemsCount = 0;\n    this._scrollItemTotal = 0;\n    this.actions = {\n      'COUNT_UP': 'countup',\n      'COUNT_UP_BY': 'countupBy',\n      'LOAD_SCROLL_ITEMS': 'loadScrollItems',\n    };\n  }\n\n  countup() {\n    this._count = this._count + 1;\n    this.change();\n  }\n\n  countupBy(byCount) {\n    this._count = this._count + byCount;\n    this.change();\n  }\n\n  getCount() {\n    return this._count;\n  }\n\n  loadScrollItems({data, total}) {\n    this._scrollItems = this._scrollItems.concat(data);\n    this._scrollItemsCount = this._scrollItemsCount + data.length;\n    this._scrollItemTotal = total;\n    this.change();\n  }\n\n  getScrollItems() {\n    return this._scrollItems;\n  }\n\n  getScrollItemsCount() {\n    return this._scrollItemsCount;\n  }\n\n  getScrollItemTotal() {\n    return this._scrollItemTotal;\n  }\n\n}\n\nexport default new ExampleStore();\n"
+    "content": "import {BaseStore} from 'frill-core';\n\n/**\n * Example store\n * @extends {FrillCore.BaseStore}\n * @example <caption>via frill component</caption>\n * this.getFrill().store('Example').getCount(); // get count\n * @example <caption>via frill action</caption>\n * this.dispatch('COUNT_UP_BY', 15); // count up counter by 15\n */\nclass ExampleStore extends BaseStore {\n\n  /**\n   * Constructor\n   */\n  constructor() {\n    super();\n    this._count = 0;\n    this._scrollItems = [];\n    this._scrollItemsCount = 0;\n    this._scrollItemTotal = 0;\n\n    /**\n     * Actions to listen\n     * @param {Object} actions\n     * @listens {COUNT_UP}\n     * @listens {COUNT_UP_BY}\n     * @listens {LOAD_SCROLL_ITEMS}\n     */\n    this.actions = {\n      'COUNT_UP': 'countup',\n      'COUNT_UP_BY': 'countupBy',\n      'LOAD_SCROLL_ITEMS': 'loadScrollItems',\n    };\n  }\n\n  /**\n   * Count up by 1\n   * @emits {change}\n   */\n  countup() {\n    this._count = this._count + 1;\n    this.change();\n  }\n\n  /**\n   * Count up by a number given\n   * @param {number} byCount - a number to count up by\n   * @emits {change}\n   */\n  countupBy(byCount) {\n    this._count = this._count + byCount;\n    this.change();\n  }\n\n  /**\n   * Gets current count\n   * @TODO: should use a getter\n   * @return {number} - current count\n   */\n  getCount() {\n    return this._count;\n  }\n\n  /**\n   * Load scroll items\n   * @param {Object} payload.data - data of items\n   * @param {Object} payload.total - total count of items\n   * @emits {change}\n   */\n  loadScrollItems({data, total}) {\n    this._scrollItems = this._scrollItems.concat(data);\n    this._scrollItemsCount = this._scrollItemsCount + data.length;\n    this._scrollItemTotal = total;\n    this.change();\n  }\n\n  /**\n   * Gets items\n   * @TODO: should use a getter\n   * @return {Object} - get loaded item data\n   */\n  getScrollItems() {\n    return this._scrollItems;\n  }\n\n  /**\n   * Gets loaded items count\n   * @TODO: should use a getter\n   * @return {number} - get number of loaded items\n   */\n  getScrollItemsCount() {\n    return this._scrollItemsCount;\n  }\n\n  /**\n   * Gets total count of items\n   * @TODO: should use a getter\n   * @return {number} - get number of total items\n   */\n  getScrollItemTotal() {\n    return this._scrollItemTotal;\n  }\n}\n\n/**\n * Export ExampleStore instance\n */\nexport default new ExampleStore();\n"
   },
   {
     "kind": "class",
@@ -2710,13 +2857,16 @@
     "export": true,
     "importPath": "frill/src/stores/Example.js",
     "importStyle": null,
-    "description": null,
-    "lineNumber": 3,
+    "description": "Example store",
+    "examples": [
+      "<caption>via frill component</caption>\nthis.getFrill().store('Example').getCount(); // get count",
+      "<caption>via frill action</caption>\nthis.dispatch('COUNT_UP_BY', 15); // count up counter by 15"
+    ],
+    "lineNumber": 11,
     "pseudoExport": true,
-    "undocument": true,
     "interface": false,
     "extends": [
-      "frill-core~BaseStore"
+      "FrillCore.BaseStore"
     ]
   },
   {
@@ -2727,9 +2877,8 @@
     "memberof": "src/stores/Example.js~ExampleStore",
     "longname": "src/stores/Example.js~ExampleStore#constructor",
     "access": null,
-    "description": null,
-    "lineNumber": 5,
-    "undocument": true,
+    "description": "Constructor",
+    "lineNumber": 16,
     "params": [],
     "generator": false
   },
@@ -2742,7 +2891,7 @@
     "longname": "src/stores/Example.js~ExampleStore#_count",
     "access": null,
     "description": null,
-    "lineNumber": 7,
+    "lineNumber": 18,
     "undocument": true,
     "type": {
       "types": [
@@ -2759,7 +2908,7 @@
     "longname": "src/stores/Example.js~ExampleStore#_scrollItems",
     "access": null,
     "description": null,
-    "lineNumber": 8,
+    "lineNumber": 19,
     "undocument": true,
     "type": {
       "types": [
@@ -2776,7 +2925,7 @@
     "longname": "src/stores/Example.js~ExampleStore#_scrollItemsCount",
     "access": null,
     "description": null,
-    "lineNumber": 9,
+    "lineNumber": 20,
     "undocument": true,
     "type": {
       "types": [
@@ -2793,7 +2942,7 @@
     "longname": "src/stores/Example.js~ExampleStore#_scrollItemTotal",
     "access": null,
     "description": null,
-    "lineNumber": 10,
+    "lineNumber": 21,
     "undocument": true,
     "type": {
       "types": [
@@ -2809,14 +2958,45 @@
     "memberof": "src/stores/Example.js~ExampleStore",
     "longname": "src/stores/Example.js~ExampleStore#actions",
     "access": null,
-    "description": null,
-    "lineNumber": 11,
-    "undocument": true,
+    "description": "Actions to listen",
+    "lineNumber": 30,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "actions",
+        "description": ""
+      }
+    ],
     "type": {
       "types": [
         "*"
       ]
-    }
+    },
+    "listens": [
+      {
+        "types": [
+          "COUNT_UP"
+        ],
+        "description": ""
+      },
+      {
+        "types": [
+          "COUNT_UP_BY"
+        ],
+        "description": ""
+      },
+      {
+        "types": [
+          "LOAD_SCROLL_ITEMS"
+        ],
+        "description": ""
+      }
+    ]
   },
   {
     "kind": "method",
@@ -2826,10 +3006,17 @@
     "memberof": "src/stores/Example.js~ExampleStore",
     "longname": "src/stores/Example.js~ExampleStore#countup",
     "access": null,
-    "description": null,
-    "lineNumber": 18,
-    "undocument": true,
+    "description": "Count up by 1",
+    "lineNumber": 41,
     "params": [],
+    "emits": [
+      {
+        "types": [
+          "change"
+        ],
+        "description": ""
+      }
+    ],
     "generator": false
   },
   {
@@ -2841,7 +3028,7 @@
     "longname": "src/stores/Example.js~ExampleStore#_count",
     "access": null,
     "description": null,
-    "lineNumber": 19,
+    "lineNumber": 42,
     "undocument": true,
     "type": {
       "types": [
@@ -2857,15 +3044,26 @@
     "memberof": "src/stores/Example.js~ExampleStore",
     "longname": "src/stores/Example.js~ExampleStore#countupBy",
     "access": null,
-    "description": null,
-    "lineNumber": 23,
-    "undocument": true,
+    "description": "Count up by a number given",
+    "lineNumber": 51,
     "params": [
       {
-        "name": "byCount",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "number"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "byCount",
+        "description": "a number to count up by"
+      }
+    ],
+    "emits": [
+      {
+        "types": [
+          "change"
+        ],
+        "description": ""
       }
     ],
     "generator": false
@@ -2879,7 +3077,7 @@
     "longname": "src/stores/Example.js~ExampleStore#_count",
     "access": null,
     "description": null,
-    "lineNumber": 24,
+    "lineNumber": 52,
     "undocument": true,
     "type": {
       "types": [
@@ -2895,14 +3093,16 @@
     "memberof": "src/stores/Example.js~ExampleStore",
     "longname": "src/stores/Example.js~ExampleStore#getCount",
     "access": null,
-    "description": null,
-    "lineNumber": 28,
-    "undocument": true,
+    "description": "Gets current count\n@TODO: should use a getter",
+    "lineNumber": 61,
     "params": [],
     "return": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "number"
+      ],
+      "spread": false,
+      "description": "current count"
     },
     "generator": false
   },
@@ -2914,20 +3114,36 @@
     "memberof": "src/stores/Example.js~ExampleStore",
     "longname": "src/stores/Example.js~ExampleStore#loadScrollItems",
     "access": null,
-    "description": null,
-    "lineNumber": 32,
-    "undocument": true,
+    "description": "Load scroll items",
+    "lineNumber": 71,
     "params": [
       {
-        "name": "objectPattern",
+        "nullable": null,
         "types": [
-          "{\"data\": *, \"total\": *}"
+          "Object"
         ],
-        "defaultRaw": {
-          "data": null,
-          "total": null
-        },
-        "defaultValue": "{\"data\":null,\"total\":null}"
+        "spread": false,
+        "optional": false,
+        "name": "payload.data",
+        "description": "data of items"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "Object"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "payload.total",
+        "description": "total count of items"
+      }
+    ],
+    "emits": [
+      {
+        "types": [
+          "change"
+        ],
+        "description": ""
       }
     ],
     "generator": false
@@ -2941,7 +3157,7 @@
     "longname": "src/stores/Example.js~ExampleStore#_scrollItems",
     "access": null,
     "description": null,
-    "lineNumber": 33,
+    "lineNumber": 72,
     "undocument": true,
     "type": {
       "types": [
@@ -2958,7 +3174,7 @@
     "longname": "src/stores/Example.js~ExampleStore#_scrollItemsCount",
     "access": null,
     "description": null,
-    "lineNumber": 34,
+    "lineNumber": 73,
     "undocument": true,
     "type": {
       "types": [
@@ -2975,7 +3191,7 @@
     "longname": "src/stores/Example.js~ExampleStore#_scrollItemTotal",
     "access": null,
     "description": null,
-    "lineNumber": 35,
+    "lineNumber": 74,
     "undocument": true,
     "type": {
       "types": [
@@ -2991,14 +3207,16 @@
     "memberof": "src/stores/Example.js~ExampleStore",
     "longname": "src/stores/Example.js~ExampleStore#getScrollItems",
     "access": null,
-    "description": null,
-    "lineNumber": 39,
-    "undocument": true,
+    "description": "Gets items\n@TODO: should use a getter",
+    "lineNumber": 83,
     "params": [],
     "return": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "Object"
+      ],
+      "spread": false,
+      "description": "get loaded item data"
     },
     "generator": false
   },
@@ -3010,14 +3228,16 @@
     "memberof": "src/stores/Example.js~ExampleStore",
     "longname": "src/stores/Example.js~ExampleStore#getScrollItemsCount",
     "access": null,
-    "description": null,
-    "lineNumber": 43,
-    "undocument": true,
+    "description": "Gets loaded items count\n@TODO: should use a getter",
+    "lineNumber": 92,
     "params": [],
     "return": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "number"
+      ],
+      "spread": false,
+      "description": "get number of loaded items"
     },
     "generator": false
   },
@@ -3029,14 +3249,16 @@
     "memberof": "src/stores/Example.js~ExampleStore",
     "longname": "src/stores/Example.js~ExampleStore#getScrollItemTotal",
     "access": null,
-    "description": null,
-    "lineNumber": 47,
-    "undocument": true,
+    "description": "Gets total count of items\n@TODO: should use a getter",
+    "lineNumber": 101,
     "params": [],
     "return": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "number"
+      ],
+      "spread": false,
+      "description": "get number of total items"
     },
     "generator": false
   },
@@ -3051,9 +3273,8 @@
     "export": true,
     "importPath": "frill/src/stores/Example.js",
     "importStyle": "exampleStore",
-    "description": null,
-    "lineNumber": 53,
-    "undocument": true,
+    "description": "Export ExampleStore instance",
+    "lineNumber": 109,
     "type": {
       "types": [
         "src/stores/Example.js~ExampleStore"
@@ -3070,7 +3291,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Auth from './Auth';\nimport Example from './Example';\n\nconst Stores = {\n  Auth: Auth,\n  Example: Example,\n};\n\nexport default Stores;\n"
+    "content": "import Auth from './Auth';\nimport Example from './Example';\n\n/**\n * List of all stores to use in app\n */\nconst Stores = {\n  Auth: Auth,\n  Example: Example,\n};\n\nexport default Stores;\n"
   },
   {
     "kind": "variable",
@@ -3083,9 +3304,8 @@
     "export": true,
     "importPath": "frill/src/stores/index.js",
     "importStyle": "Stores",
-    "description": null,
-    "lineNumber": 4,
-    "undocument": true,
+    "description": "List of all stores to use in app",
+    "lineNumber": 7,
     "type": {
       "types": [
         "*"

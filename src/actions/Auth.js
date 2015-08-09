@@ -2,7 +2,7 @@ import {BaseAction} from 'frill-core';
 
 /**
  * Authentication actions
- * @extends {BaseAction}
+ * @extends {FrillCore.BaseAction}
  * @example <caption>via react or frill component</caption>
  * // logging in
  * this.getFrill().action('Auth').login('token');

@@ -72,19 +72,14 @@
           "line": 1,
           "column": 34
         }
-      }
-    },
-    {
-      "type": "ExpressionStatement",
-      "expression": {
-        "type": "AssignmentExpression",
-        "operator": "=",
-        "left": {
-          "type": "Identifier",
-          "name": "sequelize",
+      },
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * setup sequelize\n * @external {Sequelize} http://docs.sequelizejs.com/en/latest/\n ",
           "range": [
             36,
-            45
+            126
           ],
           "loc": {
             "start": {
@@ -92,269 +87,299 @@
               "column": 0
             },
             "end": {
-              "line": 3,
-              "column": 9
+              "line": 6,
+              "column": 3
             }
           }
-        },
-        "right": {
-          "type": "NewExpression",
-          "callee": {
+        }
+      ]
+    },
+    {
+      "type": "Identifier",
+      "declarations": [
+        {
+          "type": "VariableDeclarator",
+          "id": {
             "type": "Identifier",
-            "name": "Sequelize",
+            "name": "sequelize",
             "range": [
-              52,
-              61
+              133,
+              142
             ],
             "loc": {
               "start": {
-                "line": 3,
-                "column": 16
+                "line": 7,
+                "column": 6
               },
               "end": {
-                "line": 3,
-                "column": 25
+                "line": 7,
+                "column": 15
               }
             }
           },
-          "arguments": [
-            {
-              "type": "Literal",
-              "value": "database",
-              "raw": "'database'",
+          "init": {
+            "type": "NewExpression",
+            "callee": {
+              "type": "Identifier",
+              "name": "Sequelize",
               "range": [
-                62,
-                72
+                149,
+                158
               ],
               "loc": {
                 "start": {
-                  "line": 3,
-                  "column": 26
+                  "line": 7,
+                  "column": 22
                 },
                 "end": {
-                  "line": 3,
-                  "column": 36
+                  "line": 7,
+                  "column": 31
                 }
               }
             },
-            {
-              "type": "Literal",
-              "value": "username",
-              "raw": "'username'",
-              "range": [
-                74,
-                84
-              ],
-              "loc": {
-                "start": {
-                  "line": 3,
-                  "column": 38
-                },
-                "end": {
-                  "line": 3,
-                  "column": 48
+            "arguments": [
+              {
+                "type": "Literal",
+                "value": "database",
+                "raw": "'database'",
+                "range": [
+                  159,
+                  169
+                ],
+                "loc": {
+                  "start": {
+                    "line": 7,
+                    "column": 32
+                  },
+                  "end": {
+                    "line": 7,
+                    "column": 42
+                  }
                 }
-              }
-            },
-            {
-              "type": "Literal",
-              "value": "password",
-              "raw": "'password'",
-              "range": [
-                86,
-                96
-              ],
-              "loc": {
-                "start": {
-                  "line": 3,
-                  "column": 50
-                },
-                "end": {
-                  "line": 3,
-                  "column": 60
+              },
+              {
+                "type": "Literal",
+                "value": "username",
+                "raw": "'username'",
+                "range": [
+                  171,
+                  181
+                ],
+                "loc": {
+                  "start": {
+                    "line": 7,
+                    "column": 44
+                  },
+                  "end": {
+                    "line": 7,
+                    "column": 54
+                  }
                 }
-              }
-            },
-            {
-              "type": "ObjectExpression",
-              "properties": [
-                {
-                  "type": "Property",
-                  "key": {
-                    "type": "Identifier",
-                    "name": "host",
+              },
+              {
+                "type": "Literal",
+                "value": "password",
+                "raw": "'password'",
+                "range": [
+                  183,
+                  193
+                ],
+                "loc": {
+                  "start": {
+                    "line": 7,
+                    "column": 56
+                  },
+                  "end": {
+                    "line": 7,
+                    "column": 66
+                  }
+                }
+              },
+              {
+                "type": "ObjectExpression",
+                "properties": [
+                  {
+                    "type": "Property",
+                    "key": {
+                      "type": "Identifier",
+                      "name": "host",
+                      "range": [
+                        199,
+                        203
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 8,
+                          "column": 2
+                        },
+                        "end": {
+                          "line": 8,
+                          "column": 6
+                        }
+                      }
+                    },
+                    "value": {
+                      "type": "Literal",
+                      "value": "localhost",
+                      "raw": "'localhost'",
+                      "range": [
+                        205,
+                        216
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 8,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 8,
+                          "column": 19
+                        }
+                      }
+                    },
+                    "kind": "init",
+                    "method": false,
+                    "shorthand": false,
+                    "computed": false,
                     "range": [
-                      102,
-                      106
+                      199,
+                      216
                     ],
                     "loc": {
                       "start": {
-                        "line": 4,
+                        "line": 8,
                         "column": 2
                       },
                       "end": {
-                        "line": 4,
-                        "column": 6
-                      }
-                    }
-                  },
-                  "value": {
-                    "type": "Literal",
-                    "value": "localhost",
-                    "raw": "'localhost'",
-                    "range": [
-                      108,
-                      119
-                    ],
-                    "loc": {
-                      "start": {
-                        "line": 4,
-                        "column": 8
-                      },
-                      "end": {
-                        "line": 4,
+                        "line": 8,
                         "column": 19
                       }
                     }
                   },
-                  "kind": "init",
-                  "method": false,
-                  "shorthand": false,
-                  "computed": false,
-                  "range": [
-                    102,
-                    119
-                  ],
-                  "loc": {
-                    "start": {
-                      "line": 4,
-                      "column": 2
+                  {
+                    "type": "Property",
+                    "key": {
+                      "type": "Identifier",
+                      "name": "dialect",
+                      "range": [
+                        220,
+                        227
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 9,
+                          "column": 2
+                        },
+                        "end": {
+                          "line": 9,
+                          "column": 9
+                        }
+                      }
                     },
-                    "end": {
-                      "line": 4,
-                      "column": 19
-                    }
-                  }
-                },
-                {
-                  "type": "Property",
-                  "key": {
-                    "type": "Identifier",
-                    "name": "dialect",
+                    "value": {
+                      "type": "Literal",
+                      "value": "mysql",
+                      "raw": "'mysql'",
+                      "range": [
+                        229,
+                        236
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 9,
+                          "column": 11
+                        },
+                        "end": {
+                          "line": 9,
+                          "column": 18
+                        }
+                      }
+                    },
+                    "kind": "init",
+                    "method": false,
+                    "shorthand": false,
+                    "computed": false,
                     "range": [
-                      123,
-                      130
+                      220,
+                      236
                     ],
                     "loc": {
                       "start": {
-                        "line": 5,
+                        "line": 9,
                         "column": 2
                       },
                       "end": {
-                        "line": 5,
-                        "column": 9
-                      }
-                    }
-                  },
-                  "value": {
-                    "type": "Literal",
-                    "value": "mysql",
-                    "raw": "'mysql'",
-                    "range": [
-                      132,
-                      139
-                    ],
-                    "loc": {
-                      "start": {
-                        "line": 5,
-                        "column": 11
-                      },
-                      "end": {
-                        "line": 5,
+                        "line": 9,
                         "column": 18
                       }
                     }
+                  }
+                ],
+                "range": [
+                  195,
+                  310
+                ],
+                "loc": {
+                  "start": {
+                    "line": 7,
+                    "column": 68
                   },
-                  "kind": "init",
-                  "method": false,
-                  "shorthand": false,
-                  "computed": false,
-                  "range": [
-                    123,
-                    139
-                  ],
-                  "loc": {
-                    "start": {
-                      "line": 5,
-                      "column": 2
-                    },
-                    "end": {
-                      "line": 5,
-                      "column": 18
-                    }
+                  "end": {
+                    "line": 15,
+                    "column": 1
                   }
                 }
-              ],
-              "range": [
-                98,
-                213
-              ],
-              "loc": {
-                "start": {
-                  "line": 3,
-                  "column": 62
-                },
-                "end": {
-                  "line": 11,
-                  "column": 1
-                }
+              }
+            ],
+            "range": [
+              145,
+              311
+            ],
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 18
+              },
+              "end": {
+                "line": 15,
+                "column": 2
               }
             }
-          ],
+          },
           "range": [
-            48,
-            214
+            133,
+            311
           ],
           "loc": {
             "start": {
-              "line": 3,
-              "column": 12
+              "line": 7,
+              "column": 6
             },
             "end": {
-              "line": 11,
+              "line": 15,
               "column": 2
             }
           }
-        },
-        "range": [
-          36,
-          214
-        ],
-        "loc": {
-          "start": {
-            "line": 3,
-            "column": 0
-          },
-          "end": {
-            "line": 11,
-            "column": 2
-          }
         }
-      },
+      ],
+      "kind": "const",
       "range": [
-        36,
-        215
+        127,
+        312
       ],
       "loc": {
         "start": {
-          "line": 3,
+          "line": 7,
           "column": 0
         },
         "end": {
-          "line": 11,
+          "line": 15,
           "column": 3
         }
-      }
+      },
+      "leadingComments": [],
+      "name": "_",
+      "trailingComments": []
     },
     {
       "type": "ExportDefaultDeclaration",
@@ -362,16 +387,16 @@
         "type": "Identifier",
         "name": "sequelize",
         "range": [
-          232,
-          241
+          329,
+          338
         ],
         "loc": {
           "start": {
-            "line": 13,
+            "line": 17,
             "column": 15
           },
           "end": {
-            "line": 13,
+            "line": 17,
             "column": 24
           }
         },
@@ -380,16 +405,16 @@
             "type": "Line",
             "value": " pool: {",
             "range": [
-              143,
-              153
+              240,
+              250
             ],
             "loc": {
               "start": {
-                "line": 6,
+                "line": 10,
                 "column": 2
               },
               "end": {
-                "line": 6,
+                "line": 10,
                 "column": 12
               }
             }
@@ -398,16 +423,16 @@
             "type": "Line",
             "value": "   max: 5,",
             "range": [
-              156,
-              168
+              253,
+              265
             ],
             "loc": {
               "start": {
-                "line": 7,
+                "line": 11,
                 "column": 2
               },
               "end": {
-                "line": 7,
+                "line": 11,
                 "column": 14
               }
             }
@@ -416,16 +441,16 @@
             "type": "Line",
             "value": "   min: 0,",
             "range": [
-              171,
-              183
+              268,
+              280
             ],
             "loc": {
               "start": {
-                "line": 8,
+                "line": 12,
                 "column": 2
               },
               "end": {
-                "line": 8,
+                "line": 12,
                 "column": 14
               }
             }
@@ -434,16 +459,16 @@
             "type": "Line",
             "value": "   idle: 10000,",
             "range": [
-              186,
-              203
+              283,
+              300
             ],
             "loc": {
               "start": {
-                "line": 9,
+                "line": 13,
                 "column": 2
               },
               "end": {
-                "line": 9,
+                "line": 13,
                 "column": 19
               }
             }
@@ -452,16 +477,16 @@
             "type": "Line",
             "value": " },",
             "range": [
-              206,
-              211
+              303,
+              308
             ],
             "loc": {
               "start": {
-                "line": 10,
+                "line": 14,
                 "column": 2
               },
               "end": {
-                "line": 10,
+                "line": 14,
                 "column": 7
               }
             }
@@ -470,16 +495,16 @@
         "trailingComments": []
       },
       "range": [
-        217,
-        242
+        314,
+        339
       ],
       "loc": {
         "start": {
-          "line": 13,
+          "line": 17,
           "column": 0
         },
         "end": {
-          "line": 13,
+          "line": 17,
           "column": 25
         }
       },
@@ -488,16 +513,16 @@
           "type": "Line",
           "value": " pool: {",
           "range": [
-            143,
-            153
+            240,
+            250
           ],
           "loc": {
             "start": {
-              "line": 6,
+              "line": 10,
               "column": 2
             },
             "end": {
-              "line": 6,
+              "line": 10,
               "column": 12
             }
           }
@@ -506,16 +531,16 @@
           "type": "Line",
           "value": "   max: 5,",
           "range": [
-            156,
-            168
+            253,
+            265
           ],
           "loc": {
             "start": {
-              "line": 7,
+              "line": 11,
               "column": 2
             },
             "end": {
-              "line": 7,
+              "line": 11,
               "column": 14
             }
           }
@@ -524,16 +549,16 @@
           "type": "Line",
           "value": "   min: 0,",
           "range": [
-            171,
-            183
+            268,
+            280
           ],
           "loc": {
             "start": {
-              "line": 8,
+              "line": 12,
               "column": 2
             },
             "end": {
-              "line": 8,
+              "line": 12,
               "column": 14
             }
           }
@@ -542,16 +567,16 @@
           "type": "Line",
           "value": "   idle: 10000,",
           "range": [
-            186,
-            203
+            283,
+            300
           ],
           "loc": {
             "start": {
-              "line": 9,
+              "line": 13,
               "column": 2
             },
             "end": {
-              "line": 9,
+              "line": 13,
               "column": 19
             }
           }
@@ -560,16 +585,16 @@
           "type": "Line",
           "value": " },",
           "range": [
-            206,
-            211
+            303,
+            308
           ],
           "loc": {
             "start": {
-              "line": 10,
+              "line": 14,
               "column": 2
             },
             "end": {
-              "line": 10,
+              "line": 14,
               "column": 7
             }
           }
@@ -580,7 +605,7 @@
   "sourceType": "module",
   "range": [
     0,
-    242
+    339
   ],
   "loc": {
     "start": {
@@ -588,25 +613,43 @@
       "column": 0
     },
     "end": {
-      "line": 13,
+      "line": 17,
       "column": 25
     }
   },
   "comments": [
     {
-      "type": "Line",
-      "value": " pool: {",
+      "type": "Block",
+      "value": "*\n * setup sequelize\n * @external {Sequelize} http://docs.sequelizejs.com/en/latest/\n ",
       "range": [
-        143,
-        153
+        36,
+        126
       ],
       "loc": {
         "start": {
-          "line": 6,
-          "column": 2
+          "line": 3,
+          "column": 0
         },
         "end": {
           "line": 6,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Line",
+      "value": " pool: {",
+      "range": [
+        240,
+        250
+      ],
+      "loc": {
+        "start": {
+          "line": 10,
+          "column": 2
+        },
+        "end": {
+          "line": 10,
           "column": 12
         }
       }
@@ -615,16 +658,16 @@
       "type": "Line",
       "value": "   max: 5,",
       "range": [
-        156,
-        168
+        253,
+        265
       ],
       "loc": {
         "start": {
-          "line": 7,
+          "line": 11,
           "column": 2
         },
         "end": {
-          "line": 7,
+          "line": 11,
           "column": 14
         }
       }
@@ -633,16 +676,16 @@
       "type": "Line",
       "value": "   min: 0,",
       "range": [
-        171,
-        183
+        268,
+        280
       ],
       "loc": {
         "start": {
-          "line": 8,
+          "line": 12,
           "column": 2
         },
         "end": {
-          "line": 8,
+          "line": 12,
           "column": 14
         }
       }
@@ -651,16 +694,16 @@
       "type": "Line",
       "value": "   idle: 10000,",
       "range": [
-        186,
-        203
+        283,
+        300
       ],
       "loc": {
         "start": {
-          "line": 9,
+          "line": 13,
           "column": 2
         },
         "end": {
-          "line": 9,
+          "line": 13,
           "column": 19
         }
       }
@@ -669,16 +712,16 @@
       "type": "Line",
       "value": " },",
       "range": [
-        206,
-        211
+        303,
+        308
       ],
       "loc": {
         "start": {
-          "line": 10,
+          "line": 14,
           "column": 2
         },
         "end": {
-          "line": 10,
+          "line": 14,
           "column": 7
         }
       }

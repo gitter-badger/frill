@@ -3,7 +3,7 @@ import scrollData from '../helpers/testScrollItemsData';
 
 /**
  * Example actions
- * @extends {BaseAction}
+ * @extends {FrillCore.BaseAction}
  * @example <caption>via react or frill component</caption>
  * // count up counters
  * this.getFrill().action('Example').countUp();
@@ -44,7 +44,7 @@ class ExampleAction extends BaseAction {
    * load items by scroll (Infinite scrolling)
    * @param {number} [lastIndex=1] - the last index of items loaded
    * @param {number} [retrieve=5] - number of items to load
-   * @emits {COUNT_UP_BY}
+   * @emits {LOAD_SCROLL_ITEMS}
    */
   loadScrollItems(lastIndex = 1, retrieve = 5) {
     const data = scrollData.slice(lastIndex, lastIndex + retrieve);

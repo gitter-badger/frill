@@ -1,6 +1,10 @@
 import Sequelize from 'sequelize';
 
-sequelize = new Sequelize('database', 'username', 'password', {
+/**
+ * setup sequelize
+ * @external {Sequelize} http://docs.sequelizejs.com/en/latest/
+ */
+const sequelize = new Sequelize('database', 'username', 'password', {
   host: 'localhost',
   dialect: 'mysql',
   // pool: {

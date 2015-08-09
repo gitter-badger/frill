@@ -1,33 +1,56 @@
 import React from 'react';
-import {StoreWatchComponent} from '../../bootstrap';
+import {StoreWatchComponent} from 'frill-core';
 import ScrollBlock from '../ScrollBlock';
 
+/**
+ * Top component
+ * @extends {FrillCore.StoreWatchComponent}
+ * @example <caption>Usage in React-Router</caption>
+ * <Route name="login" path="/login" handler={LoginComponent} />
+ */
 class TopComponent extends new StoreWatchComponent(['Example']) {
 
+  /**
+   * Constructor
+   * @param {any} props
+   */
   constructor(props) {
     super(props);
 
     this._bind([
       'onOne',
       'onTen',
-      'onLoadScrollItems',
+      'onFetchItems',
     ]);
   }
 
+  /**
+   * Count up by one
+   */
   onOne() {
     this.getFrill().action('Example').countUp();
   }
 
+  /**
+   * Count up by ten
+   */
   onTen() {
     this.getFrill().action('Example').countUpBy(10);
   }
 
-  onLoadScrollItems() {
+  /**
+   * Fetch items
+   */
+  onFetchItems() {
     this.getFrill()
       .action('Example')
       .loadScrollItems(this.state.scrollItemsCount, 5);
   }
 
+  /**
+   * getStateFromFrill
+   * @listens {ExampleStore}
+   */
   getStateFromFrill() {
     return {
       count: this.getFrill().store('Example').getCount(),
@@ -37,6 +60,11 @@ class TopComponent extends new StoreWatchComponent(['Example']) {
     };
   }
 
+  /**
+   * render
+   * @return {React DOM}
+   * @see https://facebook.github.io/react/docs/component-specs.html#render
+   */
   render() {
     const items = [];
 
@@ -65,7 +93,7 @@ class TopComponent extends new StoreWatchComponent(['Example']) {
         <section>
           <h3>Infinite Scroll</h3>
           <ScrollBlock
-            fetchData={this.onLoadScrollItems}
+            fetchData={this.onFetchItems}
             itemsCount={this.state.scrollItemsCount}
             itemTotal={this.state.scrollItemTotal}>
               <h4>Scroll down the box ...</h4>
@@ -79,4 +107,7 @@ class TopComponent extends new StoreWatchComponent(['Example']) {
   }
 }
 
+/**
+ * Export TomComponent
+ */
 export default TopComponent;

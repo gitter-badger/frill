@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../../../">
-  <title data-ice="title">AppComponent | FrillJS API Document</title>
+  <title data-ice="title">ScrollBlockComponent | FrillJS API Document</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -104,27 +104,27 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import AppComponent from &apos;<span><a href="file/src/components/App/index.jsx.html#lineNumber10">frill/src/components/App/index.jsx</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import ScrollBlockComponent from &apos;<span><a href="file/src/components/ScrollBlock/index.jsx.html#lineNumber23">frill/src/components/ScrollBlock/index.jsx</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/components/App/index.jsx.html#lineNumber10">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/components/ScrollBlock/index.jsx.html#lineNumber23">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
-  <h1 data-ice="name">AppComponent</h1>
+  <h1 data-ice="name">ScrollBlockComponent</h1>
 
   <div data-ice="instanceDocs" class="instance-docs">
     <span>You can directly use instance of this class.</span>
     
-  <span data-ice="instanceDoc"><span><a href="variable/index.html#static-variable-appComponent">appComponent</a></span></span>
+  <span data-ice="instanceDoc"><span><a href="variable/index.html#static-variable-scrollBlockComponent">scrollBlockComponent</a></span></span>
 </div>
 
   
   
-  <div class="flat-list" data-ice="extendsChain"><h4>Extends:</h4><div><span>React.Component</span> &#x2192; AppComponent</div></div>
+  <div class="flat-list" data-ice="extendsChain"><h4>Extends:</h4><div><span>React.Component</span> &#x2192; ScrollBlockComponent</div></div>
   
   
   
@@ -134,7 +134,7 @@
 
   
   
-  <div class="description" data-ice="description"><p>App component</p>
+  <div class="description" data-ice="description"><p>ScrollBlock component for infinite scrolling</p>
 </div>
 
   
@@ -143,8 +143,21 @@
     <h4>Example:</h4>
     
   <div class="example-doc" data-ice="exampleDoc">
-      <div class="example-caption" data-ice="exampleCaption">Usage in React-Router</div>
-      <pre class="prettyprint source-code"><code data-ice="exampleCode">&lt;Route name=&quot;app&quot; path=&quot;/&quot; handler={AppComponent} /&gt;</code></pre>
+      <div class="example-caption" data-ice="exampleCaption">Usage in React component</div>
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">import ScrollBlock from &apos;ScrollBlock&apos;;
+...
+render() {
+  return (
+    &lt;ScrollBlock
+      fetchData={this.onLoadScrollItems}
+      itemsCount={this.state.scrollItemsCount}
+      itemTotal={this.state.scrollItemTotal}&gt;
+      &lt;ul className=&quot;scroll-list&quot;&gt;
+        {items}
+      &lt;/ul&gt;
+    &lt;/ScrollBlock&gt;
+  );
+}</code></pre>
     </div>
 </div>
 
@@ -170,7 +183,7 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/components/App/index.jsx~AppComponent.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(props: <span>any</span>)</span>
+           <span data-ice="name"><span><a href="class/src/components/ScrollBlock/index.jsx~ScrollBlockComponent.html#instance-constructor-constructor">constructor</a></span></span><span data-ice="signature">(props: <span>any</span>)</span>
         </p>
       </div>
       <div>
@@ -203,13 +216,65 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/components/App/index.jsx~AppComponent.html#instance-member-name">name</a></span></span><span data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
+           <span data-ice="name"><span><a href="class/src/components/ScrollBlock/index.jsx~ScrollBlockComponent.html#instance-member-name">name</a></span></span><span data-ice="signature">: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></span>
         </p>
       </div>
       <div>
         
         
         <div data-ice="description"><p>Name of component</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/components/ScrollBlock/index.jsx~ScrollBlockComponent.html#instance-member-onScroll">onScroll</a></span></span><span data-ice="signature">: <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Scroll handler (bind)</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/components/ScrollBlock/index.jsx~ScrollBlockComponent.html#instance-member-state">state</a></span></span><span data-ice="signature">: <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>State of component</p>
 </div>
       </div>
     </td>
@@ -236,7 +301,59 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/components/App/index.jsx~AppComponent.html#instance-method-render">render</a></span></span><span data-ice="signature">(): <span>React DOM</span></span>
+           <span data-ice="name"><span><a href="class/src/components/ScrollBlock/index.jsx~ScrollBlockComponent.html#instance-method-componentDidMount">componentDidMount</a></span></span><span data-ice="signature">()</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>componentDidMount</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/components/ScrollBlock/index.jsx~ScrollBlockComponent.html#instance-method-componentWillReceiveProps">componentWillReceiveProps</a></span></span><span data-ice="signature">(newProps: <span>*</span>)</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>componentWillReceiveProps</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/components/ScrollBlock/index.jsx~ScrollBlockComponent.html#instance-method-render">render</a></span></span><span data-ice="signature">(): <span>React DOM</span></span>
         </p>
       </div>
       <div>
@@ -272,7 +389,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/components/App/index.jsx.html#lineNumber16">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/components/ScrollBlock/index.jsx.html#lineNumber28">source</a></span></span>
     </span>
   </h3>
 
@@ -332,7 +449,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/components/App/index.jsx.html#lineNumber22">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/components/ScrollBlock/index.jsx.html#lineNumber34">source</a></span></span>
     </span>
   </h3>
 
@@ -362,9 +479,189 @@
   
   
 </div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-member-onScroll">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">onScroll</span><span data-ice="signature">: <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/components/ScrollBlock/index.jsx.html#lineNumber49">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Scroll handler (bind)</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-member-state">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">state</span><span data-ice="signature">: <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/components/ScrollBlock/index.jsx.html#lineNumber39">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>State of component</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
 </div>
 <div data-ice="methodDetails"><h2 data-ice="title">Public Methods</h2>
 
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-componentDidMount">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">componentDidMount</span><span data-ice="signature">()</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/components/ScrollBlock/index.jsx.html#lineNumber57">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>componentDidMount</p>
+</div>
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://facebook.github.io/react/docs/component-specs.html#mounting-componentdidmount">https://facebook.github.io/react/docs/component-specs.html#mounting-componentdidmount</a></span></li></ul></div>
+  
+</div>
+<div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-componentWillReceiveProps">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">componentWillReceiveProps</span><span data-ice="signature">(newProps: <span>*</span>)</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/components/ScrollBlock/index.jsx.html#lineNumber71">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>componentWillReceiveProps</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">newProps</td>
+      <td data-ice="type"><span>*</span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"></td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  <div data-ice="see"><h4>See:</h4><ul><li><span><a href="https://facebook.github.io/react/docs/component-specs.html#updating-componentwillreceiveprops">https://facebook.github.io/react/docs/component-specs.html#updating-componentwillreceiveprops</a></span></li></ul></div>
+  
+</div>
 <div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-render">
     <span class="access" data-ice="access">public</span>
@@ -376,7 +673,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/components/App/index.jsx.html#lineNumber30">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/components/ScrollBlock/index.jsx.html#lineNumber111">source</a></span></span>
     </span>
   </h3>
 

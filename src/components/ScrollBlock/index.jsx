@@ -1,11 +1,41 @@
 import React from 'react';
 import {canUseDOM} from 'react/lib/ExecutionEnvironment';
 
+/**
+ * ScrollBlock component for infinite scrolling
+ * @extends {React.Component}
+ * @example <caption>Usage in React component</caption>
+ * import ScrollBlock from 'ScrollBlock';
+ * ...
+ * render() {
+ *   return (
+ *     <ScrollBlock
+ *       fetchData={this.onLoadScrollItems}
+ *       itemsCount={this.state.scrollItemsCount}
+ *       itemTotal={this.state.scrollItemTotal}>
+ *       <ul className="scroll-list">
+ *         {items}
+ *       </ul>
+ *     </ScrollBlock>
+ *   );
+ * }
+ */
 class ScrollBlockComponent extends React.Component {
-  constructor() {
-    super();
+  /**
+   * Constructor
+   * @param {any} props
+   */
+  constructor(props) {
+    super(props);
+
+    /**
+     * Name of component
+     */
     this.name = 'ScrollBlock';
 
+    /**
+     * State of component
+     */
     this.state = {
       isLoading: false,
       // NOTE: changed from 'isAllLoaded'
@@ -13,10 +43,17 @@ class ScrollBlockComponent extends React.Component {
     };
 
     if (canUseDOM) {
+      /**
+       * Scroll handler (bind)
+       */
       this.onScroll = this.onScroll.bind(this);
     }
   }
 
+  /**
+   * componentDidMount
+   * @see https://facebook.github.io/react/docs/component-specs.html#mounting-componentdidmount
+   */
   componentDidMount() {
     if (!this.props.itemsCount) {
       this.setState({
@@ -27,6 +64,10 @@ class ScrollBlockComponent extends React.Component {
     }
   }
 
+  /**
+   * componentWillReceiveProps
+   * @see https://facebook.github.io/react/docs/component-specs.html#updating-componentwillreceiveprops
+   */
   componentWillReceiveProps(newProps) {
     if (newProps.children) {
       this.setState({
@@ -35,6 +76,9 @@ class ScrollBlockComponent extends React.Component {
     }
   }
 
+  /**
+   * Scroll handler
+   */
   onScroll() {
     if (!this.state.isLoading && !this.state.isLoadedAll) {
       const _elem = React.findDOMNode(this.refs.scrollBlock);
@@ -59,6 +103,11 @@ class ScrollBlockComponent extends React.Component {
     }
   }
 
+  /**
+   * render
+   * @return {React DOM}
+   * @see https://facebook.github.io/react/docs/component-specs.html#render
+   */
   render() {
     const _className = this.state.isLoading ? ' is-loading' : '';
     const isLoadedAll = this.state.isLoadedAll;
@@ -81,10 +130,20 @@ class ScrollBlockComponent extends React.Component {
     );
   }
 }
+
+/**
+ * PropTypes
+ */
 ScrollBlock.propTypes = {
+  // function to fetch new items
   fetchData: React.PropTypes.func,
+  // Count of loaded items
   itemsCount: React.PropTypes.number,
+  // Count of total items
   itemTotal: React.PropTypes.number,
 };
 
+/**
+ * Export ScrollBlockComponent
+ */
 export default ScrollBlockComponent;

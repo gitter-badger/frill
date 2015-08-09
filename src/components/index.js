@@ -4,6 +4,9 @@ import Top from './Top';
 import Login from './Login';
 import Error from './Error';
 
+/**
+ * List of all components used in app
+ */
 const Components = {
   // Parent component
   Page: Page,
@@ -13,7 +16,6 @@ const Components = {
 
   // Error handler
   Error: Error,
-
 };
 
 export default Components;
