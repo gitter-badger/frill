@@ -5,6 +5,9 @@ import facebookStrategy from './facebook';
 import googleStrategy from './google';
 // import githubStrategy from './github';
 
+/**
+ * List of all strategies to use.
+ */
 const Strategies = {
   jwtStrategy,
   localStrategy,

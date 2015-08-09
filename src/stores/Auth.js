@@ -1,7 +1,7 @@
-import {Store} from 'frill-core';
+import {BaseStore} from 'frill-core';
 import jwtDecode from 'jwt-decode';
 
-class AuthStore extends Store {
+class AuthStore extends BaseStore {
 
   constructor() {
     super();

@@ -98,27 +98,55 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/actions/Example.js</h1>
-<pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">import {Action} from &apos;frill-core&apos;;
+<pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">import {BaseAction} from &apos;frill-core&apos;;
 import scrollData from &apos;../helpers/testScrollItemsData&apos;;
 
-class ExampleAction extends Action {
+/**
+ * Example actions
+ * @extends {BaseAction}
+ * @example &lt;caption&gt;via react or frill component&lt;/caption&gt;
+ * // count up counters
+ * this.getFrill().action(&apos;Example&apos;).countUp();
+ * // count up counters by a number given
+ * this.getFrill().action(&apos;Example&apos;).countUpBy(10);
+ * // load items by scroll
+ * this.getFrill().action(&apos;Example&apos;).loadScrollItems(1, 5);
+ */
+class ExampleAction extends BaseAction {
 
+  /**
+   * Constructor
+   */
   constructor() {
     super();
-    this.use(&apos;request&apos;, {prefix: &apos;/api&apos;});
+    // this.use(&apos;request&apos;, {prefix: &apos;/api&apos;});
     // this.use(&apos;socket&apos;, {url: &apos;http://localhost:3000&apos;});
   }
 
+  /**
+   * Counts up counter by one.
+   * @emits {COUNT_UP}
+   */
   countUp() {
     this.dispatch(&apos;COUNT_UP&apos;);
   }
 
-  countUpBy(count) {
+  /**
+   * Counts up counter by a number given.
+   * @param {number} [count=1] - a number to count up by
+   * @emits {COUNT_UP_BY}
+   */
+  countUpBy(count = 1) {
     this.dispatch(&apos;COUNT_UP_BY&apos;, count);
-    return count;
   }
 
-  loadScrollItems(lastIndex, retrieve) {
+  /**
+   * load items by scroll (Infinite scrolling)
+   * @param {number} [lastIndex=1] - the last index of items loaded
+   * @param {number} [retrieve=5] - number of items to load
+   * @emits {COUNT_UP_BY}
+   */
+  loadScrollItems(lastIndex = 1, retrieve = 5) {
     const data = scrollData.slice(lastIndex, lastIndex + retrieve);
     setTimeout(() =&gt; {
       this.dispatch(&apos;LOAD_SCROLL_ITEMS&apos;, {
@@ -129,6 +157,9 @@ class ExampleAction extends Action {
   }
 }
 
+/**
+ * export ExampleAction instance
+ */
 export default new ExampleAction();
 </code></pre>
 </div>

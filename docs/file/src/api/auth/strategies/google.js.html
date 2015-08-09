@@ -98,7 +98,11 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/api/auth/strategies/google.js</h1>
-<pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">const googleStrategy = (server) =&gt; {
+<pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">/**
+ * Authentication strategy for Google
+ * @see https://developers.google.com/
+ */
+const googleStrategy = (server) =&gt; {
   server.auth.strategy(&apos;google&apos;, &apos;bell&apos;, {
     provider: &apos;google&apos;,
     password: &apos;cookie_encryption_password&apos;,

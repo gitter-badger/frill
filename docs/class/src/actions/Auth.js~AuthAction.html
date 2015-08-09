@@ -104,7 +104,7 @@
   
   
   
-  <span data-ice="source">| <span><a href="file/src/actions/Auth.js.html#lineNumber3">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/actions/Auth.js.html#lineNumber12">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -118,7 +118,7 @@
 
   
   
-  <div class="flat-list" data-ice="extendsChain"><h4>Extends:</h4><div><span>frill-core~Action</span> &#x2192; AuthAction</div></div>
+  <div class="flat-list" data-ice="extendsChain"><h4>Extends:</h4><div><span>BaseAction</span> &#x2192; AuthAction</div></div>
   
   
   
@@ -128,11 +128,22 @@
 
   
   
-  
+  <div class="description" data-ice="description"><p>Authentication actions</p>
+</div>
 
   
 
-  
+  <div data-ice="exampleDocs">
+    <h4>Example:</h4>
+    
+  <div class="example-doc" data-ice="exampleDoc">
+      <div class="example-caption" data-ice="exampleCaption">via react or frill component</div>
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">// logging in
+this.getFrill().action(&apos;Auth&apos;).login(&apos;token&apos;);
+// logging out
+this.getFrill().action(&apos;Auth&apos;).logout();</code></pre>
+    </div>
+</div>
 
   
 
@@ -162,7 +173,8 @@
       <div>
         
         
-        
+        <div data-ice="description"><p>Constructor</p>
+</div>
       </div>
     </td>
     <td>
@@ -189,13 +201,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/actions/Auth.js~AuthAction.html#instance-method-login">login</a></span></span><span data-ice="signature">(token: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/src/actions/Auth.js~AuthAction.html#instance-method-login">login</a></span></span><span data-ice="signature">(token: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Login action</p>
+</div>
       </div>
     </td>
     <td>
@@ -220,7 +233,8 @@
       <div>
         
         
-        
+        <div data-ice="description"><p>Login action</p>
+</div>
       </div>
     </td>
     <td>
@@ -249,14 +263,15 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/actions/Auth.js.html#lineNumber5">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/actions/Auth.js.html#lineNumber17">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Constructor</p>
+</div>
 
   
 
@@ -289,18 +304,19 @@
     
     
     
-    <span data-ice="name">login</span><span data-ice="signature">(token: <span>*</span>)</span>
+    <span data-ice="name">login</span><span data-ice="signature">(token: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/actions/Auth.js.html#lineNumber10">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/actions/Auth.js.html#lineNumber27">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Login action</p>
+</div>
 
   
 
@@ -314,9 +330,10 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">token</td>
-      <td data-ice="type"><span>*</span></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
       <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="description"><p>a valid JWT token</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -325,7 +342,18 @@
 
   
 
-  
+  <div data-ice="emitWrap">
+    <h4>Emit:</h4>
+    <table>
+      <tbody>
+      
+      <tr class="emit" data-ice="emit">
+        <td><p data-ice="emitName"><span>AUTH_LOGIN</span></p></td>
+        
+      </tr>
+</tbody>
+    </table>
+  </div>
 
   
 
@@ -349,14 +377,15 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/actions/Auth.js.html#lineNumber14">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/actions/Auth.js.html#lineNumber35">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Login action</p>
+</div>
 
   
 
@@ -365,7 +394,18 @@
 
   
 
-  
+  <div data-ice="emitWrap">
+    <h4>Emit:</h4>
+    <table>
+      <tbody>
+      
+      <tr class="emit" data-ice="emit">
+        <td><p data-ice="emitName"><span>AUTH_LOGOUT</span></p></td>
+        
+      </tr>
+</tbody>
+    </table>
+  </div>
 
   
 

@@ -1,3 +1,7 @@
+/**
+ * Authentication strategy for Google
+ * @see https://developers.google.com/
+ */
 const googleStrategy = (server) => {
   server.auth.strategy('google', 'bell', {
     provider: 'google',

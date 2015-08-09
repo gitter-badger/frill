@@ -1,3 +1,7 @@
+/**
+ * Authentication strategy for Twitter
+ * @see https://dev.twitter.com/
+ */
 const twitterStrategy = (server) => {
   server.auth.strategy('twitter', 'bell', {
     provider: 'twitter',

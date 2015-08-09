@@ -9,7 +9,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import {Action} from 'frill-core';\n\nclass AuthAction extends Action {\n\n  constructor() {\n    super();\n    this.use('request', {prefix: '/api'});\n  }\n\n  login(token) {\n    this.dispatch('AUTH_LOGIN', token);\n  }\n\n  logout() {\n    this.dispatch('AUTH_LOGOUT');\n  }\n}\n\nexport default new AuthAction();\n"
+    "content": "import {BaseAction} from 'frill-core';\n\n/**\n * Authentication actions\n * @extends {BaseAction}\n * @example <caption>via react or frill component</caption>\n * // logging in\n * this.getFrill().action('Auth').login('token');\n * // logging out\n * this.getFrill().action('Auth').logout();\n */\nclass AuthAction extends BaseAction {\n\n  /**\n   * Constructor\n   */\n  constructor() {\n    super();\n    // this.use('request', {prefix: '/api'});\n  }\n\n  /**\n   * Login action\n   * @param {string} token - a valid JWT token\n   * @emits {AUTH_LOGIN}\n   */\n  login(token) {\n    this.dispatch('AUTH_LOGIN', token);\n  }\n\n  /**\n   * Login action\n   * @emits {AUTH_LOGOUT}\n   */\n  logout() {\n    this.dispatch('AUTH_LOGOUT');\n  }\n}\n\n/**\n * export AuthAction instance\n */\nexport default new AuthAction();\n"
   },
   {
     "kind": "class",
@@ -22,13 +22,15 @@
     "export": true,
     "importPath": "frill/src/actions/Auth.js",
     "importStyle": null,
-    "description": null,
-    "lineNumber": 3,
+    "description": "Authentication actions",
+    "examples": [
+      "<caption>via react or frill component</caption>\n// logging in\nthis.getFrill().action('Auth').login('token');\n// logging out\nthis.getFrill().action('Auth').logout();"
+    ],
+    "lineNumber": 12,
     "pseudoExport": true,
-    "undocument": true,
     "interface": false,
     "extends": [
-      "frill-core~Action"
+      "BaseAction"
     ]
   },
   {
@@ -39,9 +41,8 @@
     "memberof": "src/actions/Auth.js~AuthAction",
     "longname": "src/actions/Auth.js~AuthAction#constructor",
     "access": null,
-    "description": null,
-    "lineNumber": 5,
-    "undocument": true,
+    "description": "Constructor",
+    "lineNumber": 17,
     "params": [],
     "generator": false
   },
@@ -53,15 +54,26 @@
     "memberof": "src/actions/Auth.js~AuthAction",
     "longname": "src/actions/Auth.js~AuthAction#login",
     "access": null,
-    "description": null,
-    "lineNumber": 10,
-    "undocument": true,
+    "description": "Login action",
+    "lineNumber": 27,
     "params": [
       {
-        "name": "token",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "token",
+        "description": "a valid JWT token"
+      }
+    ],
+    "emits": [
+      {
+        "types": [
+          "AUTH_LOGIN"
+        ],
+        "description": ""
       }
     ],
     "generator": false
@@ -74,10 +86,17 @@
     "memberof": "src/actions/Auth.js~AuthAction",
     "longname": "src/actions/Auth.js~AuthAction#logout",
     "access": null,
-    "description": null,
-    "lineNumber": 14,
-    "undocument": true,
+    "description": "Login action",
+    "lineNumber": 35,
     "params": [],
+    "emits": [
+      {
+        "types": [
+          "AUTH_LOGOUT"
+        ],
+        "description": ""
+      }
+    ],
     "generator": false
   },
   {
@@ -91,9 +110,8 @@
     "export": true,
     "importPath": "frill/src/actions/Auth.js",
     "importStyle": "authAction",
-    "description": null,
-    "lineNumber": 19,
-    "undocument": true,
+    "description": "export AuthAction instance",
+    "lineNumber": 43,
     "type": {
       "types": [
         "src/actions/Auth.js~AuthAction"
@@ -110,7 +128,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import {Action} from 'frill-core';\nimport scrollData from '../helpers/testScrollItemsData';\n\nclass ExampleAction extends Action {\n\n  constructor() {\n    super();\n    this.use('request', {prefix: '/api'});\n    // this.use('socket', {url: 'http://localhost:3000'});\n  }\n\n  countUp() {\n    this.dispatch('COUNT_UP');\n  }\n\n  countUpBy(count) {\n    this.dispatch('COUNT_UP_BY', count);\n    return count;\n  }\n\n  loadScrollItems(lastIndex, retrieve) {\n    const data = scrollData.slice(lastIndex, lastIndex + retrieve);\n    setTimeout(() => {\n      this.dispatch('LOAD_SCROLL_ITEMS', {\n        data: data,\n        total: scrollData.length,\n      });\n    }, 1500);\n  }\n}\n\nexport default new ExampleAction();\n"
+    "content": "import {BaseAction} from 'frill-core';\nimport scrollData from '../helpers/testScrollItemsData';\n\n/**\n * Example actions\n * @extends {BaseAction}\n * @example <caption>via react or frill component</caption>\n * // count up counters\n * this.getFrill().action('Example').countUp();\n * // count up counters by a number given\n * this.getFrill().action('Example').countUpBy(10);\n * // load items by scroll\n * this.getFrill().action('Example').loadScrollItems(1, 5);\n */\nclass ExampleAction extends BaseAction {\n\n  /**\n   * Constructor\n   */\n  constructor() {\n    super();\n    // this.use('request', {prefix: '/api'});\n    // this.use('socket', {url: 'http://localhost:3000'});\n  }\n\n  /**\n   * Counts up counter by one.\n   * @emits {COUNT_UP}\n   */\n  countUp() {\n    this.dispatch('COUNT_UP');\n  }\n\n  /**\n   * Counts up counter by a number given.\n   * @param {number} [count=1] - a number to count up by\n   * @emits {COUNT_UP_BY}\n   */\n  countUpBy(count = 1) {\n    this.dispatch('COUNT_UP_BY', count);\n  }\n\n  /**\n   * load items by scroll (Infinite scrolling)\n   * @param {number} [lastIndex=1] - the last index of items loaded\n   * @param {number} [retrieve=5] - number of items to load\n   * @emits {COUNT_UP_BY}\n   */\n  loadScrollItems(lastIndex = 1, retrieve = 5) {\n    const data = scrollData.slice(lastIndex, lastIndex + retrieve);\n    setTimeout(() => {\n      this.dispatch('LOAD_SCROLL_ITEMS', {\n        data: data,\n        total: scrollData.length,\n      });\n    }, 1500);\n  }\n}\n\n/**\n * export ExampleAction instance\n */\nexport default new ExampleAction();\n"
   },
   {
     "kind": "class",
@@ -123,13 +141,15 @@
     "export": true,
     "importPath": "frill/src/actions/Example.js",
     "importStyle": null,
-    "description": null,
-    "lineNumber": 4,
+    "description": "Example actions",
+    "examples": [
+      "<caption>via react or frill component</caption>\n// count up counters\nthis.getFrill().action('Example').countUp();\n// count up counters by a number given\nthis.getFrill().action('Example').countUpBy(10);\n// load items by scroll\nthis.getFrill().action('Example').loadScrollItems(1, 5);"
+    ],
+    "lineNumber": 15,
     "pseudoExport": true,
-    "undocument": true,
     "interface": false,
     "extends": [
-      "frill-core~Action"
+      "BaseAction"
     ]
   },
   {
@@ -140,9 +160,8 @@
     "memberof": "src/actions/Example.js~ExampleAction",
     "longname": "src/actions/Example.js~ExampleAction#constructor",
     "access": null,
-    "description": null,
-    "lineNumber": 6,
-    "undocument": true,
+    "description": "Constructor",
+    "lineNumber": 20,
     "params": [],
     "generator": false
   },
@@ -154,10 +173,17 @@
     "memberof": "src/actions/Example.js~ExampleAction",
     "longname": "src/actions/Example.js~ExampleAction#countUp",
     "access": null,
-    "description": null,
-    "lineNumber": 12,
-    "undocument": true,
+    "description": "Counts up counter by one.",
+    "lineNumber": 30,
     "params": [],
+    "emits": [
+      {
+        "types": [
+          "COUNT_UP"
+        ],
+        "description": ""
+      }
+    ],
     "generator": false
   },
   {
@@ -168,22 +194,30 @@
     "memberof": "src/actions/Example.js~ExampleAction",
     "longname": "src/actions/Example.js~ExampleAction#countUpBy",
     "access": null,
-    "description": null,
-    "lineNumber": 16,
-    "undocument": true,
+    "description": "Counts up counter by a number given.",
+    "lineNumber": 39,
     "params": [
       {
-        "name": "count",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "number"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": "1",
+        "defaultRaw": 1,
+        "name": "count",
+        "description": "a number to count up by"
       }
     ],
-    "return": {
-      "types": [
-        "*"
-      ]
-    },
+    "emits": [
+      {
+        "types": [
+          "COUNT_UP_BY"
+        ],
+        "description": ""
+      }
+    ],
     "generator": false
   },
   {
@@ -194,21 +228,40 @@
     "memberof": "src/actions/Example.js~ExampleAction",
     "longname": "src/actions/Example.js~ExampleAction#loadScrollItems",
     "access": null,
-    "description": null,
-    "lineNumber": 21,
-    "undocument": true,
+    "description": "load items by scroll (Infinite scrolling)",
+    "lineNumber": 49,
     "params": [
       {
-        "name": "lastIndex",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "number"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": "1",
+        "defaultRaw": 1,
+        "name": "lastIndex",
+        "description": "the last index of items loaded"
       },
       {
-        "name": "retrieve",
+        "nullable": null,
         "types": [
-          "*"
-        ]
+          "number"
+        ],
+        "spread": false,
+        "optional": true,
+        "defaultValue": "5",
+        "defaultRaw": 5,
+        "name": "retrieve",
+        "description": "number of items to load"
+      }
+    ],
+    "emits": [
+      {
+        "types": [
+          "COUNT_UP_BY"
+        ],
+        "description": ""
       }
     ],
     "generator": false
@@ -224,9 +277,8 @@
     "export": true,
     "importPath": "frill/src/actions/Example.js",
     "importStyle": "exampleAction",
-    "description": null,
-    "lineNumber": 32,
-    "undocument": true,
+    "description": "export ExampleAction instance",
+    "lineNumber": 63,
     "type": {
       "types": [
         "src/actions/Example.js~ExampleAction"
@@ -243,7 +295,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Auth from './Auth';\nimport Example from './Example';\n\nconst Actions = {\n  Auth: Auth,\n  Example: Example,\n};\n\nexport default Actions;\n"
+    "content": "import Auth from './Auth';\nimport Example from './Example';\n\n/**\n * List of all actions to use\n */\nconst Actions = {\n  Auth: Auth,\n  Example: Example,\n};\n\n/**\n * Export all actions\n */\nexport default Actions;\n"
   },
   {
     "kind": "variable",
@@ -256,9 +308,8 @@
     "export": true,
     "importPath": "frill/src/actions/index.js",
     "importStyle": "Actions",
-    "description": null,
-    "lineNumber": 4,
-    "undocument": true,
+    "description": "Export all actions",
+    "lineNumber": 7,
     "type": {
       "types": [
         "*"
@@ -275,7 +326,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import JWT from 'jsonwebtoken';\nimport Boom from 'boom';\nimport aguid from 'aguid';\n// Test data\nimport {where as _where} from 'lodash';\nimport accounts from '../../helpers/testUserData';\n\n\nconst authHandler = (request, reply) => {\n  // console.log(request.auth);\n  // console.log(request.query);\n\n  // reply error when authentication fails\n  if (!request.auth.isAuthenticated) {\n    return reply(\n      Boom.unauthorized('Authentication failed due to: ' +\n        request.auth.error.message)\n    );\n  }\n\n  const query = {\n    id: parseInt(request.auth.credentials.profile.id, 10),\n    strategy: request.auth.strategy,\n  };\n\n  const user = _where(accounts, query);\n  // console.log(user);\n\n  if (user.length === 0) {\n    console.log('needs registration');\n  }\n\n  delete user[0].password;\n\n  // TODO create and set JWT into session\n  const session = {\n    valid: true,\n    id: aguid(), // a random session id\n    user: user[0],\n    exp: new Date().getTime() + 30 * 60 * 1000, // expires in 30 minutes time\n  };\n\n  // // create the session in Redis\n  // redisClient.set(session.id, JSON.stringify(session));\n  request.session.set(session.id, session);\n  // sign the session as a JWT\n  const token = JWT.sign(session, 'NeverShareYourSecret');\n  // console.log(token);\n  request.session.flash('token', token);\n  return reply.redirect(request.query.ref || '/');\n};\n\nconst loginHandler = () => {\n\n};\n\nconst registrationHandler = () => {\n\n};\n\nconst authHandlers = {\n  authHandler,\n  loginHandler,\n  registrationHandler,\n};\n\nexport default authHandlers;\n"
+    "content": "import JWT from 'jsonwebtoken';\nimport Boom from 'boom';\nimport aguid from 'aguid';\nimport {where as _where} from 'lodash';\n\n// Test data\nimport accounts from '../../helpers/testUserData';\n\n/**\n * Handler for authentication\n */\nconst authHandler = (request, reply) => {\n  // reply error when authentication fails\n  if (!request.auth.isAuthenticated) {\n    return reply(\n      Boom.unauthorized('Authentication failed due to: ' +\n        request.auth.error.message)\n    );\n  }\n\n  const query = {\n    id: parseInt(request.auth.credentials.profile.id, 10),\n    strategy: request.auth.strategy,\n  };\n\n  const user = _where(accounts, query);\n  // console.log(user);\n\n  if (user.length === 0) {\n    console.log('needs registration');\n  }\n\n  delete user[0].password;\n\n  // TODO create and set JWT into session\n  const session = {\n    valid: true,\n    id: aguid(), // a random session id\n    user: user[0],\n    exp: new Date().getTime() + 30 * 60 * 1000, // expires in 30 minutes time\n  };\n\n  // // create the session in Redis\n  // redisClient.set(session.id, JSON.stringify(session));\n  request.session.set(session.id, session);\n  // sign the session as a JWT\n  const token = JWT.sign(session, 'NeverShareYourSecret');\n  // console.log(token);\n  request.session.flash('token', token);\n  return reply.redirect(request.query.ref || '/');\n};\n\n/**\n * Handler for login\n */\nconst loginHandler = () => {\n\n};\n\n/**\n * Handler for site registration\n */\nconst registrationHandler = () => {\n\n};\n\n/**\n * Export all authentication handlers\n */\nconst authHandlers = {\n  authHandler,\n  loginHandler,\n  registrationHandler,\n};\n\nexport default authHandlers;\n"
   },
   {
     "kind": "variable",
@@ -288,9 +339,8 @@
     "export": false,
     "importPath": "frill/src/api/auth/authHandlers.js",
     "importStyle": null,
-    "description": null,
-    "lineNumber": 9,
-    "undocument": true,
+    "description": "Handler for authentication",
+    "lineNumber": 12,
     "type": {
       "types": [
         "*"
@@ -308,9 +358,8 @@
     "export": false,
     "importPath": "frill/src/api/auth/authHandlers.js",
     "importStyle": null,
-    "description": null,
-    "lineNumber": 53,
-    "undocument": true,
+    "description": "Handler for login",
+    "lineNumber": 56,
     "type": {
       "types": [
         "*"
@@ -328,9 +377,8 @@
     "export": false,
     "importPath": "frill/src/api/auth/authHandlers.js",
     "importStyle": null,
-    "description": null,
-    "lineNumber": 57,
-    "undocument": true,
+    "description": "Handler for site registration",
+    "lineNumber": 63,
     "type": {
       "types": [
         "*"
@@ -348,9 +396,8 @@
     "export": true,
     "importPath": "frill/src/api/auth/authHandlers.js",
     "importStyle": "authHandlers",
-    "description": null,
-    "lineNumber": 61,
-    "undocument": true,
+    "description": "Export all authentication handlers",
+    "lineNumber": 70,
     "type": {
       "types": [
         "*"
@@ -367,7 +414,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import {routePrefixer} from '../../helpers';\nimport Strategies from './strategies';\n\n// import authentication routes\nimport local from './local';\nimport twitter from './twitter';\n// import facebook from './facebook';\n// import google from './google';\n\nconst authRoutes = (server) => {\n  // use JsonWebTokens (you shouldn't remove this)\n  Strategies.jwtStrategy(server);\n\n  // use Local strategy\n  Strategies.localStrategy(server);\n\n  // use Twitter strategy\n  Strategies.twitterStrategy(server);\n\n  // use facebookStrategy\n  Strategies.facebookStrategy(server);\n\n  // use googleStrategy\n  Strategies.googleStrategy(server);\n\n  return routePrefixer('/auth', [\n    ...local,\n    ...twitter,\n  ]);\n};\n\nexport default authRoutes;\n"
+    "content": "import {routePrefixer} from '../../helpers';\nimport Strategies from './strategies';\n\n// import authentication routes\nimport local from './local';\nimport twitter from './twitter';\n// import facebook from './facebook';\n// import google from './google';\n\n/**\n * All routes used in authentication\n * @return {Array<function>} - Authentication routes\n */\nconst authRoutes = (server) => {\n  // use JsonWebTokens (you shouldn't remove this)\n  Strategies.jwtStrategy(server);\n\n  // use Local strategy\n  Strategies.localStrategy(server);\n\n  // use Twitter strategy\n  Strategies.twitterStrategy(server);\n\n  // use facebookStrategy\n  Strategies.facebookStrategy(server);\n\n  // use googleStrategy\n  Strategies.googleStrategy(server);\n\n  return routePrefixer('/auth', [\n    ...local,\n    ...twitter,\n  ]);\n};\n\nexport default authRoutes;\n"
   },
   {
     "kind": "variable",
@@ -380,9 +427,16 @@
     "export": true,
     "importPath": "frill/src/api/auth/index.js",
     "importStyle": "authRoutes",
-    "description": null,
-    "lineNumber": 10,
-    "undocument": true,
+    "description": "All routes used in authentication",
+    "lineNumber": 14,
+    "return": {
+      "nullable": null,
+      "types": [
+        "Array<function>"
+      ],
+      "spread": false,
+      "description": "Authentication routes"
+    },
     "type": {
       "types": [
         "*"
@@ -399,7 +453,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Joi from 'joi';\nimport {authHandler} from './authHandlers';\n\nconst localAuthRoutes = [{\n  method: ['POST'],\n  path: '/local/login',\n  config: {\n    validate: {\n      query: {\n        ref: Joi.string(),\n      },\n      payload: {\n        username: Joi.string().min(5).required(),\n        password: Joi.string().min(5).required(),\n      },\n    },\n    tags: ['api', 'auth'],\n    auth: 'local',\n    // auth: 'twitter',\n    plugins: {\n      'hapi-swagger': {\n        responseMessages: [\n          { code: 400, message: 'Bad Request' },\n          { code: 500, message: 'Internal Server Error'},\n        ],\n      },\n    },\n  },\n  handler: authHandler,\n}];\n\nexport default localAuthRoutes;\n"
+    "content": "import Joi from 'joi';\nimport {authHandler} from './authHandlers';\n\n/**\n * Array of all local authentication routes.\n */\nconst localAuthRoutes = [{\n  method: ['POST'],\n  path: '/local/login',\n  config: {\n    validate: {\n      query: {\n        ref: Joi.string(),\n      },\n      payload: {\n        username: Joi.string().min(5).required(),\n        password: Joi.string().min(5).required(),\n      },\n    },\n    tags: ['api', 'auth'],\n    auth: 'local',\n    // auth: 'twitter',\n    plugins: {\n      'hapi-swagger': {\n        responseMessages: [\n          { code: 400, message: 'Bad Request' },\n          { code: 500, message: 'Internal Server Error'},\n        ],\n      },\n    },\n  },\n  handler: authHandler,\n}];\n\nexport default localAuthRoutes;\n"
   },
   {
     "kind": "variable",
@@ -412,9 +466,8 @@
     "export": true,
     "importPath": "frill/src/api/auth/local.js",
     "importStyle": "localAuthRoutes",
-    "description": null,
-    "lineNumber": 4,
-    "undocument": true,
+    "description": "Array of all local authentication routes.",
+    "lineNumber": 7,
     "type": {
       "types": [
         "*"
@@ -430,8 +483,8 @@
     "longname": "src/api/auth/strategies/facebook.js",
     "access": null,
     "description": null,
-    "lineNumber": 1,
-    "content": "const facebookStrategy = (server) => {\n  server.auth.strategy('facebook', 'bell', {\n    provider: 'facebook',\n    password: 'cookie_encryption_password',\n    clientId: 'yKcHqLNOXe2xKgvOTFuXCeyN3',\n    clientSecret: 'woM83S28cvHcf8Ut5AcHBiX4ifqPGMnrze1VkH07QiFLVaIO7y',\n    isSecure: false,\n  });\n};\n\nexport default facebookStrategy;\n"
+    "lineNumber": 5,
+    "content": "/**\n * Authentication strategy for Facebook\n * @see https://developers.facebook.com/\n */\nconst facebookStrategy = (server) => {\n  server.auth.strategy('facebook', 'bell', {\n    provider: 'facebook',\n    password: 'cookie_encryption_password',\n    clientId: 'yKcHqLNOXe2xKgvOTFuXCeyN3',\n    clientSecret: 'woM83S28cvHcf8Ut5AcHBiX4ifqPGMnrze1VkH07QiFLVaIO7y',\n    isSecure: false,\n  });\n};\n\nexport default facebookStrategy;\n"
   },
   {
     "kind": "variable",
@@ -444,9 +497,11 @@
     "export": true,
     "importPath": "frill/src/api/auth/strategies/facebook.js",
     "importStyle": "facebookStrategy",
-    "description": null,
-    "lineNumber": 1,
-    "undocument": true,
+    "description": "Authentication strategy for Facebook",
+    "see": [
+      "https://developers.facebook.com/"
+    ],
+    "lineNumber": 5,
     "type": {
       "types": [
         "*"
@@ -462,8 +517,8 @@
     "longname": "src/api/auth/strategies/github.js",
     "access": null,
     "description": null,
-    "lineNumber": 1,
-    "content": "const githubStrategy = (server) => {\n  server.auth.strategy('github', 'bell', {\n    provider: 'github',\n    password: 'cookie_encryption_password',\n    clientId: 'yKcHqLNOXe2xKgvOTFuXCeyN3',\n    clientSecret: 'woM83S28cvHcf8Ut5AcHBiX4ifqPGMnrze1VkH07QiFLVaIO7y',\n    isSecure: false,\n  });\n};\n\nexport default githubStrategy;\n"
+    "lineNumber": 5,
+    "content": "/**\n * Authentication strategy for github\n * @see https://developer.github.com/\n */\nconst githubStrategy = (server) => {\n  server.auth.strategy('github', 'bell', {\n    provider: 'github',\n    password: 'cookie_encryption_password',\n    clientId: 'yKcHqLNOXe2xKgvOTFuXCeyN3',\n    clientSecret: 'woM83S28cvHcf8Ut5AcHBiX4ifqPGMnrze1VkH07QiFLVaIO7y',\n    isSecure: false,\n  });\n};\n\nexport default githubStrategy;\n"
   },
   {
     "kind": "variable",
@@ -476,9 +531,11 @@
     "export": true,
     "importPath": "frill/src/api/auth/strategies/github.js",
     "importStyle": "githubStrategy",
-    "description": null,
-    "lineNumber": 1,
-    "undocument": true,
+    "description": "Authentication strategy for github",
+    "see": [
+      "https://developer.github.com/"
+    ],
+    "lineNumber": 5,
     "type": {
       "types": [
         "*"
@@ -494,8 +551,8 @@
     "longname": "src/api/auth/strategies/google.js",
     "access": null,
     "description": null,
-    "lineNumber": 1,
-    "content": "const googleStrategy = (server) => {\n  server.auth.strategy('google', 'bell', {\n    provider: 'google',\n    password: 'cookie_encryption_password',\n    clientId: 'yKcHqLNOXe2xKgvOTFuXCeyN3',\n    clientSecret: 'woM83S28cvHcf8Ut5AcHBiX4ifqPGMnrze1VkH07QiFLVaIO7y',\n    isSecure: false,\n  });\n};\n\nexport default googleStrategy;\n"
+    "lineNumber": 5,
+    "content": "/**\n * Authentication strategy for Google\n * @see https://developers.google.com/\n */\nconst googleStrategy = (server) => {\n  server.auth.strategy('google', 'bell', {\n    provider: 'google',\n    password: 'cookie_encryption_password',\n    clientId: 'yKcHqLNOXe2xKgvOTFuXCeyN3',\n    clientSecret: 'woM83S28cvHcf8Ut5AcHBiX4ifqPGMnrze1VkH07QiFLVaIO7y',\n    isSecure: false,\n  });\n};\n\nexport default googleStrategy;\n"
   },
   {
     "kind": "variable",
@@ -508,9 +565,11 @@
     "export": true,
     "importPath": "frill/src/api/auth/strategies/google.js",
     "importStyle": "googleStrategy",
-    "description": null,
-    "lineNumber": 1,
-    "undocument": true,
+    "description": "Authentication strategy for Google",
+    "see": [
+      "https://developers.google.com/"
+    ],
+    "lineNumber": 5,
     "type": {
       "types": [
         "*"
@@ -527,7 +586,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import jwtStrategy from './jwt';\nimport localStrategy from './local';\nimport twitterStrategy from './twitter';\nimport facebookStrategy from './facebook';\nimport googleStrategy from './google';\n// import githubStrategy from './github';\n\nconst Strategies = {\n  jwtStrategy,\n  localStrategy,\n  twitterStrategy,\n  facebookStrategy,\n  googleStrategy,\n  // githubStrategy,\n};\n\nexport default Strategies;\n"
+    "content": "import jwtStrategy from './jwt';\nimport localStrategy from './local';\nimport twitterStrategy from './twitter';\nimport facebookStrategy from './facebook';\nimport googleStrategy from './google';\n// import githubStrategy from './github';\n\n/**\n * List of all strategies to use.\n */\nconst Strategies = {\n  jwtStrategy,\n  localStrategy,\n  twitterStrategy,\n  facebookStrategy,\n  googleStrategy,\n  // githubStrategy,\n};\n\nexport default Strategies;\n"
   },
   {
     "kind": "variable",
@@ -540,9 +599,8 @@
     "export": true,
     "importPath": "frill/src/api/auth/strategies/index.js",
     "importStyle": "Strategies",
-    "description": null,
-    "lineNumber": 8,
-    "undocument": true,
+    "description": "List of all strategies to use.",
+    "lineNumber": 11,
     "type": {
       "types": [
         "*"
@@ -559,7 +617,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import hapiAuthJwt from 'hapi-auth-jwt2';\nimport {where as _where} from 'lodash';\n\n// Test data\nimport accounts from '../../../helpers/testUserData';\n\nconst validator = (decoded, request, callback) => {\n  // TODO: search from session\n  // construct search query\n  const query = {\n    id: parseInt(decoded.user.id, 10),\n  };\n  const user = _where(accounts, query);\n  if (user.length === 0) {\n    return callback(null, false);\n  } else {\n    return callback(null, true);\n  }\n};\n\nconst jwtStrategy = (server) => {\n  server.register(hapiAuthJwt, (err) => {\n    if (err) server.log(['error'], 'jwt-validator load error');\n\n    server.auth.strategy('jwt', 'jwt', true, {\n      key: 'NeverShareYourSecret',\n      // key: 'VQkdGKTWhA4FJHWYXkps7q8q8SNQGvdFjVob2hlEVjQ8AijsWAOdPxkThiDQsDg',\n      validateFunc: validator,\n      verifyOptions: { algorithms: ['HS256'] },\n    });\n  });\n};\n\nexport default jwtStrategy;\n"
+    "content": "import hapiAuthJwt from 'hapi-auth-jwt2';\nimport {where as _where} from 'lodash';\n\n// Test data\nimport accounts from '../../../helpers/testUserData';\n\nconst validator = (decoded, request, callback) => {\n  // TODO: search from session\n  // construct search query\n  const query = {\n    id: parseInt(decoded.user.id, 10),\n  };\n  const user = _where(accounts, query);\n  if (user.length === 0) {\n    return callback(null, false);\n  } else {\n    return callback(null, true);\n  }\n};\n\n/**\n * Authentication strategy for JsonWebTokens(JWT)\n * @see http://jwt.io/\n */\nconst jwtStrategy = (server) => {\n  server.register(hapiAuthJwt, (err) => {\n    if (err) server.log(['error'], 'jwt-validator load error');\n\n    server.auth.strategy('jwt', 'jwt', true, {\n      key: 'NeverShareYourSecret',\n      // key: 'VQkdGKTWhA4FJHWYXkps7q8q8SNQGvdFjVob2hlEVjQ8AijsWAOdPxkThiDQsDg',\n      validateFunc: validator,\n      verifyOptions: { algorithms: ['HS256'] },\n    });\n  });\n};\n\nexport default jwtStrategy;\n"
   },
   {
     "kind": "variable",
@@ -592,9 +650,11 @@
     "export": true,
     "importPath": "frill/src/api/auth/strategies/jwt.js",
     "importStyle": "jwtStrategy",
-    "description": null,
-    "lineNumber": 21,
-    "undocument": true,
+    "description": "Authentication strategy for JsonWebTokens(JWT)",
+    "see": [
+      "http://jwt.io/"
+    ],
+    "lineNumber": 25,
     "type": {
       "types": [
         "*"
@@ -611,7 +671,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Boom from 'boom';\nimport {where as _where} from 'lodash';\n\n// Test data\nimport accounts from '../../../helpers/testUserData';\n\nconst authenticate = (request, reply) => {\n  const credentials = {};\n  reply.continue({ credentials });\n};\n\nconst payload = (request, reply) => {\n  // construct search query\n  const query = {\n    name: request.payload.username,\n    password: request.payload.password,\n  };\n\n  let user = _where(accounts, query);\n\n  if (user.length === 0) {\n    return reply(Boom.badRequest('invalid username or password'));\n  }\n\n  user = user.pop();\n\n  request.auth.credentials = {\n    provider: 'local',\n    token: null,\n    secret: null,\n    query: {},\n    profile: {\n      id: user.id,\n      username: user.name,\n      displayName: user.displayName,\n      raw: user, // full profile\n    },\n  };\n\n  reply.continue();\n};\n\nconst response = (request, reply) => {\n  reply.continue();\n};\n\nconst scheme = () => {\n  return {\n    payload,\n    authenticate,\n    response,\n    options: {\n      payload: true,\n    },\n  };\n};\n\nconst localStrategy = (server) => {\n  server.auth.scheme('local', scheme);\n  server.auth.strategy('local', 'local');\n};\n\nexport default localStrategy;\n"
+    "content": "import Boom from 'boom';\nimport {where as _where} from 'lodash';\n\n// Test data\nimport accounts from '../../../helpers/testUserData';\n\nconst authenticate = (request, reply) => {\n  const credentials = {};\n  reply.continue({ credentials });\n};\n\nconst payload = (request, reply) => {\n  // construct search query\n  const query = {\n    name: request.payload.username,\n    password: request.payload.password,\n  };\n\n  let user = _where(accounts, query);\n\n  if (user.length === 0) {\n    return reply(Boom.badRequest('invalid username or password'));\n  }\n\n  user = user.pop();\n\n  request.auth.credentials = {\n    provider: 'local',\n    token: null,\n    secret: null,\n    query: {},\n    profile: {\n      id: user.id,\n      username: user.name,\n      displayName: user.displayName,\n      raw: user, // full profile\n    },\n  };\n\n  reply.continue();\n};\n\nconst response = (request, reply) => {\n  reply.continue();\n};\n\nconst scheme = () => {\n  return {\n    payload,\n    authenticate,\n    response,\n    options: {\n      payload: true,\n    },\n  };\n};\n\n/**\n * Authentication strategy for local authentications\n */\nconst localStrategy = (server) => {\n  server.auth.scheme('local', scheme);\n  server.auth.strategy('local', 'local');\n};\n\nexport default localStrategy;\n"
   },
   {
     "kind": "variable",
@@ -704,9 +764,8 @@
     "export": true,
     "importPath": "frill/src/api/auth/strategies/local.js",
     "importStyle": "localStrategy",
-    "description": null,
-    "lineNumber": 58,
-    "undocument": true,
+    "description": "Authentication strategy for local authentications",
+    "lineNumber": 61,
     "type": {
       "types": [
         "*"
@@ -722,8 +781,8 @@
     "longname": "src/api/auth/strategies/twitter.js",
     "access": null,
     "description": null,
-    "lineNumber": 1,
-    "content": "const twitterStrategy = (server) => {\n  server.auth.strategy('twitter', 'bell', {\n    provider: 'twitter',\n    password: 'cookie_encryption_password',\n    clientId: 'yKcHqLNOXe2xKgvOTFuXCeyN3',\n    clientSecret: 'woM83S28cvHcf8Ut5AcHBiX4ifqPGMnrze1VkH07QiFLVaIO7y',\n    isSecure: false,\n  });\n};\n\nexport default twitterStrategy;\n"
+    "lineNumber": 5,
+    "content": "/**\n * Authentication strategy for Twitter\n * @see https://dev.twitter.com/\n */\nconst twitterStrategy = (server) => {\n  server.auth.strategy('twitter', 'bell', {\n    provider: 'twitter',\n    password: 'cookie_encryption_password',\n    clientId: 'yKcHqLNOXe2xKgvOTFuXCeyN3',\n    clientSecret: 'woM83S28cvHcf8Ut5AcHBiX4ifqPGMnrze1VkH07QiFLVaIO7y',\n    isSecure: false,\n  });\n};\n\nexport default twitterStrategy;\n"
   },
   {
     "kind": "variable",
@@ -736,9 +795,11 @@
     "export": true,
     "importPath": "frill/src/api/auth/strategies/twitter.js",
     "importStyle": "twitterStrategy",
-    "description": null,
-    "lineNumber": 1,
-    "undocument": true,
+    "description": "Authentication strategy for Twitter",
+    "see": [
+      "https://dev.twitter.com/"
+    ],
+    "lineNumber": 5,
     "type": {
       "types": [
         "*"
@@ -755,7 +816,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import {authHandler} from './authHandlers';\n\nconst twitterAuthRoutes = [{\n  method: ['GET', 'POST'],\n  path: '/twitter/login',\n  config: {\n    tags: ['api', 'auth'],\n    auth: { strategy: 'twitter', mode: 'try' },\n    // auth: 'twitter',\n    plugins: {\n      'hapi-swagger': {\n        responseMessages: [\n          { code: 400, message: 'Bad Request' },\n          { code: 500, message: 'Internal Server Error'},\n        ],\n      },\n    },\n  },\n  handler: authHandler,\n}];\n\nexport default twitterAuthRoutes;\n"
+    "content": "import {authHandler} from './authHandlers';\n\n/**\n * Twitter authentication routes.\n */\nconst twitterAuthRoutes = [{\n  method: ['GET', 'POST'],\n  path: '/twitter/login',\n  config: {\n    tags: ['api', 'auth'],\n    auth: { strategy: 'twitter', mode: 'try' },\n    // auth: 'twitter',\n    plugins: {\n      'hapi-swagger': {\n        responseMessages: [\n          { code: 400, message: 'Bad Request' },\n          { code: 500, message: 'Internal Server Error'},\n        ],\n      },\n    },\n  },\n  handler: authHandler,\n}];\n\nexport default twitterAuthRoutes;\n"
   },
   {
     "kind": "variable",
@@ -768,9 +829,8 @@
     "export": true,
     "importPath": "frill/src/api/auth/twitter.js",
     "importStyle": "twitterAuthRoutes",
-    "description": null,
-    "lineNumber": 3,
-    "undocument": true,
+    "description": "Twitter authentication routes.",
+    "lineNumber": 6,
     "type": {
       "types": [
         "*"
@@ -2354,7 +2414,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import {Store} from 'frill-core';\nimport jwtDecode from 'jwt-decode';\n\nclass AuthStore extends Store {\n\n  constructor() {\n    super();\n    this._user = null;\n    this._jwt = null;\n    this.actions = {\n      'AUTH_LOGIN': 'login',\n      'AUTH_LOGOUT': 'logout',\n    };\n  }\n\n  login(token) {\n    // store these to localStorage\n    this._jwt = token;\n    this._user = jwtDecode(this._jwt);\n    this.change();\n  }\n\n  logout() {\n    // remove these from localStorage\n    this._jwt = null;\n    this._user = null;\n    this.change();\n  }\n\n  get user() {\n    return this._user;\n  }\n\n  get jwt() {\n    return this._jwt;\n  }\n\n  isLoggedIn() {\n    return Boolean(this._user);\n  }\n}\n\nexport default new AuthStore();\n"
+    "content": "import {BaseStore} from 'frill-core';\nimport jwtDecode from 'jwt-decode';\n\nclass AuthStore extends BaseStore {\n\n  constructor() {\n    super();\n    this._user = null;\n    this._jwt = null;\n    this.actions = {\n      'AUTH_LOGIN': 'login',\n      'AUTH_LOGOUT': 'logout',\n    };\n  }\n\n  login(token) {\n    // store these to localStorage\n    this._jwt = token;\n    this._user = jwtDecode(this._jwt);\n    this.change();\n  }\n\n  logout() {\n    // remove these from localStorage\n    this._jwt = null;\n    this._user = null;\n    this.change();\n  }\n\n  get user() {\n    return this._user;\n  }\n\n  get jwt() {\n    return this._jwt;\n  }\n\n  isLoggedIn() {\n    return Boolean(this._user);\n  }\n}\n\nexport default new AuthStore();\n"
   },
   {
     "kind": "class",
@@ -2373,7 +2433,7 @@
     "undocument": true,
     "interface": false,
     "extends": [
-      "frill-core~Store"
+      "frill-core~BaseStore"
     ]
   },
   {
@@ -2629,7 +2689,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import {Store} from 'frill-core';\n\nclass ExampleStore extends Store {\n\n  constructor() {\n    super();\n    this._count = 0;\n    this._scrollItems = [];\n    this._scrollItemsCount = 0;\n    this._scrollItemTotal = 0;\n    this.actions = {\n      'COUNT_UP': 'countup',\n      'COUNT_UP_BY': 'countupBy',\n      'LOAD_SCROLL_ITEMS': 'loadScrollItems',\n    };\n  }\n\n  countup() {\n    this._count = this._count + 1;\n    this.change();\n  }\n\n  countupBy(byCount) {\n    this._count = this._count + byCount;\n    this.change();\n  }\n\n  getCount() {\n    return this._count;\n  }\n\n  loadScrollItems({data, total}) {\n    this._scrollItems = this._scrollItems.concat(data);\n    this._scrollItemsCount = this._scrollItemsCount + data.length;\n    this._scrollItemTotal = total;\n    this.change();\n  }\n\n  getScrollItems() {\n    return this._scrollItems;\n  }\n\n  getScrollItemsCount() {\n    return this._scrollItemsCount;\n  }\n\n  getScrollItemTotal() {\n    return this._scrollItemTotal;\n  }\n\n}\n\nexport default new ExampleStore();\n"
+    "content": "import {BaseStore} from 'frill-core';\n\nclass ExampleStore extends BaseStore {\n\n  constructor() {\n    super();\n    this._count = 0;\n    this._scrollItems = [];\n    this._scrollItemsCount = 0;\n    this._scrollItemTotal = 0;\n    this.actions = {\n      'COUNT_UP': 'countup',\n      'COUNT_UP_BY': 'countupBy',\n      'LOAD_SCROLL_ITEMS': 'loadScrollItems',\n    };\n  }\n\n  countup() {\n    this._count = this._count + 1;\n    this.change();\n  }\n\n  countupBy(byCount) {\n    this._count = this._count + byCount;\n    this.change();\n  }\n\n  getCount() {\n    return this._count;\n  }\n\n  loadScrollItems({data, total}) {\n    this._scrollItems = this._scrollItems.concat(data);\n    this._scrollItemsCount = this._scrollItemsCount + data.length;\n    this._scrollItemTotal = total;\n    this.change();\n  }\n\n  getScrollItems() {\n    return this._scrollItems;\n  }\n\n  getScrollItemsCount() {\n    return this._scrollItemsCount;\n  }\n\n  getScrollItemTotal() {\n    return this._scrollItemTotal;\n  }\n\n}\n\nexport default new ExampleStore();\n"
   },
   {
     "kind": "class",
@@ -2648,7 +2708,7 @@
     "undocument": true,
     "interface": false,
     "extends": [
-      "frill-core~Store"
+      "frill-core~BaseStore"
     ]
   },
   {

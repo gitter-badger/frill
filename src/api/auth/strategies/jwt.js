@@ -18,6 +18,10 @@ const validator = (decoded, request, callback) => {
   }
 };
 
+/**
+ * Authentication strategy for JsonWebTokens(JWT)
+ * @see http://jwt.io/
+ */
 const jwtStrategy = (server) => {
   server.register(hapiAuthJwt, (err) => {
     if (err) server.log(['error'], 'jwt-validator load error');

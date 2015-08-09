@@ -1,3 +1,7 @@
+/**
+ * Authentication strategy for github
+ * @see https://developer.github.com/
+ */
 const githubStrategy = (server) => {
   server.auth.strategy('github', 'bell', {
     provider: 'github',

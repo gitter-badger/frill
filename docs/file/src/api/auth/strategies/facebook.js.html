@@ -98,7 +98,11 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/api/auth/strategies/facebook.js</h1>
-<pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">const facebookStrategy = (server) =&gt; {
+<pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">/**
+ * Authentication strategy for Facebook
+ * @see https://developers.facebook.com/
+ */
+const facebookStrategy = (server) =&gt; {
   server.auth.strategy(&apos;facebook&apos;, &apos;bell&apos;, {
     provider: &apos;facebook&apos;,
     password: &apos;cookie_encryption_password&apos;,

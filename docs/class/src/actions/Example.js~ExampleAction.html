@@ -104,7 +104,7 @@
   
   
   
-  <span data-ice="source">| <span><a href="file/src/actions/Example.js.html#lineNumber4">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/actions/Example.js.html#lineNumber15">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -118,7 +118,7 @@
 
   
   
-  <div class="flat-list" data-ice="extendsChain"><h4>Extends:</h4><div><span>frill-core~Action</span> &#x2192; ExampleAction</div></div>
+  <div class="flat-list" data-ice="extendsChain"><h4>Extends:</h4><div><span>BaseAction</span> &#x2192; ExampleAction</div></div>
   
   
   
@@ -128,11 +128,24 @@
 
   
   
-  
+  <div class="description" data-ice="description"><p>Example actions</p>
+</div>
 
   
 
-  
+  <div data-ice="exampleDocs">
+    <h4>Example:</h4>
+    
+  <div class="example-doc" data-ice="exampleDoc">
+      <div class="example-caption" data-ice="exampleCaption">via react or frill component</div>
+      <pre class="prettyprint source-code"><code data-ice="exampleCode">// count up counters
+this.getFrill().action(&apos;Example&apos;).countUp();
+// count up counters by a number given
+this.getFrill().action(&apos;Example&apos;).countUpBy(10);
+// load items by scroll
+this.getFrill().action(&apos;Example&apos;).loadScrollItems(1, 5);</code></pre>
+    </div>
+</div>
 
   
 
@@ -162,7 +175,8 @@
       <div>
         
         
-        
+        <div data-ice="description"><p>Constructor</p>
+</div>
       </div>
     </td>
     <td>
@@ -195,7 +209,7 @@
       <div>
         
         
-        
+        <div data-ice="description"><p>Counts up counter by one.</p></div>
       </div>
     </td>
     <td>
@@ -214,13 +228,13 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/actions/Example.js~ExampleAction.html#instance-method-countUpBy">countUpBy</a></span></span><span data-ice="signature">(count: <span>*</span>): <span>*</span></span>
+           <span data-ice="name"><span><a href="class/src/actions/Example.js~ExampleAction.html#instance-method-countUpBy">countUpBy</a></span></span><span data-ice="signature">(count: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>Counts up counter by a number given.</p></div>
       </div>
     </td>
     <td>
@@ -239,13 +253,14 @@
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/actions/Example.js~ExampleAction.html#instance-method-loadScrollItems">loadScrollItems</a></span></span><span data-ice="signature">(lastIndex: <span>*</span>, retrieve: <span>*</span>)</span>
+           <span data-ice="name"><span><a href="class/src/actions/Example.js~ExampleAction.html#instance-method-loadScrollItems">loadScrollItems</a></span></span><span data-ice="signature">(lastIndex: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, retrieve: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>)</span>
         </p>
       </div>
       <div>
         
         
-        
+        <div data-ice="description"><p>load items by scroll (Infinite scrolling)</p>
+</div>
       </div>
     </td>
     <td>
@@ -274,14 +289,15 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/actions/Example.js.html#lineNumber6">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/actions/Example.js.html#lineNumber20">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Constructor</p>
+</div>
 
   
 
@@ -318,14 +334,15 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/actions/Example.js.html#lineNumber12">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/actions/Example.js.html#lineNumber30">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Counts up counter by one.</p>
+</div>
 
   
 
@@ -334,7 +351,18 @@
 
   
 
-  
+  <div data-ice="emitWrap">
+    <h4>Emit:</h4>
+    <table>
+      <tbody>
+      
+      <tr class="emit" data-ice="emit">
+        <td><p data-ice="emitName"><span>COUNT_UP</span></p></td>
+        
+      </tr>
+</tbody>
+    </table>
+  </div>
 
   
 
@@ -354,18 +382,19 @@
     
     
     
-    <span data-ice="name">countUpBy</span><span data-ice="signature">(count: <span>*</span>): <span>*</span></span>
+    <span data-ice="name">countUpBy</span><span data-ice="signature">(count: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/actions/Example.js.html#lineNumber16">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/actions/Example.js.html#lineNumber39">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>Counts up counter by a number given.</p>
+</div>
 
   
 
@@ -379,28 +408,31 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">count</td>
-      <td data-ice="type"><span>*</span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+      <td data-ice="appendix"><ul><li>optional</li>
+<li>default: 1</li></ul></td>
+      <td data-ice="description"><p>a number to count up by</p>
+</td>
     </tr>
 </tbody>
   </table>
 </div>
 </div>
 
-  <div class="return-params" data-ice="returnParams">
-    <h4>Return:</h4>
+  
+
+  <div data-ice="emitWrap">
+    <h4>Emit:</h4>
     <table>
-      <tr>
-        <td class="return-type" data-ice="returnType"><span>*</span></td>
+      <tbody>
+      
+      <tr class="emit" data-ice="emit">
+        <td><p data-ice="emitName"><span>COUNT_UP_BY</span></p></td>
         
       </tr>
+</tbody>
     </table>
-    <div data-ice="returnProperties">
-</div>
   </div>
-
-  
 
   
 
@@ -420,18 +452,19 @@
     
     
     
-    <span data-ice="name">loadScrollItems</span><span data-ice="signature">(lastIndex: <span>*</span>, retrieve: <span>*</span>)</span>
+    <span data-ice="name">loadScrollItems</span><span data-ice="signature">(lastIndex: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>, retrieve: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/actions/Example.js.html#lineNumber21">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/actions/Example.js.html#lineNumber49">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  
+  <div data-ice="description"><p>load items by scroll (Infinite scrolling)</p>
+</div>
 
   
 
@@ -445,15 +478,19 @@
     
     <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">lastIndex</td>
-      <td data-ice="type"><span>*</span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+      <td data-ice="appendix"><ul><li>optional</li>
+<li>default: 1</li></ul></td>
+      <td data-ice="description"><p>the last index of items loaded</p>
+</td>
     </tr>
 <tr data-ice="property" data-depth="0">
       <td data-ice="name" data-depth="0">retrieve</td>
-      <td data-ice="type"><span>*</span></td>
-      <td data-ice="appendix"></td>
-      <td data-ice="description"></td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">number</a></span></td>
+      <td data-ice="appendix"><ul><li>optional</li>
+<li>default: 5</li></ul></td>
+      <td data-ice="description"><p>number of items to load</p>
+</td>
     </tr>
 </tbody>
   </table>
@@ -462,7 +499,18 @@
 
   
 
-  
+  <div data-ice="emitWrap">
+    <h4>Emit:</h4>
+    <table>
+      <tbody>
+      
+      <tr class="emit" data-ice="emit">
+        <td><p data-ice="emitName"><span>COUNT_UP_BY</span></p></td>
+        
+      </tr>
+</tbody>
+    </table>
+  </div>
 
   
 

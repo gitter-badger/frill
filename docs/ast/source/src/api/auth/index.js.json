@@ -386,6 +386,24 @@
               "column": 33
             }
           }
+        },
+        {
+          "type": "Block",
+          "value": "*\n * All routes used in authentication\n * @return {Array<function>} - Authentication routes\n ",
+          "range": [
+            252,
+            349
+          ],
+          "loc": {
+            "start": {
+              "line": 10,
+              "column": 0
+            },
+            "end": {
+              "line": 13,
+              "column": 3
+            }
+          }
         }
       ]
     },
@@ -398,16 +416,16 @@
             "type": "Identifier",
             "name": "authRoutes",
             "range": [
-              258,
-              268
+              356,
+              366
             ],
             "loc": {
               "start": {
-                "line": 10,
+                "line": 14,
                 "column": 6
               },
               "end": {
-                "line": 10,
+                "line": 14,
                 "column": 16
               }
             }
@@ -420,16 +438,16 @@
                 "type": "Identifier",
                 "name": "server",
                 "range": [
-                  272,
-                  278
+                  370,
+                  376
                 ],
                 "loc": {
                   "start": {
-                    "line": 10,
+                    "line": 14,
                     "column": 20
                   },
                   "end": {
-                    "line": 10,
+                    "line": 14,
                     "column": 26
                   }
                 }
@@ -449,16 +467,16 @@
                         "type": "Identifier",
                         "name": "Strategies",
                         "range": [
-                          338,
-                          348
+                          436,
+                          446
                         ],
                         "loc": {
                           "start": {
-                            "line": 12,
+                            "line": 16,
                             "column": 2
                           },
                           "end": {
-                            "line": 12,
+                            "line": 16,
                             "column": 12
                           }
                         }
@@ -467,31 +485,31 @@
                         "type": "Identifier",
                         "name": "jwtStrategy",
                         "range": [
-                          349,
-                          360
+                          447,
+                          458
                         ],
                         "loc": {
                           "start": {
-                            "line": 12,
+                            "line": 16,
                             "column": 13
                           },
                           "end": {
-                            "line": 12,
+                            "line": 16,
                             "column": 24
                           }
                         }
                       },
                       "range": [
-                        338,
-                        360
+                        436,
+                        458
                       ],
                       "loc": {
                         "start": {
-                          "line": 12,
+                          "line": 16,
                           "column": 2
                         },
                         "end": {
-                          "line": 12,
+                          "line": 16,
                           "column": 24
                         }
                       }
@@ -501,47 +519,47 @@
                         "type": "Identifier",
                         "name": "server",
                         "range": [
-                          361,
-                          367
+                          459,
+                          465
                         ],
                         "loc": {
                           "start": {
-                            "line": 12,
+                            "line": 16,
                             "column": 25
                           },
                           "end": {
-                            "line": 12,
+                            "line": 16,
                             "column": 31
                           }
                         }
                       }
                     ],
                     "range": [
-                      338,
-                      368
+                      436,
+                      466
                     ],
                     "loc": {
                       "start": {
-                        "line": 12,
+                        "line": 16,
                         "column": 2
                       },
                       "end": {
-                        "line": 12,
+                        "line": 16,
                         "column": 32
                       }
                     }
                   },
                   "range": [
-                    338,
-                    369
+                    436,
+                    467
                   ],
                   "loc": {
                     "start": {
-                      "line": 12,
+                      "line": 16,
                       "column": 2
                     },
                     "end": {
-                      "line": 12,
+                      "line": 16,
                       "column": 33
                     }
                   },
@@ -550,16 +568,16 @@
                       "type": "Line",
                       "value": " use JsonWebTokens (you shouldn't remove this)",
                       "range": [
-                        287,
-                        335
+                        385,
+                        433
                       ],
                       "loc": {
                         "start": {
-                          "line": 11,
+                          "line": 15,
                           "column": 2
                         },
                         "end": {
-                          "line": 11,
+                          "line": 15,
                           "column": 50
                         }
                       }
@@ -570,16 +588,16 @@
                       "type": "Line",
                       "value": " use Local strategy",
                       "range": [
-                        373,
-                        394
+                        471,
+                        492
                       ],
                       "loc": {
                         "start": {
-                          "line": 14,
+                          "line": 18,
                           "column": 2
                         },
                         "end": {
-                          "line": 14,
+                          "line": 18,
                           "column": 23
                         }
                       }
@@ -597,16 +615,16 @@
                         "type": "Identifier",
                         "name": "Strategies",
                         "range": [
-                          397,
-                          407
+                          495,
+                          505
                         ],
                         "loc": {
                           "start": {
-                            "line": 15,
+                            "line": 19,
                             "column": 2
                           },
                           "end": {
-                            "line": 15,
+                            "line": 19,
                             "column": 12
                           }
                         }
@@ -615,31 +633,31 @@
                         "type": "Identifier",
                         "name": "localStrategy",
                         "range": [
-                          408,
-                          421
+                          506,
+                          519
                         ],
                         "loc": {
                           "start": {
-                            "line": 15,
+                            "line": 19,
                             "column": 13
                           },
                           "end": {
-                            "line": 15,
+                            "line": 19,
                             "column": 26
                           }
                         }
                       },
                       "range": [
-                        397,
-                        421
+                        495,
+                        519
                       ],
                       "loc": {
                         "start": {
-                          "line": 15,
+                          "line": 19,
                           "column": 2
                         },
                         "end": {
-                          "line": 15,
+                          "line": 19,
                           "column": 26
                         }
                       }
@@ -649,47 +667,47 @@
                         "type": "Identifier",
                         "name": "server",
                         "range": [
-                          422,
-                          428
+                          520,
+                          526
                         ],
                         "loc": {
                           "start": {
-                            "line": 15,
+                            "line": 19,
                             "column": 27
                           },
                           "end": {
-                            "line": 15,
+                            "line": 19,
                             "column": 33
                           }
                         }
                       }
                     ],
                     "range": [
-                      397,
-                      429
+                      495,
+                      527
                     ],
                     "loc": {
                       "start": {
-                        "line": 15,
+                        "line": 19,
                         "column": 2
                       },
                       "end": {
-                        "line": 15,
+                        "line": 19,
                         "column": 34
                       }
                     }
                   },
                   "range": [
-                    397,
-                    430
+                    495,
+                    528
                   ],
                   "loc": {
                     "start": {
-                      "line": 15,
+                      "line": 19,
                       "column": 2
                     },
                     "end": {
-                      "line": 15,
+                      "line": 19,
                       "column": 35
                     }
                   },
@@ -698,16 +716,16 @@
                       "type": "Line",
                       "value": " use Local strategy",
                       "range": [
-                        373,
-                        394
+                        471,
+                        492
                       ],
                       "loc": {
                         "start": {
-                          "line": 14,
+                          "line": 18,
                           "column": 2
                         },
                         "end": {
-                          "line": 14,
+                          "line": 18,
                           "column": 23
                         }
                       }
@@ -718,16 +736,16 @@
                       "type": "Line",
                       "value": " use Twitter strategy",
                       "range": [
-                        434,
-                        457
+                        532,
+                        555
                       ],
                       "loc": {
                         "start": {
-                          "line": 17,
+                          "line": 21,
                           "column": 2
                         },
                         "end": {
-                          "line": 17,
+                          "line": 21,
                           "column": 25
                         }
                       }
@@ -745,16 +763,16 @@
                         "type": "Identifier",
                         "name": "Strategies",
                         "range": [
-                          460,
-                          470
+                          558,
+                          568
                         ],
                         "loc": {
                           "start": {
-                            "line": 18,
+                            "line": 22,
                             "column": 2
                           },
                           "end": {
-                            "line": 18,
+                            "line": 22,
                             "column": 12
                           }
                         }
@@ -763,31 +781,31 @@
                         "type": "Identifier",
                         "name": "twitterStrategy",
                         "range": [
-                          471,
-                          486
+                          569,
+                          584
                         ],
                         "loc": {
                           "start": {
-                            "line": 18,
+                            "line": 22,
                             "column": 13
                           },
                           "end": {
-                            "line": 18,
+                            "line": 22,
                             "column": 28
                           }
                         }
                       },
                       "range": [
-                        460,
-                        486
+                        558,
+                        584
                       ],
                       "loc": {
                         "start": {
-                          "line": 18,
+                          "line": 22,
                           "column": 2
                         },
                         "end": {
-                          "line": 18,
+                          "line": 22,
                           "column": 28
                         }
                       }
@@ -797,47 +815,47 @@
                         "type": "Identifier",
                         "name": "server",
                         "range": [
-                          487,
-                          493
+                          585,
+                          591
                         ],
                         "loc": {
                           "start": {
-                            "line": 18,
+                            "line": 22,
                             "column": 29
                           },
                           "end": {
-                            "line": 18,
+                            "line": 22,
                             "column": 35
                           }
                         }
                       }
                     ],
                     "range": [
-                      460,
-                      494
+                      558,
+                      592
                     ],
                     "loc": {
                       "start": {
-                        "line": 18,
+                        "line": 22,
                         "column": 2
                       },
                       "end": {
-                        "line": 18,
+                        "line": 22,
                         "column": 36
                       }
                     }
                   },
                   "range": [
-                    460,
-                    495
+                    558,
+                    593
                   ],
                   "loc": {
                     "start": {
-                      "line": 18,
+                      "line": 22,
                       "column": 2
                     },
                     "end": {
-                      "line": 18,
+                      "line": 22,
                       "column": 37
                     }
                   },
@@ -846,16 +864,16 @@
                       "type": "Line",
                       "value": " use Twitter strategy",
                       "range": [
-                        434,
-                        457
+                        532,
+                        555
                       ],
                       "loc": {
                         "start": {
-                          "line": 17,
+                          "line": 21,
                           "column": 2
                         },
                         "end": {
-                          "line": 17,
+                          "line": 21,
                           "column": 25
                         }
                       }
@@ -866,16 +884,16 @@
                       "type": "Line",
                       "value": " use facebookStrategy",
                       "range": [
-                        499,
-                        522
+                        597,
+                        620
                       ],
                       "loc": {
                         "start": {
-                          "line": 20,
+                          "line": 24,
                           "column": 2
                         },
                         "end": {
-                          "line": 20,
+                          "line": 24,
                           "column": 25
                         }
                       }
@@ -893,16 +911,16 @@
                         "type": "Identifier",
                         "name": "Strategies",
                         "range": [
-                          525,
-                          535
+                          623,
+                          633
                         ],
                         "loc": {
                           "start": {
-                            "line": 21,
+                            "line": 25,
                             "column": 2
                           },
                           "end": {
-                            "line": 21,
+                            "line": 25,
                             "column": 12
                           }
                         }
@@ -911,31 +929,31 @@
                         "type": "Identifier",
                         "name": "facebookStrategy",
                         "range": [
-                          536,
-                          552
+                          634,
+                          650
                         ],
                         "loc": {
                           "start": {
-                            "line": 21,
+                            "line": 25,
                             "column": 13
                           },
                           "end": {
-                            "line": 21,
+                            "line": 25,
                             "column": 29
                           }
                         }
                       },
                       "range": [
-                        525,
-                        552
+                        623,
+                        650
                       ],
                       "loc": {
                         "start": {
-                          "line": 21,
+                          "line": 25,
                           "column": 2
                         },
                         "end": {
-                          "line": 21,
+                          "line": 25,
                           "column": 29
                         }
                       }
@@ -945,47 +963,47 @@
                         "type": "Identifier",
                         "name": "server",
                         "range": [
-                          553,
-                          559
+                          651,
+                          657
                         ],
                         "loc": {
                           "start": {
-                            "line": 21,
+                            "line": 25,
                             "column": 30
                           },
                           "end": {
-                            "line": 21,
+                            "line": 25,
                             "column": 36
                           }
                         }
                       }
                     ],
                     "range": [
-                      525,
-                      560
+                      623,
+                      658
                     ],
                     "loc": {
                       "start": {
-                        "line": 21,
+                        "line": 25,
                         "column": 2
                       },
                       "end": {
-                        "line": 21,
+                        "line": 25,
                         "column": 37
                       }
                     }
                   },
                   "range": [
-                    525,
-                    561
+                    623,
+                    659
                   ],
                   "loc": {
                     "start": {
-                      "line": 21,
+                      "line": 25,
                       "column": 2
                     },
                     "end": {
-                      "line": 21,
+                      "line": 25,
                       "column": 38
                     }
                   },
@@ -994,16 +1012,16 @@
                       "type": "Line",
                       "value": " use facebookStrategy",
                       "range": [
-                        499,
-                        522
+                        597,
+                        620
                       ],
                       "loc": {
                         "start": {
-                          "line": 20,
+                          "line": 24,
                           "column": 2
                         },
                         "end": {
-                          "line": 20,
+                          "line": 24,
                           "column": 25
                         }
                       }
@@ -1014,16 +1032,16 @@
                       "type": "Line",
                       "value": " use googleStrategy",
                       "range": [
-                        565,
-                        586
+                        663,
+                        684
                       ],
                       "loc": {
                         "start": {
-                          "line": 23,
+                          "line": 27,
                           "column": 2
                         },
                         "end": {
-                          "line": 23,
+                          "line": 27,
                           "column": 23
                         }
                       }
@@ -1041,16 +1059,16 @@
                         "type": "Identifier",
                         "name": "Strategies",
                         "range": [
-                          589,
-                          599
+                          687,
+                          697
                         ],
                         "loc": {
                           "start": {
-                            "line": 24,
+                            "line": 28,
                             "column": 2
                           },
                           "end": {
-                            "line": 24,
+                            "line": 28,
                             "column": 12
                           }
                         }
@@ -1059,31 +1077,31 @@
                         "type": "Identifier",
                         "name": "googleStrategy",
                         "range": [
-                          600,
-                          614
+                          698,
+                          712
                         ],
                         "loc": {
                           "start": {
-                            "line": 24,
+                            "line": 28,
                             "column": 13
                           },
                           "end": {
-                            "line": 24,
+                            "line": 28,
                             "column": 27
                           }
                         }
                       },
                       "range": [
-                        589,
-                        614
+                        687,
+                        712
                       ],
                       "loc": {
                         "start": {
-                          "line": 24,
+                          "line": 28,
                           "column": 2
                         },
                         "end": {
-                          "line": 24,
+                          "line": 28,
                           "column": 27
                         }
                       }
@@ -1093,47 +1111,47 @@
                         "type": "Identifier",
                         "name": "server",
                         "range": [
-                          615,
-                          621
+                          713,
+                          719
                         ],
                         "loc": {
                           "start": {
-                            "line": 24,
+                            "line": 28,
                             "column": 28
                           },
                           "end": {
-                            "line": 24,
+                            "line": 28,
                             "column": 34
                           }
                         }
                       }
                     ],
                     "range": [
-                      589,
-                      622
+                      687,
+                      720
                     ],
                     "loc": {
                       "start": {
-                        "line": 24,
+                        "line": 28,
                         "column": 2
                       },
                       "end": {
-                        "line": 24,
+                        "line": 28,
                         "column": 35
                       }
                     }
                   },
                   "range": [
-                    589,
-                    623
+                    687,
+                    721
                   ],
                   "loc": {
                     "start": {
-                      "line": 24,
+                      "line": 28,
                       "column": 2
                     },
                     "end": {
-                      "line": 24,
+                      "line": 28,
                       "column": 36
                     }
                   },
@@ -1142,16 +1160,16 @@
                       "type": "Line",
                       "value": " use googleStrategy",
                       "range": [
-                        565,
-                        586
+                        663,
+                        684
                       ],
                       "loc": {
                         "start": {
-                          "line": 23,
+                          "line": 27,
                           "column": 2
                         },
                         "end": {
-                          "line": 23,
+                          "line": 27,
                           "column": 23
                         }
                       }
@@ -1166,16 +1184,16 @@
                       "type": "Identifier",
                       "name": "routePrefixer",
                       "range": [
-                        634,
-                        647
+                        732,
+                        745
                       ],
                       "loc": {
                         "start": {
-                          "line": 26,
+                          "line": 30,
                           "column": 9
                         },
                         "end": {
-                          "line": 26,
+                          "line": 30,
                           "column": 22
                         }
                       }
@@ -1186,16 +1204,16 @@
                         "value": "/auth",
                         "raw": "'/auth'",
                         "range": [
-                          648,
-                          655
+                          746,
+                          753
                         ],
                         "loc": {
                           "start": {
-                            "line": 26,
+                            "line": 30,
                             "column": 23
                           },
                           "end": {
-                            "line": 26,
+                            "line": 30,
                             "column": 30
                           }
                         }
@@ -1209,31 +1227,31 @@
                               "type": "Identifier",
                               "name": "local",
                               "range": [
-                                666,
-                                671
+                                764,
+                                769
                               ],
                               "loc": {
                                 "start": {
-                                  "line": 27,
+                                  "line": 31,
                                   "column": 7
                                 },
                                 "end": {
-                                  "line": 27,
+                                  "line": 31,
                                   "column": 12
                                 }
                               }
                             },
                             "range": [
-                              663,
-                              671
+                              761,
+                              769
                             ],
                             "loc": {
                               "start": {
-                                "line": 27,
+                                "line": 31,
                                 "column": 4
                               },
                               "end": {
-                                "line": 27,
+                                "line": 31,
                                 "column": 12
                               }
                             }
@@ -1244,94 +1262,94 @@
                               "type": "Identifier",
                               "name": "twitter",
                               "range": [
-                                680,
-                                687
+                                778,
+                                785
                               ],
                               "loc": {
                                 "start": {
-                                  "line": 28,
+                                  "line": 32,
                                   "column": 7
                                 },
                                 "end": {
-                                  "line": 28,
+                                  "line": 32,
                                   "column": 14
                                 }
                               }
                             },
                             "range": [
-                              677,
-                              687
+                              775,
+                              785
                             ],
                             "loc": {
                               "start": {
-                                "line": 28,
+                                "line": 32,
                                 "column": 4
                               },
                               "end": {
-                                "line": 28,
+                                "line": 32,
                                 "column": 14
                               }
                             }
                           }
                         ],
                         "range": [
-                          657,
-                          692
+                          755,
+                          790
                         ],
                         "loc": {
                           "start": {
-                            "line": 26,
+                            "line": 30,
                             "column": 32
                           },
                           "end": {
-                            "line": 29,
+                            "line": 33,
                             "column": 3
                           }
                         }
                       }
                     ],
                     "range": [
-                      634,
-                      693
+                      732,
+                      791
                     ],
                     "loc": {
                       "start": {
-                        "line": 26,
+                        "line": 30,
                         "column": 9
                       },
                       "end": {
-                        "line": 29,
+                        "line": 33,
                         "column": 4
                       }
                     }
                   },
                   "range": [
-                    627,
-                    694
+                    725,
+                    792
                   ],
                   "loc": {
                     "start": {
-                      "line": 26,
+                      "line": 30,
                       "column": 2
                     },
                     "end": {
-                      "line": 29,
+                      "line": 33,
                       "column": 5
                     }
                   }
                 }
               ],
               "range": [
-                283,
-                696
+                381,
+                794
               ],
               "loc": {
                 "start": {
-                  "line": 10,
+                  "line": 14,
                   "column": 31
                 },
                 "end": {
-                  "line": 30,
+                  "line": 34,
                   "column": 1
                 }
               }
@@ -1339,31 +1357,31 @@
             "generator": false,
             "expression": false,
             "range": [
-              271,
-              696
+              369,
+              794
             ],
             "loc": {
               "start": {
-                "line": 10,
+                "line": 14,
                 "column": 19
               },
               "end": {
-                "line": 30,
+                "line": 34,
                 "column": 1
               }
             }
           },
           "range": [
-            258,
-            696
+            356,
+            794
           ],
           "loc": {
             "start": {
-              "line": 10,
+              "line": 14,
               "column": 6
             },
             "end": {
-              "line": 30,
+              "line": 34,
               "column": 1
             }
           }
@@ -1371,16 +1389,16 @@
       ],
       "kind": "const",
       "range": [
-        252,
-        697
+        350,
+        795
       ],
       "loc": {
         "start": {
-          "line": 10,
+          "line": 14,
           "column": 0
         },
         "end": {
-          "line": 30,
+          "line": 34,
           "column": 2
         }
       },
@@ -1394,31 +1412,31 @@
         "type": "Identifier",
         "name": "authRoutes",
         "range": [
-          714,
-          724
+          812,
+          822
         ],
         "loc": {
           "start": {
-            "line": 32,
+            "line": 36,
             "column": 15
           },
           "end": {
-            "line": 32,
+            "line": 36,
             "column": 25
           }
         }
       },
       "range": [
-        699,
-        725
+        797,
+        823
       ],
       "loc": {
         "start": {
-          "line": 32,
+          "line": 36,
           "column": 0
         },
         "end": {
-          "line": 32,
+          "line": 36,
           "column": 26
         }
       },
@@ -1437,16 +1455,16 @@
               "type": "Identifier",
               "name": "authRoutes",
               "range": [
-                258,
-                268
+                356,
+                366
               ],
               "loc": {
                 "start": {
-                  "line": 10,
+                  "line": 14,
                   "column": 6
                 },
                 "end": {
-                  "line": 10,
+                  "line": 14,
                   "column": 16
                 }
               }
@@ -1459,16 +1477,16 @@
                   "type": "Identifier",
                   "name": "server",
                   "range": [
-                    272,
-                    278
+                    370,
+                    376
                   ],
                   "loc": {
                     "start": {
-                      "line": 10,
+                      "line": 14,
                       "column": 20
                     },
                     "end": {
-                      "line": 10,
+                      "line": 14,
                       "column": 26
                     }
                   }
@@ -1488,16 +1506,16 @@
                           "type": "Identifier",
                           "name": "Strategies",
                           "range": [
-                            338,
-                            348
+                            436,
+                            446
                           ],
                           "loc": {
                             "start": {
-                              "line": 12,
+                              "line": 16,
                               "column": 2
                             },
                             "end": {
-                              "line": 12,
+                              "line": 16,
                               "column": 12
                             }
                           }
@@ -1506,31 +1524,31 @@
                           "type": "Identifier",
                           "name": "jwtStrategy",
                           "range": [
-                            349,
-                            360
+                            447,
+                            458
                           ],
                           "loc": {
                             "start": {
-                              "line": 12,
+                              "line": 16,
                               "column": 13
                             },
                             "end": {
-                              "line": 12,
+                              "line": 16,
                               "column": 24
                             }
                           }
                         },
                         "range": [
-                          338,
-                          360
+                          436,
+                          458
                         ],
                         "loc": {
                           "start": {
-                            "line": 12,
+                            "line": 16,
                             "column": 2
                           },
                           "end": {
-                            "line": 12,
+                            "line": 16,
                             "column": 24
                           }
                         }
@@ -1540,47 +1558,47 @@
                           "type": "Identifier",
                           "name": "server",
                           "range": [
-                            361,
-                            367
+                            459,
+                            465
                           ],
                           "loc": {
                             "start": {
-                              "line": 12,
+                              "line": 16,
                               "column": 25
                             },
                             "end": {
-                              "line": 12,
+                              "line": 16,
                               "column": 31
                             }
                           }
                         }
                       ],
                       "range": [
-                        338,
-                        368
+                        436,
+                        466
                       ],
                       "loc": {
                         "start": {
-                          "line": 12,
+                          "line": 16,
                           "column": 2
                         },
                         "end": {
-                          "line": 12,
+                          "line": 16,
                           "column": 32
                         }
                       }
                     },
                     "range": [
-                      338,
-                      369
+                      436,
+                      467
                     ],
                     "loc": {
                       "start": {
-                        "line": 12,
+                        "line": 16,
                         "column": 2
                       },
                       "end": {
-                        "line": 12,
+                        "line": 16,
                         "column": 33
                       }
                     },
@@ -1589,16 +1607,16 @@
                         "type": "Line",
                         "value": " use JsonWebTokens (you shouldn't remove this)",
                         "range": [
-                          287,
-                          335
+                          385,
+                          433
                         ],
                         "loc": {
                           "start": {
-                            "line": 11,
+                            "line": 15,
                             "column": 2
                           },
                           "end": {
-                            "line": 11,
+                            "line": 15,
                             "column": 50
                           }
                         }
@@ -1609,16 +1627,16 @@
                         "type": "Line",
                         "value": " use Local strategy",
                         "range": [
-                          373,
-                          394
+                          471,
+                          492
                         ],
                         "loc": {
                           "start": {
-                            "line": 14,
+                            "line": 18,
                             "column": 2
                           },
                           "end": {
-                            "line": 14,
+                            "line": 18,
                             "column": 23
                           }
                         }
@@ -1636,16 +1654,16 @@
                           "type": "Identifier",
                           "name": "Strategies",
                           "range": [
-                            397,
-                            407
+                            495,
+                            505
                           ],
                           "loc": {
                             "start": {
-                              "line": 15,
+                              "line": 19,
                               "column": 2
                             },
                             "end": {
-                              "line": 15,
+                              "line": 19,
                               "column": 12
                             }
                           }
@@ -1654,31 +1672,31 @@
                           "type": "Identifier",
                           "name": "localStrategy",
                           "range": [
-                            408,
-                            421
+                            506,
+                            519
                           ],
                           "loc": {
                             "start": {
-                              "line": 15,
+                              "line": 19,
                               "column": 13
                             },
                             "end": {
-                              "line": 15,
+                              "line": 19,
                               "column": 26
                             }
                           }
                         },
                         "range": [
-                          397,
-                          421
+                          495,
+                          519
                         ],
                         "loc": {
                           "start": {
-                            "line": 15,
+                            "line": 19,
                             "column": 2
                           },
                           "end": {
-                            "line": 15,
+                            "line": 19,
                             "column": 26
                           }
                         }
@@ -1688,47 +1706,47 @@
                           "type": "Identifier",
                           "name": "server",
                           "range": [
-                            422,
-                            428
+                            520,
+                            526
                           ],
                           "loc": {
                             "start": {
-                              "line": 15,
+                              "line": 19,
                               "column": 27
                             },
                             "end": {
-                              "line": 15,
+                              "line": 19,
                               "column": 33
                             }
                           }
                         }
                       ],
                       "range": [
-                        397,
-                        429
+                        495,
+                        527
                       ],
                       "loc": {
                         "start": {
-                          "line": 15,
+                          "line": 19,
                           "column": 2
                         },
                         "end": {
-                          "line": 15,
+                          "line": 19,
                           "column": 34
                         }
                       }
                     },
                     "range": [
-                      397,
-                      430
+                      495,
+                      528
                     ],
                     "loc": {
                       "start": {
-                        "line": 15,
+                        "line": 19,
                         "column": 2
                       },
                       "end": {
-                        "line": 15,
+                        "line": 19,
                         "column": 35
                       }
                     },
@@ -1737,16 +1755,16 @@
                         "type": "Line",
                         "value": " use Local strategy",
                         "range": [
-                          373,
-                          394
+                          471,
+                          492
                         ],
                         "loc": {
                           "start": {
-                            "line": 14,
+                            "line": 18,
                             "column": 2
                           },
                           "end": {
-                            "line": 14,
+                            "line": 18,
                             "column": 23
                           }
                         }
@@ -1757,16 +1775,16 @@
                         "type": "Line",
                         "value": " use Twitter strategy",
                         "range": [
-                          434,
-                          457
+                          532,
+                          555
                         ],
                         "loc": {
                           "start": {
-                            "line": 17,
+                            "line": 21,
                             "column": 2
                           },
                           "end": {
-                            "line": 17,
+                            "line": 21,
                             "column": 25
                           }
                         }
@@ -1784,16 +1802,16 @@
                           "type": "Identifier",
                           "name": "Strategies",
                           "range": [
-                            460,
-                            470
+                            558,
+                            568
                           ],
                           "loc": {
                             "start": {
-                              "line": 18,
+                              "line": 22,
                               "column": 2
                             },
                             "end": {
-                              "line": 18,
+                              "line": 22,
                               "column": 12
                             }
                           }
@@ -1802,31 +1820,31 @@
                           "type": "Identifier",
                           "name": "twitterStrategy",
                           "range": [
-                            471,
-                            486
+                            569,
+                            584
                           ],
                           "loc": {
                             "start": {
-                              "line": 18,
+                              "line": 22,
                               "column": 13
                             },
                             "end": {
-                              "line": 18,
+                              "line": 22,
                               "column": 28
                             }
                           }
                         },
                         "range": [
-                          460,
-                          486
+                          558,
+                          584
                         ],
                         "loc": {
                           "start": {
-                            "line": 18,
+                            "line": 22,
                             "column": 2
                           },
                           "end": {
-                            "line": 18,
+                            "line": 22,
                             "column": 28
                           }
                         }
@@ -1836,47 +1854,47 @@
                           "type": "Identifier",
                           "name": "server",
                           "range": [
-                            487,
-                            493
+                            585,
+                            591
                           ],
                           "loc": {
                             "start": {
-                              "line": 18,
+                              "line": 22,
                               "column": 29
                             },
                             "end": {
-                              "line": 18,
+                              "line": 22,
                               "column": 35
                             }
                           }
                         }
                       ],
                       "range": [
-                        460,
-                        494
+                        558,
+                        592
                       ],
                       "loc": {
                         "start": {
-                          "line": 18,
+                          "line": 22,
                           "column": 2
                         },
                         "end": {
-                          "line": 18,
+                          "line": 22,
                           "column": 36
                         }
                       }
                     },
                     "range": [
-                      460,
-                      495
+                      558,
+                      593
                     ],
                     "loc": {
                       "start": {
-                        "line": 18,
+                        "line": 22,
                         "column": 2
                       },
                       "end": {
-                        "line": 18,
+                        "line": 22,
                         "column": 37
                       }
                     },
@@ -1885,16 +1903,16 @@
                         "type": "Line",
                         "value": " use Twitter strategy",
                         "range": [
-                          434,
-                          457
+                          532,
+                          555
                         ],
                         "loc": {
                           "start": {
-                            "line": 17,
+                            "line": 21,
                             "column": 2
                           },
                           "end": {
-                            "line": 17,
+                            "line": 21,
                             "column": 25
                           }
                         }
@@ -1905,16 +1923,16 @@
                         "type": "Line",
                         "value": " use facebookStrategy",
                         "range": [
-                          499,
-                          522
+                          597,
+                          620
                         ],
                         "loc": {
                           "start": {
-                            "line": 20,
+                            "line": 24,
                             "column": 2
                           },
                           "end": {
-                            "line": 20,
+                            "line": 24,
                             "column": 25
                           }
                         }
@@ -1932,16 +1950,16 @@
                           "type": "Identifier",
                           "name": "Strategies",
                           "range": [
-                            525,
-                            535
+                            623,
+                            633
                           ],
                           "loc": {
                             "start": {
-                              "line": 21,
+                              "line": 25,
                               "column": 2
                             },
                             "end": {
-                              "line": 21,
+                              "line": 25,
                               "column": 12
                             }
                           }
@@ -1950,31 +1968,31 @@
                           "type": "Identifier",
                           "name": "facebookStrategy",
                           "range": [
-                            536,
-                            552
+                            634,
+                            650
                           ],
                           "loc": {
                             "start": {
-                              "line": 21,
+                              "line": 25,
                               "column": 13
                             },
                             "end": {
-                              "line": 21,
+                              "line": 25,
                               "column": 29
                             }
                           }
                         },
                         "range": [
-                          525,
-                          552
+                          623,
+                          650
                         ],
                         "loc": {
                           "start": {
-                            "line": 21,
+                            "line": 25,
                             "column": 2
                           },
                           "end": {
-                            "line": 21,
+                            "line": 25,
                             "column": 29
                           }
                         }
@@ -1984,47 +2002,47 @@
                           "type": "Identifier",
                           "name": "server",
                           "range": [
-                            553,
-                            559
+                            651,
+                            657
                           ],
                           "loc": {
                             "start": {
-                              "line": 21,
+                              "line": 25,
                               "column": 30
                             },
                             "end": {
-                              "line": 21,
+                              "line": 25,
                               "column": 36
                             }
                           }
                         }
                       ],
                       "range": [
-                        525,
-                        560
+                        623,
+                        658
                       ],
                       "loc": {
                         "start": {
-                          "line": 21,
+                          "line": 25,
                           "column": 2
                         },
                         "end": {
-                          "line": 21,
+                          "line": 25,
                           "column": 37
                         }
                       }
                     },
                     "range": [
-                      525,
-                      561
+                      623,
+                      659
                     ],
                     "loc": {
                       "start": {
-                        "line": 21,
+                        "line": 25,
                         "column": 2
                       },
                       "end": {
-                        "line": 21,
+                        "line": 25,
                         "column": 38
                       }
                     },
@@ -2033,16 +2051,16 @@
                         "type": "Line",
                         "value": " use facebookStrategy",
                         "range": [
-                          499,
-                          522
+                          597,
+                          620
                         ],
                         "loc": {
                           "start": {
-                            "line": 20,
+                            "line": 24,
                             "column": 2
                           },
                           "end": {
-                            "line": 20,
+                            "line": 24,
                             "column": 25
                           }
                         }
@@ -2053,16 +2071,16 @@
                         "type": "Line",
                         "value": " use googleStrategy",
                         "range": [
-                          565,
-                          586
+                          663,
+                          684
                         ],
                         "loc": {
                           "start": {
-                            "line": 23,
+                            "line": 27,
                             "column": 2
                           },
                           "end": {
-                            "line": 23,
+                            "line": 27,
                             "column": 23
                           }
                         }
@@ -2080,16 +2098,16 @@
                           "type": "Identifier",
                           "name": "Strategies",
                           "range": [
-                            589,
-                            599
+                            687,
+                            697
                           ],
                           "loc": {
                             "start": {
-                              "line": 24,
+                              "line": 28,
                               "column": 2
                             },
                             "end": {
-                              "line": 24,
+                              "line": 28,
                               "column": 12
                             }
                           }
@@ -2098,31 +2116,31 @@
                           "type": "Identifier",
                           "name": "googleStrategy",
                           "range": [
-                            600,
-                            614
+                            698,
+                            712
                           ],
                           "loc": {
                             "start": {
-                              "line": 24,
+                              "line": 28,
                               "column": 13
                             },
                             "end": {
-                              "line": 24,
+                              "line": 28,
                               "column": 27
                             }
                           }
                         },
                         "range": [
-                          589,
-                          614
+                          687,
+                          712
                         ],
                         "loc": {
                           "start": {
-                            "line": 24,
+                            "line": 28,
                             "column": 2
                           },
                           "end": {
-                            "line": 24,
+                            "line": 28,
                             "column": 27
                           }
                         }
@@ -2132,47 +2150,47 @@
                           "type": "Identifier",
                           "name": "server",
                           "range": [
-                            615,
-                            621
+                            713,
+                            719
                           ],
                           "loc": {
                             "start": {
-                              "line": 24,
+                              "line": 28,
                               "column": 28
                             },
                             "end": {
-                              "line": 24,
+                              "line": 28,
                               "column": 34
                             }
                           }
                         }
                       ],
                       "range": [
-                        589,
-                        622
+                        687,
+                        720
                       ],
                       "loc": {
                         "start": {
-                          "line": 24,
+                          "line": 28,
                           "column": 2
                         },
                         "end": {
-                          "line": 24,
+                          "line": 28,
                           "column": 35
                         }
                       }
                     },
                     "range": [
-                      589,
-                      623
+                      687,
+                      721
                     ],
                     "loc": {
                       "start": {
-                        "line": 24,
+                        "line": 28,
                         "column": 2
                       },
                       "end": {
-                        "line": 24,
+                        "line": 28,
                         "column": 36
                       }
                     },
@@ -2181,16 +2199,16 @@
                         "type": "Line",
                         "value": " use googleStrategy",
                         "range": [
-                          565,
-                          586
+                          663,
+                          684
                         ],
                         "loc": {
                           "start": {
-                            "line": 23,
+                            "line": 27,
                             "column": 2
                           },
                           "end": {
-                            "line": 23,
+                            "line": 27,
                             "column": 23
                           }
                         }
@@ -2205,16 +2223,16 @@
                         "type": "Identifier",
                         "name": "routePrefixer",
                         "range": [
-                          634,
-                          647
+                          732,
+                          745
                         ],
                         "loc": {
                           "start": {
-                            "line": 26,
+                            "line": 30,
                             "column": 9
                           },
                           "end": {
-                            "line": 26,
+                            "line": 30,
                             "column": 22
                           }
                         }
@@ -2225,16 +2243,16 @@
                           "value": "/auth",
                           "raw": "'/auth'",
                           "range": [
-                            648,
-                            655
+                            746,
+                            753
                           ],
                           "loc": {
                             "start": {
-                              "line": 26,
+                              "line": 30,
                               "column": 23
                             },
                             "end": {
-                              "line": 26,
+                              "line": 30,
                               "column": 30
                             }
                           }
@@ -2248,31 +2266,31 @@
                                 "type": "Identifier",
                                 "name": "local",
                                 "range": [
-                                  666,
-                                  671
+                                  764,
+                                  769
                                 ],
                                 "loc": {
                                   "start": {
-                                    "line": 27,
+                                    "line": 31,
                                     "column": 7
                                   },
                                   "end": {
-                                    "line": 27,
+                                    "line": 31,
                                     "column": 12
                                   }
                                 }
                               },
                               "range": [
-                                663,
-                                671
+                                761,
+                                769
                               ],
                               "loc": {
                                 "start": {
-                                  "line": 27,
+                                  "line": 31,
                                   "column": 4
                                 },
                                 "end": {
-                                  "line": 27,
+                                  "line": 31,
                                   "column": 12
                                 }
                               }
@@ -2283,94 +2301,94 @@
                                 "type": "Identifier",
                                 "name": "twitter",
                                 "range": [
-                                  680,
-                                  687
+                                  778,
+                                  785
                                 ],
                                 "loc": {
                                   "start": {
-                                    "line": 28,
+                                    "line": 32,
                                     "column": 7
                                   },
                                   "end": {
-                                    "line": 28,
+                                    "line": 32,
                                     "column": 14
                                   }
                                 }
                               },
                               "range": [
-                                677,
-                                687
+                                775,
+                                785
                               ],
                               "loc": {
                                 "start": {
-                                  "line": 28,
+                                  "line": 32,
                                   "column": 4
                                 },
                                 "end": {
-                                  "line": 28,
+                                  "line": 32,
                                   "column": 14
                                 }
                               }
                             }
                           ],
                           "range": [
-                            657,
-                            692
+                            755,
+                            790
                           ],
                           "loc": {
                             "start": {
-                              "line": 26,
+                              "line": 30,
                               "column": 32
                             },
                             "end": {
-                              "line": 29,
+                              "line": 33,
                               "column": 3
                             }
                           }
                         }
                       ],
                       "range": [
-                        634,
-                        693
+                        732,
+                        791
                       ],
                       "loc": {
                         "start": {
-                          "line": 26,
+                          "line": 30,
                           "column": 9
                         },
                         "end": {
-                          "line": 29,
+                          "line": 33,
                           "column": 4
                         }
                       }
                     },
                     "range": [
-                      627,
-                      694
+                      725,
+                      792
                     ],
                     "loc": {
                       "start": {
-                        "line": 26,
+                        "line": 30,
                         "column": 2
                       },
                       "end": {
-                        "line": 29,
+                        "line": 33,
                         "column": 5
                       }
                     }
                   }
                 ],
                 "range": [
-                  283,
-                  696
+                  381,
+                  794
                 ],
                 "loc": {
                   "start": {
-                    "line": 10,
+                    "line": 14,
                     "column": 31
                   },
                   "end": {
-                    "line": 30,
+                    "line": 34,
                     "column": 1
                   }
                 }
@@ -2378,31 +2396,31 @@
               "generator": false,
               "expression": false,
               "range": [
-                271,
-                696
+                369,
+                794
               ],
               "loc": {
                 "start": {
-                  "line": 10,
+                  "line": 14,
                   "column": 19
                 },
                 "end": {
-                  "line": 30,
+                  "line": 34,
                   "column": 1
                 }
               }
             },
             "range": [
-              258,
-              696
+              356,
+              794
             ],
             "loc": {
               "start": {
-                "line": 10,
+                "line": 14,
                 "column": 6
               },
               "end": {
-                "line": 30,
+                "line": 34,
                 "column": 1
               }
             }
@@ -2410,16 +2428,16 @@
         ],
         "kind": "const",
         "range": [
-          252,
-          697
+          350,
+          795
         ],
         "loc": {
           "start": {
-            "line": 10,
+            "line": 14,
             "column": 0
           },
           "end": {
-            "line": 30,
+            "line": 34,
             "column": 2
           }
         },
@@ -2459,21 +2477,39 @@
                 "column": 33
               }
             }
+          },
+          {
+            "type": "Block",
+            "value": "*\n * All routes used in authentication\n * @return {Array<function>} - Authentication routes\n ",
+            "range": [
+              252,
+              349
+            ],
+            "loc": {
+              "start": {
+                "line": 10,
+                "column": 0
+              },
+              "end": {
+                "line": 13,
+                "column": 3
+              }
+            }
           }
         ],
         "trailingComments": []
       },
       "range": [
-        699,
-        725
+        797,
+        823
       ],
       "loc": {
         "start": {
-          "line": 32,
+          "line": 36,
           "column": 0
         },
         "end": {
-          "line": 32,
+          "line": 36,
           "column": 26
         }
       }
@@ -2482,7 +2518,7 @@
   "sourceType": "module",
   "range": [
     0,
-    725
+    823
   ],
   "loc": {
     "start": {
@@ -2490,7 +2526,7 @@
       "column": 0
     },
     "end": {
-      "line": 32,
+      "line": 36,
       "column": 26
     }
   },
@@ -2550,19 +2586,37 @@
       }
     },
     {
-      "type": "Line",
-      "value": " use JsonWebTokens (you shouldn't remove this)",
+      "type": "Block",
+      "value": "*\n * All routes used in authentication\n * @return {Array<function>} - Authentication routes\n ",
       "range": [
-        287,
-        335
+        252,
+        349
       ],
       "loc": {
         "start": {
-          "line": 11,
+          "line": 10,
+          "column": 0
+        },
+        "end": {
+          "line": 13,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Line",
+      "value": " use JsonWebTokens (you shouldn't remove this)",
+      "range": [
+        385,
+        433
+      ],
+      "loc": {
+        "start": {
+          "line": 15,
           "column": 2
         },
         "end": {
-          "line": 11,
+          "line": 15,
           "column": 50
         }
       }
@@ -2571,16 +2625,16 @@
       "type": "Line",
       "value": " use Local strategy",
       "range": [
-        373,
-        394
+        471,
+        492
       ],
       "loc": {
         "start": {
-          "line": 14,
+          "line": 18,
           "column": 2
         },
         "end": {
-          "line": 14,
+          "line": 18,
           "column": 23
         }
       }
@@ -2589,16 +2643,16 @@
       "type": "Line",
       "value": " use Twitter strategy",
       "range": [
-        434,
-        457
+        532,
+        555
       ],
       "loc": {
         "start": {
-          "line": 17,
+          "line": 21,
           "column": 2
         },
         "end": {
-          "line": 17,
+          "line": 21,
           "column": 25
         }
       }
@@ -2607,16 +2661,16 @@
       "type": "Line",
       "value": " use facebookStrategy",
       "range": [
-        499,
-        522
+        597,
+        620
       ],
       "loc": {
         "start": {
-          "line": 20,
+          "line": 24,
           "column": 2
         },
         "end": {
-          "line": 20,
+          "line": 24,
           "column": 25
         }
       }
@@ -2625,16 +2679,16 @@
       "type": "Line",
       "value": " use googleStrategy",
       "range": [
-        565,
-        586
+        663,
+        684
       ],
       "loc": {
         "start": {
-          "line": 23,
+          "line": 27,
           "column": 2
         },
         "end": {
-          "line": 23,
+          "line": 27,
           "column": 23
         }
       }

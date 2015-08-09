@@ -101,6 +101,9 @@
 <pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">import Joi from &apos;joi&apos;;
 import {authHandler} from &apos;./authHandlers&apos;;
 
+/**
+ * Array of all local authentication routes.
+ */
 const localAuthRoutes = [{
   method: [&apos;POST&apos;],
   path: &apos;/local/login&apos;,

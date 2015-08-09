@@ -1,15 +1,15 @@
 import JWT from 'jsonwebtoken';
 import Boom from 'boom';
 import aguid from 'aguid';
-// Test data
 import {where as _where} from 'lodash';
+
+// Test data
 import accounts from '../../helpers/testUserData';
 
-
+/**
+ * Handler for authentication
+ */
 const authHandler = (request, reply) => {
-  // console.log(request.auth);
-  // console.log(request.query);
-
   // reply error when authentication fails
   if (!request.auth.isAuthenticated) {
     return reply(
@@ -50,14 +50,23 @@ const authHandler = (request, reply) => {
   return reply.redirect(request.query.ref || '/');
 };
 
+/**
+ * Handler for login
+ */
 const loginHandler = () => {
 
 };
 
+/**
+ * Handler for site registration
+ */
 const registrationHandler = () => {
 
 };
 
+/**
+ * Export all authentication handlers
+ */
 const authHandlers = {
   authHandler,
   loginHandler,

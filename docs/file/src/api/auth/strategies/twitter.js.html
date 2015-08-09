@@ -98,7 +98,11 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/api/auth/strategies/twitter.js</h1>
-<pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">const twitterStrategy = (server) =&gt; {
+<pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">/**
+ * Authentication strategy for Twitter
+ * @see https://dev.twitter.com/
+ */
+const twitterStrategy = (server) =&gt; {
   server.auth.strategy(&apos;twitter&apos;, &apos;bell&apos;, {
     provider: &apos;twitter&apos;,
     password: &apos;cookie_encryption_password&apos;,

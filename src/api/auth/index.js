@@ -7,6 +7,10 @@ import twitter from './twitter';
 // import facebook from './facebook';
 // import google from './google';
 
+/**
+ * All routes used in authentication
+ * @return {Array<function>} - Authentication routes
+ */
 const authRoutes = (server) => {
   // use JsonWebTokens (you shouldn't remove this)
   Strategies.jwtStrategy(server);

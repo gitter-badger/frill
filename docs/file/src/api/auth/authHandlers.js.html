@@ -101,15 +101,15 @@
 <pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">import JWT from &apos;jsonwebtoken&apos;;
 import Boom from &apos;boom&apos;;
 import aguid from &apos;aguid&apos;;
-// Test data
 import {where as _where} from &apos;lodash&apos;;
+
+// Test data
 import accounts from &apos;../../helpers/testUserData&apos;;
 
-
+/**
+ * Handler for authentication
+ */
 const authHandler = (request, reply) =&gt; {
-  // console.log(request.auth);
-  // console.log(request.query);
-
   // reply error when authentication fails
   if (!request.auth.isAuthenticated) {
     return reply(
@@ -150,14 +150,23 @@ const authHandler = (request, reply) =&gt; {
   return reply.redirect(request.query.ref || &apos;/&apos;);
 };
 
+/**
+ * Handler for login
+ */
 const loginHandler = () =&gt; {
 
 };
 
+/**
+ * Handler for site registration
+ */
 const registrationHandler = () =&gt; {
 
 };
 
+/**
+ * Export all authentication handlers
+ */
 const authHandlers = {
   authHandler,
   loginHandler,

@@ -98,24 +98,48 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/actions/Auth.js</h1>
-<pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">import {Action} from &apos;frill-core&apos;;
+<pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">import {BaseAction} from &apos;frill-core&apos;;
 
-class AuthAction extends Action {
+/**
+ * Authentication actions
+ * @extends {BaseAction}
+ * @example &lt;caption&gt;via react or frill component&lt;/caption&gt;
+ * // logging in
+ * this.getFrill().action(&apos;Auth&apos;).login(&apos;token&apos;);
+ * // logging out
+ * this.getFrill().action(&apos;Auth&apos;).logout();
+ */
+class AuthAction extends BaseAction {
 
+  /**
+   * Constructor
+   */
   constructor() {
     super();
-    this.use(&apos;request&apos;, {prefix: &apos;/api&apos;});
+    // this.use(&apos;request&apos;, {prefix: &apos;/api&apos;});
   }
 
+  /**
+   * Login action
+   * @param {string} token - a valid JWT token
+   * @emits {AUTH_LOGIN}
+   */
   login(token) {
     this.dispatch(&apos;AUTH_LOGIN&apos;, token);
   }
 
+  /**
+   * Login action
+   * @emits {AUTH_LOGOUT}
+   */
   logout() {
     this.dispatch(&apos;AUTH_LOGOUT&apos;);
   }
 }
 
+/**
+ * export AuthAction instance
+ */
 export default new AuthAction();
 </code></pre>
 </div>

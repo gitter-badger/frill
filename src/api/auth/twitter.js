@@ -1,5 +1,8 @@
 import {authHandler} from './authHandlers';
 
+/**
+ * Twitter authentication routes.
+ */
 const twitterAuthRoutes = [{
   method: ['GET', 'POST'],
   path: '/twitter/login',
