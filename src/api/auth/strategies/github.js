@@ -1,5 +1,5 @@
 /**
- * Authentication strategy for github
+ * Authentication strategy for GitHub
  * @see https://developer.github.com/
  */
 const githubStrategy = (server) => {

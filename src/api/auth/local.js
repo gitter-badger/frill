@@ -2,7 +2,7 @@ import Joi from 'joi';
 import {authHandler} from './authHandlers';
 
 /**
- * Array of all local authentication routes.
+ * Local authentication routes.
  */
 const localAuthRoutes = [{
   method: ['POST'],

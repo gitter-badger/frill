@@ -31,7 +31,7 @@
   <h2>Class</h2>
   <ul>
     
-  <li data-ice="classDoc"><span><a href="class/src/components/App/index.jsx~App.html">App</a></span></li>
+  <li data-ice="classDoc"><span><a href="class/src/components/App/index.jsx~AppComponent.html">AppComponent</a></span></li>
 <li data-ice="classDoc"><span><a href="class/src/actions/Auth.js~AuthAction.html">AuthAction</a></span></li>
 <li data-ice="classDoc"><span><a href="class/src/stores/Auth.js~AuthStore.html">AuthStore</a></span></li>
 <li data-ice="classDoc"><span><a href="class/src/components/Error.jsx~Error.html">Error</a></span></li>
@@ -65,7 +65,7 @@
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-api">api</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-apiV1">apiV1</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-apiV1Hello">apiV1Hello</a></span></li>
-<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-app">app</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-appComponent">appComponent</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-authAction">authAction</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-authHandlers">authHandlers</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-authRoutes">authRoutes</a></span></li>
@@ -102,6 +102,9 @@
 import apiV1 from &apos;./v1&apos;;
 import {routePrefixer} from &apos;../helpers&apos;;
 
+/**
+ * Mount all routes to use
+ */
 const routes = (server) =&gt; {
   // Authentication routes
   const authRoutes = auth(server);

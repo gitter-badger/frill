@@ -31,7 +31,7 @@
   <h2>Class</h2>
   <ul>
     
-  <li data-ice="classDoc"><span><a href="class/src/components/App/index.jsx~App.html">App</a></span></li>
+  <li data-ice="classDoc"><span><a href="class/src/components/App/index.jsx~AppComponent.html">AppComponent</a></span></li>
 <li data-ice="classDoc"><span><a href="class/src/actions/Auth.js~AuthAction.html">AuthAction</a></span></li>
 <li data-ice="classDoc"><span><a href="class/src/stores/Auth.js~AuthStore.html">AuthStore</a></span></li>
 <li data-ice="classDoc"><span><a href="class/src/components/Error.jsx~Error.html">Error</a></span></li>
@@ -65,7 +65,7 @@
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-api">api</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-apiV1">apiV1</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-apiV1Hello">apiV1Hello</a></span></li>
-<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-app">app</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-appComponent">appComponent</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-authAction">authAction</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-authHandlers">authHandlers</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-authRoutes">authRoutes</a></span></li>
@@ -101,13 +101,31 @@
 <pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">import React from &apos;react&apos;;
 import {Link, RouteHandler} from &apos;react-router&apos;;
 
-class App extends React.Component {
+/**
+ * App component
+ * @extends {React.Component}
+ * @example &lt;caption&gt;Usage in React-Router&lt;/caption&gt;
+ * &lt;Route name=&quot;app&quot; path=&quot;/&quot; handler={App} /&gt;
+ */
+class AppComponent extends React.Component {
 
-  constructor() {
-    super();
+  /**
+   * Constructor
+   * @param {any} props - props for components
+   */
+  constructor(props) {
+    super(props);
+
+    /**
+     * Name of component
+     */
     this.name = &apos;App&apos;;
   }
 
+  /**
+   * Renders the App
+   * @return {React DOM}
+   */
   render() {
     return (
       &lt;div className=&quot;App&quot;&gt;
@@ -134,7 +152,10 @@ class App extends React.Component {
   }
 }
 
-export default App;
+/**
+ * Export AppComponent
+ */
+export default AppComponent;
 </code></pre>
 </div>
 

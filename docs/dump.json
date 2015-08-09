@@ -453,7 +453,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Joi from 'joi';\nimport {authHandler} from './authHandlers';\n\n/**\n * Array of all local authentication routes.\n */\nconst localAuthRoutes = [{\n  method: ['POST'],\n  path: '/local/login',\n  config: {\n    validate: {\n      query: {\n        ref: Joi.string(),\n      },\n      payload: {\n        username: Joi.string().min(5).required(),\n        password: Joi.string().min(5).required(),\n      },\n    },\n    tags: ['api', 'auth'],\n    auth: 'local',\n    // auth: 'twitter',\n    plugins: {\n      'hapi-swagger': {\n        responseMessages: [\n          { code: 400, message: 'Bad Request' },\n          { code: 500, message: 'Internal Server Error'},\n        ],\n      },\n    },\n  },\n  handler: authHandler,\n}];\n\nexport default localAuthRoutes;\n"
+    "content": "import Joi from 'joi';\nimport {authHandler} from './authHandlers';\n\n/**\n * Local authentication routes.\n */\nconst localAuthRoutes = [{\n  method: ['POST'],\n  path: '/local/login',\n  config: {\n    validate: {\n      query: {\n        ref: Joi.string(),\n      },\n      payload: {\n        username: Joi.string().min(5).required(),\n        password: Joi.string().min(5).required(),\n      },\n    },\n    tags: ['api', 'auth'],\n    auth: 'local',\n    // auth: 'twitter',\n    plugins: {\n      'hapi-swagger': {\n        responseMessages: [\n          { code: 400, message: 'Bad Request' },\n          { code: 500, message: 'Internal Server Error'},\n        ],\n      },\n    },\n  },\n  handler: authHandler,\n}];\n\nexport default localAuthRoutes;\n"
   },
   {
     "kind": "variable",
@@ -466,7 +466,7 @@
     "export": true,
     "importPath": "frill/src/api/auth/local.js",
     "importStyle": "localAuthRoutes",
-    "description": "Array of all local authentication routes.",
+    "description": "Local authentication routes.",
     "lineNumber": 7,
     "type": {
       "types": [
@@ -518,7 +518,7 @@
     "access": null,
     "description": null,
     "lineNumber": 5,
-    "content": "/**\n * Authentication strategy for github\n * @see https://developer.github.com/\n */\nconst githubStrategy = (server) => {\n  server.auth.strategy('github', 'bell', {\n    provider: 'github',\n    password: 'cookie_encryption_password',\n    clientId: 'yKcHqLNOXe2xKgvOTFuXCeyN3',\n    clientSecret: 'woM83S28cvHcf8Ut5AcHBiX4ifqPGMnrze1VkH07QiFLVaIO7y',\n    isSecure: false,\n  });\n};\n\nexport default githubStrategy;\n"
+    "content": "/**\n * Authentication strategy for GitHub\n * @see https://developer.github.com/\n */\nconst githubStrategy = (server) => {\n  server.auth.strategy('github', 'bell', {\n    provider: 'github',\n    password: 'cookie_encryption_password',\n    clientId: 'yKcHqLNOXe2xKgvOTFuXCeyN3',\n    clientSecret: 'woM83S28cvHcf8Ut5AcHBiX4ifqPGMnrze1VkH07QiFLVaIO7y',\n    isSecure: false,\n  });\n};\n\nexport default githubStrategy;\n"
   },
   {
     "kind": "variable",
@@ -531,7 +531,7 @@
     "export": true,
     "importPath": "frill/src/api/auth/strategies/github.js",
     "importStyle": "githubStrategy",
-    "description": "Authentication strategy for github",
+    "description": "Authentication strategy for GitHub",
     "see": [
       "https://developer.github.com/"
     ],
@@ -847,7 +847,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import routes from './routes';\n\nconst api = (server) => {\n  server.route(routes(server));\n};\n\nexport default api;\n"
+    "content": "import routes from './routes';\n\n/**\n * Mount routes\n */\nconst api = (server) => {\n  server.route(routes(server));\n};\n\nexport default api;\n"
   },
   {
     "kind": "variable",
@@ -860,9 +860,8 @@
     "export": true,
     "importPath": "frill/src/api/index.js",
     "importStyle": "api",
-    "description": null,
-    "lineNumber": 3,
-    "undocument": true,
+    "description": "Mount routes",
+    "lineNumber": 6,
     "type": {
       "types": [
         "*"
@@ -879,7 +878,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import auth from './auth';\nimport apiV1 from './v1';\nimport {routePrefixer} from '../helpers';\n\nconst routes = (server) => {\n  // Authentication routes\n  const authRoutes = auth(server);\n\n  // API routes\n  const apiRoutes = [\n    ...routePrefixer('/api', apiV1(server)),\n  ];\n\n  // Stack up routes\n  return [\n    ...authRoutes,\n    ...apiRoutes,\n  ];\n};\n\nexport default routes;\n"
+    "content": "import auth from './auth';\nimport apiV1 from './v1';\nimport {routePrefixer} from '../helpers';\n\n/**\n * Mount all routes to use\n */\nconst routes = (server) => {\n  // Authentication routes\n  const authRoutes = auth(server);\n\n  // API routes\n  const apiRoutes = [\n    ...routePrefixer('/api', apiV1(server)),\n  ];\n\n  // Stack up routes\n  return [\n    ...authRoutes,\n    ...apiRoutes,\n  ];\n};\n\nexport default routes;\n"
   },
   {
     "kind": "variable",
@@ -892,9 +891,8 @@
     "export": true,
     "importPath": "frill/src/api/routes.js",
     "importStyle": "routes",
-    "description": null,
-    "lineNumber": 5,
-    "undocument": true,
+    "description": "Mount all routes to use",
+    "lineNumber": 8,
     "type": {
       "types": [
         "*"
@@ -910,8 +908,8 @@
     "longname": "src/api/v1/hello.js",
     "access": null,
     "description": null,
-    "lineNumber": 1,
-    "content": "const apiV1Hello = (/* server */) => {\n  return [{\n    method: ['GET'],\n    path: '/hello',\n    config: {\n      auth: false,\n      description: 'Say hello!',\n      notes: 'Says hello.',\n      tags: ['api', 'greeting'],\n      plugins: {\n        'hapi-swagger': {\n          responseMessages: [\n            { code: 400, message: 'Bad Request' },\n            { code: 500, message: 'Internal Server Error'},\n          ],\n        },\n      },\n    },\n    handler: (req, rep) => {\n      console.log(req.auth);\n      rep({msg: 'api, hello'});\n    },\n  }, {\n    method: ['GET'],\n    path: '/hello/restricted',\n    config: {\n      auth: 'jwt',\n      description: 'Restricted route',\n      notes: 'Restricted, says hello',\n      tags: ['api', 'greeting'],\n      plugins: {\n        'hapi-swagger': {\n          responseMessages: [\n            { code: 400, message: 'Bad Request' },\n            { code: 500, message: 'Internal Server Error'},\n          ],\n        },\n      },\n    },\n    handler: (req, rep) => {\n      console.log('hander');\n\n      console.log(req.auth);\n      rep({msg: 'restricted api, hello'});\n    },\n  }];\n};\n\nexport default apiV1Hello;\n"
+    "lineNumber": 4,
+    "content": "/**\n * API testing\n */\nconst apiV1Hello = (/* server */) => {\n  return [{\n    method: ['GET'],\n    path: '/hello',\n    config: {\n      auth: false,\n      description: 'Say hello!',\n      notes: 'Says hello.',\n      tags: ['api', 'greeting'],\n      plugins: {\n        'hapi-swagger': {\n          responseMessages: [\n            { code: 400, message: 'Bad Request' },\n            { code: 500, message: 'Internal Server Error'},\n          ],\n        },\n      },\n    },\n    handler: (req, rep) => {\n      console.log(req.auth);\n      rep({msg: 'api, hello'});\n    },\n  }, {\n    method: ['GET'],\n    path: '/hello/restricted',\n    config: {\n      auth: 'jwt',\n      description: 'Restricted route',\n      notes: 'Restricted, says hello',\n      tags: ['api', 'greeting'],\n      plugins: {\n        'hapi-swagger': {\n          responseMessages: [\n            { code: 400, message: 'Bad Request' },\n            { code: 500, message: 'Internal Server Error'},\n          ],\n        },\n      },\n    },\n    handler: (req, rep) => {\n      console.log('hander');\n\n      console.log(req.auth);\n      rep({msg: 'restricted api, hello'});\n    },\n  }];\n};\n\nexport default apiV1Hello;\n"
   },
   {
     "kind": "variable",
@@ -924,9 +922,8 @@
     "export": true,
     "importPath": "frill/src/api/v1/hello.js",
     "importStyle": "apiV1Hello",
-    "description": null,
-    "lineNumber": 1,
-    "undocument": true,
+    "description": "API testing",
+    "lineNumber": 4,
     "type": {
       "types": [
         "*"
@@ -943,7 +940,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import hello from './hello';\nimport {routePrefixer} from '../../helpers';\n\nconst apiV1 = (server) => {\n  return routePrefixer('/v1', [\n    ...hello(server),\n  ]);\n};\nexport default apiV1;\n"
+    "content": "import hello from './hello';\nimport {routePrefixer} from '../../helpers';\n\n/**\n * Mount all api v1 routes\n */\nconst apiV1 = (server) => {\n  return routePrefixer('/v1', [\n    ...hello(server),\n  ]);\n};\nexport default apiV1;\n"
   },
   {
     "kind": "variable",
@@ -956,9 +953,8 @@
     "export": true,
     "importPath": "frill/src/api/v1/index.js",
     "importStyle": "apiV1",
-    "description": null,
-    "lineNumber": 4,
-    "undocument": true,
+    "description": "Mount all api v1 routes",
+    "lineNumber": 7,
     "type": {
       "types": [
         "*"
@@ -1059,25 +1055,27 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import React from 'react';\nimport {Link, RouteHandler} from 'react-router';\n\nclass App extends React.Component {\n\n  constructor() {\n    super();\n    this.name = 'App';\n  }\n\n  render() {\n    return (\n      <div className=\"App\">\n        <header>\n          <h1>Welcome to FrillJS!</h1>\n        </header>\n        <nav>\n          <ul>\n            <li><Link to=\"top\">Top page</Link></li>\n            <li><Link to=\"login\">Login Sample</Link></li>\n            <li>\n              <a href=\"http://localhost:3000/auth/twitter/login\">\n                Twitter Auth Test\n              </a>\n            </li>\n          </ul>\n        </nav>\n        <RouteHandler {...this.props}/>\n        <footer>\n          <p>FrillJS</p>\n        </footer>\n      </div>\n    );\n  }\n}\n\nexport default App;\n"
+    "content": "import React from 'react';\nimport {Link, RouteHandler} from 'react-router';\n\n/**\n * App component\n * @extends {React.Component}\n * @example <caption>Usage in React-Router</caption>\n * <Route name=\"app\" path=\"/\" handler={App} />\n */\nclass AppComponent extends React.Component {\n\n  /**\n   * Constructor\n   * @param {any} props - props for components\n   */\n  constructor(props) {\n    super(props);\n\n    /**\n     * Name of component\n     */\n    this.name = 'App';\n  }\n\n  /**\n   * Renders the App\n   * @return {React DOM}\n   */\n  render() {\n    return (\n      <div className=\"App\">\n        <header>\n          <h1>Welcome to FrillJS!</h1>\n        </header>\n        <nav>\n          <ul>\n            <li><Link to=\"top\">Top page</Link></li>\n            <li><Link to=\"login\">Login Sample</Link></li>\n            <li>\n              <a href=\"http://localhost:3000/auth/twitter/login\">\n                Twitter Auth Test\n              </a>\n            </li>\n          </ul>\n        </nav>\n        <RouteHandler {...this.props}/>\n        <footer>\n          <p>FrillJS</p>\n        </footer>\n      </div>\n    );\n  }\n}\n\n/**\n * Export AppComponent\n */\nexport default AppComponent;\n"
   },
   {
     "kind": "class",
     "static": true,
     "variation": null,
-    "name": "App",
+    "name": "AppComponent",
     "memberof": "src/components/App/index.jsx",
-    "longname": "src/components/App/index.jsx~App",
+    "longname": "src/components/App/index.jsx~AppComponent",
     "access": null,
     "export": true,
     "importPath": "frill/src/components/App/index.jsx",
-    "importStyle": "App",
-    "description": null,
-    "lineNumber": 4,
-    "undocument": true,
+    "importStyle": "AppComponent",
+    "description": "App component",
+    "examples": [
+      "<caption>Usage in React-Router</caption>\n<Route name=\"app\" path=\"/\" handler={App} />"
+    ],
+    "lineNumber": 10,
     "interface": false,
     "extends": [
-      "react~React.Component"
+      "React.Component"
     ]
   },
   {
@@ -1085,13 +1083,23 @@
     "static": false,
     "variation": null,
     "name": "constructor",
-    "memberof": "src/components/App/index.jsx~App",
-    "longname": "src/components/App/index.jsx~App#constructor",
+    "memberof": "src/components/App/index.jsx~AppComponent",
+    "longname": "src/components/App/index.jsx~AppComponent#constructor",
     "access": null,
-    "description": null,
-    "lineNumber": 6,
-    "undocument": true,
-    "params": [],
+    "description": "Constructor",
+    "lineNumber": 16,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "any"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "props",
+        "description": "props for components"
+      }
+    ],
     "generator": false
   },
   {
@@ -1099,12 +1107,11 @@
     "static": false,
     "variation": null,
     "name": "name",
-    "memberof": "src/components/App/index.jsx~App",
-    "longname": "src/components/App/index.jsx~App#name",
+    "memberof": "src/components/App/index.jsx~AppComponent",
+    "longname": "src/components/App/index.jsx~AppComponent#name",
     "access": null,
-    "description": null,
-    "lineNumber": 8,
-    "undocument": true,
+    "description": "Name of component",
+    "lineNumber": 22,
     "type": {
       "types": [
         "string"
@@ -1116,17 +1123,19 @@
     "static": false,
     "variation": null,
     "name": "render",
-    "memberof": "src/components/App/index.jsx~App",
-    "longname": "src/components/App/index.jsx~App#render",
+    "memberof": "src/components/App/index.jsx~AppComponent",
+    "longname": "src/components/App/index.jsx~AppComponent#render",
     "access": null,
-    "description": null,
-    "lineNumber": 11,
-    "undocument": true,
+    "description": "Renders the App",
+    "lineNumber": 29,
     "params": [],
     "return": {
+      "nullable": null,
       "types": [
-        "*"
-      ]
+        "React DOM"
+      ],
+      "spread": false,
+      "description": ""
     },
     "generator": false
   },
@@ -1134,19 +1143,18 @@
     "kind": "variable",
     "static": true,
     "variation": null,
-    "name": "app",
+    "name": "appComponent",
     "memberof": "src/components/App/index.jsx",
-    "longname": "src/components/App/index.jsx~app",
+    "longname": "src/components/App/index.jsx~appComponent",
     "access": null,
     "export": true,
     "importPath": "frill/src/components/App/index.jsx",
-    "importStyle": "app",
-    "description": null,
-    "lineNumber": 37,
-    "undocument": true,
+    "importStyle": "appComponent",
+    "description": "Export AppComponent",
+    "lineNumber": 58,
     "type": {
       "types": [
-        "src/components/App/index.jsx~App"
+        "src/components/App/index.jsx~AppComponent"
       ]
     }
   },

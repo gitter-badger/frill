@@ -1,13 +1,31 @@
 import React from 'react';
 import {Link, RouteHandler} from 'react-router';
 
-class App extends React.Component {
+/**
+ * App component
+ * @extends {React.Component}
+ * @example <caption>Usage in React-Router</caption>
+ * <Route name="app" path="/" handler={App} />
+ */
+class AppComponent extends React.Component {
 
-  constructor() {
-    super();
+  /**
+   * Constructor
+   * @param {any} props - props for components
+   */
+  constructor(props) {
+    super(props);
+
+    /**
+     * Name of component
+     */
     this.name = 'App';
   }
 
+  /**
+   * Renders the App
+   * @return {React DOM}
+   */
   render() {
     return (
       <div className="App">
@@ -34,4 +52,7 @@ class App extends React.Component {
   }
 }
 
-export default App;
+/**
+ * Export AppComponent
+ */
+export default AppComponent;

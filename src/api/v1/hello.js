@@ -1,3 +1,6 @@
+/**
+ * API testing
+ */
 const apiV1Hello = (/* server */) => {
   return [{
     method: ['GET'],

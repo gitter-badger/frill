@@ -6,9 +6,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "frill/src/components/app/index.jsx~app",
-    "class/src/components/App/index.jsx~App.html",
-    "<span>App</span> <span class=\"search-result-import-path\">frill/src/components/App/index.jsx</span>",
+    "frill/src/components/app/index.jsx~appcomponent",
+    "class/src/components/App/index.jsx~AppComponent.html",
+    "<span>AppComponent</span> <span class=\"search-result-import-path\">frill/src/components/App/index.jsx</span>",
     "class"
   ],
   [
@@ -138,9 +138,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "frill/src/components/app/index.jsx~app",
-    "variable/index.html#static-variable-app",
-    "<span>app</span> <span class=\"search-result-import-path\">frill/src/components/App/index.jsx</span>",
+    "frill/src/components/app/index.jsx~appcomponent",
+    "variable/index.html#static-variable-appComponent",
+    "<span>appComponent</span> <span class=\"search-result-import-path\">frill/src/components/App/index.jsx</span>",
     "variable"
   ],
   [
@@ -786,21 +786,21 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/components/app/index.jsx~app#constructor",
-    "class/src/components/App/index.jsx~App.html#instance-constructor-constructor",
-    "src/components/App/index.jsx~App#constructor",
+    "src/components/app/index.jsx~appcomponent#constructor",
+    "class/src/components/App/index.jsx~AppComponent.html#instance-constructor-constructor",
+    "src/components/App/index.jsx~AppComponent#constructor",
     "method"
   ],
   [
-    "src/components/app/index.jsx~app#name",
-    "class/src/components/App/index.jsx~App.html#instance-member-name",
-    "src/components/App/index.jsx~App#name",
+    "src/components/app/index.jsx~appcomponent#name",
+    "class/src/components/App/index.jsx~AppComponent.html#instance-member-name",
+    "src/components/App/index.jsx~AppComponent#name",
     "member"
   ],
   [
-    "src/components/app/index.jsx~app#render",
-    "class/src/components/App/index.jsx~App.html#instance-method-render",
-    "src/components/App/index.jsx~App#render",
+    "src/components/app/index.jsx~appcomponent#render",
+    "class/src/components/App/index.jsx~AppComponent.html#instance-method-render",
+    "src/components/App/index.jsx~AppComponent#render",
     "method"
   ],
   [
