@@ -4,7 +4,7 @@ import {canUseDOM} from 'react/lib/ExecutionEnvironment';
 import {RouteHandler} from 'react-router';
 // import jwtDecode from 'jwt-decode';
 
-class Page extends BaseComponent {
+class PageComponent extends BaseComponent {
 
   constructor(props) {
     super(props);
@@ -26,4 +26,4 @@ class Page extends BaseComponent {
   }
 }
 
-export default Page;
+export default PageComponent;

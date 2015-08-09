@@ -1,7 +1,7 @@
 import React from 'react';
 import {canUseDOM} from 'react/lib/ExecutionEnvironment';
 
-class ScrollBlock extends React.Component {
+class ScrollBlockComponent extends React.Component {
   constructor() {
     super();
     this.name = 'ScrollBlock';
@@ -87,4 +87,4 @@ ScrollBlock.propTypes = {
   itemTotal: React.PropTypes.number,
 };
 
-export default ScrollBlock;
+export default ScrollBlockComponent;

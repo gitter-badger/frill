@@ -1,7 +1,7 @@
 import React from 'react';
 import {BaseComponent} from 'frill-core';
 
-class Error extends BaseComponent {
+class ErrorComponent extends BaseComponent {
     constructor(props) {
       super(props);
       this.name = 'Error';
@@ -19,4 +19,4 @@ class Error extends BaseComponent {
     }
 }
 
-export default Error;
+export default ErrorComponent;

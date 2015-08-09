@@ -1,7 +1,7 @@
 import React from 'react';
 import {BaseComponent} from 'frill-core';
 
-class Login extends BaseComponent {
+class LoginComponent extends BaseComponent {
   constructor(props) {
     super(props);
 
@@ -35,4 +35,4 @@ class Login extends BaseComponent {
   }
 }
 
-export default Login;
+export default LoginComponent;

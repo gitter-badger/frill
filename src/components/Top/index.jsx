@@ -2,7 +2,7 @@ import React from 'react';
 import {StoreWatchComponent} from '../../bootstrap';
 import ScrollBlock from '../ScrollBlock';
 
-class Top extends new StoreWatchComponent(['Example']) {
+class TopComponent extends new StoreWatchComponent(['Example']) {
 
   constructor(props) {
     super(props);
@@ -79,4 +79,4 @@ class Top extends new StoreWatchComponent(['Example']) {
   }
 }
 
-export default Top;
+export default TopComponent;
