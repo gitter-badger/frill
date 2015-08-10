@@ -1,7 +1,7 @@
 # <img src="../frill-logo.png" alt="frill" title="frill logo" height="200" />
 Yet another FLUX starter kit
 
-<span class="esdoc-coverage"></span> ![dependencies](https://david-dm.org/nanopx/frill.svg)
+<span class="esdoc-coverage"></span> ![dependencies](https://david-dm.org/nanopx/frill.svg) [![Circle CI](https://circleci.com/gh/nanopx/frill/tree/master.svg?style=shield&circle-token=ea6665c989599be6eddc9ba5f7d8d849b525f83a)](https://circleci.com/gh/nanopx/frill/tree/master)
 
 ---
 

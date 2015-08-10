@@ -1036,7 +1036,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import frillCore from 'frill-core';\nimport Stores from './stores';\nimport Actions from './actions';\n\n/**\n * FrillCore\n */\nconst FrillCore = frillCore;\n\n// load stores and actions.\nFrillCore._Stores = Stores;\nFrillCore._Actions = Actions;\n\nexport default FrillCore;\n"
+    "content": "import frillCore from 'frill-core';\nimport Stores from './stores';\nimport Actions from './actions';\n\n/**\n * FrillCore\n */\nconst FrillCore = frillCore;\n\nconsole.log(process.env.NODE_ENV);\n\n// load stores and actions.\nFrillCore._Stores = Stores;\nFrillCore._Actions = Actions;\n\nexport default FrillCore;\n"
   },
   {
     "kind": "variable",
