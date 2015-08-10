@@ -83,7 +83,7 @@ class ScrollBlockComponent extends React.Component {
     if (!this.state.isLoading && !this.state.isLoadedAll) {
       const _elem = React.findDOMNode(this.refs.scrollBlock);
 
-      if (_elem.scrollHeight - _elem.scrollTop - 1 === _elem.clientHeight) {
+      if (_elem.scrollHeight - _elem.scrollTop === _elem.clientHeight) {
         // if items are all loaded
         if (this.props.itemTotal &&
           (this.props.itemTotal === this.props.itemsCount)) {
@@ -134,7 +134,7 @@ class ScrollBlockComponent extends React.Component {
 /**
  * PropTypes
  */
-ScrollBlock.propTypes = {
+ScrollBlockComponent.propTypes = {
   // function to fetch new items
   fetchData: React.PropTypes.func,
   // Count of loaded items
