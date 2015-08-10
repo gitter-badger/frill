@@ -14,9 +14,11 @@ import minimist from 'minimist';
 
 const argv = minimist(process.argv.slice(2));
 const RELEASE = Boolean(argv.release);
+const DEBUG = !RELEASE;
 
 const GLOBALS = {
   '__RELEASE__': RELEASE,
+  '__DEBUG__': DEBUG,
   '__SERVER__': false,
   'process.env': Object.keys(process.env).reduce((o, k) => {
     o[k] = JSON.stringify(process.env[k]);
@@ -29,11 +31,11 @@ export default {
   output: {
     filename: './public/bundle.js',
   },
-  cache: RELEASE,
-  debug: RELEASE,
+  cache: DEBUG,
+  debug: DEBUG,
   stats: {
     colors: true,
-    reasons: RELEASE,
+    reasons: DEBUG,
   },
   resolve: {
     extensions: [
@@ -46,7 +48,7 @@ export default {
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
     new DefinePlugin(GLOBALS),
-  ].concat(RELEASE ? [] : [
+  ].concat(DEBUG ? [] : [
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
       compress: {
@@ -55,7 +57,7 @@ export default {
     }),
     new webpack.optimize.AggressiveMergingPlugin(),
   ]),
-  devtool: RELEASE ? 'source-map' : false,
+  devtool: DEBUG ? 'source-map' : false,
   module: {
     loaders: [
       {

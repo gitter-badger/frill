@@ -4171,13 +4171,13 @@
     "kind": "testFile",
     "static": true,
     "variation": null,
-    "name": "test/docTest.js",
+    "name": "test/actions/ExampleActionTest.js",
     "memberof": null,
-    "longname": "test/docTest.js",
+    "longname": "test/actions/ExampleActionTest.js",
     "access": null,
     "description": null,
-    "lineNumber": 5,
-    "content": "/**\n * An example for test documantation\n * @test {TestExample}\n */\ndescribe('A test for documentation purpose', () => {\n  /**\n   * @test {TestExample#hello}\n   */\n  it('hello', () => {\n    const foo = 'a';\n    expect(foo).to.equal('a');\n  });\n});\n"
+    "lineNumber": 1,
+    "content": "import '../specHelper';\nimport {mockStoreEvent} from '../frillHelper';\nimport ExampleAction from '../../src/actions/Example';\nimport {BaseAction} from 'frill-core';\nimport scrollData from '../../src/helpers/testScrollItemsData';\n\n/**\n * Test for ExampleAction\n * @test {ExampleAction}\n */\ndescribe('ExampleAction', () => {\n  /**\n   * @test {ExampleAction}\n   */\n  it('should be an instance of FrillCore.BaseAction', () => {\n    (ExampleAction instanceof BaseAction).should.be.true;\n  });\n\n  /**\n   * @test {ExampleAction#countUp}\n   */\n  describe('ExampleAction#countUp', () => {\n    /**\n     * @test {ExampleAction#countUp}\n     */\n    it('should have a countUp() method', () => {\n      ExampleAction.countUp.should.be.a('function');\n    });\n\n    /**\n     * @test {ExampleAction#countUp}\n     */\n    it('should dispatch COUNT_UP at execution', () => {\n      const spy = sinon.spy();\n      mockStoreEvent(ExampleAction, 'COUNT_UP', spy);\n      ExampleAction.countUp();\n      spy.called.should.equal.true;\n      sinon.assert.calledOnce(spy);\n      sinon.assert.calledWith(spy, null, 'COUNT_UP');\n    });\n  });\n\n  /**\n   * @test {ExampleAction#countUpBy}\n   */\n  describe('ExampleAction#countUpBy', () => {\n    /**\n     * @test {ExampleAction#countUpBy}\n     */\n    it('should have a countUpBy() method', () => {\n      ExampleAction.countUpBy.should.be.a('function');\n    });\n\n    /**\n     * @test {ExampleAction#countUpBy}\n     */\n    it('should dispatch COUNT_UP_BY at execution', () => {\n      const spy = sinon.spy();\n      mockStoreEvent(ExampleAction, 'COUNT_UP_BY', spy);\n      ExampleAction.countUpBy();\n      spy.called.should.equal.true;\n    });\n\n    /**\n     * @test {ExampleAction#countUpBy}\n     */\n    it('should count up by 1 at default', () => {\n      const spy = sinon.spy();\n      mockStoreEvent(ExampleAction, 'COUNT_UP_BY', spy);\n      ExampleAction.countUpBy();\n      sinon.assert.calledOnce(spy);\n      sinon.assert.calledWith(spy, 1, 'COUNT_UP_BY');\n    });\n\n    /**\n     * @test {ExampleAction#countUpBy}\n     */\n    it('should be able to provide a number to count up', () => {\n      const spy = sinon.spy();\n      mockStoreEvent(ExampleAction, 'COUNT_UP_BY', spy);\n      ExampleAction.countUpBy(10);\n      sinon.assert.calledOnce(spy);\n      sinon.assert.calledWith(spy, 10, 'COUNT_UP_BY');\n    });\n  });\n\n  /**\n   * @test {ExampleAction#loadScrollItems}\n   */\n  describe('ExampleAction#loadScrollItems', () => {\n    /**\n     * @test {ExampleAction#loadScrollItems}\n     */\n    it('should have a loadScrollItems() method', () => {\n      ExampleAction.loadScrollItems.should.be.a('function');\n    });\n\n    /**\n     * @test {ExampleAction#loadScrollItems}\n     */\n    it('should dispatch LOAD_SCROLL_ITEMS at execution', (done) => {\n      const spy = sinon.spy();\n      mockStoreEvent(ExampleAction, 'LOAD_SCROLL_ITEMS', spy);\n      ExampleAction.loadScrollItems();\n\n      setTimeout(() => {\n        spy.called.should.equal.true;\n        sinon.assert.calledOnce(spy);\n        sinon.assert.calledWith(spy, {\n          data: scrollData.slice(1, 6),\n          total: scrollData.length,\n        }, 'LOAD_SCROLL_ITEMS');\n        done();\n      }, 1500);\n    });\n\n    /**\n     * @test {ExampleAction#loadScrollItems}\n     */\n    it('should be able to change parameters', (done) => {\n      const spy = sinon.spy();\n      mockStoreEvent(ExampleAction, 'LOAD_SCROLL_ITEMS', spy);\n      ExampleAction.loadScrollItems(3, 6);\n      setTimeout(() => {\n        spy.called.should.equal.true;\n        sinon.assert.calledOnce(spy);\n        sinon.assert.calledWith(spy, {\n          data: scrollData.slice(3, 9),\n          total: scrollData.length,\n        }, 'LOAD_SCROLL_ITEMS');\n        done();\n      }, 1500);\n    });\n  });\n});\n"
   },
   {
     "kind": "testDescribe",
@@ -4185,20 +4185,20 @@
     "variation": null,
     "name": "describe0",
     "testId": 0,
-    "memberof": "test/docTest.js",
+    "memberof": "test/actions/ExampleActionTest.js",
     "testDepth": 0,
-    "longname": "test/docTest.js~describe0",
+    "longname": "test/actions/ExampleActionTest.js~describe0",
     "access": null,
-    "description": "An example for test documantation",
-    "lineNumber": 5,
+    "description": "Test for ExampleAction",
+    "lineNumber": 11,
     "unknown": [
       {
         "tagName": "@test",
-        "tagValue": "{TestExample}"
+        "tagValue": "{ExampleAction}"
       }
     ],
     "testTargets": [
-      "TestExample"
+      "ExampleAction"
     ]
   },
   {
@@ -4207,20 +4207,284 @@
     "variation": null,
     "name": "it1",
     "testId": 1,
-    "memberof": "test/docTest.js~describe0",
+    "memberof": "test/actions/ExampleActionTest.js~describe0",
     "testDepth": 1,
-    "longname": "test/docTest.js~describe0.it1",
+    "longname": "test/actions/ExampleActionTest.js~describe0.it1",
     "access": null,
-    "description": "hello",
-    "lineNumber": 9,
+    "description": "should be an instance of FrillCore.BaseAction",
+    "lineNumber": 15,
     "unknown": [
       {
         "tagName": "@test",
-        "tagValue": "{TestExample#hello}"
+        "tagValue": "{ExampleAction}"
       }
     ],
     "testTargets": [
-      "TestExample#hello"
+      "ExampleAction"
+    ]
+  },
+  {
+    "kind": "testDescribe",
+    "static": true,
+    "variation": null,
+    "name": "describe2",
+    "testId": 2,
+    "memberof": "test/actions/ExampleActionTest.js~describe0",
+    "testDepth": 1,
+    "longname": "test/actions/ExampleActionTest.js~describe0.describe2",
+    "access": null,
+    "description": "ExampleAction#countUp",
+    "lineNumber": 22,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{ExampleAction#countUp}"
+      }
+    ],
+    "testTargets": [
+      "ExampleAction#countUp"
+    ]
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it3",
+    "testId": 3,
+    "memberof": "test/actions/ExampleActionTest.js~describe0.describe2",
+    "testDepth": 2,
+    "longname": "test/actions/ExampleActionTest.js~describe0.describe2.it3",
+    "access": null,
+    "description": "should have a countUp() method",
+    "lineNumber": 26,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{ExampleAction#countUp}"
+      }
+    ],
+    "testTargets": [
+      "ExampleAction#countUp"
+    ]
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it4",
+    "testId": 4,
+    "memberof": "test/actions/ExampleActionTest.js~describe0.describe2",
+    "testDepth": 2,
+    "longname": "test/actions/ExampleActionTest.js~describe0.describe2.it4",
+    "access": null,
+    "description": "should dispatch COUNT_UP at execution",
+    "lineNumber": 33,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{ExampleAction#countUp}"
+      }
+    ],
+    "testTargets": [
+      "ExampleAction#countUp"
+    ]
+  },
+  {
+    "kind": "testDescribe",
+    "static": true,
+    "variation": null,
+    "name": "describe5",
+    "testId": 5,
+    "memberof": "test/actions/ExampleActionTest.js~describe0",
+    "testDepth": 1,
+    "longname": "test/actions/ExampleActionTest.js~describe0.describe5",
+    "access": null,
+    "description": "ExampleAction#countUpBy",
+    "lineNumber": 46,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{ExampleAction#countUpBy}"
+      }
+    ],
+    "testTargets": [
+      "ExampleAction#countUpBy"
+    ]
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it6",
+    "testId": 6,
+    "memberof": "test/actions/ExampleActionTest.js~describe0.describe5",
+    "testDepth": 2,
+    "longname": "test/actions/ExampleActionTest.js~describe0.describe5.it6",
+    "access": null,
+    "description": "should have a countUpBy() method",
+    "lineNumber": 50,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{ExampleAction#countUpBy}"
+      }
+    ],
+    "testTargets": [
+      "ExampleAction#countUpBy"
+    ]
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it7",
+    "testId": 7,
+    "memberof": "test/actions/ExampleActionTest.js~describe0.describe5",
+    "testDepth": 2,
+    "longname": "test/actions/ExampleActionTest.js~describe0.describe5.it7",
+    "access": null,
+    "description": "should dispatch COUNT_UP_BY at execution",
+    "lineNumber": 57,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{ExampleAction#countUpBy}"
+      }
+    ],
+    "testTargets": [
+      "ExampleAction#countUpBy"
+    ]
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it8",
+    "testId": 8,
+    "memberof": "test/actions/ExampleActionTest.js~describe0.describe5",
+    "testDepth": 2,
+    "longname": "test/actions/ExampleActionTest.js~describe0.describe5.it8",
+    "access": null,
+    "description": "should count up by 1 at default",
+    "lineNumber": 67,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{ExampleAction#countUpBy}"
+      }
+    ],
+    "testTargets": [
+      "ExampleAction#countUpBy"
+    ]
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it9",
+    "testId": 9,
+    "memberof": "test/actions/ExampleActionTest.js~describe0.describe5",
+    "testDepth": 2,
+    "longname": "test/actions/ExampleActionTest.js~describe0.describe5.it9",
+    "access": null,
+    "description": "should be able to provide a number to count up",
+    "lineNumber": 78,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{ExampleAction#countUpBy}"
+      }
+    ],
+    "testTargets": [
+      "ExampleAction#countUpBy"
+    ]
+  },
+  {
+    "kind": "testDescribe",
+    "static": true,
+    "variation": null,
+    "name": "describe10",
+    "testId": 10,
+    "memberof": "test/actions/ExampleActionTest.js~describe0",
+    "testDepth": 1,
+    "longname": "test/actions/ExampleActionTest.js~describe0.describe10",
+    "access": null,
+    "description": "ExampleAction#loadScrollItems",
+    "lineNumber": 90,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{ExampleAction#loadScrollItems}"
+      }
+    ],
+    "testTargets": [
+      "ExampleAction#loadScrollItems"
+    ]
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it11",
+    "testId": 11,
+    "memberof": "test/actions/ExampleActionTest.js~describe0.describe10",
+    "testDepth": 2,
+    "longname": "test/actions/ExampleActionTest.js~describe0.describe10.it11",
+    "access": null,
+    "description": "should have a loadScrollItems() method",
+    "lineNumber": 94,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{ExampleAction#loadScrollItems}"
+      }
+    ],
+    "testTargets": [
+      "ExampleAction#loadScrollItems"
+    ]
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it12",
+    "testId": 12,
+    "memberof": "test/actions/ExampleActionTest.js~describe0.describe10",
+    "testDepth": 2,
+    "longname": "test/actions/ExampleActionTest.js~describe0.describe10.it12",
+    "access": null,
+    "description": "should dispatch LOAD_SCROLL_ITEMS at execution",
+    "lineNumber": 101,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{ExampleAction#loadScrollItems}"
+      }
+    ],
+    "testTargets": [
+      "ExampleAction#loadScrollItems"
+    ]
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it13",
+    "testId": 13,
+    "memberof": "test/actions/ExampleActionTest.js~describe0.describe10",
+    "testDepth": 2,
+    "longname": "test/actions/ExampleActionTest.js~describe0.describe10.it13",
+    "access": null,
+    "description": "should be able to change parameters",
+    "lineNumber": 120,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{ExampleAction#loadScrollItems}"
+      }
+    ],
+    "testTargets": [
+      "ExampleAction#loadScrollItems"
     ]
   }
 ]
