@@ -1,18 +1,18 @@
 import React from 'react';
-import {BaseComponent} from 'frill-core';
+import {StoreWatchComponent} from 'frill-core';
 import {canUseDOM} from 'react/lib/ExecutionEnvironment';
 import {RouteHandler} from 'react-router';
 // import jwtDecode from 'jwt-decode';
 
 /**
  * Page component - wraps up all pages
- * @extends {FrillCore.BaseComponent}
+ * @extends {FrillCore.StoreWatchComponent}
  * @example <caption>Usage in React-Router</caption>
  * <Route handler={C.Page}>
  *   ...
  * </Route>
  */
-class PageComponent extends BaseComponent {
+class PageComponent extends new StoreWatchComponent(['Auth']) {
 
   /**
    * Constructor
@@ -25,14 +25,25 @@ class PageComponent extends BaseComponent {
      */
     this.name = 'App';
 
-    if (props.token) {
-      this.getFrill().action('Auth').login(props.token);
+    if (this.props && this.props.token) {
+      this.getFrill().action('Auth').authenticate(this.props.token);
+      this.state = this.getInitialStateFromFrill();
     }
 
     if (canUseDOM) {
       // clear up initial-data from dom
       document.getElementById('initial-data').outerHTML = '';
     }
+  }
+
+  getInitialStateFromFrill() {
+    super.getInitialStateFromFrill();
+  }
+
+  getStateFromFrill() {
+    return {
+      isLoggedIn: this.getFrill().store('Auth').isLoggedIn(),
+    };
   }
 
   /**

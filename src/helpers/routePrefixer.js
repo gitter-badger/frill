@@ -13,7 +13,7 @@ import {isPlainObject as _isPlainObject} from 'lodash';
  * @throws {TypeError} throw error when route is not an Array
  * @return {Array}
  */
-const routePrefixer = (prefix, routes) => {
+const RoutePrefixer = (prefix, routes) => {
   let _routes = routes;
   if (_isPlainObject(_routes)) {
     if (!_routes.path) {
@@ -30,4 +30,4 @@ const routePrefixer = (prefix, routes) => {
   });
 };
 
-export default routePrefixer;
+export default RoutePrefixer;

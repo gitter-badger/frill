@@ -1,4 +1,5 @@
 import {BaseAction} from 'frill-core';
+import routerContainer from '../helpers/routerContainer';
 
 /**
  * Authentication actions
@@ -16,15 +17,33 @@ class AuthAction extends BaseAction {
    */
   constructor() {
     super();
-    // this.use('request', {prefix: '/api'});
+    this.use('request', {prefix: '/api'});
   }
 
   /**
    * Login action
+   * @param {string} username - username from login form
+   * @param {string} password - password from login form
+   */
+  login(username, password) {
+    this.request.post('/api/v1/login')
+    .send({ username: username, password: password }).end((err, res) => {
+      if (err) {
+        console.log(err);
+      }
+      if (res.status === 200) {
+        routerContainer.get().transitionTo('/');
+        this.authenticate(res.body.token);
+      }
+    });
+  }
+
+  /**
+   * Authenticate action
    * @param {string} token - a valid JWT token
    * @emits {AUTH_LOGIN}
    */
-  login(token) {
+  authenticate(token) {
     this.dispatch('AUTH_LOGIN', token);
   }
 

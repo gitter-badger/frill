@@ -2,7 +2,7 @@ import {routePrefixer} from '../../helpers';
 import Strategies from './strategies';
 
 // import authentication routes
-import local from './local';
+// import local from './local';
 import twitter from './twitter';
 // import facebook from './facebook';
 // import google from './google';
@@ -28,7 +28,7 @@ const authRoutes = (server) => {
   Strategies.googleStrategy(server);
 
   return routePrefixer('/auth', [
-    ...local,
+    // ...local,
     ...twitter,
   ]);
 };

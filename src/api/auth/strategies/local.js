@@ -22,7 +22,7 @@ const payload = (request, reply) => {
     return reply(Boom.badRequest('invalid username or password'));
   }
 
-  user = user.pop();
+  user = user[0];
 
   request.auth.credentials = {
     provider: 'local',
