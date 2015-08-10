@@ -14,10 +14,14 @@ import minimist from 'minimist';
 
 const argv = minimist(process.argv.slice(2));
 const RELEASE = Boolean(argv.release);
+
 const GLOBALS = {
   '__RELEASE__': RELEASE,
   '__SERVER__': false,
-  'process.env.NODE_ENV': process.env.NODE_ENV || 'development',
+  'process.env': Object.keys(process.env).reduce((o, k) => {
+    o[k] = JSON.stringify(process.env[k]);
+    return o;
+  }, {}),
 };
 
 export default {
@@ -41,9 +45,7 @@ export default {
   },
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin(),
-    new DefinePlugin({
-      GLOBALS,
-    }),
+    new DefinePlugin(GLOBALS),
   ].concat(RELEASE ? [] : [
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.UglifyJsPlugin({
