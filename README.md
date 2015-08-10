@@ -14,8 +14,7 @@ $ npm install -g gulp
 ```
 then, clone or fork this repository:
 ```bash
-$ git clone -b master --single-branch \
-      https://github.com/nanopx/frill.git MyNewApp
+$ git clone -b master --single-branch https://github.com/nanopx/frill.git MyNewApp
 $ cd MyNewApp && npm install
 ```
 
