@@ -14,7 +14,6 @@ import config from '../esdoc';
 
 export default (gulp, $, argv, path) => {
   gulp.task('doc', () => {
-    console.log(config);
     return gulp.src(['./src'])
       .pipe($.esdoc(config));
   });

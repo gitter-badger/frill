@@ -5,8 +5,10 @@ import {where as _where} from 'lodash';
 import accounts from '../../../helpers/testUserData';
 
 const validator = (decoded, request, callback) => {
-  // TODO: search from session
-  // construct search query
+  /**
+   * construct search query
+   * @todo: search from session
+   */
   const query = {
     id: parseInt(decoded.user.id, 10),
   };

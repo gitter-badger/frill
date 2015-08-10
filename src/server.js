@@ -41,8 +41,8 @@ server.register({
   options: {
     maxCookieSize: 0,
     cookieOptions: {
-      password: 'SOME_PASSWORD', // @TODO send options to a config
-      isSecure: false, // @TODO cannot do this at production
+      password: 'SOME_PASSWORD', /** @todo send options to a config */
+      isSecure: false, /** @todo cannot do this at production */
     },
   },
 }, (err) => {
@@ -93,7 +93,7 @@ api(server);
 
 /**
  * Configure hapi-swagger for API documentation.
- * TODO: disable at production
+ * @todo: disable at production
  */
 const swaggerOptions = {
   apiVersion: pack.version,

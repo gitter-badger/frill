@@ -32,7 +32,7 @@ const authHandler = (request, reply) => {
 
   delete user[0].password;
 
-  // TODO create and set JWT into session
+  /** @todo create and set JWT into session */
   const session = {
     valid: true,
     id: aguid(), // a random session id
