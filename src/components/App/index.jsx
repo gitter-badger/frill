@@ -40,7 +40,7 @@ class AppComponent extends new StoreWatchComponent(['Auth']) {
     return (
       <div className="App">
         <header>
-          <h1>Welcome to FrillJS!</h1>
+          <h1><img src="/frill-logo-white.png" />Welcome to FrillJS!</h1>
         </header>
         <nav>
           <ul>

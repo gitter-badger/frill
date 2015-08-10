@@ -936,6 +936,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/components/scrollblock/index.jsx~scrollblockcomponent#componentwillunmount",
+    "class/src/components/ScrollBlock/index.jsx~ScrollBlockComponent.html#instance-method-componentWillUnmount",
+    "src/components/ScrollBlock/index.jsx~ScrollBlockComponent#componentWillUnmount",
+    "method"
+  ],
+  [
     "src/components/scrollblock/index.jsx~scrollblockcomponent#constructor",
     "class/src/components/ScrollBlock/index.jsx~ScrollBlockComponent.html#instance-constructor-constructor",
     "src/components/ScrollBlock/index.jsx~ScrollBlockComponent#constructor",
@@ -949,9 +955,9 @@ window.esdocSearchIndex = [
   ],
   [
     "src/components/scrollblock/index.jsx~scrollblockcomponent#onscroll",
-    "class/src/components/ScrollBlock/index.jsx~ScrollBlockComponent.html#instance-member-onScroll",
+    "class/src/components/ScrollBlock/index.jsx~ScrollBlockComponent.html#instance-method-onScroll",
     "src/components/ScrollBlock/index.jsx~ScrollBlockComponent#onScroll",
-    "member"
+    "method"
   ],
   [
     "src/components/scrollblock/index.jsx~scrollblockcomponent#render",

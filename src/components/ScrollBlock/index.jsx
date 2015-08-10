@@ -41,13 +41,6 @@ class ScrollBlockComponent extends React.Component {
       // NOTE: changed from 'isAllLoaded'
       isLoadedAll: false,
     };
-
-    if (canUseDOM) {
-      /**
-       * Scroll handler (bind)
-       */
-      this.onScroll = this.onScroll.bind(this);
-    }
   }
 
   /**
@@ -55,6 +48,11 @@ class ScrollBlockComponent extends React.Component {
    * @see https://facebook.github.io/react/docs/component-specs.html#mounting-componentdidmount
    */
   componentDidMount() {
+    if (canUseDOM) {
+      React.findDOMNode(this.refs.scrollBlock)
+        .addEventListener('scroll', this.onScroll.bind(this));
+    }
+
     if (!this.props.itemsCount) {
       this.setState({
         isLoading: true,
@@ -77,13 +75,24 @@ class ScrollBlockComponent extends React.Component {
   }
 
   /**
+   * componentWillUnmount
+   * @see https://facebook.github.io/react/docs/component-specs.html#unmounting-componentwillunmount
+   */
+  componentWillUnmount() {
+    React.findDOMNode(this.refs.scrollBlock)
+      .removeEventListener('scroll', this.onScroll);
+  }
+
+  /**
    * Scroll handler
    */
   onScroll() {
     if (!this.state.isLoading && !this.state.isLoadedAll) {
       const _elem = React.findDOMNode(this.refs.scrollBlock);
+      const _scrolled = Math.round(_elem.scrollHeight - _elem.scrollTop);
 
-      if (_elem.scrollHeight - _elem.scrollTop === _elem.clientHeight) {
+      if (_scrolled - _elem.clientHeight >= -1
+        && _scrolled - _elem.clientHeight <= 1) {
         // if items are all loaded
         if (this.props.itemTotal &&
           (this.props.itemTotal === this.props.itemsCount)) {
@@ -114,7 +123,7 @@ class ScrollBlockComponent extends React.Component {
 
     return (
       <div>
-        <div className="ScrollBlock" onScroll={this.onScroll} ref="scrollBlock">
+        <div className="ScrollBlock" ref="scrollBlock">
           {this.props.children}
           <p className={`ScrollBlock-loading${_className}`}>
             {(!isLoadedAll ? () => {

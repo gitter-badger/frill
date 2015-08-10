@@ -148,13 +148,6 @@ class ScrollBlockComponent extends React.Component {
       // NOTE: changed from &apos;isAllLoaded&apos;
       isLoadedAll: false,
     };
-
-    if (canUseDOM) {
-      /**
-       * Scroll handler (bind)
-       */
-      this.onScroll = this.onScroll.bind(this);
-    }
   }
 
   /**
@@ -162,6 +155,11 @@ class ScrollBlockComponent extends React.Component {
    * @see https://facebook.github.io/react/docs/component-specs.html#mounting-componentdidmount
    */
   componentDidMount() {
+    if (canUseDOM) {
+      React.findDOMNode(this.refs.scrollBlock)
+        .addEventListener(&apos;scroll&apos;, this.onScroll.bind(this));
+    }
+
     if (!this.props.itemsCount) {
       this.setState({
         isLoading: true,
@@ -184,13 +182,24 @@ class ScrollBlockComponent extends React.Component {
   }
 
   /**
+   * componentWillUnmount
+   * @see https://facebook.github.io/react/docs/component-specs.html#unmounting-componentwillunmount
+   */
+  componentWillUnmount() {
+    React.findDOMNode(this.refs.scrollBlock)
+      .removeEventListener(&apos;scroll&apos;, this.onScroll);
+  }
+
+  /**
    * Scroll handler
    */
   onScroll() {
     if (!this.state.isLoading &amp;&amp; !this.state.isLoadedAll) {
       const _elem = React.findDOMNode(this.refs.scrollBlock);
+      const _scrolled = Math.round(_elem.scrollHeight - _elem.scrollTop);
 
-      if (_elem.scrollHeight - _elem.scrollTop === _elem.clientHeight) {
+      if (_scrolled - _elem.clientHeight &gt;= -1
+        &amp;&amp; _scrolled - _elem.clientHeight &lt;= 1) {
         // if items are all loaded
         if (this.props.itemTotal &amp;&amp;
           (this.props.itemTotal === this.props.itemsCount)) {
@@ -221,7 +230,7 @@ class ScrollBlockComponent extends React.Component {
 
     return (
       &lt;div&gt;
-        &lt;div className=&quot;ScrollBlock&quot; onScroll={this.onScroll} ref=&quot;scrollBlock&quot;&gt;
+        &lt;div className=&quot;ScrollBlock&quot; ref=&quot;scrollBlock&quot;&gt;
           {this.props.children}
           &lt;p className={`ScrollBlock-loading${_className}`}&gt;
             {(!isLoadedAll ? () =&gt; {

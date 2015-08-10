@@ -1159,7 +1159,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import React from 'react';\nimport {StoreWatchComponent} from 'frill-core';\nimport {Link, RouteHandler} from 'react-router';\n\n/**\n * App component\n * @extends {FrillCore.StoreWatchComponent}\n * @example <caption>Usage in React-Router</caption>\n * <Route name=\"app\" path=\"/\" handler={AppComponent} />\n */\nclass AppComponent extends new StoreWatchComponent(['Auth']) {\n\n  /**\n   * Constructor\n   * @param {any} props\n   */\n  constructor(props) {\n    super(props);\n\n    /**\n     * Name of component\n     */\n    this.name = 'App';\n  }\n\n  getStateFromFrill() {\n    return {\n      isLoggedIn: this.getFrill().store('Auth').isLoggedIn(),\n      user: this.getFrill().store('Auth').user,\n    };\n  }\n\n  /**\n   * render\n   * @return {React DOM}\n   * @see https://facebook.github.io/react/docs/component-specs.html#render\n   */\n  render() {\n    const isLoggedIn = this.state.isLoggedIn;\n    return (\n      <div className=\"App\">\n        <header>\n          <h1>Welcome to FrillJS!</h1>\n        </header>\n        <nav>\n          <ul>\n            <li><Link to=\"top\">Top page</Link></li>\n            <li><Link to=\"login\">Login Sample</Link></li>\n            <li>\n              <a href=\"http://localhost:3000/auth/twitter/login\">\n                Twitter Auth Test\n              </a>\n            </li>\n          </ul>\n        </nav>\n        {(isLoggedIn ? () => {\n          return (\n            <p className=\"welcome\">Hello, {this.state.user.user.displayName}</p>\n          );\n        } : () => {\n          return (\n            <p className=\"welcome\">Welcome, Guest</p>\n          );\n        })()}\n        <RouteHandler {...this.props}/>\n        <footer>\n          <p>FrillJS</p>\n        </footer>\n      </div>\n    );\n  }\n}\n\n/**\n * Export AppComponent\n */\nexport default AppComponent;\n"
+    "content": "import React from 'react';\nimport {StoreWatchComponent} from 'frill-core';\nimport {Link, RouteHandler} from 'react-router';\n\n/**\n * App component\n * @extends {FrillCore.StoreWatchComponent}\n * @example <caption>Usage in React-Router</caption>\n * <Route name=\"app\" path=\"/\" handler={AppComponent} />\n */\nclass AppComponent extends new StoreWatchComponent(['Auth']) {\n\n  /**\n   * Constructor\n   * @param {any} props\n   */\n  constructor(props) {\n    super(props);\n\n    /**\n     * Name of component\n     */\n    this.name = 'App';\n  }\n\n  getStateFromFrill() {\n    return {\n      isLoggedIn: this.getFrill().store('Auth').isLoggedIn(),\n      user: this.getFrill().store('Auth').user,\n    };\n  }\n\n  /**\n   * render\n   * @return {React DOM}\n   * @see https://facebook.github.io/react/docs/component-specs.html#render\n   */\n  render() {\n    const isLoggedIn = this.state.isLoggedIn;\n    return (\n      <div className=\"App\">\n        <header>\n          <h1><img src=\"/frill-logo-white.png\" />Welcome to FrillJS!</h1>\n        </header>\n        <nav>\n          <ul>\n            <li><Link to=\"top\">Top page</Link></li>\n            <li><Link to=\"login\">Login Sample</Link></li>\n            <li>\n              <a href=\"http://localhost:3000/auth/twitter/login\">\n                Twitter Auth Test\n              </a>\n            </li>\n          </ul>\n        </nav>\n        {(isLoggedIn ? () => {\n          return (\n            <p className=\"welcome\">Hello, {this.state.user.user.displayName}</p>\n          );\n        } : () => {\n          return (\n            <p className=\"welcome\">Welcome, Guest</p>\n          );\n        })()}\n        <RouteHandler {...this.props}/>\n        <footer>\n          <p>FrillJS</p>\n        </footer>\n      </div>\n    );\n  }\n}\n\n/**\n * Export AppComponent\n */\nexport default AppComponent;\n"
   },
   {
     "kind": "class",
@@ -1692,7 +1692,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import React from 'react';\nimport {canUseDOM} from 'react/lib/ExecutionEnvironment';\n\n/**\n * ScrollBlock component for infinite scrolling\n * @extends {React.Component}\n * @example <caption>Usage in React component</caption>\n * import ScrollBlock from 'ScrollBlock';\n * ...\n * render() {\n *   return (\n *     <ScrollBlock\n *       fetchData={this.onLoadScrollItems}\n *       itemsCount={this.state.scrollItemsCount}\n *       itemTotal={this.state.scrollItemTotal}>\n *       <ul className=\"scroll-list\">\n *         {items}\n *       </ul>\n *     </ScrollBlock>\n *   );\n * }\n */\nclass ScrollBlockComponent extends React.Component {\n  /**\n   * Constructor\n   * @param {any} props\n   */\n  constructor(props) {\n    super(props);\n\n    /**\n     * Name of component\n     */\n    this.name = 'ScrollBlock';\n\n    /**\n     * State of component\n     */\n    this.state = {\n      isLoading: false,\n      // NOTE: changed from 'isAllLoaded'\n      isLoadedAll: false,\n    };\n\n    if (canUseDOM) {\n      /**\n       * Scroll handler (bind)\n       */\n      this.onScroll = this.onScroll.bind(this);\n    }\n  }\n\n  /**\n   * componentDidMount\n   * @see https://facebook.github.io/react/docs/component-specs.html#mounting-componentdidmount\n   */\n  componentDidMount() {\n    if (!this.props.itemsCount) {\n      this.setState({\n        isLoading: true,\n      });\n\n      this.props.fetchData();\n    }\n  }\n\n  /**\n   * componentWillReceiveProps\n   * @see https://facebook.github.io/react/docs/component-specs.html#updating-componentwillreceiveprops\n   */\n  componentWillReceiveProps(newProps) {\n    if (newProps.children) {\n      this.setState({\n        isLoading: false,\n      });\n    }\n  }\n\n  /**\n   * Scroll handler\n   */\n  onScroll() {\n    if (!this.state.isLoading && !this.state.isLoadedAll) {\n      const _elem = React.findDOMNode(this.refs.scrollBlock);\n\n      if (_elem.scrollHeight - _elem.scrollTop === _elem.clientHeight) {\n        // if items are all loaded\n        if (this.props.itemTotal &&\n          (this.props.itemTotal === this.props.itemsCount)) {\n          this.setState({\n            isLoading: true,\n            isLoadedAll: true,\n          });\n\n        // else if there are more items to load\n        } else {\n          this.setState({\n            isLoading: true,\n          });\n          this.props.fetchData();\n        }\n      }\n    }\n  }\n\n  /**\n   * render\n   * @return {React DOM}\n   * @see https://facebook.github.io/react/docs/component-specs.html#render\n   */\n  render() {\n    const _className = this.state.isLoading ? ' is-loading' : '';\n    const isLoadedAll = this.state.isLoadedAll;\n\n    return (\n      <div>\n        <div className=\"ScrollBlock\" onScroll={this.onScroll} ref=\"scrollBlock\">\n          {this.props.children}\n          <p className={`ScrollBlock-loading${_className}`}>\n            {(!isLoadedAll ? () => {\n              // return 'loading...' when there are more items to load\n              return 'loading ...';\n            } : () => {\n              // when all items loaded\n              return 'loaded!';\n            })()}\n          </p>\n        </div>\n      </div>\n    );\n  }\n}\n\n/**\n * PropTypes\n */\nScrollBlockComponent.propTypes = {\n  // function to fetch new items\n  fetchData: React.PropTypes.func,\n  // Count of loaded items\n  itemsCount: React.PropTypes.number,\n  // Count of total items\n  itemTotal: React.PropTypes.number,\n};\n\n/**\n * Export ScrollBlockComponent\n */\nexport default ScrollBlockComponent;\n"
+    "content": "import React from 'react';\nimport {canUseDOM} from 'react/lib/ExecutionEnvironment';\n\n/**\n * ScrollBlock component for infinite scrolling\n * @extends {React.Component}\n * @example <caption>Usage in React component</caption>\n * import ScrollBlock from 'ScrollBlock';\n * ...\n * render() {\n *   return (\n *     <ScrollBlock\n *       fetchData={this.onLoadScrollItems}\n *       itemsCount={this.state.scrollItemsCount}\n *       itemTotal={this.state.scrollItemTotal}>\n *       <ul className=\"scroll-list\">\n *         {items}\n *       </ul>\n *     </ScrollBlock>\n *   );\n * }\n */\nclass ScrollBlockComponent extends React.Component {\n  /**\n   * Constructor\n   * @param {any} props\n   */\n  constructor(props) {\n    super(props);\n\n    /**\n     * Name of component\n     */\n    this.name = 'ScrollBlock';\n\n    /**\n     * State of component\n     */\n    this.state = {\n      isLoading: false,\n      // NOTE: changed from 'isAllLoaded'\n      isLoadedAll: false,\n    };\n  }\n\n  /**\n   * componentDidMount\n   * @see https://facebook.github.io/react/docs/component-specs.html#mounting-componentdidmount\n   */\n  componentDidMount() {\n    if (canUseDOM) {\n      React.findDOMNode(this.refs.scrollBlock)\n        .addEventListener('scroll', this.onScroll.bind(this));\n    }\n\n    if (!this.props.itemsCount) {\n      this.setState({\n        isLoading: true,\n      });\n\n      this.props.fetchData();\n    }\n  }\n\n  /**\n   * componentWillReceiveProps\n   * @see https://facebook.github.io/react/docs/component-specs.html#updating-componentwillreceiveprops\n   */\n  componentWillReceiveProps(newProps) {\n    if (newProps.children) {\n      this.setState({\n        isLoading: false,\n      });\n    }\n  }\n\n  /**\n   * componentWillUnmount\n   * @see https://facebook.github.io/react/docs/component-specs.html#unmounting-componentwillunmount\n   */\n  componentWillUnmount() {\n    React.findDOMNode(this.refs.scrollBlock)\n      .removeEventListener('scroll', this.onScroll);\n  }\n\n  /**\n   * Scroll handler\n   */\n  onScroll() {\n    if (!this.state.isLoading && !this.state.isLoadedAll) {\n      const _elem = React.findDOMNode(this.refs.scrollBlock);\n      const _scrolled = Math.round(_elem.scrollHeight - _elem.scrollTop);\n\n      if (_scrolled - _elem.clientHeight >= -1\n        && _scrolled - _elem.clientHeight <= 1) {\n        // if items are all loaded\n        if (this.props.itemTotal &&\n          (this.props.itemTotal === this.props.itemsCount)) {\n          this.setState({\n            isLoading: true,\n            isLoadedAll: true,\n          });\n\n        // else if there are more items to load\n        } else {\n          this.setState({\n            isLoading: true,\n          });\n          this.props.fetchData();\n        }\n      }\n    }\n  }\n\n  /**\n   * render\n   * @return {React DOM}\n   * @see https://facebook.github.io/react/docs/component-specs.html#render\n   */\n  render() {\n    const _className = this.state.isLoading ? ' is-loading' : '';\n    const isLoadedAll = this.state.isLoadedAll;\n\n    return (\n      <div>\n        <div className=\"ScrollBlock\" ref=\"scrollBlock\">\n          {this.props.children}\n          <p className={`ScrollBlock-loading${_className}`}>\n            {(!isLoadedAll ? () => {\n              // return 'loading...' when there are more items to load\n              return 'loading ...';\n            } : () => {\n              // when all items loaded\n              return 'loaded!';\n            })()}\n          </p>\n        </div>\n      </div>\n    );\n  }\n}\n\n/**\n * PropTypes\n */\nScrollBlockComponent.propTypes = {\n  // function to fetch new items\n  fetchData: React.PropTypes.func,\n  // Count of loaded items\n  itemsCount: React.PropTypes.number,\n  // Count of total items\n  itemTotal: React.PropTypes.number,\n};\n\n/**\n * Export ScrollBlockComponent\n */\nexport default ScrollBlockComponent;\n"
   },
   {
     "kind": "class",
@@ -1772,22 +1772,6 @@
     }
   },
   {
-    "kind": "member",
-    "static": false,
-    "variation": null,
-    "name": "onScroll",
-    "memberof": "src/components/ScrollBlock/index.jsx~ScrollBlockComponent",
-    "longname": "src/components/ScrollBlock/index.jsx~ScrollBlockComponent#onScroll",
-    "access": null,
-    "description": "Scroll handler (bind)",
-    "lineNumber": 49,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
     "kind": "method",
     "static": false,
     "variation": null,
@@ -1799,7 +1783,7 @@
     "see": [
       "https://facebook.github.io/react/docs/component-specs.html#mounting-componentdidmount"
     ],
-    "lineNumber": 57,
+    "lineNumber": 50,
     "params": [],
     "generator": false
   },
@@ -1815,7 +1799,7 @@
     "see": [
       "https://facebook.github.io/react/docs/component-specs.html#updating-componentwillreceiveprops"
     ],
-    "lineNumber": 71,
+    "lineNumber": 69,
     "params": [
       {
         "name": "newProps",
@@ -1830,12 +1814,28 @@
     "kind": "method",
     "static": false,
     "variation": null,
+    "name": "componentWillUnmount",
+    "memberof": "src/components/ScrollBlock/index.jsx~ScrollBlockComponent",
+    "longname": "src/components/ScrollBlock/index.jsx~ScrollBlockComponent#componentWillUnmount",
+    "access": null,
+    "description": "componentWillUnmount",
+    "see": [
+      "https://facebook.github.io/react/docs/component-specs.html#unmounting-componentwillunmount"
+    ],
+    "lineNumber": 81,
+    "params": [],
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
     "name": "onScroll",
     "memberof": "src/components/ScrollBlock/index.jsx~ScrollBlockComponent",
     "longname": "src/components/ScrollBlock/index.jsx~ScrollBlockComponent#onScroll",
     "access": null,
     "description": "Scroll handler",
-    "lineNumber": 82,
+    "lineNumber": 89,
     "params": [],
     "generator": false
   },
@@ -1851,7 +1851,7 @@
     "see": [
       "https://facebook.github.io/react/docs/component-specs.html#render"
     ],
-    "lineNumber": 111,
+    "lineNumber": 120,
     "params": [],
     "return": {
       "nullable": null,
@@ -1875,7 +1875,7 @@
     "importPath": "frill/src/components/ScrollBlock/index.jsx",
     "importStyle": "scrollBlockComponent",
     "description": "Export ScrollBlockComponent",
-    "lineNumber": 149,
+    "lineNumber": 158,
     "type": {
       "types": [
         "src/components/ScrollBlock/index.jsx~ScrollBlockComponent"
