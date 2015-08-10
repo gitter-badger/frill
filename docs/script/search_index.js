@@ -288,18 +288,6 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "testexample testexample,testexample",
-    "test-file/test/docTest.js.html#lineNumber5",
-    "An example for test documantation",
-    "test"
-  ],
-  [
-    "testexample#hello testexample#hello,testexample#hello",
-    "test-file/test/docTest.js.html#lineNumber9",
-    "An example for test documantation hello",
-    "test"
-  ],
-  [
     "builtinexternal/ecmascriptexternal.js~array",
     "external/index.html",
     "BuiltinExternal/ECMAScriptExternal.js~Array",
@@ -622,6 +610,90 @@ window.esdocSearchIndex = [
     "external/index.html",
     "BuiltinExternal/WebAPIExternal.js~XMLHttpRequest",
     "external"
+  ],
+  [
+    "exampleaction src/actions/example.js~exampleaction,exampleaction",
+    "test-file/test/actions/ExampleActionTest.js.html#lineNumber11",
+    "Test for ExampleAction",
+    "test"
+  ],
+  [
+    "exampleaction#countup src/actions/example.js~exampleaction#countup,exampleaction#countup",
+    "test-file/test/actions/ExampleActionTest.js.html#lineNumber22",
+    "Test for ExampleAction ExampleAction#countUp",
+    "test"
+  ],
+  [
+    "exampleaction#countup src/actions/example.js~exampleaction#countup,exampleaction#countup",
+    "test-file/test/actions/ExampleActionTest.js.html#lineNumber33",
+    "Test for ExampleAction ExampleAction#countUp should dispatch COUNT_UP at execution",
+    "test"
+  ],
+  [
+    "exampleaction#countup src/actions/example.js~exampleaction#countup,exampleaction#countup",
+    "test-file/test/actions/ExampleActionTest.js.html#lineNumber26",
+    "Test for ExampleAction ExampleAction#countUp should have a countUp() method",
+    "test"
+  ],
+  [
+    "exampleaction#countupby src/actions/example.js~exampleaction#countupby,exampleaction#countupby",
+    "test-file/test/actions/ExampleActionTest.js.html#lineNumber46",
+    "Test for ExampleAction ExampleAction#countUpBy",
+    "test"
+  ],
+  [
+    "exampleaction#countupby src/actions/example.js~exampleaction#countupby,exampleaction#countupby",
+    "test-file/test/actions/ExampleActionTest.js.html#lineNumber78",
+    "Test for ExampleAction ExampleAction#countUpBy should be able to provide a number to count up",
+    "test"
+  ],
+  [
+    "exampleaction#countupby src/actions/example.js~exampleaction#countupby,exampleaction#countupby",
+    "test-file/test/actions/ExampleActionTest.js.html#lineNumber67",
+    "Test for ExampleAction ExampleAction#countUpBy should count up by 1 at default",
+    "test"
+  ],
+  [
+    "exampleaction#countupby src/actions/example.js~exampleaction#countupby,exampleaction#countupby",
+    "test-file/test/actions/ExampleActionTest.js.html#lineNumber57",
+    "Test for ExampleAction ExampleAction#countUpBy should dispatch COUNT_UP_BY at execution",
+    "test"
+  ],
+  [
+    "exampleaction#countupby src/actions/example.js~exampleaction#countupby,exampleaction#countupby",
+    "test-file/test/actions/ExampleActionTest.js.html#lineNumber50",
+    "Test for ExampleAction ExampleAction#countUpBy should have a countUpBy() method",
+    "test"
+  ],
+  [
+    "exampleaction#loadscrollitems src/actions/example.js~exampleaction#loadscrollitems,exampleaction#loadscrollitems",
+    "test-file/test/actions/ExampleActionTest.js.html#lineNumber90",
+    "Test for ExampleAction ExampleAction#loadScrollItems",
+    "test"
+  ],
+  [
+    "exampleaction#loadscrollitems src/actions/example.js~exampleaction#loadscrollitems,exampleaction#loadscrollitems",
+    "test-file/test/actions/ExampleActionTest.js.html#lineNumber120",
+    "Test for ExampleAction ExampleAction#loadScrollItems should be able to change parameters",
+    "test"
+  ],
+  [
+    "exampleaction#loadscrollitems src/actions/example.js~exampleaction#loadscrollitems,exampleaction#loadscrollitems",
+    "test-file/test/actions/ExampleActionTest.js.html#lineNumber101",
+    "Test for ExampleAction ExampleAction#loadScrollItems should dispatch LOAD_SCROLL_ITEMS at execution",
+    "test"
+  ],
+  [
+    "exampleaction#loadscrollitems src/actions/example.js~exampleaction#loadscrollitems,exampleaction#loadscrollitems",
+    "test-file/test/actions/ExampleActionTest.js.html#lineNumber94",
+    "Test for ExampleAction ExampleAction#loadScrollItems should have a loadScrollItems() method",
+    "test"
+  ],
+  [
+    "exampleaction src/actions/example.js~exampleaction,exampleaction",
+    "test-file/test/actions/ExampleActionTest.js.html#lineNumber15",
+    "Test for ExampleAction should be an instance of FrillCore.BaseAction",
+    "test"
   ],
   [
     "src/actions/auth.js",
@@ -1224,9 +1296,9 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "test/doctest.js",
-    "test-file/test/docTest.js.html",
-    "test/docTest.js",
+    "test/actions/exampleactiontest.js",
+    "test-file/test/actions/ExampleActionTest.js.html",
+    "test/actions/ExampleActionTest.js",
     "testFile"
   ]
 ]

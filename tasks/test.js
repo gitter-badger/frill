@@ -24,7 +24,7 @@ export default (gulp, $, argv, path) => {
       'test/**/*.jsx',
 
     ], {read: false})
-      .pipe($.mocha({}))
+      .pipe($.mocha({timeout: 5000}))
       .once('error', () => {
         process.exit(1);
       })
