@@ -59,6 +59,7 @@
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-Models">Models</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-MySQLModels">MySQLModels</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-Posts">Posts</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-RoutePrefixer">RoutePrefixer</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-Stores">Stores</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-Strategies">Strategies</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-Users">Users</a></span></li>
@@ -80,10 +81,10 @@
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-helpers">helpers</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-jwtStrategy">jwtStrategy</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-localAuthRoutes">localAuthRoutes</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-localAuthRoutes">localAuthRoutes</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-localStrategy">localStrategy</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-loginComponent">loginComponent</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-pageComponent">pageComponent</a></span></li>
-<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-routePrefixer">routePrefixer</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-routes">routes</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-scrollBlockComponent">scrollBlockComponent</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-topComponent">topComponent</a></span></li>
@@ -105,15 +106,16 @@
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/components/App/index.jsx</h1>
 <pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">import React from &apos;react&apos;;
+import {StoreWatchComponent} from &apos;frill-core&apos;;
 import {Link, RouteHandler} from &apos;react-router&apos;;
 
 /**
  * App component
- * @extends {React.Component}
+ * @extends {FrillCore.StoreWatchComponent}
  * @example &lt;caption&gt;Usage in React-Router&lt;/caption&gt;
  * &lt;Route name=&quot;app&quot; path=&quot;/&quot; handler={AppComponent} /&gt;
  */
-class AppComponent extends React.Component {
+class AppComponent extends new StoreWatchComponent([&apos;Auth&apos;]) {
 
   /**
    * Constructor
@@ -128,12 +130,20 @@ class AppComponent extends React.Component {
     this.name = &apos;App&apos;;
   }
 
+  getStateFromFrill() {
+    return {
+      isLoggedIn: this.getFrill().store(&apos;Auth&apos;).isLoggedIn(),
+      user: this.getFrill().store(&apos;Auth&apos;).user,
+    };
+  }
+
   /**
    * render
    * @return {React DOM}
    * @see https://facebook.github.io/react/docs/component-specs.html#render
    */
   render() {
+    const isLoggedIn = this.state.isLoggedIn;
     return (
       &lt;div className=&quot;App&quot;&gt;
         &lt;header&gt;
@@ -150,6 +160,15 @@ class AppComponent extends React.Component {
             &lt;/li&gt;
           &lt;/ul&gt;
         &lt;/nav&gt;
+        {(isLoggedIn ? () =&gt; {
+          return (
+            &lt;p className=&quot;welcome&quot;&gt;Hello, {this.state.user.user.displayName}&lt;/p&gt;
+          );
+        } : () =&gt; {
+          return (
+            &lt;p className=&quot;welcome&quot;&gt;Welcome, Guest&lt;/p&gt;
+          );
+        })()}
         &lt;RouteHandler {...this.props}/&gt;
         &lt;footer&gt;
           &lt;p&gt;FrillJS&lt;/p&gt;

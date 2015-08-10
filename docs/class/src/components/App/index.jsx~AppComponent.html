@@ -59,6 +59,7 @@
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-Models">Models</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-MySQLModels">MySQLModels</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-Posts">Posts</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-RoutePrefixer">RoutePrefixer</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-Stores">Stores</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-Strategies">Strategies</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-Users">Users</a></span></li>
@@ -80,10 +81,10 @@
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-helpers">helpers</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-jwtStrategy">jwtStrategy</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-localAuthRoutes">localAuthRoutes</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-localAuthRoutes">localAuthRoutes</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-localStrategy">localStrategy</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-loginComponent">loginComponent</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-pageComponent">pageComponent</a></span></li>
-<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-routePrefixer">routePrefixer</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-routes">routes</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-scrollBlockComponent">scrollBlockComponent</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-topComponent">topComponent</a></span></li>
@@ -104,13 +105,13 @@
 </nav>
 
 <div class="content" data-ice="content"><div class="header-notice">
-  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import AppComponent from &apos;<span><a href="file/src/components/App/index.jsx.html#lineNumber10">frill/src/components/App/index.jsx</a></span>&apos;</code></pre></div>
+  <div data-ice="importPath" class="import-path"><pre class="prettyprint"><code data-ice="importPathCode">import AppComponent from &apos;<span><a href="file/src/components/App/index.jsx.html#lineNumber11">frill/src/components/App/index.jsx</a></span>&apos;</code></pre></div>
   <span data-ice="access">public</span>
   <span data-ice="kind">class</span>
   
   
   
-  <span data-ice="source">| <span><a href="file/src/components/App/index.jsx.html#lineNumber10">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/components/App/index.jsx.html#lineNumber11">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -124,7 +125,7 @@
 
   
   
-  <div class="flat-list" data-ice="extendsChain"><h4>Extends:</h4><div><span>React.Component</span> &#x2192; AppComponent</div></div>
+  <div class="flat-list" data-ice="extendsChain"><h4>Extends:</h4><div><span>FrillCore.StoreWatchComponent</span> &#x2192; AppComponent</div></div>
   
   
   
@@ -236,6 +237,31 @@
     <td>
       <div>
         <p>
+           <span data-ice="name"><span><a href="class/src/components/App/index.jsx~AppComponent.html#instance-method-getStateFromFrill">getStateFromFrill</a></span></span><span data-ice="signature">(): <span>*</span></span>
+        </p>
+      </div>
+      <div>
+        
+        
+        
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
            <span data-ice="name"><span><a href="class/src/components/App/index.jsx~AppComponent.html#instance-method-render">render</a></span></span><span data-ice="signature">(): <span>React DOM</span></span>
         </p>
       </div>
@@ -272,7 +298,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/components/App/index.jsx.html#lineNumber16">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/components/App/index.jsx.html#lineNumber17">source</a></span></span>
     </span>
   </h3>
 
@@ -332,7 +358,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/components/App/index.jsx.html#lineNumber22">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/components/App/index.jsx.html#lineNumber23">source</a></span></span>
     </span>
   </h3>
 
@@ -366,6 +392,56 @@
 <div data-ice="methodDetails"><h2 data-ice="title">Public Methods</h2>
 
 <div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-getStateFromFrill">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">getStateFromFrill</span><span data-ice="signature">(): <span>*</span></span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/components/App/index.jsx.html#lineNumber26">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  
+
+  
+
+  <div data-ice="properties">
+</div>
+
+  <div class="return-params" data-ice="returnParams">
+    <h4>Return:</h4>
+    <table>
+      <tr>
+        <td class="return-type" data-ice="returnType"><span>*</span></td>
+        
+      </tr>
+    </table>
+    <div data-ice="returnProperties">
+</div>
+  </div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-render">
     <span class="access" data-ice="access">public</span>
     
@@ -376,7 +452,7 @@
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/components/App/index.jsx.html#lineNumber30">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/components/App/index.jsx.html#lineNumber38">source</a></span></span>
     </span>
   </h3>
 

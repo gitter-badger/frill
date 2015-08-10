@@ -238,22 +238,95 @@
           "line": 7,
           "column": 44
         }
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "routerContainer",
+            "range": [
+              148,
+              163
+            ],
+            "loc": {
+              "start": {
+                "line": 8,
+                "column": 7
+              },
+              "end": {
+                "line": 8,
+                "column": 22
+              }
+            }
+          },
+          "range": [
+            148,
+            163
+          ],
+          "loc": {
+            "start": {
+              "line": 8,
+              "column": 7
+            },
+            "end": {
+              "line": 8,
+              "column": 22
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./routerContainer",
+        "raw": "'./routerContainer'",
+        "range": [
+          169,
+          188
+        ],
+        "loc": {
+          "start": {
+            "line": 8,
+            "column": 28
+          },
+          "end": {
+            "line": 8,
+            "column": 47
+          }
+        }
+      },
+      "range": [
+        141,
+        189
+      ],
+      "loc": {
+        "start": {
+          "line": 8,
+          "column": 0
+        },
+        "end": {
+          "line": 8,
+          "column": 48
+        }
       },
       "trailingComments": [
         {
           "type": "Block",
           "value": "*\n * List of all helpers used in app\n ",
           "range": [
-            142,
-            184
+            191,
+            233
           ],
           "loc": {
             "start": {
-              "line": 9,
+              "line": 10,
               "column": 0
             },
             "end": {
-              "line": 11,
+              "line": 12,
               "column": 3
             }
           }
@@ -269,16 +342,16 @@
             "type": "Identifier",
             "name": "helpers",
             "range": [
-              191,
-              198
+              240,
+              247
             ],
             "loc": {
               "start": {
-                "line": 12,
+                "line": 13,
                 "column": 6
               },
               "end": {
-                "line": 12,
+                "line": 13,
                 "column": 13
               }
             }
@@ -292,16 +365,16 @@
                   "type": "Identifier",
                   "name": "Joi",
                   "range": [
-                    205,
-                    208
+                    254,
+                    257
                   ],
                   "loc": {
                     "start": {
-                      "line": 13,
+                      "line": 14,
                       "column": 2
                     },
                     "end": {
-                      "line": 13,
+                      "line": 14,
                       "column": 5
                     }
                   }
@@ -310,65 +383,8 @@
                   "type": "Identifier",
                   "name": "Joi",
                   "range": [
-                    205,
-                    208
-                  ],
-                  "loc": {
-                    "start": {
-                      "line": 13,
-                      "column": 2
-                    },
-                    "end": {
-                      "line": 13,
-                      "column": 5
-                    }
-                  }
-                },
-                "kind": "init",
-                "method": false,
-                "shorthand": true,
-                "computed": false,
-                "range": [
-                  205,
-                  208
-                ],
-                "loc": {
-                  "start": {
-                    "line": 13,
-                    "column": 2
-                  },
-                  "end": {
-                    "line": 13,
-                    "column": 5
-                  }
-                }
-              },
-              {
-                "type": "Property",
-                "key": {
-                  "type": "Identifier",
-                  "name": "AWS",
-                  "range": [
-                    212,
-                    215
-                  ],
-                  "loc": {
-                    "start": {
-                      "line": 14,
-                      "column": 2
-                    },
-                    "end": {
-                      "line": 14,
-                      "column": 5
-                    }
-                  }
-                },
-                "value": {
-                  "type": "Identifier",
-                  "name": "AWS",
-                  "range": [
-                    212,
-                    215
+                    254,
+                    257
                   ],
                   "loc": {
                     "start": {
@@ -386,8 +402,8 @@
                 "shorthand": true,
                 "computed": false,
                 "range": [
-                  212,
-                  215
+                  254,
+                  257
                 ],
                 "loc": {
                   "start": {
@@ -404,10 +420,10 @@
                 "type": "Property",
                 "key": {
                   "type": "Identifier",
-                  "name": "routePrefixer",
+                  "name": "AWS",
                   "range": [
-                    219,
-                    232
+                    261,
+                    264
                   ],
                   "loc": {
                     "start": {
@@ -416,6 +432,63 @@
                     },
                     "end": {
                       "line": 15,
+                      "column": 5
+                    }
+                  }
+                },
+                "value": {
+                  "type": "Identifier",
+                  "name": "AWS",
+                  "range": [
+                    261,
+                    264
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 15,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 15,
+                      "column": 5
+                    }
+                  }
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": true,
+                "computed": false,
+                "range": [
+                  261,
+                  264
+                ],
+                "loc": {
+                  "start": {
+                    "line": 15,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 15,
+                    "column": 5
+                  }
+                }
+              },
+              {
+                "type": "Property",
+                "key": {
+                  "type": "Identifier",
+                  "name": "routePrefixer",
+                  "range": [
+                    268,
+                    281
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 16,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 16,
                       "column": 15
                     }
                   }
@@ -424,16 +497,16 @@
                   "type": "Identifier",
                   "name": "routePrefixer",
                   "range": [
-                    219,
-                    232
+                    268,
+                    281
                   ],
                   "loc": {
                     "start": {
-                      "line": 15,
+                      "line": 16,
                       "column": 2
                     },
                     "end": {
-                      "line": 15,
+                      "line": 16,
                       "column": 15
                     }
                   }
@@ -443,47 +516,104 @@
                 "shorthand": true,
                 "computed": false,
                 "range": [
-                  219,
-                  232
+                  268,
+                  281
                 ],
                 "loc": {
                   "start": {
-                    "line": 15,
+                    "line": 16,
                     "column": 2
                   },
                   "end": {
-                    "line": 15,
+                    "line": 16,
                     "column": 15
+                  }
+                }
+              },
+              {
+                "type": "Property",
+                "key": {
+                  "type": "Identifier",
+                  "name": "routerContainer",
+                  "range": [
+                    285,
+                    300
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 17,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 17,
+                      "column": 17
+                    }
+                  }
+                },
+                "value": {
+                  "type": "Identifier",
+                  "name": "routerContainer",
+                  "range": [
+                    285,
+                    300
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 17,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 17,
+                      "column": 17
+                    }
+                  }
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": true,
+                "computed": false,
+                "range": [
+                  285,
+                  300
+                ],
+                "loc": {
+                  "start": {
+                    "line": 17,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 17,
+                    "column": 17
                   }
                 }
               }
             ],
             "range": [
-              201,
-              235
+              250,
+              303
             ],
             "loc": {
               "start": {
-                "line": 12,
+                "line": 13,
                 "column": 16
               },
               "end": {
-                "line": 16,
+                "line": 18,
                 "column": 1
               }
             }
           },
           "range": [
-            191,
-            235
+            240,
+            303
           ],
           "loc": {
             "start": {
-              "line": 12,
+              "line": 13,
               "column": 6
             },
             "end": {
-              "line": 16,
+              "line": 18,
               "column": 1
             }
           }
@@ -491,16 +621,16 @@
       ],
       "kind": "const",
       "range": [
-        185,
-        236
+        234,
+        304
       ],
       "loc": {
         "start": {
-          "line": 12,
+          "line": 13,
           "column": 0
         },
         "end": {
-          "line": 16,
+          "line": 18,
           "column": 2
         }
       },
@@ -514,31 +644,31 @@
         "type": "Identifier",
         "name": "helpers",
         "range": [
-          253,
-          260
+          321,
+          328
         ],
         "loc": {
           "start": {
-            "line": 18,
+            "line": 20,
             "column": 15
           },
           "end": {
-            "line": 18,
+            "line": 20,
             "column": 22
           }
         }
       },
       "range": [
-        238,
-        261
+        306,
+        329
       ],
       "loc": {
         "start": {
-          "line": 18,
+          "line": 20,
           "column": 0
         },
         "end": {
-          "line": 18,
+          "line": 20,
           "column": 23
         }
       },
@@ -557,16 +687,16 @@
               "type": "Identifier",
               "name": "helpers",
               "range": [
-                191,
-                198
+                240,
+                247
               ],
               "loc": {
                 "start": {
-                  "line": 12,
+                  "line": 13,
                   "column": 6
                 },
                 "end": {
-                  "line": 12,
+                  "line": 13,
                   "column": 13
                 }
               }
@@ -580,16 +710,16 @@
                     "type": "Identifier",
                     "name": "Joi",
                     "range": [
-                      205,
-                      208
+                      254,
+                      257
                     ],
                     "loc": {
                       "start": {
-                        "line": 13,
+                        "line": 14,
                         "column": 2
                       },
                       "end": {
-                        "line": 13,
+                        "line": 14,
                         "column": 5
                       }
                     }
@@ -598,65 +728,8 @@
                     "type": "Identifier",
                     "name": "Joi",
                     "range": [
-                      205,
-                      208
-                    ],
-                    "loc": {
-                      "start": {
-                        "line": 13,
-                        "column": 2
-                      },
-                      "end": {
-                        "line": 13,
-                        "column": 5
-                      }
-                    }
-                  },
-                  "kind": "init",
-                  "method": false,
-                  "shorthand": true,
-                  "computed": false,
-                  "range": [
-                    205,
-                    208
-                  ],
-                  "loc": {
-                    "start": {
-                      "line": 13,
-                      "column": 2
-                    },
-                    "end": {
-                      "line": 13,
-                      "column": 5
-                    }
-                  }
-                },
-                {
-                  "type": "Property",
-                  "key": {
-                    "type": "Identifier",
-                    "name": "AWS",
-                    "range": [
-                      212,
-                      215
-                    ],
-                    "loc": {
-                      "start": {
-                        "line": 14,
-                        "column": 2
-                      },
-                      "end": {
-                        "line": 14,
-                        "column": 5
-                      }
-                    }
-                  },
-                  "value": {
-                    "type": "Identifier",
-                    "name": "AWS",
-                    "range": [
-                      212,
-                      215
+                      254,
+                      257
                     ],
                     "loc": {
                       "start": {
@@ -674,8 +747,8 @@
                   "shorthand": true,
                   "computed": false,
                   "range": [
-                    212,
-                    215
+                    254,
+                    257
                   ],
                   "loc": {
                     "start": {
@@ -692,10 +765,10 @@
                   "type": "Property",
                   "key": {
                     "type": "Identifier",
-                    "name": "routePrefixer",
+                    "name": "AWS",
                     "range": [
-                      219,
-                      232
+                      261,
+                      264
                     ],
                     "loc": {
                       "start": {
@@ -704,6 +777,63 @@
                       },
                       "end": {
                         "line": 15,
+                        "column": 5
+                      }
+                    }
+                  },
+                  "value": {
+                    "type": "Identifier",
+                    "name": "AWS",
+                    "range": [
+                      261,
+                      264
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 15,
+                        "column": 2
+                      },
+                      "end": {
+                        "line": 15,
+                        "column": 5
+                      }
+                    }
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": true,
+                  "computed": false,
+                  "range": [
+                    261,
+                    264
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 15,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 15,
+                      "column": 5
+                    }
+                  }
+                },
+                {
+                  "type": "Property",
+                  "key": {
+                    "type": "Identifier",
+                    "name": "routePrefixer",
+                    "range": [
+                      268,
+                      281
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 16,
+                        "column": 2
+                      },
+                      "end": {
+                        "line": 16,
                         "column": 15
                       }
                     }
@@ -712,16 +842,16 @@
                     "type": "Identifier",
                     "name": "routePrefixer",
                     "range": [
-                      219,
-                      232
+                      268,
+                      281
                     ],
                     "loc": {
                       "start": {
-                        "line": 15,
+                        "line": 16,
                         "column": 2
                       },
                       "end": {
-                        "line": 15,
+                        "line": 16,
                         "column": 15
                       }
                     }
@@ -731,47 +861,104 @@
                   "shorthand": true,
                   "computed": false,
                   "range": [
-                    219,
-                    232
+                    268,
+                    281
                   ],
                   "loc": {
                     "start": {
-                      "line": 15,
+                      "line": 16,
                       "column": 2
                     },
                     "end": {
-                      "line": 15,
+                      "line": 16,
                       "column": 15
+                    }
+                  }
+                },
+                {
+                  "type": "Property",
+                  "key": {
+                    "type": "Identifier",
+                    "name": "routerContainer",
+                    "range": [
+                      285,
+                      300
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 17,
+                        "column": 2
+                      },
+                      "end": {
+                        "line": 17,
+                        "column": 17
+                      }
+                    }
+                  },
+                  "value": {
+                    "type": "Identifier",
+                    "name": "routerContainer",
+                    "range": [
+                      285,
+                      300
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 17,
+                        "column": 2
+                      },
+                      "end": {
+                        "line": 17,
+                        "column": 17
+                      }
+                    }
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": true,
+                  "computed": false,
+                  "range": [
+                    285,
+                    300
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 17,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 17,
+                      "column": 17
                     }
                   }
                 }
               ],
               "range": [
-                201,
-                235
+                250,
+                303
               ],
               "loc": {
                 "start": {
-                  "line": 12,
+                  "line": 13,
                   "column": 16
                 },
                 "end": {
-                  "line": 16,
+                  "line": 18,
                   "column": 1
                 }
               }
             },
             "range": [
-              191,
-              235
+              240,
+              303
             ],
             "loc": {
               "start": {
-                "line": 12,
+                "line": 13,
                 "column": 6
               },
               "end": {
-                "line": 16,
+                "line": 18,
                 "column": 1
               }
             }
@@ -779,16 +966,16 @@
         ],
         "kind": "const",
         "range": [
-          185,
-          236
+          234,
+          304
         ],
         "loc": {
           "start": {
-            "line": 12,
+            "line": 13,
             "column": 0
           },
           "end": {
-            "line": 16,
+            "line": 18,
             "column": 2
           }
         },
@@ -797,16 +984,16 @@
             "type": "Block",
             "value": "*\n * List of all helpers used in app\n ",
             "range": [
-              142,
-              184
+              191,
+              233
             ],
             "loc": {
               "start": {
-                "line": 9,
+                "line": 10,
                 "column": 0
               },
               "end": {
-                "line": 11,
+                "line": 12,
                 "column": 3
               }
             }
@@ -815,16 +1002,16 @@
         "trailingComments": []
       },
       "range": [
-        238,
-        261
+        306,
+        329
       ],
       "loc": {
         "start": {
-          "line": 18,
+          "line": 20,
           "column": 0
         },
         "end": {
-          "line": 18,
+          "line": 20,
           "column": 23
         }
       }
@@ -833,7 +1020,7 @@
   "sourceType": "module",
   "range": [
     48,
-    261
+    329
   ],
   "loc": {
     "start": {
@@ -841,7 +1028,7 @@
       "column": 0
     },
     "end": {
-      "line": 18,
+      "line": 20,
       "column": 23
     }
   },
@@ -868,16 +1055,16 @@
       "type": "Block",
       "value": "*\n * List of all helpers used in app\n ",
       "range": [
-        142,
-        184
+        191,
+        233
       ],
       "loc": {
         "start": {
-          "line": 9,
+          "line": 10,
           "column": 0
         },
         "end": {
-          "line": 11,
+          "line": 12,
           "column": 3
         }
       }

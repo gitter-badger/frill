@@ -59,6 +59,7 @@
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-Models">Models</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-MySQLModels">MySQLModels</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-Posts">Posts</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-RoutePrefixer">RoutePrefixer</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-Stores">Stores</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-Strategies">Strategies</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-Users">Users</a></span></li>
@@ -80,10 +81,10 @@
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-helpers">helpers</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-jwtStrategy">jwtStrategy</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-localAuthRoutes">localAuthRoutes</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-localAuthRoutes">localAuthRoutes</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-localStrategy">localStrategy</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-loginComponent">loginComponent</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-pageComponent">pageComponent</a></span></li>
-<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-routePrefixer">routePrefixer</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-routes">routes</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-scrollBlockComponent">scrollBlockComponent</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-topComponent">topComponent</a></span></li>
@@ -110,7 +111,7 @@
   
   
   
-  <span data-ice="source">| <span><a href="file/src/actions/Auth.js.html#lineNumber12">source</a></span></span>
+  <span data-ice="source">| <span><a href="file/src/actions/Auth.js.html#lineNumber13">source</a></span></span>
 </div>
 
 <div class="self-detail detail">
@@ -207,7 +208,33 @@ this.getFrill().action(&apos;Auth&apos;).logout();</code></pre>
     <td>
       <div>
         <p>
-           <span data-ice="name"><span><a href="class/src/actions/Auth.js~AuthAction.html#instance-method-login">login</a></span></span><span data-ice="signature">(token: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>)</span>
+           <span data-ice="name"><span><a href="class/src/actions/Auth.js~AuthAction.html#instance-method-authenticate">authenticate</a></span></span><span data-ice="signature">(token: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>)</span>
+        </p>
+      </div>
+      <div>
+        
+        
+        <div data-ice="description"><p>Authenticate action</p>
+</div>
+      </div>
+    </td>
+    <td>
+      
+      
+    </td>
+  </tr>
+<tr data-ice="target">
+    <td>
+      <span class="access" data-ice="access">public</span>
+      
+      
+      
+      <span class="override" data-ice="override"></span>
+    </td>
+    <td>
+      <div>
+        <p>
+           <span data-ice="name"><span><a href="class/src/actions/Auth.js~AuthAction.html#instance-method-login">login</a></span></span><span data-ice="signature">(username: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, password: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>)</span>
         </p>
       </div>
       <div>
@@ -269,7 +296,7 @@ this.getFrill().action(&apos;Auth&apos;).logout();</code></pre>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/actions/Auth.js.html#lineNumber17">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/actions/Auth.js.html#lineNumber18">source</a></span></span>
     </span>
   </h3>
 
@@ -304,24 +331,24 @@ this.getFrill().action(&apos;Auth&apos;).logout();</code></pre>
 <div data-ice="methodDetails"><h2 data-ice="title">Public Methods</h2>
 
 <div class="detail" data-ice="detail">
-  <h3 data-ice="anchor" id="instance-method-login">
+  <h3 data-ice="anchor" id="instance-method-authenticate">
     <span class="access" data-ice="access">public</span>
     
     
     
     
-    <span data-ice="name">login</span><span data-ice="signature">(token: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>)</span>
+    <span data-ice="name">authenticate</span><span data-ice="signature">(token: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>)</span>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/actions/Auth.js.html#lineNumber27">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/actions/Auth.js.html#lineNumber46">source</a></span></span>
     </span>
   </h3>
 
   
   
   
-  <div data-ice="description"><p>Login action</p>
+  <div data-ice="description"><p>Authenticate action</p>
 </div>
 
   
@@ -373,6 +400,71 @@ this.getFrill().action(&apos;Auth&apos;).logout();</code></pre>
   
 </div>
 <div class="detail" data-ice="detail">
+  <h3 data-ice="anchor" id="instance-method-login">
+    <span class="access" data-ice="access">public</span>
+    
+    
+    
+    
+    <span data-ice="name">login</span><span data-ice="signature">(username: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>, password: <span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span>)</span>
+    <span class="right-info">
+      
+      
+      <span data-ice="source"><span><a href="file/src/actions/Auth.js.html#lineNumber28">source</a></span></span>
+    </span>
+  </h3>
+
+  
+  
+  
+  <div data-ice="description"><p>Login action</p>
+</div>
+
+  
+
+  <div data-ice="properties"><div data-ice="properties">
+  <h4 data-ice="title">Params:</h4>
+  <table class="params">
+    <thead>
+    <tr><td>Name</td><td>Type</td><td>Attribute</td><td>Description</td></tr>
+    </thead>
+    <tbody>
+    
+    <tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">username</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>username from login form</p>
+</td>
+    </tr>
+<tr data-ice="property" data-depth="0">
+      <td data-ice="name" data-depth="0">password</td>
+      <td data-ice="type"><span><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">string</a></span></td>
+      <td data-ice="appendix"></td>
+      <td data-ice="description"><p>password from login form</p>
+</td>
+    </tr>
+</tbody>
+  </table>
+</div>
+</div>
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+</div>
+<div class="detail" data-ice="detail">
   <h3 data-ice="anchor" id="instance-method-logout">
     <span class="access" data-ice="access">public</span>
     
@@ -383,7 +475,7 @@ this.getFrill().action(&apos;Auth&apos;).logout();</code></pre>
     <span class="right-info">
       
       
-      <span data-ice="source"><span><a href="file/src/actions/Auth.js.html#lineNumber35">source</a></span></span>
+      <span data-ice="source"><span><a href="file/src/actions/Auth.js.html#lineNumber54">source</a></span></span>
     </span>
   </h3>
 

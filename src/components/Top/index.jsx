@@ -53,10 +53,10 @@ class TopComponent extends new StoreWatchComponent(['Example']) {
    */
   getStateFromFrill() {
     return {
-      count: this.getFrill().store('Example').getCount(),
-      scrollItems: this.getFrill().store('Example').getScrollItems(),
-      scrollItemsCount: this.getFrill().store('Example').getScrollItemsCount(),
-      scrollItemTotal: this.getFrill().store('Example').getScrollItemTotal(),
+      count: this.getFrill().store('Example').count,
+      scrollItems: this.getFrill().store('Example').scrollItems,
+      scrollItemsCount: this.getFrill().store('Example').scrollItemsCount,
+      scrollItemTotal: this.getFrill().store('Example').scrollItemTotal,
     };
   }
 
@@ -79,7 +79,7 @@ class TopComponent extends new StoreWatchComponent(['Example']) {
 
     return (
       <div className="Top">
-        <h2>Samples</h2>
+        <h2>Examples</h2>
         <section>
           <h3>Button - counter</h3>
           <p className="count">{this.state.count}</p>

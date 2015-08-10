@@ -90,6 +90,12 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
+    "frill/src/helpers/routeprefixer.js~routeprefixer",
+    "variable/index.html#static-variable-RoutePrefixer",
+    "<span>RoutePrefixer</span> <span class=\"search-result-import-path\">frill/src/helpers/routePrefixer.js</span>",
+    "variable"
+  ],
+  [
     "frill/src/components/scrollblock/index.jsx~scrollblockcomponent",
     "class/src/components/ScrollBlock/index.jsx~ScrollBlockComponent.html",
     "<span>ScrollBlockComponent</span> <span class=\"search-result-import-path\">frill/src/components/ScrollBlock/index.jsx</span>",
@@ -228,6 +234,12 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
+    "frill/src/api/v1/localauth.js~localauthroutes",
+    "variable/index.html#static-variable-localAuthRoutes",
+    "<span>localAuthRoutes</span> <span class=\"search-result-import-path\">frill/src/api/v1/localAuth.js</span>",
+    "variable"
+  ],
+  [
     "frill/src/api/auth/strategies/local.js~localstrategy",
     "variable/index.html#static-variable-localStrategy",
     "<span>localStrategy</span> <span class=\"search-result-import-path\">frill/src/api/auth/strategies/local.js</span>",
@@ -243,12 +255,6 @@ window.esdocSearchIndex = [
     "frill/src/components/page.jsx~pagecomponent",
     "variable/index.html#static-variable-pageComponent",
     "<span>pageComponent</span> <span class=\"search-result-import-path\">frill/src/components/Page.jsx</span>",
-    "variable"
-  ],
-  [
-    "frill/src/helpers/routeprefixer.js~routeprefixer",
-    "variable/index.html#static-variable-routePrefixer",
-    "<span>routePrefixer</span> <span class=\"search-result-import-path\">frill/src/helpers/routePrefixer.js</span>",
     "variable"
   ],
   [
@@ -624,6 +630,12 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/actions/auth.js~authaction#authenticate",
+    "class/src/actions/Auth.js~AuthAction.html#instance-method-authenticate",
+    "src/actions/Auth.js~AuthAction#authenticate",
+    "method"
+  ],
+  [
     "src/actions/auth.js~authaction#constructor",
     "class/src/actions/Auth.js~AuthAction.html#instance-constructor-constructor",
     "src/actions/Auth.js~AuthAction#constructor",
@@ -768,6 +780,12 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/api/v1/localauth.js",
+    "file/src/api/v1/localAuth.js.html",
+    "src/api/v1/localAuth.js",
+    "file"
+  ],
+  [
     "src/bootstrap.js",
     "file/src/bootstrap.js.html",
     "src/bootstrap.js",
@@ -789,6 +807,12 @@ window.esdocSearchIndex = [
     "src/components/app/index.jsx~appcomponent#constructor",
     "class/src/components/App/index.jsx~AppComponent.html#instance-constructor-constructor",
     "src/components/App/index.jsx~AppComponent#constructor",
+    "method"
+  ],
+  [
+    "src/components/app/index.jsx~appcomponent#getstatefromfrill",
+    "class/src/components/App/index.jsx~AppComponent.html#instance-method-getStateFromFrill",
+    "src/components/App/index.jsx~AppComponent#getStateFromFrill",
     "method"
   ],
   [
@@ -864,6 +888,18 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/components/page.jsx~pagecomponent#getinitialstatefromfrill",
+    "class/src/components/Page.jsx~PageComponent.html#instance-method-getInitialStateFromFrill",
+    "src/components/Page.jsx~PageComponent#getInitialStateFromFrill",
+    "method"
+  ],
+  [
+    "src/components/page.jsx~pagecomponent#getstatefromfrill",
+    "class/src/components/Page.jsx~PageComponent.html#instance-method-getStateFromFrill",
+    "src/components/Page.jsx~PageComponent#getStateFromFrill",
+    "method"
+  ],
+  [
     "src/components/page.jsx~pagecomponent#name",
     "class/src/components/Page.jsx~PageComponent.html#instance-member-name",
     "src/components/Page.jsx~PageComponent#name",
@@ -874,6 +910,12 @@ window.esdocSearchIndex = [
     "class/src/components/Page.jsx~PageComponent.html#instance-method-render",
     "src/components/Page.jsx~PageComponent#render",
     "method"
+  ],
+  [
+    "src/components/page.jsx~pagecomponent#state",
+    "class/src/components/Page.jsx~PageComponent.html#instance-member-state",
+    "src/components/Page.jsx~PageComponent#state",
+    "member"
   ],
   [
     "src/components/scrollblock/index.jsx",
@@ -987,6 +1029,12 @@ window.esdocSearchIndex = [
     "src/helpers/routeprefixer.js",
     "file/src/helpers/routePrefixer.js.html",
     "src/helpers/routePrefixer.js",
+    "file"
+  ],
+  [
+    "src/helpers/routercontainer.js",
+    "file/src/helpers/routerContainer.js.html",
+    "src/helpers/routerContainer.js",
     "file"
   ],
   [
@@ -1128,6 +1176,12 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
+    "src/stores/example.js~examplestore#count",
+    "class/src/stores/Example.js~ExampleStore.html#instance-get-count",
+    "src/stores/Example.js~ExampleStore#count",
+    "member"
+  ],
+  [
     "src/stores/example.js~examplestore#countup",
     "class/src/stores/Example.js~ExampleStore.html#instance-method-countup",
     "src/stores/Example.js~ExampleStore#countup",
@@ -1140,34 +1194,28 @@ window.esdocSearchIndex = [
     "method"
   ],
   [
-    "src/stores/example.js~examplestore#getcount",
-    "class/src/stores/Example.js~ExampleStore.html#instance-method-getCount",
-    "src/stores/Example.js~ExampleStore#getCount",
-    "method"
-  ],
-  [
-    "src/stores/example.js~examplestore#getscrollitemtotal",
-    "class/src/stores/Example.js~ExampleStore.html#instance-method-getScrollItemTotal",
-    "src/stores/Example.js~ExampleStore#getScrollItemTotal",
-    "method"
-  ],
-  [
-    "src/stores/example.js~examplestore#getscrollitems",
-    "class/src/stores/Example.js~ExampleStore.html#instance-method-getScrollItems",
-    "src/stores/Example.js~ExampleStore#getScrollItems",
-    "method"
-  ],
-  [
-    "src/stores/example.js~examplestore#getscrollitemscount",
-    "class/src/stores/Example.js~ExampleStore.html#instance-method-getScrollItemsCount",
-    "src/stores/Example.js~ExampleStore#getScrollItemsCount",
-    "method"
-  ],
-  [
     "src/stores/example.js~examplestore#loadscrollitems",
     "class/src/stores/Example.js~ExampleStore.html#instance-method-loadScrollItems",
     "src/stores/Example.js~ExampleStore#loadScrollItems",
     "method"
+  ],
+  [
+    "src/stores/example.js~examplestore#scrollitemtotal",
+    "class/src/stores/Example.js~ExampleStore.html#instance-get-scrollItemTotal",
+    "src/stores/Example.js~ExampleStore#scrollItemTotal",
+    "member"
+  ],
+  [
+    "src/stores/example.js~examplestore#scrollitems",
+    "class/src/stores/Example.js~ExampleStore.html#instance-get-scrollItems",
+    "src/stores/Example.js~ExampleStore#scrollItems",
+    "member"
+  ],
+  [
+    "src/stores/example.js~examplestore#scrollitemscount",
+    "class/src/stores/Example.js~ExampleStore.html#instance-get-scrollItemsCount",
+    "src/stores/Example.js~ExampleStore#scrollItemsCount",
+    "member"
   ],
   [
     "src/stores/index.js",

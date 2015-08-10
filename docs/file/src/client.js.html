@@ -59,6 +59,7 @@
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-Models">Models</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-MySQLModels">MySQLModels</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-Posts">Posts</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-RoutePrefixer">RoutePrefixer</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-Stores">Stores</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-Strategies">Strategies</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-Users">Users</a></span></li>
@@ -80,10 +81,10 @@
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-helpers">helpers</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-jwtStrategy">jwtStrategy</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-localAuthRoutes">localAuthRoutes</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-localAuthRoutes">localAuthRoutes</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-localStrategy">localStrategy</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-loginComponent">loginComponent</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-pageComponent">pageComponent</a></span></li>
-<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-routePrefixer">routePrefixer</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-routes">routes</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-scrollBlockComponent">scrollBlockComponent</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-topComponent">topComponent</a></span></li>
@@ -108,7 +109,9 @@
 import _extend from &apos;lodash/object/extend&apos;;
 import React from &apos;react&apos;;
 import Router from &apos;react-router&apos;;
-import routes from &apos;./routes&apos;;
+import routerContainer from &apos;./helpers/routerContainer&apos;;
+import _routes from &apos;./routes&apos;;
+const routes = _routes();
 
 // create a frill context
 const frillContext = Frill.attach(Frill._Stores, Frill._Actions);
@@ -117,7 +120,14 @@ const data = JSON.parse(
   document.getElementById(&apos;initial-data&apos;).getAttribute(&apos;data-json&apos;)
 );
 
-Router.run(routes(), Router.HistoryLocation, (Handler) =&gt; {
+const router = Router.create({
+  routes: routes,
+  location: Router.HistoryLocation,
+});
+
+routerContainer.set(router);
+
+router.run((Handler) =&gt; {
   React.render(
     React.createElement(
       Handler, _extend({frill: frillContext}, data)

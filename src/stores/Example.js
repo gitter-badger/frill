@@ -55,10 +55,9 @@ class ExampleStore extends BaseStore {
 
   /**
    * Gets current count
-   * @todo should use a getter
-   * @return {number} - current count
+   * @type {number}
    */
-  getCount() {
+  get count() {
     return this._count;
   }
 
@@ -77,28 +76,25 @@ class ExampleStore extends BaseStore {
 
   /**
    * Gets items
-   * @todo should use a getter
-   * @return {Object} - get loaded item data
+   * @type {Object}
    */
-  getScrollItems() {
+  get scrollItems() {
     return this._scrollItems;
   }
 
   /**
    * Gets loaded items count
-   * @todo should use a getter
-   * @return {number} - get number of loaded items
+   * @type {number}
    */
-  getScrollItemsCount() {
+  get scrollItemsCount() {
     return this._scrollItemsCount;
   }
 
   /**
    * Gets total count of items
-   * @todo should use a getter
    * @return {number} - get number of total items
    */
-  getScrollItemTotal() {
+  get scrollItemTotal() {
     return this._scrollItemTotal;
   }
 }

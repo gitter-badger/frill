@@ -9,7 +9,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import {BaseAction} from 'frill-core';\n\n/**\n * Authentication actions\n * @extends {FrillCore.BaseAction}\n * @example <caption>via react or frill component</caption>\n * // logging in\n * this.getFrill().action('Auth').login('token');\n * // logging out\n * this.getFrill().action('Auth').logout();\n */\nclass AuthAction extends BaseAction {\n\n  /**\n   * Constructor\n   */\n  constructor() {\n    super();\n    // this.use('request', {prefix: '/api'});\n  }\n\n  /**\n   * Login action\n   * @param {string} token - a valid JWT token\n   * @emits {AUTH_LOGIN}\n   */\n  login(token) {\n    this.dispatch('AUTH_LOGIN', token);\n  }\n\n  /**\n   * Login action\n   * @emits {AUTH_LOGOUT}\n   */\n  logout() {\n    this.dispatch('AUTH_LOGOUT');\n  }\n}\n\n/**\n * export AuthAction instance\n */\nexport default new AuthAction();\n"
+    "content": "import {BaseAction} from 'frill-core';\nimport routerContainer from '../helpers/routerContainer';\n\n/**\n * Authentication actions\n * @extends {FrillCore.BaseAction}\n * @example <caption>via react or frill component</caption>\n * // logging in\n * this.getFrill().action('Auth').login('token');\n * // logging out\n * this.getFrill().action('Auth').logout();\n */\nclass AuthAction extends BaseAction {\n\n  /**\n   * Constructor\n   */\n  constructor() {\n    super();\n    this.use('request', {prefix: '/api'});\n  }\n\n  /**\n   * Login action\n   * @param {string} username - username from login form\n   * @param {string} password - password from login form\n   */\n  login(username, password) {\n    this.request.post('/api/v1/login')\n    .send({ username: username, password: password }).end((err, res) => {\n      if (err) {\n        console.log(err);\n      }\n      if (res.status === 200) {\n        routerContainer.get().transitionTo('/');\n        this.authenticate(res.body.token);\n      }\n    });\n  }\n\n  /**\n   * Authenticate action\n   * @param {string} token - a valid JWT token\n   * @emits {AUTH_LOGIN}\n   */\n  authenticate(token) {\n    this.dispatch('AUTH_LOGIN', token);\n  }\n\n  /**\n   * Login action\n   * @emits {AUTH_LOGOUT}\n   */\n  logout() {\n    this.dispatch('AUTH_LOGOUT');\n  }\n}\n\n/**\n * export AuthAction instance\n */\nexport default new AuthAction();\n"
   },
   {
     "kind": "class",
@@ -26,7 +26,7 @@
     "examples": [
       "<caption>via react or frill component</caption>\n// logging in\nthis.getFrill().action('Auth').login('token');\n// logging out\nthis.getFrill().action('Auth').logout();"
     ],
-    "lineNumber": 12,
+    "lineNumber": 13,
     "pseudoExport": true,
     "interface": false,
     "extends": [
@@ -42,7 +42,7 @@
     "longname": "src/actions/Auth.js~AuthAction#constructor",
     "access": null,
     "description": "Constructor",
-    "lineNumber": 17,
+    "lineNumber": 18,
     "params": [],
     "generator": false
   },
@@ -55,7 +55,41 @@
     "longname": "src/actions/Auth.js~AuthAction#login",
     "access": null,
     "description": "Login action",
-    "lineNumber": 27,
+    "lineNumber": 28,
+    "params": [
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "username",
+        "description": "username from login form"
+      },
+      {
+        "nullable": null,
+        "types": [
+          "string"
+        ],
+        "spread": false,
+        "optional": false,
+        "name": "password",
+        "description": "password from login form"
+      }
+    ],
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "authenticate",
+    "memberof": "src/actions/Auth.js~AuthAction",
+    "longname": "src/actions/Auth.js~AuthAction#authenticate",
+    "access": null,
+    "description": "Authenticate action",
+    "lineNumber": 46,
     "params": [
       {
         "nullable": null,
@@ -87,7 +121,7 @@
     "longname": "src/actions/Auth.js~AuthAction#logout",
     "access": null,
     "description": "Login action",
-    "lineNumber": 35,
+    "lineNumber": 54,
     "params": [],
     "emits": [
       {
@@ -111,7 +145,7 @@
     "importPath": "frill/src/actions/Auth.js",
     "importStyle": "authAction",
     "description": "export AuthAction instance",
-    "lineNumber": 43,
+    "lineNumber": 62,
     "type": {
       "types": [
         "src/actions/Auth.js~AuthAction"
@@ -414,7 +448,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import {routePrefixer} from '../../helpers';\nimport Strategies from './strategies';\n\n// import authentication routes\nimport local from './local';\nimport twitter from './twitter';\n// import facebook from './facebook';\n// import google from './google';\n\n/**\n * All routes used in authentication\n * @return {Array<function>} - Authentication routes\n */\nconst authRoutes = (server) => {\n  // use JsonWebTokens (you shouldn't remove this)\n  Strategies.jwtStrategy(server);\n\n  // use Local strategy\n  Strategies.localStrategy(server);\n\n  // use Twitter strategy\n  Strategies.twitterStrategy(server);\n\n  // use facebookStrategy\n  Strategies.facebookStrategy(server);\n\n  // use googleStrategy\n  Strategies.googleStrategy(server);\n\n  return routePrefixer('/auth', [\n    ...local,\n    ...twitter,\n  ]);\n};\n\nexport default authRoutes;\n"
+    "content": "import {routePrefixer} from '../../helpers';\nimport Strategies from './strategies';\n\n// import authentication routes\n// import local from './local';\nimport twitter from './twitter';\n// import facebook from './facebook';\n// import google from './google';\n\n/**\n * All routes used in authentication\n * @return {Array<function>} - Authentication routes\n */\nconst authRoutes = (server) => {\n  // use JsonWebTokens (you shouldn't remove this)\n  Strategies.jwtStrategy(server);\n\n  // use Local strategy\n  Strategies.localStrategy(server);\n\n  // use Twitter strategy\n  Strategies.twitterStrategy(server);\n\n  // use facebookStrategy\n  Strategies.facebookStrategy(server);\n\n  // use googleStrategy\n  Strategies.googleStrategy(server);\n\n  return routePrefixer('/auth', [\n    // ...local,\n    ...twitter,\n  ]);\n};\n\nexport default authRoutes;\n"
   },
   {
     "kind": "variable",
@@ -671,7 +705,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Boom from 'boom';\nimport {where as _where} from 'lodash';\n\n// Test data\nimport accounts from '../../../helpers/testUserData';\n\nconst authenticate = (request, reply) => {\n  const credentials = {};\n  reply.continue({ credentials });\n};\n\nconst payload = (request, reply) => {\n  // construct search query\n  const query = {\n    name: request.payload.username,\n    password: request.payload.password,\n  };\n\n  let user = _where(accounts, query);\n\n  if (user.length === 0) {\n    return reply(Boom.badRequest('invalid username or password'));\n  }\n\n  user = user.pop();\n\n  request.auth.credentials = {\n    provider: 'local',\n    token: null,\n    secret: null,\n    query: {},\n    profile: {\n      id: user.id,\n      username: user.name,\n      displayName: user.displayName,\n      raw: user, // full profile\n    },\n  };\n\n  reply.continue();\n};\n\nconst response = (request, reply) => {\n  reply.continue();\n};\n\nconst scheme = () => {\n  return {\n    payload,\n    authenticate,\n    response,\n    options: {\n      payload: true,\n    },\n  };\n};\n\n/**\n * Authentication strategy for local authentications\n */\nconst localStrategy = (server) => {\n  server.auth.scheme('local', scheme);\n  server.auth.strategy('local', 'local');\n};\n\nexport default localStrategy;\n"
+    "content": "import Boom from 'boom';\nimport {where as _where} from 'lodash';\n\n// Test data\nimport accounts from '../../../helpers/testUserData';\n\nconst authenticate = (request, reply) => {\n  const credentials = {};\n  reply.continue({ credentials });\n};\n\nconst payload = (request, reply) => {\n  // construct search query\n  const query = {\n    name: request.payload.username,\n    password: request.payload.password,\n  };\n\n  let user = _where(accounts, query);\n\n  if (user.length === 0) {\n    return reply(Boom.badRequest('invalid username or password'));\n  }\n\n  user = user[0];\n\n  request.auth.credentials = {\n    provider: 'local',\n    token: null,\n    secret: null,\n    query: {},\n    profile: {\n      id: user.id,\n      username: user.name,\n      displayName: user.displayName,\n      raw: user, // full profile\n    },\n  };\n\n  reply.continue();\n};\n\nconst response = (request, reply) => {\n  reply.continue();\n};\n\nconst scheme = () => {\n  return {\n    payload,\n    authenticate,\n    response,\n    options: {\n      payload: true,\n    },\n  };\n};\n\n/**\n * Authentication strategy for local authentications\n */\nconst localStrategy = (server) => {\n  server.auth.scheme('local', scheme);\n  server.auth.strategy('local', 'local');\n};\n\nexport default localStrategy;\n"
   },
   {
     "kind": "variable",
@@ -940,7 +974,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import hello from './hello';\nimport {routePrefixer} from '../../helpers';\n\n/**\n * Mount all api v1 routes\n */\nconst apiV1 = (server) => {\n  return routePrefixer('/v1', [\n    ...hello(server),\n  ]);\n};\nexport default apiV1;\n"
+    "content": "import localAuth from './localAuth';\nimport hello from './hello';\nimport {routePrefixer} from '../../helpers';\n\n/**\n * Mount all api v1 routes\n */\nconst apiV1 = (server) => {\n  return routePrefixer('/v1', [\n    ...localAuth,\n    ...hello(server),\n  ]);\n};\n\nexport default apiV1;\n"
   },
   {
     "kind": "variable",
@@ -954,7 +988,38 @@
     "importPath": "frill/src/api/v1/index.js",
     "importStyle": "apiV1",
     "description": "Mount all api v1 routes",
-    "lineNumber": 7,
+    "lineNumber": 8,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/api/v1/localAuth.js",
+    "memberof": null,
+    "longname": "src/api/v1/localAuth.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import Joi from 'joi';\nimport JWT from 'jsonwebtoken';\nimport Boom from 'boom';\nimport aguid from 'aguid';\nimport {where as _where} from 'lodash';\nimport {clone as _clone} from 'lodash';\n\n// Test data\nimport accounts from '../../helpers/testUserData';\n\n/**\n * Local authentication routes.\n */\nconst localAuthRoutes = [{\n  method: ['POST'],\n  path: '/login',\n  config: {\n    validate: {\n      query: {\n        ref: Joi.string(),\n      },\n      payload: {\n        username: Joi.string().min(5).required(),\n        password: Joi.string().min(5).required(),\n      },\n    },\n    tags: ['api', 'auth'],\n    auth: 'local',\n    // auth: 'twitter',\n    plugins: {\n      'hapi-swagger': {\n        responseMessages: [\n          { code: 400, message: 'Bad Request' },\n          { code: 500, message: 'Internal Server Error'},\n        ],\n      },\n    },\n  },\n  handler: (request, reply) => {\n    // reply error when authentication fails\n    if (!request.auth.isAuthenticated) {\n      return reply(\n        Boom.unauthorized('Authentication failed due to: ' +\n          request.auth.error.message)\n      );\n    }\n\n    const query = {\n      id: parseInt(request.auth.credentials.profile.id, 10),\n      strategy: request.auth.strategy,\n    };\n\n    const user = _where(accounts, query);\n    // console.log(user);\n\n    if (user.length === 0) {\n      console.log('needs registration');\n    }\n\n    const _user = _clone(user[0]);\n    delete _user.password;\n\n    /** @todo create and set JWT into session */\n    const session = {\n      valid: true,\n      id: aguid(), // a random session id\n      user: _user,\n      exp: new Date().getTime() + 30 * 60 * 1000, // expires in 30 minutes time\n    };\n\n    // // create the session in Redis\n    // redisClient.set(session.id, JSON.stringify(session));\n    request.session.set(session.id, session);\n    // sign the session as a JWT\n    const token = JWT.sign(session, 'NeverShareYourSecret');\n    return reply({token: token});\n  },\n}];\n\nexport default localAuthRoutes;\n"
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "localAuthRoutes",
+    "memberof": "src/api/v1/localAuth.js",
+    "longname": "src/api/v1/localAuth.js~localAuthRoutes",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/api/v1/localAuth.js",
+    "importStyle": "localAuthRoutes",
+    "description": "Local authentication routes.",
+    "lineNumber": 14,
     "type": {
       "types": [
         "*"
@@ -1002,7 +1067,27 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Frill from './bootstrap';\nimport _extend from 'lodash/object/extend';\nimport React from 'react';\nimport Router from 'react-router';\nimport routes from './routes';\n\n// create a frill context\nconst frillContext = Frill.attach(Frill._Stores, Frill._Actions);\n\nconst data = JSON.parse(\n  document.getElementById('initial-data').getAttribute('data-json')\n);\n\nRouter.run(routes(), Router.HistoryLocation, (Handler) => {\n  React.render(\n    React.createElement(\n      Handler, _extend({frill: frillContext}, data)\n    ), document.getElementById('app')\n  );\n});\n"
+    "content": "import Frill from './bootstrap';\nimport _extend from 'lodash/object/extend';\nimport React from 'react';\nimport Router from 'react-router';\nimport routerContainer from './helpers/routerContainer';\nimport _routes from './routes';\nconst routes = _routes();\n\n// create a frill context\nconst frillContext = Frill.attach(Frill._Stores, Frill._Actions);\n\nconst data = JSON.parse(\n  document.getElementById('initial-data').getAttribute('data-json')\n);\n\nconst router = Router.create({\n  routes: routes,\n  location: Router.HistoryLocation,\n});\n\nrouterContainer.set(router);\n\nrouter.run((Handler) => {\n  React.render(\n    React.createElement(\n      Handler, _extend({frill: frillContext}, data)\n    ), document.getElementById('app')\n  );\n});\n"
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "routes",
+    "memberof": "src/client.js",
+    "longname": "src/client.js~routes",
+    "access": null,
+    "export": false,
+    "importPath": "frill/src/client.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 7,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
   },
   {
     "kind": "variable",
@@ -1016,7 +1101,7 @@
     "importPath": "frill/src/client.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 8,
+    "lineNumber": 10,
     "undocument": true,
     "type": {
       "types": [
@@ -1036,7 +1121,27 @@
     "importPath": "frill/src/client.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 10,
+    "lineNumber": 12,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "router",
+    "memberof": "src/client.js",
+    "longname": "src/client.js~router",
+    "access": null,
+    "export": false,
+    "importPath": "frill/src/client.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 16,
     "undocument": true,
     "type": {
       "types": [
@@ -1054,7 +1159,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import React from 'react';\nimport {Link, RouteHandler} from 'react-router';\n\n/**\n * App component\n * @extends {React.Component}\n * @example <caption>Usage in React-Router</caption>\n * <Route name=\"app\" path=\"/\" handler={AppComponent} />\n */\nclass AppComponent extends React.Component {\n\n  /**\n   * Constructor\n   * @param {any} props\n   */\n  constructor(props) {\n    super(props);\n\n    /**\n     * Name of component\n     */\n    this.name = 'App';\n  }\n\n  /**\n   * render\n   * @return {React DOM}\n   * @see https://facebook.github.io/react/docs/component-specs.html#render\n   */\n  render() {\n    return (\n      <div className=\"App\">\n        <header>\n          <h1>Welcome to FrillJS!</h1>\n        </header>\n        <nav>\n          <ul>\n            <li><Link to=\"top\">Top page</Link></li>\n            <li><Link to=\"login\">Login Sample</Link></li>\n            <li>\n              <a href=\"http://localhost:3000/auth/twitter/login\">\n                Twitter Auth Test\n              </a>\n            </li>\n          </ul>\n        </nav>\n        <RouteHandler {...this.props}/>\n        <footer>\n          <p>FrillJS</p>\n        </footer>\n      </div>\n    );\n  }\n}\n\n/**\n * Export AppComponent\n */\nexport default AppComponent;\n"
+    "content": "import React from 'react';\nimport {StoreWatchComponent} from 'frill-core';\nimport {Link, RouteHandler} from 'react-router';\n\n/**\n * App component\n * @extends {FrillCore.StoreWatchComponent}\n * @example <caption>Usage in React-Router</caption>\n * <Route name=\"app\" path=\"/\" handler={AppComponent} />\n */\nclass AppComponent extends new StoreWatchComponent(['Auth']) {\n\n  /**\n   * Constructor\n   * @param {any} props\n   */\n  constructor(props) {\n    super(props);\n\n    /**\n     * Name of component\n     */\n    this.name = 'App';\n  }\n\n  getStateFromFrill() {\n    return {\n      isLoggedIn: this.getFrill().store('Auth').isLoggedIn(),\n      user: this.getFrill().store('Auth').user,\n    };\n  }\n\n  /**\n   * render\n   * @return {React DOM}\n   * @see https://facebook.github.io/react/docs/component-specs.html#render\n   */\n  render() {\n    const isLoggedIn = this.state.isLoggedIn;\n    return (\n      <div className=\"App\">\n        <header>\n          <h1>Welcome to FrillJS!</h1>\n        </header>\n        <nav>\n          <ul>\n            <li><Link to=\"top\">Top page</Link></li>\n            <li><Link to=\"login\">Login Sample</Link></li>\n            <li>\n              <a href=\"http://localhost:3000/auth/twitter/login\">\n                Twitter Auth Test\n              </a>\n            </li>\n          </ul>\n        </nav>\n        {(isLoggedIn ? () => {\n          return (\n            <p className=\"welcome\">Hello, {this.state.user.user.displayName}</p>\n          );\n        } : () => {\n          return (\n            <p className=\"welcome\">Welcome, Guest</p>\n          );\n        })()}\n        <RouteHandler {...this.props}/>\n        <footer>\n          <p>FrillJS</p>\n        </footer>\n      </div>\n    );\n  }\n}\n\n/**\n * Export AppComponent\n */\nexport default AppComponent;\n"
   },
   {
     "kind": "class",
@@ -1071,10 +1176,10 @@
     "examples": [
       "<caption>Usage in React-Router</caption>\n<Route name=\"app\" path=\"/\" handler={AppComponent} />"
     ],
-    "lineNumber": 10,
+    "lineNumber": 11,
     "interface": false,
     "extends": [
-      "React.Component"
+      "FrillCore.StoreWatchComponent"
     ]
   },
   {
@@ -1086,7 +1191,7 @@
     "longname": "src/components/App/index.jsx~AppComponent#constructor",
     "access": null,
     "description": "Constructor",
-    "lineNumber": 16,
+    "lineNumber": 17,
     "params": [
       {
         "nullable": null,
@@ -1110,12 +1215,31 @@
     "longname": "src/components/App/index.jsx~AppComponent#name",
     "access": null,
     "description": "Name of component",
-    "lineNumber": 22,
+    "lineNumber": 23,
     "type": {
       "types": [
         "string"
       ]
     }
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "getStateFromFrill",
+    "memberof": "src/components/App/index.jsx~AppComponent",
+    "longname": "src/components/App/index.jsx~AppComponent#getStateFromFrill",
+    "access": null,
+    "description": null,
+    "lineNumber": 26,
+    "undocument": true,
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
   },
   {
     "kind": "method",
@@ -1129,7 +1253,7 @@
     "see": [
       "https://facebook.github.io/react/docs/component-specs.html#render"
     ],
-    "lineNumber": 30,
+    "lineNumber": 38,
     "params": [],
     "return": {
       "nullable": null,
@@ -1153,7 +1277,7 @@
     "importPath": "frill/src/components/App/index.jsx",
     "importStyle": "appComponent",
     "description": "Export AppComponent",
-    "lineNumber": 59,
+    "lineNumber": 77,
     "type": {
       "types": [
         "src/components/App/index.jsx~AppComponent"
@@ -1286,7 +1410,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import React from 'react';\nimport {BaseComponent} from 'frill-core';\n\n/**\n * Login component\n * @extends {FrillCore.BaseComponent}\n * @example <caption>Usage in React-Router</caption>\n * <Route name=\"login\" path=\"/login\" handler={LoginComponent} />\n */\nclass LoginComponent extends BaseComponent {\n  /**\n   * Constructor\n   * @param {any} props\n   */\n  constructor(props) {\n    super(props);\n\n    this._bind([\n      'onClick',\n    ]);\n  }\n\n  /**\n   * Click handler\n   */\n  onClick(e) {\n    e.preventDefault();\n    console.log('btn clicked!');\n  }\n\n  /**\n   * render\n   * @return {React DOM}\n   * @see https://facebook.github.io/react/docs/component-specs.html#render\n   */\n  render() {\n    return (\n      <div className=\"Login\">\n        <h2>Login Sample</h2>\n        <form>\n          <p className=\"form-item\">\n            <input type=\"text\" ref=\"username\" placeholder=\"username\" />\n          </p>\n          <p className=\"form-item\">\n            <input type=\"password\" ref=\"password\" placeholder=\"password\" />\n          </p>\n          <p className=\"form-item\">\n            <button onClick={this.onClick}>login</button>\n          </p>\n        </form>\n      </div>\n    );\n  }\n}\n\n/**\n * Export LoginComponent\n */\nexport default LoginComponent;\n"
+    "content": "import React from 'react';\nimport {BaseComponent} from 'frill-core';\n\n/**\n * Login component\n * @extends {FrillCore.BaseComponent}\n * @example <caption>Usage in React-Router</caption>\n * <Route name=\"login\" path=\"/login\" handler={LoginComponent} />\n */\nclass LoginComponent extends BaseComponent {\n  /**\n   * Constructor\n   * @param {any} props\n   */\n  constructor(props) {\n    super(props);\n\n    this._bind([\n      'onClick',\n    ]);\n  }\n\n  /**\n   * Click handler\n   */\n  onClick(e) {\n    e.preventDefault();\n    const username = React.findDOMNode(this.refs.username).value;\n    const password = React.findDOMNode(this.refs.password).value;\n    this.getFrill().action('Auth').login(username, password);\n  }\n\n  /**\n   * render\n   * @return {React DOM}\n   * @see https://facebook.github.io/react/docs/component-specs.html#render\n   */\n  render() {\n    return (\n      <div className=\"Login\">\n        <h2>Login Sample</h2>\n        <form>\n          <p className=\"form-item\">\n            <input type=\"text\" ref=\"username\" placeholder=\"username\" />\n          </p>\n          <p className=\"form-item\">\n            <input type=\"password\" ref=\"password\" placeholder=\"password\" />\n          </p>\n          <p className=\"form-item\">\n            <button onClick={this.onClick}>login</button>\n          </p>\n        </form>\n      </div>\n    );\n  }\n}\n\n/**\n * Export LoginComponent\n */\nexport default LoginComponent;\n"
   },
   {
     "kind": "class",
@@ -1365,7 +1489,7 @@
     "see": [
       "https://facebook.github.io/react/docs/component-specs.html#render"
     ],
-    "lineNumber": 36,
+    "lineNumber": 38,
     "params": [],
     "return": {
       "nullable": null,
@@ -1389,7 +1513,7 @@
     "importPath": "frill/src/components/Login/index.jsx",
     "importStyle": "loginComponent",
     "description": "Export LoginComponent",
-    "lineNumber": 59,
+    "lineNumber": 61,
     "type": {
       "types": [
         "src/components/Login/index.jsx~LoginComponent"
@@ -1406,7 +1530,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import React from 'react';\nimport {BaseComponent} from 'frill-core';\nimport {canUseDOM} from 'react/lib/ExecutionEnvironment';\nimport {RouteHandler} from 'react-router';\n// import jwtDecode from 'jwt-decode';\n\n/**\n * Page component - wraps up all pages\n * @extends {FrillCore.BaseComponent}\n * @example <caption>Usage in React-Router</caption>\n * <Route handler={C.Page}>\n *   ...\n * </Route>\n */\nclass PageComponent extends BaseComponent {\n\n  /**\n   * Constructor\n   */\n  constructor(props) {\n    super(props);\n\n    /**\n     * Name of component\n     */\n    this.name = 'App';\n\n    if (props.token) {\n      this.getFrill().action('Auth').login(props.token);\n    }\n\n    if (canUseDOM) {\n      // clear up initial-data from dom\n      document.getElementById('initial-data').outerHTML = '';\n    }\n  }\n\n  /**\n   * render\n   * @return {React DOM}\n   * @see https://facebook.github.io/react/docs/component-specs.html#render\n   */\n  render() {\n    return (\n      <RouteHandler {...this.props}/>\n    );\n  }\n}\n\n/**\n * Exports PageComponent\n */\nexport default PageComponent;\n"
+    "content": "import React from 'react';\nimport {StoreWatchComponent} from 'frill-core';\nimport {canUseDOM} from 'react/lib/ExecutionEnvironment';\nimport {RouteHandler} from 'react-router';\n// import jwtDecode from 'jwt-decode';\n\n/**\n * Page component - wraps up all pages\n * @extends {FrillCore.StoreWatchComponent}\n * @example <caption>Usage in React-Router</caption>\n * <Route handler={C.Page}>\n *   ...\n * </Route>\n */\nclass PageComponent extends new StoreWatchComponent(['Auth']) {\n\n  /**\n   * Constructor\n   */\n  constructor(props) {\n    super(props);\n\n    /**\n     * Name of component\n     */\n    this.name = 'App';\n\n    if (this.props && this.props.token) {\n      this.getFrill().action('Auth').authenticate(this.props.token);\n      this.state = this.getInitialStateFromFrill();\n    }\n\n    if (canUseDOM) {\n      // clear up initial-data from dom\n      document.getElementById('initial-data').outerHTML = '';\n    }\n  }\n\n  getInitialStateFromFrill() {\n    super.getInitialStateFromFrill();\n  }\n\n  getStateFromFrill() {\n    return {\n      isLoggedIn: this.getFrill().store('Auth').isLoggedIn(),\n    };\n  }\n\n  /**\n   * render\n   * @return {React DOM}\n   * @see https://facebook.github.io/react/docs/component-specs.html#render\n   */\n  render() {\n    return (\n      <RouteHandler {...this.props}/>\n    );\n  }\n}\n\n/**\n * Exports PageComponent\n */\nexport default PageComponent;\n"
   },
   {
     "kind": "class",
@@ -1426,7 +1550,7 @@
     "lineNumber": 15,
     "interface": false,
     "extends": [
-      "FrillCore.BaseComponent"
+      "FrillCore.StoreWatchComponent"
     ]
   },
   {
@@ -1466,6 +1590,56 @@
     }
   },
   {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "state",
+    "memberof": "src/components/Page.jsx~PageComponent",
+    "longname": "src/components/Page.jsx~PageComponent#state",
+    "access": null,
+    "description": null,
+    "lineNumber": 30,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "getInitialStateFromFrill",
+    "memberof": "src/components/Page.jsx~PageComponent",
+    "longname": "src/components/Page.jsx~PageComponent#getInitialStateFromFrill",
+    "access": null,
+    "description": null,
+    "lineNumber": 39,
+    "undocument": true,
+    "params": [],
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "getStateFromFrill",
+    "memberof": "src/components/Page.jsx~PageComponent",
+    "longname": "src/components/Page.jsx~PageComponent#getStateFromFrill",
+    "access": null,
+    "description": null,
+    "lineNumber": 43,
+    "undocument": true,
+    "params": [],
+    "return": {
+      "types": [
+        "*"
+      ]
+    },
+    "generator": false
+  },
+  {
     "kind": "method",
     "static": false,
     "variation": null,
@@ -1477,7 +1651,7 @@
     "see": [
       "https://facebook.github.io/react/docs/component-specs.html#render"
     ],
-    "lineNumber": 43,
+    "lineNumber": 54,
     "params": [],
     "return": {
       "nullable": null,
@@ -1501,7 +1675,7 @@
     "importPath": "frill/src/components/Page.jsx",
     "importStyle": "pageComponent",
     "description": "Exports PageComponent",
-    "lineNumber": 53,
+    "lineNumber": 64,
     "type": {
       "types": [
         "src/components/Page.jsx~PageComponent"
@@ -1718,7 +1892,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import React from 'react';\nimport {StoreWatchComponent} from 'frill-core';\nimport ScrollBlock from '../ScrollBlock';\n\n/**\n * Top component\n * @extends {FrillCore.StoreWatchComponent}\n * @example <caption>Usage in React-Router</caption>\n * <Route name=\"login\" path=\"/login\" handler={LoginComponent} />\n */\nclass TopComponent extends new StoreWatchComponent(['Example']) {\n\n  /**\n   * Constructor\n   * @param {any} props\n   */\n  constructor(props) {\n    super(props);\n\n    this._bind([\n      'onOne',\n      'onTen',\n      'onFetchItems',\n    ]);\n  }\n\n  /**\n   * Count up by one\n   */\n  onOne() {\n    this.getFrill().action('Example').countUp();\n  }\n\n  /**\n   * Count up by ten\n   */\n  onTen() {\n    this.getFrill().action('Example').countUpBy(10);\n  }\n\n  /**\n   * Fetch items\n   */\n  onFetchItems() {\n    this.getFrill()\n      .action('Example')\n      .loadScrollItems(this.state.scrollItemsCount, 5);\n  }\n\n  /**\n   * getStateFromFrill\n   * @listens {ExampleStore}\n   */\n  getStateFromFrill() {\n    return {\n      count: this.getFrill().store('Example').getCount(),\n      scrollItems: this.getFrill().store('Example').getScrollItems(),\n      scrollItemsCount: this.getFrill().store('Example').getScrollItemsCount(),\n      scrollItemTotal: this.getFrill().store('Example').getScrollItemTotal(),\n    };\n  }\n\n  /**\n   * render\n   * @return {React DOM}\n   * @see https://facebook.github.io/react/docs/component-specs.html#render\n   */\n  render() {\n    const items = [];\n\n    this.state.scrollItems.map((item) => {\n      items.push(\n        <li key={item.id}>\n          <p>ID : {item.id}</p>\n          <p>title : {item.title}</p>\n        </li>\n      );\n    });\n\n    return (\n      <div className=\"Top\">\n        <h2>Samples</h2>\n        <section>\n          <h3>Button - counter</h3>\n          <p className=\"count\">{this.state.count}</p>\n          <button onClick={this.onOne}>+1</button>\n          <button onClick={this.onTen}>+10</button>\n        </section>\n        <section>\n          <h3>Textarea</h3>\n          <textarea placeholder=\"type something ...\"></textarea>\n        </section>\n        <section>\n          <h3>Infinite Scroll</h3>\n          <ScrollBlock\n            fetchData={this.onFetchItems}\n            itemsCount={this.state.scrollItemsCount}\n            itemTotal={this.state.scrollItemTotal}>\n              <h4>Scroll down the box ...</h4>\n              <ul className=\"scroll-list\">\n                {items}\n              </ul>\n          </ScrollBlock>\n        </section>\n      </div>\n    );\n  }\n}\n\n/**\n * Export TomComponent\n */\nexport default TopComponent;\n"
+    "content": "import React from 'react';\nimport {StoreWatchComponent} from 'frill-core';\nimport ScrollBlock from '../ScrollBlock';\n\n/**\n * Top component\n * @extends {FrillCore.StoreWatchComponent}\n * @example <caption>Usage in React-Router</caption>\n * <Route name=\"login\" path=\"/login\" handler={LoginComponent} />\n */\nclass TopComponent extends new StoreWatchComponent(['Example']) {\n\n  /**\n   * Constructor\n   * @param {any} props\n   */\n  constructor(props) {\n    super(props);\n\n    this._bind([\n      'onOne',\n      'onTen',\n      'onFetchItems',\n    ]);\n  }\n\n  /**\n   * Count up by one\n   */\n  onOne() {\n    this.getFrill().action('Example').countUp();\n  }\n\n  /**\n   * Count up by ten\n   */\n  onTen() {\n    this.getFrill().action('Example').countUpBy(10);\n  }\n\n  /**\n   * Fetch items\n   */\n  onFetchItems() {\n    this.getFrill()\n      .action('Example')\n      .loadScrollItems(this.state.scrollItemsCount, 5);\n  }\n\n  /**\n   * getStateFromFrill\n   * @listens {ExampleStore}\n   */\n  getStateFromFrill() {\n    return {\n      count: this.getFrill().store('Example').count,\n      scrollItems: this.getFrill().store('Example').scrollItems,\n      scrollItemsCount: this.getFrill().store('Example').scrollItemsCount,\n      scrollItemTotal: this.getFrill().store('Example').scrollItemTotal,\n    };\n  }\n\n  /**\n   * render\n   * @return {React DOM}\n   * @see https://facebook.github.io/react/docs/component-specs.html#render\n   */\n  render() {\n    const items = [];\n\n    this.state.scrollItems.map((item) => {\n      items.push(\n        <li key={item.id}>\n          <p>ID : {item.id}</p>\n          <p>title : {item.title}</p>\n        </li>\n      );\n    });\n\n    return (\n      <div className=\"Top\">\n        <h2>Examples</h2>\n        <section>\n          <h3>Button - counter</h3>\n          <p className=\"count\">{this.state.count}</p>\n          <button onClick={this.onOne}>+1</button>\n          <button onClick={this.onTen}>+10</button>\n        </section>\n        <section>\n          <h3>Textarea</h3>\n          <textarea placeholder=\"type something ...\"></textarea>\n        </section>\n        <section>\n          <h3>Infinite Scroll</h3>\n          <ScrollBlock\n            fetchData={this.onFetchItems}\n            itemsCount={this.state.scrollItemsCount}\n            itemTotal={this.state.scrollItemTotal}>\n              <h4>Scroll down the box ...</h4>\n              <ul className=\"scroll-list\">\n                {items}\n              </ul>\n          </ScrollBlock>\n        </section>\n      </div>\n    );\n  }\n}\n\n/**\n * Export TomComponent\n */\nexport default TopComponent;\n"
   },
   {
     "kind": "class",
@@ -1926,7 +2100,7 @@
     "access": null,
     "description": null,
     "lineNumber": 5,
-    "content": "/**\n * Setup helpers to use from the 'api'\n */\n\nimport Joi from 'joi';\nimport AWS from './aws';\nimport routePrefixer from './routePrefixer';\n\n/**\n * List of all helpers used in app\n */\nconst helpers = {\n  Joi,\n  AWS,\n  routePrefixer,\n};\n\nexport default helpers;\n"
+    "content": "/**\n * Setup helpers to use from the 'api'\n */\n\nimport Joi from 'joi';\nimport AWS from './aws';\nimport routePrefixer from './routePrefixer';\nimport routerContainer from './routerContainer';\n\n/**\n * List of all helpers used in app\n */\nconst helpers = {\n  Joi,\n  AWS,\n  routePrefixer,\n  routerContainer,\n};\n\nexport default helpers;\n"
   },
   {
     "kind": "variable",
@@ -1940,7 +2114,7 @@
     "importPath": "frill/src/helpers/index.js",
     "importStyle": "helpers",
     "description": "List of all helpers used in app",
-    "lineNumber": 12,
+    "lineNumber": 13,
     "type": {
       "types": [
         "*"
@@ -1957,19 +2131,19 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import {isArray as _isArray} from 'lodash';\nimport {isPlainObject as _isPlainObject} from 'lodash';\n\n/**\n * @desc Prefixes route.path\n * @example\n * routePrefixer('/api', [{path: '/a'}, {path: '/b'}]);\n *\n * @param {string} prefix - A string to prefix paths\n * @param {Array|Object} routes - Collection of routes or a single route\n * @param {string} route.path - Collection of routes or a single route\n * @throws {Error} throw error when route.path doesn't exist\n * @throws {TypeError} throw error when route is not an Array\n * @return {Array}\n */\nconst routePrefixer = (prefix, routes) => {\n  let _routes = routes;\n  if (_isPlainObject(_routes)) {\n    if (!_routes.path) {\n      throw new Error('A route must have routes.path');\n    }\n    _routes = [_routes];\n  }\n  if (!_isArray(routes)) {\n    throw new TypeError('Unable to prefix routes. route must be an Array');\n  }\n  return routes.map((route) => {\n    route.path = prefix + route.path;\n    return route;\n  });\n};\n\nexport default routePrefixer;\n"
+    "content": "import {isArray as _isArray} from 'lodash';\nimport {isPlainObject as _isPlainObject} from 'lodash';\n\n/**\n * @desc Prefixes route.path\n * @example\n * routePrefixer('/api', [{path: '/a'}, {path: '/b'}]);\n *\n * @param {string} prefix - A string to prefix paths\n * @param {Array|Object} routes - Collection of routes or a single route\n * @param {string} route.path - Collection of routes or a single route\n * @throws {Error} throw error when route.path doesn't exist\n * @throws {TypeError} throw error when route is not an Array\n * @return {Array}\n */\nconst RoutePrefixer = (prefix, routes) => {\n  let _routes = routes;\n  if (_isPlainObject(_routes)) {\n    if (!_routes.path) {\n      throw new Error('A route must have routes.path');\n    }\n    _routes = [_routes];\n  }\n  if (!_isArray(routes)) {\n    throw new TypeError('Unable to prefix routes. route must be an Array');\n  }\n  return routes.map((route) => {\n    route.path = prefix + route.path;\n    return route;\n  });\n};\n\nexport default RoutePrefixer;\n"
   },
   {
     "kind": "variable",
     "static": true,
     "variation": null,
-    "name": "routePrefixer",
+    "name": "RoutePrefixer",
     "memberof": "src/helpers/routePrefixer.js",
-    "longname": "src/helpers/routePrefixer.js~routePrefixer",
+    "longname": "src/helpers/routePrefixer.js~RoutePrefixer",
     "access": null,
     "export": true,
     "importPath": "frill/src/helpers/routePrefixer.js",
-    "importStyle": "routePrefixer",
+    "importStyle": "RoutePrefixer",
     "description": "Prefixes route.path",
     "examples": [
       "routePrefixer('/api', [{path: '/a'}, {path: '/b'}]);"
@@ -2035,6 +2209,38 @@
         "description": "throw error when route is not an Array"
       }
     ]
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/helpers/routerContainer.js",
+    "memberof": null,
+    "longname": "src/helpers/routerContainer.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "let _router = null;\nexport default {\n  set: (router) => _router = router,\n  get: () => _router,\n};\n"
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "_router",
+    "memberof": "src/helpers/routerContainer.js",
+    "longname": "src/helpers/routerContainer.js~_router",
+    "access": null,
+    "export": false,
+    "importPath": "frill/src/helpers/routerContainer.js",
+    "importStyle": null,
+    "description": null,
+    "lineNumber": 1,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
   },
   {
     "kind": "file",
@@ -2844,7 +3050,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import {BaseStore} from 'frill-core';\n\n/**\n * Example store\n * @extends {FrillCore.BaseStore}\n * @example <caption>via frill component</caption>\n * this.getFrill().store('Example').getCount(); // get count\n * @example <caption>via frill action</caption>\n * this.dispatch('COUNT_UP_BY', 15); // count up counter by 15\n */\nclass ExampleStore extends BaseStore {\n\n  /**\n   * Constructor\n   */\n  constructor() {\n    super();\n    this._count = 0;\n    this._scrollItems = [];\n    this._scrollItemsCount = 0;\n    this._scrollItemTotal = 0;\n\n    /**\n     * Actions to listen\n     * @param {Object} actions\n     * @listens {COUNT_UP}\n     * @listens {COUNT_UP_BY}\n     * @listens {LOAD_SCROLL_ITEMS}\n     */\n    this.actions = {\n      'COUNT_UP': 'countup',\n      'COUNT_UP_BY': 'countupBy',\n      'LOAD_SCROLL_ITEMS': 'loadScrollItems',\n    };\n  }\n\n  /**\n   * Count up by 1\n   * @emits {change}\n   */\n  countup() {\n    this._count = this._count + 1;\n    this.change();\n  }\n\n  /**\n   * Count up by a number given\n   * @param {number} byCount - a number to count up by\n   * @emits {change}\n   */\n  countupBy(byCount) {\n    this._count = this._count + byCount;\n    this.change();\n  }\n\n  /**\n   * Gets current count\n   * @todo should use a getter\n   * @return {number} - current count\n   */\n  getCount() {\n    return this._count;\n  }\n\n  /**\n   * Load scroll items\n   * @param {Object} payload.data - data of items\n   * @param {Object} payload.total - total count of items\n   * @emits {change}\n   */\n  loadScrollItems({data, total}) {\n    this._scrollItems = this._scrollItems.concat(data);\n    this._scrollItemsCount = this._scrollItemsCount + data.length;\n    this._scrollItemTotal = total;\n    this.change();\n  }\n\n  /**\n   * Gets items\n   * @todo should use a getter\n   * @return {Object} - get loaded item data\n   */\n  getScrollItems() {\n    return this._scrollItems;\n  }\n\n  /**\n   * Gets loaded items count\n   * @todo should use a getter\n   * @return {number} - get number of loaded items\n   */\n  getScrollItemsCount() {\n    return this._scrollItemsCount;\n  }\n\n  /**\n   * Gets total count of items\n   * @todo should use a getter\n   * @return {number} - get number of total items\n   */\n  getScrollItemTotal() {\n    return this._scrollItemTotal;\n  }\n}\n\n/**\n * Export ExampleStore instance\n */\nexport default new ExampleStore();\n"
+    "content": "import {BaseStore} from 'frill-core';\n\n/**\n * Example store\n * @extends {FrillCore.BaseStore}\n * @example <caption>via frill component</caption>\n * this.getFrill().store('Example').getCount(); // get count\n * @example <caption>via frill action</caption>\n * this.dispatch('COUNT_UP_BY', 15); // count up counter by 15\n */\nclass ExampleStore extends BaseStore {\n\n  /**\n   * Constructor\n   */\n  constructor() {\n    super();\n    this._count = 0;\n    this._scrollItems = [];\n    this._scrollItemsCount = 0;\n    this._scrollItemTotal = 0;\n\n    /**\n     * Actions to listen\n     * @param {Object} actions\n     * @listens {COUNT_UP}\n     * @listens {COUNT_UP_BY}\n     * @listens {LOAD_SCROLL_ITEMS}\n     */\n    this.actions = {\n      'COUNT_UP': 'countup',\n      'COUNT_UP_BY': 'countupBy',\n      'LOAD_SCROLL_ITEMS': 'loadScrollItems',\n    };\n  }\n\n  /**\n   * Count up by 1\n   * @emits {change}\n   */\n  countup() {\n    this._count = this._count + 1;\n    this.change();\n  }\n\n  /**\n   * Count up by a number given\n   * @param {number} byCount - a number to count up by\n   * @emits {change}\n   */\n  countupBy(byCount) {\n    this._count = this._count + byCount;\n    this.change();\n  }\n\n  /**\n   * Gets current count\n   * @type {number}\n   */\n  get count() {\n    return this._count;\n  }\n\n  /**\n   * Load scroll items\n   * @param {Object} payload.data - data of items\n   * @param {Object} payload.total - total count of items\n   * @emits {change}\n   */\n  loadScrollItems({data, total}) {\n    this._scrollItems = this._scrollItems.concat(data);\n    this._scrollItemsCount = this._scrollItemsCount + data.length;\n    this._scrollItemTotal = total;\n    this.change();\n  }\n\n  /**\n   * Gets items\n   * @type {Object}\n   */\n  get scrollItems() {\n    return this._scrollItems;\n  }\n\n  /**\n   * Gets loaded items count\n   * @type {number}\n   */\n  get scrollItemsCount() {\n    return this._scrollItemsCount;\n  }\n\n  /**\n   * Gets total count of items\n   * @return {number} - get number of total items\n   */\n  get scrollItemTotal() {\n    return this._scrollItemTotal;\n  }\n}\n\n/**\n * Export ExampleStore instance\n */\nexport default new ExampleStore();\n"
   },
   {
     "kind": "class",
@@ -3086,26 +3292,22 @@
     }
   },
   {
-    "kind": "method",
+    "kind": "get",
     "static": false,
     "variation": null,
-    "name": "getCount",
+    "name": "count",
     "memberof": "src/stores/Example.js~ExampleStore",
-    "longname": "src/stores/Example.js~ExampleStore#getCount",
+    "longname": "src/stores/Example.js~ExampleStore#count",
     "access": null,
     "description": "Gets current count",
-    "lineNumber": 61,
-    "todo": [
-      "should use a getter"
-    ],
-    "params": [],
-    "return": {
+    "lineNumber": 60,
+    "type": {
       "nullable": null,
       "types": [
         "number"
       ],
       "spread": false,
-      "description": "current count"
+      "description": null
     },
     "generator": false
   },
@@ -3118,7 +3320,7 @@
     "longname": "src/stores/Example.js~ExampleStore#loadScrollItems",
     "access": null,
     "description": "Load scroll items",
-    "lineNumber": 71,
+    "lineNumber": 70,
     "params": [
       {
         "nullable": null,
@@ -3160,7 +3362,7 @@
     "longname": "src/stores/Example.js~ExampleStore#_scrollItems",
     "access": null,
     "description": null,
-    "lineNumber": 72,
+    "lineNumber": 71,
     "undocument": true,
     "type": {
       "types": [
@@ -3177,7 +3379,7 @@
     "longname": "src/stores/Example.js~ExampleStore#_scrollItemsCount",
     "access": null,
     "description": null,
-    "lineNumber": 73,
+    "lineNumber": 72,
     "undocument": true,
     "type": {
       "types": [
@@ -3194,7 +3396,7 @@
     "longname": "src/stores/Example.js~ExampleStore#_scrollItemTotal",
     "access": null,
     "description": null,
-    "lineNumber": 74,
+    "lineNumber": 73,
     "undocument": true,
     "type": {
       "types": [
@@ -3203,67 +3405,55 @@
     }
   },
   {
-    "kind": "method",
+    "kind": "get",
     "static": false,
     "variation": null,
-    "name": "getScrollItems",
+    "name": "scrollItems",
     "memberof": "src/stores/Example.js~ExampleStore",
-    "longname": "src/stores/Example.js~ExampleStore#getScrollItems",
+    "longname": "src/stores/Example.js~ExampleStore#scrollItems",
     "access": null,
     "description": "Gets items",
-    "lineNumber": 83,
-    "todo": [
-      "should use a getter"
-    ],
-    "params": [],
-    "return": {
+    "lineNumber": 81,
+    "type": {
       "nullable": null,
       "types": [
         "Object"
       ],
       "spread": false,
-      "description": "get loaded item data"
+      "description": null
     },
     "generator": false
   },
   {
-    "kind": "method",
+    "kind": "get",
     "static": false,
     "variation": null,
-    "name": "getScrollItemsCount",
+    "name": "scrollItemsCount",
     "memberof": "src/stores/Example.js~ExampleStore",
-    "longname": "src/stores/Example.js~ExampleStore#getScrollItemsCount",
+    "longname": "src/stores/Example.js~ExampleStore#scrollItemsCount",
     "access": null,
     "description": "Gets loaded items count",
-    "lineNumber": 92,
-    "todo": [
-      "should use a getter"
-    ],
-    "params": [],
-    "return": {
+    "lineNumber": 89,
+    "type": {
       "nullable": null,
       "types": [
         "number"
       ],
       "spread": false,
-      "description": "get number of loaded items"
+      "description": null
     },
     "generator": false
   },
   {
-    "kind": "method",
+    "kind": "get",
     "static": false,
     "variation": null,
-    "name": "getScrollItemTotal",
+    "name": "scrollItemTotal",
     "memberof": "src/stores/Example.js~ExampleStore",
-    "longname": "src/stores/Example.js~ExampleStore#getScrollItemTotal",
+    "longname": "src/stores/Example.js~ExampleStore#scrollItemTotal",
     "access": null,
     "description": "Gets total count of items",
-    "lineNumber": 101,
-    "todo": [
-      "should use a getter"
-    ],
-    "params": [],
+    "lineNumber": 97,
     "return": {
       "nullable": null,
       "types": [
@@ -3271,6 +3461,11 @@
       ],
       "spread": false,
       "description": "get number of total items"
+    },
+    "type": {
+      "types": [
+        "*"
+      ]
     },
     "generator": false
   },
@@ -3286,7 +3481,7 @@
     "importPath": "frill/src/stores/Example.js",
     "importStyle": "exampleStore",
     "description": "Export ExampleStore instance",
-    "lineNumber": 109,
+    "lineNumber": 105,
     "type": {
       "types": [
         "src/stores/Example.js~ExampleStore"
