@@ -25,7 +25,9 @@ class LoginComponent extends BaseComponent {
    */
   onClick(e) {
     e.preventDefault();
-    console.log('btn clicked!');
+    const username = React.findDOMNode(this.refs.username).value;
+    const password = React.findDOMNode(this.refs.password).value;
+    this.getFrill().action('Auth').login(username, password);
   }
 
   /**
