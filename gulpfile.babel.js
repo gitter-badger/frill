@@ -19,7 +19,7 @@ import {isFunction as _isFunction} from 'lodash';
 import _$ from 'gulp-load-plugins';
 import runSequence from 'run-sequence';
 import del from 'del';
-import webpack from 'webpack';
+import webpack from 'webpack-stream';
 import browserSync from 'browser-sync';
 let argv = _argv;
 argv = _argv(process.argv.slice(2));

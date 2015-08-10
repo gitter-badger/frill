@@ -14,15 +14,16 @@ export default (gulp, $, argv, path) => {
     $._watch = false;
     const styles = ['src/styles/**/*.{css,styl}'];
     const assets = ['./src/assets/**/*'];
-    const clients = [
-      './src/components/**/*',
-      './src/utils/**/*',
-      './src/actions/**/*',
-      './src/stores/**/*',
-      './src/routes.jsx',
-      './src/bootstrap.js',
-      './src/client.js',
-    ];
+
+    // const clients = [
+    //   './src/components/**/*',
+    //   './src/utils/**/*',
+    //   './src/actions/**/*',
+    //   './src/stores/**/*',
+    //   './src/routes.jsx',
+    //   './src/bootstrap.js',
+    //   './src/client.js',
+    // ];
 
     // set specific files for performance improvements
     // const checkFlowTypes = [
@@ -52,7 +53,7 @@ export default (gulp, $, argv, path) => {
       $._watch = true;
       gulp.watch(assets, gazeOption, ['assets']);
       gulp.watch(styles, gazeOption, ['stylus']);
-      gulp.watch(clients, gazeOption, ['webpack']);
+      // gulp.watch(clients, gazeOption, ['webpack']);
       // gulp.watch(checkFlowTypes, gazeOption, ['flowtype'])
       gulp.watch(checkLint, gazeOption, ['lint']);
       cb();
