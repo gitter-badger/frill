@@ -28,8 +28,8 @@ class ExampleStore extends BaseStore {
      * @listens {LOAD_SCROLL_ITEMS}
      */
     this.actions = {
-      'COUNT_UP': 'countup',
-      'COUNT_UP_BY': 'countupBy',
+      'COUNT_UP': 'countUp',
+      'COUNT_UP_BY': 'countUpBy',
       'LOAD_SCROLL_ITEMS': 'loadScrollItems',
     };
   }
@@ -38,7 +38,7 @@ class ExampleStore extends BaseStore {
    * Count up by 1
    * @emits {change}
    */
-  countup() {
+  countUp() {
     this._count = this._count + 1;
     this.change();
   }
@@ -48,7 +48,7 @@ class ExampleStore extends BaseStore {
    * @param {number} byCount - a number to count up by
    * @emits {change}
    */
-  countupBy(byCount) {
+  countUpBy(byCount) {
     this._count = this._count + byCount;
     this.change();
   }
