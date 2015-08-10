@@ -1,4 +1,14 @@
 {
-  "source": "./src",
-  "destination": "./docs"
+  "destination": "./docs",
+  "package": "./package.json",
+  "index": "./README_DOC.md",
+  "title": "FrillJS",
+  "includes": ["\\.(js|jsx)$"],
+  "coverage": true,
+  "test": {
+    "type": "mocha",
+    "source": "./test",
+    "includes": ["Test\\.(js|jsx)$"],
+    "excludes": ["\\.config\\.(js|jsx)$"]
+  }
 }
