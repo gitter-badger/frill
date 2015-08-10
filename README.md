@@ -6,7 +6,7 @@ Yet another FLUX starter kit
 ---
 
 ## Getting Started
-Add [gulp]()
+Add [gulp](http://gulpjs.com/)
 ```bash
 $ npm install -g gulp
 ```
