@@ -5,81 +5,63 @@
       "type": "ImportDeclaration",
       "specifiers": [
         {
-          "type": "ImportSpecifier",
+          "type": "ImportDefaultSpecifier",
           "local": {
             "type": "Identifier",
-            "name": "Posts",
+            "name": "MySQLModels",
             "range": [
-              101,
-              106
+              100,
+              111
             ],
             "loc": {
               "start": {
                 "line": 5,
-                "column": 8
+                "column": 7
               },
               "end": {
                 "line": 5,
-                "column": 13
-              }
-            }
-          },
-          "imported": {
-            "type": "Identifier",
-            "name": "Posts",
-            "range": [
-              101,
-              106
-            ],
-            "loc": {
-              "start": {
-                "line": 5,
-                "column": 8
-              },
-              "end": {
-                "line": 5,
-                "column": 13
+                "column": 18
               }
             }
           },
           "range": [
-            101,
-            106
+            100,
+            111
           ],
           "loc": {
             "start": {
               "line": 5,
-              "column": 8
+              "column": 7
             },
             "end": {
               "line": 5,
-              "column": 13
+              "column": 18
             }
           }
         }
       ],
       "source": {
         "type": "Literal",
-        "value": "./DynamoDB",
-        "raw": "'./DynamoDB'",
+        "value": "./MySQL",
+        "raw": "'./MySQL'",
         "range": [
-          113,
-          125
+          117,
+          126
         ],
         "loc": {
           "start": {
             "line": 5,
-            "column": 20
+            "column": 24
           },
           "end": {
             "line": 5,
-            "column": 32
+            "column": 33
           }
         }
       },
       "range": [
         93,
-        126
+        127
       ],
       "loc": {
         "start": {
@@ -88,7 +70,7 @@
         },
         "end": {
           "line": 5,
-          "column": 33
+          "column": 34
         }
       },
       "leadingComments": [
@@ -112,7 +94,7 @@
         },
         {
           "type": "Line",
-          "value": " example for DynamoDB using vogels",
+          "value": " example for MySQL using sequelize",
           "range": [
             56,
             92
@@ -132,10 +114,10 @@
       "trailingComments": [
         {
           "type": "Line",
-          "value": " example for MySQL using sequelize",
+          "value": " example for DynamoDB using vogels",
           "range": [
-            127,
-            163
+            128,
+            164
           ],
           "loc": {
             "start": {
@@ -147,396 +129,39 @@
               "column": 36
             }
           }
-        }
-      ]
-    },
-    {
-      "type": "ImportDeclaration",
-      "specifiers": [
-        {
-          "type": "ImportSpecifier",
-          "local": {
-            "type": "Identifier",
-            "name": "Users",
-            "range": [
-              172,
-              177
-            ],
-            "loc": {
-              "start": {
-                "line": 7,
-                "column": 8
-              },
-              "end": {
-                "line": 7,
-                "column": 13
-              }
-            }
-          },
-          "imported": {
-            "type": "Identifier",
-            "name": "Users",
-            "range": [
-              172,
-              177
-            ],
-            "loc": {
-              "start": {
-                "line": 7,
-                "column": 8
-              },
-              "end": {
-                "line": 7,
-                "column": 13
-              }
-            }
-          },
-          "range": [
-            172,
-            177
-          ],
-          "loc": {
-            "start": {
-              "line": 7,
-              "column": 8
-            },
-            "end": {
-              "line": 7,
-              "column": 13
-            }
-          }
-        }
-      ],
-      "source": {
-        "type": "Literal",
-        "value": "./MySQL",
-        "raw": "'./MySQL'",
-        "range": [
-          184,
-          193
-        ],
-        "loc": {
-          "start": {
-            "line": 7,
-            "column": 20
-          },
-          "end": {
-            "line": 7,
-            "column": 29
-          }
-        }
-      },
-      "range": [
-        164,
-        194
-      ],
-      "loc": {
-        "start": {
-          "line": 7,
-          "column": 0
         },
-        "end": {
-          "line": 7,
-          "column": 30
-        }
-      },
-      "leadingComments": [
         {
           "type": "Line",
-          "value": " example for MySQL using sequelize",
+          "value": " import DynamoDBModels from './DynamoDB';",
           "range": [
-            127,
-            163
+            165,
+            208
           ],
           "loc": {
             "start": {
-              "line": 6,
+              "line": 7,
               "column": 0
             },
             "end": {
-              "line": 6,
-              "column": 36
+              "line": 7,
+              "column": 43
             }
           }
-        }
-      ]
-    },
-    {
-      "type": "VariableDeclaration",
-      "declarations": [
-        {
-          "type": "VariableDeclarator",
-          "id": {
-            "type": "Identifier",
-            "name": "dynamoDb",
-            "range": [
-              202,
-              210
-            ],
-            "loc": {
-              "start": {
-                "line": 9,
-                "column": 6
-              },
-              "end": {
-                "line": 9,
-                "column": 14
-              }
-            }
-          },
-          "init": {
-            "type": "ObjectExpression",
-            "properties": [
-              {
-                "type": "Property",
-                "key": {
-                  "type": "Identifier",
-                  "name": "Posts",
-                  "range": [
-                    217,
-                    222
-                  ],
-                  "loc": {
-                    "start": {
-                      "line": 10,
-                      "column": 2
-                    },
-                    "end": {
-                      "line": 10,
-                      "column": 7
-                    }
-                  }
-                },
-                "value": {
-                  "type": "Identifier",
-                  "name": "Posts",
-                  "range": [
-                    217,
-                    222
-                  ],
-                  "loc": {
-                    "start": {
-                      "line": 10,
-                      "column": 2
-                    },
-                    "end": {
-                      "line": 10,
-                      "column": 7
-                    }
-                  }
-                },
-                "kind": "init",
-                "method": false,
-                "shorthand": true,
-                "computed": false,
-                "range": [
-                  217,
-                  222
-                ],
-                "loc": {
-                  "start": {
-                    "line": 10,
-                    "column": 2
-                  },
-                  "end": {
-                    "line": 10,
-                    "column": 7
-                  }
-                }
-              }
-            ],
-            "range": [
-              213,
-              225
-            ],
-            "loc": {
-              "start": {
-                "line": 9,
-                "column": 17
-              },
-              "end": {
-                "line": 11,
-                "column": 1
-              }
-            }
-          },
-          "range": [
-            202,
-            225
-          ],
-          "loc": {
-            "start": {
-              "line": 9,
-              "column": 6
-            },
-            "end": {
-              "line": 11,
-              "column": 1
-            }
-          }
-        }
-      ],
-      "kind": "const",
-      "range": [
-        196,
-        226
-      ],
-      "loc": {
-        "start": {
-          "line": 9,
-          "column": 0
         },
-        "end": {
-          "line": 11,
-          "column": 2
-        }
-      }
-    },
-    {
-      "type": "VariableDeclaration",
-      "declarations": [
-        {
-          "type": "VariableDeclarator",
-          "id": {
-            "type": "Identifier",
-            "name": "mySql",
-            "range": [
-              234,
-              239
-            ],
-            "loc": {
-              "start": {
-                "line": 13,
-                "column": 6
-              },
-              "end": {
-                "line": 13,
-                "column": 11
-              }
-            }
-          },
-          "init": {
-            "type": "ObjectExpression",
-            "properties": [
-              {
-                "type": "Property",
-                "key": {
-                  "type": "Identifier",
-                  "name": "Users",
-                  "range": [
-                    246,
-                    251
-                  ],
-                  "loc": {
-                    "start": {
-                      "line": 14,
-                      "column": 2
-                    },
-                    "end": {
-                      "line": 14,
-                      "column": 7
-                    }
-                  }
-                },
-                "value": {
-                  "type": "Identifier",
-                  "name": "Users",
-                  "range": [
-                    246,
-                    251
-                  ],
-                  "loc": {
-                    "start": {
-                      "line": 14,
-                      "column": 2
-                    },
-                    "end": {
-                      "line": 14,
-                      "column": 7
-                    }
-                  }
-                },
-                "kind": "init",
-                "method": false,
-                "shorthand": true,
-                "computed": false,
-                "range": [
-                  246,
-                  251
-                ],
-                "loc": {
-                  "start": {
-                    "line": 14,
-                    "column": 2
-                  },
-                  "end": {
-                    "line": 14,
-                    "column": 7
-                  }
-                }
-              }
-            ],
-            "range": [
-              242,
-              254
-            ],
-            "loc": {
-              "start": {
-                "line": 13,
-                "column": 14
-              },
-              "end": {
-                "line": 15,
-                "column": 1
-              }
-            }
-          },
-          "range": [
-            234,
-            254
-          ],
-          "loc": {
-            "start": {
-              "line": 13,
-              "column": 6
-            },
-            "end": {
-              "line": 15,
-              "column": 1
-            }
-          }
-        }
-      ],
-      "kind": "const",
-      "range": [
-        228,
-        255
-      ],
-      "loc": {
-        "start": {
-          "line": 13,
-          "column": 0
-        },
-        "end": {
-          "line": 15,
-          "column": 2
-        }
-      },
-      "trailingComments": [
         {
           "type": "Block",
           "value": "*\n * List of all models\n * @see {@link MySQLModels}\n * @see {@link DynamoDBModels}\n ",
           "range": [
-            257,
-            345
+            210,
+            298
           ],
           "loc": {
             "start": {
-              "line": 17,
+              "line": 9,
               "column": 0
             },
             "end": {
-              "line": 21,
+              "line": 13,
               "column": 3
             }
           }
@@ -552,16 +177,16 @@
             "type": "Identifier",
             "name": "Models",
             "range": [
-              352,
-              358
+              305,
+              311
             ],
             "loc": {
               "start": {
-                "line": 22,
+                "line": 14,
                 "column": 6
               },
               "end": {
-                "line": 22,
+                "line": 14,
                 "column": 12
               }
             }
@@ -573,37 +198,37 @@
                 "type": "Property",
                 "key": {
                   "type": "Identifier",
-                  "name": "dynamoDb",
+                  "name": "MySQLModels",
                   "range": [
-                    365,
-                    373
+                    318,
+                    329
                   ],
                   "loc": {
                     "start": {
-                      "line": 23,
+                      "line": 15,
                       "column": 2
                     },
                     "end": {
-                      "line": 23,
-                      "column": 10
+                      "line": 15,
+                      "column": 13
                     }
                   }
                 },
                 "value": {
                   "type": "Identifier",
-                  "name": "dynamoDb",
+                  "name": "MySQLModels",
                   "range": [
-                    365,
-                    373
+                    318,
+                    329
                   ],
                   "loc": {
                     "start": {
-                      "line": 23,
+                      "line": 15,
                       "column": 2
                     },
                     "end": {
-                      "line": 23,
-                      "column": 10
+                      "line": 15,
+                      "column": 13
                     }
                   }
                 },
@@ -612,104 +237,47 @@
                 "shorthand": true,
                 "computed": false,
                 "range": [
-                  365,
-                  373
+                  318,
+                  329
                 ],
                 "loc": {
                   "start": {
-                    "line": 23,
+                    "line": 15,
                     "column": 2
                   },
                   "end": {
-                    "line": 23,
-                    "column": 10
-                  }
-                }
-              },
-              {
-                "type": "Property",
-                "key": {
-                  "type": "Identifier",
-                  "name": "mySql",
-                  "range": [
-                    377,
-                    382
-                  ],
-                  "loc": {
-                    "start": {
-                      "line": 24,
-                      "column": 2
-                    },
-                    "end": {
-                      "line": 24,
-                      "column": 7
-                    }
-                  }
-                },
-                "value": {
-                  "type": "Identifier",
-                  "name": "mySql",
-                  "range": [
-                    377,
-                    382
-                  ],
-                  "loc": {
-                    "start": {
-                      "line": 24,
-                      "column": 2
-                    },
-                    "end": {
-                      "line": 24,
-                      "column": 7
-                    }
-                  }
-                },
-                "kind": "init",
-                "method": false,
-                "shorthand": true,
-                "computed": false,
-                "range": [
-                  377,
-                  382
-                ],
-                "loc": {
-                  "start": {
-                    "line": 24,
-                    "column": 2
-                  },
-                  "end": {
-                    "line": 24,
-                    "column": 7
+                    "line": 15,
+                    "column": 13
                   }
                 }
               }
             ],
             "range": [
-              361,
-              385
+              314,
+              353
             ],
             "loc": {
               "start": {
-                "line": 22,
+                "line": 14,
                 "column": 15
               },
               "end": {
-                "line": 25,
+                "line": 17,
                 "column": 1
               }
             }
           },
           "range": [
-            352,
-            385
+            305,
+            353
           ],
           "loc": {
             "start": {
-              "line": 22,
+              "line": 14,
               "column": 6
             },
             "end": {
-              "line": 25,
+              "line": 17,
               "column": 1
             }
           }
@@ -717,16 +285,16 @@
       ],
       "kind": "const",
       "range": [
-        346,
-        386
+        299,
+        354
       ],
       "loc": {
         "start": {
-          "line": 22,
+          "line": 14,
           "column": 0
         },
         "end": {
-          "line": 25,
+          "line": 17,
           "column": 2
         }
       },
@@ -740,36 +308,36 @@
         "type": "Identifier",
         "name": "Models",
         "range": [
-          403,
-          409
+          371,
+          377
         ],
         "loc": {
           "start": {
-            "line": 27,
+            "line": 19,
             "column": 15
           },
           "end": {
-            "line": 27,
+            "line": 19,
             "column": 21
           }
         }
       },
       "range": [
-        388,
-        410
+        356,
+        378
       ],
       "loc": {
         "start": {
-          "line": 27,
+          "line": 19,
           "column": 0
         },
         "end": {
-          "line": 27,
+          "line": 19,
           "column": 22
         }
       },
-      "name": "_",
       "leadingComments": [],
+      "name": "_",
       "trailingComments": []
     },
     {
@@ -783,16 +351,16 @@
               "type": "Identifier",
               "name": "Models",
               "range": [
-                352,
-                358
+                305,
+                311
               ],
               "loc": {
                 "start": {
-                  "line": 22,
+                  "line": 14,
                   "column": 6
                 },
                 "end": {
-                  "line": 22,
+                  "line": 14,
                   "column": 12
                 }
               }
@@ -804,37 +372,37 @@
                   "type": "Property",
                   "key": {
                     "type": "Identifier",
-                    "name": "dynamoDb",
+                    "name": "MySQLModels",
                     "range": [
-                      365,
-                      373
+                      318,
+                      329
                     ],
                     "loc": {
                       "start": {
-                        "line": 23,
+                        "line": 15,
                         "column": 2
                       },
                       "end": {
-                        "line": 23,
-                        "column": 10
+                        "line": 15,
+                        "column": 13
                       }
                     }
                   },
                   "value": {
                     "type": "Identifier",
-                    "name": "dynamoDb",
+                    "name": "MySQLModels",
                     "range": [
-                      365,
-                      373
+                      318,
+                      329
                     ],
                     "loc": {
                       "start": {
-                        "line": 23,
+                        "line": 15,
                         "column": 2
                       },
                       "end": {
-                        "line": 23,
-                        "column": 10
+                        "line": 15,
+                        "column": 13
                       }
                     }
                   },
@@ -843,104 +411,47 @@
                   "shorthand": true,
                   "computed": false,
                   "range": [
-                    365,
-                    373
+                    318,
+                    329
                   ],
                   "loc": {
                     "start": {
-                      "line": 23,
+                      "line": 15,
                       "column": 2
                     },
                     "end": {
-                      "line": 23,
-                      "column": 10
-                    }
-                  }
-                },
-                {
-                  "type": "Property",
-                  "key": {
-                    "type": "Identifier",
-                    "name": "mySql",
-                    "range": [
-                      377,
-                      382
-                    ],
-                    "loc": {
-                      "start": {
-                        "line": 24,
-                        "column": 2
-                      },
-                      "end": {
-                        "line": 24,
-                        "column": 7
-                      }
-                    }
-                  },
-                  "value": {
-                    "type": "Identifier",
-                    "name": "mySql",
-                    "range": [
-                      377,
-                      382
-                    ],
-                    "loc": {
-                      "start": {
-                        "line": 24,
-                        "column": 2
-                      },
-                      "end": {
-                        "line": 24,
-                        "column": 7
-                      }
-                    }
-                  },
-                  "kind": "init",
-                  "method": false,
-                  "shorthand": true,
-                  "computed": false,
-                  "range": [
-                    377,
-                    382
-                  ],
-                  "loc": {
-                    "start": {
-                      "line": 24,
-                      "column": 2
-                    },
-                    "end": {
-                      "line": 24,
-                      "column": 7
+                      "line": 15,
+                      "column": 13
                     }
                   }
                 }
               ],
               "range": [
-                361,
-                385
+                314,
+                353
               ],
               "loc": {
                 "start": {
-                  "line": 22,
+                  "line": 14,
                   "column": 15
                 },
                 "end": {
-                  "line": 25,
+                  "line": 17,
                   "column": 1
                 }
               }
             },
             "range": [
-              352,
-              385
+              305,
+              353
             ],
             "loc": {
               "start": {
-                "line": 22,
+                "line": 14,
                 "column": 6
               },
               "end": {
-                "line": 25,
+                "line": 17,
                 "column": 1
               }
             }
@@ -948,35 +459,89 @@
         ],
         "kind": "const",
         "range": [
-          346,
-          386
+          299,
+          354
         ],
         "loc": {
           "start": {
-            "line": 22,
+            "line": 14,
             "column": 0
           },
           "end": {
-            "line": 25,
+            "line": 17,
             "column": 2
           }
         },
         "leadingComments": [
           {
-            "type": "Block",
-            "value": "*\n * List of all models\n * @see {@link MySQLModels}\n * @see {@link DynamoDBModels}\n ",
+            "type": "Line",
+            "value": " example for DynamoDB using vogels",
             "range": [
-              257,
-              345
+              128,
+              164
             ],
             "loc": {
               "start": {
-                "line": 17,
+                "line": 6,
                 "column": 0
               },
               "end": {
-                "line": 21,
+                "line": 6,
+                "column": 36
+              }
+            }
+          },
+          {
+            "type": "Line",
+            "value": " import DynamoDBModels from './DynamoDB';",
+            "range": [
+              165,
+              208
+            ],
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 0
+              },
+              "end": {
+                "line": 7,
+                "column": 43
+              }
+            }
+          },
+          {
+            "type": "Block",
+            "value": "*\n * List of all models\n * @see {@link MySQLModels}\n * @see {@link DynamoDBModels}\n ",
+            "range": [
+              210,
+              298
+            ],
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 0
+              },
+              "end": {
+                "line": 13,
                 "column": 3
+              }
+            }
+          },
+          {
+            "type": "Line",
+            "value": " DynamoDBModels,",
+            "range": [
+              333,
+              351
+            ],
+            "loc": {
+              "start": {
+                "line": 16,
+                "column": 2
+              },
+              "end": {
+                "line": 16,
+                "column": 20
               }
             }
           }
@@ -984,25 +549,45 @@
         "trailingComments": []
       },
       "range": [
-        388,
-        410
+        356,
+        378
       ],
       "loc": {
         "start": {
-          "line": 27,
+          "line": 19,
           "column": 0
         },
         "end": {
-          "line": 27,
+          "line": 19,
           "column": 22
         }
-      }
+      },
+      "leadingComments": [
+        {
+          "type": "Line",
+          "value": " DynamoDBModels,",
+          "range": [
+            333,
+            351
+          ],
+          "loc": {
+            "start": {
+              "line": 16,
+              "column": 2
+            },
+            "end": {
+              "line": 16,
+              "column": 20
+            }
+          }
+        }
+      ]
     }
   ],
   "sourceType": "module",
   "range": [
     93,
-    410
+    378
   ],
   "loc": {
     "start": {
@@ -1010,7 +595,7 @@
       "column": 0
     },
     "end": {
-      "line": 27,
+      "line": 19,
       "column": 22
     }
   },
@@ -1035,7 +620,7 @@
     },
     {
       "type": "Line",
-      "value": " example for DynamoDB using vogels",
+      "value": " example for MySQL using sequelize",
       "range": [
         56,
         92
@@ -1053,10 +638,10 @@
     },
     {
       "type": "Line",
-      "value": " example for MySQL using sequelize",
+      "value": " example for DynamoDB using vogels",
       "range": [
-        127,
-        163
+        128,
+        164
       ],
       "loc": {
         "start": {
@@ -1070,20 +655,56 @@
       }
     },
     {
-      "type": "Block",
-      "value": "*\n * List of all models\n * @see {@link MySQLModels}\n * @see {@link DynamoDBModels}\n ",
+      "type": "Line",
+      "value": " import DynamoDBModels from './DynamoDB';",
       "range": [
-        257,
-        345
+        165,
+        208
       ],
       "loc": {
         "start": {
-          "line": 17,
+          "line": 7,
           "column": 0
         },
         "end": {
-          "line": 21,
+          "line": 7,
+          "column": 43
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n * List of all models\n * @see {@link MySQLModels}\n * @see {@link DynamoDBModels}\n ",
+      "range": [
+        210,
+        298
+      ],
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 0
+        },
+        "end": {
+          "line": 13,
           "column": 3
+        }
+      }
+    },
+    {
+      "type": "Line",
+      "value": " DynamoDBModels,",
+      "range": [
+        333,
+        351
+      ],
+      "loc": {
+        "start": {
+          "line": 16,
+          "column": 2
+        },
+        "end": {
+          "line": 16,
+          "column": 20
         }
       }
     }

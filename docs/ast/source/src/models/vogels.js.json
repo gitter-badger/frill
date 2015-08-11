@@ -78,21 +78,94 @@
       "type": "ImportDeclaration",
       "specifiers": [
         {
+          "type": "ImportDefaultSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "config",
+            "range": [
+              36,
+              42
+            ],
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 7
+              },
+              "end": {
+                "line": 2,
+                "column": 13
+              }
+            }
+          },
+          "range": [
+            36,
+            42
+          ],
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 7
+            },
+            "end": {
+              "line": 2,
+              "column": 13
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "config",
+        "raw": "'config'",
+        "range": [
+          48,
+          56
+        ],
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 19
+          },
+          "end": {
+            "line": 2,
+            "column": 27
+          }
+        }
+      },
+      "range": [
+        29,
+        57
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 28
+        }
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
           "type": "ImportSpecifier",
           "local": {
             "type": "Identifier",
             "name": "AWS",
             "range": [
-              37,
-              40
+              66,
+              69
             ],
             "loc": {
               "start": {
-                "line": 2,
+                "line": 3,
                 "column": 8
               },
               "end": {
-                "line": 2,
+                "line": 3,
                 "column": 11
               }
             }
@@ -101,31 +174,31 @@
             "type": "Identifier",
             "name": "AWS",
             "range": [
-              37,
-              40
+              66,
+              69
             ],
             "loc": {
               "start": {
-                "line": 2,
+                "line": 3,
                 "column": 8
               },
               "end": {
-                "line": 2,
+                "line": 3,
                 "column": 11
               }
             }
           },
           "range": [
-            37,
-            40
+            66,
+            69
           ],
           "loc": {
             "start": {
-              "line": 2,
+              "line": 3,
               "column": 8
             },
             "end": {
-              "line": 2,
+              "line": 3,
               "column": 11
             }
           }
@@ -136,45 +209,45 @@
         "value": "./../helpers",
         "raw": "'./../helpers'",
         "range": [
-          47,
-          61
+          76,
+          90
         ],
         "loc": {
           "start": {
-            "line": 2,
+            "line": 3,
             "column": 18
           },
           "end": {
-            "line": 2,
+            "line": 3,
             "column": 32
           }
         }
       },
       "range": [
-        29,
-        62
+        58,
+        91
       ],
       "loc": {
         "start": {
-          "line": 2,
+          "line": 3,
           "column": 0
         },
         "end": {
-          "line": 2,
+          "line": 3,
           "column": 33
         }
       },
       "trailingComments": [
         {
           "type": "Block",
-          "value": "*\n * setup vogels\n * @external {Vogels} https://github.com/ryanfitz/vogels\n ",
+          "value": "*\n * setup vogels\n ",
           "range": [
-            64,
-            144
+            93,
+            116
           ],
           "loc": {
             "start": {
-              "line": 4,
+              "line": 5,
               "column": 0
             },
             "end": {
@@ -196,8 +269,8 @@
             "type": "Identifier",
             "name": "vogels",
             "range": [
-              145,
-              151
+              117,
+              123
             ],
             "loc": {
               "start": {
@@ -214,8 +287,8 @@
             "type": "Identifier",
             "name": "dynamoDriver",
             "range": [
-              152,
-              164
+              124,
+              136
             ],
             "loc": {
               "start": {
@@ -229,8 +302,8 @@
             }
           },
           "range": [
-            145,
-            164
+            117,
+            136
           ],
           "loc": {
             "start": {
@@ -253,8 +326,8 @@
                 "type": "Identifier",
                 "name": "AWS",
                 "range": [
-                  169,
-                  172
+                  141,
+                  144
                 ],
                 "loc": {
                   "start": {
@@ -271,8 +344,8 @@
                 "type": "Identifier",
                 "name": "DynamoDB",
                 "range": [
-                  173,
-                  181
+                  145,
+                  153
                 ],
                 "loc": {
                   "start": {
@@ -286,8 +359,8 @@
                 }
               },
               "range": [
-                169,
-                181
+                141,
+                153
               ],
               "loc": {
                 "start": {
@@ -310,8 +383,8 @@
                       "type": "Identifier",
                       "name": "endpoint",
                       "range": [
-                        186,
-                        194
+                        158,
+                        166
                       ],
                       "loc": {
                         "start": {
@@ -325,12 +398,85 @@
                       }
                     },
                     "value": {
-                      "type": "Literal",
-                      "value": "http://localhost:8000",
-                      "raw": "'http://localhost:8000'",
+                      "type": "CallExpression",
+                      "callee": {
+                        "type": "MemberExpression",
+                        "computed": false,
+                        "object": {
+                          "type": "Identifier",
+                          "name": "config",
+                          "range": [
+                            168,
+                            174
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 9,
+                              "column": 12
+                            },
+                            "end": {
+                              "line": 9,
+                              "column": 18
+                            }
+                          }
+                        },
+                        "property": {
+                          "type": "Identifier",
+                          "name": "get",
+                          "range": [
+                            175,
+                            178
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 9,
+                              "column": 19
+                            },
+                            "end": {
+                              "line": 9,
+                              "column": 22
+                            }
+                          }
+                        },
+                        "range": [
+                          168,
+                          178
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 9,
+                            "column": 12
+                          },
+                          "end": {
+                            "line": 9,
+                            "column": 22
+                          }
+                        }
+                      },
+                      "arguments": [
+                        {
+                          "type": "Literal",
+                          "value": "DynamoDB.endpoint",
+                          "raw": "'DynamoDB.endpoint'",
+                          "range": [
+                            179,
+                            198
+                          ],
+                          "loc": {
+                            "start": {
+                              "line": 9,
+                              "column": 23
+                            },
+                            "end": {
+                              "line": 9,
+                              "column": 42
+                            }
+                          }
+                        }
+                      ],
                       "range": [
-                        196,
-                        219
+                        168,
+                        199
                       ],
                       "loc": {
                         "start": {
@@ -339,7 +485,7 @@
                         },
                         "end": {
                           "line": 9,
-                          "column": 35
+                          "column": 43
                         }
                       }
                     },
@@ -348,8 +494,8 @@
                     "shorthand": false,
                     "computed": false,
                     "range": [
-                      186,
-                      219
+                      158,
+                      199
                     ],
                     "loc": {
                       "start": {
@@ -358,14 +504,14 @@
                       },
                       "end": {
                         "line": 9,
-                        "column": 35
+                        "column": 43
                       }
                     }
                   }
                 ],
                 "range": [
-                  182,
-                  222
+                  154,
+                  202
                 ],
                 "loc": {
                   "start": {
@@ -380,8 +526,8 @@
               }
             ],
             "range": [
-              165,
-              223
+              137,
+              203
             ],
             "loc": {
               "start": {
@@ -396,8 +542,8 @@
           }
         ],
         "range": [
-          145,
-          224
+          117,
+          204
         ],
         "loc": {
           "start": {
@@ -411,8 +557,8 @@
         }
       },
       "range": [
-        145,
-        225
+        117,
+        205
       ],
       "loc": {
         "start": {
@@ -427,14 +573,14 @@
       "leadingComments": [
         {
           "type": "Block",
-          "value": "*\n * setup vogels\n * @external {Vogels} https://github.com/ryanfitz/vogels\n ",
+          "value": "*\n * setup vogels\n ",
           "range": [
-            64,
-            144
+            93,
+            116
           ],
           "loc": {
             "start": {
-              "line": 4,
+              "line": 5,
               "column": 0
             },
             "end": {
@@ -451,8 +597,8 @@
         "type": "Identifier",
         "name": "vogels",
         "range": [
-          242,
-          248
+          222,
+          228
         ],
         "loc": {
           "start": {
@@ -468,8 +614,8 @@
         "trailingComments": []
       },
       "range": [
-        227,
-        249
+        207,
+        229
       ],
       "loc": {
         "start": {
@@ -486,7 +632,7 @@
   "sourceType": "module",
   "range": [
     0,
-    249
+    229
   ],
   "loc": {
     "start": {
@@ -501,14 +647,14 @@
   "comments": [
     {
       "type": "Block",
-      "value": "*\n * setup vogels\n * @external {Vogels} https://github.com/ryanfitz/vogels\n ",
+      "value": "*\n * setup vogels\n ",
       "range": [
-        64,
-        144
+        93,
+        116
       ],
       "loc": {
         "start": {
-          "line": 4,
+          "line": 5,
           "column": 0
         },
         "end": {

@@ -138,12 +138,6 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "frill/src/models/dynamodb/index.js~dynamodbmodels",
-    "variable/index.html#static-variable-DynamoDBModels",
-    "<span>DynamoDBModels</span> <span class=\"search-result-import-path\">frill/src/models/DynamoDB/index.js</span>",
-    "variable"
-  ],
-  [
     "frill/src/components/error.jsx~errorcomponent",
     "class/src/components/Error.jsx~ErrorComponent.html",
     "<span>ErrorComponent</span> <span class=\"search-result-import-path\">frill/src/components/Error.jsx</span>",
@@ -180,22 +174,10 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "frill/src/models/mysql/index.js~mysqlmodels",
-    "variable/index.html#static-variable-MySQLModels",
-    "<span>MySQLModels</span> <span class=\"search-result-import-path\">frill/src/models/MySQL/index.js</span>",
-    "variable"
-  ],
-  [
     "frill/src/components/page.jsx~pagecomponent",
     "class/src/components/Page.jsx~PageComponent.html",
     "<span>PageComponent</span> <span class=\"search-result-import-path\">frill/src/components/Page.jsx</span>",
     "class"
-  ],
-  [
-    "frill/src/models/dynamodb/posts.js~posts",
-    "variable/index.html#static-variable-Posts",
-    "<span>Posts</span> <span class=\"search-result-import-path\">frill/src/models/DynamoDB/Posts.js</span>",
-    "variable"
   ],
   [
     "frill/src/components/scrollblock/index.jsx~scrollblockcomponent",
@@ -220,12 +202,6 @@ window.esdocSearchIndex = [
     "class/src/components/Top/index.jsx~TopComponent.html",
     "<span>TopComponent</span> <span class=\"search-result-import-path\">frill/src/components/Top/index.jsx</span>",
     "class"
-  ],
-  [
-    "frill/src/models/mysql/users.js~users",
-    "variable/index.html#static-variable-Users",
-    "<span>Users</span> <span class=\"search-result-import-path\">frill/src/models/MySQL/Users.js</span>",
-    "variable"
   ],
   [
     "frill/src/api/index.js~api",
@@ -399,6 +375,12 @@ window.esdocSearchIndex = [
     "frill/src/api/auth/strategies/twitter.js~twitterstrategy",
     "variable/index.html#static-variable-twitterStrategy",
     "<span>twitterStrategy</span> <span class=\"search-result-import-path\">frill/src/api/auth/strategies/twitter.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/models/mysql/users.js~users",
+    "variable/index.html#static-variable-users",
+    "<span>users</span> <span class=\"search-result-import-path\">frill/src/models/MySQL/Users.js</span>",
     "variable"
   ],
   [
@@ -1362,6 +1344,18 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/fixtures/testscrollitemsdata.js",
+    "file/src/fixtures/testScrollItemsData.js.html",
+    "src/fixtures/testScrollItemsData.js",
+    "file"
+  ],
+  [
+    "src/fixtures/testuserdata.js",
+    "file/src/fixtures/testUserData.js.html",
+    "src/fixtures/testUserData.js",
+    "file"
+  ],
+  [
     "src/helpers/aws.js",
     "file/src/helpers/aws.js.html",
     "src/helpers/aws.js",
@@ -1374,6 +1368,12 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/helpers/index.js~amazonwebservices",
+    "external/index.html",
+    "src/helpers/index.js~AmazonWebServices",
+    "external"
+  ],
+  [
     "src/helpers/routeprefixer.js",
     "file/src/helpers/routePrefixer.js.html",
     "src/helpers/routePrefixer.js",
@@ -1383,18 +1383,6 @@ window.esdocSearchIndex = [
     "src/helpers/routercontainer.js",
     "file/src/helpers/routerContainer.js.html",
     "src/helpers/routerContainer.js",
-    "file"
-  ],
-  [
-    "src/helpers/testscrollitemsdata.js",
-    "file/src/helpers/testScrollItemsData.js.html",
-    "src/helpers/testScrollItemsData.js",
-    "file"
-  ],
-  [
-    "src/helpers/testuserdata.js",
-    "file/src/helpers/testUserData.js.html",
-    "src/helpers/testUserData.js",
     "file"
   ],
   [
@@ -1422,28 +1410,28 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/models/mysql/index.js~sequelize",
+    "external/index.html",
+    "src/models/MySQL/index.js~Sequelize",
+    "external"
+  ],
+  [
     "src/models/index.js",
     "file/src/models/index.js.html",
     "src/models/index.js",
     "file"
   ],
   [
-    "src/models/sequelize.js",
-    "file/src/models/sequelize.js.html",
-    "src/models/sequelize.js",
+    "src/models/setup_sequelize.js",
+    "file/src/models/setup_sequelize.js.html",
+    "src/models/setup_sequelize.js",
     "file"
   ],
   [
-    "src/models/vogels.js",
-    "file/src/models/vogels.js.html",
-    "src/models/vogels.js",
+    "src/models/setup_vogels.js",
+    "file/src/models/setup_vogels.js.html",
+    "src/models/setup_vogels.js",
     "file"
-  ],
-  [
-    "src/models/vogels.js~vogels",
-    "external/index.html",
-    "src/models/vogels.js~Vogels",
-    "external"
   ],
   [
     "src/routes.jsx",

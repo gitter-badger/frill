@@ -1,27 +1,15 @@
 /**
  * Example for using multiple type of databases
  */
-// example for DynamoDB using vogels
-import {Posts} from './DynamoDB';
 // example for MySQL using sequelize
-import {Users} from './MySQL';
-
-const dynamoDb = {
-  Posts,
-};
-
-const mySql = {
-  Users,
-};
+import SequelizeModels from './SequelizeModels';
 
 /**
  * List of all models
- * @see {@link MySQLModels}
- * @see {@link DynamoDBModels}
+ * @see {@link SequelizeModels}
  */
 const Models = {
-  dynamoDb,
-  mySql,
+  SequelizeModels,
 };
 
 export default Models;

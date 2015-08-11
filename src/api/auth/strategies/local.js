@@ -2,7 +2,7 @@ import Boom from 'boom';
 import {where as _where} from 'lodash';
 
 // Test data
-import accounts from '../../../helpers/testUserData';
+import accounts from '../../../fixtures/testUserData';
 
 const authenticate = (request, reply) => {
   const credentials = {};

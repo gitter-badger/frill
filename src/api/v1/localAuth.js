@@ -6,7 +6,7 @@ import {where as _where} from 'lodash';
 import {clone as _clone} from 'lodash';
 
 // Test data
-import accounts from '../../helpers/testUserData';
+import accounts from '../../fixtures/testUserData';
 
 /**
  * Local authentication routes.
