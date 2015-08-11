@@ -107,6 +107,7 @@
 
 <div class="content" data-ice="content"><h1 data-ice="title">test/helpers/routePrefixerTest.js</h1>
 <pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">import {routePrefixer} from &apos;../../src/helpers&apos;;
+import {cloneDeep as _cloneDeep} from &apos;lodash&apos;;
 
 const testRouteObj = {
   path: &apos;/path&apos;,
@@ -133,7 +134,9 @@ describe(&apos;routePrefixer&apos;, () =&gt; {
    * @test {routePrefixer}
    */
   it(&apos;should throw an error if the given params are not correct&apos;, () =&gt; {
-    const testPrefixFn = () =&gt; routePrefixer(null, testRouteObj);
+    // ensure that the testRouteObj doesn&apos;t change
+    const _testRouteObj = _cloneDeep(testRouteObj);
+    const testPrefixFn = () =&gt; routePrefixer(null, _testRouteObj);
     const testRouteFn = () =&gt; routePrefixer(&apos;/prefix&apos;, {});
     const testRouteFn2 = () =&gt; routePrefixer(&apos;/prefix&apos;, []);
     (testPrefixFn).should.throw(TypeError, /be a string/);
@@ -157,8 +160,12 @@ describe(&apos;routePrefixer&apos;, () =&gt; {
    * @test {routePrefixer}
    */
   it(&apos;should always return an array&apos;, () =&gt; {
-    const outputFromObj = routePrefixer(&apos;/added&apos;, testRouteObj);
-    const outputFromArr = routePrefixer(&apos;/added&apos;, testRouteArr);
+    // ensure that the testRouteObj and testRouteArr doesn&apos;t change
+    const _testRouteObj = _cloneDeep(testRouteObj);
+    const _testRouteArr = _cloneDeep(testRouteArr);
+
+    const outputFromObj = routePrefixer(&apos;/added&apos;, _testRouteObj);
+    const outputFromArr = routePrefixer(&apos;/added&apos;, _testRouteArr);
     outputFromObj.should.be.instanceof(Array);
     outputFromArr.should.be.instanceof(Array);
   });
@@ -167,7 +174,9 @@ describe(&apos;routePrefixer&apos;, () =&gt; {
    * @test {routePrefixer}
    */
   it(&apos;should be able to prefix routes as an Object&apos;, () =&gt; {
-    const testRouteOutput = routePrefixer(&apos;/added&apos;, testRouteObj);
+    // ensure that the testRouteObj doesn&apos;t change
+    const _testRouteObj = _cloneDeep(testRouteObj);
+    const testRouteOutput = routePrefixer(&apos;/added&apos;, _testRouteObj);
     (testRouteOutput[0].path).should.equal(&apos;/added/path&apos;);
   });
 
@@ -175,7 +184,9 @@ describe(&apos;routePrefixer&apos;, () =&gt; {
    * @test {routePrefixer}
    */
   it(&apos;should be able to prefix routes as an Array&apos;, () =&gt; {
-    const testRouteOutput = routePrefixer(&apos;/added&apos;, testRouteArr);
+    // ensure that the testRouteArr doesn&apos;t change
+    const _testRouteArr = _cloneDeep(testRouteArr);
+    const testRouteOutput = routePrefixer(&apos;/added&apos;, _testRouteArr);
     (testRouteOutput[0].path).should.equal(`/added${testRouteArr[0].path}`);
     (testRouteOutput[1].path).should.equal(`/added${testRouteArr[1].path}`);
     (testRouteOutput[2].path).should.equal(`/added${testRouteArr[2].path}`);

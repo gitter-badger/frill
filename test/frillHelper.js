@@ -1,5 +1,4 @@
 import {BaseStore, BaseAction, attach} from 'frill-core';
-// import Promise from 'bluebird';
 
 const mockStoreEvent = (action, actionType, spy) => {
   const actions = { Action: action };
@@ -31,10 +30,51 @@ const mockDispatch = (store, actionType, payload) => {
   actions.CheckAction.fire(actionType, payload);
 };
 
-
 const inject = (options) => {
   return new Promise((resolve) => {
     server.inject(options, resolve);
+  });
+};
+
+const mockSession = (server) => {
+  global._sessionMock = {};
+  const _mock = (request, reply) => {
+    request.session = {};
+    request.session.set = (key, val) => {
+      _sessionMock[key] = val;
+    };
+    request.session.get = (key) => {
+      return _sessionMock[key];
+    };
+    request.session.reset = () => {
+      _sessionMock = {};
+    };
+    request.session.clear = (key) => {
+      delete _sessionMock[key];
+    };
+    // simply set
+    request.session.flash = request.session.set;
+
+    reply.continue();
+  };
+  server.ext('onPreAuth', _mock);
+};
+
+const injectAuthenticated = (options) => {
+  return inject({
+    method: 'POST',
+    url: '/api/v1/login',
+    payload: {
+      username: 'nanopx',
+      password: 'hello',
+    },
+  }).then((response) => {
+    response.result.token.should.exist;
+    if (!options.headers) {
+      options.headers = {};
+    }
+    options.headers.Authorization = response.result.token;
+    return inject(options);
   });
 };
 
@@ -42,4 +82,6 @@ export default {
   inject,
   mockStoreEvent,
   mockDispatch,
+  mockSession,
+  injectAuthenticated,
 };

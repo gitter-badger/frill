@@ -17,7 +17,7 @@ const localAuthRoutes = [{
   config: {
     validate: {
       query: {
-        ref: Joi.string(),
+        ref: Joi.string().optional(),
       },
       payload: {
         username: Joi.string().min(5).required(),
@@ -30,8 +30,8 @@ const localAuthRoutes = [{
     plugins: {
       'hapi-swagger': {
         responseMessages: [
-          { code: 200, message: ''},
           { code: 400, message: 'Bad Request' },
+          { code: 500, message: 'Internal Server Error'},
         ],
       },
     },

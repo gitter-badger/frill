@@ -5,11 +5,15 @@ import chai from 'chai';
 import sinon from 'sinon';
 import cheerio from 'cheerio';
 import Hapi from 'hapi';
+import {mockSession} from './frillHelper';
 import Authentication from 'bell';
 import Strategies from '../src/api/auth/strategies';
 const TEST_SERVER_PORT = 6000;
 const server = new Hapi.Server();
 server.connection({port: TEST_SERVER_PORT});
+
+// register session
+mockSession(server);
 
 // register Authentication strategies
 server.register([

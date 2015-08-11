@@ -40,7 +40,6 @@ const apiV1Hello = (/* server */) => {
       },
     },
     handler: (req, rep) => {
-      console.log(req.auth);
       rep({msg: 'restricted api, hello'});
     },
   }];

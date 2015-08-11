@@ -107,7 +107,7 @@
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/helpers/routePrefixer.js</h1>
 <pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">import {isEmpty as _isEmpty} from &apos;lodash&apos;;
-import {cloneDeep as _cloneDeep} from &apos;lodash&apos;;
+import {clone as _clone} from &apos;lodash&apos;;
 import {isPlainObject as _isPlainObject} from &apos;lodash&apos;;
 import {isString as _isString} from &apos;lodash&apos;;
 
@@ -134,7 +134,7 @@ const routePrefixer = (prefix, routes) =&gt; {
     throw new Error(&apos;Must specify routes&apos;);
   }
 
-  let _routes = _cloneDeep(routes);
+  let _routes = _clone(routes);
 
   if (_isPlainObject(_routes)) {
     if (!_routes.path) {

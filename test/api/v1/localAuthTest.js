@@ -7,29 +7,62 @@ server.route(routePrefixer('/api/v1', localAuthApi));
 describe('/api/v1/login', () => {
   describe('/', () => {
     it('should return 404 on GET request', () => {
-      inject({ method: 'GET', url: '/api/v1/login'}).then((response) => {
+      return inject({ method: 'GET', url: '/api/v1/login' })
+      .then((response) => {
         response.statusCode.should.equal(404);
       });
     });
+
+    it('should return 404 on PUT request', () => {
+      return inject({ method: 'PUT', url: '/api/v1/login' })
+      .then((response) => {
+        response.statusCode.should.equal(404);
+      });
+    });
+
+    it('should return 404 on DELETE request', () => {
+      return inject({ method: 'DELETE', url: '/api/v1/login' })
+      .then((response) => {
+        response.statusCode.should.equal(404);
+      });
+    });
+
     it('should return 400 on POST request without body', () => {
-      inject({ method: 'POST', url: '/api/v1/login'}).then((response) => {
+      return inject({ method: 'POST', url: '/api/v1/login' })
+      .then((response) => {
         response.statusCode.should.equal(400);
         response.result.error.should.equal('Bad Request');
       });
     });
-    // it('should return 200 on POST request with a valid body', () => {
-    //   inject({
-    //     method: 'POST',
-    //     url: '/api/v1/login',
-    //     payload: {
-    //       username: 'nanopx',
-    //       password: 'hello',
-    //     },
-    //   }).then((response) => {
-    //     response.statusCode.should.equal(400);
-    //     response.result.error.should.equal('Bad Request');
-    //     console.log(response.result);
-    //   });
-    // });
+
+    it('should return 400 on POST request with a invalid payload', () => {
+      return inject({
+        method: 'POST',
+        url: '/api/v1/login',
+        payload: {
+          username: 'nanopx',
+          password: 'helllo',
+        },
+      }).then((response) => {
+        response.statusCode.should.equal(400);
+        response.result.error.should.equal('Bad Request');
+        response.result.message.should.equal('invalid username or password');
+      });
+    });
+
+    it('should return 200 on POST request with a valid payload', () => {
+      return inject({
+        method: 'POST',
+        url: '/api/v1/login',
+        payload: {
+          username: 'nanopx',
+          password: 'hello',
+        },
+      }).then((response) => {
+        response.statusCode.should.equal(200);
+        response.result.token.should.exist;
+        response.result.token.should.be.a('string');
+      });
+    });
   });
 });

@@ -1,5 +1,5 @@
 import {isEmpty as _isEmpty} from 'lodash';
-import {cloneDeep as _cloneDeep} from 'lodash';
+import {clone as _clone} from 'lodash';
 import {isPlainObject as _isPlainObject} from 'lodash';
 import {isString as _isString} from 'lodash';
 
@@ -26,7 +26,7 @@ const routePrefixer = (prefix, routes) => {
     throw new Error('Must specify routes');
   }
 
-  let _routes = _cloneDeep(routes);
+  let _routes = _clone(routes);
 
   if (_isPlainObject(_routes)) {
     if (!_routes.path) {
