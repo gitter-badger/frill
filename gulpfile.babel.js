@@ -39,9 +39,9 @@ $.browserSync = browserSync.create();
 const invokeConfigFn = (tasks) => {
   path._gulpfileDir = __dirname;
   // for(const taskName in tasks) {
-  _each(tasks, (fn) => {
-    if (_isFunction(fn)) {
-      fn(gulp, $, argv, path);
+  _each(tasks, (taskFn) => {
+    if (_isFunction(taskFn)) {
+      taskFn(gulp, $, argv, path);
     }
     return;
   });

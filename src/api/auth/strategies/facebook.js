@@ -8,7 +8,7 @@ const facebookStrategy = (server) => {
     password: 'cookie_encryption_password',
     clientId: 'YOUR_CLIENT_ID',
     clientSecret: 'YOUR_CLIENT_SECRET',
-    isSecure: false,
+    isSecure: false, // set this to true on HTTPS
   });
 };
 
