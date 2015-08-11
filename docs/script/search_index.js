@@ -1,5 +1,89 @@
 window.esdocSearchIndex = [
   [
+    "",
+    "test-file/test/api/v1/helloTest.js.html#lineNumber7",
+    "/api/v1/hello",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/api/v1/helloTest.js.html#lineNumber8",
+    "/api/v1/hello /",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/api/v1/helloTest.js.html#lineNumber9",
+    "/api/v1/hello / should return 200 on GET request",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/api/v1/helloTest.js.html#lineNumber27",
+    "/api/v1/hello / should return 404 on DELETE request",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/api/v1/helloTest.js.html#lineNumber15",
+    "/api/v1/hello / should return 404 on POST request",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/api/v1/helloTest.js.html#lineNumber21",
+    "/api/v1/hello / should return 404 on PUT request",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/api/v1/helloTest.js.html#lineNumber33",
+    "/api/v1/hello / should return expected result",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/api/v1/helloTest.js.html#lineNumber39",
+    "/api/v1/hello /restricted",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/api/v1/helloTest.js.html#lineNumber48",
+    "/api/v1/hello /restricted should return 200 on GET request with token",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/api/v1/helloTest.js.html#lineNumber40",
+    "/api/v1/hello /restricted should return 401 Unauthorized on GET request without token",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/api/v1/localAuthTest.js.html#lineNumber7",
+    "/api/v1/login",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/api/v1/localAuthTest.js.html#lineNumber8",
+    "/api/v1/login /",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/api/v1/localAuthTest.js.html#lineNumber14",
+    "/api/v1/login / should return 400 on POST request without body",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/api/v1/localAuthTest.js.html#lineNumber9",
+    "/api/v1/login / should return 404 on GET request",
+    "test"
+  ],
+  [
     "frill/src/actions/index.js~actions",
     "variable/index.html#static-variable-Actions",
     "<span>Actions</span> <span class=\"search-result-import-path\">frill/src/actions/index.js</span>",
@@ -87,12 +171,6 @@ window.esdocSearchIndex = [
     "frill/src/models/dynamodb/posts.js~posts",
     "variable/index.html#static-variable-Posts",
     "<span>Posts</span> <span class=\"search-result-import-path\">frill/src/models/DynamoDB/Posts.js</span>",
-    "variable"
-  ],
-  [
-    "frill/src/helpers/routeprefixer.js~routeprefixer",
-    "variable/index.html#static-variable-RoutePrefixer",
-    "<span>RoutePrefixer</span> <span class=\"search-result-import-path\">frill/src/helpers/routePrefixer.js</span>",
     "variable"
   ],
   [
@@ -258,6 +336,18 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
+    "frill/src/helpers/routeprefixer.js~routeprefixer",
+    "variable/index.html#static-variable-routePrefixer",
+    "<span>routePrefixer</span> <span class=\"search-result-import-path\">frill/src/helpers/routePrefixer.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/helpers/routercontainer.js~routercontainer",
+    "variable/index.html#static-variable-routerContainer",
+    "<span>routerContainer</span> <span class=\"search-result-import-path\">frill/src/helpers/routerContainer.js</span>",
+    "variable"
+  ],
+  [
     "frill/src/api/routes.js~routes",
     "variable/index.html#static-variable-routes",
     "<span>routes</span> <span class=\"search-result-import-path\">frill/src/api/routes.js</span>",
@@ -286,18 +376,6 @@ window.esdocSearchIndex = [
     "variable/index.html#static-variable-twitterStrategy",
     "<span>twitterStrategy</span> <span class=\"search-result-import-path\">frill/src/api/auth/strategies/twitter.js</span>",
     "variable"
-  ],
-  [
-    "testexample testexample,testexample",
-    "test-file/test/docTest.js.html#lineNumber5",
-    "An example for test documantation",
-    "test"
-  ],
-  [
-    "testexample#hello testexample#hello,testexample#hello",
-    "test-file/test/docTest.js.html#lineNumber9",
-    "An example for test documantation hello",
-    "test"
   ],
   [
     "builtinexternal/ecmascriptexternal.js~array",
@@ -622,6 +700,246 @@ window.esdocSearchIndex = [
     "external/index.html",
     "BuiltinExternal/WebAPIExternal.js~XMLHttpRequest",
     "external"
+  ],
+  [
+    "exampleaction src/actions/example.js~exampleaction,exampleaction",
+    "test-file/test/actions/ExampleActionTest.js.html#lineNumber10",
+    "ExampleAction",
+    "test"
+  ],
+  [
+    "exampleaction#countup src/actions/example.js~exampleaction#countup,exampleaction#countup",
+    "test-file/test/actions/ExampleActionTest.js.html#lineNumber21",
+    "ExampleAction ExampleAction#countUp",
+    "test"
+  ],
+  [
+    "exampleaction#countup src/actions/example.js~exampleaction#countup,exampleaction#countup",
+    "test-file/test/actions/ExampleActionTest.js.html#lineNumber32",
+    "ExampleAction ExampleAction#countUp should dispatch COUNT_UP at execution",
+    "test"
+  ],
+  [
+    "exampleaction#countup src/actions/example.js~exampleaction#countup,exampleaction#countup",
+    "test-file/test/actions/ExampleActionTest.js.html#lineNumber25",
+    "ExampleAction ExampleAction#countUp should have a countUp() method",
+    "test"
+  ],
+  [
+    "exampleaction#countupby src/actions/example.js~exampleaction#countupby,exampleaction#countupby",
+    "test-file/test/actions/ExampleActionTest.js.html#lineNumber45",
+    "ExampleAction ExampleAction#countUpBy",
+    "test"
+  ],
+  [
+    "exampleaction#countupby src/actions/example.js~exampleaction#countupby,exampleaction#countupby",
+    "test-file/test/actions/ExampleActionTest.js.html#lineNumber77",
+    "ExampleAction ExampleAction#countUpBy should be able to provide a number to count up",
+    "test"
+  ],
+  [
+    "exampleaction#countupby src/actions/example.js~exampleaction#countupby,exampleaction#countupby",
+    "test-file/test/actions/ExampleActionTest.js.html#lineNumber66",
+    "ExampleAction ExampleAction#countUpBy should count up by 1 at default",
+    "test"
+  ],
+  [
+    "exampleaction#countupby src/actions/example.js~exampleaction#countupby,exampleaction#countupby",
+    "test-file/test/actions/ExampleActionTest.js.html#lineNumber56",
+    "ExampleAction ExampleAction#countUpBy should dispatch COUNT_UP_BY at execution",
+    "test"
+  ],
+  [
+    "exampleaction#countupby src/actions/example.js~exampleaction#countupby,exampleaction#countupby",
+    "test-file/test/actions/ExampleActionTest.js.html#lineNumber49",
+    "ExampleAction ExampleAction#countUpBy should have a countUpBy() method",
+    "test"
+  ],
+  [
+    "exampleaction#loadscrollitems src/actions/example.js~exampleaction#loadscrollitems,exampleaction#loadscrollitems",
+    "test-file/test/actions/ExampleActionTest.js.html#lineNumber89",
+    "ExampleAction ExampleAction#loadScrollItems",
+    "test"
+  ],
+  [
+    "exampleaction#loadscrollitems src/actions/example.js~exampleaction#loadscrollitems,exampleaction#loadscrollitems",
+    "test-file/test/actions/ExampleActionTest.js.html#lineNumber119",
+    "ExampleAction ExampleAction#loadScrollItems should be able to change parameters",
+    "test"
+  ],
+  [
+    "exampleaction#loadscrollitems src/actions/example.js~exampleaction#loadscrollitems,exampleaction#loadscrollitems",
+    "test-file/test/actions/ExampleActionTest.js.html#lineNumber100",
+    "ExampleAction ExampleAction#loadScrollItems should dispatch LOAD_SCROLL_ITEMS at execution",
+    "test"
+  ],
+  [
+    "exampleaction#loadscrollitems src/actions/example.js~exampleaction#loadscrollitems,exampleaction#loadscrollitems",
+    "test-file/test/actions/ExampleActionTest.js.html#lineNumber93",
+    "ExampleAction ExampleAction#loadScrollItems should have a loadScrollItems() method",
+    "test"
+  ],
+  [
+    "exampleaction#constructor src/actions/example.js~exampleaction#constructor,exampleaction#constructor",
+    "test-file/test/actions/ExampleActionTest.js.html#lineNumber14",
+    "ExampleAction should be an instance of FrillCore.BaseAction",
+    "test"
+  ],
+  [
+    "examplestore src/stores/example.js~examplestore,examplestore",
+    "test-file/test/stores/ExampleStoreTest.js.html#lineNumber10",
+    "ExampleStore",
+    "test"
+  ],
+  [
+    "examplestore#actions src/stores/example.js~examplestore#actions,examplestore#actions",
+    "test-file/test/stores/ExampleStoreTest.js.html#lineNumber32",
+    "ExampleStore ExampleStore#actions",
+    "test"
+  ],
+  [
+    "examplestore#actions src/stores/example.js~examplestore#actions,examplestore#actions",
+    "test-file/test/stores/ExampleStoreTest.js.html#lineNumber36",
+    "ExampleStore ExampleStore#actions should handle COUNT_UP",
+    "test"
+  ],
+  [
+    "examplestore#actions src/stores/example.js~examplestore#actions,examplestore#actions",
+    "test-file/test/stores/ExampleStoreTest.js.html#lineNumber43",
+    "ExampleStore ExampleStore#actions should handle COUNT_UP_BY",
+    "test"
+  ],
+  [
+    "examplestore#actions src/stores/example.js~examplestore#actions,examplestore#actions",
+    "test-file/test/stores/ExampleStoreTest.js.html#lineNumber50",
+    "ExampleStore ExampleStore#actions should handle LOAD_SCROLL_ITEMS",
+    "test"
+  ],
+  [
+    "examplestore#countup src/stores/example.js~examplestore#countup,examplestore#countup",
+    "test-file/test/stores/ExampleStoreTest.js.html#lineNumber57",
+    "ExampleStore ExampleStore#countUp",
+    "test"
+  ],
+  [
+    "examplestore#countup examplestore#count src/stores/example.js~examplestore#countup,examplestore#countup src/stores/example.js~examplestore#count,examplestore#count",
+    "test-file/test/stores/ExampleStoreTest.js.html#lineNumber69",
+    "ExampleStore ExampleStore#countUp should be able to handle dispatched actions",
+    "test"
+  ],
+  [
+    "examplestore#countup src/stores/example.js~examplestore#countup,examplestore#countup",
+    "test-file/test/stores/ExampleStoreTest.js.html#lineNumber61",
+    "ExampleStore ExampleStore#countUp should have a countUp() method",
+    "test"
+  ],
+  [
+    "examplestore#countupby src/stores/example.js~examplestore#countupby,examplestore#countupby",
+    "test-file/test/stores/ExampleStoreTest.js.html#lineNumber82",
+    "ExampleStore ExampleStore#countUpBy",
+    "test"
+  ],
+  [
+    "examplestore#countupby examplestore#count src/stores/example.js~examplestore#countupby,examplestore#countupby src/stores/example.js~examplestore#count,examplestore#count",
+    "test-file/test/stores/ExampleStoreTest.js.html#lineNumber94",
+    "ExampleStore ExampleStore#countUpBy should be able to handle dispatched actions",
+    "test"
+  ],
+  [
+    "examplestore#countupby src/stores/example.js~examplestore#countupby,examplestore#countupby",
+    "test-file/test/stores/ExampleStoreTest.js.html#lineNumber86",
+    "ExampleStore ExampleStore#countUpBy should have a countUpBy() method",
+    "test"
+  ],
+  [
+    "examplestore#loadscrollitems src/stores/example.js~examplestore#loadscrollitems,examplestore#loadscrollitems",
+    "test-file/test/stores/ExampleStoreTest.js.html#lineNumber107",
+    "ExampleStore ExampleStore#loadScrollItems",
+    "test"
+  ],
+  [
+    "examplestore#loadscrollitems examplestore#scrollitems examplestore#scrollitemscount examplestore#scrollitemtotal src/stores/example.js~examplestore#loadscrollitems,examplestore#loadscrollitems src/stores/example.js~examplestore#scrollitems,examplestore#scrollitems src/stores/example.js~examplestore#scrollitemscount,examplestore#scrollitemscount src/stores/example.js~examplestore#scrollitemtotal,examplestore#scrollitemtotal",
+    "test-file/test/stores/ExampleStoreTest.js.html#lineNumber121",
+    "ExampleStore ExampleStore#loadScrollItems should be able to handle dispatched actions",
+    "test"
+  ],
+  [
+    "examplestore#loadscrollitems src/stores/example.js~examplestore#loadscrollitems,examplestore#loadscrollitems",
+    "test-file/test/stores/ExampleStoreTest.js.html#lineNumber111",
+    "ExampleStore ExampleStore#loadScrollItems should have a loadScrollItems() method",
+    "test"
+  ],
+  [
+    "examplestore#constructor src/stores/example.js~examplestore#constructor,examplestore#constructor",
+    "test-file/test/stores/ExampleStoreTest.js.html#lineNumber14",
+    "ExampleStore should be an instance of FrillCore.BaseStore",
+    "test"
+  ],
+  [
+    "examplestore#constructor src/stores/example.js~examplestore#constructor,examplestore#constructor",
+    "test-file/test/stores/ExampleStoreTest.js.html#lineNumber21",
+    "ExampleStore should have appropriate properties and defaults",
+    "test"
+  ],
+  [
+    "routeprefixer src/helpers/routeprefixer.js~routeprefixer,routeprefixer",
+    "test-file/test/helpers/routePrefixerTest.js.html#lineNumber23",
+    "Route prefixer",
+    "test"
+  ],
+  [
+    "routeprefixer src/helpers/routeprefixer.js~routeprefixer,routeprefixer",
+    "test-file/test/helpers/routePrefixerTest.js.html#lineNumber51",
+    "Route prefixer should always return an array",
+    "test"
+  ],
+  [
+    "routeprefixer src/helpers/routeprefixer.js~routeprefixer,routeprefixer",
+    "test-file/test/helpers/routePrefixerTest.js.html#lineNumber69",
+    "Route prefixer should be able to prefix routes as an Array",
+    "test"
+  ],
+  [
+    "routeprefixer src/helpers/routeprefixer.js~routeprefixer,routeprefixer",
+    "test-file/test/helpers/routePrefixerTest.js.html#lineNumber61",
+    "Route prefixer should be able to prefix routes as an Object",
+    "test"
+  ],
+  [
+    "routeprefixer src/helpers/routeprefixer.js~routeprefixer,routeprefixer",
+    "test-file/test/helpers/routePrefixerTest.js.html#lineNumber39",
+    "Route prefixer should throw an error if route(s) don't have route.path",
+    "test"
+  ],
+  [
+    "routeprefixer src/helpers/routeprefixer.js~routeprefixer,routeprefixer",
+    "test-file/test/helpers/routePrefixerTest.js.html#lineNumber27",
+    "Route prefixer should throw an error if the given params are not correct",
+    "test"
+  ],
+  [
+    "routercontainer src/helpers/routercontainer.js~routercontainer,routercontainer",
+    "test-file/test/helpers/routerContainerTest.js.html#lineNumber7",
+    "Router container",
+    "test"
+  ],
+  [
+    "routeprefixer src/helpers/routeprefixer.js~routeprefixer,routeprefixer",
+    "test-file/test/helpers/routerContainerTest.js.html#lineNumber25",
+    "Router container should be able to set and get a router",
+    "test"
+  ],
+  [
+    "routeprefixer src/helpers/routeprefixer.js~routeprefixer,routeprefixer",
+    "test-file/test/helpers/routerContainerTest.js.html#lineNumber11",
+    "Router container should have a get() method",
+    "test"
+  ],
+  [
+    "routeprefixer src/helpers/routeprefixer.js~routeprefixer,routeprefixer",
+    "test-file/test/helpers/routerContainerTest.js.html#lineNumber18",
+    "Router container should have a set() method",
+    "test"
   ],
   [
     "src/actions/auth.js",
@@ -1189,14 +1507,14 @@ window.esdocSearchIndex = [
   ],
   [
     "src/stores/example.js~examplestore#countup",
-    "class/src/stores/Example.js~ExampleStore.html#instance-method-countup",
-    "src/stores/Example.js~ExampleStore#countup",
+    "class/src/stores/Example.js~ExampleStore.html#instance-method-countUp",
+    "src/stores/Example.js~ExampleStore#countUp",
     "method"
   ],
   [
     "src/stores/example.js~examplestore#countupby",
-    "class/src/stores/Example.js~ExampleStore.html#instance-method-countupBy",
-    "src/stores/Example.js~ExampleStore#countupBy",
+    "class/src/stores/Example.js~ExampleStore.html#instance-method-countUpBy",
+    "src/stores/Example.js~ExampleStore#countUpBy",
     "method"
   ],
   [
@@ -1230,9 +1548,39 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "test/doctest.js",
-    "test-file/test/docTest.js.html",
-    "test/docTest.js",
+    "test/actions/exampleactiontest.js",
+    "test-file/test/actions/ExampleActionTest.js.html",
+    "test/actions/ExampleActionTest.js",
+    "testFile"
+  ],
+  [
+    "test/api/v1/hellotest.js",
+    "test-file/test/api/v1/helloTest.js.html",
+    "test/api/v1/helloTest.js",
+    "testFile"
+  ],
+  [
+    "test/api/v1/localauthtest.js",
+    "test-file/test/api/v1/localAuthTest.js.html",
+    "test/api/v1/localAuthTest.js",
+    "testFile"
+  ],
+  [
+    "test/helpers/routeprefixertest.js",
+    "test-file/test/helpers/routePrefixerTest.js.html",
+    "test/helpers/routePrefixerTest.js",
+    "testFile"
+  ],
+  [
+    "test/helpers/routercontainertest.js",
+    "test-file/test/helpers/routerContainerTest.js.html",
+    "test/helpers/routerContainerTest.js",
+    "testFile"
+  ],
+  [
+    "test/stores/examplestoretest.js",
+    "test-file/test/stores/ExampleStoreTest.js.html",
+    "test/stores/ExampleStoreTest.js",
     "testFile"
   ]
 ]

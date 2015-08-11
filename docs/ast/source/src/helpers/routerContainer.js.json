@@ -73,254 +73,754 @@
           "line": 1,
           "column": 19
         }
-      }
+      },
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * @desc Set and get router\n * @example <caption>Set ReactRouter</caption>\n * routerContainer.set(ReactRouter);\n * @example <caption>Get ReactRouter</caption>\n * routerContainer.get();\n ",
+          "range": [
+            20,
+            212
+          ],
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 0
+            },
+            "end": {
+              "line": 8,
+              "column": 3
+            }
+          }
+        }
+      ]
     },
     {
-      "type": "ExportDefaultDeclaration",
-      "declaration": {
-        "type": "ObjectExpression",
-        "properties": [
-          {
-            "type": "Property",
-            "key": {
-              "type": "Identifier",
-              "name": "set",
-              "range": [
-                39,
-                42
-              ],
-              "loc": {
-                "start": {
-                  "line": 3,
-                  "column": 2
-                },
-                "end": {
-                  "line": 3,
-                  "column": 5
-                }
+      "type": "Identifier",
+      "declarations": [
+        {
+          "type": "VariableDeclarator",
+          "id": {
+            "type": "Identifier",
+            "name": "routerContainer",
+            "range": [
+              219,
+              234
+            ],
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 6
+              },
+              "end": {
+                "line": 9,
+                "column": 21
               }
-            },
-            "value": {
-              "type": "ArrowFunctionExpression",
-              "id": null,
-              "params": [
-                {
+            }
+          },
+          "init": {
+            "type": "ObjectExpression",
+            "properties": [
+              {
+                "type": "Property",
+                "key": {
                   "type": "Identifier",
-                  "name": "router",
+                  "name": "set",
                   "range": [
-                    45,
-                    51
+                    353,
+                    356
                   ],
                   "loc": {
                     "start": {
-                      "line": 3,
-                      "column": 8
+                      "line": 14,
+                      "column": 2
                     },
                     "end": {
-                      "line": 3,
-                      "column": 14
-                    }
-                  }
-                }
-              ],
-              "body": {
-                "type": "AssignmentExpression",
-                "operator": "=",
-                "left": {
-                  "type": "Identifier",
-                  "name": "_router",
-                  "range": [
-                    56,
-                    63
-                  ],
-                  "loc": {
-                    "start": {
-                      "line": 3,
-                      "column": 19
-                    },
-                    "end": {
-                      "line": 3,
-                      "column": 26
+                      "line": 14,
+                      "column": 5
                     }
                   }
                 },
-                "right": {
-                  "type": "Identifier",
-                  "name": "router",
+                "value": {
+                  "type": "ArrowFunctionExpression",
+                  "id": null,
+                  "params": [
+                    {
+                      "type": "Identifier",
+                      "name": "router",
+                      "range": [
+                        359,
+                        365
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 14,
+                          "column": 8
+                        },
+                        "end": {
+                          "line": 14,
+                          "column": 14
+                        }
+                      }
+                    }
+                  ],
+                  "body": {
+                    "type": "AssignmentExpression",
+                    "operator": "=",
+                    "left": {
+                      "type": "Identifier",
+                      "name": "_router",
+                      "range": [
+                        370,
+                        377
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 14,
+                          "column": 19
+                        },
+                        "end": {
+                          "line": 14,
+                          "column": 26
+                        }
+                      }
+                    },
+                    "right": {
+                      "type": "Identifier",
+                      "name": "router",
+                      "range": [
+                        380,
+                        386
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 14,
+                          "column": 29
+                        },
+                        "end": {
+                          "line": 14,
+                          "column": 35
+                        }
+                      }
+                    },
+                    "range": [
+                      370,
+                      386
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 14,
+                        "column": 19
+                      },
+                      "end": {
+                        "line": 14,
+                        "column": 35
+                      }
+                    }
+                  },
+                  "generator": false,
+                  "expression": true,
                   "range": [
-                    66,
-                    72
+                    358,
+                    386
                   ],
                   "loc": {
                     "start": {
-                      "line": 3,
-                      "column": 29
+                      "line": 14,
+                      "column": 7
                     },
                     "end": {
-                      "line": 3,
+                      "line": 14,
                       "column": 35
                     }
                   }
                 },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "computed": false,
                 "range": [
-                  56,
-                  72
+                  353,
+                  386
                 ],
                 "loc": {
                   "start": {
-                    "line": 3,
-                    "column": 19
+                    "line": 14,
+                    "column": 2
                   },
                   "end": {
-                    "line": 3,
+                    "line": 14,
                     "column": 35
                   }
-                }
-              },
-              "generator": false,
-              "expression": true,
-              "range": [
-                44,
-                72
-              ],
-              "loc": {
-                "start": {
-                  "line": 3,
-                  "column": 7
                 },
-                "end": {
-                  "line": 3,
-                  "column": 35
-                }
-              }
-            },
-            "kind": "init",
-            "method": false,
-            "shorthand": false,
-            "computed": false,
-            "range": [
-              39,
-              72
-            ],
-            "loc": {
-              "start": {
-                "line": 3,
-                "column": 2
+                "leadingComments": [
+                  {
+                    "type": "Block",
+                    "value": "*\n   * Sets router\n   * @param {ReactRouter} router - Instance created by ReactRouter.create() method\n   ",
+                    "range": [
+                      241,
+                      350
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 10,
+                        "column": 2
+                      },
+                      "end": {
+                        "line": 13,
+                        "column": 5
+                      }
+                    }
+                  }
+                ]
               },
-              "end": {
-                "line": 3,
-                "column": 35
-              }
-            }
-          },
-          {
-            "type": "Property",
-            "key": {
-              "type": "Identifier",
-              "name": "get",
-              "range": [
-                76,
-                79
-              ],
-              "loc": {
-                "start": {
-                  "line": 4,
-                  "column": 2
+              {
+                "type": "Property",
+                "key": {
+                  "type": "Identifier",
+                  "name": "get",
+                  "range": [
+                    496,
+                    499
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 19,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 19,
+                      "column": 5
+                    }
+                  }
                 },
-                "end": {
-                  "line": 4,
-                  "column": 5
-                }
-              }
-            },
-            "value": {
-              "type": "ArrowFunctionExpression",
-              "id": null,
-              "params": [],
-              "body": {
-                "type": "Identifier",
-                "name": "_router",
+                "value": {
+                  "type": "ArrowFunctionExpression",
+                  "id": null,
+                  "params": [],
+                  "body": {
+                    "type": "Identifier",
+                    "name": "_router",
+                    "range": [
+                      507,
+                      514
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 19,
+                        "column": 13
+                      },
+                      "end": {
+                        "line": 19,
+                        "column": 20
+                      }
+                    }
+                  },
+                  "generator": false,
+                  "expression": true,
+                  "range": [
+                    501,
+                    514
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 19,
+                      "column": 7
+                    },
+                    "end": {
+                      "line": 19,
+                      "column": 20
+                    }
+                  }
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "computed": false,
                 "range": [
-                  87,
-                  94
+                  496,
+                  514
                 ],
                 "loc": {
                   "start": {
-                    "line": 4,
-                    "column": 13
+                    "line": 19,
+                    "column": 2
                   },
                   "end": {
-                    "line": 4,
+                    "line": 19,
                     "column": 20
                   }
-                }
-              },
-              "generator": false,
-              "expression": true,
-              "range": [
-                81,
-                94
-              ],
-              "loc": {
-                "start": {
-                  "line": 4,
-                  "column": 7
                 },
-                "end": {
-                  "line": 4,
-                  "column": 20
-                }
+                "leadingComments": [
+                  {
+                    "type": "Block",
+                    "value": "*\n   * Gets router\n   * @return {ReactRouter} - Instance created by ReactRouter.create() method\n   ",
+                    "range": [
+                      390,
+                      493
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 15,
+                        "column": 2
+                      },
+                      "end": {
+                        "line": 18,
+                        "column": 5
+                      }
+                    }
+                  }
+                ]
               }
-            },
-            "kind": "init",
-            "method": false,
-            "shorthand": false,
-            "computed": false,
+            ],
             "range": [
-              76,
-              94
+              237,
+              517
             ],
             "loc": {
               "start": {
-                "line": 4,
-                "column": 2
+                "line": 9,
+                "column": 24
               },
               "end": {
-                "line": 4,
-                "column": 20
+                "line": 20,
+                "column": 1
               }
             }
-          }
-        ],
-        "range": [
-          35,
-          97
-        ],
-        "loc": {
-          "start": {
-            "line": 2,
-            "column": 15
           },
-          "end": {
-            "line": 5,
-            "column": 1
+          "range": [
+            219,
+            517
+          ],
+          "loc": {
+            "start": {
+              "line": 9,
+              "column": 6
+            },
+            "end": {
+              "line": 20,
+              "column": 1
+            }
           }
-        },
-        "leadingComments": [],
-        "trailingComments": []
-      },
+        }
+      ],
+      "kind": "const",
       "range": [
-        20,
-        98
+        213,
+        518
       ],
       "loc": {
         "start": {
-          "line": 2,
+          "line": 9,
           "column": 0
         },
         "end": {
-          "line": 5,
+          "line": 20,
           "column": 2
+        }
+      },
+      "leadingComments": [],
+      "name": "_",
+      "trailingComments": []
+    },
+    {
+      "type": "Identifier",
+      "declaration": {
+        "type": "Identifier",
+        "name": "routerContainer",
+        "range": [
+          535,
+          550
+        ],
+        "loc": {
+          "start": {
+            "line": 22,
+            "column": 15
+          },
+          "end": {
+            "line": 22,
+            "column": 30
+          }
+        }
+      },
+      "range": [
+        520,
+        551
+      ],
+      "loc": {
+        "start": {
+          "line": 22,
+          "column": 0
+        },
+        "end": {
+          "line": 22,
+          "column": 31
+        }
+      },
+      "name": "_",
+      "leadingComments": [],
+      "trailingComments": []
+    },
+    {
+      "type": "ExportDefaultDeclaration",
+      "declaration": {
+        "type": "VariableDeclaration",
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "id": {
+              "type": "Identifier",
+              "name": "routerContainer",
+              "range": [
+                219,
+                234
+              ],
+              "loc": {
+                "start": {
+                  "line": 9,
+                  "column": 6
+                },
+                "end": {
+                  "line": 9,
+                  "column": 21
+                }
+              }
+            },
+            "init": {
+              "type": "ObjectExpression",
+              "properties": [
+                {
+                  "type": "Property",
+                  "key": {
+                    "type": "Identifier",
+                    "name": "set",
+                    "range": [
+                      353,
+                      356
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 14,
+                        "column": 2
+                      },
+                      "end": {
+                        "line": 14,
+                        "column": 5
+                      }
+                    }
+                  },
+                  "value": {
+                    "type": "ArrowFunctionExpression",
+                    "id": null,
+                    "params": [
+                      {
+                        "type": "Identifier",
+                        "name": "router",
+                        "range": [
+                          359,
+                          365
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 14,
+                            "column": 8
+                          },
+                          "end": {
+                            "line": 14,
+                            "column": 14
+                          }
+                        }
+                      }
+                    ],
+                    "body": {
+                      "type": "AssignmentExpression",
+                      "operator": "=",
+                      "left": {
+                        "type": "Identifier",
+                        "name": "_router",
+                        "range": [
+                          370,
+                          377
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 14,
+                            "column": 19
+                          },
+                          "end": {
+                            "line": 14,
+                            "column": 26
+                          }
+                        }
+                      },
+                      "right": {
+                        "type": "Identifier",
+                        "name": "router",
+                        "range": [
+                          380,
+                          386
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 14,
+                            "column": 29
+                          },
+                          "end": {
+                            "line": 14,
+                            "column": 35
+                          }
+                        }
+                      },
+                      "range": [
+                        370,
+                        386
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 14,
+                          "column": 19
+                        },
+                        "end": {
+                          "line": 14,
+                          "column": 35
+                        }
+                      }
+                    },
+                    "generator": false,
+                    "expression": true,
+                    "range": [
+                      358,
+                      386
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 14,
+                        "column": 7
+                      },
+                      "end": {
+                        "line": 14,
+                        "column": 35
+                      }
+                    }
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": false,
+                  "computed": false,
+                  "range": [
+                    353,
+                    386
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 14,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 14,
+                      "column": 35
+                    }
+                  },
+                  "leadingComments": [
+                    {
+                      "type": "Block",
+                      "value": "*\n   * Sets router\n   * @param {ReactRouter} router - Instance created by ReactRouter.create() method\n   ",
+                      "range": [
+                        241,
+                        350
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 10,
+                          "column": 2
+                        },
+                        "end": {
+                          "line": 13,
+                          "column": 5
+                        }
+                      }
+                    }
+                  ]
+                },
+                {
+                  "type": "Property",
+                  "key": {
+                    "type": "Identifier",
+                    "name": "get",
+                    "range": [
+                      496,
+                      499
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 19,
+                        "column": 2
+                      },
+                      "end": {
+                        "line": 19,
+                        "column": 5
+                      }
+                    }
+                  },
+                  "value": {
+                    "type": "ArrowFunctionExpression",
+                    "id": null,
+                    "params": [],
+                    "body": {
+                      "type": "Identifier",
+                      "name": "_router",
+                      "range": [
+                        507,
+                        514
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 19,
+                          "column": 13
+                        },
+                        "end": {
+                          "line": 19,
+                          "column": 20
+                        }
+                      }
+                    },
+                    "generator": false,
+                    "expression": true,
+                    "range": [
+                      501,
+                      514
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 19,
+                        "column": 7
+                      },
+                      "end": {
+                        "line": 19,
+                        "column": 20
+                      }
+                    }
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": false,
+                  "computed": false,
+                  "range": [
+                    496,
+                    514
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 19,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 19,
+                      "column": 20
+                    }
+                  },
+                  "leadingComments": [
+                    {
+                      "type": "Block",
+                      "value": "*\n   * Gets router\n   * @return {ReactRouter} - Instance created by ReactRouter.create() method\n   ",
+                      "range": [
+                        390,
+                        493
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 15,
+                          "column": 2
+                        },
+                        "end": {
+                          "line": 18,
+                          "column": 5
+                        }
+                      }
+                    }
+                  ]
+                }
+              ],
+              "range": [
+                237,
+                517
+              ],
+              "loc": {
+                "start": {
+                  "line": 9,
+                  "column": 24
+                },
+                "end": {
+                  "line": 20,
+                  "column": 1
+                }
+              }
+            },
+            "range": [
+              219,
+              517
+            ],
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 6
+              },
+              "end": {
+                "line": 20,
+                "column": 1
+              }
+            }
+          }
+        ],
+        "kind": "const",
+        "range": [
+          213,
+          518
+        ],
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 0
+          },
+          "end": {
+            "line": 20,
+            "column": 2
+          }
+        },
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * @desc Set and get router\n * @example <caption>Set ReactRouter</caption>\n * routerContainer.set(ReactRouter);\n * @example <caption>Get ReactRouter</caption>\n * routerContainer.get();\n ",
+            "range": [
+              20,
+              212
+            ],
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 0
+              },
+              "end": {
+                "line": 8,
+                "column": 3
+              }
+            }
+          }
+        ],
+        "trailingComments": []
+      },
+      "range": [
+        520,
+        551
+      ],
+      "loc": {
+        "start": {
+          "line": 22,
+          "column": 0
+        },
+        "end": {
+          "line": 22,
+          "column": 31
         }
       }
     }
@@ -328,7 +828,7 @@
   "sourceType": "module",
   "range": [
     0,
-    98
+    551
   ],
   "loc": {
     "start": {
@@ -336,9 +836,64 @@
       "column": 0
     },
     "end": {
-      "line": 5,
-      "column": 2
+      "line": 22,
+      "column": 31
     }
   },
-  "comments": []
+  "comments": [
+    {
+      "type": "Block",
+      "value": "*\n * @desc Set and get router\n * @example <caption>Set ReactRouter</caption>\n * routerContainer.set(ReactRouter);\n * @example <caption>Get ReactRouter</caption>\n * routerContainer.get();\n ",
+      "range": [
+        20,
+        212
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 8,
+          "column": 3
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n   * Sets router\n   * @param {ReactRouter} router - Instance created by ReactRouter.create() method\n   ",
+      "range": [
+        241,
+        350
+      ],
+      "loc": {
+        "start": {
+          "line": 10,
+          "column": 2
+        },
+        "end": {
+          "line": 13,
+          "column": 5
+        }
+      }
+    },
+    {
+      "type": "Block",
+      "value": "*\n   * Gets router\n   * @return {ReactRouter} - Instance created by ReactRouter.create() method\n   ",
+      "range": [
+        390,
+        493
+      ],
+      "loc": {
+        "start": {
+          "line": 15,
+          "column": 2
+        },
+        "end": {
+          "line": 18,
+          "column": 5
+        }
+      }
+    }
+  ]
 }

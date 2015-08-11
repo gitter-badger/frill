@@ -6,8 +6,8 @@ const googleStrategy = (server) => {
   server.auth.strategy('google', 'bell', {
     provider: 'google',
     password: 'cookie_encryption_password',
-    clientId: 'yKcHqLNOXe2xKgvOTFuXCeyN3',
-    clientSecret: 'woM83S28cvHcf8Ut5AcHBiX4ifqPGMnrze1VkH07QiFLVaIO7y',
+    clientId: 'YOUR_CLIENT_ID',
+    clientSecret: 'YOUR_CLIENT_SECRET',
     isSecure: false,
   });
 };
