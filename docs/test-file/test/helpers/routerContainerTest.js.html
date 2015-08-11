@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl" href="../../../../">
-  <title data-ice="title">src/components/App/index.jsx | FrillJS API Document</title>
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">test/helpers/routerContainerTest.js | FrillJS API Document</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -105,84 +105,38 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">src/components/App/index.jsx</h1>
-<pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">import React from &apos;react&apos;;
-import {StoreWatchComponent} from &apos;frill-core&apos;;
-import {Link, RouteHandler} from &apos;react-router&apos;;
+<div class="content" data-ice="content"><h1 data-ice="title">test/helpers/routerContainerTest.js</h1>
+<pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">import &apos;../specHelper&apos;;
+import {routerContainer} from &apos;../../src/helpers&apos;;
 
 /**
- * App component
- * @extends {FrillCore.StoreWatchComponent}
- * @example &lt;caption&gt;Usage in React-Router&lt;/caption&gt;
- * &lt;Route name=&quot;app&quot; path=&quot;/&quot; handler={AppComponent} /&gt;
+ * Router container
+ * @test {routerContainer}
  */
-class AppComponent extends new StoreWatchComponent([&apos;Auth&apos;]) {
+describe(&apos;routePrefixer&apos;, () =&gt; {
+  /**
+   * @test {routePrefixer}
+   */
+  it(&apos;should have a get() method&apos;, () =&gt; {
+    routerContainer.get.should.be.a(&apos;function&apos;);
+  });
 
   /**
-   * Constructor
-   * @param {any} props
+   * @test {routePrefixer}
    */
-  constructor(props) {
-    super(props);
-
-    /**
-     * Name of component
-     */
-    this.name = &apos;App&apos;;
-  }
-
-  getStateFromFrill() {
-    return {
-      isLoggedIn: this.getFrill().store(&apos;Auth&apos;).isLoggedIn(),
-      user: this.getFrill().store(&apos;Auth&apos;).user,
-    };
-  }
+  it(&apos;should have a set() method&apos;, () =&gt; {
+    routerContainer.set.should.be.a(&apos;function&apos;);
+  });
 
   /**
-   * render
-   * @return {React DOM}
-   * @see https://facebook.github.io/react/docs/component-specs.html#render
+   * @test {routePrefixer}
    */
-  render() {
-    const isLoggedIn = this.state.isLoggedIn;
-    return (
-      &lt;div className=&quot;App&quot;&gt;
-        &lt;header&gt;
-          &lt;h1&gt;&lt;img src=&quot;/frill-logo-white.png&quot; /&gt;Welcome to FrillJS!&lt;/h1&gt;
-        &lt;/header&gt;
-        &lt;nav&gt;
-          &lt;ul&gt;
-            &lt;li&gt;&lt;Link to=&quot;top&quot;&gt;Top page&lt;/Link&gt;&lt;/li&gt;
-            &lt;li&gt;&lt;Link to=&quot;login&quot;&gt;Login Sample&lt;/Link&gt;&lt;/li&gt;
-            &lt;li&gt;
-              &lt;a href=&quot;http://localhost:3000/auth/twitter/login&quot;&gt;
-                Twitter Auth Test
-              &lt;/a&gt;
-            &lt;/li&gt;
-          &lt;/ul&gt;
-        &lt;/nav&gt;
-        {(isLoggedIn ? () =&gt; {
-          return (
-            &lt;p className=&quot;welcome&quot;&gt;Hello, {this.state.user.user.displayName}&lt;/p&gt;
-          );
-        } : () =&gt; {
-          return (
-            &lt;p className=&quot;welcome&quot;&gt;Welcome, Guest&lt;/p&gt;
-          );
-        })()}
-        &lt;RouteHandler {...this.props}/&gt;
-        &lt;footer&gt;
-          &lt;p&gt;FrillJS&lt;/p&gt;
-        &lt;/footer&gt;
-      &lt;/div&gt;
-    );
-  }
-}
-
-/**
- * Export AppComponent
- */
-export default AppComponent;
+  it(&apos;should be able to set and get a router&apos;, () =&gt; {
+    const testRouter = {test: true};
+    routerContainer.set(testRouter);
+    (routerContainer.get()).should.equal(testRouter);
+  });
+});
 </code></pre>
 </div>
 

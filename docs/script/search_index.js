@@ -258,6 +258,12 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
+    "frill/src/helpers/routercontainer.js~routercontainer",
+    "variable/index.html#static-variable-routerContainer",
+    "<span>routerContainer</span> <span class=\"search-result-import-path\">frill/src/helpers/routerContainer.js</span>",
+    "variable"
+  ],
+  [
     "frill/src/api/routes.js~routes",
     "variable/index.html#static-variable-routes",
     "<span>routes</span> <span class=\"search-result-import-path\">frill/src/api/routes.js</span>",
@@ -825,6 +831,30 @@ window.esdocSearchIndex = [
     "routeprefixer src/helpers/routeprefixer.js~routeprefixer,routeprefixer",
     "test-file/test/helpers/routePrefixerTest.js.html#lineNumber28",
     "Route prefixer should throw an error if the given params are not correct",
+    "test"
+  ],
+  [
+    "routercontainer src/helpers/routercontainer.js~routercontainer,routercontainer",
+    "test-file/test/helpers/routerContainerTest.js.html#lineNumber8",
+    "Router container",
+    "test"
+  ],
+  [
+    "routeprefixer src/helpers/routeprefixer.js~routeprefixer,routeprefixer",
+    "test-file/test/helpers/routerContainerTest.js.html#lineNumber26",
+    "Router container should be able to set and get a router",
+    "test"
+  ],
+  [
+    "routeprefixer src/helpers/routeprefixer.js~routeprefixer,routeprefixer",
+    "test-file/test/helpers/routerContainerTest.js.html#lineNumber12",
+    "Router container should have a get() method",
+    "test"
+  ],
+  [
+    "routeprefixer src/helpers/routeprefixer.js~routeprefixer,routeprefixer",
+    "test-file/test/helpers/routerContainerTest.js.html#lineNumber19",
+    "Router container should have a set() method",
     "test"
   ],
   [
@@ -1443,6 +1473,12 @@ window.esdocSearchIndex = [
     "test/helpers/routeprefixertest.js",
     "test-file/test/helpers/routePrefixerTest.js.html",
     "test/helpers/routePrefixerTest.js",
+    "testFile"
+  ],
+  [
+    "test/helpers/routercontainertest.js",
+    "test-file/test/helpers/routerContainerTest.js.html",
+    "test/helpers/routerContainerTest.js",
     "testFile"
   ],
   [
