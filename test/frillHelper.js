@@ -88,11 +88,10 @@ const injectAuthenticated = (options) => {
       password: 'hello',
     },
   }).then((response) => {
-    response.result.token.should.exist;
-    // if (!options.headers) {
-    //   options.headers = {};
-    // }
-    // options.headers.Authorization = response.result.token;
+    if (!options.headers) {
+      options.headers = {};
+    }
+    options.headers.Authorization = response.result.token;
     return inject(options);
   });
 };
