@@ -943,7 +943,7 @@
     "access": null,
     "description": null,
     "lineNumber": 4,
-    "content": "/**\n * API testing\n */\nconst apiV1Hello = (/* server */) => {\n  return [{\n    method: ['GET'],\n    path: '/hello',\n    config: {\n      auth: false,\n      description: 'Say hello!',\n      notes: 'Says hello.',\n      tags: ['api', 'greeting'],\n      plugins: {\n        'hapi-swagger': {\n          responseMessages: [\n            { code: 200, message: ''},\n          ],\n        },\n      },\n    },\n    handler: (req, rep) => {\n      // console.log(req.auth);\n      rep({msg: 'api, hello'});\n    },\n  }, {\n    method: ['GET'],\n    path: '/hello/restricted',\n    config: {\n      auth: 'jwt',\n      description: 'Restricted route',\n      notes: 'Restricted, says hello',\n      tags: ['api', 'greeting'],\n      plugins: {\n        'hapi-swagger': {\n          responseMessages: [\n            { code: 200, message: ''},\n            { code: 401, message: 'Unauthorized' },\n          ],\n        },\n      },\n    },\n    handler: (req, rep) => {\n      console.log(req.auth);\n      rep({msg: 'restricted api, hello'});\n    },\n  }];\n};\n\nexport default apiV1Hello;\n"
+    "content": "/**\n * API testing\n */\nconst apiV1Hello = (/* server */) => {\n  return [{\n    method: ['GET'],\n    path: '/hello',\n    config: {\n      auth: false,\n      description: 'Say hello!',\n      notes: 'Says hello.',\n      tags: ['api', 'greeting'],\n      plugins: {\n        'hapi-swagger': {\n          responseMessages: [\n            { code: 200, message: ''},\n          ],\n        },\n      },\n    },\n    handler: (req, rep) => {\n      // console.log(req.auth);\n      rep({msg: 'api, hello'});\n    },\n  }, {\n    method: ['GET'],\n    path: '/hello/restricted',\n    config: {\n      auth: 'jwt',\n      description: 'Restricted route',\n      notes: 'Restricted, says hello',\n      tags: ['api', 'greeting'],\n      plugins: {\n        'hapi-swagger': {\n          responseMessages: [\n            { code: 200, message: ''},\n            { code: 401, message: 'Unauthorized' },\n          ],\n        },\n      },\n    },\n    handler: (req, rep) => {\n      rep({msg: 'restricted api, hello'});\n    },\n  }];\n};\n\nexport default apiV1Hello;\n"
   },
   {
     "kind": "variable",
@@ -1005,7 +1005,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Joi from 'joi';\nimport JWT from 'jsonwebtoken';\nimport Boom from 'boom';\nimport aguid from 'aguid';\nimport {where as _where} from 'lodash';\nimport {clone as _clone} from 'lodash';\n\n// Test data\nimport accounts from '../../helpers/testUserData';\n\n/**\n * Local authentication routes.\n */\nconst localAuthRoutes = [{\n  method: ['POST'],\n  path: '/login',\n  config: {\n    validate: {\n      query: {\n        ref: Joi.string(),\n      },\n      payload: {\n        username: Joi.string().min(5).required(),\n        password: Joi.string().min(5).required(),\n      },\n    },\n    tags: ['api', 'auth'],\n    auth: 'local',\n    // auth: 'twitter',\n    plugins: {\n      'hapi-swagger': {\n        responseMessages: [\n          { code: 200, message: ''},\n          { code: 400, message: 'Bad Request' },\n        ],\n      },\n    },\n  },\n  handler: (request, reply) => {\n    // reply error when authentication fails\n    if (!request.auth.isAuthenticated) {\n      return reply(\n        Boom.unauthorized('Authentication failed due to: ' +\n          request.auth.error.message)\n      );\n    }\n\n    const query = {\n      id: parseInt(request.auth.credentials.profile.id, 10),\n      strategy: request.auth.strategy,\n    };\n\n    const user = _where(accounts, query);\n    // console.log(user);\n\n    if (user.length === 0) {\n      console.log('needs registration');\n    }\n\n    const _user = _clone(user[0]);\n    delete _user.password;\n\n    /** @todo create and set JWT into session */\n    const session = {\n      valid: true,\n      id: aguid(), // a random session id\n      user: _user,\n      exp: new Date().getTime() + 30 * 60 * 1000, // expires in 30 minutes time\n    };\n\n    // // create the session in Redis\n    // redisClient.set(session.id, JSON.stringify(session));\n    request.session.set(session.id, session);\n    // sign the session as a JWT\n    const token = JWT.sign(session, 'NeverShareYourSecret');\n    return reply({token: token});\n  },\n}];\n\nexport default localAuthRoutes;\n"
+    "content": "import Joi from 'joi';\nimport JWT from 'jsonwebtoken';\nimport Boom from 'boom';\nimport aguid from 'aguid';\nimport {where as _where} from 'lodash';\nimport {clone as _clone} from 'lodash';\n\n// Test data\nimport accounts from '../../helpers/testUserData';\n\n/**\n * Local authentication routes.\n */\nconst localAuthRoutes = [{\n  method: ['POST'],\n  path: '/login',\n  config: {\n    validate: {\n      query: {\n        ref: Joi.string().optional(),\n      },\n      payload: {\n        username: Joi.string().min(5).required(),\n        password: Joi.string().min(5).required(),\n      },\n    },\n    tags: ['api', 'auth'],\n    auth: 'local',\n    // auth: 'twitter',\n    plugins: {\n      'hapi-swagger': {\n        responseMessages: [\n          { code: 400, message: 'Bad Request' },\n          { code: 500, message: 'Internal Server Error'},\n        ],\n      },\n    },\n  },\n  handler: (request, reply) => {\n    // reply error when authentication fails\n    if (!request.auth.isAuthenticated) {\n      return reply(\n        Boom.unauthorized('Authentication failed due to: ' +\n          request.auth.error.message)\n      );\n    }\n\n    const query = {\n      id: parseInt(request.auth.credentials.profile.id, 10),\n      strategy: request.auth.strategy,\n    };\n\n    const user = _where(accounts, query);\n    // console.log(user);\n\n    if (user.length === 0) {\n      console.log('needs registration');\n    }\n\n    const _user = _clone(user[0]);\n    delete _user.password;\n\n    /** @todo create and set JWT into session */\n    const session = {\n      valid: true,\n      id: aguid(), // a random session id\n      user: _user,\n      exp: new Date().getTime() + 30 * 60 * 1000, // expires in 30 minutes time\n    };\n\n    // // create the session in Redis\n    // redisClient.set(session.id, JSON.stringify(session));\n    request.session.set(session.id, session);\n    // sign the session as a JWT\n    const token = JWT.sign(session, 'NeverShareYourSecret');\n    return reply({token: token});\n  },\n}];\n\nexport default localAuthRoutes;\n"
   },
   {
     "kind": "variable",
@@ -2131,7 +2131,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import {isEmpty as _isEmpty} from 'lodash';\nimport {cloneDeep as _cloneDeep} from 'lodash';\nimport {isPlainObject as _isPlainObject} from 'lodash';\nimport {isString as _isString} from 'lodash';\n\n/**\n * @desc Prefixes route.path\n * @example\n * routePrefixer('/api', [{path: '/a'}, {path: '/b'}]);\n *\n * @param {string} prefix - A string to prefix paths\n * @param {Array|Object} routes - Collection of routes or a single route\n * @param {string} route.path - Collection of routes or a single route\n * @throws {Error} throw error when given routes is not set or empty\n * @throws {Error} throw error when route.path doesn't exist in Object\n * @throws {Error} throw error when routes[x].route.path doesn't exist in Array\n * @throws {TypeError} throw error when prefix is not a String\n * @return {Array}\n */\nconst routePrefixer = (prefix, routes) => {\n  if (!_isString(prefix)) {\n    throw new TypeError('Prefix must be a string');\n  }\n\n  if (_isEmpty(routes)) {\n    throw new Error('Must specify routes');\n  }\n\n  let _routes = _cloneDeep(routes);\n\n  if (_isPlainObject(_routes)) {\n    if (!_routes.path) {\n      throw new Error('A route must have routes.path');\n    }\n    _routes = [_routes];\n  }\n\n  return _routes.map((route) => {\n    if (!route.path) {\n      throw new Error('All routes must contain route.path');\n    }\n    route.path = `${prefix}${route.path}`;\n    return route;\n  });\n};\n\nexport default routePrefixer;\n"
+    "content": "import {isEmpty as _isEmpty} from 'lodash';\nimport {clone as _clone} from 'lodash';\nimport {isPlainObject as _isPlainObject} from 'lodash';\nimport {isString as _isString} from 'lodash';\n\n/**\n * @desc Prefixes route.path\n * @example\n * routePrefixer('/api', [{path: '/a'}, {path: '/b'}]);\n *\n * @param {string} prefix - A string to prefix paths\n * @param {Array|Object} routes - Collection of routes or a single route\n * @param {string} route.path - Collection of routes or a single route\n * @throws {Error} throw error when given routes is not set or empty\n * @throws {Error} throw error when route.path doesn't exist in Object\n * @throws {Error} throw error when routes[x].route.path doesn't exist in Array\n * @throws {TypeError} throw error when prefix is not a String\n * @return {Array}\n */\nconst routePrefixer = (prefix, routes) => {\n  if (!_isString(prefix)) {\n    throw new TypeError('Prefix must be a string');\n  }\n\n  if (_isEmpty(routes)) {\n    throw new Error('Must specify routes');\n  }\n\n  let _routes = _clone(routes);\n\n  if (_isPlainObject(_routes)) {\n    if (!_routes.path) {\n      throw new Error('A route must have routes.path');\n    }\n    _routes = [_routes];\n  }\n\n  return _routes.map((route) => {\n    if (!route.path) {\n      throw new Error('All routes must contain route.path');\n    }\n    route.path = `${prefix}${route.path}`;\n    return route;\n  });\n};\n\nexport default routePrefixer;\n"
   },
   {
     "kind": "variable",
@@ -4532,7 +4532,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import helloApi from '../../../src/api/v1/hello';\nimport {inject} from '../../frillHelper';\nimport {routePrefixer} from '../../../src/helpers';\n\nserver.route(routePrefixer('/api/v1', helloApi()));\n\ndescribe('/api/v1/hello', () => {\n  describe('/', () => {\n    it('should return 200 on GET request', () => {\n      inject({ method: 'GET', url: '/api/v1/hello'}).then((response) => {\n        response.statusCode.should.equal(200);\n      });\n    });\n\n    it('should return 404 on POST request', () => {\n      inject({ method: 'POST', url: '/api/v1/hello'}).then((response) => {\n        response.statusCode.should.equal(404);\n      });\n    });\n\n    it('should return 404 on PUT request', () => {\n      inject({ method: 'PUT', url: '/api/v1/hello'}).then((response) => {\n        response.statusCode.should.equal(404);\n      });\n    });\n\n    it('should return 404 on DELETE request', () => {\n      inject({ method: 'DELETE', url: '/api/v1/hello'}).then((response) => {\n        response.statusCode.should.equal(404);\n      });\n    });\n\n    it('should return expected result', () => {\n      inject({ method: 'GET', url: '/api/v1/hello'}).then((response) => {\n        response.result.should.deep.equal({msg: 'api, hello'});\n      });\n    });\n  });\n  describe('/restricted', () => {\n    it('should return 401 Unauthorized on GET request without token', () => {\n      inject({ method: 'GET', url: '/api/v1/hello/restricted'})\n      .then((response) => {\n        response.statusCode.should.equal(401);\n        response.result.error.should.equal('Unauthorized');\n        response.result.message.should.equal('Missing auth token');\n      });\n    });\n    it('should return 200 on GET request with token', () => {\n      // inject({ method: 'GET', url: '/hello/restricted'}).then((response) => {\n      //   response.statusCode.should.equal(401);\n      //   response.result.error.should.equal('Unauthorized');\n      //   response.result.message.should.equal('Missing auth token');\n      // });\n      // inject({ method: 'GET', url: '/hello/restricted'}).then((response) => {\n      //   response.statusCode.should.equal(401);\n      //   response.result.error.should.equal('Unauthorized');\n      //   response.result.message.should.equal('Missing auth token');\n      // });\n    });\n  });\n});\n"
+    "content": "import helloApi from '../../../src/api/v1/hello';\nimport {inject, injectAuthenticated} from '../../frillHelper';\nimport {routePrefixer} from '../../../src/helpers';\n\nserver.route(routePrefixer('/api/v1', helloApi()));\n\ndescribe('/api/v1/hello', () => {\n  describe('/', () => {\n    it('should return 200 on GET request', () => {\n      return inject({ method: 'GET', url: '/api/v1/hello' })\n      .then((response) => {\n        response.statusCode.should.equal(200);\n      });\n    });\n\n    it('should return 404 on POST request', () => {\n      return inject({ method: 'POST', url: '/api/v1/hello' })\n      .then((response) => {\n        response.statusCode.should.equal(404);\n      });\n    });\n\n    it('should return 404 on PUT request', () => {\n      return inject({ method: 'PUT', url: '/api/v1/hello' })\n      .then((response) => {\n        response.statusCode.should.equal(404);\n      });\n    });\n\n    it('should return 404 on DELETE request', () => {\n      return inject({ method: 'DELETE', url: '/api/v1/hello' })\n      .then((response) => {\n        response.statusCode.should.equal(404);\n      });\n    });\n\n    it('should return expected result', () => {\n      return inject({ method: 'GET', url: '/api/v1/hello' })\n      .then((response) => {\n        response.result.should.deep.equal({ msg: 'api, hello' });\n      });\n    });\n  });\n  describe('/restricted', () => {\n    it('should return 401 Unauthorized on GET request without token', () => {\n      return inject({ method: 'GET', url: '/api/v1/hello/restricted' })\n      .then((response) => {\n        response.statusCode.should.equal(401);\n        response.result.error.should.equal('Unauthorized');\n        response.result.message.should.equal('Missing auth token');\n      });\n    });\n\n    it('should return 200 on GET request with token', () => {\n      return injectAuthenticated({\n        method: 'GET',\n        url: '/api/v1/hello/restricted',\n      })\n      .then((response) => {\n        response.statusCode.should.equal(200);\n        response.result.should.deep.equal({ msg: 'restricted api, hello' });\n      });\n    });\n  });\n});\n"
   },
   {
     "kind": "testDescribe",
@@ -4584,7 +4584,7 @@
     "longname": "test/api/v1/helloTest.js~describe14.describe15.it17",
     "access": null,
     "description": "should return 404 on POST request",
-    "lineNumber": 15
+    "lineNumber": 16
   },
   {
     "kind": "testIt",
@@ -4597,7 +4597,7 @@
     "longname": "test/api/v1/helloTest.js~describe14.describe15.it18",
     "access": null,
     "description": "should return 404 on PUT request",
-    "lineNumber": 21
+    "lineNumber": 23
   },
   {
     "kind": "testIt",
@@ -4610,7 +4610,7 @@
     "longname": "test/api/v1/helloTest.js~describe14.describe15.it19",
     "access": null,
     "description": "should return 404 on DELETE request",
-    "lineNumber": 27
+    "lineNumber": 30
   },
   {
     "kind": "testIt",
@@ -4623,7 +4623,7 @@
     "longname": "test/api/v1/helloTest.js~describe14.describe15.it20",
     "access": null,
     "description": "should return expected result",
-    "lineNumber": 33
+    "lineNumber": 37
   },
   {
     "kind": "testDescribe",
@@ -4636,7 +4636,7 @@
     "longname": "test/api/v1/helloTest.js~describe14.describe21",
     "access": null,
     "description": "/restricted",
-    "lineNumber": 39
+    "lineNumber": 44
   },
   {
     "kind": "testIt",
@@ -4649,7 +4649,7 @@
     "longname": "test/api/v1/helloTest.js~describe14.describe21.it22",
     "access": null,
     "description": "should return 401 Unauthorized on GET request without token",
-    "lineNumber": 40
+    "lineNumber": 45
   },
   {
     "kind": "testIt",
@@ -4662,7 +4662,7 @@
     "longname": "test/api/v1/helloTest.js~describe14.describe21.it23",
     "access": null,
     "description": "should return 200 on GET request with token",
-    "lineNumber": 48
+    "lineNumber": 54
   },
   {
     "kind": "testFile",
@@ -4674,7 +4674,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import localAuthApi from '../../../src/api/v1/localAuth';\nimport {routePrefixer} from '../../../src/helpers';\nimport {inject} from '../../frillHelper';\n\nserver.route(routePrefixer('/api/v1', localAuthApi));\n\ndescribe('/api/v1/login', () => {\n  describe('/', () => {\n    it('should return 404 on GET request', () => {\n      inject({ method: 'GET', url: '/api/v1/login'}).then((response) => {\n        response.statusCode.should.equal(404);\n      });\n    });\n    it('should return 400 on POST request without body', () => {\n      inject({ method: 'POST', url: '/api/v1/login'}).then((response) => {\n        response.statusCode.should.equal(400);\n        response.result.error.should.equal('Bad Request');\n      });\n    });\n    // it('should return 200 on POST request with a valid body', () => {\n    //   inject({\n    //     method: 'POST',\n    //     url: '/api/v1/login',\n    //     payload: {\n    //       username: 'nanopx',\n    //       password: 'hello',\n    //     },\n    //   }).then((response) => {\n    //     response.statusCode.should.equal(400);\n    //     response.result.error.should.equal('Bad Request');\n    //     console.log(response.result);\n    //   });\n    // });\n  });\n});\n"
+    "content": "import localAuthApi from '../../../src/api/v1/localAuth';\nimport {routePrefixer} from '../../../src/helpers';\nimport {inject} from '../../frillHelper';\n\nserver.route(routePrefixer('/api/v1', localAuthApi));\n\ndescribe('/api/v1/login', () => {\n  describe('/', () => {\n    it('should return 404 on GET request', () => {\n      return inject({ method: 'GET', url: '/api/v1/login' })\n      .then((response) => {\n        response.statusCode.should.equal(404);\n      });\n    });\n\n    it('should return 404 on PUT request', () => {\n      return inject({ method: 'PUT', url: '/api/v1/login' })\n      .then((response) => {\n        response.statusCode.should.equal(404);\n      });\n    });\n\n    it('should return 404 on DELETE request', () => {\n      return inject({ method: 'DELETE', url: '/api/v1/login' })\n      .then((response) => {\n        response.statusCode.should.equal(404);\n      });\n    });\n\n    it('should return 400 on POST request without body', () => {\n      return inject({ method: 'POST', url: '/api/v1/login' })\n      .then((response) => {\n        response.statusCode.should.equal(400);\n        response.result.error.should.equal('Bad Request');\n      });\n    });\n\n    it('should return 400 on POST request with a invalid payload', () => {\n      return inject({\n        method: 'POST',\n        url: '/api/v1/login',\n        payload: {\n          username: 'nanopx',\n          password: 'helllo',\n        },\n      }).then((response) => {\n        response.statusCode.should.equal(400);\n        response.result.error.should.equal('Bad Request');\n        response.result.message.should.equal('invalid username or password');\n      });\n    });\n\n    it('should return 200 on POST request with a valid payload', () => {\n      return inject({\n        method: 'POST',\n        url: '/api/v1/login',\n        payload: {\n          username: 'nanopx',\n          password: 'hello',\n        },\n      }).then((response) => {\n        response.statusCode.should.equal(200);\n        response.result.token.should.exist;\n        response.result.token.should.be.a('string');\n      });\n    });\n  });\n});\n"
   },
   {
     "kind": "testDescribe",
@@ -4725,8 +4725,60 @@
     "testDepth": 2,
     "longname": "test/api/v1/localAuthTest.js~describe24.describe25.it27",
     "access": null,
+    "description": "should return 404 on PUT request",
+    "lineNumber": 16
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it28",
+    "testId": 28,
+    "memberof": "test/api/v1/localAuthTest.js~describe24.describe25",
+    "testDepth": 2,
+    "longname": "test/api/v1/localAuthTest.js~describe24.describe25.it28",
+    "access": null,
+    "description": "should return 404 on DELETE request",
+    "lineNumber": 23
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it29",
+    "testId": 29,
+    "memberof": "test/api/v1/localAuthTest.js~describe24.describe25",
+    "testDepth": 2,
+    "longname": "test/api/v1/localAuthTest.js~describe24.describe25.it29",
+    "access": null,
     "description": "should return 400 on POST request without body",
-    "lineNumber": 14
+    "lineNumber": 30
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it30",
+    "testId": 30,
+    "memberof": "test/api/v1/localAuthTest.js~describe24.describe25",
+    "testDepth": 2,
+    "longname": "test/api/v1/localAuthTest.js~describe24.describe25.it30",
+    "access": null,
+    "description": "should return 400 on POST request with a invalid payload",
+    "lineNumber": 38
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it31",
+    "testId": 31,
+    "memberof": "test/api/v1/localAuthTest.js~describe24.describe25",
+    "testDepth": 2,
+    "longname": "test/api/v1/localAuthTest.js~describe24.describe25.it31",
+    "access": null,
+    "description": "should return 200 on POST request with a valid payload",
+    "lineNumber": 53
   },
   {
     "kind": "testFile",
@@ -4738,108 +4790,20 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import {routePrefixer} from '../../src/helpers';\n\nconst testRouteObj = {\n  path: '/path',\n};\n\nconst testRouteArr = [\n  {\n    path: '/first',\n  },\n  {\n    path: '/second',\n  },\n  {\n    path: '/third',\n  },\n];\n\n/**\n * Route prefixer\n * @test {routePrefixer}\n */\ndescribe('routePrefixer', () => {\n  /**\n   * @test {routePrefixer}\n   */\n  it('should throw an error if the given params are not correct', () => {\n    const testPrefixFn = () => routePrefixer(null, testRouteObj);\n    const testRouteFn = () => routePrefixer('/prefix', {});\n    const testRouteFn2 = () => routePrefixer('/prefix', []);\n    (testPrefixFn).should.throw(TypeError, /be a string/);\n    (testRouteFn).should.throw(Error, /specify routes/);\n    (testRouteFn2).should.throw(Error, /specify routes/);\n  });\n\n  /**\n   * @test {routePrefixer}\n   */\n  it('should throw an error if route(s) don\\'t have route.path', () => {\n    const illegalRouteObj = {handler: () => {}};\n    const testRouteObjFn = () => routePrefixer('/prefix', illegalRouteObj);\n    const testRouteArrFn = () => routePrefixer('/prefix', [illegalRouteObj]);\n\n    (testRouteObjFn).should.throw(Error, /A route must have routes.path/);\n    (testRouteArrFn).should.throw(Error, /All routes must contain route.path/);\n  });\n\n  /**\n   * @test {routePrefixer}\n   */\n  it('should always return an array', () => {\n    const outputFromObj = routePrefixer('/added', testRouteObj);\n    const outputFromArr = routePrefixer('/added', testRouteArr);\n    outputFromObj.should.be.instanceof(Array);\n    outputFromArr.should.be.instanceof(Array);\n  });\n\n  /**\n   * @test {routePrefixer}\n   */\n  it('should be able to prefix routes as an Object', () => {\n    const testRouteOutput = routePrefixer('/added', testRouteObj);\n    (testRouteOutput[0].path).should.equal('/added/path');\n  });\n\n  /**\n   * @test {routePrefixer}\n   */\n  it('should be able to prefix routes as an Array', () => {\n    const testRouteOutput = routePrefixer('/added', testRouteArr);\n    (testRouteOutput[0].path).should.equal(`/added${testRouteArr[0].path}`);\n    (testRouteOutput[1].path).should.equal(`/added${testRouteArr[1].path}`);\n    (testRouteOutput[2].path).should.equal(`/added${testRouteArr[2].path}`);\n  });\n});\n"
+    "content": "import {routePrefixer} from '../../src/helpers';\nimport {cloneDeep as _cloneDeep} from 'lodash';\n\nconst testRouteObj = {\n  path: '/path',\n};\n\nconst testRouteArr = [\n  {\n    path: '/first',\n  },\n  {\n    path: '/second',\n  },\n  {\n    path: '/third',\n  },\n];\n\n/**\n * Route prefixer\n * @test {routePrefixer}\n */\ndescribe('routePrefixer', () => {\n  /**\n   * @test {routePrefixer}\n   */\n  it('should throw an error if the given params are not correct', () => {\n    // ensure that the testRouteObj doesn't change\n    const _testRouteObj = _cloneDeep(testRouteObj);\n    const testPrefixFn = () => routePrefixer(null, _testRouteObj);\n    const testRouteFn = () => routePrefixer('/prefix', {});\n    const testRouteFn2 = () => routePrefixer('/prefix', []);\n    (testPrefixFn).should.throw(TypeError, /be a string/);\n    (testRouteFn).should.throw(Error, /specify routes/);\n    (testRouteFn2).should.throw(Error, /specify routes/);\n  });\n\n  /**\n   * @test {routePrefixer}\n   */\n  it('should throw an error if route(s) don\\'t have route.path', () => {\n    const illegalRouteObj = {handler: () => {}};\n    const testRouteObjFn = () => routePrefixer('/prefix', illegalRouteObj);\n    const testRouteArrFn = () => routePrefixer('/prefix', [illegalRouteObj]);\n\n    (testRouteObjFn).should.throw(Error, /A route must have routes.path/);\n    (testRouteArrFn).should.throw(Error, /All routes must contain route.path/);\n  });\n\n  /**\n   * @test {routePrefixer}\n   */\n  it('should always return an array', () => {\n    // ensure that the testRouteObj and testRouteArr doesn't change\n    const _testRouteObj = _cloneDeep(testRouteObj);\n    const _testRouteArr = _cloneDeep(testRouteArr);\n\n    const outputFromObj = routePrefixer('/added', _testRouteObj);\n    const outputFromArr = routePrefixer('/added', _testRouteArr);\n    outputFromObj.should.be.instanceof(Array);\n    outputFromArr.should.be.instanceof(Array);\n  });\n\n  /**\n   * @test {routePrefixer}\n   */\n  it('should be able to prefix routes as an Object', () => {\n    // ensure that the testRouteObj doesn't change\n    const _testRouteObj = _cloneDeep(testRouteObj);\n    const testRouteOutput = routePrefixer('/added', _testRouteObj);\n    (testRouteOutput[0].path).should.equal('/added/path');\n  });\n\n  /**\n   * @test {routePrefixer}\n   */\n  it('should be able to prefix routes as an Array', () => {\n    // ensure that the testRouteArr doesn't change\n    const _testRouteArr = _cloneDeep(testRouteArr);\n    const testRouteOutput = routePrefixer('/added', _testRouteArr);\n    (testRouteOutput[0].path).should.equal(`/added${testRouteArr[0].path}`);\n    (testRouteOutput[1].path).should.equal(`/added${testRouteArr[1].path}`);\n    (testRouteOutput[2].path).should.equal(`/added${testRouteArr[2].path}`);\n  });\n});\n"
   },
   {
     "kind": "testDescribe",
     "static": true,
     "variation": null,
-    "name": "describe28",
-    "testId": 28,
+    "name": "describe32",
+    "testId": 32,
     "memberof": "test/helpers/routePrefixerTest.js",
     "testDepth": 0,
-    "longname": "test/helpers/routePrefixerTest.js~describe28",
+    "longname": "test/helpers/routePrefixerTest.js~describe32",
     "access": null,
     "description": "Route prefixer",
-    "lineNumber": 23,
-    "unknown": [
-      {
-        "tagName": "@test",
-        "tagValue": "{routePrefixer}"
-      }
-    ],
-    "testTargets": [
-      "routePrefixer"
-    ]
-  },
-  {
-    "kind": "testIt",
-    "static": true,
-    "variation": null,
-    "name": "it29",
-    "testId": 29,
-    "memberof": "test/helpers/routePrefixerTest.js~describe28",
-    "testDepth": 1,
-    "longname": "test/helpers/routePrefixerTest.js~describe28.it29",
-    "access": null,
-    "description": "should throw an error if the given params are not correct",
-    "lineNumber": 27,
-    "unknown": [
-      {
-        "tagName": "@test",
-        "tagValue": "{routePrefixer}"
-      }
-    ],
-    "testTargets": [
-      "routePrefixer"
-    ]
-  },
-  {
-    "kind": "testIt",
-    "static": true,
-    "variation": null,
-    "name": "it30",
-    "testId": 30,
-    "memberof": "test/helpers/routePrefixerTest.js~describe28",
-    "testDepth": 1,
-    "longname": "test/helpers/routePrefixerTest.js~describe28.it30",
-    "access": null,
-    "description": "should throw an error if route(s) don't have route.path",
-    "lineNumber": 39,
-    "unknown": [
-      {
-        "tagName": "@test",
-        "tagValue": "{routePrefixer}"
-      }
-    ],
-    "testTargets": [
-      "routePrefixer"
-    ]
-  },
-  {
-    "kind": "testIt",
-    "static": true,
-    "variation": null,
-    "name": "it31",
-    "testId": 31,
-    "memberof": "test/helpers/routePrefixerTest.js~describe28",
-    "testDepth": 1,
-    "longname": "test/helpers/routePrefixerTest.js~describe28.it31",
-    "access": null,
-    "description": "should always return an array",
-    "lineNumber": 51,
-    "unknown": [
-      {
-        "tagName": "@test",
-        "tagValue": "{routePrefixer}"
-      }
-    ],
-    "testTargets": [
-      "routePrefixer"
-    ]
-  },
-  {
-    "kind": "testIt",
-    "static": true,
-    "variation": null,
-    "name": "it32",
-    "testId": 32,
-    "memberof": "test/helpers/routePrefixerTest.js~describe28",
-    "testDepth": 1,
-    "longname": "test/helpers/routePrefixerTest.js~describe28.it32",
-    "access": null,
-    "description": "should be able to prefix routes as an Object",
-    "lineNumber": 61,
+    "lineNumber": 24,
     "unknown": [
       {
         "tagName": "@test",
@@ -4856,12 +4820,100 @@
     "variation": null,
     "name": "it33",
     "testId": 33,
-    "memberof": "test/helpers/routePrefixerTest.js~describe28",
+    "memberof": "test/helpers/routePrefixerTest.js~describe32",
     "testDepth": 1,
-    "longname": "test/helpers/routePrefixerTest.js~describe28.it33",
+    "longname": "test/helpers/routePrefixerTest.js~describe32.it33",
+    "access": null,
+    "description": "should throw an error if the given params are not correct",
+    "lineNumber": 28,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{routePrefixer}"
+      }
+    ],
+    "testTargets": [
+      "routePrefixer"
+    ]
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it34",
+    "testId": 34,
+    "memberof": "test/helpers/routePrefixerTest.js~describe32",
+    "testDepth": 1,
+    "longname": "test/helpers/routePrefixerTest.js~describe32.it34",
+    "access": null,
+    "description": "should throw an error if route(s) don't have route.path",
+    "lineNumber": 42,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{routePrefixer}"
+      }
+    ],
+    "testTargets": [
+      "routePrefixer"
+    ]
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it35",
+    "testId": 35,
+    "memberof": "test/helpers/routePrefixerTest.js~describe32",
+    "testDepth": 1,
+    "longname": "test/helpers/routePrefixerTest.js~describe32.it35",
+    "access": null,
+    "description": "should always return an array",
+    "lineNumber": 54,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{routePrefixer}"
+      }
+    ],
+    "testTargets": [
+      "routePrefixer"
+    ]
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it36",
+    "testId": 36,
+    "memberof": "test/helpers/routePrefixerTest.js~describe32",
+    "testDepth": 1,
+    "longname": "test/helpers/routePrefixerTest.js~describe32.it36",
+    "access": null,
+    "description": "should be able to prefix routes as an Object",
+    "lineNumber": 68,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{routePrefixer}"
+      }
+    ],
+    "testTargets": [
+      "routePrefixer"
+    ]
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it37",
+    "testId": 37,
+    "memberof": "test/helpers/routePrefixerTest.js~describe32",
+    "testDepth": 1,
+    "longname": "test/helpers/routePrefixerTest.js~describe32.it37",
     "access": null,
     "description": "should be able to prefix routes as an Array",
-    "lineNumber": 69,
+    "lineNumber": 78,
     "unknown": [
       {
         "tagName": "@test",
@@ -4888,11 +4940,11 @@
     "kind": "testDescribe",
     "static": true,
     "variation": null,
-    "name": "describe34",
-    "testId": 34,
+    "name": "describe38",
+    "testId": 38,
     "memberof": "test/helpers/routerContainerTest.js",
     "testDepth": 0,
-    "longname": "test/helpers/routerContainerTest.js~describe34",
+    "longname": "test/helpers/routerContainerTest.js~describe38",
     "access": null,
     "description": "Router container",
     "lineNumber": 7,
@@ -4910,11 +4962,11 @@
     "kind": "testIt",
     "static": true,
     "variation": null,
-    "name": "it35",
-    "testId": 35,
-    "memberof": "test/helpers/routerContainerTest.js~describe34",
+    "name": "it39",
+    "testId": 39,
+    "memberof": "test/helpers/routerContainerTest.js~describe38",
     "testDepth": 1,
-    "longname": "test/helpers/routerContainerTest.js~describe34.it35",
+    "longname": "test/helpers/routerContainerTest.js~describe38.it39",
     "access": null,
     "description": "should have a get() method",
     "lineNumber": 11,
@@ -4932,11 +4984,11 @@
     "kind": "testIt",
     "static": true,
     "variation": null,
-    "name": "it36",
-    "testId": 36,
-    "memberof": "test/helpers/routerContainerTest.js~describe34",
+    "name": "it40",
+    "testId": 40,
+    "memberof": "test/helpers/routerContainerTest.js~describe38",
     "testDepth": 1,
-    "longname": "test/helpers/routerContainerTest.js~describe34.it36",
+    "longname": "test/helpers/routerContainerTest.js~describe38.it40",
     "access": null,
     "description": "should have a set() method",
     "lineNumber": 18,
@@ -4954,11 +5006,11 @@
     "kind": "testIt",
     "static": true,
     "variation": null,
-    "name": "it37",
-    "testId": 37,
-    "memberof": "test/helpers/routerContainerTest.js~describe34",
+    "name": "it41",
+    "testId": 41,
+    "memberof": "test/helpers/routerContainerTest.js~describe38",
     "testDepth": 1,
-    "longname": "test/helpers/routerContainerTest.js~describe34.it37",
+    "longname": "test/helpers/routerContainerTest.js~describe38.it41",
     "access": null,
     "description": "should be able to set and get a router",
     "lineNumber": 25,
@@ -4988,11 +5040,11 @@
     "kind": "testDescribe",
     "static": true,
     "variation": null,
-    "name": "describe38",
-    "testId": 38,
+    "name": "describe42",
+    "testId": 42,
     "memberof": "test/stores/ExampleStoreTest.js",
     "testDepth": 0,
-    "longname": "test/stores/ExampleStoreTest.js~describe38",
+    "longname": "test/stores/ExampleStoreTest.js~describe42",
     "access": null,
     "description": "ExampleStore",
     "lineNumber": 10,
@@ -5010,11 +5062,11 @@
     "kind": "testIt",
     "static": true,
     "variation": null,
-    "name": "it39",
-    "testId": 39,
-    "memberof": "test/stores/ExampleStoreTest.js~describe38",
+    "name": "it43",
+    "testId": 43,
+    "memberof": "test/stores/ExampleStoreTest.js~describe42",
     "testDepth": 1,
-    "longname": "test/stores/ExampleStoreTest.js~describe38.it39",
+    "longname": "test/stores/ExampleStoreTest.js~describe42.it43",
     "access": null,
     "description": "should be an instance of FrillCore.BaseStore",
     "lineNumber": 14,
@@ -5032,11 +5084,11 @@
     "kind": "testIt",
     "static": true,
     "variation": null,
-    "name": "it40",
-    "testId": 40,
-    "memberof": "test/stores/ExampleStoreTest.js~describe38",
+    "name": "it44",
+    "testId": 44,
+    "memberof": "test/stores/ExampleStoreTest.js~describe42",
     "testDepth": 1,
-    "longname": "test/stores/ExampleStoreTest.js~describe38.it40",
+    "longname": "test/stores/ExampleStoreTest.js~describe42.it44",
     "access": null,
     "description": "should have appropriate properties and defaults",
     "lineNumber": 21,
@@ -5054,11 +5106,11 @@
     "kind": "testDescribe",
     "static": true,
     "variation": null,
-    "name": "describe41",
-    "testId": 41,
-    "memberof": "test/stores/ExampleStoreTest.js~describe38",
+    "name": "describe45",
+    "testId": 45,
+    "memberof": "test/stores/ExampleStoreTest.js~describe42",
     "testDepth": 1,
-    "longname": "test/stores/ExampleStoreTest.js~describe38.describe41",
+    "longname": "test/stores/ExampleStoreTest.js~describe42.describe45",
     "access": null,
     "description": "ExampleStore#actions",
     "lineNumber": 32,
@@ -5076,11 +5128,11 @@
     "kind": "testIt",
     "static": true,
     "variation": null,
-    "name": "it42",
-    "testId": 42,
-    "memberof": "test/stores/ExampleStoreTest.js~describe38.describe41",
+    "name": "it46",
+    "testId": 46,
+    "memberof": "test/stores/ExampleStoreTest.js~describe42.describe45",
     "testDepth": 2,
-    "longname": "test/stores/ExampleStoreTest.js~describe38.describe41.it42",
+    "longname": "test/stores/ExampleStoreTest.js~describe42.describe45.it46",
     "access": null,
     "description": "should handle COUNT_UP",
     "lineNumber": 36,
@@ -5098,11 +5150,11 @@
     "kind": "testIt",
     "static": true,
     "variation": null,
-    "name": "it43",
-    "testId": 43,
-    "memberof": "test/stores/ExampleStoreTest.js~describe38.describe41",
+    "name": "it47",
+    "testId": 47,
+    "memberof": "test/stores/ExampleStoreTest.js~describe42.describe45",
     "testDepth": 2,
-    "longname": "test/stores/ExampleStoreTest.js~describe38.describe41.it43",
+    "longname": "test/stores/ExampleStoreTest.js~describe42.describe45.it47",
     "access": null,
     "description": "should handle COUNT_UP_BY",
     "lineNumber": 43,
@@ -5120,11 +5172,11 @@
     "kind": "testIt",
     "static": true,
     "variation": null,
-    "name": "it44",
-    "testId": 44,
-    "memberof": "test/stores/ExampleStoreTest.js~describe38.describe41",
+    "name": "it48",
+    "testId": 48,
+    "memberof": "test/stores/ExampleStoreTest.js~describe42.describe45",
     "testDepth": 2,
-    "longname": "test/stores/ExampleStoreTest.js~describe38.describe41.it44",
+    "longname": "test/stores/ExampleStoreTest.js~describe42.describe45.it48",
     "access": null,
     "description": "should handle LOAD_SCROLL_ITEMS",
     "lineNumber": 50,
@@ -5142,11 +5194,11 @@
     "kind": "testDescribe",
     "static": true,
     "variation": null,
-    "name": "describe45",
-    "testId": 45,
-    "memberof": "test/stores/ExampleStoreTest.js~describe38",
+    "name": "describe49",
+    "testId": 49,
+    "memberof": "test/stores/ExampleStoreTest.js~describe42",
     "testDepth": 1,
-    "longname": "test/stores/ExampleStoreTest.js~describe38.describe45",
+    "longname": "test/stores/ExampleStoreTest.js~describe42.describe49",
     "access": null,
     "description": "ExampleStore#countUp",
     "lineNumber": 57,
@@ -5164,11 +5216,11 @@
     "kind": "testIt",
     "static": true,
     "variation": null,
-    "name": "it46",
-    "testId": 46,
-    "memberof": "test/stores/ExampleStoreTest.js~describe38.describe45",
+    "name": "it50",
+    "testId": 50,
+    "memberof": "test/stores/ExampleStoreTest.js~describe42.describe49",
     "testDepth": 2,
-    "longname": "test/stores/ExampleStoreTest.js~describe38.describe45.it46",
+    "longname": "test/stores/ExampleStoreTest.js~describe42.describe49.it50",
     "access": null,
     "description": "should have a countUp() method",
     "lineNumber": 61,
@@ -5186,11 +5238,11 @@
     "kind": "testIt",
     "static": true,
     "variation": null,
-    "name": "it47",
-    "testId": 47,
-    "memberof": "test/stores/ExampleStoreTest.js~describe38.describe45",
+    "name": "it51",
+    "testId": 51,
+    "memberof": "test/stores/ExampleStoreTest.js~describe42.describe49",
     "testDepth": 2,
-    "longname": "test/stores/ExampleStoreTest.js~describe38.describe45.it47",
+    "longname": "test/stores/ExampleStoreTest.js~describe42.describe49.it51",
     "access": null,
     "description": "should be able to handle dispatched actions",
     "lineNumber": 69,
@@ -5213,11 +5265,11 @@
     "kind": "testDescribe",
     "static": true,
     "variation": null,
-    "name": "describe48",
-    "testId": 48,
-    "memberof": "test/stores/ExampleStoreTest.js~describe38",
+    "name": "describe52",
+    "testId": 52,
+    "memberof": "test/stores/ExampleStoreTest.js~describe42",
     "testDepth": 1,
-    "longname": "test/stores/ExampleStoreTest.js~describe38.describe48",
+    "longname": "test/stores/ExampleStoreTest.js~describe42.describe52",
     "access": null,
     "description": "ExampleStore#countUpBy",
     "lineNumber": 82,
@@ -5235,11 +5287,11 @@
     "kind": "testIt",
     "static": true,
     "variation": null,
-    "name": "it49",
-    "testId": 49,
-    "memberof": "test/stores/ExampleStoreTest.js~describe38.describe48",
+    "name": "it53",
+    "testId": 53,
+    "memberof": "test/stores/ExampleStoreTest.js~describe42.describe52",
     "testDepth": 2,
-    "longname": "test/stores/ExampleStoreTest.js~describe38.describe48.it49",
+    "longname": "test/stores/ExampleStoreTest.js~describe42.describe52.it53",
     "access": null,
     "description": "should have a countUpBy() method",
     "lineNumber": 86,
@@ -5257,11 +5309,11 @@
     "kind": "testIt",
     "static": true,
     "variation": null,
-    "name": "it50",
-    "testId": 50,
-    "memberof": "test/stores/ExampleStoreTest.js~describe38.describe48",
+    "name": "it54",
+    "testId": 54,
+    "memberof": "test/stores/ExampleStoreTest.js~describe42.describe52",
     "testDepth": 2,
-    "longname": "test/stores/ExampleStoreTest.js~describe38.describe48.it50",
+    "longname": "test/stores/ExampleStoreTest.js~describe42.describe52.it54",
     "access": null,
     "description": "should be able to handle dispatched actions",
     "lineNumber": 94,
@@ -5284,11 +5336,11 @@
     "kind": "testDescribe",
     "static": true,
     "variation": null,
-    "name": "describe51",
-    "testId": 51,
-    "memberof": "test/stores/ExampleStoreTest.js~describe38",
+    "name": "describe55",
+    "testId": 55,
+    "memberof": "test/stores/ExampleStoreTest.js~describe42",
     "testDepth": 1,
-    "longname": "test/stores/ExampleStoreTest.js~describe38.describe51",
+    "longname": "test/stores/ExampleStoreTest.js~describe42.describe55",
     "access": null,
     "description": "ExampleStore#loadScrollItems",
     "lineNumber": 107,
@@ -5306,11 +5358,11 @@
     "kind": "testIt",
     "static": true,
     "variation": null,
-    "name": "it52",
-    "testId": 52,
-    "memberof": "test/stores/ExampleStoreTest.js~describe38.describe51",
+    "name": "it56",
+    "testId": 56,
+    "memberof": "test/stores/ExampleStoreTest.js~describe42.describe55",
     "testDepth": 2,
-    "longname": "test/stores/ExampleStoreTest.js~describe38.describe51.it52",
+    "longname": "test/stores/ExampleStoreTest.js~describe42.describe55.it56",
     "access": null,
     "description": "should have a loadScrollItems() method",
     "lineNumber": 111,
@@ -5328,11 +5380,11 @@
     "kind": "testIt",
     "static": true,
     "variation": null,
-    "name": "it53",
-    "testId": 53,
-    "memberof": "test/stores/ExampleStoreTest.js~describe38.describe51",
+    "name": "it57",
+    "testId": 57,
+    "memberof": "test/stores/ExampleStoreTest.js~describe42.describe55",
     "testDepth": 2,
-    "longname": "test/stores/ExampleStoreTest.js~describe38.describe51.it53",
+    "longname": "test/stores/ExampleStoreTest.js~describe42.describe55.it57",
     "access": null,
     "description": "should be able to handle dispatched actions",
     "lineNumber": 121,

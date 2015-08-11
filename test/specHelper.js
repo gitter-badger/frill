@@ -5,21 +5,30 @@ import chai from 'chai';
 import sinon from 'sinon';
 import cheerio from 'cheerio';
 import Hapi from 'hapi';
+import {mockSession} from './frillHelper';
 import Authentication from 'bell';
 import Strategies from '../src/api/auth/strategies';
 const TEST_SERVER_PORT = 6000;
 const server = new Hapi.Server();
-server.connection({port: TEST_SERVER_PORT});
 
-// register Authentication strategies
-server.register([
-  Authentication,
-], () => {
-  // use JsonWebTokens (you shouldn't remove this)
-  Strategies.jwtStrategy(server);
-  // use Local strategy
-  Strategies.localStrategy(server);
-});
+try {
+  server.connection({port: TEST_SERVER_PORT});
+
+  // register session
+  mockSession(server);
+
+  // register Authentication strategies
+  server.register([
+    Authentication,
+  ], () => {
+    // use JsonWebTokens (you shouldn't remove this)
+    Strategies.jwtStrategy(server);
+    // use Local strategy
+    Strategies.localStrategy(server);
+  });
+} catch (e) {
+  console.error(e);
+}
 
 global.document = jsdom('<html><body></body></html>');
 global.window = document.defaultView;

@@ -148,7 +148,6 @@ const apiV1Hello = (/* server */) =&gt; {
       },
     },
     handler: (req, rep) =&gt; {
-      console.log(req.auth);
       rep({msg: &apos;restricted api, hello&apos;});
     },
   }];

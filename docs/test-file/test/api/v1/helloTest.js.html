@@ -107,7 +107,7 @@
 
 <div class="content" data-ice="content"><h1 data-ice="title">test/api/v1/helloTest.js</h1>
 <pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">import helloApi from &apos;../../../src/api/v1/hello&apos;;
-import {inject} from &apos;../../frillHelper&apos;;
+import {inject, injectAuthenticated} from &apos;../../frillHelper&apos;;
 import {routePrefixer} from &apos;../../../src/helpers&apos;;
 
 server.route(routePrefixer(&apos;/api/v1&apos;, helloApi()));
@@ -115,55 +115,59 @@ server.route(routePrefixer(&apos;/api/v1&apos;, helloApi()));
 describe(&apos;/api/v1/hello&apos;, () =&gt; {
   describe(&apos;/&apos;, () =&gt; {
     it(&apos;should return 200 on GET request&apos;, () =&gt; {
-      inject({ method: &apos;GET&apos;, url: &apos;/api/v1/hello&apos;}).then((response) =&gt; {
+      return inject({ method: &apos;GET&apos;, url: &apos;/api/v1/hello&apos; })
+      .then((response) =&gt; {
         response.statusCode.should.equal(200);
       });
     });
 
     it(&apos;should return 404 on POST request&apos;, () =&gt; {
-      inject({ method: &apos;POST&apos;, url: &apos;/api/v1/hello&apos;}).then((response) =&gt; {
+      return inject({ method: &apos;POST&apos;, url: &apos;/api/v1/hello&apos; })
+      .then((response) =&gt; {
         response.statusCode.should.equal(404);
       });
     });
 
     it(&apos;should return 404 on PUT request&apos;, () =&gt; {
-      inject({ method: &apos;PUT&apos;, url: &apos;/api/v1/hello&apos;}).then((response) =&gt; {
+      return inject({ method: &apos;PUT&apos;, url: &apos;/api/v1/hello&apos; })
+      .then((response) =&gt; {
         response.statusCode.should.equal(404);
       });
     });
 
     it(&apos;should return 404 on DELETE request&apos;, () =&gt; {
-      inject({ method: &apos;DELETE&apos;, url: &apos;/api/v1/hello&apos;}).then((response) =&gt; {
+      return inject({ method: &apos;DELETE&apos;, url: &apos;/api/v1/hello&apos; })
+      .then((response) =&gt; {
         response.statusCode.should.equal(404);
       });
     });
 
     it(&apos;should return expected result&apos;, () =&gt; {
-      inject({ method: &apos;GET&apos;, url: &apos;/api/v1/hello&apos;}).then((response) =&gt; {
-        response.result.should.deep.equal({msg: &apos;api, hello&apos;});
+      return inject({ method: &apos;GET&apos;, url: &apos;/api/v1/hello&apos; })
+      .then((response) =&gt; {
+        response.result.should.deep.equal({ msg: &apos;api, hello&apos; });
       });
     });
   });
   describe(&apos;/restricted&apos;, () =&gt; {
     it(&apos;should return 401 Unauthorized on GET request without token&apos;, () =&gt; {
-      inject({ method: &apos;GET&apos;, url: &apos;/api/v1/hello/restricted&apos;})
+      return inject({ method: &apos;GET&apos;, url: &apos;/api/v1/hello/restricted&apos; })
       .then((response) =&gt; {
         response.statusCode.should.equal(401);
         response.result.error.should.equal(&apos;Unauthorized&apos;);
         response.result.message.should.equal(&apos;Missing auth token&apos;);
       });
     });
+
     it(&apos;should return 200 on GET request with token&apos;, () =&gt; {
-      // inject({ method: &apos;GET&apos;, url: &apos;/hello/restricted&apos;}).then((response) =&gt; {
-      //   response.statusCode.should.equal(401);
-      //   response.result.error.should.equal(&apos;Unauthorized&apos;);
-      //   response.result.message.should.equal(&apos;Missing auth token&apos;);
-      // });
-      // inject({ method: &apos;GET&apos;, url: &apos;/hello/restricted&apos;}).then((response) =&gt; {
-      //   response.statusCode.should.equal(401);
-      //   response.result.error.should.equal(&apos;Unauthorized&apos;);
-      //   response.result.message.should.equal(&apos;Missing auth token&apos;);
-      // });
+      return injectAuthenticated({
+        method: &apos;GET&apos;,
+        url: &apos;/api/v1/hello/restricted&apos;,
+      })
+      .then((response) =&gt; {
+        response.statusCode.should.equal(200);
+        response.result.should.deep.equal({ msg: &apos;restricted api, hello&apos; });
+      });
     });
   });
 });

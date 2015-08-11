@@ -19,43 +19,43 @@ window.esdocSearchIndex = [
   ],
   [
     "",
-    "test-file/test/api/v1/helloTest.js.html#lineNumber27",
+    "test-file/test/api/v1/helloTest.js.html#lineNumber30",
     "/api/v1/hello / should return 404 on DELETE request",
     "test"
   ],
   [
     "",
-    "test-file/test/api/v1/helloTest.js.html#lineNumber15",
+    "test-file/test/api/v1/helloTest.js.html#lineNumber16",
     "/api/v1/hello / should return 404 on POST request",
     "test"
   ],
   [
     "",
-    "test-file/test/api/v1/helloTest.js.html#lineNumber21",
+    "test-file/test/api/v1/helloTest.js.html#lineNumber23",
     "/api/v1/hello / should return 404 on PUT request",
     "test"
   ],
   [
     "",
-    "test-file/test/api/v1/helloTest.js.html#lineNumber33",
+    "test-file/test/api/v1/helloTest.js.html#lineNumber37",
     "/api/v1/hello / should return expected result",
     "test"
   ],
   [
     "",
-    "test-file/test/api/v1/helloTest.js.html#lineNumber39",
+    "test-file/test/api/v1/helloTest.js.html#lineNumber44",
     "/api/v1/hello /restricted",
     "test"
   ],
   [
     "",
-    "test-file/test/api/v1/helloTest.js.html#lineNumber48",
+    "test-file/test/api/v1/helloTest.js.html#lineNumber54",
     "/api/v1/hello /restricted should return 200 on GET request with token",
     "test"
   ],
   [
     "",
-    "test-file/test/api/v1/helloTest.js.html#lineNumber40",
+    "test-file/test/api/v1/helloTest.js.html#lineNumber45",
     "/api/v1/hello /restricted should return 401 Unauthorized on GET request without token",
     "test"
   ],
@@ -73,14 +73,38 @@ window.esdocSearchIndex = [
   ],
   [
     "",
-    "test-file/test/api/v1/localAuthTest.js.html#lineNumber14",
+    "test-file/test/api/v1/localAuthTest.js.html#lineNumber53",
+    "/api/v1/login / should return 200 on POST request with a valid payload",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/api/v1/localAuthTest.js.html#lineNumber38",
+    "/api/v1/login / should return 400 on POST request with a invalid payload",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/api/v1/localAuthTest.js.html#lineNumber30",
     "/api/v1/login / should return 400 on POST request without body",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/api/v1/localAuthTest.js.html#lineNumber23",
+    "/api/v1/login / should return 404 on DELETE request",
     "test"
   ],
   [
     "",
     "test-file/test/api/v1/localAuthTest.js.html#lineNumber9",
     "/api/v1/login / should return 404 on GET request",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/api/v1/localAuthTest.js.html#lineNumber16",
+    "/api/v1/login / should return 404 on PUT request",
     "test"
   ],
   [
@@ -883,37 +907,37 @@ window.esdocSearchIndex = [
   ],
   [
     "routeprefixer src/helpers/routeprefixer.js~routeprefixer,routeprefixer",
-    "test-file/test/helpers/routePrefixerTest.js.html#lineNumber23",
+    "test-file/test/helpers/routePrefixerTest.js.html#lineNumber24",
     "Route prefixer",
     "test"
   ],
   [
     "routeprefixer src/helpers/routeprefixer.js~routeprefixer,routeprefixer",
-    "test-file/test/helpers/routePrefixerTest.js.html#lineNumber51",
+    "test-file/test/helpers/routePrefixerTest.js.html#lineNumber54",
     "Route prefixer should always return an array",
     "test"
   ],
   [
     "routeprefixer src/helpers/routeprefixer.js~routeprefixer,routeprefixer",
-    "test-file/test/helpers/routePrefixerTest.js.html#lineNumber69",
+    "test-file/test/helpers/routePrefixerTest.js.html#lineNumber78",
     "Route prefixer should be able to prefix routes as an Array",
     "test"
   ],
   [
     "routeprefixer src/helpers/routeprefixer.js~routeprefixer,routeprefixer",
-    "test-file/test/helpers/routePrefixerTest.js.html#lineNumber61",
+    "test-file/test/helpers/routePrefixerTest.js.html#lineNumber68",
     "Route prefixer should be able to prefix routes as an Object",
     "test"
   ],
   [
     "routeprefixer src/helpers/routeprefixer.js~routeprefixer,routeprefixer",
-    "test-file/test/helpers/routePrefixerTest.js.html#lineNumber39",
+    "test-file/test/helpers/routePrefixerTest.js.html#lineNumber42",
     "Route prefixer should throw an error if route(s) don't have route.path",
     "test"
   ],
   [
     "routeprefixer src/helpers/routeprefixer.js~routeprefixer,routeprefixer",
-    "test-file/test/helpers/routePrefixerTest.js.html#lineNumber27",
+    "test-file/test/helpers/routePrefixerTest.js.html#lineNumber28",
     "Route prefixer should throw an error if the given params are not correct",
     "test"
   ],
