@@ -7,7 +7,6 @@ import {clone as _clone} from 'lodash';
 
 // Test data
 import accounts from '../../fixtures/testUserData';
-import Seq from '../../models';
 
 /**
  * Local authentication routes.

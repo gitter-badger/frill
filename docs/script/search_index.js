@@ -336,12 +336,6 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "frill/src/models/dynamodb/posts.js~posts",
-    "variable/index.html#static-variable-posts",
-    "<span>posts</span> <span class=\"search-result-import-path\">frill/src/models/DynamoDB/Posts.js</span>",
-    "variable"
-  ],
-  [
     "frill/src/helpers/routeprefixer.js~routeprefixer",
     "variable/index.html#static-variable-routePrefixer",
     "<span>routePrefixer</span> <span class=\"search-result-import-path\">frill/src/helpers/routePrefixer.js</span>",
@@ -1350,6 +1344,18 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/fixtures/testscrollitemsdata.js",
+    "file/src/fixtures/testScrollItemsData.js.html",
+    "src/fixtures/testScrollItemsData.js",
+    "file"
+  ],
+  [
+    "src/fixtures/testuserdata.js",
+    "file/src/fixtures/testUserData.js.html",
+    "src/fixtures/testUserData.js",
+    "file"
+  ],
+  [
     "src/helpers/aws.js",
     "file/src/helpers/aws.js.html",
     "src/helpers/aws.js",
@@ -1380,18 +1386,6 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/helpers/testscrollitemsdata.js",
-    "file/src/helpers/testScrollItemsData.js.html",
-    "src/helpers/testScrollItemsData.js",
-    "file"
-  ],
-  [
-    "src/helpers/testuserdata.js",
-    "file/src/helpers/testUserData.js.html",
-    "src/helpers/testUserData.js",
-    "file"
-  ],
-  [
     "src/models/dynamodb/posts.js",
     "file/src/models/DynamoDB/Posts.js.html",
     "src/models/DynamoDB/Posts.js",
@@ -1402,12 +1396,6 @@ window.esdocSearchIndex = [
     "file/src/models/DynamoDB/index.js.html",
     "src/models/DynamoDB/index.js",
     "file"
-  ],
-  [
-    "src/models/dynamodb/index.js~vogels",
-    "external/index.html",
-    "src/models/DynamoDB/index.js~Vogels",
-    "external"
   ],
   [
     "src/models/mysql/users.js",
@@ -1434,15 +1422,15 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/models/sequelize.js",
-    "file/src/models/sequelize.js.html",
-    "src/models/sequelize.js",
+    "src/models/setup_sequelize.js",
+    "file/src/models/setup_sequelize.js.html",
+    "src/models/setup_sequelize.js",
     "file"
   ],
   [
-    "src/models/vogels.js",
-    "file/src/models/vogels.js.html",
-    "src/models/vogels.js",
+    "src/models/setup_vogels.js",
+    "file/src/models/setup_vogels.js.html",
+    "src/models/setup_vogels.js",
     "file"
   ],
   [

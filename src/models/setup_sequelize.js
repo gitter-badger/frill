@@ -1,16 +1,14 @@
 import Sequelize from 'sequelize';
 import config from 'config';
 
-console.log(config);
-
 /**
  * setup sequelize
  */
 const sequelize = new Sequelize(
-  config.get('MySQL.database'),
-  config.get('MySQL.username'),
-  config.get('MySQL.password'),
-  config.get('MySQL.options')
+  config.get('sequelize.database'),
+  config.get('sequelize.username'),
+  config.get('sequelize.password'),
+  config.get('sequelize.options')
 );
 
 export default sequelize;

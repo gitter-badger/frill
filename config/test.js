@@ -1,23 +1,14 @@
 export default {
   app: 'Frill',
   /** @see {Sequelize} http://docs.sequelizejs.com/en/latest/ */
-  MySQL: {
-    database: 'database!!',
+  sequelize: {
+    database: 'test_db',
     username: 'username',
     password: 'password',
     options: {
-      host: 'localhost',
-      dialect: 'mysql',
-      // pool: {
-      //   max: 5,
-      //   min: 0,
-      //   idle: 10000,
-      // },
+      dialect: 'sqlite',
+      storage: './db/development.sqlite',
     },
-  },
-  /** @see {Vogels} https://github.com/ryanfitz/vogels */
-  DynamoDB: {
-    endpoint: 'http://localhost:8000',
   },
   /** @see {AmazonWebServices} http://aws.amazon.com/ */
   AWS: {

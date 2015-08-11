@@ -1,7 +1,7 @@
 export default {
   app: 'Frill',
   /** @see {Sequelize} http://docs.sequelizejs.com/en/latest/ */
-  MySQL: {
+  sequelize: {
     database: 'database',
     username: 'username',
     password: 'password',
@@ -15,9 +15,8 @@ export default {
       // },
     },
   },
-  /** @see {Vogels} https://github.com/ryanfitz/vogels */
-  DynamoDB: {
-    endpoint: 'http://localhost:8000',
+  vogels: {
+    endpoint: 'localhost:8000',
   },
   /** @see {AmazonWebServices} http://aws.amazon.com/ */
   AWS: {

@@ -162,7 +162,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import {BaseAction} from 'frill-core';\nimport scrollData from '../helpers/testScrollItemsData';\n\n/**\n * Example actions\n * @extends {FrillCore.BaseAction}\n * @example <caption>via react or frill component</caption>\n * // count up counters\n * this.getFrill().action('Example').countUp();\n * // count up counters by a number given\n * this.getFrill().action('Example').countUpBy(10);\n * // load items by scroll\n * this.getFrill().action('Example').loadScrollItems(1, 5);\n */\nclass ExampleAction extends BaseAction {\n\n  /**\n   * Constructor\n   */\n  constructor() {\n    super();\n    // this.use('request', {prefix: '/api'});\n    // this.use('socket', {url: 'http://localhost:3000'});\n  }\n\n  /**\n   * Counts up counter by one.\n   * @emits {COUNT_UP}\n   */\n  countUp() {\n    this.dispatch('COUNT_UP');\n  }\n\n  /**\n   * Counts up counter by a number given.\n   * @param {number} [count=1] - a number to count up by\n   * @emits {COUNT_UP_BY}\n   */\n  countUpBy(count = 1) {\n    this.dispatch('COUNT_UP_BY', count);\n  }\n\n  /**\n   * load items by scroll (Infinite scrolling)\n   * @param {number} [lastIndex=1] - the last index of items loaded\n   * @param {number} [retrieve=5] - number of items to load\n   * @emits {LOAD_SCROLL_ITEMS}\n   */\n  loadScrollItems(lastIndex = 1, retrieve = 5) {\n    const data = scrollData.slice(lastIndex, lastIndex + retrieve);\n    setTimeout(() => {\n      this.dispatch('LOAD_SCROLL_ITEMS', {\n        data: data,\n        total: scrollData.length,\n      });\n    }, 1500);\n  }\n}\n\n/**\n * export ExampleAction instance\n */\nexport default new ExampleAction();\n"
+    "content": "import {BaseAction} from 'frill-core';\nimport scrollData from '../fixtures/testScrollItemsData';\n\n/**\n * Example actions\n * @extends {FrillCore.BaseAction}\n * @example <caption>via react or frill component</caption>\n * // count up counters\n * this.getFrill().action('Example').countUp();\n * // count up counters by a number given\n * this.getFrill().action('Example').countUpBy(10);\n * // load items by scroll\n * this.getFrill().action('Example').loadScrollItems(1, 5);\n */\nclass ExampleAction extends BaseAction {\n\n  /**\n   * Constructor\n   */\n  constructor() {\n    super();\n    // this.use('request', {prefix: '/api'});\n    // this.use('socket', {url: 'http://localhost:3000'});\n  }\n\n  /**\n   * Counts up counter by one.\n   * @emits {COUNT_UP}\n   */\n  countUp() {\n    this.dispatch('COUNT_UP');\n  }\n\n  /**\n   * Counts up counter by a number given.\n   * @param {number} [count=1] - a number to count up by\n   * @emits {COUNT_UP_BY}\n   */\n  countUpBy(count = 1) {\n    this.dispatch('COUNT_UP_BY', count);\n  }\n\n  /**\n   * load items by scroll (Infinite scrolling)\n   * @param {number} [lastIndex=1] - the last index of items loaded\n   * @param {number} [retrieve=5] - number of items to load\n   * @emits {LOAD_SCROLL_ITEMS}\n   */\n  loadScrollItems(lastIndex = 1, retrieve = 5) {\n    const data = scrollData.slice(lastIndex, lastIndex + retrieve);\n    setTimeout(() => {\n      this.dispatch('LOAD_SCROLL_ITEMS', {\n        data: data,\n        total: scrollData.length,\n      });\n    }, 1500);\n  }\n}\n\n/**\n * export ExampleAction instance\n */\nexport default new ExampleAction();\n"
   },
   {
     "kind": "class",
@@ -360,7 +360,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import JWT from 'jsonwebtoken';\nimport Boom from 'boom';\nimport aguid from 'aguid';\nimport {where as _where} from 'lodash';\n\n// Test data\nimport accounts from '../../helpers/testUserData';\n// import models from '../../models';\n\n/**\n * Handler for authentication\n */\nconst authHandler = (request, reply) => {\n  // reply error when authentication fails\n  if (!request.auth.isAuthenticated) {\n    return reply(\n      Boom.unauthorized('Authentication failed due to: ' +\n        request.auth.error.message)\n    );\n  }\n\n  const query = {\n    id: parseInt(request.auth.credentials.profile.id, 10),\n    strategy: request.auth.strategy,\n  };\n\n  const user = _where(accounts, query);\n  // console.log(user);\n\n  if (user.length === 0) {\n    console.log('needs registration');\n  }\n\n  delete user[0].password;\n\n  /** @todo create and set JWT into session */\n  const session = {\n    valid: true,\n    id: aguid(), // a random session id\n    user: user[0],\n    exp: new Date().getTime() + 30 * 60 * 1000, // expires in 30 minutes time\n  };\n\n  // // create the session in Redis\n  // redisClient.set(session.id, JSON.stringify(session));\n  request.session.set(session.id, session);\n  // sign the session as a JWT\n  const token = JWT.sign(session, 'NeverShareYourSecret');\n  // console.log(token);\n  request.session.flash('token', token);\n  return reply.redirect(request.query.ref || '/');\n};\n\n/**\n * Handler for login\n */\nconst loginHandler = () => {\n\n};\n\n/**\n * Handler for site registration\n */\nconst registrationHandler = () => {\n\n};\n\n/**\n * Export all authentication handlers\n */\nconst authHandlers = {\n  authHandler,\n  loginHandler,\n  registrationHandler,\n};\n\nexport default authHandlers;\n"
+    "content": "import JWT from 'jsonwebtoken';\nimport Boom from 'boom';\nimport aguid from 'aguid';\nimport {where as _where} from 'lodash';\n\n// Test data\nimport accounts from '../../fixtures/testUserData';\n\n/**\n * Handler for authentication\n */\nconst authHandler = (request, reply) => {\n  // reply error when authentication fails\n  if (!request.auth.isAuthenticated) {\n    return reply(\n      Boom.unauthorized('Authentication failed due to: ' +\n        request.auth.error.message)\n    );\n  }\n\n  const query = {\n    id: parseInt(request.auth.credentials.profile.id, 10),\n    strategy: request.auth.strategy,\n  };\n\n  const user = _where(accounts, query);\n  // console.log(user);\n\n  if (user.length === 0) {\n    console.log('needs registration');\n  }\n\n  delete user[0].password;\n\n  /** @todo create and set JWT into session */\n  const session = {\n    valid: true,\n    id: aguid(), // a random session id\n    user: user[0],\n    exp: new Date().getTime() + 30 * 60 * 1000, // expires in 30 minutes time\n  };\n\n  // // create the session in Redis\n  // redisClient.set(session.id, JSON.stringify(session));\n  request.session.set(session.id, session);\n  // sign the session as a JWT\n  const token = JWT.sign(session, 'NeverShareYourSecret');\n  // console.log(token);\n  request.session.flash('token', token);\n  return reply.redirect(request.query.ref || '/');\n};\n\n/**\n * Handler for login\n */\nconst loginHandler = () => {\n\n};\n\n/**\n * Handler for site registration\n */\nconst registrationHandler = () => {\n\n};\n\n/**\n * Export all authentication handlers\n */\nconst authHandlers = {\n  authHandler,\n  loginHandler,\n  registrationHandler,\n};\n\nexport default authHandlers;\n"
   },
   {
     "kind": "variable",
@@ -374,7 +374,7 @@
     "importPath": "frill/src/api/auth/authHandlers.js",
     "importStyle": null,
     "description": "Handler for authentication",
-    "lineNumber": 13,
+    "lineNumber": 12,
     "type": {
       "types": [
         "*"
@@ -393,7 +393,7 @@
     "importPath": "frill/src/api/auth/authHandlers.js",
     "importStyle": null,
     "description": "Handler for login",
-    "lineNumber": 57,
+    "lineNumber": 56,
     "type": {
       "types": [
         "*"
@@ -412,7 +412,7 @@
     "importPath": "frill/src/api/auth/authHandlers.js",
     "importStyle": null,
     "description": "Handler for site registration",
-    "lineNumber": 64,
+    "lineNumber": 63,
     "type": {
       "types": [
         "*"
@@ -431,7 +431,7 @@
     "importPath": "frill/src/api/auth/authHandlers.js",
     "importStyle": "authHandlers",
     "description": "Export all authentication handlers",
-    "lineNumber": 71,
+    "lineNumber": 70,
     "type": {
       "types": [
         "*"
@@ -651,7 +651,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import hapiAuthJwt from 'hapi-auth-jwt2';\nimport {where as _where} from 'lodash';\n\n// Test data\nimport accounts from '../../../helpers/testUserData';\n\nconst validator = (decoded, request, callback) => {\n  /**\n   * construct search query\n   * @todo: search from session\n   */\n  const query = {\n    id: parseInt(decoded.user.id, 10),\n  };\n  const user = _where(accounts, query);\n  if (user.length === 0) {\n    return callback(null, false);\n  } else {\n    return callback(null, true);\n  }\n};\n\n/**\n * Authentication strategy for JsonWebTokens(JWT)\n * @see http://jwt.io/\n */\nconst jwtStrategy = (server) => {\n  server.register(hapiAuthJwt, (err) => {\n    if (err) server.log(['error'], 'jwt-validator load error');\n\n    server.auth.strategy('jwt', 'jwt', true, {\n      key: 'NeverShareYourSecret',\n      // key: 'VQkdGKTWhA4FJHWYXkps7q8q8SNQGvdFjVob2hlEVjQ8AijsWAOdPxkThiDQsDg',\n      validateFunc: validator,\n      verifyOptions: { algorithms: ['HS256'] },\n    });\n  });\n};\n\nexport default jwtStrategy;\n"
+    "content": "import hapiAuthJwt from 'hapi-auth-jwt2';\nimport {where as _where} from 'lodash';\n\n// Test data\nimport accounts from '../../../fixtures/testUserData';\n\nconst validator = (decoded, request, callback) => {\n  /**\n   * construct search query\n   * @todo: search from session\n   */\n  const query = {\n    id: parseInt(decoded.user.id, 10),\n  };\n  const user = _where(accounts, query);\n  if (user.length === 0) {\n    return callback(null, false);\n  } else {\n    return callback(null, true);\n  }\n};\n\n/**\n * Authentication strategy for JsonWebTokens(JWT)\n * @see http://jwt.io/\n */\nconst jwtStrategy = (server) => {\n  server.register(hapiAuthJwt, (err) => {\n    if (err) server.log(['error'], 'jwt-validator load error');\n\n    server.auth.strategy('jwt', 'jwt', true, {\n      key: 'NeverShareYourSecret',\n      // key: 'VQkdGKTWhA4FJHWYXkps7q8q8SNQGvdFjVob2hlEVjQ8AijsWAOdPxkThiDQsDg',\n      validateFunc: validator,\n      verifyOptions: { algorithms: ['HS256'] },\n    });\n  });\n};\n\nexport default jwtStrategy;\n"
   },
   {
     "kind": "variable",
@@ -705,7 +705,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Boom from 'boom';\nimport {where as _where} from 'lodash';\n\n// Test data\nimport accounts from '../../../helpers/testUserData';\n\nconst authenticate = (request, reply) => {\n  const credentials = {};\n  reply.continue({ credentials });\n};\n\nconst payload = (request, reply) => {\n  // construct search query\n  const query = {\n    name: request.payload.username,\n    password: request.payload.password,\n  };\n\n  let user = _where(accounts, query);\n\n  if (user.length === 0) {\n    return reply(Boom.badRequest('invalid username or password'));\n  }\n\n  user = user[0];\n\n  request.auth.credentials = {\n    provider: 'local',\n    token: null,\n    secret: null,\n    query: {},\n    profile: {\n      id: user.id,\n      username: user.name,\n      displayName: user.displayName,\n      raw: user, // full profile\n    },\n  };\n\n  reply.continue();\n};\n\nconst response = (request, reply) => {\n  reply.continue();\n};\n\nconst scheme = () => {\n  return {\n    payload,\n    authenticate,\n    response,\n    options: {\n      payload: true,\n    },\n  };\n};\n\n/**\n * Authentication strategy for local authentications\n */\nconst localStrategy = (server) => {\n  server.auth.scheme('local', scheme);\n  server.auth.strategy('local', 'local');\n};\n\nexport default localStrategy;\n"
+    "content": "import Boom from 'boom';\nimport {where as _where} from 'lodash';\n\n// Test data\nimport accounts from '../../../fixtures/testUserData';\n\nconst authenticate = (request, reply) => {\n  const credentials = {};\n  reply.continue({ credentials });\n};\n\nconst payload = (request, reply) => {\n  // construct search query\n  const query = {\n    name: request.payload.username,\n    password: request.payload.password,\n  };\n\n  let user = _where(accounts, query);\n\n  if (user.length === 0) {\n    return reply(Boom.badRequest('invalid username or password'));\n  }\n\n  user = user[0];\n\n  request.auth.credentials = {\n    provider: 'local',\n    token: null,\n    secret: null,\n    query: {},\n    profile: {\n      id: user.id,\n      username: user.name,\n      displayName: user.displayName,\n      raw: user, // full profile\n    },\n  };\n\n  reply.continue();\n};\n\nconst response = (request, reply) => {\n  reply.continue();\n};\n\nconst scheme = () => {\n  return {\n    payload,\n    authenticate,\n    response,\n    options: {\n      payload: true,\n    },\n  };\n};\n\n/**\n * Authentication strategy for local authentications\n */\nconst localStrategy = (server) => {\n  server.auth.scheme('local', scheme);\n  server.auth.strategy('local', 'local');\n};\n\nexport default localStrategy;\n"
   },
   {
     "kind": "variable",
@@ -1005,7 +1005,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Joi from 'joi';\nimport JWT from 'jsonwebtoken';\nimport Boom from 'boom';\nimport aguid from 'aguid';\nimport {where as _where} from 'lodash';\nimport {clone as _clone} from 'lodash';\n\n// Test data\nimport accounts from '../../helpers/testUserData';\n\n/**\n * Local authentication routes.\n */\nconst localAuthRoutes = [{\n  method: ['POST'],\n  path: '/login',\n  config: {\n    validate: {\n      query: {\n        ref: Joi.string().optional(),\n      },\n      payload: {\n        username: Joi.string().min(5).required(),\n        password: Joi.string().min(5).required(),\n      },\n    },\n    tags: ['api', 'auth'],\n    auth: 'local',\n    // auth: 'twitter',\n    plugins: {\n      'hapi-swagger': {\n        responseMessages: [\n          { code: 400, message: 'Bad Request' },\n          { code: 500, message: 'Internal Server Error'},\n        ],\n      },\n    },\n  },\n  handler: (request, reply) => {\n    // reply error when authentication fails\n    if (!request.auth.isAuthenticated) {\n      return reply(\n        Boom.unauthorized('Authentication failed due to: ' +\n          request.auth.error.message)\n      );\n    }\n\n    const query = {\n      id: parseInt(request.auth.credentials.profile.id, 10),\n      strategy: request.auth.strategy,\n    };\n\n    const user = _where(accounts, query);\n    // console.log(user);\n\n    if (user.length === 0) {\n      console.log('needs registration');\n    }\n\n    const _user = _clone(user[0]);\n    delete _user.password;\n\n    /** @todo create and set JWT into session */\n    const session = {\n      valid: true,\n      id: aguid(), // a random session id\n      user: _user,\n      exp: new Date().getTime() + 30 * 60 * 1000, // expires in 30 minutes time\n    };\n\n    // // create the session in Redis\n    // redisClient.set(session.id, JSON.stringify(session));\n    request.session.set(session.id, session);\n    // sign the session as a JWT\n    const token = JWT.sign(session, 'NeverShareYourSecret');\n    return reply({token: token});\n  },\n}];\n\nexport default localAuthRoutes;\n"
+    "content": "import Joi from 'joi';\nimport JWT from 'jsonwebtoken';\nimport Boom from 'boom';\nimport aguid from 'aguid';\nimport {where as _where} from 'lodash';\nimport {clone as _clone} from 'lodash';\n\n// Test data\nimport accounts from '../../fixtures/testUserData';\nimport Seq from '../../models';\n\n/**\n * Local authentication routes.\n */\nconst localAuthRoutes = [{\n  method: ['POST'],\n  path: '/login',\n  config: {\n    validate: {\n      query: {\n        ref: Joi.string().optional(),\n      },\n      payload: {\n        username: Joi.string().min(5).required(),\n        password: Joi.string().min(5).required(),\n      },\n    },\n    tags: ['api', 'auth'],\n    auth: 'local',\n    // auth: 'twitter',\n    plugins: {\n      'hapi-swagger': {\n        responseMessages: [\n          { code: 400, message: 'Bad Request' },\n          { code: 500, message: 'Internal Server Error'},\n        ],\n      },\n    },\n  },\n  handler: (request, reply) => {\n    // reply error when authentication fails\n    if (!request.auth.isAuthenticated) {\n      return reply(\n        Boom.unauthorized('Authentication failed due to: ' +\n          request.auth.error.message)\n      );\n    }\n\n    const query = {\n      id: parseInt(request.auth.credentials.profile.id, 10),\n      strategy: request.auth.strategy,\n    };\n\n    const user = _where(accounts, query);\n    // console.log(user);\n\n    if (user.length === 0) {\n      console.log('needs registration');\n    }\n\n    const _user = _clone(user[0]);\n    delete _user.password;\n\n    /** @todo create and set JWT into session */\n    const session = {\n      valid: true,\n      id: aguid(), // a random session id\n      user: _user,\n      exp: new Date().getTime() + 30 * 60 * 1000, // expires in 30 minutes time\n    };\n\n    // // create the session in Redis\n    // redisClient.set(session.id, JSON.stringify(session));\n    request.session.set(session.id, session);\n    // sign the session as a JWT\n    const token = JWT.sign(session, 'NeverShareYourSecret');\n    return reply({token: token});\n  },\n}];\n\nexport default localAuthRoutes;\n"
   },
   {
     "kind": "variable",
@@ -1019,7 +1019,7 @@
     "importPath": "frill/src/api/v1/localAuth.js",
     "importStyle": "localAuthRoutes",
     "description": "Local authentication routes.",
-    "lineNumber": 14,
+    "lineNumber": 15,
     "type": {
       "types": [
         "*"
@@ -2082,13 +2082,37 @@
     "kind": "file",
     "static": true,
     "variation": null,
+    "name": "src/fixtures/testScrollItemsData.js",
+    "memberof": null,
+    "longname": "src/fixtures/testScrollItemsData.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "export default [\n  {\n    id: 1,\n    title: 'aaa',\n  },\n  {\n    id: 2,\n    title: 'bbb',\n  },\n  {\n    id: 3,\n    title: 'ccc',\n  },\n  {\n    id: 4,\n    title: 'ddd',\n  },\n  {\n    id: 5,\n    title: 'eee',\n  },\n  {\n    id: 6,\n    title: 'fff',\n  },\n  {\n    id: 7,\n    title: 'ggg',\n  },\n  {\n    id: 8,\n    title: 'hhh',\n  },\n  {\n    id: 9,\n    title: 'iii',\n  },\n  {\n    id: 10,\n    title: 'jjj',\n  },\n  {\n    id: 11,\n    title: 'kkk',\n  },\n  {\n    id: 12,\n    title: 'lll',\n  },\n  {\n    id: 13,\n    title: 'mmm',\n  },\n];\n"
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/fixtures/testUserData.js",
+    "memberof": null,
+    "longname": "src/fixtures/testUserData.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "export default [\n  {\n    id: 1,\n    name: 'nanopx',\n    strategy: 'local',\n    password: 'hello',\n    displayName: 'mr.nano',\n  },\n  {\n    id: 2,\n    name: 'nanopx2',\n    strategy: 'local',\n    password: 'hello',\n    displayName: 'mrs.nano',\n  },\n  {\n    id: 3,\n    name: 'nanopx3',\n    strategy: 'local',\n    password: 'hello',\n    displayName: 'sir nano',\n  },\n  {\n    id: 2524104246,\n    name: 'nanopx_twitter',\n    strategy: 'twitter',\n    password: null,\n    displayName: 'nanopx-twitter',\n  },\n\n];\n"
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
     "name": "src/helpers/aws.js",
     "memberof": null,
     "longname": "src/helpers/aws.js",
     "access": null,
     "description": null,
-    "lineNumber": 4,
-    "content": "/**\n * AmazonWebServices Helper\n */\nimport AWS from 'aws-sdk';\n\n// configure AWS\nAWS.config.update(config.get('AWS'));\n\nexport default AWS;\n"
+    "lineNumber": 5,
+    "content": "/**\n * AmazonWebServices Helper\n * WARNING: should NOT be required by client source\n */\nimport AWS from 'aws-sdk';\nimport config from 'config';\n\n// configure AWS\nAWS.config.update(config.get('AWS'));\n\nexport default AWS;\n"
   },
   {
     "kind": "file",
@@ -2099,8 +2123,8 @@
     "longname": "src/helpers/index.js",
     "access": null,
     "description": null,
-    "lineNumber": 5,
-    "content": "/**\n * Setup helpers to use from the 'api'\n */\n\nimport AWS from './aws';\nimport routePrefixer from './routePrefixer';\nimport routerContainer from './routerContainer';\n\n/**\n * List of all helpers used in app\n */\nconst helpers = {\n  /**\n   * @external {AmazonWebServices} http://aws.amazon.com/\n   */\n  AWS,\n  routePrefixer,\n  routerContainer,\n};\n\nexport default helpers;\n"
+    "lineNumber": 4,
+    "content": "/**\n * Setup helpers to use from the 'api'\n */\nimport AWS from './aws';\nimport routePrefixer from './routePrefixer';\nimport routerContainer from './routerContainer';\n\n/**\n * List of all helpers used in app\n */\nconst helpers = {\n  /**\n   * @external {AmazonWebServices} http://aws.amazon.com/\n   */\n  AWS,\n  routePrefixer,\n  routerContainer,\n};\n\nexport default helpers;\n"
   },
   {
     "kind": "variable",
@@ -2114,7 +2138,7 @@
     "importPath": "frill/src/helpers/index.js",
     "importStyle": "helpers",
     "description": "List of all helpers used in app",
-    "lineNumber": 12,
+    "lineNumber": 11,
     "type": {
       "types": [
         "*"
@@ -2131,7 +2155,7 @@
     "longname": "src/helpers/index.js~AmazonWebServices",
     "access": null,
     "description": null,
-    "lineNumber": 16
+    "lineNumber": 15
   },
   {
     "kind": "file",
@@ -2293,59 +2317,13 @@
     "kind": "file",
     "static": true,
     "variation": null,
-    "name": "src/helpers/testScrollItemsData.js",
-    "memberof": null,
-    "longname": "src/helpers/testScrollItemsData.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 1,
-    "content": "export default [\n  {\n    id: 1,\n    title: 'aaa',\n  },\n  {\n    id: 2,\n    title: 'bbb',\n  },\n  {\n    id: 3,\n    title: 'ccc',\n  },\n  {\n    id: 4,\n    title: 'ddd',\n  },\n  {\n    id: 5,\n    title: 'eee',\n  },\n  {\n    id: 6,\n    title: 'fff',\n  },\n  {\n    id: 7,\n    title: 'ggg',\n  },\n  {\n    id: 8,\n    title: 'hhh',\n  },\n  {\n    id: 9,\n    title: 'iii',\n  },\n  {\n    id: 10,\n    title: 'jjj',\n  },\n  {\n    id: 11,\n    title: 'kkk',\n  },\n  {\n    id: 12,\n    title: 'lll',\n  },\n  {\n    id: 13,\n    title: 'mmm',\n  },\n];\n"
-  },
-  {
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/helpers/testUserData.js",
-    "memberof": null,
-    "longname": "src/helpers/testUserData.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 1,
-    "content": "export default [\n  {\n    id: 1,\n    name: 'nanopx',\n    strategy: 'local',\n    password: 'hello',\n    displayName: 'mr.nano',\n  },\n  {\n    id: 2,\n    name: 'nanopx2',\n    strategy: 'local',\n    password: 'hello',\n    displayName: 'mrs.nano',\n  },\n  {\n    id: 3,\n    name: 'nanopx3',\n    strategy: 'local',\n    password: 'hello',\n    displayName: 'sir nano',\n  },\n  {\n    id: 2524104246,\n    name: 'nanopx_twitter',\n    strategy: 'twitter',\n    password: null,\n    displayName: 'nanopx-twitter',\n  },\n\n];\n"
-  },
-  {
-    "kind": "file",
-    "static": true,
-    "variation": null,
     "name": "src/models/DynamoDB/Posts.js",
     "memberof": null,
     "longname": "src/models/DynamoDB/Posts.js",
     "access": null,
     "description": null,
-    "lineNumber": 1,
-    "content": "import Joi from 'joi';\n\n/**\n * Posts model\n * @see https://github.com/ryanfitz/vogels#define-a-model\n */\nconst posts = (Vogels) => {\n  return Vogels.define('posts', {\n    hashKey: 'email',\n    rangeKey: 'title',\n    schema: {\n      email: Joi.string().email(),\n      title: Joi.string(),\n      content: Joi.binary(),\n      tags: Vogels.types.stringSet(),\n    },\n  });\n};\n\nexport default posts;\n"
-  },
-  {
-    "kind": "variable",
-    "static": true,
-    "variation": null,
-    "name": "posts",
-    "memberof": "src/models/DynamoDB/Posts.js",
-    "longname": "src/models/DynamoDB/Posts.js~posts",
-    "access": null,
-    "export": true,
-    "importPath": "frill/src/models/DynamoDB/Posts.js",
-    "importStyle": "posts",
-    "description": "Posts model",
-    "see": [
-      "https://github.com/ryanfitz/vogels#define-a-model"
-    ],
-    "lineNumber": 7,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
+    "lineNumber": 21,
+    "content": "// import Joi from 'joi';\n//\n// /**\n//  * Posts model\n//  * @see https://github.com/ryanfitz/vogels#define-a-model\n//  */\n// const posts = (Vogels) => {\n//   return Vogels.define('posts', {\n//     hashKey: 'email',\n//     rangeKey: 'title',\n//     schema: {\n//       email: Joi.string().email(),\n//       title: Joi.string(),\n//       content: Joi.binary(),\n//       // tags: Vogels.types.stringSet(),\n//     },\n//   });\n// };\n//\n// export default posts;\n"
   },
   {
     "kind": "file",
@@ -2356,23 +2334,8 @@
     "longname": "src/models/DynamoDB/index.js",
     "access": null,
     "description": null,
-    "lineNumber": 1,
-    "content": "import Vogels from '../vogels';\nimport posts from './Posts';\n\n/**\n * List of all DynamoDB models\n * @see {@link Posts}\n * @external {Vogels} https://github.com/ryanfitz/vogels\n */\nconst DynamoDBModels = {\n  Posts: posts(Vogels),\n};\n\nexport default DynamoDBModels;\n"
-  },
-  {
-    "kind": "external",
-    "static": true,
-    "variation": null,
-    "name": "Vogels",
-    "externalLink": "https://github.com/ryanfitz/vogels",
-    "memberof": "src/models/DynamoDB/index.js",
-    "longname": "src/models/DynamoDB/index.js~Vogels",
-    "access": null,
-    "description": "List of all DynamoDB models",
-    "see": [
-      "{@link Posts}"
-    ],
-    "lineNumber": 9
+    "lineNumber": 14,
+    "content": "// import Vogels from '../setup_vogels';\n// import posts from './Posts';\n//\n// /**\n//  * List of all DynamoDB models\n//  * @see {@link Posts}\n//  * @external {Vogels} https://github.com/ryanfitz/vogels\n//  */\n// const DynamoDBModels = {\n//   Posts: posts(Vogels),\n// };\n//\n// export default DynamoDBModels;\n"
   },
   {
     "kind": "file",
@@ -2418,7 +2381,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Sequelize from '../sequelize';\nimport users from './Users';\n\n/**\n * List of all MySQL models\n * @see {@link Users}\n * @external {Sequelize} http://docs.sequelizejs.com/en/latest\n */\nconst MySQLModels = {\n  Users: users(Sequelize),\n};\n\nexport default MySQLModels;\n"
+    "content": "import Sequelize from '../setup_sequelize';\nimport users from './Users';\n\n/**\n * List of all MySQL models\n * @see {@link Users}\n * @external {Sequelize} http://docs.sequelizejs.com/en/latest\n */\nconst MySQLModels = {\n  Users: users(Sequelize),\n};\n\nexport default MySQLModels;\n"
   },
   {
     "kind": "external",
@@ -2445,47 +2408,7 @@
     "access": null,
     "description": null,
     "lineNumber": 5,
-    "content": "/**\n * Example for using multiple type of databases\n */\n// example for DynamoDB using vogels\nimport {Posts} from './DynamoDB';\n// example for MySQL using sequelize\nimport {Users} from './MySQL';\nconst dynamoDb = {\n  Posts,\n};\n\nconst mySql = {\n  Users,\n};\n\n/**\n * List of all models\n * @see {@link MySQLModels}\n * @see {@link DynamoDBModels}\n */\nconst Models = {\n  mySql,\n  dynamoDb,\n};\n\nexport default Models;\n"
-  },
-  {
-    "kind": "variable",
-    "static": true,
-    "variation": null,
-    "name": "dynamoDb",
-    "memberof": "src/models/index.js",
-    "longname": "src/models/index.js~dynamoDb",
-    "access": null,
-    "export": false,
-    "importPath": "frill/src/models/index.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 8,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "kind": "variable",
-    "static": true,
-    "variation": null,
-    "name": "mySql",
-    "memberof": "src/models/index.js",
-    "longname": "src/models/index.js~mySql",
-    "access": null,
-    "export": false,
-    "importPath": "frill/src/models/index.js",
-    "importStyle": null,
-    "description": null,
-    "lineNumber": 12,
-    "undocument": true,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
+    "content": "/**\n * Example for using multiple type of databases\n */\n// example for MySQL using sequelize\nimport MySQLModels from './MySQL';\n// example for DynamoDB using vogels\n// import DynamoDBModels from './DynamoDB';\n\n/**\n * List of all models\n * @see {@link MySQLModels}\n * @see {@link DynamoDBModels}\n */\nconst Models = {\n  MySQLModels,\n  // DynamoDBModels,\n};\n\nexport default Models;\n"
   },
   {
     "kind": "variable",
@@ -2503,7 +2426,7 @@
       "{@link MySQLModels}",
       "{@link DynamoDBModels}"
     ],
-    "lineNumber": 21,
+    "lineNumber": 14,
     "type": {
       "types": [
         "*"
@@ -2514,25 +2437,25 @@
     "kind": "file",
     "static": true,
     "variation": null,
-    "name": "src/models/sequelize.js",
+    "name": "src/models/setup_sequelize.js",
     "memberof": null,
-    "longname": "src/models/sequelize.js",
+    "longname": "src/models/setup_sequelize.js",
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Sequelize from 'sequelize';\nimport config from 'config';\n\n/**\n * setup sequelize\n */\nconst sequelize = new Sequelize(\n  config.get('MySQL.database'),\n  config.get('MySQL.username'),\n  config.get('MySQL.password'),\n  config.get('MySQL.options')\n);\n\nexport default sequelize;\n"
+    "content": "import Sequelize from 'sequelize';\nimport config from 'config';\n\nconsole.log(config);\n\n/**\n * setup sequelize\n */\nconst sequelize = new Sequelize(\n  config.get('MySQL.database'),\n  config.get('MySQL.username'),\n  config.get('MySQL.password'),\n  config.get('MySQL.options')\n);\n\nexport default sequelize;\n"
   },
   {
     "kind": "file",
     "static": true,
     "variation": null,
-    "name": "src/models/vogels.js",
+    "name": "src/models/setup_vogels.js",
     "memberof": null,
-    "longname": "src/models/vogels.js",
+    "longname": "src/models/setup_vogels.js",
     "access": null,
     "description": null,
-    "lineNumber": 1,
-    "content": "import vogels from 'vogels';\nimport config from 'config';\nimport {AWS} from './../helpers';\n\n/**\n * setup vogels\n */\nvogels.dynamoDriver(new AWS.DynamoDB({\n  endpoint: config.get('DynamoDB.endpoint'),\n}));\n\nexport default vogels;\n"
+    "lineNumber": 14,
+    "content": "// import Vogels from 'vogels';\n\n// import {AWS} from '../helpers';\n// import config from 'config';\n\n/**\n * setup vogels\n */\n// Vogels.dynamoDriver(new AWS.DynamoDB({\n//   endpoint: config.get('DynamoDB.endpoint'),\n// }));\n\n// export default Vogels;\n"
   },
   {
     "kind": "file",
@@ -4198,7 +4121,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import {mockStoreEvent} from '../frillHelper';\nimport ExampleAction from '../../src/actions/Example';\nimport {BaseAction} from 'frill-core';\nimport scrollData from '../../src/helpers/testScrollItemsData';\n\n/**\n * ExampleAction\n * @test {ExampleAction}\n */\ndescribe('ExampleAction', () => {\n  /**\n   * @test {ExampleAction#constructor}\n   */\n  it('should be an instance of FrillCore.BaseAction', () => {\n    (ExampleAction instanceof BaseAction).should.be.true;\n  });\n\n  /**\n   * @test {ExampleAction#countUp}\n   */\n  describe('ExampleAction#countUp', () => {\n    /**\n     * @test {ExampleAction#countUp}\n     */\n    it('should have a countUp() method', () => {\n      ExampleAction.countUp.should.be.a('function');\n    });\n\n    /**\n     * @test {ExampleAction#countUp}\n     */\n    it('should dispatch COUNT_UP at execution', () => {\n      const spy = sinon.spy();\n      mockStoreEvent(ExampleAction, 'COUNT_UP', spy);\n      ExampleAction.countUp();\n      spy.called.should.equal.true;\n      sinon.assert.calledOnce(spy);\n      sinon.assert.calledWith(spy, null, 'COUNT_UP');\n    });\n  });\n\n  /**\n   * @test {ExampleAction#countUpBy}\n   */\n  describe('ExampleAction#countUpBy', () => {\n    /**\n     * @test {ExampleAction#countUpBy}\n     */\n    it('should have a countUpBy() method', () => {\n      ExampleAction.countUpBy.should.be.a('function');\n    });\n\n    /**\n     * @test {ExampleAction#countUpBy}\n     */\n    it('should dispatch COUNT_UP_BY at execution', () => {\n      const spy = sinon.spy();\n      mockStoreEvent(ExampleAction, 'COUNT_UP_BY', spy);\n      ExampleAction.countUpBy();\n      spy.called.should.equal.true;\n    });\n\n    /**\n     * @test {ExampleAction#countUpBy}\n     */\n    it('should count up by 1 at default', () => {\n      const spy = sinon.spy();\n      mockStoreEvent(ExampleAction, 'COUNT_UP_BY', spy);\n      ExampleAction.countUpBy();\n      sinon.assert.calledOnce(spy);\n      sinon.assert.calledWith(spy, 1, 'COUNT_UP_BY');\n    });\n\n    /**\n     * @test {ExampleAction#countUpBy}\n     */\n    it('should be able to provide a number to count up', () => {\n      const spy = sinon.spy();\n      mockStoreEvent(ExampleAction, 'COUNT_UP_BY', spy);\n      ExampleAction.countUpBy(10);\n      sinon.assert.calledOnce(spy);\n      sinon.assert.calledWith(spy, 10, 'COUNT_UP_BY');\n    });\n  });\n\n  /**\n   * @test {ExampleAction#loadScrollItems}\n   */\n  describe('ExampleAction#loadScrollItems', () => {\n    /**\n     * @test {ExampleAction#loadScrollItems}\n     */\n    it('should have a loadScrollItems() method', () => {\n      ExampleAction.loadScrollItems.should.be.a('function');\n    });\n\n    /**\n     * @test {ExampleAction#loadScrollItems}\n     */\n    it('should dispatch LOAD_SCROLL_ITEMS at execution', (done) => {\n      const spy = sinon.spy();\n      mockStoreEvent(ExampleAction, 'LOAD_SCROLL_ITEMS', spy);\n      ExampleAction.loadScrollItems();\n\n      setTimeout(() => {\n        spy.called.should.equal.true;\n        sinon.assert.calledOnce(spy);\n        sinon.assert.calledWith(spy, {\n          data: scrollData.slice(1, 6),\n          total: scrollData.length,\n        }, 'LOAD_SCROLL_ITEMS');\n        done();\n      }, 1500);\n    });\n\n    /**\n     * @test {ExampleAction#loadScrollItems}\n     */\n    it('should be able to change parameters', (done) => {\n      const spy = sinon.spy();\n      mockStoreEvent(ExampleAction, 'LOAD_SCROLL_ITEMS', spy);\n      ExampleAction.loadScrollItems(3, 6);\n      setTimeout(() => {\n        spy.called.should.equal.true;\n        sinon.assert.calledOnce(spy);\n        sinon.assert.calledWith(spy, {\n          data: scrollData.slice(3, 9),\n          total: scrollData.length,\n        }, 'LOAD_SCROLL_ITEMS');\n        done();\n      }, 1500);\n    });\n  });\n});\n"
+    "content": "import {mockStoreEvent} from '../frillHelper';\nimport ExampleAction from '../../src/actions/Example';\nimport {BaseAction} from 'frill-core';\nimport scrollData from '../../src/fixtures/testScrollItemsData';\n\n/**\n * ExampleAction\n * @test {ExampleAction}\n */\ndescribe('ExampleAction', () => {\n  /**\n   * @test {ExampleAction#constructor}\n   */\n  it('should be an instance of FrillCore.BaseAction', () => {\n    (ExampleAction instanceof BaseAction).should.be.true;\n  });\n\n  /**\n   * @test {ExampleAction#countUp}\n   */\n  describe('ExampleAction#countUp', () => {\n    /**\n     * @test {ExampleAction#countUp}\n     */\n    it('should have a countUp() method', () => {\n      ExampleAction.countUp.should.be.a('function');\n    });\n\n    /**\n     * @test {ExampleAction#countUp}\n     */\n    it('should dispatch COUNT_UP at execution', () => {\n      const spy = sinon.spy();\n      mockStoreEvent(ExampleAction, 'COUNT_UP', spy);\n      ExampleAction.countUp();\n      spy.called.should.equal.true;\n      sinon.assert.calledOnce(spy);\n      sinon.assert.calledWith(spy, null, 'COUNT_UP');\n    });\n  });\n\n  /**\n   * @test {ExampleAction#countUpBy}\n   */\n  describe('ExampleAction#countUpBy', () => {\n    /**\n     * @test {ExampleAction#countUpBy}\n     */\n    it('should have a countUpBy() method', () => {\n      ExampleAction.countUpBy.should.be.a('function');\n    });\n\n    /**\n     * @test {ExampleAction#countUpBy}\n     */\n    it('should dispatch COUNT_UP_BY at execution', () => {\n      const spy = sinon.spy();\n      mockStoreEvent(ExampleAction, 'COUNT_UP_BY', spy);\n      ExampleAction.countUpBy();\n      spy.called.should.equal.true;\n    });\n\n    /**\n     * @test {ExampleAction#countUpBy}\n     */\n    it('should count up by 1 at default', () => {\n      const spy = sinon.spy();\n      mockStoreEvent(ExampleAction, 'COUNT_UP_BY', spy);\n      ExampleAction.countUpBy();\n      sinon.assert.calledOnce(spy);\n      sinon.assert.calledWith(spy, 1, 'COUNT_UP_BY');\n    });\n\n    /**\n     * @test {ExampleAction#countUpBy}\n     */\n    it('should be able to provide a number to count up', () => {\n      const spy = sinon.spy();\n      mockStoreEvent(ExampleAction, 'COUNT_UP_BY', spy);\n      ExampleAction.countUpBy(10);\n      sinon.assert.calledOnce(spy);\n      sinon.assert.calledWith(spy, 10, 'COUNT_UP_BY');\n    });\n  });\n\n  /**\n   * @test {ExampleAction#loadScrollItems}\n   */\n  describe('ExampleAction#loadScrollItems', () => {\n    /**\n     * @test {ExampleAction#loadScrollItems}\n     */\n    it('should have a loadScrollItems() method', () => {\n      ExampleAction.loadScrollItems.should.be.a('function');\n    });\n\n    /**\n     * @test {ExampleAction#loadScrollItems}\n     */\n    it('should dispatch LOAD_SCROLL_ITEMS at execution', (done) => {\n      const spy = sinon.spy();\n      mockStoreEvent(ExampleAction, 'LOAD_SCROLL_ITEMS', spy);\n      ExampleAction.loadScrollItems();\n\n      setTimeout(() => {\n        spy.called.should.equal.true;\n        sinon.assert.calledOnce(spy);\n        sinon.assert.calledWith(spy, {\n          data: scrollData.slice(1, 6),\n          total: scrollData.length,\n        }, 'LOAD_SCROLL_ITEMS');\n        done();\n      }, 1500);\n    });\n\n    /**\n     * @test {ExampleAction#loadScrollItems}\n     */\n    it('should be able to change parameters', (done) => {\n      const spy = sinon.spy();\n      mockStoreEvent(ExampleAction, 'LOAD_SCROLL_ITEMS', spy);\n      ExampleAction.loadScrollItems(3, 6);\n      setTimeout(() => {\n        spy.called.should.equal.true;\n        sinon.assert.calledOnce(spy);\n        sinon.assert.calledWith(spy, {\n          data: scrollData.slice(3, 9),\n          total: scrollData.length,\n        }, 'LOAD_SCROLL_ITEMS');\n        done();\n      }, 1500);\n    });\n  });\n});\n"
   },
   {
     "kind": "testDescribe",
@@ -5020,7 +4943,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import {mockDispatch} from '../frillHelper';\nimport ExampleStore from '../../src/stores/Example';\nimport {BaseStore} from 'frill-core';\nimport scrollData from '../../src/helpers/testScrollItemsData';\n\n/**\n * ExampleStore\n * @test {ExampleStore}\n */\ndescribe('ExampleStore', () => {\n  /**\n   * @test {ExampleStore#constructor}\n   */\n  it('should be an instance of FrillCore.BaseStore', () => {\n    (ExampleStore instanceof BaseStore).should.be.true;\n  });\n\n  /**\n   * @test {ExampleStore#constructor}\n   */\n  it('should have appropriate properties and defaults', () => {\n    ExampleStore._count.should.equal(0);\n    ExampleStore._scrollItems.should.be.an.instanceof(Array);\n    ExampleStore._scrollItems.should.be.empty;\n    ExampleStore._scrollItemsCount.should.equal(0);\n    ExampleStore._scrollItemTotal.should.equal(0);\n  });\n\n  /**\n   * @test {ExampleStore#actions}\n   */\n  describe('ExampleStore#actions', () => {\n    /**\n     * @test {ExampleStore#actions}\n     */\n    it('should handle COUNT_UP', () => {\n      ExampleStore._actions.COUNT_UP.should.exist;\n    });\n\n    /**\n     * @test {ExampleStore#actions}\n     */\n    it('should handle COUNT_UP_BY', () => {\n      ExampleStore._actions.COUNT_UP_BY.should.exist;\n    });\n\n    /**\n     * @test {ExampleStore#actions}\n     */\n    it('should handle LOAD_SCROLL_ITEMS', () => {\n      ExampleStore._actions.LOAD_SCROLL_ITEMS.should.exist;\n    });\n  });\n  /**\n   * @test {ExampleStore#countUp}\n   */\n  describe('ExampleStore#countUp', () => {\n    /**\n     * @test {ExampleStore#countUp}\n     */\n    it('should have a countUp() method', () => {\n      ExampleStore.countUp.should.be.a('function');\n    });\n\n    /**\n     * @test {ExampleStore#countUp}\n     * @test {ExampleStore#count}\n     */\n    it('should be able to handle dispatched actions', () => {\n      // Check params through 'Getter' methods\n      ExampleStore.count.should.equal(0);\n      mockDispatch(ExampleStore, 'COUNT_UP');\n      ExampleStore.count.should.equal(1);\n      mockDispatch(ExampleStore, 'COUNT_UP');\n      ExampleStore.count.should.equal(2);\n    });\n  });\n\n  /**\n   * @test {ExampleStore#countUpBy}\n   */\n  describe('ExampleStore#countUpBy', () => {\n    /**\n     * @test {ExampleStore#countUpBy}\n     */\n    it('should have a countUpBy() method', () => {\n      ExampleStore.countUpBy.should.be.a('function');\n    });\n\n    /**\n     * @test {ExampleStore#countUpBy}\n     * @test {ExampleStore#count}\n     */\n    it('should be able to handle dispatched actions', () => {\n      // Check params through 'Getter' methods\n      ExampleStore.count.should.equal(2);\n      mockDispatch(ExampleStore, 'COUNT_UP_BY', 1);\n      ExampleStore.count.should.equal(3);\n      mockDispatch(ExampleStore, 'COUNT_UP_BY', 10);\n      ExampleStore.count.should.equal(13);\n    });\n  });\n\n  /**\n   * @test {ExampleStore#loadScrollItems}\n   */\n  describe('ExampleStore#loadScrollItems', () => {\n    /**\n     * @test {ExampleStore#loadScrollItems}\n     */\n    it('should have a loadScrollItems() method', () => {\n      ExampleStore.countUpBy.should.be.a('function');\n    });\n\n    /**\n     * @test {ExampleStore#loadScrollItems}\n     * @test {ExampleStore#scrollItems}\n     * @test {ExampleStore#scrollItemsCount}\n     * @test {ExampleStore#scrollItemTotal}\n     */\n    it('should be able to handle dispatched actions', () => {\n      // Check params through 'Getter' methods\n      ExampleStore.scrollItems.should.be.an.instanceof(Array);\n      ExampleStore.scrollItems.should.be.empty;\n      ExampleStore.scrollItemsCount.should.equal(0);\n      ExampleStore.scrollItemTotal.should.equal(0);\n\n      const data = scrollData.slice(1, 6);\n      mockDispatch(ExampleStore, 'LOAD_SCROLL_ITEMS', {\n        data: data,\n        total: scrollData.length,\n      });\n\n      ExampleStore.scrollItems.should.be.an.instanceof(Array);\n      ExampleStore.scrollItems.length.should.equal(data.length);\n      ExampleStore.scrollItemsCount.should.equal(data.length);\n      ExampleStore.scrollItemTotal.should.equal(scrollData.length);\n\n      const data2 = scrollData.slice(6, 8);\n      mockDispatch(ExampleStore, 'LOAD_SCROLL_ITEMS', {\n        data: data2,\n        total: scrollData.length,\n      });\n\n      ExampleStore.scrollItems.should.be.an.instanceof(Array);\n      ExampleStore.scrollItems.length.should.equal(data.length + data2.length);\n      ExampleStore.scrollItemsCount.should.equal(data.length + data2.length);\n      ExampleStore.scrollItemTotal.should.equal(scrollData.length);\n    });\n  });\n});\n"
+    "content": "import {mockDispatch} from '../frillHelper';\nimport ExampleStore from '../../src/stores/Example';\nimport {BaseStore} from 'frill-core';\nimport scrollData from '../../src/fixtures/testScrollItemsData';\n\n/**\n * ExampleStore\n * @test {ExampleStore}\n */\ndescribe('ExampleStore', () => {\n  /**\n   * @test {ExampleStore#constructor}\n   */\n  it('should be an instance of FrillCore.BaseStore', () => {\n    (ExampleStore instanceof BaseStore).should.be.true;\n  });\n\n  /**\n   * @test {ExampleStore#constructor}\n   */\n  it('should have appropriate properties and defaults', () => {\n    ExampleStore._count.should.equal(0);\n    ExampleStore._scrollItems.should.be.an.instanceof(Array);\n    ExampleStore._scrollItems.should.be.empty;\n    ExampleStore._scrollItemsCount.should.equal(0);\n    ExampleStore._scrollItemTotal.should.equal(0);\n  });\n\n  /**\n   * @test {ExampleStore#actions}\n   */\n  describe('ExampleStore#actions', () => {\n    /**\n     * @test {ExampleStore#actions}\n     */\n    it('should handle COUNT_UP', () => {\n      ExampleStore._actions.COUNT_UP.should.exist;\n    });\n\n    /**\n     * @test {ExampleStore#actions}\n     */\n    it('should handle COUNT_UP_BY', () => {\n      ExampleStore._actions.COUNT_UP_BY.should.exist;\n    });\n\n    /**\n     * @test {ExampleStore#actions}\n     */\n    it('should handle LOAD_SCROLL_ITEMS', () => {\n      ExampleStore._actions.LOAD_SCROLL_ITEMS.should.exist;\n    });\n  });\n  /**\n   * @test {ExampleStore#countUp}\n   */\n  describe('ExampleStore#countUp', () => {\n    /**\n     * @test {ExampleStore#countUp}\n     */\n    it('should have a countUp() method', () => {\n      ExampleStore.countUp.should.be.a('function');\n    });\n\n    /**\n     * @test {ExampleStore#countUp}\n     * @test {ExampleStore#count}\n     */\n    it('should be able to handle dispatched actions', () => {\n      // Check params through 'Getter' methods\n      ExampleStore.count.should.equal(0);\n      mockDispatch(ExampleStore, 'COUNT_UP');\n      ExampleStore.count.should.equal(1);\n      mockDispatch(ExampleStore, 'COUNT_UP');\n      ExampleStore.count.should.equal(2);\n    });\n  });\n\n  /**\n   * @test {ExampleStore#countUpBy}\n   */\n  describe('ExampleStore#countUpBy', () => {\n    /**\n     * @test {ExampleStore#countUpBy}\n     */\n    it('should have a countUpBy() method', () => {\n      ExampleStore.countUpBy.should.be.a('function');\n    });\n\n    /**\n     * @test {ExampleStore#countUpBy}\n     * @test {ExampleStore#count}\n     */\n    it('should be able to handle dispatched actions', () => {\n      // Check params through 'Getter' methods\n      ExampleStore.count.should.equal(2);\n      mockDispatch(ExampleStore, 'COUNT_UP_BY', 1);\n      ExampleStore.count.should.equal(3);\n      mockDispatch(ExampleStore, 'COUNT_UP_BY', 10);\n      ExampleStore.count.should.equal(13);\n    });\n  });\n\n  /**\n   * @test {ExampleStore#loadScrollItems}\n   */\n  describe('ExampleStore#loadScrollItems', () => {\n    /**\n     * @test {ExampleStore#loadScrollItems}\n     */\n    it('should have a loadScrollItems() method', () => {\n      ExampleStore.countUpBy.should.be.a('function');\n    });\n\n    /**\n     * @test {ExampleStore#loadScrollItems}\n     * @test {ExampleStore#scrollItems}\n     * @test {ExampleStore#scrollItemsCount}\n     * @test {ExampleStore#scrollItemTotal}\n     */\n    it('should be able to handle dispatched actions', () => {\n      // Check params through 'Getter' methods\n      ExampleStore.scrollItems.should.be.an.instanceof(Array);\n      ExampleStore.scrollItems.should.be.empty;\n      ExampleStore.scrollItemsCount.should.equal(0);\n      ExampleStore.scrollItemTotal.should.equal(0);\n\n      const data = scrollData.slice(1, 6);\n      mockDispatch(ExampleStore, 'LOAD_SCROLL_ITEMS', {\n        data: data,\n        total: scrollData.length,\n      });\n\n      ExampleStore.scrollItems.should.be.an.instanceof(Array);\n      ExampleStore.scrollItems.length.should.equal(data.length);\n      ExampleStore.scrollItemsCount.should.equal(data.length);\n      ExampleStore.scrollItemTotal.should.equal(scrollData.length);\n\n      const data2 = scrollData.slice(6, 8);\n      mockDispatch(ExampleStore, 'LOAD_SCROLL_ITEMS', {\n        data: data2,\n        total: scrollData.length,\n      });\n\n      ExampleStore.scrollItems.should.be.an.instanceof(Array);\n      ExampleStore.scrollItems.length.should.equal(data.length + data2.length);\n      ExampleStore.scrollItemsCount.should.equal(data.length + data2.length);\n      ExampleStore.scrollItemTotal.should.equal(scrollData.length);\n    });\n  });\n});\n"
   },
   {
     "kind": "testDescribe",

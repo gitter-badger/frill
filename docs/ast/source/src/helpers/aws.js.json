@@ -10,31 +10,31 @@
             "type": "Identifier",
             "name": "AWS",
             "range": [
-              43,
-              46
+              95,
+              98
             ],
             "loc": {
               "start": {
-                "line": 4,
+                "line": 5,
                 "column": 7
               },
               "end": {
-                "line": 4,
+                "line": 5,
                 "column": 10
               }
             }
           },
           "range": [
-            43,
-            46
+            95,
+            98
           ],
           "loc": {
             "start": {
-              "line": 4,
+              "line": 5,
               "column": 7
             },
             "end": {
-              "line": 4,
+              "line": 5,
               "column": 10
             }
           }
@@ -45,41 +45,41 @@
         "value": "aws-sdk",
         "raw": "'aws-sdk'",
         "range": [
-          52,
-          61
+          104,
+          113
         ],
         "loc": {
           "start": {
-            "line": 4,
+            "line": 5,
             "column": 16
           },
           "end": {
-            "line": 4,
+            "line": 5,
             "column": 25
           }
         }
       },
       "range": [
-        36,
-        62
+        88,
+        114
       ],
       "loc": {
         "start": {
-          "line": 4,
+          "line": 5,
           "column": 0
         },
         "end": {
-          "line": 4,
+          "line": 5,
           "column": 26
         }
       },
       "leadingComments": [
         {
           "type": "Block",
-          "value": "*\n * AmazonWebServices Helper\n ",
+          "value": "*\n * AmazonWebServices Helper\n * WARNING: should NOT be required by client source\n ",
           "range": [
             0,
-            35
+            87
           ],
           "loc": {
             "start": {
@@ -87,27 +87,100 @@
               "column": 0
             },
             "end": {
-              "line": 3,
+              "line": 4,
               "column": 3
             }
           }
         }
+      ]
+    },
+    {
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "config",
+            "range": [
+              122,
+              128
+            ],
+            "loc": {
+              "start": {
+                "line": 6,
+                "column": 7
+              },
+              "end": {
+                "line": 6,
+                "column": 13
+              }
+            }
+          },
+          "range": [
+            122,
+            128
+          ],
+          "loc": {
+            "start": {
+              "line": 6,
+              "column": 7
+            },
+            "end": {
+              "line": 6,
+              "column": 13
+            }
+          }
+        }
       ],
+      "source": {
+        "type": "Literal",
+        "value": "config",
+        "raw": "'config'",
+        "range": [
+          134,
+          142
+        ],
+        "loc": {
+          "start": {
+            "line": 6,
+            "column": 19
+          },
+          "end": {
+            "line": 6,
+            "column": 27
+          }
+        }
+      },
+      "range": [
+        115,
+        143
+      ],
+      "loc": {
+        "start": {
+          "line": 6,
+          "column": 0
+        },
+        "end": {
+          "line": 6,
+          "column": 28
+        }
+      },
       "trailingComments": [
         {
           "type": "Line",
           "value": " configure AWS",
           "range": [
-            64,
-            80
+            145,
+            161
           ],
           "loc": {
             "start": {
-              "line": 6,
+              "line": 8,
               "column": 0
             },
             "end": {
-              "line": 6,
+              "line": 8,
               "column": 16
             }
           }
@@ -128,16 +201,16 @@
               "type": "Identifier",
               "name": "AWS",
               "range": [
-                81,
-                84
+                162,
+                165
               ],
               "loc": {
                 "start": {
-                  "line": 7,
+                  "line": 9,
                   "column": 0
                 },
                 "end": {
-                  "line": 7,
+                  "line": 9,
                   "column": 3
                 }
               }
@@ -146,31 +219,31 @@
               "type": "Identifier",
               "name": "config",
               "range": [
-                85,
-                91
+                166,
+                172
               ],
               "loc": {
                 "start": {
-                  "line": 7,
+                  "line": 9,
                   "column": 4
                 },
                 "end": {
-                  "line": 7,
+                  "line": 9,
                   "column": 10
                 }
               }
             },
             "range": [
-              81,
-              91
+              162,
+              172
             ],
             "loc": {
               "start": {
-                "line": 7,
+                "line": 9,
                 "column": 0
               },
               "end": {
-                "line": 7,
+                "line": 9,
                 "column": 10
               }
             }
@@ -179,31 +252,31 @@
             "type": "Identifier",
             "name": "update",
             "range": [
-              92,
-              98
+              173,
+              179
             ],
             "loc": {
               "start": {
-                "line": 7,
+                "line": 9,
                 "column": 11
               },
               "end": {
-                "line": 7,
+                "line": 9,
                 "column": 17
               }
             }
           },
           "range": [
-            81,
-            98
+            162,
+            179
           ],
           "loc": {
             "start": {
-              "line": 7,
+              "line": 9,
               "column": 0
             },
             "end": {
-              "line": 7,
+              "line": 9,
               "column": 17
             }
           }
@@ -218,16 +291,16 @@
                 "type": "Identifier",
                 "name": "config",
                 "range": [
-                  99,
-                  105
+                  180,
+                  186
                 ],
                 "loc": {
                   "start": {
-                    "line": 7,
+                    "line": 9,
                     "column": 18
                   },
                   "end": {
-                    "line": 7,
+                    "line": 9,
                     "column": 24
                   }
                 }
@@ -236,31 +309,31 @@
                 "type": "Identifier",
                 "name": "get",
                 "range": [
-                  106,
-                  109
+                  187,
+                  190
                 ],
                 "loc": {
                   "start": {
-                    "line": 7,
+                    "line": 9,
                     "column": 25
                   },
                   "end": {
-                    "line": 7,
+                    "line": 9,
                     "column": 28
                   }
                 }
               },
               "range": [
-                99,
-                109
+                180,
+                190
               ],
               "loc": {
                 "start": {
-                  "line": 7,
+                  "line": 9,
                   "column": 18
                 },
                 "end": {
-                  "line": 7,
+                  "line": 9,
                   "column": 28
                 }
               }
@@ -271,63 +344,63 @@
                 "value": "AWS",
                 "raw": "'AWS'",
                 "range": [
-                  110,
-                  115
+                  191,
+                  196
                 ],
                 "loc": {
                   "start": {
-                    "line": 7,
+                    "line": 9,
                     "column": 29
                   },
                   "end": {
-                    "line": 7,
+                    "line": 9,
                     "column": 34
                   }
                 }
               }
             ],
             "range": [
-              99,
-              116
+              180,
+              197
             ],
             "loc": {
               "start": {
-                "line": 7,
+                "line": 9,
                 "column": 18
               },
               "end": {
-                "line": 7,
+                "line": 9,
                 "column": 35
               }
             }
           }
         ],
         "range": [
-          81,
-          117
+          162,
+          198
         ],
         "loc": {
           "start": {
-            "line": 7,
+            "line": 9,
             "column": 0
           },
           "end": {
-            "line": 7,
+            "line": 9,
             "column": 36
           }
         }
       },
       "range": [
-        81,
-        118
+        162,
+        199
       ],
       "loc": {
         "start": {
-          "line": 7,
+          "line": 9,
           "column": 0
         },
         "end": {
-          "line": 7,
+          "line": 9,
           "column": 37
         }
       },
@@ -336,16 +409,16 @@
           "type": "Line",
           "value": " configure AWS",
           "range": [
-            64,
-            80
+            145,
+            161
           ],
           "loc": {
             "start": {
-              "line": 6,
+              "line": 8,
               "column": 0
             },
             "end": {
-              "line": 6,
+              "line": 8,
               "column": 16
             }
           }
@@ -358,16 +431,16 @@
         "type": "Identifier",
         "name": "AWS",
         "range": [
-          135,
-          138
+          216,
+          219
         ],
         "loc": {
           "start": {
-            "line": 9,
+            "line": 11,
             "column": 15
           },
           "end": {
-            "line": 9,
+            "line": 11,
             "column": 18
           }
         },
@@ -375,16 +448,16 @@
         "trailingComments": []
       },
       "range": [
-        120,
-        139
+        201,
+        220
       ],
       "loc": {
         "start": {
-          "line": 9,
+          "line": 11,
           "column": 0
         },
         "end": {
-          "line": 9,
+          "line": 11,
           "column": 19
         }
       }
@@ -392,26 +465,26 @@
   ],
   "sourceType": "module",
   "range": [
-    36,
-    139
+    88,
+    220
   ],
   "loc": {
     "start": {
-      "line": 4,
+      "line": 5,
       "column": 0
     },
     "end": {
-      "line": 9,
+      "line": 11,
       "column": 19
     }
   },
   "comments": [
     {
       "type": "Block",
-      "value": "*\n * AmazonWebServices Helper\n ",
+      "value": "*\n * AmazonWebServices Helper\n * WARNING: should NOT be required by client source\n ",
       "range": [
         0,
-        35
+        87
       ],
       "loc": {
         "start": {
@@ -419,7 +492,7 @@
           "column": 0
         },
         "end": {
-          "line": 3,
+          "line": 4,
           "column": 3
         }
       }
@@ -428,16 +501,16 @@
       "type": "Line",
       "value": " configure AWS",
       "range": [
-        64,
-        80
+        145,
+        161
       ],
       "loc": {
         "start": {
-          "line": 6,
+          "line": 8,
           "column": 0
         },
         "end": {
-          "line": 6,
+          "line": 8,
           "column": 16
         }
       }

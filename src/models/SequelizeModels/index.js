@@ -2,12 +2,12 @@ import Sequelize from '../setup_sequelize';
 import users from './Users';
 
 /**
- * List of all MySQL models
+ * List of all Sequelize models
  * @see {@link Users}
  * @external {Sequelize} http://docs.sequelizejs.com/en/latest
  */
-const MySQLModels = {
+const SequelizeModels = {
   Users: users(Sequelize),
 };
 
-export default MySQLModels;
+export default SequelizeModels;

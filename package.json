@@ -4,8 +4,9 @@
   "description": "A simple meta-FLUX framework.",
   "main": "app.js",
   "scripts": {
+    "start": "$(npm bin)/gulp",
     "build": "$(npm bin)/gulp build",
-    "test": "$(npm bin)/gulp test"
+    "test": "NODE_ENV=test $(npm bin)/gulp test"
   },
   "engines": {
     "node": ">=0.10.x"
@@ -49,7 +50,7 @@
     "react": "^0.13.3",
     "react-router": "^0.13.3",
     "sequelize": "^3.5.1",
-    "vogels": "^2.0.0-rc10",
+    "vogels": "^2.0.0-rc6",
     "yar": "^3.0.3"
   },
   "devDependencies": {
@@ -91,6 +92,7 @@
     "nib": "^1.1.0",
     "run-sequence": "^1.1.2",
     "sinon": "^1.15.4",
+    "sqlite3": "^3.0.10",
     "webpack": "^1.11.0",
     "webpack-stream": "^2.1.0"
   }
