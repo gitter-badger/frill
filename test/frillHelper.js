@@ -1,5 +1,8 @@
 import {BaseStore, BaseAction, attach} from 'frill-core';
 
+/**
+ * Mock FrillCore.BaseStore
+ */
 const mockStoreEvent = (action, actionType, spy) => {
   const actions = { Action: action };
   class CheckStore extends BaseStore {
@@ -14,6 +17,9 @@ const mockStoreEvent = (action, actionType, spy) => {
   return attach(stores, actions);
 };
 
+/**
+ * Mock FrillCore.BaseAction
+ */
 const mockDispatch = (store, actionType, payload) => {
   const stores = { Store: store };
   class CheckAction extends BaseAction {
@@ -30,27 +36,33 @@ const mockDispatch = (store, actionType, payload) => {
   actions.CheckAction.fire(actionType, payload);
 };
 
+/**
+ * Inject request to hapi
+ */
 const inject = (options) => {
   return new Promise((resolve) => {
     server.inject(options, resolve);
   });
 };
 
+/**
+ * Mock session(Yar) and store them into global variables
+ */
 const mockSession = (server) => {
-  global._sessionMock = {};
+  // global._sessionMock = {};
   const _mock = (request, reply) => {
     request.session = {};
-    request.session.set = (key, val) => {
-      _sessionMock[key] = val;
+    request.session.set = (/* key, val */) => {
+      // _sessionMock[key] = val;
     };
-    request.session.get = (key) => {
-      return _sessionMock[key];
+    request.session.get = (/* key */) => {
+      // return _sessionMock[key];
     };
     request.session.reset = () => {
-      _sessionMock = {};
+      // _sessionMock = {};
     };
-    request.session.clear = (key) => {
-      delete _sessionMock[key];
+    request.session.clear = (/* key */) => {
+      // delete _sessionMock[key];
     };
     // simply set
     request.session.flash = request.session.set;
@@ -60,6 +72,13 @@ const mockSession = (server) => {
   server.ext('onPreAuth', _mock);
 };
 
+/**
+ * Inject request to authenticated routes.
+ *
+ * Uses authentication endpoint '/api/v1/login',
+ * and needs to be changed within your environment.
+ * Sets the token to header `Authorization`.
+ */
 const injectAuthenticated = (options) => {
   return inject({
     method: 'POST',
