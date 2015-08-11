@@ -20,9 +20,9 @@ const GLOBALS = {
   '__RELEASE__': RELEASE,
   '__DEBUG__': DEBUG,
   '__SERVER__': false,
-  'process.env': Object.keys(process.env).reduce((o, k) => {
-    o[k] = JSON.stringify(process.env[k]);
-    return o;
+  'process.env': Object.keys(process.env).reduce((envObj, key) => {
+    envObj[key] = JSON.stringify(process.env[key]);
+    return envObj;
   }, {}),
 };
 
