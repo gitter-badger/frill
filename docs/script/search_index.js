@@ -378,9 +378,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "frill/src/models/mysql/users.js~users",
+    "frill/src/models/sequelizemodels/users.js~users",
     "variable/index.html#static-variable-users",
-    "<span>users</span> <span class=\"search-result-import-path\">frill/src/models/MySQL/Users.js</span>",
+    "<span>users</span> <span class=\"search-result-import-path\">frill/src/models/SequelizeModels/Users.js</span>",
     "variable"
   ],
   [
@@ -1386,33 +1386,21 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/models/dynamodb/posts.js",
-    "file/src/models/DynamoDB/Posts.js.html",
-    "src/models/DynamoDB/Posts.js",
+    "src/models/sequelizemodels/users.js",
+    "file/src/models/SequelizeModels/Users.js.html",
+    "src/models/SequelizeModels/Users.js",
     "file"
   ],
   [
-    "src/models/dynamodb/index.js",
-    "file/src/models/DynamoDB/index.js.html",
-    "src/models/DynamoDB/index.js",
+    "src/models/sequelizemodels/index.js",
+    "file/src/models/SequelizeModels/index.js.html",
+    "src/models/SequelizeModels/index.js",
     "file"
   ],
   [
-    "src/models/mysql/users.js",
-    "file/src/models/MySQL/Users.js.html",
-    "src/models/MySQL/Users.js",
-    "file"
-  ],
-  [
-    "src/models/mysql/index.js",
-    "file/src/models/MySQL/index.js.html",
-    "src/models/MySQL/index.js",
-    "file"
-  ],
-  [
-    "src/models/mysql/index.js~sequelize",
+    "src/models/sequelizemodels/index.js~sequelize",
     "external/index.html",
-    "src/models/MySQL/index.js~Sequelize",
+    "src/models/SequelizeModels/index.js~Sequelize",
     "external"
   ],
   [
@@ -1425,12 +1413,6 @@ window.esdocSearchIndex = [
     "src/models/setup_sequelize.js",
     "file/src/models/setup_sequelize.js.html",
     "src/models/setup_sequelize.js",
-    "file"
-  ],
-  [
-    "src/models/setup_vogels.js",
-    "file/src/models/setup_vogels.js.html",
-    "src/models/setup_vogels.js",
     "file"
   ],
   [

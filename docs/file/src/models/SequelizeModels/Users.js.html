@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl" href="../../../">
-  <title data-ice="title">src/models/index.js | FrillJS API Document</title>
+  <base data-ice="baseUrl" href="../../../../">
+  <title data-ice="title">src/models/SequelizeModels/Users.js | FrillJS API Document</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -103,22 +103,21 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">src/models/index.js</h1>
-<pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">/**
- * Example for using multiple type of databases
- */
-// example for MySQL using sequelize
-import SequelizeModels from &apos;./SequelizeModels&apos;;
+<div class="content" data-ice="content"><h1 data-ice="title">src/models/SequelizeModels/Users.js</h1>
+<pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">import Sequelize from &apos;sequelize&apos;;
 
 /**
- * List of all models
- * @see {@link SequelizeModels}
+ * Users model
+ * @see http://docs.sequelizejs.com/en/latest/docs/models-definition/#definition
  */
-const Models = {
-  SequelizeModels,
+const users = (sequelize) =&gt; {
+  return sequelize.define(&apos;users&apos;, {
+    username: Sequelize.STRING,
+    birthday: Sequelize.DATE,
+  });
 };
 
-export default Models;
+export default users;
 </code></pre>
 </div>
 

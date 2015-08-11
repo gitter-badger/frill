@@ -1005,7 +1005,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Joi from 'joi';\nimport JWT from 'jsonwebtoken';\nimport Boom from 'boom';\nimport aguid from 'aguid';\nimport {where as _where} from 'lodash';\nimport {clone as _clone} from 'lodash';\n\n// Test data\nimport accounts from '../../fixtures/testUserData';\nimport Seq from '../../models';\n\n/**\n * Local authentication routes.\n */\nconst localAuthRoutes = [{\n  method: ['POST'],\n  path: '/login',\n  config: {\n    validate: {\n      query: {\n        ref: Joi.string().optional(),\n      },\n      payload: {\n        username: Joi.string().min(5).required(),\n        password: Joi.string().min(5).required(),\n      },\n    },\n    tags: ['api', 'auth'],\n    auth: 'local',\n    // auth: 'twitter',\n    plugins: {\n      'hapi-swagger': {\n        responseMessages: [\n          { code: 400, message: 'Bad Request' },\n          { code: 500, message: 'Internal Server Error'},\n        ],\n      },\n    },\n  },\n  handler: (request, reply) => {\n    // reply error when authentication fails\n    if (!request.auth.isAuthenticated) {\n      return reply(\n        Boom.unauthorized('Authentication failed due to: ' +\n          request.auth.error.message)\n      );\n    }\n\n    const query = {\n      id: parseInt(request.auth.credentials.profile.id, 10),\n      strategy: request.auth.strategy,\n    };\n\n    const user = _where(accounts, query);\n    // console.log(user);\n\n    if (user.length === 0) {\n      console.log('needs registration');\n    }\n\n    const _user = _clone(user[0]);\n    delete _user.password;\n\n    /** @todo create and set JWT into session */\n    const session = {\n      valid: true,\n      id: aguid(), // a random session id\n      user: _user,\n      exp: new Date().getTime() + 30 * 60 * 1000, // expires in 30 minutes time\n    };\n\n    // // create the session in Redis\n    // redisClient.set(session.id, JSON.stringify(session));\n    request.session.set(session.id, session);\n    // sign the session as a JWT\n    const token = JWT.sign(session, 'NeverShareYourSecret');\n    return reply({token: token});\n  },\n}];\n\nexport default localAuthRoutes;\n"
+    "content": "import Joi from 'joi';\nimport JWT from 'jsonwebtoken';\nimport Boom from 'boom';\nimport aguid from 'aguid';\nimport {where as _where} from 'lodash';\nimport {clone as _clone} from 'lodash';\n\n// Test data\nimport accounts from '../../fixtures/testUserData';\n\n/**\n * Local authentication routes.\n */\nconst localAuthRoutes = [{\n  method: ['POST'],\n  path: '/login',\n  config: {\n    validate: {\n      query: {\n        ref: Joi.string().optional(),\n      },\n      payload: {\n        username: Joi.string().min(5).required(),\n        password: Joi.string().min(5).required(),\n      },\n    },\n    tags: ['api', 'auth'],\n    auth: 'local',\n    // auth: 'twitter',\n    plugins: {\n      'hapi-swagger': {\n        responseMessages: [\n          { code: 400, message: 'Bad Request' },\n          { code: 500, message: 'Internal Server Error'},\n        ],\n      },\n    },\n  },\n  handler: (request, reply) => {\n    // reply error when authentication fails\n    if (!request.auth.isAuthenticated) {\n      return reply(\n        Boom.unauthorized('Authentication failed due to: ' +\n          request.auth.error.message)\n      );\n    }\n\n    const query = {\n      id: parseInt(request.auth.credentials.profile.id, 10),\n      strategy: request.auth.strategy,\n    };\n\n    const user = _where(accounts, query);\n    // console.log(user);\n\n    if (user.length === 0) {\n      console.log('needs registration');\n    }\n\n    const _user = _clone(user[0]);\n    delete _user.password;\n\n    /** @todo create and set JWT into session */\n    const session = {\n      valid: true,\n      id: aguid(), // a random session id\n      user: _user,\n      exp: new Date().getTime() + 30 * 60 * 1000, // expires in 30 minutes time\n    };\n\n    // // create the session in Redis\n    // redisClient.set(session.id, JSON.stringify(session));\n    request.session.set(session.id, session);\n    // sign the session as a JWT\n    const token = JWT.sign(session, 'NeverShareYourSecret');\n    return reply({token: token});\n  },\n}];\n\nexport default localAuthRoutes;\n"
   },
   {
     "kind": "variable",
@@ -1019,7 +1019,7 @@
     "importPath": "frill/src/api/v1/localAuth.js",
     "importStyle": "localAuthRoutes",
     "description": "Local authentication routes.",
-    "lineNumber": 15,
+    "lineNumber": 14,
     "type": {
       "types": [
         "*"
@@ -2317,33 +2317,9 @@
     "kind": "file",
     "static": true,
     "variation": null,
-    "name": "src/models/DynamoDB/Posts.js",
+    "name": "src/models/SequelizeModels/Users.js",
     "memberof": null,
-    "longname": "src/models/DynamoDB/Posts.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 21,
-    "content": "// import Joi from 'joi';\n//\n// /**\n//  * Posts model\n//  * @see https://github.com/ryanfitz/vogels#define-a-model\n//  */\n// const posts = (Vogels) => {\n//   return Vogels.define('posts', {\n//     hashKey: 'email',\n//     rangeKey: 'title',\n//     schema: {\n//       email: Joi.string().email(),\n//       title: Joi.string(),\n//       content: Joi.binary(),\n//       // tags: Vogels.types.stringSet(),\n//     },\n//   });\n// };\n//\n// export default posts;\n"
-  },
-  {
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/models/DynamoDB/index.js",
-    "memberof": null,
-    "longname": "src/models/DynamoDB/index.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 14,
-    "content": "// import Vogels from '../setup_vogels';\n// import posts from './Posts';\n//\n// /**\n//  * List of all DynamoDB models\n//  * @see {@link Posts}\n//  * @external {Vogels} https://github.com/ryanfitz/vogels\n//  */\n// const DynamoDBModels = {\n//   Posts: posts(Vogels),\n// };\n//\n// export default DynamoDBModels;\n"
-  },
-  {
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/models/MySQL/Users.js",
-    "memberof": null,
-    "longname": "src/models/MySQL/Users.js",
+    "longname": "src/models/SequelizeModels/Users.js",
     "access": null,
     "description": null,
     "lineNumber": 1,
@@ -2354,11 +2330,11 @@
     "static": true,
     "variation": null,
     "name": "users",
-    "memberof": "src/models/MySQL/Users.js",
-    "longname": "src/models/MySQL/Users.js~users",
+    "memberof": "src/models/SequelizeModels/Users.js",
+    "longname": "src/models/SequelizeModels/Users.js~users",
     "access": null,
     "export": true,
-    "importPath": "frill/src/models/MySQL/Users.js",
+    "importPath": "frill/src/models/SequelizeModels/Users.js",
     "importStyle": "users",
     "description": "Users model",
     "see": [
@@ -2375,13 +2351,13 @@
     "kind": "file",
     "static": true,
     "variation": null,
-    "name": "src/models/MySQL/index.js",
+    "name": "src/models/SequelizeModels/index.js",
     "memberof": null,
-    "longname": "src/models/MySQL/index.js",
+    "longname": "src/models/SequelizeModels/index.js",
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Sequelize from '../setup_sequelize';\nimport users from './Users';\n\n/**\n * List of all MySQL models\n * @see {@link Users}\n * @external {Sequelize} http://docs.sequelizejs.com/en/latest\n */\nconst MySQLModels = {\n  Users: users(Sequelize),\n};\n\nexport default MySQLModels;\n"
+    "content": "import Sequelize from '../setup_sequelize';\nimport users from './Users';\n\n/**\n * List of all Sequelize models\n * @see {@link Users}\n * @external {Sequelize} http://docs.sequelizejs.com/en/latest\n */\nconst SequelizeModels = {\n  Users: users(Sequelize),\n};\n\nexport default SequelizeModels;\n"
   },
   {
     "kind": "external",
@@ -2389,10 +2365,10 @@
     "variation": null,
     "name": "Sequelize",
     "externalLink": "http://docs.sequelizejs.com/en/latest",
-    "memberof": "src/models/MySQL/index.js",
-    "longname": "src/models/MySQL/index.js~Sequelize",
+    "memberof": "src/models/SequelizeModels/index.js",
+    "longname": "src/models/SequelizeModels/index.js~Sequelize",
     "access": null,
-    "description": "List of all MySQL models",
+    "description": "List of all Sequelize models",
     "see": [
       "{@link Users}"
     ],
@@ -2408,7 +2384,7 @@
     "access": null,
     "description": null,
     "lineNumber": 5,
-    "content": "/**\n * Example for using multiple type of databases\n */\n// example for MySQL using sequelize\nimport MySQLModels from './MySQL';\n// example for DynamoDB using vogels\n// import DynamoDBModels from './DynamoDB';\n\n/**\n * List of all models\n * @see {@link MySQLModels}\n * @see {@link DynamoDBModels}\n */\nconst Models = {\n  MySQLModels,\n  // DynamoDBModels,\n};\n\nexport default Models;\n"
+    "content": "/**\n * Example for using multiple type of databases\n */\n// example for MySQL using sequelize\nimport SequelizeModels from './SequelizeModels';\n\n/**\n * List of all models\n * @see {@link SequelizeModels}\n */\nconst Models = {\n  SequelizeModels,\n};\n\nexport default Models;\n"
   },
   {
     "kind": "variable",
@@ -2423,10 +2399,9 @@
     "importStyle": "Models",
     "description": "List of all models",
     "see": [
-      "{@link MySQLModels}",
-      "{@link DynamoDBModels}"
+      "{@link SequelizeModels}"
     ],
-    "lineNumber": 14,
+    "lineNumber": 11,
     "type": {
       "types": [
         "*"
@@ -2443,19 +2418,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Sequelize from 'sequelize';\nimport config from 'config';\n\nconsole.log(config);\n\n/**\n * setup sequelize\n */\nconst sequelize = new Sequelize(\n  config.get('MySQL.database'),\n  config.get('MySQL.username'),\n  config.get('MySQL.password'),\n  config.get('MySQL.options')\n);\n\nexport default sequelize;\n"
-  },
-  {
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/models/setup_vogels.js",
-    "memberof": null,
-    "longname": "src/models/setup_vogels.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 14,
-    "content": "// import Vogels from 'vogels';\n\n// import {AWS} from '../helpers';\n// import config from 'config';\n\n/**\n * setup vogels\n */\n// Vogels.dynamoDriver(new AWS.DynamoDB({\n//   endpoint: config.get('DynamoDB.endpoint'),\n// }));\n\n// export default Vogels;\n"
+    "content": "import Sequelize from 'sequelize';\nimport config from 'config';\n\n/**\n * setup sequelize\n */\nconst sequelize = new Sequelize(\n  config.get('sequelize.database'),\n  config.get('sequelize.username'),\n  config.get('sequelize.password'),\n  config.get('sequelize.options')\n);\n\nexport default sequelize;\n"
   },
   {
     "kind": "file",

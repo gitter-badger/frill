@@ -107,16 +107,14 @@
 <pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">import Sequelize from &apos;sequelize&apos;;
 import config from &apos;config&apos;;
 
-console.log(config);
-
 /**
  * setup sequelize
  */
 const sequelize = new Sequelize(
-  config.get(&apos;MySQL.database&apos;),
-  config.get(&apos;MySQL.username&apos;),
-  config.get(&apos;MySQL.password&apos;),
-  config.get(&apos;MySQL.options&apos;)
+  config.get(&apos;sequelize.database&apos;),
+  config.get(&apos;sequelize.username&apos;),
+  config.get(&apos;sequelize.password&apos;),
+  config.get(&apos;sequelize.options&apos;)
 );
 
 export default sequelize;
