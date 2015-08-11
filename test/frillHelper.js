@@ -49,20 +49,20 @@ const inject = (options) => {
  * Mock session(Yar) and store them into global variables
  */
 const mockSession = (server) => {
-  // global._sessionMock = {};
+  global._sessionMock = {};
   const _mock = (request, reply) => {
     request.session = {};
-    request.session.set = (/* key, val */) => {
-      // _sessionMock[key] = val;
+    request.session.set = (key, val) => {
+      _sessionMock[key] = val;
     };
-    request.session.get = (/* key */) => {
-      // return _sessionMock[key];
+    request.session.get = (key) => {
+      return _sessionMock[key];
     };
     request.session.reset = () => {
-      // _sessionMock = {};
+      _sessionMock = {};
     };
-    request.session.clear = (/* key */) => {
-      // delete _sessionMock[key];
+    request.session.clear = (key) => {
+      delete _sessionMock[key];
     };
     // simply set
     request.session.flash = request.session.set;
@@ -89,10 +89,10 @@ const injectAuthenticated = (options) => {
     },
   }).then((response) => {
     response.result.token.should.exist;
-    if (!options.headers) {
-      options.headers = {};
-    }
-    options.headers.Authorization = response.result.token;
+    // if (!options.headers) {
+    //   options.headers = {};
+    // }
+    // options.headers.Authorization = response.result.token;
     return inject(options);
   });
 };
