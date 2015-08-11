@@ -1,5 +1,5 @@
 import {BaseAction} from 'frill-core';
-import scrollData from '../helpers/testScrollItemsData';
+import scrollData from '../fixtures/testScrollItemsData';
 
 /**
  * Example actions

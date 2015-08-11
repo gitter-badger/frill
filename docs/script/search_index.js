@@ -138,12 +138,6 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "frill/src/models/dynamodb/index.js~dynamodbmodels",
-    "variable/index.html#static-variable-DynamoDBModels",
-    "<span>DynamoDBModels</span> <span class=\"search-result-import-path\">frill/src/models/DynamoDB/index.js</span>",
-    "variable"
-  ],
-  [
     "frill/src/components/error.jsx~errorcomponent",
     "class/src/components/Error.jsx~ErrorComponent.html",
     "<span>ErrorComponent</span> <span class=\"search-result-import-path\">frill/src/components/Error.jsx</span>",
@@ -180,22 +174,10 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "frill/src/models/mysql/index.js~mysqlmodels",
-    "variable/index.html#static-variable-MySQLModels",
-    "<span>MySQLModels</span> <span class=\"search-result-import-path\">frill/src/models/MySQL/index.js</span>",
-    "variable"
-  ],
-  [
     "frill/src/components/page.jsx~pagecomponent",
     "class/src/components/Page.jsx~PageComponent.html",
     "<span>PageComponent</span> <span class=\"search-result-import-path\">frill/src/components/Page.jsx</span>",
     "class"
-  ],
-  [
-    "frill/src/models/dynamodb/posts.js~posts",
-    "variable/index.html#static-variable-Posts",
-    "<span>Posts</span> <span class=\"search-result-import-path\">frill/src/models/DynamoDB/Posts.js</span>",
-    "variable"
   ],
   [
     "frill/src/components/scrollblock/index.jsx~scrollblockcomponent",
@@ -220,12 +202,6 @@ window.esdocSearchIndex = [
     "class/src/components/Top/index.jsx~TopComponent.html",
     "<span>TopComponent</span> <span class=\"search-result-import-path\">frill/src/components/Top/index.jsx</span>",
     "class"
-  ],
-  [
-    "frill/src/models/mysql/users.js~users",
-    "variable/index.html#static-variable-Users",
-    "<span>Users</span> <span class=\"search-result-import-path\">frill/src/models/MySQL/Users.js</span>",
-    "variable"
   ],
   [
     "frill/src/api/index.js~api",
@@ -360,6 +336,12 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
+    "frill/src/models/dynamodb/posts.js~posts",
+    "variable/index.html#static-variable-posts",
+    "<span>posts</span> <span class=\"search-result-import-path\">frill/src/models/DynamoDB/Posts.js</span>",
+    "variable"
+  ],
+  [
     "frill/src/helpers/routeprefixer.js~routeprefixer",
     "variable/index.html#static-variable-routePrefixer",
     "<span>routePrefixer</span> <span class=\"search-result-import-path\">frill/src/helpers/routePrefixer.js</span>",
@@ -399,6 +381,12 @@ window.esdocSearchIndex = [
     "frill/src/api/auth/strategies/twitter.js~twitterstrategy",
     "variable/index.html#static-variable-twitterStrategy",
     "<span>twitterStrategy</span> <span class=\"search-result-import-path\">frill/src/api/auth/strategies/twitter.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/models/mysql/users.js~users",
+    "variable/index.html#static-variable-users",
+    "<span>users</span> <span class=\"search-result-import-path\">frill/src/models/MySQL/Users.js</span>",
     "variable"
   ],
   [
@@ -1374,6 +1362,12 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/helpers/index.js~amazonwebservices",
+    "external/index.html",
+    "src/helpers/index.js~AmazonWebServices",
+    "external"
+  ],
+  [
     "src/helpers/routeprefixer.js",
     "file/src/helpers/routePrefixer.js.html",
     "src/helpers/routePrefixer.js",
@@ -1410,6 +1404,12 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/models/dynamodb/index.js~vogels",
+    "external/index.html",
+    "src/models/DynamoDB/index.js~Vogels",
+    "external"
+  ],
+  [
     "src/models/mysql/users.js",
     "file/src/models/MySQL/Users.js.html",
     "src/models/MySQL/Users.js",
@@ -1420,6 +1420,12 @@ window.esdocSearchIndex = [
     "file/src/models/MySQL/index.js.html",
     "src/models/MySQL/index.js",
     "file"
+  ],
+  [
+    "src/models/mysql/index.js~sequelize",
+    "external/index.html",
+    "src/models/MySQL/index.js~Sequelize",
+    "external"
   ],
   [
     "src/models/index.js",
@@ -1438,12 +1444,6 @@ window.esdocSearchIndex = [
     "file/src/models/vogels.js.html",
     "src/models/vogels.js",
     "file"
-  ],
-  [
-    "src/models/vogels.js~vogels",
-    "external/index.html",
-    "src/models/vogels.js~Vogels",
-    "external"
   ],
   [
     "src/routes.jsx",

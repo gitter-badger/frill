@@ -1,12 +1,11 @@
 /**
  * AmazonWebServices Helper
+ * WARNING: should NOT be required by client source
  */
 import AWS from 'aws-sdk';
+import config from 'config';
 
-AWS.config.update({
-  accessKeyId: 'myKeyId',
-  secretAccessKey: 'secretKey',
-  region: 'us-east-1',
-});
+// configure AWS
+AWS.config.update(config.get('AWS'));
 
 export default AWS;

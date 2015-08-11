@@ -8,10 +8,10 @@
           "type": "ImportDefaultSpecifier",
           "local": {
             "type": "Identifier",
-            "name": "Posts",
+            "name": "Vogels",
             "range": [
               7,
-              12
+              13
             ],
             "loc": {
               "start": {
@@ -20,13 +20,13 @@
               },
               "end": {
                 "line": 1,
-                "column": 12
+                "column": 13
               }
             }
           },
           "range": [
             7,
-            12
+            13
           ],
           "loc": {
             "start": {
@@ -35,6 +35,79 @@
             },
             "end": {
               "line": 1,
+              "column": 13
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "../vogels",
+        "raw": "'../vogels'",
+        "range": [
+          19,
+          30
+        ],
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 19
+          },
+          "end": {
+            "line": 1,
+            "column": 30
+          }
+        }
+      },
+      "range": [
+        0,
+        31
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 31
+        }
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "posts",
+            "range": [
+              39,
+              44
+            ],
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 7
+              },
+              "end": {
+                "line": 2,
+                "column": 12
+              }
+            }
+          },
+          "range": [
+            39,
+            44
+          ],
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 7
+            },
+            "end": {
+              "line": 2,
               "column": 12
             }
           }
@@ -45,49 +118,49 @@
         "value": "./Posts",
         "raw": "'./Posts'",
         "range": [
-          18,
-          27
+          50,
+          59
         ],
         "loc": {
           "start": {
-            "line": 1,
+            "line": 2,
             "column": 18
           },
           "end": {
-            "line": 1,
+            "line": 2,
             "column": 27
           }
         }
       },
       "range": [
-        0,
-        28
+        32,
+        60
       ],
       "loc": {
         "start": {
-          "line": 1,
+          "line": 2,
           "column": 0
         },
         "end": {
-          "line": 1,
+          "line": 2,
           "column": 28
         }
       },
       "trailingComments": [
         {
           "type": "Block",
-          "value": "*\n * List of all DynamoDB models\n * @see {@link Posts}\n ",
+          "value": "*\n * List of all DynamoDB models\n * @see {@link Posts}\n * @external {Vogels} https://github.com/ryanfitz/vogels\n ",
           "range": [
-            30,
-            90
+            62,
+            179
           ],
           "loc": {
             "start": {
-              "line": 3,
+              "line": 4,
               "column": 0
             },
             "end": {
-              "line": 6,
+              "line": 8,
               "column": 3
             }
           }
@@ -103,16 +176,16 @@
             "type": "Identifier",
             "name": "DynamoDBModels",
             "range": [
-              97,
-              111
+              186,
+              200
             ],
             "loc": {
               "start": {
-                "line": 7,
+                "line": 9,
                 "column": 6
               },
               "end": {
-                "line": 7,
+                "line": 9,
                 "column": 20
               }
             }
@@ -126,84 +199,121 @@
                   "type": "Identifier",
                   "name": "Posts",
                   "range": [
-                    118,
-                    123
+                    207,
+                    212
                   ],
                   "loc": {
                     "start": {
-                      "line": 8,
+                      "line": 10,
                       "column": 2
                     },
                     "end": {
-                      "line": 8,
+                      "line": 10,
                       "column": 7
                     }
                   }
                 },
                 "value": {
-                  "type": "Identifier",
-                  "name": "Posts",
+                  "type": "CallExpression",
+                  "callee": {
+                    "type": "Identifier",
+                    "name": "posts",
+                    "range": [
+                      214,
+                      219
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 10,
+                        "column": 9
+                      },
+                      "end": {
+                        "line": 10,
+                        "column": 14
+                      }
+                    }
+                  },
+                  "arguments": [
+                    {
+                      "type": "Identifier",
+                      "name": "Vogels",
+                      "range": [
+                        220,
+                        226
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 10,
+                          "column": 15
+                        },
+                        "end": {
+                          "line": 10,
+                          "column": 21
+                        }
+                      }
+                    }
+                  ],
                   "range": [
-                    118,
-                    123
+                    214,
+                    227
                   ],
                   "loc": {
                     "start": {
-                      "line": 8,
-                      "column": 2
+                      "line": 10,
+                      "column": 9
                     },
                     "end": {
-                      "line": 8,
-                      "column": 7
+                      "line": 10,
+                      "column": 22
                     }
                   }
                 },
                 "kind": "init",
                 "method": false,
-                "shorthand": true,
+                "shorthand": false,
                 "computed": false,
                 "range": [
-                  118,
-                  123
+                  207,
+                  227
                 ],
                 "loc": {
                   "start": {
-                    "line": 8,
+                    "line": 10,
                     "column": 2
                   },
                   "end": {
-                    "line": 8,
-                    "column": 7
+                    "line": 10,
+                    "column": 22
                   }
                 }
               }
             ],
             "range": [
-              114,
-              126
+              203,
+              230
             ],
             "loc": {
               "start": {
-                "line": 7,
+                "line": 9,
                 "column": 23
               },
               "end": {
-                "line": 9,
+                "line": 11,
                 "column": 1
               }
             }
           },
           "range": [
-            97,
-            126
+            186,
+            230
           ],
           "loc": {
             "start": {
-              "line": 7,
+              "line": 9,
               "column": 6
             },
             "end": {
-              "line": 9,
+              "line": 11,
               "column": 1
             }
           }
@@ -211,16 +321,16 @@
       ],
       "kind": "const",
       "range": [
-        91,
-        127
+        180,
+        231
       ],
       "loc": {
         "start": {
-          "line": 7,
+          "line": 9,
           "column": 0
         },
         "end": {
-          "line": 9,
+          "line": 11,
           "column": 2
         }
       },
@@ -234,31 +344,31 @@
         "type": "Identifier",
         "name": "DynamoDBModels",
         "range": [
-          144,
-          158
+          248,
+          262
         ],
         "loc": {
           "start": {
-            "line": 11,
+            "line": 13,
             "column": 15
           },
           "end": {
-            "line": 11,
+            "line": 13,
             "column": 29
           }
         }
       },
       "range": [
-        129,
-        159
+        233,
+        263
       ],
       "loc": {
         "start": {
-          "line": 11,
+          "line": 13,
           "column": 0
         },
         "end": {
-          "line": 11,
+          "line": 13,
           "column": 30
         }
       },
@@ -277,16 +387,16 @@
               "type": "Identifier",
               "name": "DynamoDBModels",
               "range": [
-                97,
-                111
+                186,
+                200
               ],
               "loc": {
                 "start": {
-                  "line": 7,
+                  "line": 9,
                   "column": 6
                 },
                 "end": {
-                  "line": 7,
+                  "line": 9,
                   "column": 20
                 }
               }
@@ -300,84 +410,121 @@
                     "type": "Identifier",
                     "name": "Posts",
                     "range": [
-                      118,
-                      123
+                      207,
+                      212
                     ],
                     "loc": {
                       "start": {
-                        "line": 8,
+                        "line": 10,
                         "column": 2
                       },
                       "end": {
-                        "line": 8,
+                        "line": 10,
                         "column": 7
                       }
                     }
                   },
                   "value": {
-                    "type": "Identifier",
-                    "name": "Posts",
+                    "type": "CallExpression",
+                    "callee": {
+                      "type": "Identifier",
+                      "name": "posts",
+                      "range": [
+                        214,
+                        219
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 10,
+                          "column": 9
+                        },
+                        "end": {
+                          "line": 10,
+                          "column": 14
+                        }
+                      }
+                    },
+                    "arguments": [
+                      {
+                        "type": "Identifier",
+                        "name": "Vogels",
+                        "range": [
+                          220,
+                          226
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 10,
+                            "column": 15
+                          },
+                          "end": {
+                            "line": 10,
+                            "column": 21
+                          }
+                        }
+                      }
+                    ],
                     "range": [
-                      118,
-                      123
+                      214,
+                      227
                     ],
                     "loc": {
                       "start": {
-                        "line": 8,
-                        "column": 2
+                        "line": 10,
+                        "column": 9
                       },
                       "end": {
-                        "line": 8,
-                        "column": 7
+                        "line": 10,
+                        "column": 22
                       }
                     }
                   },
                   "kind": "init",
                   "method": false,
-                  "shorthand": true,
+                  "shorthand": false,
                   "computed": false,
                   "range": [
-                    118,
-                    123
+                    207,
+                    227
                   ],
                   "loc": {
                     "start": {
-                      "line": 8,
+                      "line": 10,
                       "column": 2
                     },
                     "end": {
-                      "line": 8,
-                      "column": 7
+                      "line": 10,
+                      "column": 22
                     }
                   }
                 }
               ],
               "range": [
-                114,
-                126
+                203,
+                230
               ],
               "loc": {
                 "start": {
-                  "line": 7,
+                  "line": 9,
                   "column": 23
                 },
                 "end": {
-                  "line": 9,
+                  "line": 11,
                   "column": 1
                 }
               }
             },
             "range": [
-              97,
-              126
+              186,
+              230
             ],
             "loc": {
               "start": {
-                "line": 7,
+                "line": 9,
                 "column": 6
               },
               "end": {
-                "line": 9,
+                "line": 11,
                 "column": 1
               }
             }
@@ -385,34 +532,34 @@
         ],
         "kind": "const",
         "range": [
-          91,
-          127
+          180,
+          231
         ],
         "loc": {
           "start": {
-            "line": 7,
+            "line": 9,
             "column": 0
           },
           "end": {
-            "line": 9,
+            "line": 11,
             "column": 2
           }
         },
         "leadingComments": [
           {
             "type": "Block",
-            "value": "*\n * List of all DynamoDB models\n * @see {@link Posts}\n ",
+            "value": "*\n * List of all DynamoDB models\n * @see {@link Posts}\n * @external {Vogels} https://github.com/ryanfitz/vogels\n ",
             "range": [
-              30,
-              90
+              62,
+              179
             ],
             "loc": {
               "start": {
-                "line": 3,
+                "line": 4,
                 "column": 0
               },
               "end": {
-                "line": 6,
+                "line": 8,
                 "column": 3
               }
             }
@@ -421,16 +568,16 @@
         "trailingComments": []
       },
       "range": [
-        129,
-        159
+        233,
+        263
       ],
       "loc": {
         "start": {
-          "line": 11,
+          "line": 13,
           "column": 0
         },
         "end": {
-          "line": 11,
+          "line": 13,
           "column": 30
         }
       }
@@ -439,7 +586,7 @@
   "sourceType": "module",
   "range": [
     0,
-    159
+    263
   ],
   "loc": {
     "start": {
@@ -447,25 +594,25 @@
       "column": 0
     },
     "end": {
-      "line": 11,
+      "line": 13,
       "column": 30
     }
   },
   "comments": [
     {
       "type": "Block",
-      "value": "*\n * List of all DynamoDB models\n * @see {@link Posts}\n ",
+      "value": "*\n * List of all DynamoDB models\n * @see {@link Posts}\n * @external {Vogels} https://github.com/ryanfitz/vogels\n ",
       "range": [
-        30,
-        90
+        62,
+        179
       ],
       "loc": {
         "start": {
-          "line": 3,
+          "line": 4,
           "column": 0
         },
         "end": {
-          "line": 6,
+          "line": 8,
           "column": 3
         }
       }

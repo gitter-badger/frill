@@ -8,27 +8,24 @@ import Hapi from 'hapi';
 import {mockSession} from './frillHelper';
 import Authentication from 'bell';
 import Strategies from '../src/api/auth/strategies';
+
 const TEST_SERVER_PORT = 6000;
 const server = new Hapi.Server();
 
-try {
-  server.connection({port: TEST_SERVER_PORT});
+server.connection({port: TEST_SERVER_PORT});
 
-  // register session
-  mockSession(server);
+// register session
+mockSession(server);
 
-  // register Authentication strategies
-  server.register([
-    Authentication,
-  ], () => {
-    // use JsonWebTokens (you shouldn't remove this)
-    Strategies.jwtStrategy(server);
-    // use Local strategy
-    Strategies.localStrategy(server);
-  });
-} catch (e) {
-  console.error(e);
-}
+// register Authentication strategies
+server.register([
+  Authentication,
+], () => {
+  // use JsonWebTokens (you shouldn't remove this)
+  Strategies.jwtStrategy(server);
+  // use Local strategy
+  Strategies.localStrategy(server);
+});
 
 global.document = jsdom('<html><body></body></html>');
 global.window = document.defaultView;

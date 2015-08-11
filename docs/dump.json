@@ -360,7 +360,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import JWT from 'jsonwebtoken';\nimport Boom from 'boom';\nimport aguid from 'aguid';\nimport {where as _where} from 'lodash';\n\n// Test data\nimport accounts from '../../helpers/testUserData';\n\n/**\n * Handler for authentication\n */\nconst authHandler = (request, reply) => {\n  // reply error when authentication fails\n  if (!request.auth.isAuthenticated) {\n    return reply(\n      Boom.unauthorized('Authentication failed due to: ' +\n        request.auth.error.message)\n    );\n  }\n\n  const query = {\n    id: parseInt(request.auth.credentials.profile.id, 10),\n    strategy: request.auth.strategy,\n  };\n\n  const user = _where(accounts, query);\n  // console.log(user);\n\n  if (user.length === 0) {\n    console.log('needs registration');\n  }\n\n  delete user[0].password;\n\n  /** @todo create and set JWT into session */\n  const session = {\n    valid: true,\n    id: aguid(), // a random session id\n    user: user[0],\n    exp: new Date().getTime() + 30 * 60 * 1000, // expires in 30 minutes time\n  };\n\n  // // create the session in Redis\n  // redisClient.set(session.id, JSON.stringify(session));\n  request.session.set(session.id, session);\n  // sign the session as a JWT\n  const token = JWT.sign(session, 'NeverShareYourSecret');\n  // console.log(token);\n  request.session.flash('token', token);\n  return reply.redirect(request.query.ref || '/');\n};\n\n/**\n * Handler for login\n */\nconst loginHandler = () => {\n\n};\n\n/**\n * Handler for site registration\n */\nconst registrationHandler = () => {\n\n};\n\n/**\n * Export all authentication handlers\n */\nconst authHandlers = {\n  authHandler,\n  loginHandler,\n  registrationHandler,\n};\n\nexport default authHandlers;\n"
+    "content": "import JWT from 'jsonwebtoken';\nimport Boom from 'boom';\nimport aguid from 'aguid';\nimport {where as _where} from 'lodash';\n\n// Test data\nimport accounts from '../../helpers/testUserData';\n// import models from '../../models';\n\n/**\n * Handler for authentication\n */\nconst authHandler = (request, reply) => {\n  // reply error when authentication fails\n  if (!request.auth.isAuthenticated) {\n    return reply(\n      Boom.unauthorized('Authentication failed due to: ' +\n        request.auth.error.message)\n    );\n  }\n\n  const query = {\n    id: parseInt(request.auth.credentials.profile.id, 10),\n    strategy: request.auth.strategy,\n  };\n\n  const user = _where(accounts, query);\n  // console.log(user);\n\n  if (user.length === 0) {\n    console.log('needs registration');\n  }\n\n  delete user[0].password;\n\n  /** @todo create and set JWT into session */\n  const session = {\n    valid: true,\n    id: aguid(), // a random session id\n    user: user[0],\n    exp: new Date().getTime() + 30 * 60 * 1000, // expires in 30 minutes time\n  };\n\n  // // create the session in Redis\n  // redisClient.set(session.id, JSON.stringify(session));\n  request.session.set(session.id, session);\n  // sign the session as a JWT\n  const token = JWT.sign(session, 'NeverShareYourSecret');\n  // console.log(token);\n  request.session.flash('token', token);\n  return reply.redirect(request.query.ref || '/');\n};\n\n/**\n * Handler for login\n */\nconst loginHandler = () => {\n\n};\n\n/**\n * Handler for site registration\n */\nconst registrationHandler = () => {\n\n};\n\n/**\n * Export all authentication handlers\n */\nconst authHandlers = {\n  authHandler,\n  loginHandler,\n  registrationHandler,\n};\n\nexport default authHandlers;\n"
   },
   {
     "kind": "variable",
@@ -374,7 +374,7 @@
     "importPath": "frill/src/api/auth/authHandlers.js",
     "importStyle": null,
     "description": "Handler for authentication",
-    "lineNumber": 12,
+    "lineNumber": 13,
     "type": {
       "types": [
         "*"
@@ -393,7 +393,7 @@
     "importPath": "frill/src/api/auth/authHandlers.js",
     "importStyle": null,
     "description": "Handler for login",
-    "lineNumber": 56,
+    "lineNumber": 57,
     "type": {
       "types": [
         "*"
@@ -412,7 +412,7 @@
     "importPath": "frill/src/api/auth/authHandlers.js",
     "importStyle": null,
     "description": "Handler for site registration",
-    "lineNumber": 63,
+    "lineNumber": 64,
     "type": {
       "types": [
         "*"
@@ -431,7 +431,7 @@
     "importPath": "frill/src/api/auth/authHandlers.js",
     "importStyle": "authHandlers",
     "description": "Export all authentication handlers",
-    "lineNumber": 70,
+    "lineNumber": 71,
     "type": {
       "types": [
         "*"
@@ -518,7 +518,7 @@
     "access": null,
     "description": null,
     "lineNumber": 5,
-    "content": "/**\n * Authentication strategy for Facebook\n * @see https://developers.facebook.com/\n */\nconst facebookStrategy = (server) => {\n  server.auth.strategy('facebook', 'bell', {\n    provider: 'facebook',\n    password: 'cookie_encryption_password',\n    clientId: 'YOUR_CLIENT_ID',\n    clientSecret: 'YOUR_CLIENT_SECRET',\n    isSecure: false,\n  });\n};\n\nexport default facebookStrategy;\n"
+    "content": "/**\n * Authentication strategy for Facebook\n * @see https://developers.facebook.com/\n */\nconst facebookStrategy = (server) => {\n  server.auth.strategy('facebook', 'bell', {\n    provider: 'facebook',\n    password: 'cookie_encryption_password',\n    clientId: 'YOUR_CLIENT_ID',\n    clientSecret: 'YOUR_CLIENT_SECRET',\n    isSecure: false, // set this to true on HTTPS\n  });\n};\n\nexport default facebookStrategy;\n"
   },
   {
     "kind": "variable",
@@ -552,7 +552,7 @@
     "access": null,
     "description": null,
     "lineNumber": 5,
-    "content": "/**\n * Authentication strategy for GitHub\n * @see https://developer.github.com/\n */\nconst githubStrategy = (server) => {\n  server.auth.strategy('github', 'bell', {\n    provider: 'github',\n    password: 'cookie_encryption_password',\n    clientId: 'YOUR_CLIENT_ID',\n    clientSecret: 'YOUR_CLIENT_SECRET',\n    isSecure: false,\n  });\n};\n\nexport default githubStrategy;\n"
+    "content": "/**\n * Authentication strategy for GitHub\n * @see https://developer.github.com/\n */\nconst githubStrategy = (server) => {\n  server.auth.strategy('github', 'bell', {\n    provider: 'github',\n    password: 'cookie_encryption_password',\n    clientId: 'YOUR_CLIENT_ID',\n    clientSecret: 'YOUR_CLIENT_SECRET',\n    isSecure: false, // set this to true on HTTPS\n  });\n};\n\nexport default githubStrategy;\n"
   },
   {
     "kind": "variable",
@@ -586,7 +586,7 @@
     "access": null,
     "description": null,
     "lineNumber": 5,
-    "content": "/**\n * Authentication strategy for Google\n * @see https://developers.google.com/\n */\nconst googleStrategy = (server) => {\n  server.auth.strategy('google', 'bell', {\n    provider: 'google',\n    password: 'cookie_encryption_password',\n    clientId: 'YOUR_CLIENT_ID',\n    clientSecret: 'YOUR_CLIENT_SECRET',\n    isSecure: false,\n  });\n};\n\nexport default googleStrategy;\n"
+    "content": "/**\n * Authentication strategy for Google\n * @see https://developers.google.com/\n */\nconst googleStrategy = (server) => {\n  server.auth.strategy('google', 'bell', {\n    provider: 'google',\n    password: 'cookie_encryption_password',\n    clientId: 'YOUR_CLIENT_ID',\n    clientSecret: 'YOUR_CLIENT_SECRET',\n    isSecure: false, // set this to true on HTTPS\n  });\n};\n\nexport default googleStrategy;\n"
   },
   {
     "kind": "variable",
@@ -816,7 +816,7 @@
     "access": null,
     "description": null,
     "lineNumber": 5,
-    "content": "/**\n * Authentication strategy for Twitter\n * @see https://dev.twitter.com/\n */\nconst twitterStrategy = (server) => {\n  server.auth.strategy('twitter', 'bell', {\n    provider: 'twitter',\n    password: 'cookie_encryption_password',\n    clientId: 'YOUR_CLIENT_ID',\n    clientSecret: 'YOUR_CLIENT_SECRET',\n    isSecure: false,\n  });\n};\n\nexport default twitterStrategy;\n"
+    "content": "/**\n * Authentication strategy for Twitter\n * @see https://dev.twitter.com/\n */\nconst twitterStrategy = (server) => {\n  server.auth.strategy('twitter', 'bell', {\n    provider: 'twitter',\n    password: 'cookie_encryption_password',\n    clientId: 'YOUR_CLIENT_ID',\n    clientSecret: 'YOUR_CLIENT_SECRET',\n    isSecure: false, // set this to true on HTTPS\n  });\n};\n\nexport default twitterStrategy;\n"
   },
   {
     "kind": "variable",
@@ -1036,7 +1036,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import frillCore from 'frill-core';\nimport Stores from './stores';\nimport Actions from './actions';\n\n/**\n * FrillCore\n */\nconst FrillCore = frillCore;\n\nconsole.log(process.env.NODE_ENV);\n\n// load stores and actions.\nFrillCore._Stores = Stores;\nFrillCore._Actions = Actions;\n\nexport default FrillCore;\n"
+    "content": "import frillCore from 'frill-core';\nimport Stores from './stores';\nimport Actions from './actions';\n\n/**\n * FrillCore\n */\nconst FrillCore = frillCore;\n\n// load stores and actions.\nFrillCore._Stores = Stores;\nFrillCore._Actions = Actions;\n\nexport default FrillCore;\n"
   },
   {
     "kind": "variable",
@@ -2088,7 +2088,7 @@
     "access": null,
     "description": null,
     "lineNumber": 4,
-    "content": "/**\n * AmazonWebServices Helper\n */\nimport AWS from 'aws-sdk';\n\nAWS.config.update({\n  accessKeyId: 'myKeyId',\n  secretAccessKey: 'secretKey',\n  region: 'us-east-1',\n});\n\nexport default AWS;\n"
+    "content": "/**\n * AmazonWebServices Helper\n */\nimport AWS from 'aws-sdk';\n\n// configure AWS\nAWS.config.update(config.get('AWS'));\n\nexport default AWS;\n"
   },
   {
     "kind": "file",
@@ -2100,7 +2100,7 @@
     "access": null,
     "description": null,
     "lineNumber": 5,
-    "content": "/**\n * Setup helpers to use from the 'api'\n */\n\nimport AWS from './aws';\nimport routePrefixer from './routePrefixer';\nimport routerContainer from './routerContainer';\n\n/**\n * List of all helpers used in app\n */\nconst helpers = {\n  AWS,\n  routePrefixer,\n  routerContainer,\n};\n\nexport default helpers;\n"
+    "content": "/**\n * Setup helpers to use from the 'api'\n */\n\nimport AWS from './aws';\nimport routePrefixer from './routePrefixer';\nimport routerContainer from './routerContainer';\n\n/**\n * List of all helpers used in app\n */\nconst helpers = {\n  /**\n   * @external {AmazonWebServices} http://aws.amazon.com/\n   */\n  AWS,\n  routePrefixer,\n  routerContainer,\n};\n\nexport default helpers;\n"
   },
   {
     "kind": "variable",
@@ -2120,6 +2120,18 @@
         "*"
       ]
     }
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "AmazonWebServices",
+    "externalLink": "http://aws.amazon.com/",
+    "memberof": "src/helpers/index.js",
+    "longname": "src/helpers/index.js~AmazonWebServices",
+    "access": null,
+    "description": null,
+    "lineNumber": 16
   },
   {
     "kind": "file",
@@ -2311,24 +2323,24 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Vogels from '../vogels';\nimport Joi from 'joi';\n\n/**\n * Posts model\n * @see https://github.com/ryanfitz/vogels#define-a-model\n */\nconst Posts = Vogels.define('Post', {\n  hashKey: 'email',\n  rangeKey: 'title',\n  schema: {\n    email: Joi.string().email(),\n    title: Joi.string(),\n    content: Joi.binary(),\n    tags: vogels.types.stringSet(),\n  },\n});\n\nexport default Posts;\n"
+    "content": "import Joi from 'joi';\n\n/**\n * Posts model\n * @see https://github.com/ryanfitz/vogels#define-a-model\n */\nconst posts = (Vogels) => {\n  return Vogels.define('posts', {\n    hashKey: 'email',\n    rangeKey: 'title',\n    schema: {\n      email: Joi.string().email(),\n      title: Joi.string(),\n      content: Joi.binary(),\n      tags: Vogels.types.stringSet(),\n    },\n  });\n};\n\nexport default posts;\n"
   },
   {
     "kind": "variable",
     "static": true,
     "variation": null,
-    "name": "Posts",
+    "name": "posts",
     "memberof": "src/models/DynamoDB/Posts.js",
-    "longname": "src/models/DynamoDB/Posts.js~Posts",
+    "longname": "src/models/DynamoDB/Posts.js~posts",
     "access": null,
     "export": true,
     "importPath": "frill/src/models/DynamoDB/Posts.js",
-    "importStyle": "Posts",
+    "importStyle": "posts",
     "description": "Posts model",
     "see": [
       "https://github.com/ryanfitz/vogels#define-a-model"
     ],
-    "lineNumber": 8,
+    "lineNumber": 7,
     "type": {
       "types": [
         "*"
@@ -2345,29 +2357,22 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Posts from './Posts';\n\n/**\n * List of all DynamoDB models\n * @see {@link Posts}\n */\nconst DynamoDBModels = {\n  Posts,\n};\n\nexport default DynamoDBModels;\n"
+    "content": "import Vogels from '../vogels';\nimport posts from './Posts';\n\n/**\n * List of all DynamoDB models\n * @see {@link Posts}\n * @external {Vogels} https://github.com/ryanfitz/vogels\n */\nconst DynamoDBModels = {\n  Posts: posts(Vogels),\n};\n\nexport default DynamoDBModels;\n"
   },
   {
-    "kind": "variable",
+    "kind": "external",
     "static": true,
     "variation": null,
-    "name": "DynamoDBModels",
+    "name": "Vogels",
+    "externalLink": "https://github.com/ryanfitz/vogels",
     "memberof": "src/models/DynamoDB/index.js",
-    "longname": "src/models/DynamoDB/index.js~DynamoDBModels",
+    "longname": "src/models/DynamoDB/index.js~Vogels",
     "access": null,
-    "export": true,
-    "importPath": "frill/src/models/DynamoDB/index.js",
-    "importStyle": "DynamoDBModels",
     "description": "List of all DynamoDB models",
     "see": [
       "{@link Posts}"
     ],
-    "lineNumber": 7,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
+    "lineNumber": 9
   },
   {
     "kind": "file",
@@ -2379,24 +2384,24 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Sequelize from 'sequelize';\nimport sequelize from '../sequelize';\n\n/**\n * Users model\n * @see http://docs.sequelizejs.com/en/latest/docs/models-definition/#definition\n */\nconst Users = sequelize.define('User', {\n  username: Sequelize.STRING,\n  birthday: Sequelize.DATE,\n});\n\nexport default Users;\n"
+    "content": "import Sequelize from 'sequelize';\n\n/**\n * Users model\n * @see http://docs.sequelizejs.com/en/latest/docs/models-definition/#definition\n */\nconst users = (sequelize) => {\n  return sequelize.define('users', {\n    username: Sequelize.STRING,\n    birthday: Sequelize.DATE,\n  });\n};\n\nexport default users;\n"
   },
   {
     "kind": "variable",
     "static": true,
     "variation": null,
-    "name": "Users",
+    "name": "users",
     "memberof": "src/models/MySQL/Users.js",
-    "longname": "src/models/MySQL/Users.js~Users",
+    "longname": "src/models/MySQL/Users.js~users",
     "access": null,
     "export": true,
     "importPath": "frill/src/models/MySQL/Users.js",
-    "importStyle": "Users",
+    "importStyle": "users",
     "description": "Users model",
     "see": [
       "http://docs.sequelizejs.com/en/latest/docs/models-definition/#definition"
     ],
-    "lineNumber": 8,
+    "lineNumber": 7,
     "type": {
       "types": [
         "*"
@@ -2413,29 +2418,22 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Users from './Users';\n\n/**\n * List of all DynamoDB models\n * @see {@link Users}\n */\nconst MySQLModels = {\n  Users,\n};\n\nexport default MySQLModels;\n"
+    "content": "import Sequelize from '../sequelize';\nimport users from './Users';\n\n/**\n * List of all MySQL models\n * @see {@link Users}\n * @external {Sequelize} http://docs.sequelizejs.com/en/latest\n */\nconst MySQLModels = {\n  Users: users(Sequelize),\n};\n\nexport default MySQLModels;\n"
   },
   {
-    "kind": "variable",
+    "kind": "external",
     "static": true,
     "variation": null,
-    "name": "MySQLModels",
+    "name": "Sequelize",
+    "externalLink": "http://docs.sequelizejs.com/en/latest",
     "memberof": "src/models/MySQL/index.js",
-    "longname": "src/models/MySQL/index.js~MySQLModels",
+    "longname": "src/models/MySQL/index.js~Sequelize",
     "access": null,
-    "export": true,
-    "importPath": "frill/src/models/MySQL/index.js",
-    "importStyle": "MySQLModels",
-    "description": "List of all DynamoDB models",
+    "description": "List of all MySQL models",
     "see": [
       "{@link Users}"
     ],
-    "lineNumber": 7,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
+    "lineNumber": 9
   },
   {
     "kind": "file",
@@ -2447,7 +2445,7 @@
     "access": null,
     "description": null,
     "lineNumber": 5,
-    "content": "/**\n * Example for using multiple type of databases\n */\n// example for DynamoDB using vogels\nimport {Posts} from './DynamoDB';\n// example for MySQL using sequelize\nimport {Users} from './MySQL';\n\nconst dynamoDb = {\n  Posts,\n};\n\nconst mySql = {\n  Users,\n};\n\n/**\n * List of all models\n * @see {@link MySQLModels}\n * @see {@link DynamoDBModels}\n */\nconst Models = {\n  dynamoDb,\n  mySql,\n};\n\nexport default Models;\n"
+    "content": "/**\n * Example for using multiple type of databases\n */\n// example for DynamoDB using vogels\nimport {Posts} from './DynamoDB';\n// example for MySQL using sequelize\nimport {Users} from './MySQL';\nconst dynamoDb = {\n  Posts,\n};\n\nconst mySql = {\n  Users,\n};\n\n/**\n * List of all models\n * @see {@link MySQLModels}\n * @see {@link DynamoDBModels}\n */\nconst Models = {\n  mySql,\n  dynamoDb,\n};\n\nexport default Models;\n"
   },
   {
     "kind": "variable",
@@ -2461,7 +2459,7 @@
     "importPath": "frill/src/models/index.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 9,
+    "lineNumber": 8,
     "undocument": true,
     "type": {
       "types": [
@@ -2481,7 +2479,7 @@
     "importPath": "frill/src/models/index.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 13,
+    "lineNumber": 12,
     "undocument": true,
     "type": {
       "types": [
@@ -2505,7 +2503,7 @@
       "{@link MySQLModels}",
       "{@link DynamoDBModels}"
     ],
-    "lineNumber": 22,
+    "lineNumber": 21,
     "type": {
       "types": [
         "*"
@@ -2522,7 +2520,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Sequelize from 'sequelize';\n\n/**\n * setup sequelize\n * @external {Sequelize} http://docs.sequelizejs.com/en/latest/\n */\nconst sequelize = new Sequelize('database', 'username', 'password', {\n  host: 'localhost',\n  dialect: 'mysql',\n  // pool: {\n  //   max: 5,\n  //   min: 0,\n  //   idle: 10000,\n  // },\n});\n\nexport default sequelize;\n"
+    "content": "import Sequelize from 'sequelize';\nimport config from 'config';\n\n/**\n * setup sequelize\n */\nconst sequelize = new Sequelize(\n  config.get('MySQL.database'),\n  config.get('MySQL.username'),\n  config.get('MySQL.password'),\n  config.get('MySQL.options')\n);\n\nexport default sequelize;\n"
   },
   {
     "kind": "file",
@@ -2534,19 +2532,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import vogels from 'vogels';\nimport {AWS} from './../helpers';\n\n/**\n * setup vogels\n * @external {Vogels} https://github.com/ryanfitz/vogels\n */\nvogels.dynamoDriver(new AWS.DynamoDB({\n  endpoint: 'http://localhost:8000',\n}));\n\nexport default vogels;\n"
-  },
-  {
-    "kind": "external",
-    "static": true,
-    "variation": null,
-    "name": "Vogels",
-    "externalLink": "https://github.com/ryanfitz/vogels",
-    "memberof": "src/models/vogels.js",
-    "longname": "src/models/vogels.js~Vogels",
-    "access": null,
-    "description": "setup vogels",
-    "lineNumber": 8
+    "content": "import vogels from 'vogels';\nimport config from 'config';\nimport {AWS} from './../helpers';\n\n/**\n * setup vogels\n */\nvogels.dynamoDriver(new AWS.DynamoDB({\n  endpoint: config.get('DynamoDB.endpoint'),\n}));\n\nexport default vogels;\n"
   },
   {
     "kind": "file",
