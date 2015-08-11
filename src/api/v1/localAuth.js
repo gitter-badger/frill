@@ -30,8 +30,8 @@ const localAuthRoutes = [{
     plugins: {
       'hapi-swagger': {
         responseMessages: [
+          { code: 200, message: ''},
           { code: 400, message: 'Bad Request' },
-          { code: 500, message: 'Internal Server Error'},
         ],
       },
     },

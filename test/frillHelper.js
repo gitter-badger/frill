@@ -1,4 +1,5 @@
 import {BaseStore, BaseAction, attach} from 'frill-core';
+// import Promise from 'bluebird';
 
 const mockStoreEvent = (action, actionType, spy) => {
   const actions = { Action: action };
@@ -30,7 +31,15 @@ const mockDispatch = (store, actionType, payload) => {
   actions.CheckAction.fire(actionType, payload);
 };
 
+
+const inject = (options) => {
+  return new Promise((resolve) => {
+    server.inject(options, resolve);
+  });
+};
+
 export default {
+  inject,
   mockStoreEvent,
   mockDispatch,
 };

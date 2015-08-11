@@ -1,4 +1,3 @@
-import '../specHelper';
 import {routePrefixer} from '../../src/helpers';
 
 const testRouteObj = {

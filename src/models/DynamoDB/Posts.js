@@ -1,5 +1,5 @@
 import Vogels from '../vogels';
-import Joi from 'Joi';
+import Joi from 'joi';
 
 /**
  * Posts model

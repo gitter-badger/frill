@@ -1,4 +1,3 @@
-import '../specHelper';
 import {routerContainer} from '../../src/helpers';
 
 /**

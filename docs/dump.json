@@ -943,7 +943,7 @@
     "access": null,
     "description": null,
     "lineNumber": 4,
-    "content": "/**\n * API testing\n */\nconst apiV1Hello = (/* server */) => {\n  return [{\n    method: ['GET'],\n    path: '/hello',\n    config: {\n      auth: false,\n      description: 'Say hello!',\n      notes: 'Says hello.',\n      tags: ['api', 'greeting'],\n      plugins: {\n        'hapi-swagger': {\n          responseMessages: [\n            { code: 400, message: 'Bad Request' },\n            { code: 500, message: 'Internal Server Error'},\n          ],\n        },\n      },\n    },\n    handler: (req, rep) => {\n      console.log(req.auth);\n      rep({msg: 'api, hello'});\n    },\n  }, {\n    method: ['GET'],\n    path: '/hello/restricted',\n    config: {\n      auth: 'jwt',\n      description: 'Restricted route',\n      notes: 'Restricted, says hello',\n      tags: ['api', 'greeting'],\n      plugins: {\n        'hapi-swagger': {\n          responseMessages: [\n            { code: 400, message: 'Bad Request' },\n            { code: 500, message: 'Internal Server Error'},\n          ],\n        },\n      },\n    },\n    handler: (req, rep) => {\n      console.log('hander');\n\n      console.log(req.auth);\n      rep({msg: 'restricted api, hello'});\n    },\n  }];\n};\n\nexport default apiV1Hello;\n"
+    "content": "/**\n * API testing\n */\nconst apiV1Hello = (/* server */) => {\n  return [{\n    method: ['GET'],\n    path: '/hello',\n    config: {\n      auth: false,\n      description: 'Say hello!',\n      notes: 'Says hello.',\n      tags: ['api', 'greeting'],\n      plugins: {\n        'hapi-swagger': {\n          responseMessages: [\n            { code: 200, message: ''},\n          ],\n        },\n      },\n    },\n    handler: (req, rep) => {\n      // console.log(req.auth);\n      rep({msg: 'api, hello'});\n    },\n  }, {\n    method: ['GET'],\n    path: '/hello/restricted',\n    config: {\n      auth: 'jwt',\n      description: 'Restricted route',\n      notes: 'Restricted, says hello',\n      tags: ['api', 'greeting'],\n      plugins: {\n        'hapi-swagger': {\n          responseMessages: [\n            { code: 200, message: ''},\n            { code: 401, message: 'Unauthorized' },\n          ],\n        },\n      },\n    },\n    handler: (req, rep) => {\n      console.log(req.auth);\n      rep({msg: 'restricted api, hello'});\n    },\n  }];\n};\n\nexport default apiV1Hello;\n"
   },
   {
     "kind": "variable",
@@ -1005,7 +1005,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Joi from 'joi';\nimport JWT from 'jsonwebtoken';\nimport Boom from 'boom';\nimport aguid from 'aguid';\nimport {where as _where} from 'lodash';\nimport {clone as _clone} from 'lodash';\n\n// Test data\nimport accounts from '../../helpers/testUserData';\n\n/**\n * Local authentication routes.\n */\nconst localAuthRoutes = [{\n  method: ['POST'],\n  path: '/login',\n  config: {\n    validate: {\n      query: {\n        ref: Joi.string(),\n      },\n      payload: {\n        username: Joi.string().min(5).required(),\n        password: Joi.string().min(5).required(),\n      },\n    },\n    tags: ['api', 'auth'],\n    auth: 'local',\n    // auth: 'twitter',\n    plugins: {\n      'hapi-swagger': {\n        responseMessages: [\n          { code: 400, message: 'Bad Request' },\n          { code: 500, message: 'Internal Server Error'},\n        ],\n      },\n    },\n  },\n  handler: (request, reply) => {\n    // reply error when authentication fails\n    if (!request.auth.isAuthenticated) {\n      return reply(\n        Boom.unauthorized('Authentication failed due to: ' +\n          request.auth.error.message)\n      );\n    }\n\n    const query = {\n      id: parseInt(request.auth.credentials.profile.id, 10),\n      strategy: request.auth.strategy,\n    };\n\n    const user = _where(accounts, query);\n    // console.log(user);\n\n    if (user.length === 0) {\n      console.log('needs registration');\n    }\n\n    const _user = _clone(user[0]);\n    delete _user.password;\n\n    /** @todo create and set JWT into session */\n    const session = {\n      valid: true,\n      id: aguid(), // a random session id\n      user: _user,\n      exp: new Date().getTime() + 30 * 60 * 1000, // expires in 30 minutes time\n    };\n\n    // // create the session in Redis\n    // redisClient.set(session.id, JSON.stringify(session));\n    request.session.set(session.id, session);\n    // sign the session as a JWT\n    const token = JWT.sign(session, 'NeverShareYourSecret');\n    return reply({token: token});\n  },\n}];\n\nexport default localAuthRoutes;\n"
+    "content": "import Joi from 'joi';\nimport JWT from 'jsonwebtoken';\nimport Boom from 'boom';\nimport aguid from 'aguid';\nimport {where as _where} from 'lodash';\nimport {clone as _clone} from 'lodash';\n\n// Test data\nimport accounts from '../../helpers/testUserData';\n\n/**\n * Local authentication routes.\n */\nconst localAuthRoutes = [{\n  method: ['POST'],\n  path: '/login',\n  config: {\n    validate: {\n      query: {\n        ref: Joi.string(),\n      },\n      payload: {\n        username: Joi.string().min(5).required(),\n        password: Joi.string().min(5).required(),\n      },\n    },\n    tags: ['api', 'auth'],\n    auth: 'local',\n    // auth: 'twitter',\n    plugins: {\n      'hapi-swagger': {\n        responseMessages: [\n          { code: 200, message: ''},\n          { code: 400, message: 'Bad Request' },\n        ],\n      },\n    },\n  },\n  handler: (request, reply) => {\n    // reply error when authentication fails\n    if (!request.auth.isAuthenticated) {\n      return reply(\n        Boom.unauthorized('Authentication failed due to: ' +\n          request.auth.error.message)\n      );\n    }\n\n    const query = {\n      id: parseInt(request.auth.credentials.profile.id, 10),\n      strategy: request.auth.strategy,\n    };\n\n    const user = _where(accounts, query);\n    // console.log(user);\n\n    if (user.length === 0) {\n      console.log('needs registration');\n    }\n\n    const _user = _clone(user[0]);\n    delete _user.password;\n\n    /** @todo create and set JWT into session */\n    const session = {\n      valid: true,\n      id: aguid(), // a random session id\n      user: _user,\n      exp: new Date().getTime() + 30 * 60 * 1000, // expires in 30 minutes time\n    };\n\n    // // create the session in Redis\n    // redisClient.set(session.id, JSON.stringify(session));\n    request.session.set(session.id, session);\n    // sign the session as a JWT\n    const token = JWT.sign(session, 'NeverShareYourSecret');\n    return reply({token: token});\n  },\n}];\n\nexport default localAuthRoutes;\n"
   },
   {
     "kind": "variable",
@@ -1159,7 +1159,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import React from 'react';\nimport {StoreWatchComponent} from 'frill-core';\nimport {Link, RouteHandler} from 'react-router';\n\n/**\n * App component\n * @extends {FrillCore.StoreWatchComponent}\n * @example <caption>Usage in React-Router</caption>\n * <Route name=\"app\" path=\"/\" handler={AppComponent} />\n */\nclass AppComponent extends new StoreWatchComponent(['Auth']) {\n\n  /**\n   * Constructor\n   * @param {any} props\n   */\n  constructor(props) {\n    super(props);\n\n    /**\n     * Name of component\n     */\n    this.name = 'App';\n  }\n\n  getStateFromFrill() {\n    return {\n      isLoggedIn: this.getFrill().store('Auth').isLoggedIn(),\n      user: this.getFrill().store('Auth').user,\n    };\n  }\n\n  /**\n   * render\n   * @return {React DOM}\n   * @see https://facebook.github.io/react/docs/component-specs.html#render\n   */\n  render() {\n    const isLoggedIn = this.state.isLoggedIn;\n    return (\n      <div className=\"App\">\n        <header>\n          <h1><img src=\"/frill-logo-white.png\" />Welcome to FrillJS!</h1>\n        </header>\n        <nav>\n          <ul>\n            <li><Link to=\"top\">Top page</Link></li>\n            <li><Link to=\"login\">Login Sample</Link></li>\n            <li>\n              <a href=\"http://localhost:3000/auth/twitter/login\">\n                Twitter Auth Test\n              </a>\n            </li>\n          </ul>\n        </nav>\n        {(isLoggedIn ? () => {\n          return (\n            <p className=\"welcome\">Hello, {this.state.user.user.displayName}</p>\n          );\n        } : () => {\n          return (\n            <p className=\"welcome\">Welcome, Guest</p>\n          );\n        })()}\n        <RouteHandler {...this.props}/>\n        <footer>\n          <p>FrillJS</p>\n        </footer>\n      </div>\n    );\n  }\n}\n\n/**\n * Export AppComponent\n */\nexport default AppComponent;\n"
+    "content": "import React from 'react';\nimport {StoreWatchComponent} from 'frill-core';\nimport {Link, RouteHandler} from 'react-router';\n\n/**\n * App component\n * @extends {FrillCore.StoreWatchComponent}\n * @example <caption>Usage in React-Router</caption>\n * <Route name=\"app\" path=\"/\" handler={AppComponent} />\n */\nclass AppComponent extends new StoreWatchComponent(['Auth']) {\n\n  /**\n   * Constructor\n   * @param {any} props\n   */\n  constructor(props) {\n    super(props);\n\n    /**\n     * Name of component\n     */\n    this.name = 'App';\n  }\n\n  getStateFromFrill() {\n    return {\n      isLoggedIn: this.getFrill().store('Auth').isLoggedIn(),\n      user: this.getFrill().store('Auth').user,\n    };\n  }\n\n  /**\n   * render\n   * @return {React DOM}\n   * @see https://facebook.github.io/react/docs/component-specs.html#render\n   */\n  render() {\n    const isLoggedIn = this.state.isLoggedIn;\n    return (\n      <div className=\"App\">\n        <header>\n          <h1><img src=\"/images/frill-logo-white.png\" />Welcome to frill!</h1>\n        </header>\n        <nav>\n          <ul>\n            <li><Link to=\"top\">Top page</Link></li>\n            <li><Link to=\"login\">Login Sample</Link></li>\n            <li>\n              <a href=\"http://localhost:3000/auth/twitter/login\">\n                Twitter Auth Test\n              </a>\n            </li>\n          </ul>\n        </nav>\n        {(isLoggedIn ? () => {\n          return (\n            <p className=\"welcome\">Hello, {this.state.user.user.displayName}</p>\n          );\n        } : () => {\n          return (\n            <p className=\"welcome\">Welcome, Guest</p>\n          );\n        })()}\n        <RouteHandler {...this.props}/>\n        <footer>\n          <p>frill</p>\n        </footer>\n      </div>\n    );\n  }\n}\n\n/**\n * Export AppComponent\n */\nexport default AppComponent;\n"
   },
   {
     "kind": "class",
@@ -2100,7 +2100,7 @@
     "access": null,
     "description": null,
     "lineNumber": 5,
-    "content": "/**\n * Setup helpers to use from the 'api'\n */\n\nimport Joi from 'joi';\nimport AWS from './aws';\nimport routePrefixer from './routePrefixer';\nimport routerContainer from './routerContainer';\n\n/**\n * List of all helpers used in app\n */\nconst helpers = {\n  Joi,\n  AWS,\n  routePrefixer,\n  routerContainer,\n};\n\nexport default helpers;\n"
+    "content": "/**\n * Setup helpers to use from the 'api'\n */\n\nimport AWS from './aws';\nimport routePrefixer from './routePrefixer';\nimport routerContainer from './routerContainer';\n\n/**\n * List of all helpers used in app\n */\nconst helpers = {\n  AWS,\n  routePrefixer,\n  routerContainer,\n};\n\nexport default helpers;\n"
   },
   {
     "kind": "variable",
@@ -2114,7 +2114,7 @@
     "importPath": "frill/src/helpers/index.js",
     "importStyle": "helpers",
     "description": "List of all helpers used in app",
-    "lineNumber": 13,
+    "lineNumber": 12,
     "type": {
       "types": [
         "*"
@@ -2311,7 +2311,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Vogels from '../vogels';\nimport Joi from 'Joi';\n\n/**\n * Posts model\n * @see https://github.com/ryanfitz/vogels#define-a-model\n */\nconst Posts = Vogels.define('Post', {\n  hashKey: 'email',\n  rangeKey: 'title',\n  schema: {\n    email: Joi.string().email(),\n    title: Joi.string(),\n    content: Joi.binary(),\n    tags: vogels.types.stringSet(),\n  },\n});\n\nexport default Posts;\n"
+    "content": "import Vogels from '../vogels';\nimport Joi from 'joi';\n\n/**\n * Posts model\n * @see https://github.com/ryanfitz/vogels#define-a-model\n */\nconst Posts = Vogels.define('Post', {\n  hashKey: 'email',\n  rangeKey: 'title',\n  schema: {\n    email: Joi.string().email(),\n    title: Joi.string(),\n    content: Joi.binary(),\n    tags: vogels.types.stringSet(),\n  },\n});\n\nexport default Posts;\n"
   },
   {
     "kind": "variable",
@@ -4212,7 +4212,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import '../specHelper';\nimport {mockStoreEvent} from '../frillHelper';\nimport ExampleAction from '../../src/actions/Example';\nimport {BaseAction} from 'frill-core';\nimport scrollData from '../../src/helpers/testScrollItemsData';\n\n/**\n * ExampleAction\n * @test {ExampleAction}\n */\ndescribe('ExampleAction', () => {\n  /**\n   * @test {ExampleAction#constructor}\n   */\n  it('should be an instance of FrillCore.BaseAction', () => {\n    (ExampleAction instanceof BaseAction).should.be.true;\n  });\n\n  /**\n   * @test {ExampleAction#countUp}\n   */\n  describe('ExampleAction#countUp', () => {\n    /**\n     * @test {ExampleAction#countUp}\n     */\n    it('should have a countUp() method', () => {\n      ExampleAction.countUp.should.be.a('function');\n    });\n\n    /**\n     * @test {ExampleAction#countUp}\n     */\n    it('should dispatch COUNT_UP at execution', () => {\n      const spy = sinon.spy();\n      mockStoreEvent(ExampleAction, 'COUNT_UP', spy);\n      ExampleAction.countUp();\n      spy.called.should.equal.true;\n      sinon.assert.calledOnce(spy);\n      sinon.assert.calledWith(spy, null, 'COUNT_UP');\n    });\n  });\n\n  /**\n   * @test {ExampleAction#countUpBy}\n   */\n  describe('ExampleAction#countUpBy', () => {\n    /**\n     * @test {ExampleAction#countUpBy}\n     */\n    it('should have a countUpBy() method', () => {\n      ExampleAction.countUpBy.should.be.a('function');\n    });\n\n    /**\n     * @test {ExampleAction#countUpBy}\n     */\n    it('should dispatch COUNT_UP_BY at execution', () => {\n      const spy = sinon.spy();\n      mockStoreEvent(ExampleAction, 'COUNT_UP_BY', spy);\n      ExampleAction.countUpBy();\n      spy.called.should.equal.true;\n    });\n\n    /**\n     * @test {ExampleAction#countUpBy}\n     */\n    it('should count up by 1 at default', () => {\n      const spy = sinon.spy();\n      mockStoreEvent(ExampleAction, 'COUNT_UP_BY', spy);\n      ExampleAction.countUpBy();\n      sinon.assert.calledOnce(spy);\n      sinon.assert.calledWith(spy, 1, 'COUNT_UP_BY');\n    });\n\n    /**\n     * @test {ExampleAction#countUpBy}\n     */\n    it('should be able to provide a number to count up', () => {\n      const spy = sinon.spy();\n      mockStoreEvent(ExampleAction, 'COUNT_UP_BY', spy);\n      ExampleAction.countUpBy(10);\n      sinon.assert.calledOnce(spy);\n      sinon.assert.calledWith(spy, 10, 'COUNT_UP_BY');\n    });\n  });\n\n  /**\n   * @test {ExampleAction#loadScrollItems}\n   */\n  describe('ExampleAction#loadScrollItems', () => {\n    /**\n     * @test {ExampleAction#loadScrollItems}\n     */\n    it('should have a loadScrollItems() method', () => {\n      ExampleAction.loadScrollItems.should.be.a('function');\n    });\n\n    /**\n     * @test {ExampleAction#loadScrollItems}\n     */\n    it('should dispatch LOAD_SCROLL_ITEMS at execution', (done) => {\n      const spy = sinon.spy();\n      mockStoreEvent(ExampleAction, 'LOAD_SCROLL_ITEMS', spy);\n      ExampleAction.loadScrollItems();\n\n      setTimeout(() => {\n        spy.called.should.equal.true;\n        sinon.assert.calledOnce(spy);\n        sinon.assert.calledWith(spy, {\n          data: scrollData.slice(1, 6),\n          total: scrollData.length,\n        }, 'LOAD_SCROLL_ITEMS');\n        done();\n      }, 1500);\n    });\n\n    /**\n     * @test {ExampleAction#loadScrollItems}\n     */\n    it('should be able to change parameters', (done) => {\n      const spy = sinon.spy();\n      mockStoreEvent(ExampleAction, 'LOAD_SCROLL_ITEMS', spy);\n      ExampleAction.loadScrollItems(3, 6);\n      setTimeout(() => {\n        spy.called.should.equal.true;\n        sinon.assert.calledOnce(spy);\n        sinon.assert.calledWith(spy, {\n          data: scrollData.slice(3, 9),\n          total: scrollData.length,\n        }, 'LOAD_SCROLL_ITEMS');\n        done();\n      }, 1500);\n    });\n  });\n});\n"
+    "content": "import {mockStoreEvent} from '../frillHelper';\nimport ExampleAction from '../../src/actions/Example';\nimport {BaseAction} from 'frill-core';\nimport scrollData from '../../src/helpers/testScrollItemsData';\n\n/**\n * ExampleAction\n * @test {ExampleAction}\n */\ndescribe('ExampleAction', () => {\n  /**\n   * @test {ExampleAction#constructor}\n   */\n  it('should be an instance of FrillCore.BaseAction', () => {\n    (ExampleAction instanceof BaseAction).should.be.true;\n  });\n\n  /**\n   * @test {ExampleAction#countUp}\n   */\n  describe('ExampleAction#countUp', () => {\n    /**\n     * @test {ExampleAction#countUp}\n     */\n    it('should have a countUp() method', () => {\n      ExampleAction.countUp.should.be.a('function');\n    });\n\n    /**\n     * @test {ExampleAction#countUp}\n     */\n    it('should dispatch COUNT_UP at execution', () => {\n      const spy = sinon.spy();\n      mockStoreEvent(ExampleAction, 'COUNT_UP', spy);\n      ExampleAction.countUp();\n      spy.called.should.equal.true;\n      sinon.assert.calledOnce(spy);\n      sinon.assert.calledWith(spy, null, 'COUNT_UP');\n    });\n  });\n\n  /**\n   * @test {ExampleAction#countUpBy}\n   */\n  describe('ExampleAction#countUpBy', () => {\n    /**\n     * @test {ExampleAction#countUpBy}\n     */\n    it('should have a countUpBy() method', () => {\n      ExampleAction.countUpBy.should.be.a('function');\n    });\n\n    /**\n     * @test {ExampleAction#countUpBy}\n     */\n    it('should dispatch COUNT_UP_BY at execution', () => {\n      const spy = sinon.spy();\n      mockStoreEvent(ExampleAction, 'COUNT_UP_BY', spy);\n      ExampleAction.countUpBy();\n      spy.called.should.equal.true;\n    });\n\n    /**\n     * @test {ExampleAction#countUpBy}\n     */\n    it('should count up by 1 at default', () => {\n      const spy = sinon.spy();\n      mockStoreEvent(ExampleAction, 'COUNT_UP_BY', spy);\n      ExampleAction.countUpBy();\n      sinon.assert.calledOnce(spy);\n      sinon.assert.calledWith(spy, 1, 'COUNT_UP_BY');\n    });\n\n    /**\n     * @test {ExampleAction#countUpBy}\n     */\n    it('should be able to provide a number to count up', () => {\n      const spy = sinon.spy();\n      mockStoreEvent(ExampleAction, 'COUNT_UP_BY', spy);\n      ExampleAction.countUpBy(10);\n      sinon.assert.calledOnce(spy);\n      sinon.assert.calledWith(spy, 10, 'COUNT_UP_BY');\n    });\n  });\n\n  /**\n   * @test {ExampleAction#loadScrollItems}\n   */\n  describe('ExampleAction#loadScrollItems', () => {\n    /**\n     * @test {ExampleAction#loadScrollItems}\n     */\n    it('should have a loadScrollItems() method', () => {\n      ExampleAction.loadScrollItems.should.be.a('function');\n    });\n\n    /**\n     * @test {ExampleAction#loadScrollItems}\n     */\n    it('should dispatch LOAD_SCROLL_ITEMS at execution', (done) => {\n      const spy = sinon.spy();\n      mockStoreEvent(ExampleAction, 'LOAD_SCROLL_ITEMS', spy);\n      ExampleAction.loadScrollItems();\n\n      setTimeout(() => {\n        spy.called.should.equal.true;\n        sinon.assert.calledOnce(spy);\n        sinon.assert.calledWith(spy, {\n          data: scrollData.slice(1, 6),\n          total: scrollData.length,\n        }, 'LOAD_SCROLL_ITEMS');\n        done();\n      }, 1500);\n    });\n\n    /**\n     * @test {ExampleAction#loadScrollItems}\n     */\n    it('should be able to change parameters', (done) => {\n      const spy = sinon.spy();\n      mockStoreEvent(ExampleAction, 'LOAD_SCROLL_ITEMS', spy);\n      ExampleAction.loadScrollItems(3, 6);\n      setTimeout(() => {\n        spy.called.should.equal.true;\n        sinon.assert.calledOnce(spy);\n        sinon.assert.calledWith(spy, {\n          data: scrollData.slice(3, 9),\n          total: scrollData.length,\n        }, 'LOAD_SCROLL_ITEMS');\n        done();\n      }, 1500);\n    });\n  });\n});\n"
   },
   {
     "kind": "testDescribe",
@@ -4225,7 +4225,7 @@
     "longname": "test/actions/ExampleActionTest.js~describe0",
     "access": null,
     "description": "ExampleAction",
-    "lineNumber": 11,
+    "lineNumber": 10,
     "unknown": [
       {
         "tagName": "@test",
@@ -4247,7 +4247,7 @@
     "longname": "test/actions/ExampleActionTest.js~describe0.it1",
     "access": null,
     "description": "should be an instance of FrillCore.BaseAction",
-    "lineNumber": 15,
+    "lineNumber": 14,
     "unknown": [
       {
         "tagName": "@test",
@@ -4269,7 +4269,7 @@
     "longname": "test/actions/ExampleActionTest.js~describe0.describe2",
     "access": null,
     "description": "ExampleAction#countUp",
-    "lineNumber": 22,
+    "lineNumber": 21,
     "unknown": [
       {
         "tagName": "@test",
@@ -4291,7 +4291,7 @@
     "longname": "test/actions/ExampleActionTest.js~describe0.describe2.it3",
     "access": null,
     "description": "should have a countUp() method",
-    "lineNumber": 26,
+    "lineNumber": 25,
     "unknown": [
       {
         "tagName": "@test",
@@ -4313,7 +4313,7 @@
     "longname": "test/actions/ExampleActionTest.js~describe0.describe2.it4",
     "access": null,
     "description": "should dispatch COUNT_UP at execution",
-    "lineNumber": 33,
+    "lineNumber": 32,
     "unknown": [
       {
         "tagName": "@test",
@@ -4335,7 +4335,7 @@
     "longname": "test/actions/ExampleActionTest.js~describe0.describe5",
     "access": null,
     "description": "ExampleAction#countUpBy",
-    "lineNumber": 46,
+    "lineNumber": 45,
     "unknown": [
       {
         "tagName": "@test",
@@ -4357,7 +4357,7 @@
     "longname": "test/actions/ExampleActionTest.js~describe0.describe5.it6",
     "access": null,
     "description": "should have a countUpBy() method",
-    "lineNumber": 50,
+    "lineNumber": 49,
     "unknown": [
       {
         "tagName": "@test",
@@ -4379,7 +4379,7 @@
     "longname": "test/actions/ExampleActionTest.js~describe0.describe5.it7",
     "access": null,
     "description": "should dispatch COUNT_UP_BY at execution",
-    "lineNumber": 57,
+    "lineNumber": 56,
     "unknown": [
       {
         "tagName": "@test",
@@ -4401,7 +4401,7 @@
     "longname": "test/actions/ExampleActionTest.js~describe0.describe5.it8",
     "access": null,
     "description": "should count up by 1 at default",
-    "lineNumber": 67,
+    "lineNumber": 66,
     "unknown": [
       {
         "tagName": "@test",
@@ -4423,7 +4423,7 @@
     "longname": "test/actions/ExampleActionTest.js~describe0.describe5.it9",
     "access": null,
     "description": "should be able to provide a number to count up",
-    "lineNumber": 78,
+    "lineNumber": 77,
     "unknown": [
       {
         "tagName": "@test",
@@ -4445,7 +4445,7 @@
     "longname": "test/actions/ExampleActionTest.js~describe0.describe10",
     "access": null,
     "description": "ExampleAction#loadScrollItems",
-    "lineNumber": 90,
+    "lineNumber": 89,
     "unknown": [
       {
         "tagName": "@test",
@@ -4467,7 +4467,7 @@
     "longname": "test/actions/ExampleActionTest.js~describe0.describe10.it11",
     "access": null,
     "description": "should have a loadScrollItems() method",
-    "lineNumber": 94,
+    "lineNumber": 93,
     "unknown": [
       {
         "tagName": "@test",
@@ -4489,7 +4489,7 @@
     "longname": "test/actions/ExampleActionTest.js~describe0.describe10.it12",
     "access": null,
     "description": "should dispatch LOAD_SCROLL_ITEMS at execution",
-    "lineNumber": 101,
+    "lineNumber": 100,
     "unknown": [
       {
         "tagName": "@test",
@@ -4511,7 +4511,7 @@
     "longname": "test/actions/ExampleActionTest.js~describe0.describe10.it13",
     "access": null,
     "description": "should be able to change parameters",
-    "lineNumber": 120,
+    "lineNumber": 119,
     "unknown": [
       {
         "tagName": "@test",
@@ -4526,13 +4526,13 @@
     "kind": "testFile",
     "static": true,
     "variation": null,
-    "name": "test/helpers/routePrefixerTest.js",
+    "name": "test/api/v1/helloTest.js",
     "memberof": null,
-    "longname": "test/helpers/routePrefixerTest.js",
+    "longname": "test/api/v1/helloTest.js",
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import '../specHelper';\nimport {routePrefixer} from '../../src/helpers';\n\nconst testRouteObj = {\n  path: '/path',\n};\n\nconst testRouteArr = [\n  {\n    path: '/first',\n  },\n  {\n    path: '/second',\n  },\n  {\n    path: '/third',\n  },\n];\n\n/**\n * Route prefixer\n * @test {routePrefixer}\n */\ndescribe('routePrefixer', () => {\n  /**\n   * @test {routePrefixer}\n   */\n  it('should throw an error if the given params are not correct', () => {\n    const testPrefixFn = () => routePrefixer(null, testRouteObj);\n    const testRouteFn = () => routePrefixer('/prefix', {});\n    const testRouteFn2 = () => routePrefixer('/prefix', []);\n    (testPrefixFn).should.throw(TypeError, /be a string/);\n    (testRouteFn).should.throw(Error, /specify routes/);\n    (testRouteFn2).should.throw(Error, /specify routes/);\n  });\n\n  /**\n   * @test {routePrefixer}\n   */\n  it('should throw an error if route(s) don\\'t have route.path', () => {\n    const illegalRouteObj = {handler: () => {}};\n    const testRouteObjFn = () => routePrefixer('/prefix', illegalRouteObj);\n    const testRouteArrFn = () => routePrefixer('/prefix', [illegalRouteObj]);\n\n    (testRouteObjFn).should.throw(Error, /A route must have routes.path/);\n    (testRouteArrFn).should.throw(Error, /All routes must contain route.path/);\n  });\n\n  /**\n   * @test {routePrefixer}\n   */\n  it('should always return an array', () => {\n    const outputFromObj = routePrefixer('/added', testRouteObj);\n    const outputFromArr = routePrefixer('/added', testRouteArr);\n    outputFromObj.should.be.instanceof(Array);\n    outputFromArr.should.be.instanceof(Array);\n  });\n\n  /**\n   * @test {routePrefixer}\n   */\n  it('should be able to prefix routes as an Object', () => {\n    const testRouteOutput = routePrefixer('/added', testRouteObj);\n    (testRouteOutput[0].path).should.equal('/added/path');\n  });\n\n  /**\n   * @test {routePrefixer}\n   */\n  it('should be able to prefix routes as an Array', () => {\n    const testRouteOutput = routePrefixer('/added', testRouteArr);\n    (testRouteOutput[0].path).should.equal(`/added${testRouteArr[0].path}`);\n    (testRouteOutput[1].path).should.equal(`/added${testRouteArr[1].path}`);\n    (testRouteOutput[2].path).should.equal(`/added${testRouteArr[2].path}`);\n  });\n});\n"
+    "content": "import helloApi from '../../../src/api/v1/hello';\nimport {inject} from '../../frillHelper';\nimport {routePrefixer} from '../../../src/helpers';\n\nserver.route(routePrefixer('/api/v1', helloApi()));\n\ndescribe('/api/v1/hello', () => {\n  describe('/', () => {\n    it('should return 200 on GET request', () => {\n      inject({ method: 'GET', url: '/api/v1/hello'}).then((response) => {\n        response.statusCode.should.equal(200);\n      });\n    });\n\n    it('should return 404 on POST request', () => {\n      inject({ method: 'POST', url: '/api/v1/hello'}).then((response) => {\n        response.statusCode.should.equal(404);\n      });\n    });\n\n    it('should return 404 on PUT request', () => {\n      inject({ method: 'PUT', url: '/api/v1/hello'}).then((response) => {\n        response.statusCode.should.equal(404);\n      });\n    });\n\n    it('should return 404 on DELETE request', () => {\n      inject({ method: 'DELETE', url: '/api/v1/hello'}).then((response) => {\n        response.statusCode.should.equal(404);\n      });\n    });\n\n    it('should return expected result', () => {\n      inject({ method: 'GET', url: '/api/v1/hello'}).then((response) => {\n        response.result.should.deep.equal({msg: 'api, hello'});\n      });\n    });\n  });\n  describe('/restricted', () => {\n    it('should return 401 Unauthorized on GET request without token', () => {\n      inject({ method: 'GET', url: '/api/v1/hello/restricted'})\n      .then((response) => {\n        response.statusCode.should.equal(401);\n        response.result.error.should.equal('Unauthorized');\n        response.result.message.should.equal('Missing auth token');\n      });\n    });\n    it('should return 200 on GET request with token', () => {\n      // inject({ method: 'GET', url: '/hello/restricted'}).then((response) => {\n      //   response.statusCode.should.equal(401);\n      //   response.result.error.should.equal('Unauthorized');\n      //   response.result.message.should.equal('Missing auth token');\n      // });\n      // inject({ method: 'GET', url: '/hello/restricted'}).then((response) => {\n      //   response.statusCode.should.equal(401);\n      //   response.result.error.should.equal('Unauthorized');\n      //   response.result.message.should.equal('Missing auth token');\n      // });\n    });\n  });\n});\n"
   },
   {
     "kind": "testDescribe",
@@ -4540,43 +4540,25 @@
     "variation": null,
     "name": "describe14",
     "testId": 14,
-    "memberof": "test/helpers/routePrefixerTest.js",
+    "memberof": "test/api/v1/helloTest.js",
     "testDepth": 0,
-    "longname": "test/helpers/routePrefixerTest.js~describe14",
+    "longname": "test/api/v1/helloTest.js~describe14",
     "access": null,
-    "description": "Route prefixer",
-    "lineNumber": 24,
-    "unknown": [
-      {
-        "tagName": "@test",
-        "tagValue": "{routePrefixer}"
-      }
-    ],
-    "testTargets": [
-      "routePrefixer"
-    ]
+    "description": "/api/v1/hello",
+    "lineNumber": 7
   },
   {
-    "kind": "testIt",
+    "kind": "testDescribe",
     "static": true,
     "variation": null,
-    "name": "it15",
+    "name": "describe15",
     "testId": 15,
-    "memberof": "test/helpers/routePrefixerTest.js~describe14",
+    "memberof": "test/api/v1/helloTest.js~describe14",
     "testDepth": 1,
-    "longname": "test/helpers/routePrefixerTest.js~describe14.it15",
+    "longname": "test/api/v1/helloTest.js~describe14.describe15",
     "access": null,
-    "description": "should throw an error if the given params are not correct",
-    "lineNumber": 28,
-    "unknown": [
-      {
-        "tagName": "@test",
-        "tagValue": "{routePrefixer}"
-      }
-    ],
-    "testTargets": [
-      "routePrefixer"
-    ]
+    "description": "/",
+    "lineNumber": 8
   },
   {
     "kind": "testIt",
@@ -4584,21 +4566,12 @@
     "variation": null,
     "name": "it16",
     "testId": 16,
-    "memberof": "test/helpers/routePrefixerTest.js~describe14",
-    "testDepth": 1,
-    "longname": "test/helpers/routePrefixerTest.js~describe14.it16",
+    "memberof": "test/api/v1/helloTest.js~describe14.describe15",
+    "testDepth": 2,
+    "longname": "test/api/v1/helloTest.js~describe14.describe15.it16",
     "access": null,
-    "description": "should throw an error if route(s) don't have route.path",
-    "lineNumber": 40,
-    "unknown": [
-      {
-        "tagName": "@test",
-        "tagValue": "{routePrefixer}"
-      }
-    ],
-    "testTargets": [
-      "routePrefixer"
-    ]
+    "description": "should return 200 on GET request",
+    "lineNumber": 9
   },
   {
     "kind": "testIt",
@@ -4606,21 +4579,12 @@
     "variation": null,
     "name": "it17",
     "testId": 17,
-    "memberof": "test/helpers/routePrefixerTest.js~describe14",
-    "testDepth": 1,
-    "longname": "test/helpers/routePrefixerTest.js~describe14.it17",
+    "memberof": "test/api/v1/helloTest.js~describe14.describe15",
+    "testDepth": 2,
+    "longname": "test/api/v1/helloTest.js~describe14.describe15.it17",
     "access": null,
-    "description": "should always return an array",
-    "lineNumber": 52,
-    "unknown": [
-      {
-        "tagName": "@test",
-        "tagValue": "{routePrefixer}"
-      }
-    ],
-    "testTargets": [
-      "routePrefixer"
-    ]
+    "description": "should return 404 on POST request",
+    "lineNumber": 15
   },
   {
     "kind": "testIt",
@@ -4628,12 +4592,166 @@
     "variation": null,
     "name": "it18",
     "testId": 18,
-    "memberof": "test/helpers/routePrefixerTest.js~describe14",
-    "testDepth": 1,
-    "longname": "test/helpers/routePrefixerTest.js~describe14.it18",
+    "memberof": "test/api/v1/helloTest.js~describe14.describe15",
+    "testDepth": 2,
+    "longname": "test/api/v1/helloTest.js~describe14.describe15.it18",
     "access": null,
-    "description": "should be able to prefix routes as an Object",
-    "lineNumber": 62,
+    "description": "should return 404 on PUT request",
+    "lineNumber": 21
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it19",
+    "testId": 19,
+    "memberof": "test/api/v1/helloTest.js~describe14.describe15",
+    "testDepth": 2,
+    "longname": "test/api/v1/helloTest.js~describe14.describe15.it19",
+    "access": null,
+    "description": "should return 404 on DELETE request",
+    "lineNumber": 27
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it20",
+    "testId": 20,
+    "memberof": "test/api/v1/helloTest.js~describe14.describe15",
+    "testDepth": 2,
+    "longname": "test/api/v1/helloTest.js~describe14.describe15.it20",
+    "access": null,
+    "description": "should return expected result",
+    "lineNumber": 33
+  },
+  {
+    "kind": "testDescribe",
+    "static": true,
+    "variation": null,
+    "name": "describe21",
+    "testId": 21,
+    "memberof": "test/api/v1/helloTest.js~describe14",
+    "testDepth": 1,
+    "longname": "test/api/v1/helloTest.js~describe14.describe21",
+    "access": null,
+    "description": "/restricted",
+    "lineNumber": 39
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it22",
+    "testId": 22,
+    "memberof": "test/api/v1/helloTest.js~describe14.describe21",
+    "testDepth": 2,
+    "longname": "test/api/v1/helloTest.js~describe14.describe21.it22",
+    "access": null,
+    "description": "should return 401 Unauthorized on GET request without token",
+    "lineNumber": 40
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it23",
+    "testId": 23,
+    "memberof": "test/api/v1/helloTest.js~describe14.describe21",
+    "testDepth": 2,
+    "longname": "test/api/v1/helloTest.js~describe14.describe21.it23",
+    "access": null,
+    "description": "should return 200 on GET request with token",
+    "lineNumber": 48
+  },
+  {
+    "kind": "testFile",
+    "static": true,
+    "variation": null,
+    "name": "test/api/v1/localAuthTest.js",
+    "memberof": null,
+    "longname": "test/api/v1/localAuthTest.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import localAuthApi from '../../../src/api/v1/localAuth';\nimport {routePrefixer} from '../../../src/helpers';\nimport {inject} from '../../frillHelper';\n\nserver.route(routePrefixer('/api/v1', localAuthApi));\n\ndescribe('/api/v1/login', () => {\n  describe('/', () => {\n    it('should return 404 on GET request', () => {\n      inject({ method: 'GET', url: '/api/v1/login'}).then((response) => {\n        response.statusCode.should.equal(404);\n      });\n    });\n    it('should return 400 on POST request without body', () => {\n      inject({ method: 'POST', url: '/api/v1/login'}).then((response) => {\n        response.statusCode.should.equal(400);\n        response.result.error.should.equal('Bad Request');\n      });\n    });\n    // it('should return 200 on POST request with a valid body', () => {\n    //   inject({\n    //     method: 'POST',\n    //     url: '/api/v1/login',\n    //     payload: {\n    //       username: 'nanopx',\n    //       password: 'hello',\n    //     },\n    //   }).then((response) => {\n    //     response.statusCode.should.equal(400);\n    //     response.result.error.should.equal('Bad Request');\n    //     console.log(response.result);\n    //   });\n    // });\n  });\n});\n"
+  },
+  {
+    "kind": "testDescribe",
+    "static": true,
+    "variation": null,
+    "name": "describe24",
+    "testId": 24,
+    "memberof": "test/api/v1/localAuthTest.js",
+    "testDepth": 0,
+    "longname": "test/api/v1/localAuthTest.js~describe24",
+    "access": null,
+    "description": "/api/v1/login",
+    "lineNumber": 7
+  },
+  {
+    "kind": "testDescribe",
+    "static": true,
+    "variation": null,
+    "name": "describe25",
+    "testId": 25,
+    "memberof": "test/api/v1/localAuthTest.js~describe24",
+    "testDepth": 1,
+    "longname": "test/api/v1/localAuthTest.js~describe24.describe25",
+    "access": null,
+    "description": "/",
+    "lineNumber": 8
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it26",
+    "testId": 26,
+    "memberof": "test/api/v1/localAuthTest.js~describe24.describe25",
+    "testDepth": 2,
+    "longname": "test/api/v1/localAuthTest.js~describe24.describe25.it26",
+    "access": null,
+    "description": "should return 404 on GET request",
+    "lineNumber": 9
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it27",
+    "testId": 27,
+    "memberof": "test/api/v1/localAuthTest.js~describe24.describe25",
+    "testDepth": 2,
+    "longname": "test/api/v1/localAuthTest.js~describe24.describe25.it27",
+    "access": null,
+    "description": "should return 400 on POST request without body",
+    "lineNumber": 14
+  },
+  {
+    "kind": "testFile",
+    "static": true,
+    "variation": null,
+    "name": "test/helpers/routePrefixerTest.js",
+    "memberof": null,
+    "longname": "test/helpers/routePrefixerTest.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import {routePrefixer} from '../../src/helpers';\n\nconst testRouteObj = {\n  path: '/path',\n};\n\nconst testRouteArr = [\n  {\n    path: '/first',\n  },\n  {\n    path: '/second',\n  },\n  {\n    path: '/third',\n  },\n];\n\n/**\n * Route prefixer\n * @test {routePrefixer}\n */\ndescribe('routePrefixer', () => {\n  /**\n   * @test {routePrefixer}\n   */\n  it('should throw an error if the given params are not correct', () => {\n    const testPrefixFn = () => routePrefixer(null, testRouteObj);\n    const testRouteFn = () => routePrefixer('/prefix', {});\n    const testRouteFn2 = () => routePrefixer('/prefix', []);\n    (testPrefixFn).should.throw(TypeError, /be a string/);\n    (testRouteFn).should.throw(Error, /specify routes/);\n    (testRouteFn2).should.throw(Error, /specify routes/);\n  });\n\n  /**\n   * @test {routePrefixer}\n   */\n  it('should throw an error if route(s) don\\'t have route.path', () => {\n    const illegalRouteObj = {handler: () => {}};\n    const testRouteObjFn = () => routePrefixer('/prefix', illegalRouteObj);\n    const testRouteArrFn = () => routePrefixer('/prefix', [illegalRouteObj]);\n\n    (testRouteObjFn).should.throw(Error, /A route must have routes.path/);\n    (testRouteArrFn).should.throw(Error, /All routes must contain route.path/);\n  });\n\n  /**\n   * @test {routePrefixer}\n   */\n  it('should always return an array', () => {\n    const outputFromObj = routePrefixer('/added', testRouteObj);\n    const outputFromArr = routePrefixer('/added', testRouteArr);\n    outputFromObj.should.be.instanceof(Array);\n    outputFromArr.should.be.instanceof(Array);\n  });\n\n  /**\n   * @test {routePrefixer}\n   */\n  it('should be able to prefix routes as an Object', () => {\n    const testRouteOutput = routePrefixer('/added', testRouteObj);\n    (testRouteOutput[0].path).should.equal('/added/path');\n  });\n\n  /**\n   * @test {routePrefixer}\n   */\n  it('should be able to prefix routes as an Array', () => {\n    const testRouteOutput = routePrefixer('/added', testRouteArr);\n    (testRouteOutput[0].path).should.equal(`/added${testRouteArr[0].path}`);\n    (testRouteOutput[1].path).should.equal(`/added${testRouteArr[1].path}`);\n    (testRouteOutput[2].path).should.equal(`/added${testRouteArr[2].path}`);\n  });\n});\n"
+  },
+  {
+    "kind": "testDescribe",
+    "static": true,
+    "variation": null,
+    "name": "describe28",
+    "testId": 28,
+    "memberof": "test/helpers/routePrefixerTest.js",
+    "testDepth": 0,
+    "longname": "test/helpers/routePrefixerTest.js~describe28",
+    "access": null,
+    "description": "Route prefixer",
+    "lineNumber": 23,
     "unknown": [
       {
         "tagName": "@test",
@@ -4648,14 +4766,102 @@
     "kind": "testIt",
     "static": true,
     "variation": null,
-    "name": "it19",
-    "testId": 19,
-    "memberof": "test/helpers/routePrefixerTest.js~describe14",
+    "name": "it29",
+    "testId": 29,
+    "memberof": "test/helpers/routePrefixerTest.js~describe28",
     "testDepth": 1,
-    "longname": "test/helpers/routePrefixerTest.js~describe14.it19",
+    "longname": "test/helpers/routePrefixerTest.js~describe28.it29",
+    "access": null,
+    "description": "should throw an error if the given params are not correct",
+    "lineNumber": 27,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{routePrefixer}"
+      }
+    ],
+    "testTargets": [
+      "routePrefixer"
+    ]
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it30",
+    "testId": 30,
+    "memberof": "test/helpers/routePrefixerTest.js~describe28",
+    "testDepth": 1,
+    "longname": "test/helpers/routePrefixerTest.js~describe28.it30",
+    "access": null,
+    "description": "should throw an error if route(s) don't have route.path",
+    "lineNumber": 39,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{routePrefixer}"
+      }
+    ],
+    "testTargets": [
+      "routePrefixer"
+    ]
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it31",
+    "testId": 31,
+    "memberof": "test/helpers/routePrefixerTest.js~describe28",
+    "testDepth": 1,
+    "longname": "test/helpers/routePrefixerTest.js~describe28.it31",
+    "access": null,
+    "description": "should always return an array",
+    "lineNumber": 51,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{routePrefixer}"
+      }
+    ],
+    "testTargets": [
+      "routePrefixer"
+    ]
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it32",
+    "testId": 32,
+    "memberof": "test/helpers/routePrefixerTest.js~describe28",
+    "testDepth": 1,
+    "longname": "test/helpers/routePrefixerTest.js~describe28.it32",
+    "access": null,
+    "description": "should be able to prefix routes as an Object",
+    "lineNumber": 61,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{routePrefixer}"
+      }
+    ],
+    "testTargets": [
+      "routePrefixer"
+    ]
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it33",
+    "testId": 33,
+    "memberof": "test/helpers/routePrefixerTest.js~describe28",
+    "testDepth": 1,
+    "longname": "test/helpers/routePrefixerTest.js~describe28.it33",
     "access": null,
     "description": "should be able to prefix routes as an Array",
-    "lineNumber": 70,
+    "lineNumber": 69,
     "unknown": [
       {
         "tagName": "@test",
@@ -4676,20 +4882,20 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import '../specHelper';\nimport {routerContainer} from '../../src/helpers';\n\n/**\n * Router container\n * @test {routerContainer}\n */\ndescribe('routePrefixer', () => {\n  /**\n   * @test {routePrefixer}\n   */\n  it('should have a get() method', () => {\n    routerContainer.get.should.be.a('function');\n  });\n\n  /**\n   * @test {routePrefixer}\n   */\n  it('should have a set() method', () => {\n    routerContainer.set.should.be.a('function');\n  });\n\n  /**\n   * @test {routePrefixer}\n   */\n  it('should be able to set and get a router', () => {\n    const testRouter = {test: true};\n    routerContainer.set(testRouter);\n    (routerContainer.get()).should.equal(testRouter);\n  });\n});\n"
+    "content": "import {routerContainer} from '../../src/helpers';\n\n/**\n * Router container\n * @test {routerContainer}\n */\ndescribe('routePrefixer', () => {\n  /**\n   * @test {routePrefixer}\n   */\n  it('should have a get() method', () => {\n    routerContainer.get.should.be.a('function');\n  });\n\n  /**\n   * @test {routePrefixer}\n   */\n  it('should have a set() method', () => {\n    routerContainer.set.should.be.a('function');\n  });\n\n  /**\n   * @test {routePrefixer}\n   */\n  it('should be able to set and get a router', () => {\n    const testRouter = {test: true};\n    routerContainer.set(testRouter);\n    (routerContainer.get()).should.equal(testRouter);\n  });\n});\n"
   },
   {
     "kind": "testDescribe",
     "static": true,
     "variation": null,
-    "name": "describe20",
-    "testId": 20,
+    "name": "describe34",
+    "testId": 34,
     "memberof": "test/helpers/routerContainerTest.js",
     "testDepth": 0,
-    "longname": "test/helpers/routerContainerTest.js~describe20",
+    "longname": "test/helpers/routerContainerTest.js~describe34",
     "access": null,
     "description": "Router container",
-    "lineNumber": 8,
+    "lineNumber": 7,
     "unknown": [
       {
         "tagName": "@test",
@@ -4704,14 +4910,14 @@
     "kind": "testIt",
     "static": true,
     "variation": null,
-    "name": "it21",
-    "testId": 21,
-    "memberof": "test/helpers/routerContainerTest.js~describe20",
+    "name": "it35",
+    "testId": 35,
+    "memberof": "test/helpers/routerContainerTest.js~describe34",
     "testDepth": 1,
-    "longname": "test/helpers/routerContainerTest.js~describe20.it21",
+    "longname": "test/helpers/routerContainerTest.js~describe34.it35",
     "access": null,
     "description": "should have a get() method",
-    "lineNumber": 12,
+    "lineNumber": 11,
     "unknown": [
       {
         "tagName": "@test",
@@ -4726,14 +4932,14 @@
     "kind": "testIt",
     "static": true,
     "variation": null,
-    "name": "it22",
-    "testId": 22,
-    "memberof": "test/helpers/routerContainerTest.js~describe20",
+    "name": "it36",
+    "testId": 36,
+    "memberof": "test/helpers/routerContainerTest.js~describe34",
     "testDepth": 1,
-    "longname": "test/helpers/routerContainerTest.js~describe20.it22",
+    "longname": "test/helpers/routerContainerTest.js~describe34.it36",
     "access": null,
     "description": "should have a set() method",
-    "lineNumber": 19,
+    "lineNumber": 18,
     "unknown": [
       {
         "tagName": "@test",
@@ -4748,14 +4954,14 @@
     "kind": "testIt",
     "static": true,
     "variation": null,
-    "name": "it23",
-    "testId": 23,
-    "memberof": "test/helpers/routerContainerTest.js~describe20",
+    "name": "it37",
+    "testId": 37,
+    "memberof": "test/helpers/routerContainerTest.js~describe34",
     "testDepth": 1,
-    "longname": "test/helpers/routerContainerTest.js~describe20.it23",
+    "longname": "test/helpers/routerContainerTest.js~describe34.it37",
     "access": null,
     "description": "should be able to set and get a router",
-    "lineNumber": 26,
+    "lineNumber": 25,
     "unknown": [
       {
         "tagName": "@test",
@@ -4776,20 +4982,20 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import '../specHelper';\nimport {mockDispatch} from '../frillHelper';\nimport ExampleStore from '../../src/stores/Example';\nimport {BaseStore} from 'frill-core';\nimport scrollData from '../../src/helpers/testScrollItemsData';\n\n/**\n * ExampleStore\n * @test {ExampleStore}\n */\ndescribe('ExampleStore', () => {\n  /**\n   * @test {ExampleStore#constructor}\n   */\n  it('should be an instance of FrillCore.BaseStore', () => {\n    (ExampleStore instanceof BaseStore).should.be.true;\n  });\n\n  /**\n   * @test {ExampleStore#constructor}\n   */\n  it('should have appropriate properties and defaults', () => {\n    ExampleStore._count.should.equal(0);\n    ExampleStore._scrollItems.should.be.an.instanceof(Array);\n    ExampleStore._scrollItems.should.be.empty;\n    ExampleStore._scrollItemsCount.should.equal(0);\n    ExampleStore._scrollItemTotal.should.equal(0);\n  });\n\n  /**\n   * @test {ExampleStore#actions}\n   */\n  describe('ExampleStore#actions', () => {\n    /**\n     * @test {ExampleStore#actions}\n     */\n    it('should handle COUNT_UP', () => {\n      ExampleStore._actions.COUNT_UP.should.exist;\n    });\n\n    /**\n     * @test {ExampleStore#actions}\n     */\n    it('should handle COUNT_UP_BY', () => {\n      ExampleStore._actions.COUNT_UP_BY.should.exist;\n    });\n\n    /**\n     * @test {ExampleStore#actions}\n     */\n    it('should handle LOAD_SCROLL_ITEMS', () => {\n      ExampleStore._actions.LOAD_SCROLL_ITEMS.should.exist;\n    });\n  });\n  /**\n   * @test {ExampleStore#countUp}\n   */\n  describe('ExampleStore#countUp', () => {\n    /**\n     * @test {ExampleStore#countUp}\n     */\n    it('should have a countUp() method', () => {\n      ExampleStore.countUp.should.be.a('function');\n    });\n\n    /**\n     * @test {ExampleStore#countUp}\n     * @test {ExampleStore#count}\n     */\n    it('should be able to handle dispatched actions', () => {\n      // Check params through 'Getter' methods\n      ExampleStore.count.should.equal(0);\n      mockDispatch(ExampleStore, 'COUNT_UP');\n      ExampleStore.count.should.equal(1);\n      mockDispatch(ExampleStore, 'COUNT_UP');\n      ExampleStore.count.should.equal(2);\n    });\n  });\n\n  /**\n   * @test {ExampleStore#countUpBy}\n   */\n  describe('ExampleStore#countUpBy', () => {\n    /**\n     * @test {ExampleStore#countUpBy}\n     */\n    it('should have a countUpBy() method', () => {\n      ExampleStore.countUpBy.should.be.a('function');\n    });\n\n    /**\n     * @test {ExampleStore#countUpBy}\n     * @test {ExampleStore#count}\n     */\n    it('should be able to handle dispatched actions', () => {\n      // Check params through 'Getter' methods\n      ExampleStore.count.should.equal(2);\n      mockDispatch(ExampleStore, 'COUNT_UP_BY', 1);\n      ExampleStore.count.should.equal(3);\n      mockDispatch(ExampleStore, 'COUNT_UP_BY', 10);\n      ExampleStore.count.should.equal(13);\n    });\n  });\n\n  /**\n   * @test {ExampleStore#loadScrollItems}\n   */\n  describe('ExampleStore#loadScrollItems', () => {\n    /**\n     * @test {ExampleStore#loadScrollItems}\n     */\n    it('should have a loadScrollItems() method', () => {\n      ExampleStore.countUpBy.should.be.a('function');\n    });\n\n    /**\n     * @test {ExampleStore#loadScrollItems}\n     * @test {ExampleStore#scrollItems}\n     * @test {ExampleStore#scrollItemsCount}\n     * @test {ExampleStore#scrollItemTotal}\n     */\n    it('should be able to handle dispatched actions', () => {\n      // Check params through 'Getter' methods\n      ExampleStore.scrollItems.should.be.an.instanceof(Array);\n      ExampleStore.scrollItems.should.be.empty;\n      ExampleStore.scrollItemsCount.should.equal(0);\n      ExampleStore.scrollItemTotal.should.equal(0);\n\n      const data = scrollData.slice(1, 6);\n      mockDispatch(ExampleStore, 'LOAD_SCROLL_ITEMS', {\n        data: data,\n        total: scrollData.length,\n      });\n\n      ExampleStore.scrollItems.should.be.an.instanceof(Array);\n      ExampleStore.scrollItems.length.should.equal(data.length);\n      ExampleStore.scrollItemsCount.should.equal(data.length);\n      ExampleStore.scrollItemTotal.should.equal(scrollData.length);\n\n      const data2 = scrollData.slice(6, 8);\n      mockDispatch(ExampleStore, 'LOAD_SCROLL_ITEMS', {\n        data: data2,\n        total: scrollData.length,\n      });\n\n      ExampleStore.scrollItems.should.be.an.instanceof(Array);\n      ExampleStore.scrollItems.length.should.equal(data.length + data2.length);\n      ExampleStore.scrollItemsCount.should.equal(data.length + data2.length);\n      ExampleStore.scrollItemTotal.should.equal(scrollData.length);\n    });\n  });\n});\n"
+    "content": "import {mockDispatch} from '../frillHelper';\nimport ExampleStore from '../../src/stores/Example';\nimport {BaseStore} from 'frill-core';\nimport scrollData from '../../src/helpers/testScrollItemsData';\n\n/**\n * ExampleStore\n * @test {ExampleStore}\n */\ndescribe('ExampleStore', () => {\n  /**\n   * @test {ExampleStore#constructor}\n   */\n  it('should be an instance of FrillCore.BaseStore', () => {\n    (ExampleStore instanceof BaseStore).should.be.true;\n  });\n\n  /**\n   * @test {ExampleStore#constructor}\n   */\n  it('should have appropriate properties and defaults', () => {\n    ExampleStore._count.should.equal(0);\n    ExampleStore._scrollItems.should.be.an.instanceof(Array);\n    ExampleStore._scrollItems.should.be.empty;\n    ExampleStore._scrollItemsCount.should.equal(0);\n    ExampleStore._scrollItemTotal.should.equal(0);\n  });\n\n  /**\n   * @test {ExampleStore#actions}\n   */\n  describe('ExampleStore#actions', () => {\n    /**\n     * @test {ExampleStore#actions}\n     */\n    it('should handle COUNT_UP', () => {\n      ExampleStore._actions.COUNT_UP.should.exist;\n    });\n\n    /**\n     * @test {ExampleStore#actions}\n     */\n    it('should handle COUNT_UP_BY', () => {\n      ExampleStore._actions.COUNT_UP_BY.should.exist;\n    });\n\n    /**\n     * @test {ExampleStore#actions}\n     */\n    it('should handle LOAD_SCROLL_ITEMS', () => {\n      ExampleStore._actions.LOAD_SCROLL_ITEMS.should.exist;\n    });\n  });\n  /**\n   * @test {ExampleStore#countUp}\n   */\n  describe('ExampleStore#countUp', () => {\n    /**\n     * @test {ExampleStore#countUp}\n     */\n    it('should have a countUp() method', () => {\n      ExampleStore.countUp.should.be.a('function');\n    });\n\n    /**\n     * @test {ExampleStore#countUp}\n     * @test {ExampleStore#count}\n     */\n    it('should be able to handle dispatched actions', () => {\n      // Check params through 'Getter' methods\n      ExampleStore.count.should.equal(0);\n      mockDispatch(ExampleStore, 'COUNT_UP');\n      ExampleStore.count.should.equal(1);\n      mockDispatch(ExampleStore, 'COUNT_UP');\n      ExampleStore.count.should.equal(2);\n    });\n  });\n\n  /**\n   * @test {ExampleStore#countUpBy}\n   */\n  describe('ExampleStore#countUpBy', () => {\n    /**\n     * @test {ExampleStore#countUpBy}\n     */\n    it('should have a countUpBy() method', () => {\n      ExampleStore.countUpBy.should.be.a('function');\n    });\n\n    /**\n     * @test {ExampleStore#countUpBy}\n     * @test {ExampleStore#count}\n     */\n    it('should be able to handle dispatched actions', () => {\n      // Check params through 'Getter' methods\n      ExampleStore.count.should.equal(2);\n      mockDispatch(ExampleStore, 'COUNT_UP_BY', 1);\n      ExampleStore.count.should.equal(3);\n      mockDispatch(ExampleStore, 'COUNT_UP_BY', 10);\n      ExampleStore.count.should.equal(13);\n    });\n  });\n\n  /**\n   * @test {ExampleStore#loadScrollItems}\n   */\n  describe('ExampleStore#loadScrollItems', () => {\n    /**\n     * @test {ExampleStore#loadScrollItems}\n     */\n    it('should have a loadScrollItems() method', () => {\n      ExampleStore.countUpBy.should.be.a('function');\n    });\n\n    /**\n     * @test {ExampleStore#loadScrollItems}\n     * @test {ExampleStore#scrollItems}\n     * @test {ExampleStore#scrollItemsCount}\n     * @test {ExampleStore#scrollItemTotal}\n     */\n    it('should be able to handle dispatched actions', () => {\n      // Check params through 'Getter' methods\n      ExampleStore.scrollItems.should.be.an.instanceof(Array);\n      ExampleStore.scrollItems.should.be.empty;\n      ExampleStore.scrollItemsCount.should.equal(0);\n      ExampleStore.scrollItemTotal.should.equal(0);\n\n      const data = scrollData.slice(1, 6);\n      mockDispatch(ExampleStore, 'LOAD_SCROLL_ITEMS', {\n        data: data,\n        total: scrollData.length,\n      });\n\n      ExampleStore.scrollItems.should.be.an.instanceof(Array);\n      ExampleStore.scrollItems.length.should.equal(data.length);\n      ExampleStore.scrollItemsCount.should.equal(data.length);\n      ExampleStore.scrollItemTotal.should.equal(scrollData.length);\n\n      const data2 = scrollData.slice(6, 8);\n      mockDispatch(ExampleStore, 'LOAD_SCROLL_ITEMS', {\n        data: data2,\n        total: scrollData.length,\n      });\n\n      ExampleStore.scrollItems.should.be.an.instanceof(Array);\n      ExampleStore.scrollItems.length.should.equal(data.length + data2.length);\n      ExampleStore.scrollItemsCount.should.equal(data.length + data2.length);\n      ExampleStore.scrollItemTotal.should.equal(scrollData.length);\n    });\n  });\n});\n"
   },
   {
     "kind": "testDescribe",
     "static": true,
     "variation": null,
-    "name": "describe24",
-    "testId": 24,
+    "name": "describe38",
+    "testId": 38,
     "memberof": "test/stores/ExampleStoreTest.js",
     "testDepth": 0,
-    "longname": "test/stores/ExampleStoreTest.js~describe24",
+    "longname": "test/stores/ExampleStoreTest.js~describe38",
     "access": null,
     "description": "ExampleStore",
-    "lineNumber": 11,
+    "lineNumber": 10,
     "unknown": [
       {
         "tagName": "@test",
@@ -4804,14 +5010,14 @@
     "kind": "testIt",
     "static": true,
     "variation": null,
-    "name": "it25",
-    "testId": 25,
-    "memberof": "test/stores/ExampleStoreTest.js~describe24",
+    "name": "it39",
+    "testId": 39,
+    "memberof": "test/stores/ExampleStoreTest.js~describe38",
     "testDepth": 1,
-    "longname": "test/stores/ExampleStoreTest.js~describe24.it25",
+    "longname": "test/stores/ExampleStoreTest.js~describe38.it39",
     "access": null,
     "description": "should be an instance of FrillCore.BaseStore",
-    "lineNumber": 15,
+    "lineNumber": 14,
     "unknown": [
       {
         "tagName": "@test",
@@ -4826,14 +5032,14 @@
     "kind": "testIt",
     "static": true,
     "variation": null,
-    "name": "it26",
-    "testId": 26,
-    "memberof": "test/stores/ExampleStoreTest.js~describe24",
+    "name": "it40",
+    "testId": 40,
+    "memberof": "test/stores/ExampleStoreTest.js~describe38",
     "testDepth": 1,
-    "longname": "test/stores/ExampleStoreTest.js~describe24.it26",
+    "longname": "test/stores/ExampleStoreTest.js~describe38.it40",
     "access": null,
     "description": "should have appropriate properties and defaults",
-    "lineNumber": 22,
+    "lineNumber": 21,
     "unknown": [
       {
         "tagName": "@test",
@@ -4848,14 +5054,14 @@
     "kind": "testDescribe",
     "static": true,
     "variation": null,
-    "name": "describe27",
-    "testId": 27,
-    "memberof": "test/stores/ExampleStoreTest.js~describe24",
+    "name": "describe41",
+    "testId": 41,
+    "memberof": "test/stores/ExampleStoreTest.js~describe38",
     "testDepth": 1,
-    "longname": "test/stores/ExampleStoreTest.js~describe24.describe27",
+    "longname": "test/stores/ExampleStoreTest.js~describe38.describe41",
     "access": null,
     "description": "ExampleStore#actions",
-    "lineNumber": 33,
+    "lineNumber": 32,
     "unknown": [
       {
         "tagName": "@test",
@@ -4870,14 +5076,14 @@
     "kind": "testIt",
     "static": true,
     "variation": null,
-    "name": "it28",
-    "testId": 28,
-    "memberof": "test/stores/ExampleStoreTest.js~describe24.describe27",
+    "name": "it42",
+    "testId": 42,
+    "memberof": "test/stores/ExampleStoreTest.js~describe38.describe41",
     "testDepth": 2,
-    "longname": "test/stores/ExampleStoreTest.js~describe24.describe27.it28",
+    "longname": "test/stores/ExampleStoreTest.js~describe38.describe41.it42",
     "access": null,
     "description": "should handle COUNT_UP",
-    "lineNumber": 37,
+    "lineNumber": 36,
     "unknown": [
       {
         "tagName": "@test",
@@ -4892,14 +5098,14 @@
     "kind": "testIt",
     "static": true,
     "variation": null,
-    "name": "it29",
-    "testId": 29,
-    "memberof": "test/stores/ExampleStoreTest.js~describe24.describe27",
+    "name": "it43",
+    "testId": 43,
+    "memberof": "test/stores/ExampleStoreTest.js~describe38.describe41",
     "testDepth": 2,
-    "longname": "test/stores/ExampleStoreTest.js~describe24.describe27.it29",
+    "longname": "test/stores/ExampleStoreTest.js~describe38.describe41.it43",
     "access": null,
     "description": "should handle COUNT_UP_BY",
-    "lineNumber": 44,
+    "lineNumber": 43,
     "unknown": [
       {
         "tagName": "@test",
@@ -4914,14 +5120,14 @@
     "kind": "testIt",
     "static": true,
     "variation": null,
-    "name": "it30",
-    "testId": 30,
-    "memberof": "test/stores/ExampleStoreTest.js~describe24.describe27",
+    "name": "it44",
+    "testId": 44,
+    "memberof": "test/stores/ExampleStoreTest.js~describe38.describe41",
     "testDepth": 2,
-    "longname": "test/stores/ExampleStoreTest.js~describe24.describe27.it30",
+    "longname": "test/stores/ExampleStoreTest.js~describe38.describe41.it44",
     "access": null,
     "description": "should handle LOAD_SCROLL_ITEMS",
-    "lineNumber": 51,
+    "lineNumber": 50,
     "unknown": [
       {
         "tagName": "@test",
@@ -4936,14 +5142,14 @@
     "kind": "testDescribe",
     "static": true,
     "variation": null,
-    "name": "describe31",
-    "testId": 31,
-    "memberof": "test/stores/ExampleStoreTest.js~describe24",
+    "name": "describe45",
+    "testId": 45,
+    "memberof": "test/stores/ExampleStoreTest.js~describe38",
     "testDepth": 1,
-    "longname": "test/stores/ExampleStoreTest.js~describe24.describe31",
+    "longname": "test/stores/ExampleStoreTest.js~describe38.describe45",
     "access": null,
     "description": "ExampleStore#countUp",
-    "lineNumber": 58,
+    "lineNumber": 57,
     "unknown": [
       {
         "tagName": "@test",
@@ -4958,14 +5164,14 @@
     "kind": "testIt",
     "static": true,
     "variation": null,
-    "name": "it32",
-    "testId": 32,
-    "memberof": "test/stores/ExampleStoreTest.js~describe24.describe31",
+    "name": "it46",
+    "testId": 46,
+    "memberof": "test/stores/ExampleStoreTest.js~describe38.describe45",
     "testDepth": 2,
-    "longname": "test/stores/ExampleStoreTest.js~describe24.describe31.it32",
+    "longname": "test/stores/ExampleStoreTest.js~describe38.describe45.it46",
     "access": null,
     "description": "should have a countUp() method",
-    "lineNumber": 62,
+    "lineNumber": 61,
     "unknown": [
       {
         "tagName": "@test",
@@ -4980,14 +5186,14 @@
     "kind": "testIt",
     "static": true,
     "variation": null,
-    "name": "it33",
-    "testId": 33,
-    "memberof": "test/stores/ExampleStoreTest.js~describe24.describe31",
+    "name": "it47",
+    "testId": 47,
+    "memberof": "test/stores/ExampleStoreTest.js~describe38.describe45",
     "testDepth": 2,
-    "longname": "test/stores/ExampleStoreTest.js~describe24.describe31.it33",
+    "longname": "test/stores/ExampleStoreTest.js~describe38.describe45.it47",
     "access": null,
     "description": "should be able to handle dispatched actions",
-    "lineNumber": 70,
+    "lineNumber": 69,
     "unknown": [
       {
         "tagName": "@test",
@@ -5007,14 +5213,14 @@
     "kind": "testDescribe",
     "static": true,
     "variation": null,
-    "name": "describe34",
-    "testId": 34,
-    "memberof": "test/stores/ExampleStoreTest.js~describe24",
+    "name": "describe48",
+    "testId": 48,
+    "memberof": "test/stores/ExampleStoreTest.js~describe38",
     "testDepth": 1,
-    "longname": "test/stores/ExampleStoreTest.js~describe24.describe34",
+    "longname": "test/stores/ExampleStoreTest.js~describe38.describe48",
     "access": null,
     "description": "ExampleStore#countUpBy",
-    "lineNumber": 83,
+    "lineNumber": 82,
     "unknown": [
       {
         "tagName": "@test",
@@ -5029,14 +5235,14 @@
     "kind": "testIt",
     "static": true,
     "variation": null,
-    "name": "it35",
-    "testId": 35,
-    "memberof": "test/stores/ExampleStoreTest.js~describe24.describe34",
+    "name": "it49",
+    "testId": 49,
+    "memberof": "test/stores/ExampleStoreTest.js~describe38.describe48",
     "testDepth": 2,
-    "longname": "test/stores/ExampleStoreTest.js~describe24.describe34.it35",
+    "longname": "test/stores/ExampleStoreTest.js~describe38.describe48.it49",
     "access": null,
     "description": "should have a countUpBy() method",
-    "lineNumber": 87,
+    "lineNumber": 86,
     "unknown": [
       {
         "tagName": "@test",
@@ -5051,14 +5257,14 @@
     "kind": "testIt",
     "static": true,
     "variation": null,
-    "name": "it36",
-    "testId": 36,
-    "memberof": "test/stores/ExampleStoreTest.js~describe24.describe34",
+    "name": "it50",
+    "testId": 50,
+    "memberof": "test/stores/ExampleStoreTest.js~describe38.describe48",
     "testDepth": 2,
-    "longname": "test/stores/ExampleStoreTest.js~describe24.describe34.it36",
+    "longname": "test/stores/ExampleStoreTest.js~describe38.describe48.it50",
     "access": null,
     "description": "should be able to handle dispatched actions",
-    "lineNumber": 95,
+    "lineNumber": 94,
     "unknown": [
       {
         "tagName": "@test",
@@ -5078,14 +5284,14 @@
     "kind": "testDescribe",
     "static": true,
     "variation": null,
-    "name": "describe37",
-    "testId": 37,
-    "memberof": "test/stores/ExampleStoreTest.js~describe24",
+    "name": "describe51",
+    "testId": 51,
+    "memberof": "test/stores/ExampleStoreTest.js~describe38",
     "testDepth": 1,
-    "longname": "test/stores/ExampleStoreTest.js~describe24.describe37",
+    "longname": "test/stores/ExampleStoreTest.js~describe38.describe51",
     "access": null,
     "description": "ExampleStore#loadScrollItems",
-    "lineNumber": 108,
+    "lineNumber": 107,
     "unknown": [
       {
         "tagName": "@test",
@@ -5100,14 +5306,14 @@
     "kind": "testIt",
     "static": true,
     "variation": null,
-    "name": "it38",
-    "testId": 38,
-    "memberof": "test/stores/ExampleStoreTest.js~describe24.describe37",
+    "name": "it52",
+    "testId": 52,
+    "memberof": "test/stores/ExampleStoreTest.js~describe38.describe51",
     "testDepth": 2,
-    "longname": "test/stores/ExampleStoreTest.js~describe24.describe37.it38",
+    "longname": "test/stores/ExampleStoreTest.js~describe38.describe51.it52",
     "access": null,
     "description": "should have a loadScrollItems() method",
-    "lineNumber": 112,
+    "lineNumber": 111,
     "unknown": [
       {
         "tagName": "@test",
@@ -5122,14 +5328,14 @@
     "kind": "testIt",
     "static": true,
     "variation": null,
-    "name": "it39",
-    "testId": 39,
-    "memberof": "test/stores/ExampleStoreTest.js~describe24.describe37",
+    "name": "it53",
+    "testId": 53,
+    "memberof": "test/stores/ExampleStoreTest.js~describe38.describe51",
     "testDepth": 2,
-    "longname": "test/stores/ExampleStoreTest.js~describe24.describe37.it39",
+    "longname": "test/stores/ExampleStoreTest.js~describe38.describe51.it53",
     "access": null,
     "description": "should be able to handle dispatched actions",
-    "lineNumber": 122,
+    "lineNumber": 121,
     "unknown": [
       {
         "tagName": "@test",

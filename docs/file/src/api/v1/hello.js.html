@@ -121,14 +121,13 @@ const apiV1Hello = (/* server */) =&gt; {
       plugins: {
         &apos;hapi-swagger&apos;: {
           responseMessages: [
-            { code: 400, message: &apos;Bad Request&apos; },
-            { code: 500, message: &apos;Internal Server Error&apos;},
+            { code: 200, message: &apos;&apos;},
           ],
         },
       },
     },
     handler: (req, rep) =&gt; {
-      console.log(req.auth);
+      // console.log(req.auth);
       rep({msg: &apos;api, hello&apos;});
     },
   }, {
@@ -142,15 +141,13 @@ const apiV1Hello = (/* server */) =&gt; {
       plugins: {
         &apos;hapi-swagger&apos;: {
           responseMessages: [
-            { code: 400, message: &apos;Bad Request&apos; },
-            { code: 500, message: &apos;Internal Server Error&apos;},
+            { code: 200, message: &apos;&apos;},
+            { code: 401, message: &apos;Unauthorized&apos; },
           ],
         },
       },
     },
     handler: (req, rep) =&gt; {
-      console.log(&apos;hander&apos;);
-
       console.log(req.auth);
       rep({msg: &apos;restricted api, hello&apos;});
     },

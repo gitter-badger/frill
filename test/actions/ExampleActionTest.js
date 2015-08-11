@@ -1,4 +1,3 @@
-import '../specHelper';
 import {mockStoreEvent} from '../frillHelper';
 import ExampleAction from '../../src/actions/Example';
 import {BaseAction} from 'frill-core';
