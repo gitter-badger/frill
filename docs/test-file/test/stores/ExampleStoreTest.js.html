@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl" href="../../../../">
-  <title data-ice="title">src/models/DynamoDB/index.js | FrillJS API Document</title>
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">test/stores/ExampleStoreTest.js | FrillJS API Document</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -104,18 +104,159 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">src/models/DynamoDB/index.js</h1>
-<pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">import Posts from &apos;./Posts&apos;;
+<div class="content" data-ice="content"><h1 data-ice="title">test/stores/ExampleStoreTest.js</h1>
+<pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">import &apos;../specHelper&apos;;
+import {mockDispatch} from &apos;../frillHelper&apos;;
+import ExampleStore from &apos;../../src/stores/Example&apos;;
+import {BaseStore} from &apos;frill-core&apos;;
+import scrollData from &apos;../../src/helpers/testScrollItemsData&apos;;
 
 /**
- * List of all DynamoDB models
- * @see {@link Posts}
+ * ExampleStore
+ * @test {ExampleStore}
  */
-const DynamoDBModels = {
-  Posts,
-};
+describe(&apos;ExampleStore&apos;, () =&gt; {
+  /**
+   * @test {ExampleStore#constructor}
+   */
+  it(&apos;should be an instance of FrillCore.BaseStore&apos;, () =&gt; {
+    (ExampleStore instanceof BaseStore).should.be.true;
+  });
 
-export default DynamoDBModels;
+  /**
+   * @test {ExampleStore#constructor}
+   */
+  it(&apos;should have appropriate properties and defaults&apos;, () =&gt; {
+    ExampleStore._count.should.equal(0);
+    ExampleStore._scrollItems.should.be.an.instanceof(Array);
+    ExampleStore._scrollItems.should.be.empty;
+    ExampleStore._scrollItemsCount.should.equal(0);
+    ExampleStore._scrollItemTotal.should.equal(0);
+  });
+
+  /**
+   * @test {ExampleStore#actions}
+   */
+  describe(&apos;ExampleStore#actions&apos;, () =&gt; {
+    /**
+     * @test {ExampleStore#actions}
+     */
+    it(&apos;should handle COUNT_UP&apos;, () =&gt; {
+      ExampleStore._actions.COUNT_UP.should.exist;
+    });
+
+    /**
+     * @test {ExampleStore#actions}
+     */
+    it(&apos;should handle COUNT_UP_BY&apos;, () =&gt; {
+      ExampleStore._actions.COUNT_UP_BY.should.exist;
+    });
+
+    /**
+     * @test {ExampleStore#actions}
+     */
+    it(&apos;should handle LOAD_SCROLL_ITEMS&apos;, () =&gt; {
+      ExampleStore._actions.LOAD_SCROLL_ITEMS.should.exist;
+    });
+  });
+  /**
+   * @test {ExampleStore#countUp}
+   */
+  describe(&apos;ExampleStore#countUp&apos;, () =&gt; {
+    /**
+     * @test {ExampleStore#countUp}
+     */
+    it(&apos;should have a countUp() method&apos;, () =&gt; {
+      ExampleStore.countUp.should.be.a(&apos;function&apos;);
+    });
+
+    /**
+     * @test {ExampleStore#countUp}
+     * @test {ExampleStore#count}
+     */
+    it(&apos;should be able to handle dispatched actions&apos;, () =&gt; {
+      // Check params through &apos;Getter&apos; methods
+      ExampleStore.count.should.equal(0);
+      mockDispatch(ExampleStore, &apos;COUNT_UP&apos;);
+      ExampleStore.count.should.equal(1);
+      mockDispatch(ExampleStore, &apos;COUNT_UP&apos;);
+      ExampleStore.count.should.equal(2);
+    });
+  });
+
+  /**
+   * @test {ExampleStore#countUpBy}
+   */
+  describe(&apos;ExampleStore#countUpBy&apos;, () =&gt; {
+    /**
+     * @test {ExampleStore#countUpBy}
+     */
+    it(&apos;should have a countUpBy() method&apos;, () =&gt; {
+      ExampleStore.countUpBy.should.be.a(&apos;function&apos;);
+    });
+
+    /**
+     * @test {ExampleStore#countUpBy}
+     * @test {ExampleStore#count}
+     */
+    it(&apos;should be able to handle dispatched actions&apos;, () =&gt; {
+      // Check params through &apos;Getter&apos; methods
+      ExampleStore.count.should.equal(2);
+      mockDispatch(ExampleStore, &apos;COUNT_UP_BY&apos;, 1);
+      ExampleStore.count.should.equal(3);
+      mockDispatch(ExampleStore, &apos;COUNT_UP_BY&apos;, 10);
+      ExampleStore.count.should.equal(13);
+    });
+  });
+
+  /**
+   * @test {ExampleStore#loadScrollItems}
+   */
+  describe(&apos;ExampleStore#loadScrollItems&apos;, () =&gt; {
+    /**
+     * @test {ExampleStore#loadScrollItems}
+     */
+    it(&apos;should have a loadScrollItems() method&apos;, () =&gt; {
+      ExampleStore.countUpBy.should.be.a(&apos;function&apos;);
+    });
+
+    /**
+     * @test {ExampleStore#loadScrollItems}
+     * @test {ExampleStore#scrollItems}
+     * @test {ExampleStore#scrollItemsCount}
+     * @test {ExampleStore#scrollItemTotal}
+     */
+    it(&apos;should be able to handle dispatched actions&apos;, () =&gt; {
+      // Check params through &apos;Getter&apos; methods
+      ExampleStore.scrollItems.should.be.an.instanceof(Array);
+      ExampleStore.scrollItems.should.be.empty;
+      ExampleStore.scrollItemsCount.should.equal(0);
+      ExampleStore.scrollItemTotal.should.equal(0);
+
+      const data = scrollData.slice(1, 6);
+      mockDispatch(ExampleStore, &apos;LOAD_SCROLL_ITEMS&apos;, {
+        data: data,
+        total: scrollData.length,
+      });
+
+      ExampleStore.scrollItems.should.be.an.instanceof(Array);
+      ExampleStore.scrollItems.length.should.equal(data.length);
+      ExampleStore.scrollItemsCount.should.equal(data.length);
+      ExampleStore.scrollItemTotal.should.equal(scrollData.length);
+
+      const data2 = scrollData.slice(6, 8);
+      mockDispatch(ExampleStore, &apos;LOAD_SCROLL_ITEMS&apos;, {
+        data: data2,
+        total: scrollData.length,
+      });
+
+      ExampleStore.scrollItems.should.be.an.instanceof(Array);
+      ExampleStore.scrollItems.length.should.equal(data.length + data2.length);
+      ExampleStore.scrollItemsCount.should.equal(data.length + data2.length);
+      ExampleStore.scrollItemTotal.should.equal(scrollData.length);
+    });
+  });
+});
 </code></pre>
 </div>
 

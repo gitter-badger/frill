@@ -518,7 +518,7 @@
     "access": null,
     "description": null,
     "lineNumber": 5,
-    "content": "/**\n * Authentication strategy for Facebook\n * @see https://developers.facebook.com/\n */\nconst facebookStrategy = (server) => {\n  server.auth.strategy('facebook', 'bell', {\n    provider: 'facebook',\n    password: 'cookie_encryption_password',\n    clientId: 'yKcHqLNOXe2xKgvOTFuXCeyN3',\n    clientSecret: 'woM83S28cvHcf8Ut5AcHBiX4ifqPGMnrze1VkH07QiFLVaIO7y',\n    isSecure: false,\n  });\n};\n\nexport default facebookStrategy;\n"
+    "content": "/**\n * Authentication strategy for Facebook\n * @see https://developers.facebook.com/\n */\nconst facebookStrategy = (server) => {\n  server.auth.strategy('facebook', 'bell', {\n    provider: 'facebook',\n    password: 'cookie_encryption_password',\n    clientId: 'YOUR_CLIENT_ID',\n    clientSecret: 'YOUR_CLIENT_SECRET',\n    isSecure: false,\n  });\n};\n\nexport default facebookStrategy;\n"
   },
   {
     "kind": "variable",
@@ -552,7 +552,7 @@
     "access": null,
     "description": null,
     "lineNumber": 5,
-    "content": "/**\n * Authentication strategy for GitHub\n * @see https://developer.github.com/\n */\nconst githubStrategy = (server) => {\n  server.auth.strategy('github', 'bell', {\n    provider: 'github',\n    password: 'cookie_encryption_password',\n    clientId: 'yKcHqLNOXe2xKgvOTFuXCeyN3',\n    clientSecret: 'woM83S28cvHcf8Ut5AcHBiX4ifqPGMnrze1VkH07QiFLVaIO7y',\n    isSecure: false,\n  });\n};\n\nexport default githubStrategy;\n"
+    "content": "/**\n * Authentication strategy for GitHub\n * @see https://developer.github.com/\n */\nconst githubStrategy = (server) => {\n  server.auth.strategy('github', 'bell', {\n    provider: 'github',\n    password: 'cookie_encryption_password',\n    clientId: 'YOUR_CLIENT_ID',\n    clientSecret: 'YOUR_CLIENT_SECRET',\n    isSecure: false,\n  });\n};\n\nexport default githubStrategy;\n"
   },
   {
     "kind": "variable",
@@ -586,7 +586,7 @@
     "access": null,
     "description": null,
     "lineNumber": 5,
-    "content": "/**\n * Authentication strategy for Google\n * @see https://developers.google.com/\n */\nconst googleStrategy = (server) => {\n  server.auth.strategy('google', 'bell', {\n    provider: 'google',\n    password: 'cookie_encryption_password',\n    clientId: 'yKcHqLNOXe2xKgvOTFuXCeyN3',\n    clientSecret: 'woM83S28cvHcf8Ut5AcHBiX4ifqPGMnrze1VkH07QiFLVaIO7y',\n    isSecure: false,\n  });\n};\n\nexport default googleStrategy;\n"
+    "content": "/**\n * Authentication strategy for Google\n * @see https://developers.google.com/\n */\nconst googleStrategy = (server) => {\n  server.auth.strategy('google', 'bell', {\n    provider: 'google',\n    password: 'cookie_encryption_password',\n    clientId: 'YOUR_CLIENT_ID',\n    clientSecret: 'YOUR_CLIENT_SECRET',\n    isSecure: false,\n  });\n};\n\nexport default googleStrategy;\n"
   },
   {
     "kind": "variable",
@@ -816,7 +816,7 @@
     "access": null,
     "description": null,
     "lineNumber": 5,
-    "content": "/**\n * Authentication strategy for Twitter\n * @see https://dev.twitter.com/\n */\nconst twitterStrategy = (server) => {\n  server.auth.strategy('twitter', 'bell', {\n    provider: 'twitter',\n    password: 'cookie_encryption_password',\n    clientId: 'yKcHqLNOXe2xKgvOTFuXCeyN3',\n    clientSecret: 'woM83S28cvHcf8Ut5AcHBiX4ifqPGMnrze1VkH07QiFLVaIO7y',\n    isSecure: false,\n  });\n};\n\nexport default twitterStrategy;\n"
+    "content": "/**\n * Authentication strategy for Twitter\n * @see https://dev.twitter.com/\n */\nconst twitterStrategy = (server) => {\n  server.auth.strategy('twitter', 'bell', {\n    provider: 'twitter',\n    password: 'cookie_encryption_password',\n    clientId: 'YOUR_CLIENT_ID',\n    clientSecret: 'YOUR_CLIENT_SECRET',\n    isSecure: false,\n  });\n};\n\nexport default twitterStrategy;\n"
   },
   {
     "kind": "variable",
@@ -2131,24 +2131,24 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import {isArray as _isArray} from 'lodash';\nimport {isPlainObject as _isPlainObject} from 'lodash';\n\n/**\n * @desc Prefixes route.path\n * @example\n * routePrefixer('/api', [{path: '/a'}, {path: '/b'}]);\n *\n * @param {string} prefix - A string to prefix paths\n * @param {Array|Object} routes - Collection of routes or a single route\n * @param {string} route.path - Collection of routes or a single route\n * @throws {Error} throw error when route.path doesn't exist\n * @throws {TypeError} throw error when route is not an Array\n * @return {Array}\n */\nconst RoutePrefixer = (prefix, routes) => {\n  let _routes = routes;\n  if (_isPlainObject(_routes)) {\n    if (!_routes.path) {\n      throw new Error('A route must have routes.path');\n    }\n    _routes = [_routes];\n  }\n  if (!_isArray(routes)) {\n    throw new TypeError('Unable to prefix routes. route must be an Array');\n  }\n  return routes.map((route) => {\n    route.path = prefix + route.path;\n    return route;\n  });\n};\n\nexport default RoutePrefixer;\n"
+    "content": "import {isEmpty as _isEmpty} from 'lodash';\nimport {cloneDeep as _cloneDeep} from 'lodash';\nimport {isPlainObject as _isPlainObject} from 'lodash';\nimport {isString as _isString} from 'lodash';\n\n/**\n * @desc Prefixes route.path\n * @example\n * routePrefixer('/api', [{path: '/a'}, {path: '/b'}]);\n *\n * @param {string} prefix - A string to prefix paths\n * @param {Array|Object} routes - Collection of routes or a single route\n * @param {string} route.path - Collection of routes or a single route\n * @throws {Error} throw error when given routes is not set or empty\n * @throws {Error} throw error when route.path doesn't exist in Object\n * @throws {Error} throw error when routes[x].route.path doesn't exist in Array\n * @throws {TypeError} throw error when prefix is not a String\n * @return {Array}\n */\nconst routePrefixer = (prefix, routes) => {\n  if (!_isString(prefix)) {\n    throw new TypeError('Prefix must be a string');\n  }\n\n  if (_isEmpty(routes)) {\n    throw new Error('Must specify routes');\n  }\n\n  let _routes = _cloneDeep(routes);\n\n  if (_isPlainObject(_routes)) {\n    if (!_routes.path) {\n      throw new Error('A route must have routes.path');\n    }\n    _routes = [_routes];\n  }\n\n  return _routes.map((route) => {\n    if (!route.path) {\n      throw new Error('All routes must contain route.path');\n    }\n    route.path = `${prefix}${route.path}`;\n    return route;\n  });\n};\n\nexport default routePrefixer;\n"
   },
   {
     "kind": "variable",
     "static": true,
     "variation": null,
-    "name": "RoutePrefixer",
+    "name": "routePrefixer",
     "memberof": "src/helpers/routePrefixer.js",
-    "longname": "src/helpers/routePrefixer.js~RoutePrefixer",
+    "longname": "src/helpers/routePrefixer.js~routePrefixer",
     "access": null,
     "export": true,
     "importPath": "frill/src/helpers/routePrefixer.js",
-    "importStyle": "RoutePrefixer",
+    "importStyle": "routePrefixer",
     "description": "Prefixes route.path",
     "examples": [
       "routePrefixer('/api', [{path: '/a'}, {path: '/b'}]);"
     ],
-    "lineNumber": 16,
+    "lineNumber": 20,
     "params": [
       {
         "nullable": null,
@@ -2200,13 +2200,25 @@
         "types": [
           "Error"
         ],
-        "description": "throw error when route.path doesn't exist"
+        "description": "throw error when given routes is not set or empty"
+      },
+      {
+        "types": [
+          "Error"
+        ],
+        "description": "throw error when route.path doesn't exist in Object"
+      },
+      {
+        "types": [
+          "Error"
+        ],
+        "description": "throw error when routes[x].route.path doesn't exist in Array"
       },
       {
         "types": [
           "TypeError"
         ],
-        "description": "throw error when route is not an Array"
+        "description": "throw error when prefix is not a String"
       }
     ]
   },
@@ -3050,7 +3062,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import {BaseStore} from 'frill-core';\n\n/**\n * Example store\n * @extends {FrillCore.BaseStore}\n * @example <caption>via frill component</caption>\n * this.getFrill().store('Example').getCount(); // get count\n * @example <caption>via frill action</caption>\n * this.dispatch('COUNT_UP_BY', 15); // count up counter by 15\n */\nclass ExampleStore extends BaseStore {\n\n  /**\n   * Constructor\n   */\n  constructor() {\n    super();\n    this._count = 0;\n    this._scrollItems = [];\n    this._scrollItemsCount = 0;\n    this._scrollItemTotal = 0;\n\n    /**\n     * Actions to listen\n     * @param {Object} actions\n     * @listens {COUNT_UP}\n     * @listens {COUNT_UP_BY}\n     * @listens {LOAD_SCROLL_ITEMS}\n     */\n    this.actions = {\n      'COUNT_UP': 'countup',\n      'COUNT_UP_BY': 'countupBy',\n      'LOAD_SCROLL_ITEMS': 'loadScrollItems',\n    };\n  }\n\n  /**\n   * Count up by 1\n   * @emits {change}\n   */\n  countup() {\n    this._count = this._count + 1;\n    this.change();\n  }\n\n  /**\n   * Count up by a number given\n   * @param {number} byCount - a number to count up by\n   * @emits {change}\n   */\n  countupBy(byCount) {\n    this._count = this._count + byCount;\n    this.change();\n  }\n\n  /**\n   * Gets current count\n   * @type {number}\n   */\n  get count() {\n    return this._count;\n  }\n\n  /**\n   * Load scroll items\n   * @param {Object} payload.data - data of items\n   * @param {Object} payload.total - total count of items\n   * @emits {change}\n   */\n  loadScrollItems({data, total}) {\n    this._scrollItems = this._scrollItems.concat(data);\n    this._scrollItemsCount = this._scrollItemsCount + data.length;\n    this._scrollItemTotal = total;\n    this.change();\n  }\n\n  /**\n   * Gets items\n   * @type {Object}\n   */\n  get scrollItems() {\n    return this._scrollItems;\n  }\n\n  /**\n   * Gets loaded items count\n   * @type {number}\n   */\n  get scrollItemsCount() {\n    return this._scrollItemsCount;\n  }\n\n  /**\n   * Gets total count of items\n   * @return {number} - get number of total items\n   */\n  get scrollItemTotal() {\n    return this._scrollItemTotal;\n  }\n}\n\n/**\n * Export ExampleStore instance\n */\nexport default new ExampleStore();\n"
+    "content": "import {BaseStore} from 'frill-core';\n\n/**\n * Example store\n * @extends {FrillCore.BaseStore}\n * @example <caption>via frill component</caption>\n * this.getFrill().store('Example').getCount(); // get count\n * @example <caption>via frill action</caption>\n * this.dispatch('COUNT_UP_BY', 15); // count up counter by 15\n */\nclass ExampleStore extends BaseStore {\n\n  /**\n   * Constructor\n   */\n  constructor() {\n    super();\n    this._count = 0;\n    this._scrollItems = [];\n    this._scrollItemsCount = 0;\n    this._scrollItemTotal = 0;\n\n    /**\n     * Actions to listen\n     * @param {Object} actions\n     * @listens {COUNT_UP}\n     * @listens {COUNT_UP_BY}\n     * @listens {LOAD_SCROLL_ITEMS}\n     */\n    this.actions = {\n      'COUNT_UP': 'countUp',\n      'COUNT_UP_BY': 'countUpBy',\n      'LOAD_SCROLL_ITEMS': 'loadScrollItems',\n    };\n  }\n\n  /**\n   * Count up by 1\n   * @emits {change}\n   */\n  countUp() {\n    this._count = this._count + 1;\n    this.change();\n  }\n\n  /**\n   * Count up by a number given\n   * @param {number} byCount - a number to count up by\n   * @emits {change}\n   */\n  countUpBy(byCount) {\n    this._count = this._count + byCount;\n    this.change();\n  }\n\n  /**\n   * Gets current count\n   * @type {number}\n   */\n  get count() {\n    return this._count;\n  }\n\n  /**\n   * Load scroll items\n   * @param {Object} payload.data - data of items\n   * @param {Object} payload.total - total count of items\n   * @emits {change}\n   */\n  loadScrollItems({data, total}) {\n    this._scrollItems = this._scrollItems.concat(data);\n    this._scrollItemsCount = this._scrollItemsCount + data.length;\n    this._scrollItemTotal = total;\n    this.change();\n  }\n\n  /**\n   * Gets items\n   * @type {Object}\n   */\n  get scrollItems() {\n    return this._scrollItems;\n  }\n\n  /**\n   * Gets loaded items count\n   * @type {number}\n   */\n  get scrollItemsCount() {\n    return this._scrollItemsCount;\n  }\n\n  /**\n   * Gets total count of items\n   * @return {number} - get number of total items\n   */\n  get scrollItemTotal() {\n    return this._scrollItemTotal;\n  }\n}\n\n/**\n * Export ExampleStore instance\n */\nexport default new ExampleStore();\n"
   },
   {
     "kind": "class",
@@ -3208,9 +3220,9 @@
     "kind": "method",
     "static": false,
     "variation": null,
-    "name": "countup",
+    "name": "countUp",
     "memberof": "src/stores/Example.js~ExampleStore",
-    "longname": "src/stores/Example.js~ExampleStore#countup",
+    "longname": "src/stores/Example.js~ExampleStore#countUp",
     "access": null,
     "description": "Count up by 1",
     "lineNumber": 41,
@@ -3246,9 +3258,9 @@
     "kind": "method",
     "static": false,
     "variation": null,
-    "name": "countupBy",
+    "name": "countUpBy",
     "memberof": "src/stores/Example.js~ExampleStore",
-    "longname": "src/stores/Example.js~ExampleStore#countupBy",
+    "longname": "src/stores/Example.js~ExampleStore#countUpBy",
     "access": null,
     "description": "Count up by a number given",
     "lineNumber": 51,
@@ -4177,7 +4189,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import '../specHelper';\nimport {mockStoreEvent} from '../frillHelper';\nimport ExampleAction from '../../src/actions/Example';\nimport {BaseAction} from 'frill-core';\nimport scrollData from '../../src/helpers/testScrollItemsData';\n\n/**\n * Test for ExampleAction\n * @test {ExampleAction}\n */\ndescribe('ExampleAction', () => {\n  /**\n   * @test {ExampleAction}\n   */\n  it('should be an instance of FrillCore.BaseAction', () => {\n    (ExampleAction instanceof BaseAction).should.be.true;\n  });\n\n  /**\n   * @test {ExampleAction#countUp}\n   */\n  describe('ExampleAction#countUp', () => {\n    /**\n     * @test {ExampleAction#countUp}\n     */\n    it('should have a countUp() method', () => {\n      ExampleAction.countUp.should.be.a('function');\n    });\n\n    /**\n     * @test {ExampleAction#countUp}\n     */\n    it('should dispatch COUNT_UP at execution', () => {\n      const spy = sinon.spy();\n      mockStoreEvent(ExampleAction, 'COUNT_UP', spy);\n      ExampleAction.countUp();\n      spy.called.should.equal.true;\n      sinon.assert.calledOnce(spy);\n      sinon.assert.calledWith(spy, null, 'COUNT_UP');\n    });\n  });\n\n  /**\n   * @test {ExampleAction#countUpBy}\n   */\n  describe('ExampleAction#countUpBy', () => {\n    /**\n     * @test {ExampleAction#countUpBy}\n     */\n    it('should have a countUpBy() method', () => {\n      ExampleAction.countUpBy.should.be.a('function');\n    });\n\n    /**\n     * @test {ExampleAction#countUpBy}\n     */\n    it('should dispatch COUNT_UP_BY at execution', () => {\n      const spy = sinon.spy();\n      mockStoreEvent(ExampleAction, 'COUNT_UP_BY', spy);\n      ExampleAction.countUpBy();\n      spy.called.should.equal.true;\n    });\n\n    /**\n     * @test {ExampleAction#countUpBy}\n     */\n    it('should count up by 1 at default', () => {\n      const spy = sinon.spy();\n      mockStoreEvent(ExampleAction, 'COUNT_UP_BY', spy);\n      ExampleAction.countUpBy();\n      sinon.assert.calledOnce(spy);\n      sinon.assert.calledWith(spy, 1, 'COUNT_UP_BY');\n    });\n\n    /**\n     * @test {ExampleAction#countUpBy}\n     */\n    it('should be able to provide a number to count up', () => {\n      const spy = sinon.spy();\n      mockStoreEvent(ExampleAction, 'COUNT_UP_BY', spy);\n      ExampleAction.countUpBy(10);\n      sinon.assert.calledOnce(spy);\n      sinon.assert.calledWith(spy, 10, 'COUNT_UP_BY');\n    });\n  });\n\n  /**\n   * @test {ExampleAction#loadScrollItems}\n   */\n  describe('ExampleAction#loadScrollItems', () => {\n    /**\n     * @test {ExampleAction#loadScrollItems}\n     */\n    it('should have a loadScrollItems() method', () => {\n      ExampleAction.loadScrollItems.should.be.a('function');\n    });\n\n    /**\n     * @test {ExampleAction#loadScrollItems}\n     */\n    it('should dispatch LOAD_SCROLL_ITEMS at execution', (done) => {\n      const spy = sinon.spy();\n      mockStoreEvent(ExampleAction, 'LOAD_SCROLL_ITEMS', spy);\n      ExampleAction.loadScrollItems();\n\n      setTimeout(() => {\n        spy.called.should.equal.true;\n        sinon.assert.calledOnce(spy);\n        sinon.assert.calledWith(spy, {\n          data: scrollData.slice(1, 6),\n          total: scrollData.length,\n        }, 'LOAD_SCROLL_ITEMS');\n        done();\n      }, 1500);\n    });\n\n    /**\n     * @test {ExampleAction#loadScrollItems}\n     */\n    it('should be able to change parameters', (done) => {\n      const spy = sinon.spy();\n      mockStoreEvent(ExampleAction, 'LOAD_SCROLL_ITEMS', spy);\n      ExampleAction.loadScrollItems(3, 6);\n      setTimeout(() => {\n        spy.called.should.equal.true;\n        sinon.assert.calledOnce(spy);\n        sinon.assert.calledWith(spy, {\n          data: scrollData.slice(3, 9),\n          total: scrollData.length,\n        }, 'LOAD_SCROLL_ITEMS');\n        done();\n      }, 1500);\n    });\n  });\n});\n"
+    "content": "import '../specHelper';\nimport {mockStoreEvent} from '../frillHelper';\nimport ExampleAction from '../../src/actions/Example';\nimport {BaseAction} from 'frill-core';\nimport scrollData from '../../src/helpers/testScrollItemsData';\n\n/**\n * ExampleAction\n * @test {ExampleAction}\n */\ndescribe('ExampleAction', () => {\n  /**\n   * @test {ExampleAction#constructor}\n   */\n  it('should be an instance of FrillCore.BaseAction', () => {\n    (ExampleAction instanceof BaseAction).should.be.true;\n  });\n\n  /**\n   * @test {ExampleAction#countUp}\n   */\n  describe('ExampleAction#countUp', () => {\n    /**\n     * @test {ExampleAction#countUp}\n     */\n    it('should have a countUp() method', () => {\n      ExampleAction.countUp.should.be.a('function');\n    });\n\n    /**\n     * @test {ExampleAction#countUp}\n     */\n    it('should dispatch COUNT_UP at execution', () => {\n      const spy = sinon.spy();\n      mockStoreEvent(ExampleAction, 'COUNT_UP', spy);\n      ExampleAction.countUp();\n      spy.called.should.equal.true;\n      sinon.assert.calledOnce(spy);\n      sinon.assert.calledWith(spy, null, 'COUNT_UP');\n    });\n  });\n\n  /**\n   * @test {ExampleAction#countUpBy}\n   */\n  describe('ExampleAction#countUpBy', () => {\n    /**\n     * @test {ExampleAction#countUpBy}\n     */\n    it('should have a countUpBy() method', () => {\n      ExampleAction.countUpBy.should.be.a('function');\n    });\n\n    /**\n     * @test {ExampleAction#countUpBy}\n     */\n    it('should dispatch COUNT_UP_BY at execution', () => {\n      const spy = sinon.spy();\n      mockStoreEvent(ExampleAction, 'COUNT_UP_BY', spy);\n      ExampleAction.countUpBy();\n      spy.called.should.equal.true;\n    });\n\n    /**\n     * @test {ExampleAction#countUpBy}\n     */\n    it('should count up by 1 at default', () => {\n      const spy = sinon.spy();\n      mockStoreEvent(ExampleAction, 'COUNT_UP_BY', spy);\n      ExampleAction.countUpBy();\n      sinon.assert.calledOnce(spy);\n      sinon.assert.calledWith(spy, 1, 'COUNT_UP_BY');\n    });\n\n    /**\n     * @test {ExampleAction#countUpBy}\n     */\n    it('should be able to provide a number to count up', () => {\n      const spy = sinon.spy();\n      mockStoreEvent(ExampleAction, 'COUNT_UP_BY', spy);\n      ExampleAction.countUpBy(10);\n      sinon.assert.calledOnce(spy);\n      sinon.assert.calledWith(spy, 10, 'COUNT_UP_BY');\n    });\n  });\n\n  /**\n   * @test {ExampleAction#loadScrollItems}\n   */\n  describe('ExampleAction#loadScrollItems', () => {\n    /**\n     * @test {ExampleAction#loadScrollItems}\n     */\n    it('should have a loadScrollItems() method', () => {\n      ExampleAction.loadScrollItems.should.be.a('function');\n    });\n\n    /**\n     * @test {ExampleAction#loadScrollItems}\n     */\n    it('should dispatch LOAD_SCROLL_ITEMS at execution', (done) => {\n      const spy = sinon.spy();\n      mockStoreEvent(ExampleAction, 'LOAD_SCROLL_ITEMS', spy);\n      ExampleAction.loadScrollItems();\n\n      setTimeout(() => {\n        spy.called.should.equal.true;\n        sinon.assert.calledOnce(spy);\n        sinon.assert.calledWith(spy, {\n          data: scrollData.slice(1, 6),\n          total: scrollData.length,\n        }, 'LOAD_SCROLL_ITEMS');\n        done();\n      }, 1500);\n    });\n\n    /**\n     * @test {ExampleAction#loadScrollItems}\n     */\n    it('should be able to change parameters', (done) => {\n      const spy = sinon.spy();\n      mockStoreEvent(ExampleAction, 'LOAD_SCROLL_ITEMS', spy);\n      ExampleAction.loadScrollItems(3, 6);\n      setTimeout(() => {\n        spy.called.should.equal.true;\n        sinon.assert.calledOnce(spy);\n        sinon.assert.calledWith(spy, {\n          data: scrollData.slice(3, 9),\n          total: scrollData.length,\n        }, 'LOAD_SCROLL_ITEMS');\n        done();\n      }, 1500);\n    });\n  });\n});\n"
   },
   {
     "kind": "testDescribe",
@@ -4189,7 +4201,7 @@
     "testDepth": 0,
     "longname": "test/actions/ExampleActionTest.js~describe0",
     "access": null,
-    "description": "Test for ExampleAction",
+    "description": "ExampleAction",
     "lineNumber": 11,
     "unknown": [
       {
@@ -4216,11 +4228,11 @@
     "unknown": [
       {
         "tagName": "@test",
-        "tagValue": "{ExampleAction}"
+        "tagValue": "{ExampleAction#constructor}"
       }
     ],
     "testTargets": [
-      "ExampleAction"
+      "ExampleAction#constructor"
     ]
   },
   {
@@ -4485,6 +4497,539 @@
     ],
     "testTargets": [
       "ExampleAction#loadScrollItems"
+    ]
+  },
+  {
+    "kind": "testFile",
+    "static": true,
+    "variation": null,
+    "name": "test/helpers/routePrefixerTest.js",
+    "memberof": null,
+    "longname": "test/helpers/routePrefixerTest.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import '../specHelper';\nimport {routePrefixer} from '../../src/helpers';\n\nconst testRouteObj = {\n  path: '/path',\n};\n\nconst testRouteArr = [\n  {\n    path: '/first',\n  },\n  {\n    path: '/second',\n  },\n  {\n    path: '/third',\n  },\n];\n\n/**\n * Route prefixer\n * @test {routePrefixer}\n */\ndescribe('routePrefixer', () => {\n  /**\n   * @test {routePrefixer}\n   */\n  it('should throw an error if the given params are not correct', () => {\n    const testPrefixFn = () => routePrefixer(null, testRouteObj);\n    const testRouteFn = () => routePrefixer('/prefix', {});\n    const testRouteFn2 = () => routePrefixer('/prefix', []);\n    (testPrefixFn).should.throw(TypeError, /be a string/);\n    (testRouteFn).should.throw(Error, /specify routes/);\n    (testRouteFn2).should.throw(Error, /specify routes/);\n  });\n\n  /**\n   * @test {routePrefixer}\n   */\n  it('should throw an error if route(s) don\\'t have route.path', () => {\n    const illegalRouteObj = {handler: () => {}};\n    const testRouteObjFn = () => routePrefixer('/prefix', illegalRouteObj);\n    const testRouteArrFn = () => routePrefixer('/prefix', [illegalRouteObj]);\n\n    (testRouteObjFn).should.throw(Error, /A route must have routes.path/);\n    (testRouteArrFn).should.throw(Error, /All routes must contain route.path/);\n  });\n\n  /**\n   * @test {routePrefixer}\n   */\n  it('should always return an array', () => {\n    const outputFromObj = routePrefixer('/added', testRouteObj);\n    const outputFromArr = routePrefixer('/added', testRouteArr);\n    outputFromObj.should.be.instanceof(Array);\n    outputFromArr.should.be.instanceof(Array);\n  });\n\n  /**\n   * @test {routePrefixer}\n   */\n  it('should be able to prefix routes as an Object', () => {\n    const testRouteOutput = routePrefixer('/added', testRouteObj);\n    (testRouteOutput[0].path).should.equal('/added/path');\n  });\n\n  /**\n   * @test {routePrefixer}\n   */\n  it('should be able to prefix routes as an Array', () => {\n    const testRouteOutput = routePrefixer('/added', testRouteArr);\n    (testRouteOutput[0].path).should.equal(`/added${testRouteArr[0].path}`);\n    (testRouteOutput[1].path).should.equal(`/added${testRouteArr[1].path}`);\n    (testRouteOutput[2].path).should.equal(`/added${testRouteArr[2].path}`);\n  });\n});\n"
+  },
+  {
+    "kind": "testDescribe",
+    "static": true,
+    "variation": null,
+    "name": "describe14",
+    "testId": 14,
+    "memberof": "test/helpers/routePrefixerTest.js",
+    "testDepth": 0,
+    "longname": "test/helpers/routePrefixerTest.js~describe14",
+    "access": null,
+    "description": "Route prefixer",
+    "lineNumber": 24,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{routePrefixer}"
+      }
+    ],
+    "testTargets": [
+      "routePrefixer"
+    ]
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it15",
+    "testId": 15,
+    "memberof": "test/helpers/routePrefixerTest.js~describe14",
+    "testDepth": 1,
+    "longname": "test/helpers/routePrefixerTest.js~describe14.it15",
+    "access": null,
+    "description": "should throw an error if the given params are not correct",
+    "lineNumber": 28,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{routePrefixer}"
+      }
+    ],
+    "testTargets": [
+      "routePrefixer"
+    ]
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it16",
+    "testId": 16,
+    "memberof": "test/helpers/routePrefixerTest.js~describe14",
+    "testDepth": 1,
+    "longname": "test/helpers/routePrefixerTest.js~describe14.it16",
+    "access": null,
+    "description": "should throw an error if route(s) don't have route.path",
+    "lineNumber": 40,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{routePrefixer}"
+      }
+    ],
+    "testTargets": [
+      "routePrefixer"
+    ]
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it17",
+    "testId": 17,
+    "memberof": "test/helpers/routePrefixerTest.js~describe14",
+    "testDepth": 1,
+    "longname": "test/helpers/routePrefixerTest.js~describe14.it17",
+    "access": null,
+    "description": "should always return an array",
+    "lineNumber": 52,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{routePrefixer}"
+      }
+    ],
+    "testTargets": [
+      "routePrefixer"
+    ]
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it18",
+    "testId": 18,
+    "memberof": "test/helpers/routePrefixerTest.js~describe14",
+    "testDepth": 1,
+    "longname": "test/helpers/routePrefixerTest.js~describe14.it18",
+    "access": null,
+    "description": "should be able to prefix routes as an Object",
+    "lineNumber": 62,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{routePrefixer}"
+      }
+    ],
+    "testTargets": [
+      "routePrefixer"
+    ]
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it19",
+    "testId": 19,
+    "memberof": "test/helpers/routePrefixerTest.js~describe14",
+    "testDepth": 1,
+    "longname": "test/helpers/routePrefixerTest.js~describe14.it19",
+    "access": null,
+    "description": "should be able to prefix routes as an Array",
+    "lineNumber": 70,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{routePrefixer}"
+      }
+    ],
+    "testTargets": [
+      "routePrefixer"
+    ]
+  },
+  {
+    "kind": "testFile",
+    "static": true,
+    "variation": null,
+    "name": "test/stores/ExampleStoreTest.js",
+    "memberof": null,
+    "longname": "test/stores/ExampleStoreTest.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import '../specHelper';\nimport {mockDispatch} from '../frillHelper';\nimport ExampleStore from '../../src/stores/Example';\nimport {BaseStore} from 'frill-core';\nimport scrollData from '../../src/helpers/testScrollItemsData';\n\n/**\n * ExampleStore\n * @test {ExampleStore}\n */\ndescribe('ExampleStore', () => {\n  /**\n   * @test {ExampleStore#constructor}\n   */\n  it('should be an instance of FrillCore.BaseStore', () => {\n    (ExampleStore instanceof BaseStore).should.be.true;\n  });\n\n  /**\n   * @test {ExampleStore#constructor}\n   */\n  it('should have appropriate properties and defaults', () => {\n    ExampleStore._count.should.equal(0);\n    ExampleStore._scrollItems.should.be.an.instanceof(Array);\n    ExampleStore._scrollItems.should.be.empty;\n    ExampleStore._scrollItemsCount.should.equal(0);\n    ExampleStore._scrollItemTotal.should.equal(0);\n  });\n\n  /**\n   * @test {ExampleStore#actions}\n   */\n  describe('ExampleStore#actions', () => {\n    /**\n     * @test {ExampleStore#actions}\n     */\n    it('should handle COUNT_UP', () => {\n      ExampleStore._actions.COUNT_UP.should.exist;\n    });\n\n    /**\n     * @test {ExampleStore#actions}\n     */\n    it('should handle COUNT_UP_BY', () => {\n      ExampleStore._actions.COUNT_UP_BY.should.exist;\n    });\n\n    /**\n     * @test {ExampleStore#actions}\n     */\n    it('should handle LOAD_SCROLL_ITEMS', () => {\n      ExampleStore._actions.LOAD_SCROLL_ITEMS.should.exist;\n    });\n  });\n  /**\n   * @test {ExampleStore#countUp}\n   */\n  describe('ExampleStore#countUp', () => {\n    /**\n     * @test {ExampleStore#countUp}\n     */\n    it('should have a countUp() method', () => {\n      ExampleStore.countUp.should.be.a('function');\n    });\n\n    /**\n     * @test {ExampleStore#countUp}\n     * @test {ExampleStore#count}\n     */\n    it('should be able to handle dispatched actions', () => {\n      // Check params through 'Getter' methods\n      ExampleStore.count.should.equal(0);\n      mockDispatch(ExampleStore, 'COUNT_UP');\n      ExampleStore.count.should.equal(1);\n      mockDispatch(ExampleStore, 'COUNT_UP');\n      ExampleStore.count.should.equal(2);\n    });\n  });\n\n  /**\n   * @test {ExampleStore#countUpBy}\n   */\n  describe('ExampleStore#countUpBy', () => {\n    /**\n     * @test {ExampleStore#countUpBy}\n     */\n    it('should have a countUpBy() method', () => {\n      ExampleStore.countUpBy.should.be.a('function');\n    });\n\n    /**\n     * @test {ExampleStore#countUpBy}\n     * @test {ExampleStore#count}\n     */\n    it('should be able to handle dispatched actions', () => {\n      // Check params through 'Getter' methods\n      ExampleStore.count.should.equal(2);\n      mockDispatch(ExampleStore, 'COUNT_UP_BY', 1);\n      ExampleStore.count.should.equal(3);\n      mockDispatch(ExampleStore, 'COUNT_UP_BY', 10);\n      ExampleStore.count.should.equal(13);\n    });\n  });\n\n  /**\n   * @test {ExampleStore#loadScrollItems}\n   */\n  describe('ExampleStore#loadScrollItems', () => {\n    /**\n     * @test {ExampleStore#loadScrollItems}\n     */\n    it('should have a loadScrollItems() method', () => {\n      ExampleStore.countUpBy.should.be.a('function');\n    });\n\n    /**\n     * @test {ExampleStore#loadScrollItems}\n     * @test {ExampleStore#scrollItems}\n     * @test {ExampleStore#scrollItemsCount}\n     * @test {ExampleStore#scrollItemTotal}\n     */\n    it('should be able to handle dispatched actions', () => {\n      // Check params through 'Getter' methods\n      ExampleStore.scrollItems.should.be.an.instanceof(Array);\n      ExampleStore.scrollItems.should.be.empty;\n      ExampleStore.scrollItemsCount.should.equal(0);\n      ExampleStore.scrollItemTotal.should.equal(0);\n\n      const data = scrollData.slice(1, 6);\n      mockDispatch(ExampleStore, 'LOAD_SCROLL_ITEMS', {\n        data: data,\n        total: scrollData.length,\n      });\n\n      ExampleStore.scrollItems.should.be.an.instanceof(Array);\n      ExampleStore.scrollItems.length.should.equal(data.length);\n      ExampleStore.scrollItemsCount.should.equal(data.length);\n      ExampleStore.scrollItemTotal.should.equal(scrollData.length);\n\n      const data2 = scrollData.slice(6, 8);\n      mockDispatch(ExampleStore, 'LOAD_SCROLL_ITEMS', {\n        data: data2,\n        total: scrollData.length,\n      });\n\n      ExampleStore.scrollItems.should.be.an.instanceof(Array);\n      ExampleStore.scrollItems.length.should.equal(data.length + data2.length);\n      ExampleStore.scrollItemsCount.should.equal(data.length + data2.length);\n      ExampleStore.scrollItemTotal.should.equal(scrollData.length);\n    });\n  });\n});\n"
+  },
+  {
+    "kind": "testDescribe",
+    "static": true,
+    "variation": null,
+    "name": "describe20",
+    "testId": 20,
+    "memberof": "test/stores/ExampleStoreTest.js",
+    "testDepth": 0,
+    "longname": "test/stores/ExampleStoreTest.js~describe20",
+    "access": null,
+    "description": "ExampleStore",
+    "lineNumber": 11,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{ExampleStore}"
+      }
+    ],
+    "testTargets": [
+      "ExampleStore"
+    ]
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it21",
+    "testId": 21,
+    "memberof": "test/stores/ExampleStoreTest.js~describe20",
+    "testDepth": 1,
+    "longname": "test/stores/ExampleStoreTest.js~describe20.it21",
+    "access": null,
+    "description": "should be an instance of FrillCore.BaseStore",
+    "lineNumber": 15,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{ExampleStore#constructor}"
+      }
+    ],
+    "testTargets": [
+      "ExampleStore#constructor"
+    ]
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it22",
+    "testId": 22,
+    "memberof": "test/stores/ExampleStoreTest.js~describe20",
+    "testDepth": 1,
+    "longname": "test/stores/ExampleStoreTest.js~describe20.it22",
+    "access": null,
+    "description": "should have appropriate properties and defaults",
+    "lineNumber": 22,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{ExampleStore#constructor}"
+      }
+    ],
+    "testTargets": [
+      "ExampleStore#constructor"
+    ]
+  },
+  {
+    "kind": "testDescribe",
+    "static": true,
+    "variation": null,
+    "name": "describe23",
+    "testId": 23,
+    "memberof": "test/stores/ExampleStoreTest.js~describe20",
+    "testDepth": 1,
+    "longname": "test/stores/ExampleStoreTest.js~describe20.describe23",
+    "access": null,
+    "description": "ExampleStore#actions",
+    "lineNumber": 33,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{ExampleStore#actions}"
+      }
+    ],
+    "testTargets": [
+      "ExampleStore#actions"
+    ]
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it24",
+    "testId": 24,
+    "memberof": "test/stores/ExampleStoreTest.js~describe20.describe23",
+    "testDepth": 2,
+    "longname": "test/stores/ExampleStoreTest.js~describe20.describe23.it24",
+    "access": null,
+    "description": "should handle COUNT_UP",
+    "lineNumber": 37,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{ExampleStore#actions}"
+      }
+    ],
+    "testTargets": [
+      "ExampleStore#actions"
+    ]
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it25",
+    "testId": 25,
+    "memberof": "test/stores/ExampleStoreTest.js~describe20.describe23",
+    "testDepth": 2,
+    "longname": "test/stores/ExampleStoreTest.js~describe20.describe23.it25",
+    "access": null,
+    "description": "should handle COUNT_UP_BY",
+    "lineNumber": 44,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{ExampleStore#actions}"
+      }
+    ],
+    "testTargets": [
+      "ExampleStore#actions"
+    ]
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it26",
+    "testId": 26,
+    "memberof": "test/stores/ExampleStoreTest.js~describe20.describe23",
+    "testDepth": 2,
+    "longname": "test/stores/ExampleStoreTest.js~describe20.describe23.it26",
+    "access": null,
+    "description": "should handle LOAD_SCROLL_ITEMS",
+    "lineNumber": 51,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{ExampleStore#actions}"
+      }
+    ],
+    "testTargets": [
+      "ExampleStore#actions"
+    ]
+  },
+  {
+    "kind": "testDescribe",
+    "static": true,
+    "variation": null,
+    "name": "describe27",
+    "testId": 27,
+    "memberof": "test/stores/ExampleStoreTest.js~describe20",
+    "testDepth": 1,
+    "longname": "test/stores/ExampleStoreTest.js~describe20.describe27",
+    "access": null,
+    "description": "ExampleStore#countUp",
+    "lineNumber": 58,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{ExampleStore#countUp}"
+      }
+    ],
+    "testTargets": [
+      "ExampleStore#countUp"
+    ]
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it28",
+    "testId": 28,
+    "memberof": "test/stores/ExampleStoreTest.js~describe20.describe27",
+    "testDepth": 2,
+    "longname": "test/stores/ExampleStoreTest.js~describe20.describe27.it28",
+    "access": null,
+    "description": "should have a countUp() method",
+    "lineNumber": 62,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{ExampleStore#countUp}"
+      }
+    ],
+    "testTargets": [
+      "ExampleStore#countUp"
+    ]
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it29",
+    "testId": 29,
+    "memberof": "test/stores/ExampleStoreTest.js~describe20.describe27",
+    "testDepth": 2,
+    "longname": "test/stores/ExampleStoreTest.js~describe20.describe27.it29",
+    "access": null,
+    "description": "should be able to handle dispatched actions",
+    "lineNumber": 70,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{ExampleStore#countUp}"
+      },
+      {
+        "tagName": "@test",
+        "tagValue": "{ExampleStore#count}"
+      }
+    ],
+    "testTargets": [
+      "ExampleStore#countUp",
+      "ExampleStore#count"
+    ]
+  },
+  {
+    "kind": "testDescribe",
+    "static": true,
+    "variation": null,
+    "name": "describe30",
+    "testId": 30,
+    "memberof": "test/stores/ExampleStoreTest.js~describe20",
+    "testDepth": 1,
+    "longname": "test/stores/ExampleStoreTest.js~describe20.describe30",
+    "access": null,
+    "description": "ExampleStore#countUpBy",
+    "lineNumber": 83,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{ExampleStore#countUpBy}"
+      }
+    ],
+    "testTargets": [
+      "ExampleStore#countUpBy"
+    ]
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it31",
+    "testId": 31,
+    "memberof": "test/stores/ExampleStoreTest.js~describe20.describe30",
+    "testDepth": 2,
+    "longname": "test/stores/ExampleStoreTest.js~describe20.describe30.it31",
+    "access": null,
+    "description": "should have a countUpBy() method",
+    "lineNumber": 87,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{ExampleStore#countUpBy}"
+      }
+    ],
+    "testTargets": [
+      "ExampleStore#countUpBy"
+    ]
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it32",
+    "testId": 32,
+    "memberof": "test/stores/ExampleStoreTest.js~describe20.describe30",
+    "testDepth": 2,
+    "longname": "test/stores/ExampleStoreTest.js~describe20.describe30.it32",
+    "access": null,
+    "description": "should be able to handle dispatched actions",
+    "lineNumber": 95,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{ExampleStore#countUpBy}"
+      },
+      {
+        "tagName": "@test",
+        "tagValue": "{ExampleStore#count}"
+      }
+    ],
+    "testTargets": [
+      "ExampleStore#countUpBy",
+      "ExampleStore#count"
+    ]
+  },
+  {
+    "kind": "testDescribe",
+    "static": true,
+    "variation": null,
+    "name": "describe33",
+    "testId": 33,
+    "memberof": "test/stores/ExampleStoreTest.js~describe20",
+    "testDepth": 1,
+    "longname": "test/stores/ExampleStoreTest.js~describe20.describe33",
+    "access": null,
+    "description": "ExampleStore#loadScrollItems",
+    "lineNumber": 108,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{ExampleStore#loadScrollItems}"
+      }
+    ],
+    "testTargets": [
+      "ExampleStore#loadScrollItems"
+    ]
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it34",
+    "testId": 34,
+    "memberof": "test/stores/ExampleStoreTest.js~describe20.describe33",
+    "testDepth": 2,
+    "longname": "test/stores/ExampleStoreTest.js~describe20.describe33.it34",
+    "access": null,
+    "description": "should have a loadScrollItems() method",
+    "lineNumber": 112,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{ExampleStore#loadScrollItems}"
+      }
+    ],
+    "testTargets": [
+      "ExampleStore#loadScrollItems"
+    ]
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it35",
+    "testId": 35,
+    "memberof": "test/stores/ExampleStoreTest.js~describe20.describe33",
+    "testDepth": 2,
+    "longname": "test/stores/ExampleStoreTest.js~describe20.describe33.it35",
+    "access": null,
+    "description": "should be able to handle dispatched actions",
+    "lineNumber": 122,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{ExampleStore#loadScrollItems}"
+      },
+      {
+        "tagName": "@test",
+        "tagValue": "{ExampleStore#scrollItems}"
+      },
+      {
+        "tagName": "@test",
+        "tagValue": "{ExampleStore#scrollItemsCount}"
+      },
+      {
+        "tagName": "@test",
+        "tagValue": "{ExampleStore#scrollItemTotal}"
+      }
+    ],
+    "testTargets": [
+      "ExampleStore#loadScrollItems",
+      "ExampleStore#scrollItems",
+      "ExampleStore#scrollItemsCount",
+      "ExampleStore#scrollItemTotal"
     ]
   }
 ]

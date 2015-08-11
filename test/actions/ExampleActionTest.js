@@ -5,12 +5,12 @@ import {BaseAction} from 'frill-core';
 import scrollData from '../../src/helpers/testScrollItemsData';
 
 /**
- * Test for ExampleAction
+ * ExampleAction
  * @test {ExampleAction}
  */
 describe('ExampleAction', () => {
   /**
-   * @test {ExampleAction}
+   * @test {ExampleAction#constructor}
    */
   it('should be an instance of FrillCore.BaseAction', () => {
     (ExampleAction instanceof BaseAction).should.be.true;

@@ -5,19 +5,19 @@ import {BaseStore} from 'frill-core';
 import scrollData from '../../src/helpers/testScrollItemsData';
 
 /**
- * Test for ExampleStore
+ * ExampleStore
  * @test {ExampleStore}
  */
 describe('ExampleStore', () => {
   /**
-   * @test {ExampleStore}
+   * @test {ExampleStore#constructor}
    */
   it('should be an instance of FrillCore.BaseStore', () => {
     (ExampleStore instanceof BaseStore).should.be.true;
   });
 
   /**
-   * @test {ExampleStore}
+   * @test {ExampleStore#constructor}
    */
   it('should have appropriate properties and defaults', () => {
     ExampleStore._count.should.equal(0);
@@ -28,26 +28,30 @@ describe('ExampleStore', () => {
   });
 
   /**
-   * @test {ExampleStore}
+   * @test {ExampleStore#actions}
    */
-  it('should handle COUNT_UP', () => {
-    ExampleStore._actions.COUNT_UP.should.exist;
-  });
+  describe('ExampleStore#actions', () => {
+    /**
+     * @test {ExampleStore#actions}
+     */
+    it('should handle COUNT_UP', () => {
+      ExampleStore._actions.COUNT_UP.should.exist;
+    });
 
-  /**
-   * @test {ExampleStore}
-   */
-  it('should handle COUNT_UP_BY', () => {
-    ExampleStore._actions.COUNT_UP_BY.should.exist;
-  });
+    /**
+     * @test {ExampleStore#actions}
+     */
+    it('should handle COUNT_UP_BY', () => {
+      ExampleStore._actions.COUNT_UP_BY.should.exist;
+    });
 
-  /**
-   * @test {ExampleStore}
-   */
-  it('should handle LOAD_SCROLL_ITEMS', () => {
-    ExampleStore._actions.LOAD_SCROLL_ITEMS.should.exist;
+    /**
+     * @test {ExampleStore#actions}
+     */
+    it('should handle LOAD_SCROLL_ITEMS', () => {
+      ExampleStore._actions.LOAD_SCROLL_ITEMS.should.exist;
+    });
   });
-
   /**
    * @test {ExampleStore#countUp}
    */
@@ -61,6 +65,7 @@ describe('ExampleStore', () => {
 
     /**
      * @test {ExampleStore#countUp}
+     * @test {ExampleStore#count}
      */
     it('should be able to handle dispatched actions', () => {
       // Check params through 'Getter' methods
@@ -85,6 +90,7 @@ describe('ExampleStore', () => {
 
     /**
      * @test {ExampleStore#countUpBy}
+     * @test {ExampleStore#count}
      */
     it('should be able to handle dispatched actions', () => {
       // Check params through 'Getter' methods
@@ -109,6 +115,9 @@ describe('ExampleStore', () => {
 
     /**
      * @test {ExampleStore#loadScrollItems}
+     * @test {ExampleStore#scrollItems}
+     * @test {ExampleStore#scrollItemsCount}
+     * @test {ExampleStore#scrollItemTotal}
      */
     it('should be able to handle dispatched actions', () => {
       // Check params through 'Getter' methods
