@@ -1,4 +1,4 @@
-import React from 'react/addons';
+// import React from 'react/addons';
 import ScrollBlock from '../../src/components/ScrollBlock/index.jsx';
 const TestUtils = React.addons.TestUtils;
 
