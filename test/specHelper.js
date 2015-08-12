@@ -1,6 +1,6 @@
 import {jsdom} from 'jsdom';
 import Promise from 'bluebird';
-import React from 'react';
+// import React from 'react';
 import chai from 'chai';
 import sinon from 'sinon';
 import cheerio from 'cheerio';
@@ -34,7 +34,7 @@ global.document = jsdom('<html><body></body></html>');
 global.window = document.defaultView;
 global.navigator = window.navigator;
 global.Promise = Promise;
-global.React = React;
+// global.React = React;
 global.chai = chai;
 global.expect = chai.expect;
 chai.should();
