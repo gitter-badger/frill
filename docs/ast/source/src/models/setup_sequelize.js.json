@@ -1,0 +1,706 @@
+{
+  "type": "Program",
+  "body": [
+    {
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "Sequelize",
+            "range": [
+              7,
+              16
+            ],
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 7
+              },
+              "end": {
+                "line": 1,
+                "column": 16
+              }
+            }
+          },
+          "range": [
+            7,
+            16
+          ],
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 7
+            },
+            "end": {
+              "line": 1,
+              "column": 16
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "sequelize",
+        "raw": "'sequelize'",
+        "range": [
+          22,
+          33
+        ],
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 22
+          },
+          "end": {
+            "line": 1,
+            "column": 33
+          }
+        }
+      },
+      "range": [
+        0,
+        34
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 34
+        }
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "config",
+            "range": [
+              42,
+              48
+            ],
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 7
+              },
+              "end": {
+                "line": 2,
+                "column": 13
+              }
+            }
+          },
+          "range": [
+            42,
+            48
+          ],
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 7
+            },
+            "end": {
+              "line": 2,
+              "column": 13
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "config",
+        "raw": "'config'",
+        "range": [
+          54,
+          62
+        ],
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 19
+          },
+          "end": {
+            "line": 2,
+            "column": 27
+          }
+        }
+      },
+      "range": [
+        35,
+        63
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 28
+        }
+      },
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * setup sequelize\n ",
+          "range": [
+            65,
+            91
+          ],
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 0
+            },
+            "end": {
+              "line": 6,
+              "column": 3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "Identifier",
+      "declarations": [
+        {
+          "type": "VariableDeclarator",
+          "id": {
+            "type": "Identifier",
+            "name": "sequelize",
+            "range": [
+              98,
+              107
+            ],
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 6
+              },
+              "end": {
+                "line": 7,
+                "column": 15
+              }
+            }
+          },
+          "init": {
+            "type": "NewExpression",
+            "callee": {
+              "type": "Identifier",
+              "name": "Sequelize",
+              "range": [
+                114,
+                123
+              ],
+              "loc": {
+                "start": {
+                  "line": 7,
+                  "column": 22
+                },
+                "end": {
+                  "line": 7,
+                  "column": 31
+                }
+              }
+            },
+            "arguments": [
+              {
+                "type": "CallExpression",
+                "callee": {
+                  "type": "MemberExpression",
+                  "computed": false,
+                  "object": {
+                    "type": "Identifier",
+                    "name": "config",
+                    "range": [
+                      127,
+                      133
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 8,
+                        "column": 2
+                      },
+                      "end": {
+                        "line": 8,
+                        "column": 8
+                      }
+                    }
+                  },
+                  "property": {
+                    "type": "Identifier",
+                    "name": "get",
+                    "range": [
+                      134,
+                      137
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 8,
+                        "column": 9
+                      },
+                      "end": {
+                        "line": 8,
+                        "column": 12
+                      }
+                    }
+                  },
+                  "range": [
+                    127,
+                    137
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 8,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 8,
+                      "column": 12
+                    }
+                  }
+                },
+                "arguments": [
+                  {
+                    "type": "Literal",
+                    "value": "sequelize.database",
+                    "raw": "'sequelize.database'",
+                    "range": [
+                      138,
+                      158
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 8,
+                        "column": 13
+                      },
+                      "end": {
+                        "line": 8,
+                        "column": 33
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  127,
+                  159
+                ],
+                "loc": {
+                  "start": {
+                    "line": 8,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 8,
+                    "column": 34
+                  }
+                }
+              },
+              {
+                "type": "CallExpression",
+                "callee": {
+                  "type": "MemberExpression",
+                  "computed": false,
+                  "object": {
+                    "type": "Identifier",
+                    "name": "config",
+                    "range": [
+                      163,
+                      169
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 9,
+                        "column": 2
+                      },
+                      "end": {
+                        "line": 9,
+                        "column": 8
+                      }
+                    }
+                  },
+                  "property": {
+                    "type": "Identifier",
+                    "name": "get",
+                    "range": [
+                      170,
+                      173
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 9,
+                        "column": 9
+                      },
+                      "end": {
+                        "line": 9,
+                        "column": 12
+                      }
+                    }
+                  },
+                  "range": [
+                    163,
+                    173
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 9,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 9,
+                      "column": 12
+                    }
+                  }
+                },
+                "arguments": [
+                  {
+                    "type": "Literal",
+                    "value": "sequelize.username",
+                    "raw": "'sequelize.username'",
+                    "range": [
+                      174,
+                      194
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 9,
+                        "column": 13
+                      },
+                      "end": {
+                        "line": 9,
+                        "column": 33
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  163,
+                  195
+                ],
+                "loc": {
+                  "start": {
+                    "line": 9,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 9,
+                    "column": 34
+                  }
+                }
+              },
+              {
+                "type": "CallExpression",
+                "callee": {
+                  "type": "MemberExpression",
+                  "computed": false,
+                  "object": {
+                    "type": "Identifier",
+                    "name": "config",
+                    "range": [
+                      199,
+                      205
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 10,
+                        "column": 2
+                      },
+                      "end": {
+                        "line": 10,
+                        "column": 8
+                      }
+                    }
+                  },
+                  "property": {
+                    "type": "Identifier",
+                    "name": "get",
+                    "range": [
+                      206,
+                      209
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 10,
+                        "column": 9
+                      },
+                      "end": {
+                        "line": 10,
+                        "column": 12
+                      }
+                    }
+                  },
+                  "range": [
+                    199,
+                    209
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 10,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 10,
+                      "column": 12
+                    }
+                  }
+                },
+                "arguments": [
+                  {
+                    "type": "Literal",
+                    "value": "sequelize.password",
+                    "raw": "'sequelize.password'",
+                    "range": [
+                      210,
+                      230
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 10,
+                        "column": 13
+                      },
+                      "end": {
+                        "line": 10,
+                        "column": 33
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  199,
+                  231
+                ],
+                "loc": {
+                  "start": {
+                    "line": 10,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 10,
+                    "column": 34
+                  }
+                }
+              },
+              {
+                "type": "CallExpression",
+                "callee": {
+                  "type": "MemberExpression",
+                  "computed": false,
+                  "object": {
+                    "type": "Identifier",
+                    "name": "config",
+                    "range": [
+                      235,
+                      241
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 11,
+                        "column": 2
+                      },
+                      "end": {
+                        "line": 11,
+                        "column": 8
+                      }
+                    }
+                  },
+                  "property": {
+                    "type": "Identifier",
+                    "name": "get",
+                    "range": [
+                      242,
+                      245
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 11,
+                        "column": 9
+                      },
+                      "end": {
+                        "line": 11,
+                        "column": 12
+                      }
+                    }
+                  },
+                  "range": [
+                    235,
+                    245
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 11,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 11,
+                      "column": 12
+                    }
+                  }
+                },
+                "arguments": [
+                  {
+                    "type": "Literal",
+                    "value": "sequelize.options",
+                    "raw": "'sequelize.options'",
+                    "range": [
+                      246,
+                      265
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 11,
+                        "column": 13
+                      },
+                      "end": {
+                        "line": 11,
+                        "column": 32
+                      }
+                    }
+                  }
+                ],
+                "range": [
+                  235,
+                  266
+                ],
+                "loc": {
+                  "start": {
+                    "line": 11,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 11,
+                    "column": 33
+                  }
+                }
+              }
+            ],
+            "range": [
+              110,
+              268
+            ],
+            "loc": {
+              "start": {
+                "line": 7,
+                "column": 18
+              },
+              "end": {
+                "line": 12,
+                "column": 1
+              }
+            }
+          },
+          "range": [
+            98,
+            268
+          ],
+          "loc": {
+            "start": {
+              "line": 7,
+              "column": 6
+            },
+            "end": {
+              "line": 12,
+              "column": 1
+            }
+          }
+        }
+      ],
+      "kind": "const",
+      "range": [
+        92,
+        269
+      ],
+      "loc": {
+        "start": {
+          "line": 7,
+          "column": 0
+        },
+        "end": {
+          "line": 12,
+          "column": 2
+        }
+      },
+      "leadingComments": [],
+      "name": "_",
+      "trailingComments": []
+    },
+    {
+      "type": "ExportDefaultDeclaration",
+      "declaration": {
+        "type": "Identifier",
+        "name": "sequelize",
+        "range": [
+          286,
+          295
+        ],
+        "loc": {
+          "start": {
+            "line": 14,
+            "column": 15
+          },
+          "end": {
+            "line": 14,
+            "column": 24
+          }
+        },
+        "leadingComments": [],
+        "trailingComments": []
+      },
+      "range": [
+        271,
+        296
+      ],
+      "loc": {
+        "start": {
+          "line": 14,
+          "column": 0
+        },
+        "end": {
+          "line": 14,
+          "column": 25
+        }
+      }
+    }
+  ],
+  "sourceType": "module",
+  "range": [
+    0,
+    296
+  ],
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 14,
+      "column": 25
+    }
+  },
+  "comments": [
+    {
+      "type": "Block",
+      "value": "*\n * setup sequelize\n ",
+      "range": [
+        65,
+        91
+      ],
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 0
+        },
+        "end": {
+          "line": 6,
+          "column": 3
+        }
+      }
+    }
+  ]
+}

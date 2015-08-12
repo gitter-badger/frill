@@ -1,0 +1,621 @@
+{
+  "type": "Program",
+  "body": [
+    {
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "Sequelize",
+            "range": [
+              7,
+              16
+            ],
+            "loc": {
+              "start": {
+                "line": 1,
+                "column": 7
+              },
+              "end": {
+                "line": 1,
+                "column": 16
+              }
+            }
+          },
+          "range": [
+            7,
+            16
+          ],
+          "loc": {
+            "start": {
+              "line": 1,
+              "column": 7
+            },
+            "end": {
+              "line": 1,
+              "column": 16
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "../setup_sequelize",
+        "raw": "'../setup_sequelize'",
+        "range": [
+          22,
+          42
+        ],
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 22
+          },
+          "end": {
+            "line": 1,
+            "column": 42
+          }
+        }
+      },
+      "range": [
+        0,
+        43
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 43
+        }
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "users",
+            "range": [
+              51,
+              56
+            ],
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 7
+              },
+              "end": {
+                "line": 2,
+                "column": 12
+              }
+            }
+          },
+          "range": [
+            51,
+            56
+          ],
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 7
+            },
+            "end": {
+              "line": 2,
+              "column": 12
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./Users",
+        "raw": "'./Users'",
+        "range": [
+          62,
+          71
+        ],
+        "loc": {
+          "start": {
+            "line": 2,
+            "column": 18
+          },
+          "end": {
+            "line": 2,
+            "column": 27
+          }
+        }
+      },
+      "range": [
+        44,
+        72
+      ],
+      "loc": {
+        "start": {
+          "line": 2,
+          "column": 0
+        },
+        "end": {
+          "line": 2,
+          "column": 28
+        }
+      },
+      "trailingComments": [
+        {
+          "type": "Block",
+          "value": "*\n * List of all Sequelize models\n * @see {@link Users}\n * @external {Sequelize} http://docs.sequelizejs.com/en/latest\n ",
+          "range": [
+            74,
+            198
+          ],
+          "loc": {
+            "start": {
+              "line": 4,
+              "column": 0
+            },
+            "end": {
+              "line": 8,
+              "column": 3
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "Identifier",
+      "declarations": [
+        {
+          "type": "VariableDeclarator",
+          "id": {
+            "type": "Identifier",
+            "name": "SequelizeModels",
+            "range": [
+              205,
+              220
+            ],
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 6
+              },
+              "end": {
+                "line": 9,
+                "column": 21
+              }
+            }
+          },
+          "init": {
+            "type": "ObjectExpression",
+            "properties": [
+              {
+                "type": "Property",
+                "key": {
+                  "type": "Identifier",
+                  "name": "Users",
+                  "range": [
+                    227,
+                    232
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 10,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 10,
+                      "column": 7
+                    }
+                  }
+                },
+                "value": {
+                  "type": "CallExpression",
+                  "callee": {
+                    "type": "Identifier",
+                    "name": "users",
+                    "range": [
+                      234,
+                      239
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 10,
+                        "column": 9
+                      },
+                      "end": {
+                        "line": 10,
+                        "column": 14
+                      }
+                    }
+                  },
+                  "arguments": [
+                    {
+                      "type": "Identifier",
+                      "name": "Sequelize",
+                      "range": [
+                        240,
+                        249
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 10,
+                          "column": 15
+                        },
+                        "end": {
+                          "line": 10,
+                          "column": 24
+                        }
+                      }
+                    }
+                  ],
+                  "range": [
+                    234,
+                    250
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 10,
+                      "column": 9
+                    },
+                    "end": {
+                      "line": 10,
+                      "column": 25
+                    }
+                  }
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "computed": false,
+                "range": [
+                  227,
+                  250
+                ],
+                "loc": {
+                  "start": {
+                    "line": 10,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 10,
+                    "column": 25
+                  }
+                }
+              }
+            ],
+            "range": [
+              223,
+              253
+            ],
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 24
+              },
+              "end": {
+                "line": 11,
+                "column": 1
+              }
+            }
+          },
+          "range": [
+            205,
+            253
+          ],
+          "loc": {
+            "start": {
+              "line": 9,
+              "column": 6
+            },
+            "end": {
+              "line": 11,
+              "column": 1
+            }
+          }
+        }
+      ],
+      "kind": "const",
+      "range": [
+        199,
+        254
+      ],
+      "loc": {
+        "start": {
+          "line": 9,
+          "column": 0
+        },
+        "end": {
+          "line": 11,
+          "column": 2
+        }
+      },
+      "leadingComments": [],
+      "name": "_",
+      "trailingComments": []
+    },
+    {
+      "type": "Identifier",
+      "declaration": {
+        "type": "Identifier",
+        "name": "SequelizeModels",
+        "range": [
+          271,
+          286
+        ],
+        "loc": {
+          "start": {
+            "line": 13,
+            "column": 15
+          },
+          "end": {
+            "line": 13,
+            "column": 30
+          }
+        }
+      },
+      "range": [
+        256,
+        287
+      ],
+      "loc": {
+        "start": {
+          "line": 13,
+          "column": 0
+        },
+        "end": {
+          "line": 13,
+          "column": 31
+        }
+      },
+      "name": "_",
+      "leadingComments": [],
+      "trailingComments": []
+    },
+    {
+      "type": "ExportDefaultDeclaration",
+      "declaration": {
+        "type": "VariableDeclaration",
+        "declarations": [
+          {
+            "type": "VariableDeclarator",
+            "id": {
+              "type": "Identifier",
+              "name": "SequelizeModels",
+              "range": [
+                205,
+                220
+              ],
+              "loc": {
+                "start": {
+                  "line": 9,
+                  "column": 6
+                },
+                "end": {
+                  "line": 9,
+                  "column": 21
+                }
+              }
+            },
+            "init": {
+              "type": "ObjectExpression",
+              "properties": [
+                {
+                  "type": "Property",
+                  "key": {
+                    "type": "Identifier",
+                    "name": "Users",
+                    "range": [
+                      227,
+                      232
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 10,
+                        "column": 2
+                      },
+                      "end": {
+                        "line": 10,
+                        "column": 7
+                      }
+                    }
+                  },
+                  "value": {
+                    "type": "CallExpression",
+                    "callee": {
+                      "type": "Identifier",
+                      "name": "users",
+                      "range": [
+                        234,
+                        239
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 10,
+                          "column": 9
+                        },
+                        "end": {
+                          "line": 10,
+                          "column": 14
+                        }
+                      }
+                    },
+                    "arguments": [
+                      {
+                        "type": "Identifier",
+                        "name": "Sequelize",
+                        "range": [
+                          240,
+                          249
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 10,
+                            "column": 15
+                          },
+                          "end": {
+                            "line": 10,
+                            "column": 24
+                          }
+                        }
+                      }
+                    ],
+                    "range": [
+                      234,
+                      250
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 10,
+                        "column": 9
+                      },
+                      "end": {
+                        "line": 10,
+                        "column": 25
+                      }
+                    }
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": false,
+                  "computed": false,
+                  "range": [
+                    227,
+                    250
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 10,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 10,
+                      "column": 25
+                    }
+                  }
+                }
+              ],
+              "range": [
+                223,
+                253
+              ],
+              "loc": {
+                "start": {
+                  "line": 9,
+                  "column": 24
+                },
+                "end": {
+                  "line": 11,
+                  "column": 1
+                }
+              }
+            },
+            "range": [
+              205,
+              253
+            ],
+            "loc": {
+              "start": {
+                "line": 9,
+                "column": 6
+              },
+              "end": {
+                "line": 11,
+                "column": 1
+              }
+            }
+          }
+        ],
+        "kind": "const",
+        "range": [
+          199,
+          254
+        ],
+        "loc": {
+          "start": {
+            "line": 9,
+            "column": 0
+          },
+          "end": {
+            "line": 11,
+            "column": 2
+          }
+        },
+        "leadingComments": [
+          {
+            "type": "Block",
+            "value": "*\n * List of all Sequelize models\n * @see {@link Users}\n * @external {Sequelize} http://docs.sequelizejs.com/en/latest\n ",
+            "range": [
+              74,
+              198
+            ],
+            "loc": {
+              "start": {
+                "line": 4,
+                "column": 0
+              },
+              "end": {
+                "line": 8,
+                "column": 3
+              }
+            }
+          }
+        ],
+        "trailingComments": []
+      },
+      "range": [
+        256,
+        287
+      ],
+      "loc": {
+        "start": {
+          "line": 13,
+          "column": 0
+        },
+        "end": {
+          "line": 13,
+          "column": 31
+        }
+      }
+    }
+  ],
+  "sourceType": "module",
+  "range": [
+    0,
+    287
+  ],
+  "loc": {
+    "start": {
+      "line": 1,
+      "column": 0
+    },
+    "end": {
+      "line": 13,
+      "column": 31
+    }
+  },
+  "comments": [
+    {
+      "type": "Block",
+      "value": "*\n * List of all Sequelize models\n * @see {@link Users}\n * @external {Sequelize} http://docs.sequelizejs.com/en/latest\n ",
+      "range": [
+        74,
+        198
+      ],
+      "loc": {
+        "start": {
+          "line": 4,
+          "column": 0
+        },
+        "end": {
+          "line": 8,
+          "column": 3
+        }
+      }
+    }
+  ]
+}

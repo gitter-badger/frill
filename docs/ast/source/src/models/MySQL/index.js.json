@@ -8,10 +8,10 @@
           "type": "ImportDefaultSpecifier",
           "local": {
             "type": "Identifier",
-            "name": "Users",
+            "name": "Sequelize",
             "range": [
               7,
-              12
+              16
             ],
             "loc": {
               "start": {
@@ -20,13 +20,13 @@
               },
               "end": {
                 "line": 1,
-                "column": 12
+                "column": 16
               }
             }
           },
           "range": [
             7,
-            12
+            16
           ],
           "loc": {
             "start": {
@@ -35,6 +35,79 @@
             },
             "end": {
               "line": 1,
+              "column": 16
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "../setup_sequelize",
+        "raw": "'../setup_sequelize'",
+        "range": [
+          22,
+          42
+        ],
+        "loc": {
+          "start": {
+            "line": 1,
+            "column": 22
+          },
+          "end": {
+            "line": 1,
+            "column": 42
+          }
+        }
+      },
+      "range": [
+        0,
+        43
+      ],
+      "loc": {
+        "start": {
+          "line": 1,
+          "column": 0
+        },
+        "end": {
+          "line": 1,
+          "column": 43
+        }
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "users",
+            "range": [
+              51,
+              56
+            ],
+            "loc": {
+              "start": {
+                "line": 2,
+                "column": 7
+              },
+              "end": {
+                "line": 2,
+                "column": 12
+              }
+            }
+          },
+          "range": [
+            51,
+            56
+          ],
+          "loc": {
+            "start": {
+              "line": 2,
+              "column": 7
+            },
+            "end": {
+              "line": 2,
               "column": 12
             }
           }
@@ -45,49 +118,49 @@
         "value": "./Users",
         "raw": "'./Users'",
         "range": [
-          18,
-          27
+          62,
+          71
         ],
         "loc": {
           "start": {
-            "line": 1,
+            "line": 2,
             "column": 18
           },
           "end": {
-            "line": 1,
+            "line": 2,
             "column": 27
           }
         }
       },
       "range": [
-        0,
-        28
+        44,
+        72
       ],
       "loc": {
         "start": {
-          "line": 1,
+          "line": 2,
           "column": 0
         },
         "end": {
-          "line": 1,
+          "line": 2,
           "column": 28
         }
       },
       "trailingComments": [
         {
           "type": "Block",
-          "value": "*\n * List of all DynamoDB models\n * @see {@link Users}\n ",
+          "value": "*\n * List of all MySQL models\n * @see {@link Users}\n * @external {Sequelize} http://docs.sequelizejs.com/en/latest\n ",
           "range": [
-            30,
-            90
+            74,
+            194
           ],
           "loc": {
             "start": {
-              "line": 3,
+              "line": 4,
               "column": 0
             },
             "end": {
-              "line": 6,
+              "line": 8,
               "column": 3
             }
           }
@@ -103,16 +176,16 @@
             "type": "Identifier",
             "name": "MySQLModels",
             "range": [
-              97,
-              108
+              201,
+              212
             ],
             "loc": {
               "start": {
-                "line": 7,
+                "line": 9,
                 "column": 6
               },
               "end": {
-                "line": 7,
+                "line": 9,
                 "column": 17
               }
             }
@@ -126,84 +199,121 @@
                   "type": "Identifier",
                   "name": "Users",
                   "range": [
-                    115,
-                    120
+                    219,
+                    224
                   ],
                   "loc": {
                     "start": {
-                      "line": 8,
+                      "line": 10,
                       "column": 2
                     },
                     "end": {
-                      "line": 8,
+                      "line": 10,
                       "column": 7
                     }
                   }
                 },
                 "value": {
-                  "type": "Identifier",
-                  "name": "Users",
+                  "type": "CallExpression",
+                  "callee": {
+                    "type": "Identifier",
+                    "name": "users",
+                    "range": [
+                      226,
+                      231
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 10,
+                        "column": 9
+                      },
+                      "end": {
+                        "line": 10,
+                        "column": 14
+                      }
+                    }
+                  },
+                  "arguments": [
+                    {
+                      "type": "Identifier",
+                      "name": "Sequelize",
+                      "range": [
+                        232,
+                        241
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 10,
+                          "column": 15
+                        },
+                        "end": {
+                          "line": 10,
+                          "column": 24
+                        }
+                      }
+                    }
+                  ],
                   "range": [
-                    115,
-                    120
+                    226,
+                    242
                   ],
                   "loc": {
                     "start": {
-                      "line": 8,
-                      "column": 2
+                      "line": 10,
+                      "column": 9
                     },
                     "end": {
-                      "line": 8,
-                      "column": 7
+                      "line": 10,
+                      "column": 25
                     }
                   }
                 },
                 "kind": "init",
                 "method": false,
-                "shorthand": true,
+                "shorthand": false,
                 "computed": false,
                 "range": [
-                  115,
-                  120
+                  219,
+                  242
                 ],
                 "loc": {
                   "start": {
-                    "line": 8,
+                    "line": 10,
                     "column": 2
                   },
                   "end": {
-                    "line": 8,
-                    "column": 7
+                    "line": 10,
+                    "column": 25
                   }
                 }
               }
             ],
             "range": [
-              111,
-              123
+              215,
+              245
             ],
             "loc": {
               "start": {
-                "line": 7,
+                "line": 9,
                 "column": 20
               },
               "end": {
-                "line": 9,
+                "line": 11,
                 "column": 1
               }
             }
           },
           "range": [
-            97,
-            123
+            201,
+            245
           ],
           "loc": {
             "start": {
-              "line": 7,
+              "line": 9,
               "column": 6
             },
             "end": {
-              "line": 9,
+              "line": 11,
               "column": 1
             }
           }
@@ -211,16 +321,16 @@
       ],
       "kind": "const",
       "range": [
-        91,
-        124
+        195,
+        246
       ],
       "loc": {
         "start": {
-          "line": 7,
+          "line": 9,
           "column": 0
         },
         "end": {
-          "line": 9,
+          "line": 11,
           "column": 2
         }
       },
@@ -234,31 +344,31 @@
         "type": "Identifier",
         "name": "MySQLModels",
         "range": [
-          141,
-          152
+          263,
+          274
         ],
         "loc": {
           "start": {
-            "line": 11,
+            "line": 13,
             "column": 15
           },
           "end": {
-            "line": 11,
+            "line": 13,
             "column": 26
           }
         }
       },
       "range": [
-        126,
-        153
+        248,
+        275
       ],
       "loc": {
         "start": {
-          "line": 11,
+          "line": 13,
           "column": 0
         },
         "end": {
-          "line": 11,
+          "line": 13,
           "column": 27
         }
       },
@@ -277,16 +387,16 @@
               "type": "Identifier",
               "name": "MySQLModels",
               "range": [
-                97,
-                108
+                201,
+                212
               ],
               "loc": {
                 "start": {
-                  "line": 7,
+                  "line": 9,
                   "column": 6
                 },
                 "end": {
-                  "line": 7,
+                  "line": 9,
                   "column": 17
                 }
               }
@@ -300,84 +410,121 @@
                     "type": "Identifier",
                     "name": "Users",
                     "range": [
-                      115,
-                      120
+                      219,
+                      224
                     ],
                     "loc": {
                       "start": {
-                        "line": 8,
+                        "line": 10,
                         "column": 2
                       },
                       "end": {
-                        "line": 8,
+                        "line": 10,
                         "column": 7
                       }
                     }
                   },
                   "value": {
-                    "type": "Identifier",
-                    "name": "Users",
+                    "type": "CallExpression",
+                    "callee": {
+                      "type": "Identifier",
+                      "name": "users",
+                      "range": [
+                        226,
+                        231
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 10,
+                          "column": 9
+                        },
+                        "end": {
+                          "line": 10,
+                          "column": 14
+                        }
+                      }
+                    },
+                    "arguments": [
+                      {
+                        "type": "Identifier",
+                        "name": "Sequelize",
+                        "range": [
+                          232,
+                          241
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 10,
+                            "column": 15
+                          },
+                          "end": {
+                            "line": 10,
+                            "column": 24
+                          }
+                        }
+                      }
+                    ],
                     "range": [
-                      115,
-                      120
+                      226,
+                      242
                     ],
                     "loc": {
                       "start": {
-                        "line": 8,
-                        "column": 2
+                        "line": 10,
+                        "column": 9
                       },
                       "end": {
-                        "line": 8,
-                        "column": 7
+                        "line": 10,
+                        "column": 25
                       }
                     }
                   },
                   "kind": "init",
                   "method": false,
-                  "shorthand": true,
+                  "shorthand": false,
                   "computed": false,
                   "range": [
-                    115,
-                    120
+                    219,
+                    242
                   ],
                   "loc": {
                     "start": {
-                      "line": 8,
+                      "line": 10,
                       "column": 2
                     },
                     "end": {
-                      "line": 8,
-                      "column": 7
+                      "line": 10,
+                      "column": 25
                     }
                   }
                 }
               ],
               "range": [
-                111,
-                123
+                215,
+                245
               ],
               "loc": {
                 "start": {
-                  "line": 7,
+                  "line": 9,
                   "column": 20
                 },
                 "end": {
-                  "line": 9,
+                  "line": 11,
                   "column": 1
                 }
               }
             },
             "range": [
-              97,
-              123
+              201,
+              245
             ],
             "loc": {
               "start": {
-                "line": 7,
+                "line": 9,
                 "column": 6
               },
               "end": {
-                "line": 9,
+                "line": 11,
                 "column": 1
               }
             }
@@ -385,34 +532,34 @@
         ],
         "kind": "const",
         "range": [
-          91,
-          124
+          195,
+          246
         ],
         "loc": {
           "start": {
-            "line": 7,
+            "line": 9,
             "column": 0
           },
           "end": {
-            "line": 9,
+            "line": 11,
             "column": 2
           }
         },
         "leadingComments": [
           {
             "type": "Block",
-            "value": "*\n * List of all DynamoDB models\n * @see {@link Users}\n ",
+            "value": "*\n * List of all MySQL models\n * @see {@link Users}\n * @external {Sequelize} http://docs.sequelizejs.com/en/latest\n ",
             "range": [
-              30,
-              90
+              74,
+              194
             ],
             "loc": {
               "start": {
-                "line": 3,
+                "line": 4,
                 "column": 0
               },
               "end": {
-                "line": 6,
+                "line": 8,
                 "column": 3
               }
             }
@@ -421,16 +568,16 @@
         "trailingComments": []
       },
       "range": [
-        126,
-        153
+        248,
+        275
       ],
       "loc": {
         "start": {
-          "line": 11,
+          "line": 13,
           "column": 0
         },
         "end": {
-          "line": 11,
+          "line": 13,
           "column": 27
         }
       }
@@ -439,7 +586,7 @@
   "sourceType": "module",
   "range": [
     0,
-    153
+    275
   ],
   "loc": {
     "start": {
@@ -447,25 +594,25 @@
       "column": 0
     },
     "end": {
-      "line": 11,
+      "line": 13,
       "column": 27
     }
   },
   "comments": [
     {
       "type": "Block",
-      "value": "*\n * List of all DynamoDB models\n * @see {@link Users}\n ",
+      "value": "*\n * List of all MySQL models\n * @see {@link Users}\n * @external {Sequelize} http://docs.sequelizejs.com/en/latest\n ",
       "range": [
-        30,
-        90
+        74,
+        194
       ],
       "loc": {
         "start": {
-          "line": 3,
+          "line": 4,
           "column": 0
         },
         "end": {
-          "line": 6,
+          "line": 8,
           "column": 3
         }
       }

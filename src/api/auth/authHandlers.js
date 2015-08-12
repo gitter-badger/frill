@@ -4,7 +4,7 @@ import aguid from 'aguid';
 import {where as _where} from 'lodash';
 
 // Test data
-import accounts from '../../helpers/testUserData';
+import accounts from '../../fixtures/testUserData';
 
 /**
  * Handler for authentication
