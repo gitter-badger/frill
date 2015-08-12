@@ -15,9 +15,6 @@ export default {
       // },
     },
   },
-  vogels: {
-    endpoint: 'localhost:8000',
-  },
   /** @see {AmazonWebServices} http://aws.amazon.com/ */
   AWS: {
     accessKeyId: 'myKeyId',

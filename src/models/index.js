@@ -2,14 +2,14 @@
  * Example for using multiple type of databases
  */
 // example for MySQL using sequelize
-import SequelizeModels from './SequelizeModels';
+import mysql from './mysql';
 
 /**
  * List of all models
  * @see {@link SequelizeModels}
  */
 const Models = {
-  SequelizeModels,
+  mysql,
 };
 
 export default Models;
