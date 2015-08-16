@@ -11,6 +11,10 @@ const authenticate = (request, reply) => {
 
 const payload = (request, reply) => {
   // construct search query
+  if (!request.payload) {
+    return reply(Boom.badRequest('invalid username or password'));
+  }
+
   const query = {
     name: request.payload.username,
     password: request.payload.password,
