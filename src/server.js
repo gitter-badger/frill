@@ -5,6 +5,8 @@ import routes from './routes';
 import Hapi from 'hapi';
 import React from 'react';
 import Router from 'react-router';
+import Vision from 'vision';
+import Inert from 'inert';
 import Redis from 'catbox-redis';
 import Session from 'yar';
 import Authentication from 'bell';
@@ -31,7 +33,25 @@ const server = new Hapi.Server({
     // partition: 'cache',
   }],
 });
+// console.log(server);
 server.connection({port: SERVER_PORT});
+
+/**
+ * Configure hapi views
+ */
+server.register([
+  Inert,
+  Vision,
+], (err) => {
+  if (err) server.log(['error'], `view load error: ${err}`);
+  server.views({
+    engines: {
+      jade: Jade,
+    },
+    relativeTo: __dirname,
+    path: 'templates',
+  });
+});
 
 /**
  * Configure sessions
@@ -56,17 +76,6 @@ server.register([
   Authentication,
 ], (err) => {
   if (err) server.log(['error'], `authentication load error: ${err}`);
-});
-
-/**
- * Configure hapi views
- */
-server.views({
-  engines: {
-    jade: Jade,
-  },
-  relativeTo: __dirname,
-  path: 'templates',
 });
 
 /**
@@ -97,7 +106,7 @@ api(server);
  */
 const swaggerOptions = {
   apiVersion: pack.version,
-  basePath: 'http://localhost:3001',
+  basePath: 'http://localhost:3000',
 };
 
 server.register({
