@@ -354,6 +354,18 @@
     "kind": "file",
     "static": true,
     "variation": null,
+    "name": "src/api/Holiday.js",
+    "memberof": null,
+    "longname": "src/api/Holiday.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 0,
+    "content": ""
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
     "name": "src/api/auth/authHandlers.js",
     "memberof": null,
     "longname": "src/api/auth/authHandlers.js",
@@ -705,7 +717,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Boom from 'boom';\nimport {where as _where} from 'lodash';\n\n// Test data\nimport accounts from '../../../fixtures/testUserData';\n\nconst authenticate = (request, reply) => {\n  const credentials = {};\n  reply.continue({ credentials });\n};\n\nconst payload = (request, reply) => {\n  // construct search query\n  const query = {\n    name: request.payload.username,\n    password: request.payload.password,\n  };\n\n  let user = _where(accounts, query);\n\n  if (user.length === 0) {\n    return reply(Boom.badRequest('invalid username or password'));\n  }\n\n  user = user[0];\n\n  request.auth.credentials = {\n    provider: 'local',\n    token: null,\n    secret: null,\n    query: {},\n    profile: {\n      id: user.id,\n      username: user.name,\n      displayName: user.displayName,\n      raw: user, // full profile\n    },\n  };\n\n  reply.continue();\n};\n\nconst response = (request, reply) => {\n  reply.continue();\n};\n\nconst scheme = () => {\n  return {\n    payload,\n    authenticate,\n    response,\n    options: {\n      payload: true,\n    },\n  };\n};\n\n/**\n * Authentication strategy for local authentications\n */\nconst localStrategy = (server) => {\n  server.auth.scheme('local', scheme);\n  server.auth.strategy('local', 'local');\n};\n\nexport default localStrategy;\n"
+    "content": "import Boom from 'boom';\nimport {where as _where} from 'lodash';\n\n// Test data\nimport accounts from '../../../fixtures/testUserData';\n\nconst authenticate = (request, reply) => {\n  const credentials = {};\n  reply.continue({ credentials });\n};\n\nconst payload = (request, reply) => {\n  // construct search query\n  if (!request.payload) {\n    return reply(Boom.badRequest('invalid username or password'));\n  }\n\n  const query = {\n    name: request.payload.username,\n    password: request.payload.password,\n  };\n\n  let user = _where(accounts, query);\n\n  if (user.length === 0) {\n    return reply(Boom.badRequest('invalid username or password'));\n  }\n\n  user = user[0];\n\n  request.auth.credentials = {\n    provider: 'local',\n    token: null,\n    secret: null,\n    query: {},\n    profile: {\n      id: user.id,\n      username: user.name,\n      displayName: user.displayName,\n      raw: user, // full profile\n    },\n  };\n\n  reply.continue();\n};\n\nconst response = (request, reply) => {\n  reply.continue();\n};\n\nconst scheme = () => {\n  return {\n    payload,\n    authenticate,\n    response,\n    options: {\n      payload: true,\n    },\n  };\n};\n\n/**\n * Authentication strategy for local authentications\n */\nconst localStrategy = (server) => {\n  server.auth.scheme('local', scheme);\n  server.auth.strategy('local', 'local');\n};\n\nexport default localStrategy;\n"
   },
   {
     "kind": "variable",
@@ -759,7 +771,7 @@
     "importPath": "frill/src/api/auth/strategies/local.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 43,
+    "lineNumber": 47,
     "undocument": true,
     "type": {
       "types": [
@@ -779,7 +791,7 @@
     "importPath": "frill/src/api/auth/strategies/local.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 47,
+    "lineNumber": 51,
     "undocument": true,
     "type": {
       "types": [
@@ -799,7 +811,7 @@
     "importPath": "frill/src/api/auth/strategies/local.js",
     "importStyle": "localStrategy",
     "description": "Authentication strategy for local authentications",
-    "lineNumber": 61,
+    "lineNumber": 65,
     "type": {
       "types": [
         "*"
@@ -974,7 +986,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import localAuth from './localAuth';\nimport hello from './hello';\nimport {routePrefixer} from '../../helpers';\n\n/**\n * Mount all api v1 routes\n */\nconst apiV1 = (server) => {\n  return routePrefixer('/v1', [\n    ...localAuth,\n    ...hello(server),\n  ]);\n};\n\nexport default apiV1;\n"
+    "content": "import {routePrefixer} from '../../helpers';\nimport Models from '../../models';\n\nimport localAuth from './localAuth';\nimport hello from './hello';\nimport posts from './posts';\n\n/**\n * Mount all api v1 routes\n */\nconst apiV1 = (server) => {\n  return routePrefixer('/v1', [\n    ...localAuth,\n    ...hello(server, Models),\n    ...posts(server, Models),\n  ]);\n};\n\nexport default apiV1;\n"
   },
   {
     "kind": "variable",
@@ -988,7 +1000,7 @@
     "importPath": "frill/src/api/v1/index.js",
     "importStyle": "apiV1",
     "description": "Mount all api v1 routes",
-    "lineNumber": 8,
+    "lineNumber": 11,
     "type": {
       "types": [
         "*"
@@ -1020,6 +1032,37 @@
     "importStyle": "localAuthRoutes",
     "description": "Local authentication routes.",
     "lineNumber": 14,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/api/v1/posts.js",
+    "memberof": null,
+    "longname": "src/api/v1/posts.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import Joi from 'joi';\nimport Holiday from '../Holiday';\n\n/**\n * REST API - posts\n */\nconst posts = (server, Models) => {\n  const {mysql} = Models;\n\n  // Holiday.configure({\n  //   tags: ['api'],\n  // });\n\n  const PostApi = new Holiday('sequelize', 'posts', mysql.Posts);\n\n\n\n  PostApi.validate.save({\n    title: Joi.string().required(),\n    content: Joi.string().required(),\n  });\n\n  PostApi.validate.update({\n    title: Joi.string(),\n    content: Joi.string(),\n  });\n\n  return PostApi.all();\n};\n\nexport default posts;\n"
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "posts",
+    "memberof": "src/api/v1/posts.js",
+    "longname": "src/api/v1/posts.js~posts",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/api/v1/posts.js",
+    "importStyle": "posts",
+    "description": "REST API - posts",
+    "lineNumber": 7,
     "type": {
       "types": [
         "*"
@@ -2106,6 +2149,45 @@
     "kind": "file",
     "static": true,
     "variation": null,
+    "name": "src/helpers/RestApi.js",
+    "memberof": null,
+    "longname": "src/helpers/RestApi.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import Holiday from 'hapi-holiday';\nimport sequelizeScheme from 'RestApiSchemes/sequelize';\n\nHoliday = sequelizeScheme(Holiday);\n\nexport default Holiday;\n"
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/helpers/RestApiSchemes/sequelize.js",
+    "memberof": null,
+    "longname": "src/helpers/RestApiSchemes/sequelize.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "export default sequelize = (Holiday) => {\n  Holiday.define('sequelize', {\n    index: (Model, request, done) => {\n      Model.findAll({\n        offset: request.query.offset,\n        limit: request.query.limit,\n      })\n      .then((records) => {\n        done(null, records);\n      })\n      .catch((err) => {\n        done(err, null);\n      });\n    },\n\n    show: (Model, request, done) => {\n      Model.findById(request.params.id)\n      .then((records) => {\n        done(null, records);\n      })\n      .catch((err) => {\n        done(err, null);\n      });\n    },\n\n    save: (Model, request, done) => {\n      Model.create(request.payload).then((result) => {\n        done(null, result);\n      })\n      .catch((err) => {\n        done(err, null);\n      });\n    },\n\n    update: (Model, request, done) => {\n      Model.update(request.payload, {\n        where: {\n          id: request.params.id,\n        },\n      })\n      .then((result) => {\n        done(null, result);\n      })\n      .catch((err) => {\n        done(err, null);\n      });\n    },\n\n    destroy: (Model, request, done) => {\n      Model.destroy({\n        where: {\n          id: request.params.id,\n        },\n      })\n      .then((affected) => {\n        done(null, affected);\n      })\n      .catch((err) => {\n        done(err, null);\n      });\n    },\n  });\n  return Holiday;\n};\n"
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "sequelize",
+    "memberof": "src/helpers/RestApiSchemes/sequelize.js",
+    "longname": "src/helpers/RestApiSchemes/sequelize.js~sequelize",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/helpers/RestApiSchemes/sequelize.js",
+    "importStyle": "sequelize",
+    "description": null,
+    "lineNumber": 1,
+    "undocument": true
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
     "name": "src/helpers/aws.js",
     "memberof": null,
     "longname": "src/helpers/aws.js",
@@ -2317,74 +2399,13 @@
     "kind": "file",
     "static": true,
     "variation": null,
-    "name": "src/models/SequelizeModels/Users.js",
-    "memberof": null,
-    "longname": "src/models/SequelizeModels/Users.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 1,
-    "content": "import Sequelize from 'sequelize';\n\n/**\n * Users model\n * @see http://docs.sequelizejs.com/en/latest/docs/models-definition/#definition\n */\nconst users = (sequelize) => {\n  return sequelize.define('users', {\n    username: Sequelize.STRING,\n    birthday: Sequelize.DATE,\n  });\n};\n\nexport default users;\n"
-  },
-  {
-    "kind": "variable",
-    "static": true,
-    "variation": null,
-    "name": "users",
-    "memberof": "src/models/SequelizeModels/Users.js",
-    "longname": "src/models/SequelizeModels/Users.js~users",
-    "access": null,
-    "export": true,
-    "importPath": "frill/src/models/SequelizeModels/Users.js",
-    "importStyle": "users",
-    "description": "Users model",
-    "see": [
-      "http://docs.sequelizejs.com/en/latest/docs/models-definition/#definition"
-    ],
-    "lineNumber": 7,
-    "type": {
-      "types": [
-        "*"
-      ]
-    }
-  },
-  {
-    "kind": "file",
-    "static": true,
-    "variation": null,
-    "name": "src/models/SequelizeModels/index.js",
-    "memberof": null,
-    "longname": "src/models/SequelizeModels/index.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 1,
-    "content": "import Sequelize from '../setup_sequelize';\nimport users from './Users';\n\n/**\n * List of all Sequelize models\n * @see {@link Users}\n * @external {Sequelize} http://docs.sequelizejs.com/en/latest\n */\nconst SequelizeModels = {\n  Users: users(Sequelize),\n};\n\nexport default SequelizeModels;\n"
-  },
-  {
-    "kind": "external",
-    "static": true,
-    "variation": null,
-    "name": "Sequelize",
-    "externalLink": "http://docs.sequelizejs.com/en/latest",
-    "memberof": "src/models/SequelizeModels/index.js",
-    "longname": "src/models/SequelizeModels/index.js~Sequelize",
-    "access": null,
-    "description": "List of all Sequelize models",
-    "see": [
-      "{@link Users}"
-    ],
-    "lineNumber": 9
-  },
-  {
-    "kind": "file",
-    "static": true,
-    "variation": null,
     "name": "src/models/index.js",
     "memberof": null,
     "longname": "src/models/index.js",
     "access": null,
     "description": null,
     "lineNumber": 5,
-    "content": "/**\n * Example for using multiple type of databases\n */\n// example for MySQL using sequelize\nimport SequelizeModels from './SequelizeModels';\n\n/**\n * List of all models\n * @see {@link SequelizeModels}\n */\nconst Models = {\n  SequelizeModels,\n};\n\nexport default Models;\n"
+    "content": "/**\n * Example for using multiple type of databases\n */\n// example for MySQL using sequelize\nimport mysql from './mysql';\n\n/**\n * List of all models\n * @see {@link SequelizeModels}\n */\nconst Models = {\n  mysql,\n};\n\nexport default Models;\n"
   },
   {
     "kind": "variable",
@@ -2407,6 +2428,102 @@
         "*"
       ]
     }
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/models/mysql/Posts.js",
+    "memberof": null,
+    "longname": "src/models/mysql/Posts.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import Sequelize from 'sequelize';\n\n/**\n * Posts model\n * @see http://docs.sequelizejs.com/en/latest/docs/models-definition/#definition\n */\nconst posts = (sequelize) => {\n  return sequelize.define('posts', {\n    id: {\n      type: Sequelize.INTEGER,\n      autoIncrement: true,\n      primaryKey: true,\n    },\n    title: Sequelize.STRING,\n    content: Sequelize.TEXT,\n  }, {\n    paranoid: true,\n  });\n};\n\nexport default posts;\n"
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "posts",
+    "memberof": "src/models/mysql/Posts.js",
+    "longname": "src/models/mysql/Posts.js~posts",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/models/mysql/Posts.js",
+    "importStyle": "posts",
+    "description": "Posts model",
+    "see": [
+      "http://docs.sequelizejs.com/en/latest/docs/models-definition/#definition"
+    ],
+    "lineNumber": 7,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/models/mysql/Users.js",
+    "memberof": null,
+    "longname": "src/models/mysql/Users.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import Sequelize from 'sequelize';\n\n/**\n * Users model\n * @see http://docs.sequelizejs.com/en/latest/docs/models-definition/#definition\n */\nconst users = (sequelize) => {\n  return sequelize.define('users', {\n    username: Sequelize.STRING,\n    birthday: Sequelize.DATE,\n  });\n};\n\nexport default users;\n"
+  },
+  {
+    "kind": "variable",
+    "static": true,
+    "variation": null,
+    "name": "users",
+    "memberof": "src/models/mysql/Users.js",
+    "longname": "src/models/mysql/Users.js~users",
+    "access": null,
+    "export": true,
+    "importPath": "frill/src/models/mysql/Users.js",
+    "importStyle": "users",
+    "description": "Users model",
+    "see": [
+      "http://docs.sequelizejs.com/en/latest/docs/models-definition/#definition"
+    ],
+    "lineNumber": 7,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "file",
+    "static": true,
+    "variation": null,
+    "name": "src/models/mysql/index.js",
+    "memberof": null,
+    "longname": "src/models/mysql/index.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import Sequelize from '../setup_sequelize';\nimport users from './Users';\nimport posts from './Posts';\n\n/**\n * List of all Sequelize models\n * @see {@link Users}\n * @see {@link Posts}\n * @external {Sequelize} http://docs.sequelizejs.com/en/latest\n */\nconst mysql = {\n  Users: users(Sequelize),\n  Posts: posts(Sequelize),\n};\n\nexport default mysql;\n"
+  },
+  {
+    "kind": "external",
+    "static": true,
+    "variation": null,
+    "name": "Sequelize",
+    "externalLink": "http://docs.sequelizejs.com/en/latest",
+    "memberof": "src/models/mysql/index.js",
+    "longname": "src/models/mysql/index.js~Sequelize",
+    "access": null,
+    "description": "List of all Sequelize models",
+    "see": [
+      "{@link Users}",
+      "{@link Posts}"
+    ],
+    "lineNumber": 11
   },
   {
     "kind": "file",
@@ -2475,7 +2592,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Frill from './bootstrap';\nimport pack from '../package';\nimport api from './api';\nimport routes from './routes';\nimport Hapi from 'hapi';\nimport React from 'react';\nimport Router from 'react-router';\nimport Redis from 'catbox-redis';\nimport Session from 'yar';\nimport Authentication from 'bell';\nimport Jade from 'jade';\nimport good from 'good';\nimport goodConsole from 'good-console';\nimport swagger from 'hapi-swagger';\nimport _find from 'lodash/collection/find';\nimport _extend from 'lodash/object/extend';\nimport _isUndefined from 'lodash/lang/isUndefined';\nimport _argv from 'minimist';\nlet argv = _argv;\nargv = _argv(process.argv.slice(2));\n\n/**\n * Configure hapi.\n */\nconst SERVER_PORT = 3000;\nconst server = new Hapi.Server({\n  cache: [{\n    name: 'redis',\n    engine: Redis,\n    host: '127.0.0.1',\n    // partition: 'cache',\n  }],\n});\nserver.connection({port: SERVER_PORT});\n\n/**\n * Configure sessions\n */\nserver.register({\n  register: Session,\n  options: {\n    maxCookieSize: 0,\n    cookieOptions: {\n      password: 'SOME_PASSWORD', /** @todo send options to a config */\n      isSecure: false, /** @todo cannot do this at production */\n    },\n  },\n}, (err) => {\n  if (err) server.log(['error'], `session load error: ${err}`);\n});\n\n/**\n * Configure authentication strategies\n */\nserver.register([\n  Authentication,\n], (err) => {\n  if (err) server.log(['error'], `authentication load error: ${err}`);\n});\n\n/**\n * Configure hapi views\n */\nserver.views({\n  engines: {\n    jade: Jade,\n  },\n  relativeTo: __dirname,\n  path: 'templates',\n});\n\n/**\n * Attempt to serve static files\n */\nserver.route({\n  method: '*',\n  path: '/{params*}',\n  // don't use authentication strategy\n  config: { auth: false },\n  handler: (request, reply) => {\n    if (request.path === '/') {\n      return reply.continue();\n    }\n    reply.file('public' + request.path);\n  },\n});\n\n\n/**\n * Mount all the APIs to hapi\n */\napi(server);\n\n/**\n * Configure hapi-swagger for API documentation.\n * @todo: disable at production\n */\nconst swaggerOptions = {\n  apiVersion: pack.version,\n  basePath: 'http://localhost:3001',\n};\n\nserver.register({\n  register: swagger,\n  options: swaggerOptions,\n}, (err) => {\n  if (err) server.log(['error'], `hapi-swagger load error: ${err}`);\n});\n\n/**\n * Catch requests to fire React Router\n */\n// create context\nconst frillContext = Frill.attach(Frill._Stores, Frill._Actions);\n\nserver.ext('onPreResponse', (request, reply) => {\n  const response = request.response;\n\n  // if API request\n  if (response.isBoom && request.path.substring(0, 5) === '/api/') {\n    return reply.continue();\n  }\n\n  // if status code exists and request.path set to '/'\n  if (!_isUndefined(request.response.statusCode) && request.path !== '/') {\n    return reply.continue();\n  }\n\n  // fire React Router\n  server.log(['info'], `Serving down to react-router with ${request.path}`);\n\n  Router.run(routes(), request.path, (Handler, state) => {\n    // find route from request.path\n    const isFoundRoute = _find(state.routes, { path: request.path });\n\n    // 200 if route found, else 404\n    const _status = isFoundRoute ? 200 : 404;\n\n    // create temporary output status\n    let status = { statusCode: _status, error: '', message: '' };\n\n    // if response is an Error\n    if (response.isBoom && response.output.statusCode !== 404) {\n      status = response.output.payload;\n    } else {\n      if (_status === 200) {\n        status.message = 'OK';\n      } else if (_status === 404) {\n        status.error = 'NotFound';\n        status.message = 'Page not found.';\n      }\n    }\n\n    // set status to state\n    state.status = status;\n\n    // set auth token if exists\n    state.token = request.session.flash('token')[0];\n\n    // pass down frill context to handler\n    const patchedState = _extend({frill: frillContext}, state);\n\n    // create handler\n    const handler = React.createElement(Handler, patchedState);\n\n    // construct markup\n    const markup = React.renderToString(handler);\n\n    server.log(['verbose'], markup);\n    reply.view('default', {\n      initialData: JSON.stringify(state),\n      markup: markup,\n    }).code(status.statusCode);\n  });\n});\n\n\n/**\n * Configure good (for logging hapi)\n * TODO: disable at production\n */\n// define which log level outputs which tags\nconst logLevels = {\n  silent: {},\n  error: {\n    error: '*',\n    log: ['error'],\n    response: ['error'],\n  },\n  debug: {\n    error: '*',\n    log: ['debug', 'error'],\n    response: ['debug', 'error'],\n  },\n  info: {\n    error: '*',\n    log: ['info', 'debug', 'error'],\n    response: ['info', 'debug', 'error'],\n  },\n  verbose: {\n    log: '*',\n    ops: '*',\n    error: '*',\n    request: '*',\n    response: '*',\n  },\n};\n\nlet logEvents;\nif (argv.verbose) {\n  logEvents = logLevels.verbose;\n} else if (argv.info) {\n  logEvents = logLevels.info;\n} else if (argv.debug) {\n  logEvents = logLevels.debug;\n} else if (argv.error) {\n  logEvents = logLevels.error;\n} else if (argv.silent) {\n  logEvents = logLevels.silent;\n} else {\n  logEvents = logLevels.info;\n}\n\nconst goodOptions = {\n  reporters: [{\n    reporter: goodConsole,\n    events: logEvents,\n    config: {\n      format: '[[]HH:mm:ss[]][[frill]]',\n      utc: false,\n    },\n  }],\n};\n\nserver.register({\n  register: good,\n  options: goodOptions,\n}, (err) => {\n  if (err) {\n    console.error(err);\n  } else {\n    // initialize server\n    server.start(() => {\n      server.log(['info'], `Server started at ${server.info.uri}`);\n    });\n  }\n});\n"
+    "content": "import Frill from './bootstrap';\nimport pack from '../package';\nimport api from './api';\nimport routes from './routes';\nimport Hapi from 'hapi';\nimport React from 'react';\nimport Router from 'react-router';\nimport Vision from 'vision';\nimport Inert from 'inert';\nimport Redis from 'catbox-redis';\nimport Session from 'yar';\nimport Authentication from 'bell';\nimport Jade from 'jade';\nimport good from 'good';\nimport goodConsole from 'good-console';\nimport swagger from 'hapi-swagger';\nimport _find from 'lodash/collection/find';\nimport _extend from 'lodash/object/extend';\nimport _isUndefined from 'lodash/lang/isUndefined';\nimport _argv from 'minimist';\nlet argv = _argv;\nargv = _argv(process.argv.slice(2));\n\n/**\n * Configure hapi.\n */\nconst SERVER_PORT = 3000;\nconst server = new Hapi.Server({\n  cache: [{\n    name: 'redis',\n    engine: Redis,\n    host: '127.0.0.1',\n    // partition: 'cache',\n  }],\n});\n// console.log(server);\nserver.connection({port: SERVER_PORT});\n\n/**\n * Configure hapi views\n */\nserver.register([\n  Inert,\n  Vision,\n], (err) => {\n  if (err) server.log(['error'], `view load error: ${err}`);\n  server.views({\n    engines: {\n      jade: Jade,\n    },\n    relativeTo: __dirname,\n    path: 'templates',\n  });\n});\n\n/**\n * Configure sessions\n */\nserver.register({\n  register: Session,\n  options: {\n    maxCookieSize: 0,\n    cookieOptions: {\n      password: 'SOME_PASSWORD', /** @todo send options to a config */\n      isSecure: false, /** @todo cannot do this at production */\n    },\n  },\n}, (err) => {\n  if (err) server.log(['error'], `session load error: ${err}`);\n});\n\n/**\n * Configure authentication strategies\n */\nserver.register([\n  Authentication,\n], (err) => {\n  if (err) server.log(['error'], `authentication load error: ${err}`);\n});\n\n/**\n * Attempt to serve static files\n */\nserver.route({\n  method: '*',\n  path: '/{params*}',\n  // don't use authentication strategy\n  config: { auth: false },\n  handler: (request, reply) => {\n    if (request.path === '/') {\n      return reply.continue();\n    }\n    reply.file('public' + request.path);\n  },\n});\n\n\n/**\n * Mount all the APIs to hapi\n */\napi(server);\n\n/**\n * Configure hapi-swagger for API documentation.\n * @todo: disable at production\n */\nconst swaggerOptions = {\n  apiVersion: pack.version,\n  basePath: 'http://localhost:3000',\n};\n\nserver.register({\n  register: swagger,\n  options: swaggerOptions,\n}, (err) => {\n  if (err) server.log(['error'], `hapi-swagger load error: ${err}`);\n});\n\n/**\n * Catch requests to fire React Router\n */\n// create context\nconst frillContext = Frill.attach(Frill._Stores, Frill._Actions);\n\nserver.ext('onPreResponse', (request, reply) => {\n  const response = request.response;\n\n  // if API request\n  if (response.isBoom && request.path.substring(0, 5) === '/api/') {\n    return reply.continue();\n  }\n\n  // if status code exists and request.path set to '/'\n  if (!_isUndefined(request.response.statusCode) && request.path !== '/') {\n    return reply.continue();\n  }\n\n  // fire React Router\n  server.log(['info'], `Serving down to react-router with ${request.path}`);\n\n  Router.run(routes(), request.path, (Handler, state) => {\n    // find route from request.path\n    const isFoundRoute = _find(state.routes, { path: request.path });\n\n    // 200 if route found, else 404\n    const _status = isFoundRoute ? 200 : 404;\n\n    // create temporary output status\n    let status = { statusCode: _status, error: '', message: '' };\n\n    // if response is an Error\n    if (response.isBoom && response.output.statusCode !== 404) {\n      status = response.output.payload;\n    } else {\n      if (_status === 200) {\n        status.message = 'OK';\n      } else if (_status === 404) {\n        status.error = 'NotFound';\n        status.message = 'Page not found.';\n      }\n    }\n\n    // set status to state\n    state.status = status;\n\n    // set auth token if exists\n    state.token = request.session.flash('token')[0];\n\n    // pass down frill context to handler\n    const patchedState = _extend({frill: frillContext}, state);\n\n    // create handler\n    const handler = React.createElement(Handler, patchedState);\n\n    // construct markup\n    const markup = React.renderToString(handler);\n\n    server.log(['verbose'], markup);\n    reply.view('default', {\n      initialData: JSON.stringify(state),\n      markup: markup,\n    }).code(status.statusCode);\n  });\n});\n\n\n/**\n * Configure good (for logging hapi)\n * TODO: disable at production\n */\n// define which log level outputs which tags\nconst logLevels = {\n  silent: {},\n  error: {\n    error: '*',\n    log: ['error'],\n    response: ['error'],\n  },\n  debug: {\n    error: '*',\n    log: ['debug', 'error'],\n    response: ['debug', 'error'],\n  },\n  info: {\n    error: '*',\n    log: ['info', 'debug', 'error'],\n    response: ['info', 'debug', 'error'],\n  },\n  verbose: {\n    log: '*',\n    ops: '*',\n    error: '*',\n    request: '*',\n    response: '*',\n  },\n};\n\nlet logEvents;\nif (argv.verbose) {\n  logEvents = logLevels.verbose;\n} else if (argv.info) {\n  logEvents = logLevels.info;\n} else if (argv.debug) {\n  logEvents = logLevels.debug;\n} else if (argv.error) {\n  logEvents = logLevels.error;\n} else if (argv.silent) {\n  logEvents = logLevels.silent;\n} else {\n  logEvents = logLevels.info;\n}\n\nconst goodOptions = {\n  reporters: [{\n    reporter: goodConsole,\n    events: logEvents,\n    config: {\n      format: '[[]HH:mm:ss[]][[frill]]',\n      utc: false,\n    },\n  }],\n};\n\nserver.register({\n  register: good,\n  options: goodOptions,\n}, (err) => {\n  if (err) {\n    console.error(err);\n  } else {\n    // initialize server\n    server.start(() => {\n      server.log(['info'], `Server started at ${server.info.uri}`);\n    });\n  }\n});\n"
   },
   {
     "kind": "variable",
@@ -2489,7 +2606,7 @@
     "importPath": "frill/src/server.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 19,
+    "lineNumber": 21,
     "undocument": true,
     "type": {
       "types": [
@@ -2509,7 +2626,7 @@
     "importPath": "frill/src/server.js",
     "importStyle": null,
     "description": "Configure hapi.",
-    "lineNumber": 25,
+    "lineNumber": 27,
     "type": {
       "types": [
         "number"
@@ -2528,7 +2645,7 @@
     "importPath": "frill/src/server.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 26,
+    "lineNumber": 28,
     "undocument": true,
     "type": {
       "types": [
@@ -2548,7 +2665,7 @@
     "importPath": "frill/src/server.js",
     "importStyle": null,
     "description": "Configure hapi-swagger for API documentation.\n@todo: disable at production",
-    "lineNumber": 98,
+    "lineNumber": 107,
     "type": {
       "types": [
         "*"
@@ -2567,7 +2684,7 @@
     "importPath": "frill/src/server.js",
     "importStyle": null,
     "description": "Catch requests to fire React Router",
-    "lineNumber": 114,
+    "lineNumber": 123,
     "type": {
       "types": [
         "*"
@@ -2586,7 +2703,7 @@
     "importPath": "frill/src/server.js",
     "importStyle": null,
     "description": "Configure good (for logging hapi)\nTODO: disable at production",
-    "lineNumber": 183,
+    "lineNumber": 192,
     "type": {
       "types": [
         "*"
@@ -2605,7 +2722,7 @@
     "importPath": "frill/src/server.js",
     "importStyle": null,
     "description": null,
-    "lineNumber": 224,
+    "lineNumber": 233,
     "undocument": true,
     "type": {
       "types": [

@@ -1,5 +1,5 @@
 import Joi from 'joi';
-import Holiday from '../Holiday';
+import Holiday from '../../helpers/RestApi';
 
 /**
  * REST API - posts
@@ -7,11 +7,11 @@ import Holiday from '../Holiday';
 const posts = (server, Models) => {
   const {mysql} = Models;
 
-  // Holiday.configure({
-  //   tags: ['api'],
-  // });
-
   const PostApi = new Holiday('sequelize', 'posts', mysql.Posts);
+
+  PostApi.has('test', (Model, response, done) => {
+    done(null, {test: 'test'});
+  });
 
   PostApi.validate.save({
     title: Joi.string().required(),
