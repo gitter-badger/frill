@@ -9,6 +9,7 @@ const posts = (server, Models) => {
 
   const PostApi = new Holiday('sequelize', 'posts', mysql.Posts);
 
+  // TODO: write relations here for example
   PostApi.has('test', (Model, response, done) => {
     done(null, {test: 'test'});
   });
