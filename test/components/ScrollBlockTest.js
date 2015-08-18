@@ -1,4 +1,5 @@
 // import React from 'react/addons';
+import {createSandboxSpy} from '../frillHelper';
 import ScrollBlock from '../../src/components/ScrollBlock/index.jsx';
 const TestUtils = React.addons.TestUtils;
 import ExeEnv from 'react/lib/ExecutionEnvironment';
@@ -49,9 +50,6 @@ class MockParent extends React.Component {
 }
 
 function mountComponent(itemsCount) {
-  // container = TestUtils
-  //   .renderIntoDocument(<TestComponent itemsCount={itemsCount} />);
-
   container = document.createElement('div');
   document.body.appendChild(container);
 
@@ -67,14 +65,6 @@ function unmountComponent() {
   }
 }
 
-function createSpy(component, methods) {
-  const _spy = {};
-  methods.map((method) => {
-    _spy[method] = sandbox.spy(component, method);
-  });
-  return _spy;
-}
-
 function dispatchScrollEvent(target, scrollTop) {
   target.scrollTop = scrollTop;
   target.dispatchEvent(scrollEvt);
@@ -86,7 +76,7 @@ function dispatchScrollEvent(target, scrollTop) {
  */
 describe('ScrollBlockComponent', () => {
   beforeEach(() => {
-    spy = createSpy(ScrollBlock.prototype, [
+    spy = createSandboxSpy(ScrollBlock.prototype, [
       'componentDidMount',
       'componentWillReceiveProps',
       'componentWillUnmount',
@@ -131,7 +121,9 @@ describe('ScrollBlockComponent', () => {
       mountComponent(0);
       sinon.assert.calledOnce(spy.componentDidMount);
     });
-
+    /**
+     * @test {ExampleStore#componentDidMount}
+     */
     it('should fetch data when none are loaded', () => {
       mountComponent(0);
 
@@ -140,7 +132,9 @@ describe('ScrollBlockComponent', () => {
       spy.componentDidMount.getCall(0)
         .thisValue.props.itemsCount.should.equal(1);
     });
-
+    /**
+     * @test {ExampleStore#componentDidMount}
+     */
     it('should not fetch data when some are already loaded', () => {
       mountComponent(3);
 
@@ -165,7 +159,7 @@ describe('ScrollBlockComponent', () => {
     /**
      * @test {ExampleStore#componentWillReceiveProps}
      */
-    it('should set isLoading state to false when props have new children', () => {
+    it('should set isLoading state to false when props has new children', () => {
       mountComponent(0);
       spy.componentWillReceiveProps.getCall(0).args[0].children.should.exist;
       spy.setState.getCall(1).calledWith({isLoading: false});
@@ -215,6 +209,19 @@ describe('ScrollBlockComponent', () => {
       dispatchScrollEvent(elem, 200);
       sinon.assert.called(spy.onScroll);
       scrollBlock.props.itemsCount.should.equal(6);
+    });
+    /**
+     * @test {ExampleStore#onScroll}
+     */
+    it('should not load the data when all data are loaded', () => {
+      mountComponent(10);
+      const elem = React.findDOMNode(scrollBlock);
+      elem.scrollHeight = 100 * scrollBlock.props.itemsCount;
+      elem.clientHeight = 200;
+      dispatchScrollEvent(elem, elem.scrollHeight - elem.clientHeight);
+      sinon.assert.called(spy.onScroll);
+      sinon.assert.notCalled(spy.fetchData);
+      scrollBlock.props.itemsCount.should.equal(10);
     });
   });
 
