@@ -34,7 +34,7 @@ global.Promise = Promise;
 global.React = React;
 global.chai = chai;
 global.expect = chai.expect;
-chai.should();
+global.should = chai.should();
 global.sinon = sinon;
 global.$$ = (html) => cheerio.load(html);
 global.server = server;

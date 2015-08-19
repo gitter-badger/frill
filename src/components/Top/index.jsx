@@ -1,6 +1,6 @@
 import React from 'react';
 import {StoreWatchComponent} from 'frill-core';
-import ScrollBlock from '../ScrollBlock';
+import ScrollBlock from '../ScrollBlock/index.jsx';
 
 /**
  * Top component
