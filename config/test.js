@@ -7,7 +7,8 @@ export default {
     password: 'password',
     options: {
       dialect: 'sqlite',
-      storage: './db/development.sqlite',
+      storage: './.db/test.sqlite',
+      logging: false,
     },
   },
   /** @see {AmazonWebServices} http://aws.amazon.com/ */

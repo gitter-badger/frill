@@ -145,22 +145,95 @@
           "line": 2,
           "column": 28
         }
+      }
+    },
+    {
+      "type": "ImportDeclaration",
+      "specifiers": [
+        {
+          "type": "ImportDefaultSpecifier",
+          "local": {
+            "type": "Identifier",
+            "name": "posts",
+            "range": [
+              80,
+              85
+            ],
+            "loc": {
+              "start": {
+                "line": 3,
+                "column": 7
+              },
+              "end": {
+                "line": 3,
+                "column": 12
+              }
+            }
+          },
+          "range": [
+            80,
+            85
+          ],
+          "loc": {
+            "start": {
+              "line": 3,
+              "column": 7
+            },
+            "end": {
+              "line": 3,
+              "column": 12
+            }
+          }
+        }
+      ],
+      "source": {
+        "type": "Literal",
+        "value": "./Posts",
+        "raw": "'./Posts'",
+        "range": [
+          91,
+          100
+        ],
+        "loc": {
+          "start": {
+            "line": 3,
+            "column": 18
+          },
+          "end": {
+            "line": 3,
+            "column": 27
+          }
+        }
+      },
+      "range": [
+        73,
+        101
+      ],
+      "loc": {
+        "start": {
+          "line": 3,
+          "column": 0
+        },
+        "end": {
+          "line": 3,
+          "column": 28
+        }
       },
       "trailingComments": [
         {
           "type": "Block",
-          "value": "*\n * List of all MySQL models\n * @see {@link Users}\n * @external {Sequelize} http://docs.sequelizejs.com/en/latest\n ",
+          "value": "*\n * List of all Sequelize models\n * @see {@link Users}\n * @see {@link Posts}\n * @external {Sequelize} http://docs.sequelizejs.com/en/latest\n ",
           "range": [
-            74,
-            194
+            103,
+            249
           ],
           "loc": {
             "start": {
-              "line": 4,
+              "line": 5,
               "column": 0
             },
             "end": {
-              "line": 8,
+              "line": 10,
               "column": 3
             }
           }
@@ -174,19 +247,19 @@
           "type": "VariableDeclarator",
           "id": {
             "type": "Identifier",
-            "name": "MySQLModels",
+            "name": "mysql",
             "range": [
-              201,
-              212
+              256,
+              261
             ],
             "loc": {
               "start": {
-                "line": 9,
+                "line": 11,
                 "column": 6
               },
               "end": {
-                "line": 9,
-                "column": 17
+                "line": 11,
+                "column": 11
               }
             }
           },
@@ -199,16 +272,16 @@
                   "type": "Identifier",
                   "name": "Users",
                   "range": [
-                    219,
-                    224
+                    268,
+                    273
                   ],
                   "loc": {
                     "start": {
-                      "line": 10,
+                      "line": 12,
                       "column": 2
                     },
                     "end": {
-                      "line": 10,
+                      "line": 12,
                       "column": 7
                     }
                   }
@@ -219,16 +292,16 @@
                     "type": "Identifier",
                     "name": "users",
                     "range": [
-                      226,
-                      231
+                      275,
+                      280
                     ],
                     "loc": {
                       "start": {
-                        "line": 10,
+                        "line": 12,
                         "column": 9
                       },
                       "end": {
-                        "line": 10,
+                        "line": 12,
                         "column": 14
                       }
                     }
@@ -238,32 +311,32 @@
                       "type": "Identifier",
                       "name": "Sequelize",
                       "range": [
-                        232,
-                        241
+                        281,
+                        290
                       ],
                       "loc": {
                         "start": {
-                          "line": 10,
+                          "line": 12,
                           "column": 15
                         },
                         "end": {
-                          "line": 10,
+                          "line": 12,
                           "column": 24
                         }
                       }
                     }
                   ],
                   "range": [
-                    226,
-                    242
+                    275,
+                    291
                   ],
                   "loc": {
                     "start": {
-                      "line": 10,
+                      "line": 12,
                       "column": 9
                     },
                     "end": {
-                      "line": 10,
+                      "line": 12,
                       "column": 25
                     }
                   }
@@ -273,47 +346,141 @@
                 "shorthand": false,
                 "computed": false,
                 "range": [
-                  219,
-                  242
+                  268,
+                  291
                 ],
                 "loc": {
                   "start": {
-                    "line": 10,
+                    "line": 12,
                     "column": 2
                   },
                   "end": {
-                    "line": 10,
+                    "line": 12,
+                    "column": 25
+                  }
+                }
+              },
+              {
+                "type": "Property",
+                "key": {
+                  "type": "Identifier",
+                  "name": "Posts",
+                  "range": [
+                    295,
+                    300
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 13,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 13,
+                      "column": 7
+                    }
+                  }
+                },
+                "value": {
+                  "type": "CallExpression",
+                  "callee": {
+                    "type": "Identifier",
+                    "name": "posts",
+                    "range": [
+                      302,
+                      307
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 13,
+                        "column": 9
+                      },
+                      "end": {
+                        "line": 13,
+                        "column": 14
+                      }
+                    }
+                  },
+                  "arguments": [
+                    {
+                      "type": "Identifier",
+                      "name": "Sequelize",
+                      "range": [
+                        308,
+                        317
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 13,
+                          "column": 15
+                        },
+                        "end": {
+                          "line": 13,
+                          "column": 24
+                        }
+                      }
+                    }
+                  ],
+                  "range": [
+                    302,
+                    318
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 13,
+                      "column": 9
+                    },
+                    "end": {
+                      "line": 13,
+                      "column": 25
+                    }
+                  }
+                },
+                "kind": "init",
+                "method": false,
+                "shorthand": false,
+                "computed": false,
+                "range": [
+                  295,
+                  318
+                ],
+                "loc": {
+                  "start": {
+                    "line": 13,
+                    "column": 2
+                  },
+                  "end": {
+                    "line": 13,
                     "column": 25
                   }
                 }
               }
             ],
             "range": [
-              215,
-              245
+              264,
+              321
             ],
             "loc": {
               "start": {
-                "line": 9,
-                "column": 20
+                "line": 11,
+                "column": 14
               },
               "end": {
-                "line": 11,
+                "line": 14,
                 "column": 1
               }
             }
           },
           "range": [
-            201,
-            245
+            256,
+            321
           ],
           "loc": {
             "start": {
-              "line": 9,
+              "line": 11,
               "column": 6
             },
             "end": {
-              "line": 11,
+              "line": 14,
               "column": 1
             }
           }
@@ -321,16 +488,16 @@
       ],
       "kind": "const",
       "range": [
-        195,
-        246
+        250,
+        322
       ],
       "loc": {
         "start": {
-          "line": 9,
+          "line": 11,
           "column": 0
         },
         "end": {
-          "line": 11,
+          "line": 14,
           "column": 2
         }
       },
@@ -342,34 +509,34 @@
       "type": "Identifier",
       "declaration": {
         "type": "Identifier",
-        "name": "MySQLModels",
+        "name": "mysql",
         "range": [
-          263,
-          274
+          339,
+          344
         ],
         "loc": {
           "start": {
-            "line": 13,
+            "line": 16,
             "column": 15
           },
           "end": {
-            "line": 13,
-            "column": 26
+            "line": 16,
+            "column": 20
           }
         }
       },
       "range": [
-        248,
-        275
+        324,
+        345
       ],
       "loc": {
         "start": {
-          "line": 13,
+          "line": 16,
           "column": 0
         },
         "end": {
-          "line": 13,
-          "column": 27
+          "line": 16,
+          "column": 21
         }
       },
       "name": "_",
@@ -385,19 +552,19 @@
             "type": "VariableDeclarator",
             "id": {
               "type": "Identifier",
-              "name": "MySQLModels",
+              "name": "mysql",
               "range": [
-                201,
-                212
+                256,
+                261
               ],
               "loc": {
                 "start": {
-                  "line": 9,
+                  "line": 11,
                   "column": 6
                 },
                 "end": {
-                  "line": 9,
-                  "column": 17
+                  "line": 11,
+                  "column": 11
                 }
               }
             },
@@ -410,16 +577,16 @@
                     "type": "Identifier",
                     "name": "Users",
                     "range": [
-                      219,
-                      224
+                      268,
+                      273
                     ],
                     "loc": {
                       "start": {
-                        "line": 10,
+                        "line": 12,
                         "column": 2
                       },
                       "end": {
-                        "line": 10,
+                        "line": 12,
                         "column": 7
                       }
                     }
@@ -430,16 +597,16 @@
                       "type": "Identifier",
                       "name": "users",
                       "range": [
-                        226,
-                        231
+                        275,
+                        280
                       ],
                       "loc": {
                         "start": {
-                          "line": 10,
+                          "line": 12,
                           "column": 9
                         },
                         "end": {
-                          "line": 10,
+                          "line": 12,
                           "column": 14
                         }
                       }
@@ -449,32 +616,32 @@
                         "type": "Identifier",
                         "name": "Sequelize",
                         "range": [
-                          232,
-                          241
+                          281,
+                          290
                         ],
                         "loc": {
                           "start": {
-                            "line": 10,
+                            "line": 12,
                             "column": 15
                           },
                           "end": {
-                            "line": 10,
+                            "line": 12,
                             "column": 24
                           }
                         }
                       }
                     ],
                     "range": [
-                      226,
-                      242
+                      275,
+                      291
                     ],
                     "loc": {
                       "start": {
-                        "line": 10,
+                        "line": 12,
                         "column": 9
                       },
                       "end": {
-                        "line": 10,
+                        "line": 12,
                         "column": 25
                       }
                     }
@@ -484,47 +651,141 @@
                   "shorthand": false,
                   "computed": false,
                   "range": [
-                    219,
-                    242
+                    268,
+                    291
                   ],
                   "loc": {
                     "start": {
-                      "line": 10,
+                      "line": 12,
                       "column": 2
                     },
                     "end": {
-                      "line": 10,
+                      "line": 12,
+                      "column": 25
+                    }
+                  }
+                },
+                {
+                  "type": "Property",
+                  "key": {
+                    "type": "Identifier",
+                    "name": "Posts",
+                    "range": [
+                      295,
+                      300
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 13,
+                        "column": 2
+                      },
+                      "end": {
+                        "line": 13,
+                        "column": 7
+                      }
+                    }
+                  },
+                  "value": {
+                    "type": "CallExpression",
+                    "callee": {
+                      "type": "Identifier",
+                      "name": "posts",
+                      "range": [
+                        302,
+                        307
+                      ],
+                      "loc": {
+                        "start": {
+                          "line": 13,
+                          "column": 9
+                        },
+                        "end": {
+                          "line": 13,
+                          "column": 14
+                        }
+                      }
+                    },
+                    "arguments": [
+                      {
+                        "type": "Identifier",
+                        "name": "Sequelize",
+                        "range": [
+                          308,
+                          317
+                        ],
+                        "loc": {
+                          "start": {
+                            "line": 13,
+                            "column": 15
+                          },
+                          "end": {
+                            "line": 13,
+                            "column": 24
+                          }
+                        }
+                      }
+                    ],
+                    "range": [
+                      302,
+                      318
+                    ],
+                    "loc": {
+                      "start": {
+                        "line": 13,
+                        "column": 9
+                      },
+                      "end": {
+                        "line": 13,
+                        "column": 25
+                      }
+                    }
+                  },
+                  "kind": "init",
+                  "method": false,
+                  "shorthand": false,
+                  "computed": false,
+                  "range": [
+                    295,
+                    318
+                  ],
+                  "loc": {
+                    "start": {
+                      "line": 13,
+                      "column": 2
+                    },
+                    "end": {
+                      "line": 13,
                       "column": 25
                     }
                   }
                 }
               ],
               "range": [
-                215,
-                245
+                264,
+                321
               ],
               "loc": {
                 "start": {
-                  "line": 9,
-                  "column": 20
+                  "line": 11,
+                  "column": 14
                 },
                 "end": {
-                  "line": 11,
+                  "line": 14,
                   "column": 1
                 }
               }
             },
             "range": [
-              201,
-              245
+              256,
+              321
             ],
             "loc": {
               "start": {
-                "line": 9,
+                "line": 11,
                 "column": 6
               },
               "end": {
-                "line": 11,
+                "line": 14,
                 "column": 1
               }
             }
@@ -532,34 +793,34 @@
         ],
         "kind": "const",
         "range": [
-          195,
-          246
+          250,
+          322
         ],
         "loc": {
           "start": {
-            "line": 9,
+            "line": 11,
             "column": 0
           },
           "end": {
-            "line": 11,
+            "line": 14,
             "column": 2
           }
         },
         "leadingComments": [
           {
             "type": "Block",
-            "value": "*\n * List of all MySQL models\n * @see {@link Users}\n * @external {Sequelize} http://docs.sequelizejs.com/en/latest\n ",
+            "value": "*\n * List of all Sequelize models\n * @see {@link Users}\n * @see {@link Posts}\n * @external {Sequelize} http://docs.sequelizejs.com/en/latest\n ",
             "range": [
-              74,
-              194
+              103,
+              249
             ],
             "loc": {
               "start": {
-                "line": 4,
+                "line": 5,
                 "column": 0
               },
               "end": {
-                "line": 8,
+                "line": 10,
                 "column": 3
               }
             }
@@ -568,17 +829,17 @@
         "trailingComments": []
       },
       "range": [
-        248,
-        275
+        324,
+        345
       ],
       "loc": {
         "start": {
-          "line": 13,
+          "line": 16,
           "column": 0
         },
         "end": {
-          "line": 13,
-          "column": 27
+          "line": 16,
+          "column": 21
         }
       }
     }
@@ -586,7 +847,7 @@
   "sourceType": "module",
   "range": [
     0,
-    275
+    345
   ],
   "loc": {
     "start": {
@@ -594,25 +855,25 @@
       "column": 0
     },
     "end": {
-      "line": 13,
-      "column": 27
+      "line": 16,
+      "column": 21
     }
   },
   "comments": [
     {
       "type": "Block",
-      "value": "*\n * List of all MySQL models\n * @see {@link Users}\n * @external {Sequelize} http://docs.sequelizejs.com/en/latest\n ",
+      "value": "*\n * List of all Sequelize models\n * @see {@link Users}\n * @see {@link Posts}\n * @external {Sequelize} http://docs.sequelizejs.com/en/latest\n ",
       "range": [
-        74,
-        194
+        103,
+        249
       ],
       "loc": {
         "start": {
-          "line": 4,
+          "line": 5,
           "column": 0
         },
         "end": {
-          "line": 8,
+          "line": 10,
           "column": 3
         }
       }

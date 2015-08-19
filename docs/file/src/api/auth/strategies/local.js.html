@@ -80,6 +80,8 @@
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-localStrategy">localStrategy</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-loginComponent">loginComponent</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-pageComponent">pageComponent</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-posts">posts</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-posts">posts</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-routePrefixer">routePrefixer</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-routerContainer">routerContainer</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-routes">routes</a></span></li>
@@ -117,6 +119,10 @@ const authenticate = (request, reply) =&gt; {
 
 const payload = (request, reply) =&gt; {
   // construct search query
+  if (!request.payload) {
+    return reply(Boom.badRequest(&apos;invalid username or password&apos;));
+  }
+
   const query = {
     name: request.payload.username,
     password: request.payload.password,

@@ -80,6 +80,8 @@
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-localStrategy">localStrategy</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-loginComponent">loginComponent</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-pageComponent">pageComponent</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-posts">posts</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-posts">posts</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-routePrefixer">routePrefixer</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-routerContainer">routerContainer</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-routes">routes</a></span></li>
@@ -104,9 +106,12 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/api/v1/index.js</h1>
-<pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">import localAuth from &apos;./localAuth&apos;;
+<pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">import {routePrefixer} from &apos;../../helpers&apos;;
+import Models from &apos;../../models&apos;;
+
+import localAuth from &apos;./localAuth&apos;;
 import hello from &apos;./hello&apos;;
-import {routePrefixer} from &apos;../../helpers&apos;;
+import posts from &apos;./posts&apos;;
 
 /**
  * Mount all api v1 routes
@@ -114,7 +119,8 @@ import {routePrefixer} from &apos;../../helpers&apos;;
 const apiV1 = (server) =&gt; {
   return routePrefixer(&apos;/v1&apos;, [
     ...localAuth,
-    ...hello(server),
+    ...hello(server, Models),
+    ...posts(server, Models),
   ]);
 };
 

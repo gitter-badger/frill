@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <base data-ice="baseUrl" href="../../../../">
-  <title data-ice="title">src/models/MySQL/index.js | FrillJS API Document</title>
+  <title data-ice="title">src/models/mysql/index.js | FrillJS API Document</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -80,6 +80,8 @@
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-localStrategy">localStrategy</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-loginComponent">loginComponent</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-pageComponent">pageComponent</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-posts">posts</a></span></li>
+<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-posts">posts</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-routePrefixer">routePrefixer</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-routerContainer">routerContainer</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-routes">routes</a></span></li>
@@ -103,20 +105,23 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">src/models/MySQL/index.js</h1>
+<div class="content" data-ice="content"><h1 data-ice="title">src/models/mysql/index.js</h1>
 <pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">import Sequelize from &apos;../setup_sequelize&apos;;
 import users from &apos;./Users&apos;;
+import posts from &apos;./Posts&apos;;
 
 /**
- * List of all MySQL models
+ * List of all Sequelize models
  * @see {@link Users}
+ * @see {@link Posts}
  * @external {Sequelize} http://docs.sequelizejs.com/en/latest
  */
-const MySQLModels = {
+const mysql = {
   Users: users(Sequelize),
+  Posts: posts(Sequelize),
 };
 
-export default MySQLModels;
+export default mysql;
 </code></pre>
 </div>
 

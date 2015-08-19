@@ -107,6 +107,12 @@ const createSandboxSpy = (object, methods) => {
   return _spy;
 };
 
+const convertToPlainObject = (object) => {
+  return new Promise((resolve) => {
+    resolve(JSON.parse(JSON.stringify(object)));
+  });
+};
+
 
 export default {
   inject,
@@ -115,4 +121,5 @@ export default {
   mockSession,
   injectAuthenticated,
   createSandboxSpy,
+  convertToPlainObject,
 };

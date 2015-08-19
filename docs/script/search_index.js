@@ -336,6 +336,18 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
+    "frill/src/api/v1/posts.js~posts",
+    "variable/index.html#static-variable-posts",
+    "<span>posts</span> <span class=\"search-result-import-path\">frill/src/api/v1/posts.js</span>",
+    "variable"
+  ],
+  [
+    "frill/src/models/mysql/posts.js~posts",
+    "variable/index.html#static-variable-posts",
+    "<span>posts</span> <span class=\"search-result-import-path\">frill/src/models/mysql/Posts.js</span>",
+    "variable"
+  ],
+  [
     "frill/src/helpers/routeprefixer.js~routeprefixer",
     "variable/index.html#static-variable-routePrefixer",
     "<span>routePrefixer</span> <span class=\"search-result-import-path\">frill/src/helpers/routePrefixer.js</span>",
@@ -378,9 +390,9 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "frill/src/models/sequelizemodels/users.js~users",
+    "frill/src/models/mysql/users.js~users",
     "variable/index.html#static-variable-users",
-    "<span>users</span> <span class=\"search-result-import-path\">frill/src/models/SequelizeModels/Users.js</span>",
+    "<span>users</span> <span class=\"search-result-import-path\">frill/src/models/mysql/Users.js</span>",
     "variable"
   ],
   [
@@ -1110,6 +1122,12 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/api/v1/posts.js",
+    "file/src/api/v1/posts.js.html",
+    "src/api/v1/posts.js",
+    "file"
+  ],
+  [
     "src/bootstrap.js",
     "file/src/bootstrap.js.html",
     "src/bootstrap.js",
@@ -1356,6 +1374,18 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "src/helpers/restapi.js",
+    "file/src/helpers/RestApi.js.html",
+    "src/helpers/RestApi.js",
+    "file"
+  ],
+  [
+    "src/helpers/restapischemes/sequelize.js",
+    "file/src/helpers/RestApiSchemes/sequelize.js.html",
+    "src/helpers/RestApiSchemes/sequelize.js",
+    "file"
+  ],
+  [
     "src/helpers/aws.js",
     "file/src/helpers/aws.js.html",
     "src/helpers/aws.js",
@@ -1386,28 +1416,34 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
-    "src/models/sequelizemodels/users.js",
-    "file/src/models/SequelizeModels/Users.js.html",
-    "src/models/SequelizeModels/Users.js",
-    "file"
-  ],
-  [
-    "src/models/sequelizemodels/index.js",
-    "file/src/models/SequelizeModels/index.js.html",
-    "src/models/SequelizeModels/index.js",
-    "file"
-  ],
-  [
-    "src/models/sequelizemodels/index.js~sequelize",
-    "external/index.html",
-    "src/models/SequelizeModels/index.js~Sequelize",
-    "external"
-  ],
-  [
     "src/models/index.js",
     "file/src/models/index.js.html",
     "src/models/index.js",
     "file"
+  ],
+  [
+    "src/models/mysql/posts.js",
+    "file/src/models/mysql/Posts.js.html",
+    "src/models/mysql/Posts.js",
+    "file"
+  ],
+  [
+    "src/models/mysql/users.js",
+    "file/src/models/mysql/Users.js.html",
+    "src/models/mysql/Users.js",
+    "file"
+  ],
+  [
+    "src/models/mysql/index.js",
+    "file/src/models/mysql/index.js.html",
+    "src/models/mysql/index.js",
+    "file"
+  ],
+  [
+    "src/models/mysql/index.js~sequelize",
+    "external/index.html",
+    "src/models/mysql/index.js~Sequelize",
+    "external"
   ],
   [
     "src/models/setup_sequelize.js",
