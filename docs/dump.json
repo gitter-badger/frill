@@ -354,18 +354,6 @@
     "kind": "file",
     "static": true,
     "variation": null,
-    "name": "src/api/Holiday.js",
-    "memberof": null,
-    "longname": "src/api/Holiday.js",
-    "access": null,
-    "description": null,
-    "lineNumber": 0,
-    "content": ""
-  },
-  {
-    "kind": "file",
-    "static": true,
-    "variation": null,
     "name": "src/api/auth/authHandlers.js",
     "memberof": null,
     "longname": "src/api/auth/authHandlers.js",
@@ -1048,7 +1036,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Joi from 'joi';\nimport Holiday from '../Holiday';\n\n/**\n * REST API - posts\n */\nconst posts = (server, Models) => {\n  const {mysql} = Models;\n\n  // Holiday.configure({\n  //   tags: ['api'],\n  // });\n\n  const PostApi = new Holiday('sequelize', 'posts', mysql.Posts);\n\n\n\n  PostApi.validate.save({\n    title: Joi.string().required(),\n    content: Joi.string().required(),\n  });\n\n  PostApi.validate.update({\n    title: Joi.string(),\n    content: Joi.string(),\n  });\n\n  return PostApi.all();\n};\n\nexport default posts;\n"
+    "content": "import Joi from 'joi';\nimport Holiday from '../../helpers/RestApi';\n\n/**\n * REST API - posts\n */\nconst posts = (server, Models) => {\n  const {mysql} = Models;\n\n  const PostApi = new Holiday('sequelize', 'posts', mysql.Posts);\n\n  // TODO: write relations here for example\n  PostApi.has('test', (Model, response, done) => {\n    done(null, {test: 'test'});\n  });\n\n  PostApi.validate.save({\n    title: Joi.string().required(),\n    content: Joi.string().required(),\n  });\n\n  PostApi.validate.update({\n    title: Joi.string(),\n    content: Joi.string(),\n  });\n\n  return PostApi.all();\n};\n\nexport default posts;\n"
   },
   {
     "kind": "variable",
@@ -2155,7 +2143,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Holiday from 'hapi-holiday';\nimport sequelizeScheme from 'RestApiSchemes/sequelize';\n\nHoliday = sequelizeScheme(Holiday);\n\nexport default Holiday;\n"
+    "content": "import Holiday from 'hapi-holiday';\nimport sequelizeScheme from './RestApiSchemes/sequelize';\n\nsequelizeScheme(Holiday);\n\nexport default Holiday;\n"
   },
   {
     "kind": "file",
@@ -2167,22 +2155,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "export default sequelize = (Holiday) => {\n  Holiday.define('sequelize', {\n    index: (Model, request, done) => {\n      Model.findAll({\n        offset: request.query.offset,\n        limit: request.query.limit,\n      })\n      .then((records) => {\n        done(null, records);\n      })\n      .catch((err) => {\n        done(err, null);\n      });\n    },\n\n    show: (Model, request, done) => {\n      Model.findById(request.params.id)\n      .then((records) => {\n        done(null, records);\n      })\n      .catch((err) => {\n        done(err, null);\n      });\n    },\n\n    save: (Model, request, done) => {\n      Model.create(request.payload).then((result) => {\n        done(null, result);\n      })\n      .catch((err) => {\n        done(err, null);\n      });\n    },\n\n    update: (Model, request, done) => {\n      Model.update(request.payload, {\n        where: {\n          id: request.params.id,\n        },\n      })\n      .then((result) => {\n        done(null, result);\n      })\n      .catch((err) => {\n        done(err, null);\n      });\n    },\n\n    destroy: (Model, request, done) => {\n      Model.destroy({\n        where: {\n          id: request.params.id,\n        },\n      })\n      .then((affected) => {\n        done(null, affected);\n      })\n      .catch((err) => {\n        done(err, null);\n      });\n    },\n  });\n  return Holiday;\n};\n"
-  },
-  {
-    "kind": "variable",
-    "static": true,
-    "variation": null,
-    "name": "sequelize",
-    "memberof": "src/helpers/RestApiSchemes/sequelize.js",
-    "longname": "src/helpers/RestApiSchemes/sequelize.js~sequelize",
-    "access": null,
-    "export": true,
-    "importPath": "frill/src/helpers/RestApiSchemes/sequelize.js",
-    "importStyle": "sequelize",
-    "description": null,
-    "lineNumber": 1,
-    "undocument": true
+    "content": "export default (Holiday) => {\n  Holiday.define('sequelize', {\n    index: (Model, request, done) => {\n      Model.findAll({\n        offset: request.query.offset,\n        limit: request.query.limit,\n      })\n      .then((records) => {\n        done(null, records);\n      })\n      .catch((err) => {\n        done(err, null);\n      });\n    },\n\n    show: (Model, request, done) => {\n      Model.findById(request.params.id)\n      .then((records) => {\n        done(null, records);\n      })\n      .catch((err) => {\n        done(err, null);\n      });\n    },\n\n    save: (Model, request, done) => {\n      Model.create(request.payload).then((result) => {\n        done(null, result);\n      })\n      .catch((err) => {\n        done(err, null);\n      });\n    },\n\n    update: (Model, request, done) => {\n      Model.update(request.payload, {\n        where: {\n          id: request.params.id,\n        },\n      })\n      .then((result) => {\n        done(null, result);\n      })\n      .catch((err) => {\n        done(err, null);\n      });\n    },\n\n    destroy: (Model, request, done) => {\n      Model.destroy({\n        where: {\n          id: request.params.id,\n        },\n      })\n      .then((affected) => {\n        done(null, affected);\n      })\n      .catch((err) => {\n        done(err, null);\n      });\n    },\n  });\n};\n"
   },
   {
     "kind": "file",

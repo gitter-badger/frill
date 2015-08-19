@@ -1,5 +1,5 @@
 import Holiday from 'hapi-holiday';
-import sequelizeScheme from './RestApiSchemes/sequelize';
+import sequelizeScheme from './HolidaySchemes/sequelize';
 
 sequelizeScheme(Holiday);
 

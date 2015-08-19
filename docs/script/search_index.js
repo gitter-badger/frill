@@ -372,12 +372,6 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
-    "frill/src/helpers/restapischemes/sequelize.js~sequelize",
-    "variable/index.html#static-variable-sequelize",
-    "<span>sequelize</span> <span class=\"search-result-import-path\">frill/src/helpers/RestApiSchemes/sequelize.js</span>",
-    "variable"
-  ],
-  [
     "frill/src/components/top/index.jsx~topcomponent",
     "variable/index.html#static-variable-topComponent",
     "<span>topComponent</span> <span class=\"search-result-import-path\">frill/src/components/Top/index.jsx</span>",
@@ -1029,12 +1023,6 @@ window.esdocSearchIndex = [
     "src/actions/index.js",
     "file/src/actions/index.js.html",
     "src/actions/index.js",
-    "file"
-  ],
-  [
-    "src/api/holiday.js",
-    "file/src/api/Holiday.js.html",
-    "src/api/Holiday.js",
     "file"
   ],
   [

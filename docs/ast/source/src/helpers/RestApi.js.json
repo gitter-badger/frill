@@ -115,11 +115,11 @@
       ],
       "source": {
         "type": "Literal",
-        "value": "RestApiSchemes/sequelize",
-        "raw": "'RestApiSchemes/sequelize'",
+        "value": "./RestApiSchemes/sequelize",
+        "raw": "'./RestApiSchemes/sequelize'",
         "range": [
           64,
-          90
+          92
         ],
         "loc": {
           "start": {
@@ -128,13 +128,13 @@
           },
           "end": {
             "line": 2,
-            "column": 54
+            "column": 56
           }
         }
       },
       "range": [
         36,
-        91
+        93
       ],
       "loc": {
         "start": {
@@ -143,21 +143,20 @@
         },
         "end": {
           "line": 2,
-          "column": 55
+          "column": 57
         }
       }
     },
     {
       "type": "ExpressionStatement",
       "expression": {
-        "type": "AssignmentExpression",
-        "operator": "=",
-        "left": {
+        "type": "CallExpression",
+        "callee": {
           "type": "Identifier",
-          "name": "Holiday",
+          "name": "sequelizeScheme",
           "range": [
-            93,
-            100
+            95,
+            110
           ],
           "loc": {
             "start": {
@@ -166,68 +165,33 @@
             },
             "end": {
               "line": 4,
-              "column": 7
+              "column": 15
             }
           }
         },
-        "right": {
-          "type": "CallExpression",
-          "callee": {
+        "arguments": [
+          {
             "type": "Identifier",
-            "name": "sequelizeScheme",
+            "name": "Holiday",
             "range": [
-              103,
+              111,
               118
             ],
             "loc": {
               "start": {
                 "line": 4,
-                "column": 10
+                "column": 16
               },
               "end": {
                 "line": 4,
-                "column": 25
+                "column": 23
               }
-            }
-          },
-          "arguments": [
-            {
-              "type": "Identifier",
-              "name": "Holiday",
-              "range": [
-                119,
-                126
-              ],
-              "loc": {
-                "start": {
-                  "line": 4,
-                  "column": 26
-                },
-                "end": {
-                  "line": 4,
-                  "column": 33
-                }
-              }
-            }
-          ],
-          "range": [
-            103,
-            127
-          ],
-          "loc": {
-            "start": {
-              "line": 4,
-              "column": 10
-            },
-            "end": {
-              "line": 4,
-              "column": 34
             }
           }
-        },
+        ],
         "range": [
-          93,
-          127
+          95,
+          119
         ],
         "loc": {
           "start": {
@@ -236,13 +200,13 @@
           },
           "end": {
             "line": 4,
-            "column": 34
+            "column": 24
           }
         }
       },
       "range": [
-        93,
-        128
+        95,
+        120
       ],
       "loc": {
         "start": {
@@ -251,7 +215,7 @@
         },
         "end": {
           "line": 4,
-          "column": 35
+          "column": 25
         }
       }
     },
@@ -261,8 +225,8 @@
         "type": "Identifier",
         "name": "Holiday",
         "range": [
-          145,
-          152
+          137,
+          144
         ],
         "loc": {
           "start": {
@@ -278,8 +242,8 @@
         "trailingComments": []
       },
       "range": [
-        130,
-        153
+        122,
+        145
       ],
       "loc": {
         "start": {
@@ -296,7 +260,7 @@
   "sourceType": "module",
   "range": [
     0,
-    153
+    145
   ],
   "loc": {
     "start": {

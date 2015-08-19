@@ -86,7 +86,6 @@
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-routerContainer">routerContainer</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-routes">routes</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-scrollBlockComponent">scrollBlockComponent</a></span></li>
-<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-sequelize">sequelize</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-topComponent">topComponent</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-twitterAuthRoutes">twitterAuthRoutes</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-twitterStrategy">twitterStrategy</a></span></li>
@@ -107,7 +106,7 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/helpers/RestApiSchemes/sequelize.js</h1>
-<pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">export default sequelize = (Holiday) =&gt; {
+<pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">export default (Holiday) =&gt; {
   Holiday.define(&apos;sequelize&apos;, {
     index: (Model, request, done) =&gt; {
       Model.findAll({
@@ -169,7 +168,6 @@
       });
     },
   });
-  return Holiday;
 };
 </code></pre>
 </div>

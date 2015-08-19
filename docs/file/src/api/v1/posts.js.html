@@ -86,7 +86,6 @@
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-routerContainer">routerContainer</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-routes">routes</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-scrollBlockComponent">scrollBlockComponent</a></span></li>
-<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-sequelize">sequelize</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-topComponent">topComponent</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-twitterAuthRoutes">twitterAuthRoutes</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-twitterStrategy">twitterStrategy</a></span></li>
@@ -108,7 +107,7 @@
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/api/v1/posts.js</h1>
 <pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">import Joi from &apos;joi&apos;;
-import Holiday from &apos;../Holiday&apos;;
+import Holiday from &apos;../../helpers/RestApi&apos;;
 
 /**
  * REST API - posts
@@ -116,13 +115,12 @@ import Holiday from &apos;../Holiday&apos;;
 const posts = (server, Models) =&gt; {
   const {mysql} = Models;
 
-  // Holiday.configure({
-  //   tags: [&apos;api&apos;],
-  // });
-
   const PostApi = new Holiday(&apos;sequelize&apos;, &apos;posts&apos;, mysql.Posts);
 
-
+  // TODO: write relations here for example
+  PostApi.has(&apos;test&apos;, (Model, response, done) =&gt; {
+    done(null, {test: &apos;test&apos;});
+  });
 
   PostApi.validate.save({
     title: Joi.string().required(),
