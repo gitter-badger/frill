@@ -13,6 +13,7 @@ const mockStoreEvent = (action, actionType, spy) => {
       this.actions = listenTo;
     }
   }
+
   const stores = { CheckStore: new CheckStore() };
   return attach(stores, actions);
 };

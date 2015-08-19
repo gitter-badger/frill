@@ -1,4 +1,4 @@
-import {mockDispatch} from '../frillHelper';
+import {mockDispatch} from '../baseHelper';
 import ExampleStore from '../../src/stores/Example';
 import {BaseStore} from 'frill-core';
 import scrollData from '../../src/fixtures/testScrollItemsData';

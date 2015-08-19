@@ -1,5 +1,5 @@
 import posts from '../../../src/api/v1/posts';
-import {inject, convertToPlainObject} from '../../frillHelper';
+import {inject, convertToPlainObject} from '../../baseHelper';
 import {routePrefixer} from '../../../src/helpers';
 import sequelize from '../../../src/models/setup_sequelize';
 import Models from '../../../src/models';

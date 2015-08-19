@@ -27,8 +27,8 @@ export default (gulp, $, argv, path) => {
       .pipe($.mocha({
         timeout: 5000,
       }))
-      .once('error', () => {
-        process.exit(1);
+      .once('error', (err) => {
+        throw err;
       })
       .once('end', () => {
         process.exit();

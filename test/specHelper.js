@@ -5,7 +5,7 @@ import chai from 'chai';
 import sinon from 'sinon';
 import cheerio from 'cheerio';
 import Hapi from 'hapi';
-import {mockSession} from './frillHelper';
+import {mockSession} from './baseHelper';
 import Authentication from 'bell';
 import Strategies from '../src/api/auth/strategies';
 

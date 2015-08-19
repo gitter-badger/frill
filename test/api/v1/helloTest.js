@@ -1,5 +1,5 @@
 import helloApi from '../../../src/api/v1/hello';
-import {inject, injectAuthenticated} from '../../frillHelper';
+import {inject, injectAuthenticated} from '../../baseHelper';
 import {routePrefixer} from '../../../src/helpers';
 
 server.route(routePrefixer('/api/v1', helloApi()));

@@ -1,4 +1,4 @@
-import {mockStoreEvent} from '../frillHelper';
+import {mockStoreEvent} from '../baseHelper';
 import ExampleAction from '../../src/actions/Example';
 import {BaseAction} from 'frill-core';
 import scrollData from '../../src/fixtures/testScrollItemsData';

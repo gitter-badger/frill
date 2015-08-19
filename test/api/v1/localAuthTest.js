@@ -1,6 +1,6 @@
 import localAuthApi from '../../../src/api/auth/local';
 import {routePrefixer} from '../../../src/helpers';
-import {inject} from '../../frillHelper';
+import {inject} from '../../baseHelper';
 
 server.route(routePrefixer('/api', localAuthApi));
 

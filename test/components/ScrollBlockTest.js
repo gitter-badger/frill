@@ -1,5 +1,5 @@
 // import React from 'react/addons';
-import {createSandboxSpy} from '../frillHelper';
+import {createSandboxSpy} from '../baseHelper';
 import ScrollBlock from '../../src/components/ScrollBlock/index.jsx';
 const TestUtils = React.addons.TestUtils;
 import ExeEnv from 'react/lib/ExecutionEnvironment';
