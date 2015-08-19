@@ -16,14 +16,14 @@ import includeAll from 'include-all';
 import _argv from 'minimist';
 import {each as _each} from 'lodash';
 import {isFunction as _isFunction} from 'lodash';
-import _$ from 'gulp-load-plugins';
+import plugins from 'gulp-load-plugins';
 import runSequence from 'run-sequence';
 import del from 'del';
 import webpack from 'webpack-stream';
 import browserSync from 'browser-sync';
 let argv = _argv;
 argv = _argv(process.argv.slice(2));
-const $ = _$();
+const $ = plugins();
 
 /**
  * Load all gulp plugins without 'gulp-' prefix.

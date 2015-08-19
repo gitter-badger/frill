@@ -1,6 +1,6 @@
 import React from 'react';
 import {Route, DefaultRoute, NotFoundRoute} from 'react-router';
-import C from './components';
+import Components from './components';
 
 /**
  * Routes for components
@@ -8,12 +8,12 @@ import C from './components';
  */
 const componentRoutes = () => {
   return (
-    <Route handler={C.Page}>
-      <Route name="app" path="/" handler={C.App}>
-        <DefaultRoute name="top" handler={C.Top} />
-        <Route name="login" handler={C.Login} />
+    <Route handler={Components.Page}>
+      <Route name="app" path="/" handler={Components.App}>
+        <DefaultRoute name="top" handler={Components.Top} />
+        <Route name="login" handler={Components.Login} />
       </Route>
-      <NotFoundRoute name="Error" handler={C.Error}/>
+      <NotFoundRoute name="Error" handler={Components.Error}/>
     </Route>
   );
 };

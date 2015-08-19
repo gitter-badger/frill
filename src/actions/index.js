@@ -5,8 +5,8 @@ import Example from './Example';
  * List of all actions to use in app
  */
 const Actions = {
-  Auth: Auth,
-  Example: Example,
+  Auth,
+  Example,
 };
 
 export default Actions;
