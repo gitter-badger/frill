@@ -20,9 +20,9 @@ const testData = [
 describe('/api/v1/posts', () => {
   before((done) => {
     if (process.env.NODE_ENV !== 'test') {
-      throw new Error(
-        'Please set NODE_ENV to \'test\' to ensure your data will not'
-        + ' be modified or deleted by tests.'
+      done(
+        new Error('Please set NODE_ENV to \'test\' to ensure your data will not'
+          + ' be modified or deleted by tests.')
       );
     } else {
       // force sync sequelize before running tests
@@ -34,9 +34,9 @@ describe('/api/v1/posts', () => {
 
   after((done) => {
     if (process.env.NODE_ENV !== 'test') {
-      throw new Error(
-        'Please set NODE_ENV to \'test\' to ensure your data will not'
-        + ' be modified or deleted by tests.'
+      done(
+        new Error('Please set NODE_ENV to \'test\' to ensure your data will not'
+          + ' be modified or deleted by tests.')
       );
     } else {
       // drop
