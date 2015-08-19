@@ -1,7 +1,5 @@
 import {routePrefixer} from '../../helpers';
 import Models from '../../models';
-
-import localAuth from './localAuth';
 import hello from './hello';
 import posts from './posts';
 
@@ -10,7 +8,6 @@ import posts from './posts';
  */
 const apiV1 = (server) => {
   return routePrefixer('/v1', [
-    ...localAuth,
     ...hello(server, Models),
     ...posts(server, Models),
   ]);

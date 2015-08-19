@@ -26,7 +26,7 @@ class AuthAction extends BaseAction {
    * @param {string} password - password from login form
    */
   login(username, password) {
-    this.request.post('/api/v1/login')
+    this.request.post('/api/login')
     .send({ username: username, password: password }).end((err, res) => {
       if (err) {
         console.log(err);

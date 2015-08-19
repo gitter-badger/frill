@@ -1,34 +1,34 @@
-import localAuthApi from '../../../src/api/v1/localAuth';
+import localAuthApi from '../../../src/api/auth/local';
 import {routePrefixer} from '../../../src/helpers';
 import {inject} from '../../frillHelper';
 
-server.route(routePrefixer('/api/v1', localAuthApi));
+server.route(routePrefixer('/api', localAuthApi));
 
-describe('/api/v1/login', () => {
+describe('/api/login', () => {
   describe('/', () => {
     it('should return 404 on GET request', () => {
-      return inject({ method: 'GET', url: '/api/v1/login' })
+      return inject({ method: 'GET', url: '/api/login' })
       .then((response) => {
         response.statusCode.should.equal(404);
       });
     });
 
     it('should return 404 on PUT request', () => {
-      return inject({ method: 'PUT', url: '/api/v1/login' })
+      return inject({ method: 'PUT', url: '/api/login' })
       .then((response) => {
         response.statusCode.should.equal(404);
       });
     });
 
     it('should return 404 on DELETE request', () => {
-      return inject({ method: 'DELETE', url: '/api/v1/login' })
+      return inject({ method: 'DELETE', url: '/api/login' })
       .then((response) => {
         response.statusCode.should.equal(404);
       });
     });
 
     it('should return 400 on POST request without body', () => {
-      return inject({ method: 'POST', url: '/api/v1/login' })
+      return inject({ method: 'POST', url: '/api/login' })
       .then((response) => {
         response.statusCode.should.equal(400);
         response.result.error.should.equal('Bad Request');
@@ -38,7 +38,7 @@ describe('/api/v1/login', () => {
     it('should return 400 on POST request with a invalid payload', () => {
       return inject({
         method: 'POST',
-        url: '/api/v1/login',
+        url: '/api/login',
         payload: {
           username: 'nanopx',
           password: 'helllo',
@@ -53,7 +53,7 @@ describe('/api/v1/login', () => {
     it('should return 200 on POST request with a valid payload', () => {
       return inject({
         method: 'POST',
-        url: '/api/v1/login',
+        url: '/api/login',
         payload: {
           username: 'nanopx',
           password: 'hello',

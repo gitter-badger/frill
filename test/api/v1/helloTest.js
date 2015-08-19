@@ -53,6 +53,13 @@ describe('/api/v1/hello', () => {
 
     it('should return 200 on GET request with token', () => {
       return injectAuthenticated({
+        method: 'POST',
+        url: '/api/login',
+        payload: {
+          username: 'nanopx',
+          password: 'hello',
+        },
+      }, {
         method: 'GET',
         url: '/api/v1/hello/restricted',
       })

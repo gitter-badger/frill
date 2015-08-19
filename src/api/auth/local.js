@@ -1,12 +1,12 @@
 import Joi from 'joi';
-import {authHandler} from './authHandlers';
+import {localAuthHandler} from './authHandlers';
 
 /**
  * Local authentication routes.
  */
 const localAuthRoutes = [{
   method: ['POST'],
-  path: '/local/login',
+  path: '/login',
   config: {
     validate: {
       query: {
@@ -29,7 +29,7 @@ const localAuthRoutes = [{
       },
     },
   },
-  handler: authHandler,
+  handler: localAuthHandler,
 }];
 
 export default localAuthRoutes;

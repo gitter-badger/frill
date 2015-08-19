@@ -98,7 +98,6 @@ api(server);
 
 /**
  * Configure hapi-swagger for API documentation.
- * @todo: disable at production
  */
 const swaggerOptions = {
   apiVersion: pack.version,

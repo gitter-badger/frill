@@ -79,15 +79,8 @@ const mockSession = (server) => {
  * and needs to be changed within your environment.
  * Sets the token to header `Authorization`.
  */
-const injectAuthenticated = (options) => {
-  return inject({
-    method: 'POST',
-    url: '/api/v1/login',
-    payload: {
-      username: 'nanopx',
-      password: 'hello',
-    },
-  }).then((response) => {
+const injectAuthenticated = (authOptions, options) => {
+  return inject(authOptions).then((response) => {
     if (!options.headers) {
       options.headers = {};
     }

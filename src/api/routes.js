@@ -1,4 +1,5 @@
 import auth from './auth';
+import localAuth from './auth/local';
 import apiV1 from './v1';
 import {routePrefixer} from '../helpers';
 
@@ -11,6 +12,7 @@ const routes = (server) => {
 
   // API routes
   const apiRoutes = [
+    ...routePrefixer('/api', localAuth),
     ...routePrefixer('/api', apiV1(server)),
   ];
 
