@@ -5,6 +5,24 @@ Yet another FLUX starter kit
 [![document coverage](https://rawgit.com/nanopx/frill/master/docs/badge.svg)](https://esdoc.org) ![dependencies](https://david-dm.org/nanopx/frill.svg) [![Circle CI](https://circleci.com/gh/nanopx/frill/tree/master.svg?style=shield&circle-token=ea6665c989599be6eddc9ba5f7d8d849b525f83a)](https://circleci.com/gh/nanopx/frill/tree/master)
 ---
 
+## Features
+
+* Creating an isomorphic, FLUX application using [frill-core](https://github.com/nanopx/frill-core),  [React](http://facebook.github.io/react/) and [hapi](http://hapijs.com/)
+* Creating REST API using [hapi-holiday](https://github.com/nanopx/hapi-holiday)
+* Supports local authentication.
+* Supports [JSON Web Tokens](http://jwt.io/) and OAuth for authentication using [hapi-auth-jwt2](https://github.com/dwyl/hapi-auth-jwt2).
+* Watch and automatic builds using [gulp](http://gulpjs.com/), [webpack](https://github.com/webpack/webpack), and [Babel](https://babeljs.io/)
+* Auto-reload using [Browsersync](http://www.browsersync.io/), and [nodemon](https://github.com/remy/nodemon)
+* Documentation using [ESDoc](https://esdoc.org/) and [hapi-swagger](https://github.com/glennjones/hapi-swagger)
+* Lints using [ESLint](http://eslint.org/)
+* Testing with [Mocha](mochajs.org), [Chai](chaijs.com), [Sinon.js](http://sinonjs.org/), and [jsdom](https://github.com/tmpvar/jsdom)
+* Styles using [Stylus](https://learnboost.github.io/stylus/)
+* Example of a model using [Sequelize](docs.sequelizejs.com/en/latest/)
+* and many more!
+
+You can always implement anything yourself.
+
+
 ## Getting Started
 Add [gulp](http://gulpjs.com/)
 ```bash
@@ -16,7 +34,36 @@ $ git clone -b master --single-branch https://github.com/nanopx/frill.git MyNewA
 $ cd MyNewApp && npm install
 ```
 
-### Directory structure
+
+## Run your app
+```
+$ npm start
+```
+or
+```
+$ gulp
+```
+
+## Building your app
+```
+$ npm run build
+```
+or
+```
+$ gulp build
+```
+
+## Testing your app
+```
+$ npm test
+```
+or
+```
+$ NODE_ENV=test gulp test
+```
+> **IMPORTANT:** You should always use 'test' for your NODE_ENV environment variable to make sure that your production/development database will not be affected by tests
+
+## Directory structure
 ```
 .
 ├─ /docs/                   # Documentation files for the project
@@ -52,3 +99,6 @@ $ cd MyNewApp && npm install
 ├─ package.json             # List of 3rd party libraries using NPM
 └─ webpack.config.js        # Webpack configuration for bundling client scripts
 ```
+
+## License
+MIT
