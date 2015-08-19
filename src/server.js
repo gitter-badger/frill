@@ -18,20 +18,22 @@ import _find from 'lodash/collection/find';
 import _extend from 'lodash/object/extend';
 import _isUndefined from 'lodash/lang/isUndefined';
 import _argv from 'minimist';
+import config from 'config';
 let argv = _argv;
 argv = _argv(process.argv.slice(2));
 
 /**
  * Configure hapi.
  */
-const SERVER_PORT = 3000;
+const SERVER_PORT = config.get('server.port');
+
+const cacheConfig = config.util.cloneDeep(config.get('server.cache'));
+cacheConfig.engine = Redis;
+
 const server = new Hapi.Server({
-  cache: [{
-    name: 'redis',
-    engine: Redis,
-    host: '127.0.0.1',
-    // partition: 'cache',
-  }],
+  cache: [
+    cacheConfig,
+  ],
 });
 // console.log(server);
 server.connection({port: SERVER_PORT});
@@ -58,13 +60,7 @@ server.register([
  */
 server.register({
   register: Session,
-  options: {
-    maxCookieSize: 0,
-    cookieOptions: {
-      password: 'SOME_PASSWORD', /** @todo send options to a config */
-      isSecure: false, /** @todo cannot do this at production */
-    },
-  },
+  options: config.get('server.session'),
 }, (err) => {
   if (err) server.log(['error'], `session load error: ${err}`);
 });
@@ -106,7 +102,7 @@ api(server);
  */
 const swaggerOptions = {
   apiVersion: pack.version,
-  basePath: 'http://localhost:3000',
+  basePath: config.get('server.swagger.path'),
 };
 
 server.register({
@@ -155,7 +151,7 @@ server.ext('onPreResponse', (request, reply) => {
       if (_status === 200) {
         status.message = 'OK';
       } else if (_status === 404) {
-        status.error = 'NotFound';
+        status.error = 'Not Found';
         status.message = 'Page not found.';
       }
     }
@@ -227,17 +223,19 @@ if (argv.verbose) {
 } else if (argv.silent) {
   logEvents = logLevels.silent;
 } else {
-  logEvents = logLevels.info;
+  const configLogLevel = config.get('server.logging.level');
+  if (configLogLevel) {
+    logEvents = logLevels[configLogLevel] || logLevels.info;
+  } else {
+    logEvents = logLevels.info;
+  }
 }
 
 const goodOptions = {
   reporters: [{
     reporter: goodConsole,
     events: logEvents,
-    config: {
-      format: '[[]HH:mm:ss[]][[frill]]',
-      utc: false,
-    },
+    config: config.get('server.logging.options'),
   }],
 };
 
