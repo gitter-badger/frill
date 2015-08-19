@@ -1,6 +1,6 @@
 import {jsdom} from 'jsdom';
 import Promise from 'bluebird';
-import React from 'react';
+import React from 'react/addons';
 import chai from 'chai';
 import sinon from 'sinon';
 import cheerio from 'cheerio';

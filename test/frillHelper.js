@@ -96,10 +96,23 @@ const injectAuthenticated = (options) => {
   });
 };
 
+/**
+ * Create sinon.spy using sinon.sandbox
+ */
+const createSandboxSpy = (object, methods) => {
+  const _spy = {};
+  methods.map((method) => {
+    _spy[method] = sandbox.spy(object, method);
+  });
+  return _spy;
+};
+
+
 export default {
   inject,
   mockStoreEvent,
   mockDispatch,
   mockSession,
   injectAuthenticated,
+  createSandboxSpy,
 };
