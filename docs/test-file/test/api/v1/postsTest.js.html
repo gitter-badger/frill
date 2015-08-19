@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl">
-  <title data-ice="title">FrillJS API Document</title>
+  <base data-ice="baseUrl" href="../../../../">
+  <title data-ice="title">test/api/v1/postsTest.js | FrillJS API Document</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -105,55 +105,164 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div data-ice="index"><h1 id="-img-src-frill-logo-png-alt-frill-title-frill-logo-height-200-"><img src="../frill-logo.png" alt="frill" title="frill logo" height="200"></h1>
-<p>Yet another FLUX starter kit</p>
-<p><span class="esdoc-coverage"><a href="https://esdoc.org" class="esdoc-coverage-wrap">
-    <span class="esdoc-coverage-label">document</span><span class="esdoc-coverage-ratio esdoc-coverage-high">94%</span>
-    </a></span> <img src="https://david-dm.org/nanopx/frill.svg" alt="dependencies"> <a href="https://circleci.com/gh/nanopx/frill/tree/master"><img src="https://circleci.com/gh/nanopx/frill/tree/master.svg?style=shield&amp;circle-token=ea6665c989599be6eddc9ba5f7d8d849b525f83a" alt="Circle CI"></a></p>
-<hr>
-<h2 id="getting-started">Getting Started</h2>
-<p>Add <a href="http://gulpjs.com/">gulp</a></p>
-<pre><code class="lang-bash"><pre class="source-code"><code class="prettyprint">$ npm install -g gulp</code></pre>
+<div class="content" data-ice="content"><h1 data-ice="title">test/api/v1/postsTest.js</h1>
+<pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">import posts from &apos;../../../src/api/v1/posts&apos;;
+import {inject, convertToPlainObject} from &apos;../../frillHelper&apos;;
+import {routePrefixer} from &apos;../../../src/helpers&apos;;
+import sequelize from &apos;../../../src/models/setup_sequelize&apos;;
+import Models from &apos;../../../src/models&apos;;
+
+server.route(routePrefixer(&apos;/api/v1&apos;, posts(server, Models)));
+
+const testData = [
+  {
+    title: &apos;testOne&apos;,
+    content: &apos;this is a content for testOne, for testing purpose&apos;,
+  },
+  {
+    title: &apos;testTwo&apos;,
+    content: &apos;this is a content for testTwo, for testing purpose&apos;,
+  },
+];
+
+describe(&apos;/api/v1/posts&apos;, () =&gt; {
+  before((done) =&gt; {
+    if (process.env.NODE_ENV !== &apos;test&apos;) {
+      throw new Error(
+        &apos;Please set NODE_ENV to \&apos;test\&apos; to ensure your data will not&apos;
+        + &apos; be modified or deleted by tests.&apos;
+      );
+    } else {
+      // force sync sequelize before running tests
+      sequelize.sync({force: true}).then(() =&gt; {
+        Models.mysql.Posts.bulkCreate(testData);
+      }).finally(done);
+    }
+  });
+
+  after((done) =&gt; {
+    if (process.env.NODE_ENV !== &apos;test&apos;) {
+      throw new Error(
+        &apos;Please set NODE_ENV to \&apos;test\&apos; to ensure your data will not&apos;
+        + &apos; be modified or deleted by tests.&apos;
+      );
+    } else {
+      // drop
+      sequelize.drop({force: true}).finally(done);
+    }
+  });
+
+  describe(&apos;GET /&apos;, () =&gt; {
+    it(&apos;should return 200 and fetch results on GET request&apos;, () =&gt; {
+      return inject({ method: &apos;GET&apos;, url: &apos;/api/v1/posts&apos; })
+      .then((response) =&gt; {
+        response.statusCode.should.equal(200);
+        return convertToPlainObject(response.result).then((result) =&gt; {
+          result.should.have.length(2);
+        });
+      });
+    });
+  });
+
+  describe(&apos;GET /{id}&apos;, () =&gt; {
+    it(&apos;should return 200 and fetch a result on GET request&apos;, () =&gt; {
+      return inject({ method: &apos;GET&apos;, url: &apos;/api/v1/posts/1&apos; })
+      .then((response) =&gt; {
+        response.statusCode.should.equal(200);
+        return convertToPlainObject(response.result).then((result) =&gt; {
+          result.should.have.ownProperty(&apos;id&apos;);
+          result.id.should.equal(1);
+        });
+      });
+    });
+  });
+
+  describe(&apos;POST /&apos;, () =&gt; {
+    it(&apos;should return 201 on POST request&apos;, () =&gt; {
+      return inject({
+        method: &apos;POST&apos;,
+        url: &apos;/api/v1/posts&apos;,
+        payload: {
+          title: &apos;a new test title&apos;,
+          content: &apos;a new test content&apos;,
+        },
+      })
+      .then((response) =&gt; {
+        response.statusCode.should.equal(201);
+      });
+    });
+    it(&apos;should have new record created&apos;, () =&gt; {
+      return inject({
+        method: &apos;GET&apos;,
+        url: &apos;/api/v1/posts/3&apos;,
+      })
+      .then((response) =&gt; {
+        response.statusCode.should.equal(200);
+        return convertToPlainObject(response.result).then((result) =&gt; {
+          result.should.have.ownProperty(&apos;id&apos;);
+          result.id.should.equal(3);
+          result.should.have.ownProperty(&apos;title&apos;);
+          result.title.should.equal(&apos;a new test title&apos;);
+        });
+      });
+    });
+  });
+
+  describe(&apos;PUT /{id}&apos;, () =&gt; {
+    it(&apos;should be able to modify record&apos;, () =&gt; {
+      return inject({
+        method: &apos;PUT&apos;,
+        url: &apos;/api/v1/posts/3&apos;,
+        payload: {
+          title: &apos;a new test title - modified&apos;,
+        },
+      })
+      .then((response) =&gt; {
+        response.statusCode.should.equal(200);
+        return convertToPlainObject(response.result).then((result) =&gt; {
+          result[0].should.equal(1); // rows affected
+        });
+      });
+    });
+    it(&apos;should have record modified&apos;, () =&gt; {
+      return inject({
+        method: &apos;GET&apos;,
+        url: &apos;/api/v1/posts/3&apos;,
+      })
+      .then((response) =&gt; {
+        response.statusCode.should.equal(200);
+        return convertToPlainObject(response.result).then((result) =&gt; {
+          result.should.have.ownProperty(&apos;id&apos;);
+          result.id.should.equal(3);
+          result.should.have.ownProperty(&apos;title&apos;);
+          result.title.should.equal(&apos;a new test title - modified&apos;);
+        });
+      });
+    });
+  });
+
+  describe(&apos;DELETE /{id}&apos;, () =&gt; {
+    it(&apos;should be able to delete record&apos;, () =&gt; {
+      return inject({
+        method: &apos;DELETE&apos;,
+        url: &apos;/api/v1/posts/3&apos;,
+      })
+      .then((response) =&gt; {
+        response.statusCode.should.equal(204);
+      });
+    });
+    it(&apos;should be deleted&apos;, () =&gt; {
+      return inject({
+        method: &apos;GET&apos;,
+        url: &apos;/api/v1/posts/3&apos;,
+      })
+      .then((response) =&gt; {
+        response.statusCode.should.equal(404);
+      });
+    });
+  });
+});
 </code></pre>
-<p>then, clone or fork this repository:</p>
-<pre><code class="lang-bash"><pre class="source-code"><code class="prettyprint">$ git clone -b master --single-branch https://github.com/nanopx/frill.git MyNewApp
-$ cd MyNewApp &amp;&amp; npm install</code></pre>
-</code></pre>
-<h3 id="directory-structure">Directory structure</h3>
-<pre><code><pre class="source-code"><code class="prettyprint">.
-&#x251C;&#x2500; /docs/                   # Documentation files for the project
-&#x251C;&#x2500; /node_modules/           # 3rd-party libraries and utilities
-&#x251C;&#x2500; /public/                 # The folder for compiled output and serving
-&#x251C;&#x2500; /src/                    # The source code of the application
-&#x2502;  &#x251C;&#x2500; /actions/             # Actions that allow to trigger a dispatch to stores
-&#x2502;  &#x251C;&#x2500; /api/                 # REST API /api/ endpoints
-&#x2502;  &#x2502;  &#x251C;&#x2500; /auth/             # Authentications
-&#x2502;  &#x2502;  &#x2502;  &#x2514;&#x2500; /strategies/    # Authentication strategies
-&#x2502;  &#x2502;  &#x251C;&#x2500; /v1/               # Place your version 1 api routes here
-&#x2502;  &#x2502;  &#x2514;&#x2500; routes.js          # File to include all your API routes
-&#x2502;  &#x251C;&#x2500; /assets/              # Asset files should be placed here
-&#x2502;  &#x2502;  &#x2514;&#x2500; /images/           # Image files
-&#x2502;  &#x251C;&#x2500; /components/          # Place your Frill(or React) Components here
-&#x2502;  &#x2502;   &#x251C;&#x2500; Error.jsx         # Error handling component
-&#x2502;  &#x2502;   &#x2514;&#x2500; Page.jsx          # A component which wraps around the app
-&#x2502;  &#x251C;&#x2500; /helpers/             # All helper methods/classes should be placed here
-&#x2502;  &#x251C;&#x2500; /models/              # Models to use inside API
-&#x2502;  &#x251C;&#x2500; /stores/              # Stores that allow to emit changes to components
-&#x2502;  &#x251C;&#x2500; /styles/              # CSS(Stylus) files should be placed here
-&#x2502;  &#x251C;&#x2500; /templates/           # Template files should be placed here
-&#x2502;  &#x251C;&#x2500; /bootstrap.js         # Bootstraps client and server codes
-&#x2502;  &#x251C;&#x2500; /client.js            # Entrypoint for Client bundle
-&#x2502;  &#x251C;&#x2500; /routes.jsx           # Routes for components (using React-Router)
-&#x2502;  &#x2514;&#x2500; /server.js            # Entrypoint for server-side application
-&#x251C;&#x2500; /tasks/                  # Gulp task scripts
-&#x251C;&#x2500; /test/                   # Test scripts (using Mocha)
-&#x251C;&#x2500; .eslintrc                # Configuration for ESLint
-&#x251C;&#x2500; esdoc.json               # Configuration for ESDoc
-&#x251C;&#x2500; app.js                   # Entrypoint for server-side without using gulp
-&#x251C;&#x2500; gulpfile.babel.js        # Used for configuring gulp (in ES6 syntax)
-&#x251C;&#x2500; package.json             # List of 3rd party libraries using NPM
-&#x2514;&#x2500; webpack.config.js        # Webpack configuration for bundling client scripts</code></pre>
-</code></pre></div>
 </div>
 
 <footer class="footer">

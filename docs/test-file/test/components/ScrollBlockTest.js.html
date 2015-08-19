@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl">
-  <title data-ice="title">FrillJS API Document</title>
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">test/components/ScrollBlockTest.js | FrillJS API Document</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -105,55 +105,249 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><div data-ice="index"><h1 id="-img-src-frill-logo-png-alt-frill-title-frill-logo-height-200-"><img src="../frill-logo.png" alt="frill" title="frill logo" height="200"></h1>
-<p>Yet another FLUX starter kit</p>
-<p><span class="esdoc-coverage"><a href="https://esdoc.org" class="esdoc-coverage-wrap">
-    <span class="esdoc-coverage-label">document</span><span class="esdoc-coverage-ratio esdoc-coverage-high">94%</span>
-    </a></span> <img src="https://david-dm.org/nanopx/frill.svg" alt="dependencies"> <a href="https://circleci.com/gh/nanopx/frill/tree/master"><img src="https://circleci.com/gh/nanopx/frill/tree/master.svg?style=shield&amp;circle-token=ea6665c989599be6eddc9ba5f7d8d849b525f83a" alt="Circle CI"></a></p>
-<hr>
-<h2 id="getting-started">Getting Started</h2>
-<p>Add <a href="http://gulpjs.com/">gulp</a></p>
-<pre><code class="lang-bash"><pre class="source-code"><code class="prettyprint">$ npm install -g gulp</code></pre>
+<div class="content" data-ice="content"><h1 data-ice="title">test/components/ScrollBlockTest.js</h1>
+<pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">// import React from &apos;react/addons&apos;;
+import {createSandboxSpy} from &apos;../frillHelper&apos;;
+import ScrollBlock from &apos;../../src/components/ScrollBlock/index.jsx&apos;;
+const TestUtils = React.addons.TestUtils;
+import ExeEnv from &apos;react/lib/ExecutionEnvironment&apos;;
+ExeEnv.canUseDOM = true;
+
+let spy;
+let container;
+let mockParent;
+let scrollBlock;
+let scrollEvt;
+
+class MockParent extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      itemsCount: this.props.itemsCount,
+    };
+  }
+
+  onFetchData(retrieve) {
+    const add = retrieve || 1;
+    this.setState({
+      itemsCount: this.state.itemsCount + add,
+    });
+  }
+
+  render() {
+    const items = [];
+    let count = 0;
+
+    while (items.length &lt; this.state.itemsCount) {
+      items.push(&lt;li key={count}&gt;a&lt;/li&gt;);
+      count = count + 1;
+    }
+
+    const list = React.renderToString(&lt;ul ref=&quot;list&quot;&gt;{items}&lt;/ul&gt;);
+
+    return (
+      &lt;ScrollBlock
+        fetchData={this.onFetchData.bind(this)}
+        itemsCount={this.state.itemsCount}
+        itemTotal={10}&gt;
+          {list}
+      &lt;/ScrollBlock&gt;
+    );
+  }
+}
+
+function mountComponent(itemsCount) {
+  container = document.createElement(&apos;div&apos;);
+  document.body.appendChild(container);
+
+  mockParent = React.render(&lt;MockParent itemsCount={itemsCount} /&gt;, container);
+
+  scrollBlock = TestUtils
+    .findRenderedComponentWithType(mockParent, ScrollBlock);
+}
+
+function unmountComponent() {
+  if (container) {
+    React.unmountComponentAtNode(container);
+  }
+}
+
+function dispatchScrollEvent(target, scrollTop) {
+  target.scrollTop = scrollTop;
+  target.dispatchEvent(scrollEvt);
+}
+
+/**
+ * ScrollBlockComponent
+ * @test {ScrollBlockComponent}
+ */
+describe(&apos;ScrollBlockComponent&apos;, () =&gt; {
+  beforeEach(() =&gt; {
+    spy = createSandboxSpy(ScrollBlock.prototype, [
+      &apos;componentDidMount&apos;,
+      &apos;componentWillReceiveProps&apos;,
+      &apos;componentWillUnmount&apos;,
+      &apos;onScroll&apos;,
+      &apos;render&apos;,
+      &apos;fetchData&apos;,
+      &apos;setState&apos;,
+    ]);
+  });
+
+  afterEach(() =&gt; {
+    unmountComponent();
+  });
+
+  /**
+   * @test {ExampleStore#constructor}
+   */
+  it(&apos;should be an instance of React.Component&apos;, () =&gt; {
+    mountComponent(0);
+    TestUtils.isCompositeComponent(scrollBlock).should.be.true;
+  });
+  /**
+   * @test {ExampleStore#constructor}
+   */
+  it(&apos;should have appropriate state and props&apos;, () =&gt; {
+    mountComponent(0);
+    scrollBlock.state.isLoading.should.exist;
+    scrollBlock.state.isLoadedAll.should.exist;
+    scrollBlock.props.fetchData.should.be.a(&apos;function&apos;);
+    scrollBlock.props.itemsCount.should.be.a(&apos;number&apos;);
+    scrollBlock.props.itemTotal.should.be.a(&apos;number&apos;);
+  });
+
+  /**
+   * @test {ExampleStore#componentDidMount}
+   */
+  describe(&apos;ScrollBlockComponent#componentDidMount&apos;, () =&gt; {
+    /**
+     * @test {ExampleStore#componentDidMount}
+     */
+    it(&apos;should have been called&apos;, () =&gt; {
+      mountComponent(0);
+      sinon.assert.calledOnce(spy.componentDidMount);
+    });
+    /**
+     * @test {ExampleStore#componentDidMount}
+     */
+    it(&apos;should fetch data when none are loaded&apos;, () =&gt; {
+      mountComponent(0);
+
+      scrollBlock.props.itemsCount.should.equal(1);
+      // or
+      spy.componentDidMount.getCall(0)
+        .thisValue.props.itemsCount.should.equal(1);
+    });
+    /**
+     * @test {ExampleStore#componentDidMount}
+     */
+    it(&apos;should not fetch data when some are already loaded&apos;, () =&gt; {
+      mountComponent(3);
+
+      scrollBlock.props.itemsCount.should.equal(3);
+      // or
+      spy.componentDidMount.getCall(0)
+        .thisValue.props.itemsCount.should.equal(3);
+    });
+  });
+
+  /**
+   * @test {ExampleStore#componentWillReceiveProps}
+   */
+  describe(&apos;ScrollBlockComponent#componentWillReceiveProps&apos;, () =&gt; {
+    /**
+     * @test {ExampleStore#componentWillReceiveProps}
+     */
+    it(&apos;should have been called&apos;, () =&gt; {
+      mountComponent(0);
+      sinon.assert.calledOnce(spy.componentWillReceiveProps);
+    });
+    /**
+     * @test {ExampleStore#componentWillReceiveProps}
+     */
+    it(&apos;should set isLoading state to false when props has new children&apos;, () =&gt; {
+      mountComponent(0);
+      spy.componentWillReceiveProps.getCall(0).args[0].children.should.exist;
+      spy.setState.getCall(1).calledWith({isLoading: false});
+    });
+  });
+
+  /**
+   * @test {ExampleStore#componentWillUnmount}
+   */
+  describe(&apos;ScrollBlockComponent#componentWillUnmount&apos;, () =&gt; {
+    /**
+     * @test {ExampleStore#componentWillUnmount}
+     */
+    it(&apos;should have been called&apos;, () =&gt; {
+      mountComponent(0);
+      unmountComponent();
+      sinon.assert.calledOnce(spy.componentWillUnmount);
+    });
+  });
+
+  /**
+   * @test {ExampleStore#onScroll}
+   */
+  describe(&apos;ScrollBlockComponent#onScroll&apos;, () =&gt; {
+    scrollEvt = document.createEvent(&apos;Events&apos;);
+    scrollEvt.initEvent(&apos;scroll&apos;, false, false);
+    /**
+     * @test {ExampleStore#onScroll}
+     */
+    it(&apos;should load the data when the scrollbar reaches the end&apos;, () =&gt; {
+      mountComponent(6);
+      const elem = React.findDOMNode(scrollBlock);
+      elem.scrollHeight = 100 * scrollBlock.props.itemsCount;
+      elem.clientHeight = 200;
+      dispatchScrollEvent(elem, elem.scrollHeight - elem.clientHeight);
+      sinon.assert.called(spy.onScroll);
+      scrollBlock.props.itemsCount.should.equal(7);
+    });
+    /**
+     * @test {ExampleStore#onScroll}
+     */
+    it(&apos;should not load the data when the scrollbar is not at the end&apos;, () =&gt; {
+      mountComponent(6);
+      const elem = React.findDOMNode(scrollBlock);
+      elem.scrollHeight = 100 * scrollBlock.props.itemsCount;
+      elem.clientHeight = 200;
+      dispatchScrollEvent(elem, 200);
+      sinon.assert.called(spy.onScroll);
+      scrollBlock.props.itemsCount.should.equal(6);
+    });
+    /**
+     * @test {ExampleStore#onScroll}
+     */
+    it(&apos;should not load the data when all data are loaded&apos;, () =&gt; {
+      mountComponent(10);
+      const elem = React.findDOMNode(scrollBlock);
+      elem.scrollHeight = 100 * scrollBlock.props.itemsCount;
+      elem.clientHeight = 200;
+      dispatchScrollEvent(elem, elem.scrollHeight - elem.clientHeight);
+      sinon.assert.called(spy.onScroll);
+      sinon.assert.notCalled(spy.fetchData);
+      scrollBlock.props.itemsCount.should.equal(10);
+    });
+  });
+
+  /**
+   * @test {ExampleStore#fetchData}
+   */
+  describe(&apos;ScrollBlockComponent#fetchData&apos;, () =&gt; {
+    /**
+     * @test {ExampleStore#fetchData}
+     */
+    it(&apos;should set isLoading state to true&apos;, () =&gt; {
+      mountComponent(0);
+      sinon.assert.calledOnce(spy.fetchData);
+      spy.setState.getCall(0).calledWith({isLoading: true});
+    });
+  });
+});
 </code></pre>
-<p>then, clone or fork this repository:</p>
-<pre><code class="lang-bash"><pre class="source-code"><code class="prettyprint">$ git clone -b master --single-branch https://github.com/nanopx/frill.git MyNewApp
-$ cd MyNewApp &amp;&amp; npm install</code></pre>
-</code></pre>
-<h3 id="directory-structure">Directory structure</h3>
-<pre><code><pre class="source-code"><code class="prettyprint">.
-&#x251C;&#x2500; /docs/                   # Documentation files for the project
-&#x251C;&#x2500; /node_modules/           # 3rd-party libraries and utilities
-&#x251C;&#x2500; /public/                 # The folder for compiled output and serving
-&#x251C;&#x2500; /src/                    # The source code of the application
-&#x2502;  &#x251C;&#x2500; /actions/             # Actions that allow to trigger a dispatch to stores
-&#x2502;  &#x251C;&#x2500; /api/                 # REST API /api/ endpoints
-&#x2502;  &#x2502;  &#x251C;&#x2500; /auth/             # Authentications
-&#x2502;  &#x2502;  &#x2502;  &#x2514;&#x2500; /strategies/    # Authentication strategies
-&#x2502;  &#x2502;  &#x251C;&#x2500; /v1/               # Place your version 1 api routes here
-&#x2502;  &#x2502;  &#x2514;&#x2500; routes.js          # File to include all your API routes
-&#x2502;  &#x251C;&#x2500; /assets/              # Asset files should be placed here
-&#x2502;  &#x2502;  &#x2514;&#x2500; /images/           # Image files
-&#x2502;  &#x251C;&#x2500; /components/          # Place your Frill(or React) Components here
-&#x2502;  &#x2502;   &#x251C;&#x2500; Error.jsx         # Error handling component
-&#x2502;  &#x2502;   &#x2514;&#x2500; Page.jsx          # A component which wraps around the app
-&#x2502;  &#x251C;&#x2500; /helpers/             # All helper methods/classes should be placed here
-&#x2502;  &#x251C;&#x2500; /models/              # Models to use inside API
-&#x2502;  &#x251C;&#x2500; /stores/              # Stores that allow to emit changes to components
-&#x2502;  &#x251C;&#x2500; /styles/              # CSS(Stylus) files should be placed here
-&#x2502;  &#x251C;&#x2500; /templates/           # Template files should be placed here
-&#x2502;  &#x251C;&#x2500; /bootstrap.js         # Bootstraps client and server codes
-&#x2502;  &#x251C;&#x2500; /client.js            # Entrypoint for Client bundle
-&#x2502;  &#x251C;&#x2500; /routes.jsx           # Routes for components (using React-Router)
-&#x2502;  &#x2514;&#x2500; /server.js            # Entrypoint for server-side application
-&#x251C;&#x2500; /tasks/                  # Gulp task scripts
-&#x251C;&#x2500; /test/                   # Test scripts (using Mocha)
-&#x251C;&#x2500; .eslintrc                # Configuration for ESLint
-&#x251C;&#x2500; esdoc.json               # Configuration for ESDoc
-&#x251C;&#x2500; app.js                   # Entrypoint for server-side without using gulp
-&#x251C;&#x2500; gulpfile.babel.js        # Used for configuring gulp (in ES6 syntax)
-&#x251C;&#x2500; package.json             # List of 3rd party libraries using NPM
-&#x2514;&#x2500; webpack.config.js        # Webpack configuration for bundling client scripts</code></pre>
-</code></pre></div>
 </div>
 
 <footer class="footer">

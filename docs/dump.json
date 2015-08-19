@@ -1036,7 +1036,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Joi from 'joi';\nimport Holiday from '../../helpers/RestApi';\n\n/**\n * REST API - posts\n */\nconst posts = (server, Models) => {\n  const {mysql} = Models;\n\n  const PostApi = new Holiday('sequelize', 'posts', mysql.Posts);\n\n  // TODO: write relations here for example\n  PostApi.has('test', (Model, response, done) => {\n    done(null, {test: 'test'});\n  });\n\n  PostApi.validate.save({\n    title: Joi.string().required(),\n    content: Joi.string().required(),\n  });\n\n  PostApi.validate.update({\n    title: Joi.string(),\n    content: Joi.string(),\n  });\n\n  return PostApi.all();\n};\n\nexport default posts;\n"
+    "content": "import Joi from 'joi';\nimport Holiday from '../../helpers/Holiday';\n\n/**\n * REST API - posts\n */\nconst posts = (server, Models) => {\n  const {mysql} = Models;\n\n  const PostApi = new Holiday('sequelize', 'posts', mysql.Posts);\n\n  PostApi.validate.save({\n    title: Joi.string().required(),\n    content: Joi.string().required(),\n  });\n\n  PostApi.validate.update({\n    title: Joi.string(),\n    content: Joi.string(),\n  });\n\n  return PostApi.all();\n};\n\nexport default posts;\n"
   },
   {
     "kind": "variable",
@@ -1723,7 +1723,7 @@
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import React from 'react';\nimport {canUseDOM} from 'react/lib/ExecutionEnvironment';\n\n/**\n * ScrollBlock component for infinite scrolling\n * @extends {React.Component}\n * @example <caption>Usage in React component</caption>\n * import ScrollBlock from 'ScrollBlock';\n * ...\n * render() {\n *   return (\n *     <ScrollBlock\n *       fetchData={this.onLoadScrollItems}\n *       itemsCount={this.state.scrollItemsCount}\n *       itemTotal={this.state.scrollItemTotal}>\n *       <ul className=\"scroll-list\">\n *         {items}\n *       </ul>\n *     </ScrollBlock>\n *   );\n * }\n */\nclass ScrollBlockComponent extends React.Component {\n  /**\n   * Constructor\n   * @param {any} props\n   */\n  constructor(props) {\n    super(props);\n\n    /**\n     * Name of component\n     */\n    this.name = 'ScrollBlock';\n\n    /**\n     * State of component\n     */\n    this.state = {\n      isLoading: false,\n      // NOTE: changed from 'isAllLoaded'\n      isLoadedAll: false,\n    };\n  }\n\n  /**\n   * componentDidMount\n   * @see https://facebook.github.io/react/docs/component-specs.html#mounting-componentdidmount\n   */\n  componentDidMount() {\n    if (canUseDOM) {\n      React.findDOMNode(this.refs.scrollBlock)\n        .addEventListener('scroll', this.onScroll.bind(this));\n    }\n\n    if (!this.props.itemsCount) {\n      this.setState({\n        isLoading: true,\n      });\n\n      this.props.fetchData();\n    }\n  }\n\n  /**\n   * componentWillReceiveProps\n   * @see https://facebook.github.io/react/docs/component-specs.html#updating-componentwillreceiveprops\n   */\n  componentWillReceiveProps(newProps) {\n    if (newProps.children) {\n      this.setState({\n        isLoading: false,\n      });\n    }\n  }\n\n  /**\n   * componentWillUnmount\n   * @see https://facebook.github.io/react/docs/component-specs.html#unmounting-componentwillunmount\n   */\n  componentWillUnmount() {\n    React.findDOMNode(this.refs.scrollBlock)\n      .removeEventListener('scroll', this.onScroll);\n  }\n\n  /**\n   * Scroll handler\n   */\n  onScroll() {\n    if (!this.state.isLoading && !this.state.isLoadedAll) {\n      const _elem = React.findDOMNode(this.refs.scrollBlock);\n      const _scrolled = Math.round(_elem.scrollHeight - _elem.scrollTop);\n\n      if (_scrolled - _elem.clientHeight >= -1\n        && _scrolled - _elem.clientHeight <= 1) {\n        // if items are all loaded\n        if (this.props.itemTotal &&\n          (this.props.itemTotal === this.props.itemsCount)) {\n          this.setState({\n            isLoading: true,\n            isLoadedAll: true,\n          });\n\n        // else if there are more items to load\n        } else {\n          this.setState({\n            isLoading: true,\n          });\n          this.props.fetchData();\n        }\n      }\n    }\n  }\n\n  /**\n   * render\n   * @return {React DOM}\n   * @see https://facebook.github.io/react/docs/component-specs.html#render\n   */\n  render() {\n    const _className = this.state.isLoading ? ' is-loading' : '';\n    const isLoadedAll = this.state.isLoadedAll;\n\n    return (\n      <div>\n        <div className=\"ScrollBlock\" ref=\"scrollBlock\">\n          {this.props.children}\n          <p className={`ScrollBlock-loading${_className}`}>\n            {(!isLoadedAll ? () => {\n              // return 'loading...' when there are more items to load\n              return 'loading ...';\n            } : () => {\n              // when all items loaded\n              return 'loaded!';\n            })()}\n          </p>\n        </div>\n      </div>\n    );\n  }\n}\n\n/**\n * PropTypes\n */\nScrollBlockComponent.propTypes = {\n  // function to fetch new items\n  fetchData: React.PropTypes.func,\n  // Count of loaded items\n  itemsCount: React.PropTypes.number,\n  // Count of total items\n  itemTotal: React.PropTypes.number,\n};\n\n/**\n * Export ScrollBlockComponent\n */\nexport default ScrollBlockComponent;\n"
+    "content": "import React from 'react';\nimport {canUseDOM} from 'react/lib/ExecutionEnvironment';\n\n/**\n * ScrollBlock component for infinite scrolling\n * @extends {React.Component}\n * @example <caption>Usage in React component</caption>\n * import ScrollBlock from 'ScrollBlock';\n * ...\n * render() {\n *   return (\n *     <ScrollBlock\n *       fetchData={this.onLoadScrollItems}\n *       itemsCount={this.state.scrollItemsCount}\n *       itemTotal={this.state.scrollItemTotal}>\n *       <ul className=\"scroll-list\">\n *         {items}\n *       </ul>\n *     </ScrollBlock>\n *   );\n * }\n */\nclass ScrollBlockComponent extends React.Component {\n  /**\n   * Constructor\n   * @param {any} props\n   */\n  constructor(props) {\n    super(props);\n\n    /**\n     * Name of component\n     */\n    this.name = 'ScrollBlock';\n\n    /**\n     * State of component\n     */\n    this.state = {\n      isLoading: false,\n      // NOTE: changed from 'isAllLoaded'\n      isLoadedAll: false,\n    };\n\n    this.fetchData = this.fetchData.bind(this);\n    this.onScroll = this.onScroll.bind(this);\n  }\n\n  /**\n   * componentDidMount\n   * @see https://facebook.github.io/react/docs/component-specs.html#mounting-componentdidmount\n   */\n  componentDidMount() {\n    if (canUseDOM) {\n      React.findDOMNode(this.refs.scrollBlock)\n        .addEventListener('scroll', this.onScroll);\n    }\n\n    if (!this.props.itemsCount) {\n      this.fetchData();\n    }\n  }\n\n  /**\n   * componentWillReceiveProps\n   * @see https://facebook.github.io/react/docs/component-specs.html#updating-componentwillreceiveprops\n   */\n  componentWillReceiveProps(newProps) {\n    if (newProps.children) {\n      this.setState({\n        isLoading: false,\n      });\n    }\n  }\n\n  /**\n   * componentWillUnmount\n   * @see https://facebook.github.io/react/docs/component-specs.html#unmounting-componentwillunmount\n   */\n  componentWillUnmount() {\n    React.findDOMNode(this.refs.scrollBlock)\n      .removeEventListener('scroll', this.onScroll);\n  }\n\n  /**\n   * Scroll handler\n   */\n  onScroll() {\n    if (!this.state.isLoading && !this.state.isLoadedAll) {\n      const _elem = React.findDOMNode(this.refs.scrollBlock);\n      const _scrolled = Math.round(_elem.scrollHeight - _elem.scrollTop);\n\n      if (_scrolled - _elem.clientHeight >= -1\n        && _scrolled - _elem.clientHeight <= 1) {\n        // if items are all loaded\n        if (this.props.itemTotal &&\n          (this.props.itemTotal === this.props.itemsCount)) {\n          this.setState({\n            isLoading: true,\n            isLoadedAll: true,\n          });\n\n        // else if there are more items to load\n        } else {\n          this.fetchData();\n        }\n      }\n    }\n  }\n\n  /**\n   * render\n   * @return {React DOM}\n   * @see https://facebook.github.io/react/docs/component-specs.html#render\n   */\n  render() {\n    const _className = this.state.isLoading ? ' is-loading' : '';\n    const isLoadedAll = this.state.isLoadedAll;\n\n    return (\n      <div className=\"ScrollBlock\" ref=\"scrollBlock\">\n        {this.props.children}\n        <p className={`ScrollBlock-loading${_className}`}>\n          {(!isLoadedAll ? () => {\n            // return 'loading...' when there are more items to load\n            return 'loading ...';\n          } : () => {\n            // when all items loaded\n            return 'loaded!';\n          })()}\n        </p>\n      </div>\n    );\n  }\n\n  /**\n   * load the data from the parent's function\n   */\n  fetchData() {\n    this.setState({\n      isLoading: true,\n    });\n    this.props.fetchData();\n  }\n}\n\n/**\n * PropTypes\n */\nScrollBlockComponent.propTypes = {\n  // function to fetch new items\n  fetchData: React.PropTypes.func,\n  // Count of loaded items\n  itemsCount: React.PropTypes.number,\n  // Count of total items\n  itemTotal: React.PropTypes.number,\n};\n\n/**\n * Export ScrollBlockComponent\n */\nexport default ScrollBlockComponent;\n"
   },
   {
     "kind": "class",
@@ -1803,6 +1803,40 @@
     }
   },
   {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "fetchData",
+    "memberof": "src/components/ScrollBlock/index.jsx~ScrollBlockComponent",
+    "longname": "src/components/ScrollBlock/index.jsx~ScrollBlockComponent#fetchData",
+    "access": null,
+    "description": null,
+    "lineNumber": 45,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
+    "kind": "member",
+    "static": false,
+    "variation": null,
+    "name": "onScroll",
+    "memberof": "src/components/ScrollBlock/index.jsx~ScrollBlockComponent",
+    "longname": "src/components/ScrollBlock/index.jsx~ScrollBlockComponent#onScroll",
+    "access": null,
+    "description": null,
+    "lineNumber": 46,
+    "undocument": true,
+    "type": {
+      "types": [
+        "*"
+      ]
+    }
+  },
+  {
     "kind": "method",
     "static": false,
     "variation": null,
@@ -1814,7 +1848,7 @@
     "see": [
       "https://facebook.github.io/react/docs/component-specs.html#mounting-componentdidmount"
     ],
-    "lineNumber": 50,
+    "lineNumber": 53,
     "params": [],
     "generator": false
   },
@@ -1830,7 +1864,7 @@
     "see": [
       "https://facebook.github.io/react/docs/component-specs.html#updating-componentwillreceiveprops"
     ],
-    "lineNumber": 69,
+    "lineNumber": 68,
     "params": [
       {
         "name": "newProps",
@@ -1853,7 +1887,7 @@
     "see": [
       "https://facebook.github.io/react/docs/component-specs.html#unmounting-componentwillunmount"
     ],
-    "lineNumber": 81,
+    "lineNumber": 80,
     "params": [],
     "generator": false
   },
@@ -1866,7 +1900,7 @@
     "longname": "src/components/ScrollBlock/index.jsx~ScrollBlockComponent#onScroll",
     "access": null,
     "description": "Scroll handler",
-    "lineNumber": 89,
+    "lineNumber": 88,
     "params": [],
     "generator": false
   },
@@ -1882,7 +1916,7 @@
     "see": [
       "https://facebook.github.io/react/docs/component-specs.html#render"
     ],
-    "lineNumber": 120,
+    "lineNumber": 116,
     "params": [],
     "return": {
       "nullable": null,
@@ -1892,6 +1926,19 @@
       "spread": false,
       "description": ""
     },
+    "generator": false
+  },
+  {
+    "kind": "method",
+    "static": false,
+    "variation": null,
+    "name": "fetchData",
+    "memberof": "src/components/ScrollBlock/index.jsx~ScrollBlockComponent",
+    "longname": "src/components/ScrollBlock/index.jsx~ScrollBlockComponent#fetchData",
+    "access": null,
+    "description": "load the data from the parent's function",
+    "lineNumber": 139,
+    "params": [],
     "generator": false
   },
   {
@@ -1906,7 +1953,7 @@
     "importPath": "frill/src/components/ScrollBlock/index.jsx",
     "importStyle": "scrollBlockComponent",
     "description": "Export ScrollBlockComponent",
-    "lineNumber": 158,
+    "lineNumber": 162,
     "type": {
       "types": [
         "src/components/ScrollBlock/index.jsx~ScrollBlockComponent"
@@ -2137,21 +2184,21 @@
     "kind": "file",
     "static": true,
     "variation": null,
-    "name": "src/helpers/RestApi.js",
+    "name": "src/helpers/Holiday.js",
     "memberof": null,
-    "longname": "src/helpers/RestApi.js",
+    "longname": "src/helpers/Holiday.js",
     "access": null,
     "description": null,
     "lineNumber": 1,
-    "content": "import Holiday from 'hapi-holiday';\nimport sequelizeScheme from './RestApiSchemes/sequelize';\n\nsequelizeScheme(Holiday);\n\nexport default Holiday;\n"
+    "content": "import Holiday from 'hapi-holiday';\nimport sequelizeScheme from './HolidaySchemes/sequelize';\n\nsequelizeScheme(Holiday);\n\nexport default Holiday;\n"
   },
   {
     "kind": "file",
     "static": true,
     "variation": null,
-    "name": "src/helpers/RestApiSchemes/sequelize.js",
+    "name": "src/helpers/HolidaySchemes/sequelize.js",
     "memberof": null,
-    "longname": "src/helpers/RestApiSchemes/sequelize.js",
+    "longname": "src/helpers/HolidaySchemes/sequelize.js",
     "access": null,
     "description": null,
     "lineNumber": 1,
@@ -4746,6 +4793,608 @@
     "kind": "testFile",
     "static": true,
     "variation": null,
+    "name": "test/api/v1/postsTest.js",
+    "memberof": null,
+    "longname": "test/api/v1/postsTest.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 1,
+    "content": "import posts from '../../../src/api/v1/posts';\nimport {inject, convertToPlainObject} from '../../frillHelper';\nimport {routePrefixer} from '../../../src/helpers';\nimport sequelize from '../../../src/models/setup_sequelize';\nimport Models from '../../../src/models';\n\nserver.route(routePrefixer('/api/v1', posts(server, Models)));\n\nconst testData = [\n  {\n    title: 'testOne',\n    content: 'this is a content for testOne, for testing purpose',\n  },\n  {\n    title: 'testTwo',\n    content: 'this is a content for testTwo, for testing purpose',\n  },\n];\n\ndescribe('/api/v1/posts', () => {\n  before((done) => {\n    if (process.env.NODE_ENV !== 'test') {\n      throw new Error(\n        'Please set NODE_ENV to \\'test\\' to ensure your data will not'\n        + ' be modified or deleted by tests.'\n      );\n    } else {\n      // force sync sequelize before running tests\n      sequelize.sync({force: true}).then(() => {\n        Models.mysql.Posts.bulkCreate(testData);\n      }).finally(done);\n    }\n  });\n\n  after((done) => {\n    if (process.env.NODE_ENV !== 'test') {\n      throw new Error(\n        'Please set NODE_ENV to \\'test\\' to ensure your data will not'\n        + ' be modified or deleted by tests.'\n      );\n    } else {\n      // drop\n      sequelize.drop({force: true}).finally(done);\n    }\n  });\n\n  describe('GET /', () => {\n    it('should return 200 and fetch results on GET request', () => {\n      return inject({ method: 'GET', url: '/api/v1/posts' })\n      .then((response) => {\n        response.statusCode.should.equal(200);\n        return convertToPlainObject(response.result).then((result) => {\n          result.should.have.length(2);\n        });\n      });\n    });\n  });\n\n  describe('GET /{id}', () => {\n    it('should return 200 and fetch a result on GET request', () => {\n      return inject({ method: 'GET', url: '/api/v1/posts/1' })\n      .then((response) => {\n        response.statusCode.should.equal(200);\n        return convertToPlainObject(response.result).then((result) => {\n          result.should.have.ownProperty('id');\n          result.id.should.equal(1);\n        });\n      });\n    });\n  });\n\n  describe('POST /', () => {\n    it('should return 201 on POST request', () => {\n      return inject({\n        method: 'POST',\n        url: '/api/v1/posts',\n        payload: {\n          title: 'a new test title',\n          content: 'a new test content',\n        },\n      })\n      .then((response) => {\n        response.statusCode.should.equal(201);\n      });\n    });\n    it('should have new record created', () => {\n      return inject({\n        method: 'GET',\n        url: '/api/v1/posts/3',\n      })\n      .then((response) => {\n        response.statusCode.should.equal(200);\n        return convertToPlainObject(response.result).then((result) => {\n          result.should.have.ownProperty('id');\n          result.id.should.equal(3);\n          result.should.have.ownProperty('title');\n          result.title.should.equal('a new test title');\n        });\n      });\n    });\n  });\n\n  describe('PUT /{id}', () => {\n    it('should be able to modify record', () => {\n      return inject({\n        method: 'PUT',\n        url: '/api/v1/posts/3',\n        payload: {\n          title: 'a new test title - modified',\n        },\n      })\n      .then((response) => {\n        response.statusCode.should.equal(200);\n        return convertToPlainObject(response.result).then((result) => {\n          result[0].should.equal(1); // rows affected\n        });\n      });\n    });\n    it('should have record modified', () => {\n      return inject({\n        method: 'GET',\n        url: '/api/v1/posts/3',\n      })\n      .then((response) => {\n        response.statusCode.should.equal(200);\n        return convertToPlainObject(response.result).then((result) => {\n          result.should.have.ownProperty('id');\n          result.id.should.equal(3);\n          result.should.have.ownProperty('title');\n          result.title.should.equal('a new test title - modified');\n        });\n      });\n    });\n  });\n\n  describe('DELETE /{id}', () => {\n    it('should be able to delete record', () => {\n      return inject({\n        method: 'DELETE',\n        url: '/api/v1/posts/3',\n      })\n      .then((response) => {\n        response.statusCode.should.equal(204);\n      });\n    });\n    it('should be deleted', () => {\n      return inject({\n        method: 'GET',\n        url: '/api/v1/posts/3',\n      })\n      .then((response) => {\n        response.statusCode.should.equal(404);\n      });\n    });\n  });\n});\n"
+  },
+  {
+    "kind": "testDescribe",
+    "static": true,
+    "variation": null,
+    "name": "describe32",
+    "testId": 32,
+    "memberof": "test/api/v1/postsTest.js",
+    "testDepth": 0,
+    "longname": "test/api/v1/postsTest.js~describe32",
+    "access": null,
+    "description": "/api/v1/posts",
+    "lineNumber": 20
+  },
+  {
+    "kind": "testDescribe",
+    "static": true,
+    "variation": null,
+    "name": "describe33",
+    "testId": 33,
+    "memberof": "test/api/v1/postsTest.js~describe32",
+    "testDepth": 1,
+    "longname": "test/api/v1/postsTest.js~describe32.describe33",
+    "access": null,
+    "description": "GET /",
+    "lineNumber": 47
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it34",
+    "testId": 34,
+    "memberof": "test/api/v1/postsTest.js~describe32.describe33",
+    "testDepth": 2,
+    "longname": "test/api/v1/postsTest.js~describe32.describe33.it34",
+    "access": null,
+    "description": "should return 200 and fetch results on GET request",
+    "lineNumber": 48
+  },
+  {
+    "kind": "testDescribe",
+    "static": true,
+    "variation": null,
+    "name": "describe35",
+    "testId": 35,
+    "memberof": "test/api/v1/postsTest.js~describe32",
+    "testDepth": 1,
+    "longname": "test/api/v1/postsTest.js~describe32.describe35",
+    "access": null,
+    "description": "GET /{id}",
+    "lineNumber": 59
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it36",
+    "testId": 36,
+    "memberof": "test/api/v1/postsTest.js~describe32.describe35",
+    "testDepth": 2,
+    "longname": "test/api/v1/postsTest.js~describe32.describe35.it36",
+    "access": null,
+    "description": "should return 200 and fetch a result on GET request",
+    "lineNumber": 60
+  },
+  {
+    "kind": "testDescribe",
+    "static": true,
+    "variation": null,
+    "name": "describe37",
+    "testId": 37,
+    "memberof": "test/api/v1/postsTest.js~describe32",
+    "testDepth": 1,
+    "longname": "test/api/v1/postsTest.js~describe32.describe37",
+    "access": null,
+    "description": "POST /",
+    "lineNumber": 72
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it38",
+    "testId": 38,
+    "memberof": "test/api/v1/postsTest.js~describe32.describe37",
+    "testDepth": 2,
+    "longname": "test/api/v1/postsTest.js~describe32.describe37.it38",
+    "access": null,
+    "description": "should return 201 on POST request",
+    "lineNumber": 73
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it39",
+    "testId": 39,
+    "memberof": "test/api/v1/postsTest.js~describe32.describe37",
+    "testDepth": 2,
+    "longname": "test/api/v1/postsTest.js~describe32.describe37.it39",
+    "access": null,
+    "description": "should have new record created",
+    "lineNumber": 86
+  },
+  {
+    "kind": "testDescribe",
+    "static": true,
+    "variation": null,
+    "name": "describe40",
+    "testId": 40,
+    "memberof": "test/api/v1/postsTest.js~describe32",
+    "testDepth": 1,
+    "longname": "test/api/v1/postsTest.js~describe32.describe40",
+    "access": null,
+    "description": "PUT /{id}",
+    "lineNumber": 103
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it41",
+    "testId": 41,
+    "memberof": "test/api/v1/postsTest.js~describe32.describe40",
+    "testDepth": 2,
+    "longname": "test/api/v1/postsTest.js~describe32.describe40.it41",
+    "access": null,
+    "description": "should be able to modify record",
+    "lineNumber": 104
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it42",
+    "testId": 42,
+    "memberof": "test/api/v1/postsTest.js~describe32.describe40",
+    "testDepth": 2,
+    "longname": "test/api/v1/postsTest.js~describe32.describe40.it42",
+    "access": null,
+    "description": "should have record modified",
+    "lineNumber": 119
+  },
+  {
+    "kind": "testDescribe",
+    "static": true,
+    "variation": null,
+    "name": "describe43",
+    "testId": 43,
+    "memberof": "test/api/v1/postsTest.js~describe32",
+    "testDepth": 1,
+    "longname": "test/api/v1/postsTest.js~describe32.describe43",
+    "access": null,
+    "description": "DELETE /{id}",
+    "lineNumber": 136
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it44",
+    "testId": 44,
+    "memberof": "test/api/v1/postsTest.js~describe32.describe43",
+    "testDepth": 2,
+    "longname": "test/api/v1/postsTest.js~describe32.describe43.it44",
+    "access": null,
+    "description": "should be able to delete record",
+    "lineNumber": 137
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it45",
+    "testId": 45,
+    "memberof": "test/api/v1/postsTest.js~describe32.describe43",
+    "testDepth": 2,
+    "longname": "test/api/v1/postsTest.js~describe32.describe43.it45",
+    "access": null,
+    "description": "should be deleted",
+    "lineNumber": 146
+  },
+  {
+    "kind": "testFile",
+    "static": true,
+    "variation": null,
+    "name": "test/components/ScrollBlockTest.js",
+    "memberof": null,
+    "longname": "test/components/ScrollBlockTest.js",
+    "access": null,
+    "description": null,
+    "lineNumber": 2,
+    "content": "// import React from 'react/addons';\nimport {createSandboxSpy} from '../frillHelper';\nimport ScrollBlock from '../../src/components/ScrollBlock/index.jsx';\nconst TestUtils = React.addons.TestUtils;\nimport ExeEnv from 'react/lib/ExecutionEnvironment';\nExeEnv.canUseDOM = true;\n\nlet spy;\nlet container;\nlet mockParent;\nlet scrollBlock;\nlet scrollEvt;\n\nclass MockParent extends React.Component {\n  constructor(props) {\n    super(props);\n\n    this.state = {\n      itemsCount: this.props.itemsCount,\n    };\n  }\n\n  onFetchData(retrieve) {\n    const add = retrieve || 1;\n    this.setState({\n      itemsCount: this.state.itemsCount + add,\n    });\n  }\n\n  render() {\n    const items = [];\n    let count = 0;\n\n    while (items.length < this.state.itemsCount) {\n      items.push(<li key={count}>a</li>);\n      count = count + 1;\n    }\n\n    const list = React.renderToString(<ul ref=\"list\">{items}</ul>);\n\n    return (\n      <ScrollBlock\n        fetchData={this.onFetchData.bind(this)}\n        itemsCount={this.state.itemsCount}\n        itemTotal={10}>\n          {list}\n      </ScrollBlock>\n    );\n  }\n}\n\nfunction mountComponent(itemsCount) {\n  container = document.createElement('div');\n  document.body.appendChild(container);\n\n  mockParent = React.render(<MockParent itemsCount={itemsCount} />, container);\n\n  scrollBlock = TestUtils\n    .findRenderedComponentWithType(mockParent, ScrollBlock);\n}\n\nfunction unmountComponent() {\n  if (container) {\n    React.unmountComponentAtNode(container);\n  }\n}\n\nfunction dispatchScrollEvent(target, scrollTop) {\n  target.scrollTop = scrollTop;\n  target.dispatchEvent(scrollEvt);\n}\n\n/**\n * ScrollBlockComponent\n * @test {ScrollBlockComponent}\n */\ndescribe('ScrollBlockComponent', () => {\n  beforeEach(() => {\n    spy = createSandboxSpy(ScrollBlock.prototype, [\n      'componentDidMount',\n      'componentWillReceiveProps',\n      'componentWillUnmount',\n      'onScroll',\n      'render',\n      'fetchData',\n      'setState',\n    ]);\n  });\n\n  afterEach(() => {\n    unmountComponent();\n  });\n\n  /**\n   * @test {ExampleStore#constructor}\n   */\n  it('should be an instance of React.Component', () => {\n    mountComponent(0);\n    TestUtils.isCompositeComponent(scrollBlock).should.be.true;\n  });\n  /**\n   * @test {ExampleStore#constructor}\n   */\n  it('should have appropriate state and props', () => {\n    mountComponent(0);\n    scrollBlock.state.isLoading.should.exist;\n    scrollBlock.state.isLoadedAll.should.exist;\n    scrollBlock.props.fetchData.should.be.a('function');\n    scrollBlock.props.itemsCount.should.be.a('number');\n    scrollBlock.props.itemTotal.should.be.a('number');\n  });\n\n  /**\n   * @test {ExampleStore#componentDidMount}\n   */\n  describe('ScrollBlockComponent#componentDidMount', () => {\n    /**\n     * @test {ExampleStore#componentDidMount}\n     */\n    it('should have been called', () => {\n      mountComponent(0);\n      sinon.assert.calledOnce(spy.componentDidMount);\n    });\n    /**\n     * @test {ExampleStore#componentDidMount}\n     */\n    it('should fetch data when none are loaded', () => {\n      mountComponent(0);\n\n      scrollBlock.props.itemsCount.should.equal(1);\n      // or\n      spy.componentDidMount.getCall(0)\n        .thisValue.props.itemsCount.should.equal(1);\n    });\n    /**\n     * @test {ExampleStore#componentDidMount}\n     */\n    it('should not fetch data when some are already loaded', () => {\n      mountComponent(3);\n\n      scrollBlock.props.itemsCount.should.equal(3);\n      // or\n      spy.componentDidMount.getCall(0)\n        .thisValue.props.itemsCount.should.equal(3);\n    });\n  });\n\n  /**\n   * @test {ExampleStore#componentWillReceiveProps}\n   */\n  describe('ScrollBlockComponent#componentWillReceiveProps', () => {\n    /**\n     * @test {ExampleStore#componentWillReceiveProps}\n     */\n    it('should have been called', () => {\n      mountComponent(0);\n      sinon.assert.calledOnce(spy.componentWillReceiveProps);\n    });\n    /**\n     * @test {ExampleStore#componentWillReceiveProps}\n     */\n    it('should set isLoading state to false when props has new children', () => {\n      mountComponent(0);\n      spy.componentWillReceiveProps.getCall(0).args[0].children.should.exist;\n      spy.setState.getCall(1).calledWith({isLoading: false});\n    });\n  });\n\n  /**\n   * @test {ExampleStore#componentWillUnmount}\n   */\n  describe('ScrollBlockComponent#componentWillUnmount', () => {\n    /**\n     * @test {ExampleStore#componentWillUnmount}\n     */\n    it('should have been called', () => {\n      mountComponent(0);\n      unmountComponent();\n      sinon.assert.calledOnce(spy.componentWillUnmount);\n    });\n  });\n\n  /**\n   * @test {ExampleStore#onScroll}\n   */\n  describe('ScrollBlockComponent#onScroll', () => {\n    scrollEvt = document.createEvent('Events');\n    scrollEvt.initEvent('scroll', false, false);\n    /**\n     * @test {ExampleStore#onScroll}\n     */\n    it('should load the data when the scrollbar reaches the end', () => {\n      mountComponent(6);\n      const elem = React.findDOMNode(scrollBlock);\n      elem.scrollHeight = 100 * scrollBlock.props.itemsCount;\n      elem.clientHeight = 200;\n      dispatchScrollEvent(elem, elem.scrollHeight - elem.clientHeight);\n      sinon.assert.called(spy.onScroll);\n      scrollBlock.props.itemsCount.should.equal(7);\n    });\n    /**\n     * @test {ExampleStore#onScroll}\n     */\n    it('should not load the data when the scrollbar is not at the end', () => {\n      mountComponent(6);\n      const elem = React.findDOMNode(scrollBlock);\n      elem.scrollHeight = 100 * scrollBlock.props.itemsCount;\n      elem.clientHeight = 200;\n      dispatchScrollEvent(elem, 200);\n      sinon.assert.called(spy.onScroll);\n      scrollBlock.props.itemsCount.should.equal(6);\n    });\n    /**\n     * @test {ExampleStore#onScroll}\n     */\n    it('should not load the data when all data are loaded', () => {\n      mountComponent(10);\n      const elem = React.findDOMNode(scrollBlock);\n      elem.scrollHeight = 100 * scrollBlock.props.itemsCount;\n      elem.clientHeight = 200;\n      dispatchScrollEvent(elem, elem.scrollHeight - elem.clientHeight);\n      sinon.assert.called(spy.onScroll);\n      sinon.assert.notCalled(spy.fetchData);\n      scrollBlock.props.itemsCount.should.equal(10);\n    });\n  });\n\n  /**\n   * @test {ExampleStore#fetchData}\n   */\n  describe('ScrollBlockComponent#fetchData', () => {\n    /**\n     * @test {ExampleStore#fetchData}\n     */\n    it('should set isLoading state to true', () => {\n      mountComponent(0);\n      sinon.assert.calledOnce(spy.fetchData);\n      spy.setState.getCall(0).calledWith({isLoading: true});\n    });\n  });\n});\n"
+  },
+  {
+    "kind": "testDescribe",
+    "static": true,
+    "variation": null,
+    "name": "describe46",
+    "testId": 46,
+    "memberof": "test/components/ScrollBlockTest.js",
+    "testDepth": 0,
+    "longname": "test/components/ScrollBlockTest.js~describe46",
+    "access": null,
+    "description": "ScrollBlockComponent",
+    "lineNumber": 77,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{ScrollBlockComponent}"
+      }
+    ],
+    "testTargets": [
+      "ScrollBlockComponent"
+    ]
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it47",
+    "testId": 47,
+    "memberof": "test/components/ScrollBlockTest.js~describe46",
+    "testDepth": 1,
+    "longname": "test/components/ScrollBlockTest.js~describe46.it47",
+    "access": null,
+    "description": "should be an instance of React.Component",
+    "lineNumber": 97,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{ExampleStore#constructor}"
+      }
+    ],
+    "testTargets": [
+      "ExampleStore#constructor"
+    ]
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it48",
+    "testId": 48,
+    "memberof": "test/components/ScrollBlockTest.js~describe46",
+    "testDepth": 1,
+    "longname": "test/components/ScrollBlockTest.js~describe46.it48",
+    "access": null,
+    "description": "should have appropriate state and props",
+    "lineNumber": 104,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{ExampleStore#constructor}"
+      }
+    ],
+    "testTargets": [
+      "ExampleStore#constructor"
+    ]
+  },
+  {
+    "kind": "testDescribe",
+    "static": true,
+    "variation": null,
+    "name": "describe49",
+    "testId": 49,
+    "memberof": "test/components/ScrollBlockTest.js~describe46",
+    "testDepth": 1,
+    "longname": "test/components/ScrollBlockTest.js~describe46.describe49",
+    "access": null,
+    "description": "ScrollBlockComponent#componentDidMount",
+    "lineNumber": 116,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{ExampleStore#componentDidMount}"
+      }
+    ],
+    "testTargets": [
+      "ExampleStore#componentDidMount"
+    ]
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it50",
+    "testId": 50,
+    "memberof": "test/components/ScrollBlockTest.js~describe46.describe49",
+    "testDepth": 2,
+    "longname": "test/components/ScrollBlockTest.js~describe46.describe49.it50",
+    "access": null,
+    "description": "should have been called",
+    "lineNumber": 120,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{ExampleStore#componentDidMount}"
+      }
+    ],
+    "testTargets": [
+      "ExampleStore#componentDidMount"
+    ]
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it51",
+    "testId": 51,
+    "memberof": "test/components/ScrollBlockTest.js~describe46.describe49",
+    "testDepth": 2,
+    "longname": "test/components/ScrollBlockTest.js~describe46.describe49.it51",
+    "access": null,
+    "description": "should fetch data when none are loaded",
+    "lineNumber": 127,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{ExampleStore#componentDidMount}"
+      }
+    ],
+    "testTargets": [
+      "ExampleStore#componentDidMount"
+    ]
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it52",
+    "testId": 52,
+    "memberof": "test/components/ScrollBlockTest.js~describe46.describe49",
+    "testDepth": 2,
+    "longname": "test/components/ScrollBlockTest.js~describe46.describe49.it52",
+    "access": null,
+    "description": "should not fetch data when some are already loaded",
+    "lineNumber": 138,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{ExampleStore#componentDidMount}"
+      }
+    ],
+    "testTargets": [
+      "ExampleStore#componentDidMount"
+    ]
+  },
+  {
+    "kind": "testDescribe",
+    "static": true,
+    "variation": null,
+    "name": "describe53",
+    "testId": 53,
+    "memberof": "test/components/ScrollBlockTest.js~describe46",
+    "testDepth": 1,
+    "longname": "test/components/ScrollBlockTest.js~describe46.describe53",
+    "access": null,
+    "description": "ScrollBlockComponent#componentWillReceiveProps",
+    "lineNumber": 151,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{ExampleStore#componentWillReceiveProps}"
+      }
+    ],
+    "testTargets": [
+      "ExampleStore#componentWillReceiveProps"
+    ]
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it54",
+    "testId": 54,
+    "memberof": "test/components/ScrollBlockTest.js~describe46.describe53",
+    "testDepth": 2,
+    "longname": "test/components/ScrollBlockTest.js~describe46.describe53.it54",
+    "access": null,
+    "description": "should have been called",
+    "lineNumber": 155,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{ExampleStore#componentWillReceiveProps}"
+      }
+    ],
+    "testTargets": [
+      "ExampleStore#componentWillReceiveProps"
+    ]
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it55",
+    "testId": 55,
+    "memberof": "test/components/ScrollBlockTest.js~describe46.describe53",
+    "testDepth": 2,
+    "longname": "test/components/ScrollBlockTest.js~describe46.describe53.it55",
+    "access": null,
+    "description": "should set isLoading state to false when props has new children",
+    "lineNumber": 162,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{ExampleStore#componentWillReceiveProps}"
+      }
+    ],
+    "testTargets": [
+      "ExampleStore#componentWillReceiveProps"
+    ]
+  },
+  {
+    "kind": "testDescribe",
+    "static": true,
+    "variation": null,
+    "name": "describe56",
+    "testId": 56,
+    "memberof": "test/components/ScrollBlockTest.js~describe46",
+    "testDepth": 1,
+    "longname": "test/components/ScrollBlockTest.js~describe46.describe56",
+    "access": null,
+    "description": "ScrollBlockComponent#componentWillUnmount",
+    "lineNumber": 172,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{ExampleStore#componentWillUnmount}"
+      }
+    ],
+    "testTargets": [
+      "ExampleStore#componentWillUnmount"
+    ]
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it57",
+    "testId": 57,
+    "memberof": "test/components/ScrollBlockTest.js~describe46.describe56",
+    "testDepth": 2,
+    "longname": "test/components/ScrollBlockTest.js~describe46.describe56.it57",
+    "access": null,
+    "description": "should have been called",
+    "lineNumber": 176,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{ExampleStore#componentWillUnmount}"
+      }
+    ],
+    "testTargets": [
+      "ExampleStore#componentWillUnmount"
+    ]
+  },
+  {
+    "kind": "testDescribe",
+    "static": true,
+    "variation": null,
+    "name": "describe58",
+    "testId": 58,
+    "memberof": "test/components/ScrollBlockTest.js~describe46",
+    "testDepth": 1,
+    "longname": "test/components/ScrollBlockTest.js~describe46.describe58",
+    "access": null,
+    "description": "ScrollBlockComponent#onScroll",
+    "lineNumber": 186,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{ExampleStore#onScroll}"
+      }
+    ],
+    "testTargets": [
+      "ExampleStore#onScroll"
+    ]
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it59",
+    "testId": 59,
+    "memberof": "test/components/ScrollBlockTest.js~describe46.describe58",
+    "testDepth": 2,
+    "longname": "test/components/ScrollBlockTest.js~describe46.describe58.it59",
+    "access": null,
+    "description": "should load the data when the scrollbar reaches the end",
+    "lineNumber": 192,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{ExampleStore#onScroll}"
+      }
+    ],
+    "testTargets": [
+      "ExampleStore#onScroll"
+    ]
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it60",
+    "testId": 60,
+    "memberof": "test/components/ScrollBlockTest.js~describe46.describe58",
+    "testDepth": 2,
+    "longname": "test/components/ScrollBlockTest.js~describe46.describe58.it60",
+    "access": null,
+    "description": "should not load the data when the scrollbar is not at the end",
+    "lineNumber": 204,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{ExampleStore#onScroll}"
+      }
+    ],
+    "testTargets": [
+      "ExampleStore#onScroll"
+    ]
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it61",
+    "testId": 61,
+    "memberof": "test/components/ScrollBlockTest.js~describe46.describe58",
+    "testDepth": 2,
+    "longname": "test/components/ScrollBlockTest.js~describe46.describe58.it61",
+    "access": null,
+    "description": "should not load the data when all data are loaded",
+    "lineNumber": 216,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{ExampleStore#onScroll}"
+      }
+    ],
+    "testTargets": [
+      "ExampleStore#onScroll"
+    ]
+  },
+  {
+    "kind": "testDescribe",
+    "static": true,
+    "variation": null,
+    "name": "describe62",
+    "testId": 62,
+    "memberof": "test/components/ScrollBlockTest.js~describe46",
+    "testDepth": 1,
+    "longname": "test/components/ScrollBlockTest.js~describe46.describe62",
+    "access": null,
+    "description": "ScrollBlockComponent#fetchData",
+    "lineNumber": 231,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{ExampleStore#fetchData}"
+      }
+    ],
+    "testTargets": [
+      "ExampleStore#fetchData"
+    ]
+  },
+  {
+    "kind": "testIt",
+    "static": true,
+    "variation": null,
+    "name": "it63",
+    "testId": 63,
+    "memberof": "test/components/ScrollBlockTest.js~describe46.describe62",
+    "testDepth": 2,
+    "longname": "test/components/ScrollBlockTest.js~describe46.describe62.it63",
+    "access": null,
+    "description": "should set isLoading state to true",
+    "lineNumber": 235,
+    "unknown": [
+      {
+        "tagName": "@test",
+        "tagValue": "{ExampleStore#fetchData}"
+      }
+    ],
+    "testTargets": [
+      "ExampleStore#fetchData"
+    ]
+  },
+  {
+    "kind": "testFile",
+    "static": true,
+    "variation": null,
     "name": "test/helpers/routePrefixerTest.js",
     "memberof": null,
     "longname": "test/helpers/routePrefixerTest.js",
@@ -4758,11 +5407,11 @@
     "kind": "testDescribe",
     "static": true,
     "variation": null,
-    "name": "describe32",
-    "testId": 32,
+    "name": "describe64",
+    "testId": 64,
     "memberof": "test/helpers/routePrefixerTest.js",
     "testDepth": 0,
-    "longname": "test/helpers/routePrefixerTest.js~describe32",
+    "longname": "test/helpers/routePrefixerTest.js~describe64",
     "access": null,
     "description": "Route prefixer",
     "lineNumber": 24,
@@ -4780,11 +5429,11 @@
     "kind": "testIt",
     "static": true,
     "variation": null,
-    "name": "it33",
-    "testId": 33,
-    "memberof": "test/helpers/routePrefixerTest.js~describe32",
+    "name": "it65",
+    "testId": 65,
+    "memberof": "test/helpers/routePrefixerTest.js~describe64",
     "testDepth": 1,
-    "longname": "test/helpers/routePrefixerTest.js~describe32.it33",
+    "longname": "test/helpers/routePrefixerTest.js~describe64.it65",
     "access": null,
     "description": "should throw an error if the given params are not correct",
     "lineNumber": 28,
@@ -4802,11 +5451,11 @@
     "kind": "testIt",
     "static": true,
     "variation": null,
-    "name": "it34",
-    "testId": 34,
-    "memberof": "test/helpers/routePrefixerTest.js~describe32",
+    "name": "it66",
+    "testId": 66,
+    "memberof": "test/helpers/routePrefixerTest.js~describe64",
     "testDepth": 1,
-    "longname": "test/helpers/routePrefixerTest.js~describe32.it34",
+    "longname": "test/helpers/routePrefixerTest.js~describe64.it66",
     "access": null,
     "description": "should throw an error if route(s) don't have route.path",
     "lineNumber": 42,
@@ -4824,11 +5473,11 @@
     "kind": "testIt",
     "static": true,
     "variation": null,
-    "name": "it35",
-    "testId": 35,
-    "memberof": "test/helpers/routePrefixerTest.js~describe32",
+    "name": "it67",
+    "testId": 67,
+    "memberof": "test/helpers/routePrefixerTest.js~describe64",
     "testDepth": 1,
-    "longname": "test/helpers/routePrefixerTest.js~describe32.it35",
+    "longname": "test/helpers/routePrefixerTest.js~describe64.it67",
     "access": null,
     "description": "should always return an array",
     "lineNumber": 54,
@@ -4846,11 +5495,11 @@
     "kind": "testIt",
     "static": true,
     "variation": null,
-    "name": "it36",
-    "testId": 36,
-    "memberof": "test/helpers/routePrefixerTest.js~describe32",
+    "name": "it68",
+    "testId": 68,
+    "memberof": "test/helpers/routePrefixerTest.js~describe64",
     "testDepth": 1,
-    "longname": "test/helpers/routePrefixerTest.js~describe32.it36",
+    "longname": "test/helpers/routePrefixerTest.js~describe64.it68",
     "access": null,
     "description": "should be able to prefix routes as an Object",
     "lineNumber": 68,
@@ -4868,11 +5517,11 @@
     "kind": "testIt",
     "static": true,
     "variation": null,
-    "name": "it37",
-    "testId": 37,
-    "memberof": "test/helpers/routePrefixerTest.js~describe32",
+    "name": "it69",
+    "testId": 69,
+    "memberof": "test/helpers/routePrefixerTest.js~describe64",
     "testDepth": 1,
-    "longname": "test/helpers/routePrefixerTest.js~describe32.it37",
+    "longname": "test/helpers/routePrefixerTest.js~describe64.it69",
     "access": null,
     "description": "should be able to prefix routes as an Array",
     "lineNumber": 78,
@@ -4902,11 +5551,11 @@
     "kind": "testDescribe",
     "static": true,
     "variation": null,
-    "name": "describe38",
-    "testId": 38,
+    "name": "describe70",
+    "testId": 70,
     "memberof": "test/helpers/routerContainerTest.js",
     "testDepth": 0,
-    "longname": "test/helpers/routerContainerTest.js~describe38",
+    "longname": "test/helpers/routerContainerTest.js~describe70",
     "access": null,
     "description": "Router container",
     "lineNumber": 7,
@@ -4924,11 +5573,11 @@
     "kind": "testIt",
     "static": true,
     "variation": null,
-    "name": "it39",
-    "testId": 39,
-    "memberof": "test/helpers/routerContainerTest.js~describe38",
+    "name": "it71",
+    "testId": 71,
+    "memberof": "test/helpers/routerContainerTest.js~describe70",
     "testDepth": 1,
-    "longname": "test/helpers/routerContainerTest.js~describe38.it39",
+    "longname": "test/helpers/routerContainerTest.js~describe70.it71",
     "access": null,
     "description": "should have a get() method",
     "lineNumber": 11,
@@ -4946,11 +5595,11 @@
     "kind": "testIt",
     "static": true,
     "variation": null,
-    "name": "it40",
-    "testId": 40,
-    "memberof": "test/helpers/routerContainerTest.js~describe38",
+    "name": "it72",
+    "testId": 72,
+    "memberof": "test/helpers/routerContainerTest.js~describe70",
     "testDepth": 1,
-    "longname": "test/helpers/routerContainerTest.js~describe38.it40",
+    "longname": "test/helpers/routerContainerTest.js~describe70.it72",
     "access": null,
     "description": "should have a set() method",
     "lineNumber": 18,
@@ -4968,11 +5617,11 @@
     "kind": "testIt",
     "static": true,
     "variation": null,
-    "name": "it41",
-    "testId": 41,
-    "memberof": "test/helpers/routerContainerTest.js~describe38",
+    "name": "it73",
+    "testId": 73,
+    "memberof": "test/helpers/routerContainerTest.js~describe70",
     "testDepth": 1,
-    "longname": "test/helpers/routerContainerTest.js~describe38.it41",
+    "longname": "test/helpers/routerContainerTest.js~describe70.it73",
     "access": null,
     "description": "should be able to set and get a router",
     "lineNumber": 25,
@@ -5002,11 +5651,11 @@
     "kind": "testDescribe",
     "static": true,
     "variation": null,
-    "name": "describe42",
-    "testId": 42,
+    "name": "describe74",
+    "testId": 74,
     "memberof": "test/stores/ExampleStoreTest.js",
     "testDepth": 0,
-    "longname": "test/stores/ExampleStoreTest.js~describe42",
+    "longname": "test/stores/ExampleStoreTest.js~describe74",
     "access": null,
     "description": "ExampleStore",
     "lineNumber": 10,
@@ -5024,11 +5673,11 @@
     "kind": "testIt",
     "static": true,
     "variation": null,
-    "name": "it43",
-    "testId": 43,
-    "memberof": "test/stores/ExampleStoreTest.js~describe42",
+    "name": "it75",
+    "testId": 75,
+    "memberof": "test/stores/ExampleStoreTest.js~describe74",
     "testDepth": 1,
-    "longname": "test/stores/ExampleStoreTest.js~describe42.it43",
+    "longname": "test/stores/ExampleStoreTest.js~describe74.it75",
     "access": null,
     "description": "should be an instance of FrillCore.BaseStore",
     "lineNumber": 14,
@@ -5046,11 +5695,11 @@
     "kind": "testIt",
     "static": true,
     "variation": null,
-    "name": "it44",
-    "testId": 44,
-    "memberof": "test/stores/ExampleStoreTest.js~describe42",
+    "name": "it76",
+    "testId": 76,
+    "memberof": "test/stores/ExampleStoreTest.js~describe74",
     "testDepth": 1,
-    "longname": "test/stores/ExampleStoreTest.js~describe42.it44",
+    "longname": "test/stores/ExampleStoreTest.js~describe74.it76",
     "access": null,
     "description": "should have appropriate properties and defaults",
     "lineNumber": 21,
@@ -5068,11 +5717,11 @@
     "kind": "testDescribe",
     "static": true,
     "variation": null,
-    "name": "describe45",
-    "testId": 45,
-    "memberof": "test/stores/ExampleStoreTest.js~describe42",
+    "name": "describe77",
+    "testId": 77,
+    "memberof": "test/stores/ExampleStoreTest.js~describe74",
     "testDepth": 1,
-    "longname": "test/stores/ExampleStoreTest.js~describe42.describe45",
+    "longname": "test/stores/ExampleStoreTest.js~describe74.describe77",
     "access": null,
     "description": "ExampleStore#actions",
     "lineNumber": 32,
@@ -5090,11 +5739,11 @@
     "kind": "testIt",
     "static": true,
     "variation": null,
-    "name": "it46",
-    "testId": 46,
-    "memberof": "test/stores/ExampleStoreTest.js~describe42.describe45",
+    "name": "it78",
+    "testId": 78,
+    "memberof": "test/stores/ExampleStoreTest.js~describe74.describe77",
     "testDepth": 2,
-    "longname": "test/stores/ExampleStoreTest.js~describe42.describe45.it46",
+    "longname": "test/stores/ExampleStoreTest.js~describe74.describe77.it78",
     "access": null,
     "description": "should handle COUNT_UP",
     "lineNumber": 36,
@@ -5112,11 +5761,11 @@
     "kind": "testIt",
     "static": true,
     "variation": null,
-    "name": "it47",
-    "testId": 47,
-    "memberof": "test/stores/ExampleStoreTest.js~describe42.describe45",
+    "name": "it79",
+    "testId": 79,
+    "memberof": "test/stores/ExampleStoreTest.js~describe74.describe77",
     "testDepth": 2,
-    "longname": "test/stores/ExampleStoreTest.js~describe42.describe45.it47",
+    "longname": "test/stores/ExampleStoreTest.js~describe74.describe77.it79",
     "access": null,
     "description": "should handle COUNT_UP_BY",
     "lineNumber": 43,
@@ -5134,11 +5783,11 @@
     "kind": "testIt",
     "static": true,
     "variation": null,
-    "name": "it48",
-    "testId": 48,
-    "memberof": "test/stores/ExampleStoreTest.js~describe42.describe45",
+    "name": "it80",
+    "testId": 80,
+    "memberof": "test/stores/ExampleStoreTest.js~describe74.describe77",
     "testDepth": 2,
-    "longname": "test/stores/ExampleStoreTest.js~describe42.describe45.it48",
+    "longname": "test/stores/ExampleStoreTest.js~describe74.describe77.it80",
     "access": null,
     "description": "should handle LOAD_SCROLL_ITEMS",
     "lineNumber": 50,
@@ -5156,11 +5805,11 @@
     "kind": "testDescribe",
     "static": true,
     "variation": null,
-    "name": "describe49",
-    "testId": 49,
-    "memberof": "test/stores/ExampleStoreTest.js~describe42",
+    "name": "describe81",
+    "testId": 81,
+    "memberof": "test/stores/ExampleStoreTest.js~describe74",
     "testDepth": 1,
-    "longname": "test/stores/ExampleStoreTest.js~describe42.describe49",
+    "longname": "test/stores/ExampleStoreTest.js~describe74.describe81",
     "access": null,
     "description": "ExampleStore#countUp",
     "lineNumber": 57,
@@ -5178,11 +5827,11 @@
     "kind": "testIt",
     "static": true,
     "variation": null,
-    "name": "it50",
-    "testId": 50,
-    "memberof": "test/stores/ExampleStoreTest.js~describe42.describe49",
+    "name": "it82",
+    "testId": 82,
+    "memberof": "test/stores/ExampleStoreTest.js~describe74.describe81",
     "testDepth": 2,
-    "longname": "test/stores/ExampleStoreTest.js~describe42.describe49.it50",
+    "longname": "test/stores/ExampleStoreTest.js~describe74.describe81.it82",
     "access": null,
     "description": "should have a countUp() method",
     "lineNumber": 61,
@@ -5200,11 +5849,11 @@
     "kind": "testIt",
     "static": true,
     "variation": null,
-    "name": "it51",
-    "testId": 51,
-    "memberof": "test/stores/ExampleStoreTest.js~describe42.describe49",
+    "name": "it83",
+    "testId": 83,
+    "memberof": "test/stores/ExampleStoreTest.js~describe74.describe81",
     "testDepth": 2,
-    "longname": "test/stores/ExampleStoreTest.js~describe42.describe49.it51",
+    "longname": "test/stores/ExampleStoreTest.js~describe74.describe81.it83",
     "access": null,
     "description": "should be able to handle dispatched actions",
     "lineNumber": 69,
@@ -5227,11 +5876,11 @@
     "kind": "testDescribe",
     "static": true,
     "variation": null,
-    "name": "describe52",
-    "testId": 52,
-    "memberof": "test/stores/ExampleStoreTest.js~describe42",
+    "name": "describe84",
+    "testId": 84,
+    "memberof": "test/stores/ExampleStoreTest.js~describe74",
     "testDepth": 1,
-    "longname": "test/stores/ExampleStoreTest.js~describe42.describe52",
+    "longname": "test/stores/ExampleStoreTest.js~describe74.describe84",
     "access": null,
     "description": "ExampleStore#countUpBy",
     "lineNumber": 82,
@@ -5249,11 +5898,11 @@
     "kind": "testIt",
     "static": true,
     "variation": null,
-    "name": "it53",
-    "testId": 53,
-    "memberof": "test/stores/ExampleStoreTest.js~describe42.describe52",
+    "name": "it85",
+    "testId": 85,
+    "memberof": "test/stores/ExampleStoreTest.js~describe74.describe84",
     "testDepth": 2,
-    "longname": "test/stores/ExampleStoreTest.js~describe42.describe52.it53",
+    "longname": "test/stores/ExampleStoreTest.js~describe74.describe84.it85",
     "access": null,
     "description": "should have a countUpBy() method",
     "lineNumber": 86,
@@ -5271,11 +5920,11 @@
     "kind": "testIt",
     "static": true,
     "variation": null,
-    "name": "it54",
-    "testId": 54,
-    "memberof": "test/stores/ExampleStoreTest.js~describe42.describe52",
+    "name": "it86",
+    "testId": 86,
+    "memberof": "test/stores/ExampleStoreTest.js~describe74.describe84",
     "testDepth": 2,
-    "longname": "test/stores/ExampleStoreTest.js~describe42.describe52.it54",
+    "longname": "test/stores/ExampleStoreTest.js~describe74.describe84.it86",
     "access": null,
     "description": "should be able to handle dispatched actions",
     "lineNumber": 94,
@@ -5298,11 +5947,11 @@
     "kind": "testDescribe",
     "static": true,
     "variation": null,
-    "name": "describe55",
-    "testId": 55,
-    "memberof": "test/stores/ExampleStoreTest.js~describe42",
+    "name": "describe87",
+    "testId": 87,
+    "memberof": "test/stores/ExampleStoreTest.js~describe74",
     "testDepth": 1,
-    "longname": "test/stores/ExampleStoreTest.js~describe42.describe55",
+    "longname": "test/stores/ExampleStoreTest.js~describe74.describe87",
     "access": null,
     "description": "ExampleStore#loadScrollItems",
     "lineNumber": 107,
@@ -5320,11 +5969,11 @@
     "kind": "testIt",
     "static": true,
     "variation": null,
-    "name": "it56",
-    "testId": 56,
-    "memberof": "test/stores/ExampleStoreTest.js~describe42.describe55",
+    "name": "it88",
+    "testId": 88,
+    "memberof": "test/stores/ExampleStoreTest.js~describe74.describe87",
     "testDepth": 2,
-    "longname": "test/stores/ExampleStoreTest.js~describe42.describe55.it56",
+    "longname": "test/stores/ExampleStoreTest.js~describe74.describe87.it88",
     "access": null,
     "description": "should have a loadScrollItems() method",
     "lineNumber": 111,
@@ -5342,11 +5991,11 @@
     "kind": "testIt",
     "static": true,
     "variation": null,
-    "name": "it57",
-    "testId": 57,
-    "memberof": "test/stores/ExampleStoreTest.js~describe42.describe55",
+    "name": "it89",
+    "testId": 89,
+    "memberof": "test/stores/ExampleStoreTest.js~describe74.describe87",
     "testDepth": 2,
-    "longname": "test/stores/ExampleStoreTest.js~describe42.describe55.it57",
+    "longname": "test/stores/ExampleStoreTest.js~describe74.describe87.it89",
     "access": null,
     "description": "should be able to handle dispatched actions",
     "lineNumber": 121,

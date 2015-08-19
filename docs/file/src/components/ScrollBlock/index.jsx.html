@@ -149,6 +149,9 @@ class ScrollBlockComponent extends React.Component {
       // NOTE: changed from &apos;isAllLoaded&apos;
       isLoadedAll: false,
     };
+
+    this.fetchData = this.fetchData.bind(this);
+    this.onScroll = this.onScroll.bind(this);
   }
 
   /**
@@ -158,15 +161,11 @@ class ScrollBlockComponent extends React.Component {
   componentDidMount() {
     if (canUseDOM) {
       React.findDOMNode(this.refs.scrollBlock)
-        .addEventListener(&apos;scroll&apos;, this.onScroll.bind(this));
+        .addEventListener(&apos;scroll&apos;, this.onScroll);
     }
 
     if (!this.props.itemsCount) {
-      this.setState({
-        isLoading: true,
-      });
-
-      this.props.fetchData();
+      this.fetchData();
     }
   }
 
@@ -211,10 +210,7 @@ class ScrollBlockComponent extends React.Component {
 
         // else if there are more items to load
         } else {
-          this.setState({
-            isLoading: true,
-          });
-          this.props.fetchData();
+          this.fetchData();
         }
       }
     }
@@ -230,21 +226,29 @@ class ScrollBlockComponent extends React.Component {
     const isLoadedAll = this.state.isLoadedAll;
 
     return (
-      &lt;div&gt;
-        &lt;div className=&quot;ScrollBlock&quot; ref=&quot;scrollBlock&quot;&gt;
-          {this.props.children}
-          &lt;p className={`ScrollBlock-loading${_className}`}&gt;
-            {(!isLoadedAll ? () =&gt; {
-              // return &apos;loading...&apos; when there are more items to load
-              return &apos;loading ...&apos;;
-            } : () =&gt; {
-              // when all items loaded
-              return &apos;loaded!&apos;;
-            })()}
-          &lt;/p&gt;
-        &lt;/div&gt;
+      &lt;div className=&quot;ScrollBlock&quot; ref=&quot;scrollBlock&quot;&gt;
+        {this.props.children}
+        &lt;p className={`ScrollBlock-loading${_className}`}&gt;
+          {(!isLoadedAll ? () =&gt; {
+            // return &apos;loading...&apos; when there are more items to load
+            return &apos;loading ...&apos;;
+          } : () =&gt; {
+            // when all items loaded
+            return &apos;loaded!&apos;;
+          })()}
+        &lt;/p&gt;
       &lt;/div&gt;
     );
+  }
+
+  /**
+   * load the data from the parent&apos;s function
+   */
+  fetchData() {
+    this.setState({
+      isLoading: true,
+    });
+    this.props.fetchData();
   }
 }
 
