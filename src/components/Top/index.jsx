@@ -87,10 +87,6 @@ class TopComponent extends new StoreWatchComponent(['Example']) {
           <button onClick={this.onTen}>+10</button>
         </section>
         <section>
-          <h3>Textarea</h3>
-          <textarea placeholder="type something ..."></textarea>
-        </section>
-        <section>
           <h3>Infinite Scroll</h3>
           <ScrollBlock
             fetchData={this.onFetchItems}

@@ -66,7 +66,6 @@ const localAuthHandler = (request, reply) => {
   };
 
   const user = _where(accounts, query);
-  // console.log(user);
 
   if (user.length === 0) {
     console.log('needs registration');
@@ -94,9 +93,9 @@ const localAuthHandler = (request, reply) => {
 /**
  * Handler for site registration
  */
-const registrationHandler = (request, reply) => {
-
-};
+// const registrationHandler = (request, reply) => {
+//
+// };
 
 /**
  * Export all authentication handlers
@@ -104,7 +103,7 @@ const registrationHandler = (request, reply) => {
 const authHandlers = {
   authHandler,
   localAuthHandler,
-  registrationHandler,
+  // registrationHandler,
 };
 
 export default authHandlers;

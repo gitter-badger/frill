@@ -48,7 +48,7 @@ class AppComponent extends new StoreWatchComponent(['Auth']) {
             <li><Link to="login">Login Sample</Link></li>
             <li>
               <a href="http://localhost:3000/auth/twitter/login">
-                Twitter Auth Test
+                Twitter Auth Example
               </a>
             </li>
           </ul>
