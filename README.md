@@ -22,7 +22,7 @@ Yet another FLUX starter kit
 * Watch and automatic builds using [gulp](http://gulpjs.com/), [webpack](https://github.com/webpack/webpack), and [Babel](https://babeljs.io/)
 * Auto-reload using [Browsersync](http://www.browsersync.io/), and [nodemon](https://github.com/remy/nodemon)
 * Documentation using [ESDoc](https://esdoc.org/) and [hapi-swagger](https://github.com/glennjones/hapi-swagger)
-* Lints using [ESLint](http://eslint.org/)
+* Lints using [ESLint](http://eslint.org/), alternatively [JSHint](http://jshint.com/docs)
 * Testing with [Mocha](mochajs.org), [Chai](chaijs.com), [Sinon.js](http://sinonjs.org/), and [jsdom](https://github.com/tmpvar/jsdom)
 * Styles using [Stylus](https://learnboost.github.io/stylus/)
 * Example of a model using [Sequelize](docs.sequelizejs.com/en/latest/)
