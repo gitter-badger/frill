@@ -1,9 +1,7 @@
-// import React from 'react/addons';
 import {createSandboxSpy} from '../baseHelper';
 import ScrollBlock from '../../src/components/ScrollBlock/index.jsx';
 import ExeEnv from 'react/lib/ExecutionEnvironment';
 ExeEnv.canUseDOM = true;
-const TestUtils = React.addons.TestUtils;
 
 let spy;
 let container;
@@ -92,14 +90,14 @@ describe('ScrollBlockComponent', () => {
   });
 
   /**
-   * @test {ExampleStore#constructor}
+   * @test {ScrollBlockComponent#constructor}
    */
   it('should be an instance of React.Component', () => {
     mountComponent(0);
     TestUtils.isCompositeComponent(scrollBlock).should.be.true;
   });
   /**
-   * @test {ExampleStore#constructor}
+   * @test {ScrollBlockComponent#constructor}
    */
   it('should have appropriate state and props', () => {
     mountComponent(0);
@@ -111,18 +109,18 @@ describe('ScrollBlockComponent', () => {
   });
 
   /**
-   * @test {ExampleStore#componentDidMount}
+   * @test {ScrollBlockComponent#componentDidMount}
    */
   describe('ScrollBlockComponent#componentDidMount', () => {
     /**
-     * @test {ExampleStore#componentDidMount}
+     * @test {ScrollBlockComponent#componentDidMount}
      */
     it('should have been called', () => {
       mountComponent(0);
       sinon.assert.calledOnce(spy.componentDidMount);
     });
     /**
-     * @test {ExampleStore#componentDidMount}
+     * @test {ScrollBlockComponent#componentDidMount}
      */
     it('should fetch data when none are loaded', () => {
       mountComponent(0);
@@ -133,7 +131,7 @@ describe('ScrollBlockComponent', () => {
         .thisValue.props.itemsCount.should.equal(1);
     });
     /**
-     * @test {ExampleStore#componentDidMount}
+     * @test {ScrollBlockComponent#componentDidMount}
      */
     it('should not fetch data when some are already loaded', () => {
       mountComponent(3);
@@ -146,18 +144,18 @@ describe('ScrollBlockComponent', () => {
   });
 
   /**
-   * @test {ExampleStore#componentWillReceiveProps}
+   * @test {ScrollBlockComponent#componentWillReceiveProps}
    */
   describe('ScrollBlockComponent#componentWillReceiveProps', () => {
     /**
-     * @test {ExampleStore#componentWillReceiveProps}
+     * @test {ScrollBlockComponent#componentWillReceiveProps}
      */
     it('should have been called', () => {
       mountComponent(0);
       sinon.assert.calledOnce(spy.componentWillReceiveProps);
     });
     /**
-     * @test {ExampleStore#componentWillReceiveProps}
+     * @test {ScrollBlockComponent#componentWillReceiveProps}
      */
     it('should set isLoading state to false when props has new children', () => {
       mountComponent(0);
@@ -167,11 +165,11 @@ describe('ScrollBlockComponent', () => {
   });
 
   /**
-   * @test {ExampleStore#componentWillUnmount}
+   * @test {ScrollBlockComponent#componentWillUnmount}
    */
   describe('ScrollBlockComponent#componentWillUnmount', () => {
     /**
-     * @test {ExampleStore#componentWillUnmount}
+     * @test {ScrollBlockComponent#componentWillUnmount}
      */
     it('should have been called', () => {
       mountComponent(0);
@@ -181,13 +179,13 @@ describe('ScrollBlockComponent', () => {
   });
 
   /**
-   * @test {ExampleStore#onScroll}
+   * @test {ScrollBlockComponent#onScroll}
    */
   describe('ScrollBlockComponent#onScroll', () => {
     scrollEvt = document.createEvent('Events');
     scrollEvt.initEvent('scroll', false, false);
     /**
-     * @test {ExampleStore#onScroll}
+     * @test {ScrollBlockComponent#onScroll}
      */
     it('should load the data when the scrollbar reaches the end', () => {
       mountComponent(6);
@@ -199,7 +197,7 @@ describe('ScrollBlockComponent', () => {
       scrollBlock.props.itemsCount.should.equal(7);
     });
     /**
-     * @test {ExampleStore#onScroll}
+     * @test {ScrollBlockComponent#onScroll}
      */
     it('should not load the data when the scrollbar is not at the end', () => {
       mountComponent(6);
@@ -211,7 +209,7 @@ describe('ScrollBlockComponent', () => {
       scrollBlock.props.itemsCount.should.equal(6);
     });
     /**
-     * @test {ExampleStore#onScroll}
+     * @test {ScrollBlockComponent#onScroll}
      */
     it('should not load the data when all data are loaded', () => {
       mountComponent(10);
@@ -226,11 +224,24 @@ describe('ScrollBlockComponent', () => {
   });
 
   /**
-   * @test {ExampleStore#fetchData}
+   * @test {ScrollBlockComponent#render}
+   */
+  describe('ScrollBlockComponent#render', () => {
+    /**
+     * @test {ScrollBlockComponent#render}
+     */
+    it('should have a className \'ScrollBlock\'', () => {
+      mountComponent(0);
+      React.findDOMNode(scrollBlock).className.should.equal('ScrollBlock');
+    });
+  });
+
+  /**
+   * @test {ScrollBlockComponent#fetchData}
    */
   describe('ScrollBlockComponent#fetchData', () => {
     /**
-     * @test {ExampleStore#fetchData}
+     * @test {ScrollBlockComponent#fetchData}
      */
     it('should set isLoading state to true', () => {
       mountComponent(0);

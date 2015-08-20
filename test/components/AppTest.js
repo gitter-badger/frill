@@ -1,9 +1,11 @@
 import {createSandboxSpy} from '../baseHelper';
 import App from '../../src/components/App/index.jsx';
 // import {StoreWatchComponent} from 'frill-core';
-const TestUtils = React.addons.TestUtils;
+import ExeEnv from 'react/lib/ExecutionEnvironment';
+ExeEnv.canUseDOM = true;
 
 let spy;
+let frillSpy;
 let component;
 let shallowRenderer;
 
@@ -21,8 +23,6 @@ const dummyFrill = {
     };
   },
 };
-
-const frillSpy = sinon.spy(dummyFrill, 'store');
 
 function mountComponent(frill) {
   shallowRenderer = TestUtils.createRenderer();
@@ -42,6 +42,8 @@ describe('AppComponent', () => {
     spy = createSandboxSpy(App.prototype, [
       'getStateFromFrill',
     ]);
+
+    frillSpy = sandbox.spy(dummyFrill, 'store');
 
     mountComponent();
   });
@@ -80,14 +82,20 @@ describe('AppComponent', () => {
     /**
      * @test {AppComponent#render}
      */
-    it('should display different message depending upon login status', () => {
+    it('should display different message depending on login status', () => {
       const display = component.props.children[2].props.children.join('');
       display.should.equal('Hello, user');
+    });
 
+    it('should display different message depending on login status 2', () => {
       const anotherFrill = {
         store: () => {
           return {
-            user: 'user',
+            user: {
+              user: {
+                displayName: 'user',
+              },
+            },
             isLoggedIn: () => {
               return false;
             },

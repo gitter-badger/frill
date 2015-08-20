@@ -32,6 +32,7 @@ global.window = document.defaultView;
 global.navigator = window.navigator;
 global.Promise = Promise;
 global.React = React;
+global.TestUtils = React.addons.TestUtils;
 global.chai = chai;
 global.expect = chai.expect;
 global.should = chai.should();

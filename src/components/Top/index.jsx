@@ -83,8 +83,8 @@ class TopComponent extends new StoreWatchComponent(['Example']) {
         <section>
           <h3>Button - counter</h3>
           <p className="count">{this.state.count}</p>
-          <button onClick={this.onOne}>+1</button>
-          <button onClick={this.onTen}>+10</button>
+          <button key="onone-btn" onClick={this.onOne}>+1</button>
+          <button key="onten-btn" onClick={this.onTen}>+10</button>
         </section>
         <section>
           <h3>Infinite Scroll</h3>
