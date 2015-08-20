@@ -5,9 +5,16 @@ languages:
   Python: false
 
 exclude_paths:
-  - ".db"
-  - "docs"
+- ".db"
+- "docs"
 
 engines:
   eslint:
     enabled: true
+
+ratings:
+  paths:
+  - src/**
+  - tasks/**
+  - **.js
+  - **.jsx
