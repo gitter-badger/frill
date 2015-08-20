@@ -2,7 +2,12 @@
 
 Yet another FLUX starter kit
 
-[![document coverage](https://rawgit.com/nanopx/frill/master/docs/badge.svg)](https://esdoc.org) ![dependencies](https://david-dm.org/nanopx/frill.svg) [![Circle CI](https://circleci.com/gh/nanopx/frill/tree/master.svg?style=shield&circle-token=ea6665c989599be6eddc9ba5f7d8d849b525f83a)](https://circleci.com/gh/nanopx/frill/tree/master)
+[![Circle CI](https://circleci.com/gh/nanopx/frill/tree/master.svg?style=shield&circle-token=ea6665c989599be6eddc9ba5f7d8d849b525f83a)](https://circleci.com/gh/nanopx/frill/tree/master)
+[![document coverage](https://rawgit.com/nanopx/frill/master/docs/badge.svg)](https://esdoc.org)
+[![HAPI 9.0.2](http://img.shields.io/badge/hapi-9.0.2-brightgreen.svg "Latest Hapi.js")](http://hapijs.com)
+[![dependencies](https://david-dm.org/nanopx/frill.svg)](https://david-dm.org/nanopx/frill)
+[![devDependency Status](https://david-dm.org/nanopx/frill/dev-status.svg)](https://david-dm.org/nanopx/frill#info=devDependencies)
+
 ---
 
 ## Features
