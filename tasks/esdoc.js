@@ -12,7 +12,7 @@
 
 import config from '../esdoc';
 
-export default (gulp, $, argv, path) => {
+export default (gulp, $) => {
   gulp.task('doc', () => {
     return gulp.src(['./src'])
       .pipe($.esdoc(config));

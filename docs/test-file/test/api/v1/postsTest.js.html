@@ -76,7 +76,6 @@
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-helpers">helpers</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-jwtStrategy">jwtStrategy</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-localAuthRoutes">localAuthRoutes</a></span></li>
-<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-localAuthRoutes">localAuthRoutes</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-localStrategy">localStrategy</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-loginComponent">loginComponent</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-pageComponent">pageComponent</a></span></li>
@@ -107,7 +106,7 @@
 
 <div class="content" data-ice="content"><h1 data-ice="title">test/api/v1/postsTest.js</h1>
 <pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">import posts from &apos;../../../src/api/v1/posts&apos;;
-import {inject, convertToPlainObject} from &apos;../../frillHelper&apos;;
+import {inject, convertToPlainObject} from &apos;../../baseHelper&apos;;
 import {routePrefixer} from &apos;../../../src/helpers&apos;;
 import sequelize from &apos;../../../src/models/setup_sequelize&apos;;
 import Models from &apos;../../../src/models&apos;;
@@ -128,9 +127,9 @@ const testData = [
 describe(&apos;/api/v1/posts&apos;, () =&gt; {
   before((done) =&gt; {
     if (process.env.NODE_ENV !== &apos;test&apos;) {
-      throw new Error(
-        &apos;Please set NODE_ENV to \&apos;test\&apos; to ensure your data will not&apos;
-        + &apos; be modified or deleted by tests.&apos;
+      done(
+        new Error(&apos;Please set NODE_ENV to \&apos;test\&apos; to ensure your data will not&apos;
+          + &apos; be modified or deleted by tests.&apos;)
       );
     } else {
       // force sync sequelize before running tests
@@ -142,9 +141,9 @@ describe(&apos;/api/v1/posts&apos;, () =&gt; {
 
   after((done) =&gt; {
     if (process.env.NODE_ENV !== &apos;test&apos;) {
-      throw new Error(
-        &apos;Please set NODE_ENV to \&apos;test\&apos; to ensure your data will not&apos;
-        + &apos; be modified or deleted by tests.&apos;
+      done(
+        new Error(&apos;Please set NODE_ENV to \&apos;test\&apos; to ensure your data will not&apos;
+          + &apos; be modified or deleted by tests.&apos;)
       );
     } else {
       // drop

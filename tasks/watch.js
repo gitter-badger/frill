@@ -9,7 +9,7 @@
  * Watches file changes and builds the application.
  *
  */
-export default (gulp, $, argv, path) => {
+export default (gulp, $) => {
   gulp.task('watch', (cb) => {
     $._watch = false;
     const styles = ['src/styles/**/*.{css,styl}'];

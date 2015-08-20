@@ -10,7 +10,7 @@
  *
  */
 
-export default (gulp, $, argv, path) => {
+export default (gulp, $) => {
   gulp.task('flowtype', () => {
     return gulp.src(['src/**/*.js', 'src/**/*.jsx'])
       .pipe($.flowtype({

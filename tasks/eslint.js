@@ -9,7 +9,7 @@
  * Linter for ES6.
  *
  */
-export default (gulp, $, argv, path) => {
+export default (gulp, $) => {
   gulp.task('lint', () => {
     return gulp.src([
       'app.js',

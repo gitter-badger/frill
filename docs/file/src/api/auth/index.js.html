@@ -76,7 +76,6 @@
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-helpers">helpers</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-jwtStrategy">jwtStrategy</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-localAuthRoutes">localAuthRoutes</a></span></li>
-<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-localAuthRoutes">localAuthRoutes</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-localStrategy">localStrategy</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-loginComponent">loginComponent</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-pageComponent">pageComponent</a></span></li>
@@ -110,7 +109,6 @@
 import Strategies from &apos;./strategies&apos;;
 
 // import authentication routes
-// import local from &apos;./local&apos;;
 import twitter from &apos;./twitter&apos;;
 // import facebook from &apos;./facebook&apos;;
 // import google from &apos;./google&apos;;
@@ -136,7 +134,6 @@ const authRoutes = (server) =&gt; {
   Strategies.googleStrategy(server);
 
   return routePrefixer(&apos;/auth&apos;, [
-    // ...local,
     ...twitter,
   ]);
 };

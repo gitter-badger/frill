@@ -76,7 +76,6 @@
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-helpers">helpers</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-jwtStrategy">jwtStrategy</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-localAuthRoutes">localAuthRoutes</a></span></li>
-<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-localAuthRoutes">localAuthRoutes</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-localStrategy">localStrategy</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-loginComponent">loginComponent</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-pageComponent">pageComponent</a></span></li>
@@ -108,7 +107,7 @@
 <div class="content" data-ice="content"><h1 data-ice="title">src/routes.jsx</h1>
 <pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">import React from &apos;react&apos;;
 import {Route, DefaultRoute, NotFoundRoute} from &apos;react-router&apos;;
-import C from &apos;./components&apos;;
+import Components from &apos;./components&apos;;
 
 /**
  * Routes for components
@@ -116,12 +115,12 @@ import C from &apos;./components&apos;;
  */
 const componentRoutes = () =&gt; {
   return (
-    &lt;Route handler={C.Page}&gt;
-      &lt;Route name=&quot;app&quot; path=&quot;/&quot; handler={C.App}&gt;
-        &lt;DefaultRoute name=&quot;top&quot; handler={C.Top} /&gt;
-        &lt;Route name=&quot;login&quot; handler={C.Login} /&gt;
+    &lt;Route handler={Components.Page}&gt;
+      &lt;Route name=&quot;app&quot; path=&quot;/&quot; handler={Components.App}&gt;
+        &lt;DefaultRoute name=&quot;top&quot; handler={Components.Top} /&gt;
+        &lt;Route name=&quot;login&quot; handler={Components.Login} /&gt;
       &lt;/Route&gt;
-      &lt;NotFoundRoute name=&quot;Error&quot; handler={C.Error}/&gt;
+      &lt;NotFoundRoute name=&quot;Error&quot; handler={Components.Error}/&gt;
     &lt;/Route&gt;
   );
 };

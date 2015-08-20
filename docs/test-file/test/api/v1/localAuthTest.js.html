@@ -76,7 +76,6 @@
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-helpers">helpers</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-jwtStrategy">jwtStrategy</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-localAuthRoutes">localAuthRoutes</a></span></li>
-<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-localAuthRoutes">localAuthRoutes</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-localStrategy">localStrategy</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-loginComponent">loginComponent</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-pageComponent">pageComponent</a></span></li>
@@ -106,37 +105,37 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">test/api/v1/localAuthTest.js</h1>
-<pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">import localAuthApi from &apos;../../../src/api/v1/localAuth&apos;;
+<pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">import localAuthApi from &apos;../../../src/api/auth/local&apos;;
 import {routePrefixer} from &apos;../../../src/helpers&apos;;
-import {inject} from &apos;../../frillHelper&apos;;
+import {inject} from &apos;../../baseHelper&apos;;
 
-server.route(routePrefixer(&apos;/api/v1&apos;, localAuthApi));
+server.route(routePrefixer(&apos;/api&apos;, localAuthApi));
 
-describe(&apos;/api/v1/login&apos;, () =&gt; {
+describe(&apos;/api/login&apos;, () =&gt; {
   describe(&apos;/&apos;, () =&gt; {
     it(&apos;should return 404 on GET request&apos;, () =&gt; {
-      return inject({ method: &apos;GET&apos;, url: &apos;/api/v1/login&apos; })
+      return inject({ method: &apos;GET&apos;, url: &apos;/api/login&apos; })
       .then((response) =&gt; {
         response.statusCode.should.equal(404);
       });
     });
 
     it(&apos;should return 404 on PUT request&apos;, () =&gt; {
-      return inject({ method: &apos;PUT&apos;, url: &apos;/api/v1/login&apos; })
+      return inject({ method: &apos;PUT&apos;, url: &apos;/api/login&apos; })
       .then((response) =&gt; {
         response.statusCode.should.equal(404);
       });
     });
 
     it(&apos;should return 404 on DELETE request&apos;, () =&gt; {
-      return inject({ method: &apos;DELETE&apos;, url: &apos;/api/v1/login&apos; })
+      return inject({ method: &apos;DELETE&apos;, url: &apos;/api/login&apos; })
       .then((response) =&gt; {
         response.statusCode.should.equal(404);
       });
     });
 
     it(&apos;should return 400 on POST request without body&apos;, () =&gt; {
-      return inject({ method: &apos;POST&apos;, url: &apos;/api/v1/login&apos; })
+      return inject({ method: &apos;POST&apos;, url: &apos;/api/login&apos; })
       .then((response) =&gt; {
         response.statusCode.should.equal(400);
         response.result.error.should.equal(&apos;Bad Request&apos;);
@@ -146,7 +145,7 @@ describe(&apos;/api/v1/login&apos;, () =&gt; {
     it(&apos;should return 400 on POST request with a invalid payload&apos;, () =&gt; {
       return inject({
         method: &apos;POST&apos;,
-        url: &apos;/api/v1/login&apos;,
+        url: &apos;/api/login&apos;,
         payload: {
           username: &apos;nanopx&apos;,
           password: &apos;helllo&apos;,
@@ -161,7 +160,7 @@ describe(&apos;/api/v1/login&apos;, () =&gt; {
     it(&apos;should return 200 on POST request with a valid payload&apos;, () =&gt; {
       return inject({
         method: &apos;POST&apos;,
-        url: &apos;/api/v1/login&apos;,
+        url: &apos;/api/login&apos;,
         payload: {
           username: &apos;nanopx&apos;,
           password: &apos;hello&apos;,

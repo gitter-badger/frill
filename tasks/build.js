@@ -10,7 +10,7 @@
  * Run tasks: "clean", "assets",
  *
  */
-export default (gulp, $, argv, path) => {
+export default (gulp, $) => {
   gulp.task('build', ['clean'], (cb) => {
     $._watch = false;
     $.runSequence([

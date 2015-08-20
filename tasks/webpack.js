@@ -12,7 +12,7 @@
 
 import webpackConfig from '../webpack.config.js';
 
-export default (gulp, $, argv, path) => {
+export default (gulp, $) => {
   gulp.task('webpack', (cb) => {
     webpackConfig.watch = true;
     gulp.src('src/client.js')

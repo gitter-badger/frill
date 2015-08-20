@@ -9,7 +9,7 @@
  * Gulp task for serving Node.js(express) server.
  *
  */
-export default (gulp, $, argv, path) => {
+export default (gulp, $, argv) => {
   // Increase this when script gets slower at loading
   const RELOAD_AFTER_MS = 3000;
 

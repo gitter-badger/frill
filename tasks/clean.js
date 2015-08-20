@@ -10,7 +10,7 @@
  *
  */
 
-export default (gulp, $, argv, path) => {
+export default (gulp, $) => {
   // Clean output directory
   gulp.task('clean', $.del.bind(
     null, ['.tmp', 'public/*', '!public/.git'], {dot: true}

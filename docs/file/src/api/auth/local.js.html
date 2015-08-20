@@ -76,7 +76,6 @@
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-helpers">helpers</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-jwtStrategy">jwtStrategy</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-localAuthRoutes">localAuthRoutes</a></span></li>
-<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-localAuthRoutes">localAuthRoutes</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-localStrategy">localStrategy</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-loginComponent">loginComponent</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-pageComponent">pageComponent</a></span></li>
@@ -107,14 +106,14 @@
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/api/auth/local.js</h1>
 <pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">import Joi from &apos;joi&apos;;
-import {authHandler} from &apos;./authHandlers&apos;;
+import {localAuthHandler} from &apos;./authHandlers&apos;;
 
 /**
  * Local authentication routes.
  */
 const localAuthRoutes = [{
   method: [&apos;POST&apos;],
-  path: &apos;/local/login&apos;,
+  path: &apos;/login&apos;,
   config: {
     validate: {
       query: {
@@ -137,7 +136,7 @@ const localAuthRoutes = [{
       },
     },
   },
-  handler: authHandler,
+  handler: localAuthHandler,
 }];
 
 export default localAuthRoutes;

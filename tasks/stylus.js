@@ -12,7 +12,7 @@
 
 import nib from 'nib';
 
-export default (gulp, $, argv, path) => {
+export default (gulp, $, argv) => {
   const RELEASE = Boolean(argv.release);
   const AUTOPREFIXER_BROWSER = [
     'ie >= 10',

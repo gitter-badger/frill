@@ -76,7 +76,6 @@
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-helpers">helpers</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-jwtStrategy">jwtStrategy</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-localAuthRoutes">localAuthRoutes</a></span></li>
-<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-localAuthRoutes">localAuthRoutes</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-localStrategy">localStrategy</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-loginComponent">loginComponent</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-pageComponent">pageComponent</a></span></li>
@@ -110,6 +109,7 @@
 import Boom from &apos;boom&apos;;
 import aguid from &apos;aguid&apos;;
 import {where as _where} from &apos;lodash&apos;;
+import {clone as _clone} from &apos;lodash&apos;;
 
 // Test data
 import accounts from &apos;../../fixtures/testUserData&apos;;
@@ -148,7 +148,7 @@ const authHandler = (request, reply) =&gt; {
     exp: new Date().getTime() + 30 * 60 * 1000, // expires in 30 minutes time
   };
 
-  // // create the session in Redis
+  // TODO: create the session in Redis
   // redisClient.set(session.id, JSON.stringify(session));
   request.session.set(session.id, session);
   // sign the session as a JWT
@@ -158,27 +158,59 @@ const authHandler = (request, reply) =&gt; {
   return reply.redirect(request.query.ref || &apos;/&apos;);
 };
 
-/**
- * Handler for login
- */
-const loginHandler = () =&gt; {
+const localAuthHandler = (request, reply) =&gt; {
+  // reply error when authentication fails
+  if (!request.auth.isAuthenticated) {
+    return reply(
+      Boom.unauthorized(&apos;Authentication failed due to: &apos; +
+        request.auth.error.message)
+    );
+  }
 
+  const query = {
+    id: parseInt(request.auth.credentials.profile.id, 10),
+    strategy: request.auth.strategy,
+  };
+
+  const user = _where(accounts, query);
+
+  if (user.length === 0) {
+    console.log(&apos;needs registration&apos;);
+  }
+
+  const _user = _clone(user[0]);
+  delete _user.password;
+
+  /** @todo create and set JWT into session */
+  const session = {
+    valid: true,
+    id: aguid(), // a random session id
+    user: _user,
+    exp: new Date().getTime() + 30 * 60 * 1000, // expires in 30 minutes time
+  };
+
+  // // create the session in Redis
+  // redisClient.set(session.id, JSON.stringify(session));
+  request.session.set(session.id, session);
+  // sign the session as a JWT
+  const token = JWT.sign(session, &apos;NeverShareYourSecret&apos;);
+  return reply({token: token});
 };
 
 /**
  * Handler for site registration
  */
-const registrationHandler = () =&gt; {
-
-};
+// const registrationHandler = (request, reply) =&gt; {
+//
+// };
 
 /**
  * Export all authentication handlers
  */
 const authHandlers = {
   authHandler,
-  loginHandler,
-  registrationHandler,
+  localAuthHandler,
+  // registrationHandler,
 };
 
 export default authHandlers;

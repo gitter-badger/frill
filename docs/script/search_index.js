@@ -1,6 +1,54 @@
 window.esdocSearchIndex = [
   [
     "",
+    "test-file/test/api/v1/localAuthTest.js.html#lineNumber7",
+    "/api/login",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/api/v1/localAuthTest.js.html#lineNumber8",
+    "/api/login /",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/api/v1/localAuthTest.js.html#lineNumber53",
+    "/api/login / should return 200 on POST request with a valid payload",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/api/v1/localAuthTest.js.html#lineNumber38",
+    "/api/login / should return 400 on POST request with a invalid payload",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/api/v1/localAuthTest.js.html#lineNumber30",
+    "/api/login / should return 400 on POST request without body",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/api/v1/localAuthTest.js.html#lineNumber23",
+    "/api/login / should return 404 on DELETE request",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/api/v1/localAuthTest.js.html#lineNumber9",
+    "/api/login / should return 404 on GET request",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/api/v1/localAuthTest.js.html#lineNumber16",
+    "/api/login / should return 404 on PUT request",
+    "test"
+  ],
+  [
+    "",
     "test-file/test/api/v1/helloTest.js.html#lineNumber7",
     "/api/v1/hello",
     "test"
@@ -57,54 +105,6 @@ window.esdocSearchIndex = [
     "",
     "test-file/test/api/v1/helloTest.js.html#lineNumber45",
     "/api/v1/hello /restricted should return 401 Unauthorized on GET request without token",
-    "test"
-  ],
-  [
-    "",
-    "test-file/test/api/v1/localAuthTest.js.html#lineNumber7",
-    "/api/v1/login",
-    "test"
-  ],
-  [
-    "",
-    "test-file/test/api/v1/localAuthTest.js.html#lineNumber8",
-    "/api/v1/login /",
-    "test"
-  ],
-  [
-    "",
-    "test-file/test/api/v1/localAuthTest.js.html#lineNumber53",
-    "/api/v1/login / should return 200 on POST request with a valid payload",
-    "test"
-  ],
-  [
-    "",
-    "test-file/test/api/v1/localAuthTest.js.html#lineNumber38",
-    "/api/v1/login / should return 400 on POST request with a invalid payload",
-    "test"
-  ],
-  [
-    "",
-    "test-file/test/api/v1/localAuthTest.js.html#lineNumber30",
-    "/api/v1/login / should return 400 on POST request without body",
-    "test"
-  ],
-  [
-    "",
-    "test-file/test/api/v1/localAuthTest.js.html#lineNumber23",
-    "/api/v1/login / should return 404 on DELETE request",
-    "test"
-  ],
-  [
-    "",
-    "test-file/test/api/v1/localAuthTest.js.html#lineNumber9",
-    "/api/v1/login / should return 404 on GET request",
-    "test"
-  ],
-  [
-    "",
-    "test-file/test/api/v1/localAuthTest.js.html#lineNumber16",
-    "/api/v1/login / should return 404 on PUT request",
     "test"
   ],
   [
@@ -393,12 +393,6 @@ window.esdocSearchIndex = [
     "frill/src/api/auth/local.js~localauthroutes",
     "variable/index.html#static-variable-localAuthRoutes",
     "<span>localAuthRoutes</span> <span class=\"search-result-import-path\">frill/src/api/auth/local.js</span>",
-    "variable"
-  ],
-  [
-    "frill/src/api/v1/localauth.js~localauthroutes",
-    "variable/index.html#static-variable-localAuthRoutes",
-    "<span>localAuthRoutes</span> <span class=\"search-result-import-path\">frill/src/api/v1/localAuth.js</span>",
     "variable"
   ],
   [
@@ -1305,12 +1299,6 @@ window.esdocSearchIndex = [
     "src/api/v1/index.js",
     "file/src/api/v1/index.js.html",
     "src/api/v1/index.js",
-    "file"
-  ],
-  [
-    "src/api/v1/localauth.js",
-    "file/src/api/v1/localAuth.js.html",
-    "src/api/v1/localAuth.js",
     "file"
   ],
   [

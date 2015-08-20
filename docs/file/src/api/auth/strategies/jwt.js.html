@@ -76,7 +76,6 @@
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-helpers">helpers</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-jwtStrategy">jwtStrategy</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-localAuthRoutes">localAuthRoutes</a></span></li>
-<li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-localAuthRoutes">localAuthRoutes</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-localStrategy">localStrategy</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-loginComponent">loginComponent</a></span></li>
 <li data-ice="variableDoc"><span><a href="variable/index.html#static-variable-pageComponent">pageComponent</a></span></li>
@@ -106,7 +105,8 @@
 </nav>
 
 <div class="content" data-ice="content"><h1 data-ice="title">src/api/auth/strategies/jwt.js</h1>
-<pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">import hapiAuthJwt from &apos;hapi-auth-jwt2&apos;;
+<pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">import config from &apos;config&apos;;
+import hapiAuthJwt from &apos;hapi-auth-jwt2&apos;;
 import {where as _where} from &apos;lodash&apos;;
 
 // Test data
@@ -137,10 +137,9 @@ const jwtStrategy = (server) =&gt; {
     if (err) server.log([&apos;error&apos;], &apos;jwt-validator load error&apos;);
 
     server.auth.strategy(&apos;jwt&apos;, &apos;jwt&apos;, true, {
-      key: &apos;NeverShareYourSecret&apos;,
-      // key: &apos;VQkdGKTWhA4FJHWYXkps7q8q8SNQGvdFjVob2hlEVjQ8AijsWAOdPxkThiDQsDg&apos;,
+      key: config.get(&apos;strategies.jwt.secretKey&apos;),
       validateFunc: validator,
-      verifyOptions: { algorithms: [&apos;HS256&apos;] },
+      verifyOptions: { algorithms: config.get(&apos;strategies.jwt.algorithms&apos;) },
     });
   });
 };

@@ -10,7 +10,7 @@
  *
  */
 
-export default (gulp, $, argv, path) => {
+export default (gulp, $, argv) => {
   // Launch BrowserSync development server
   gulp.task('sync', ['nodemon'], (cb) => {
     $.browserSync.init({
