@@ -3,3 +3,13 @@ machine:
     NODE_ENV: test
   node:
     version: iojs-v1.3.0
+
+general:
+  artifacts:
+    - "coverage"
+
+test:
+  override:
+    - npm run test-cov
+  post:
+    - npm run code-climate
