@@ -6,10 +6,10 @@ import config from 'config';
 const twitterStrategy = (server) => {
   server.auth.strategy('twitter', 'bell', {
     provider: 'twitter',
-    password: config.get('starategies.twitter.password'),
-    clientId: config.get('starategies.twitter.clientId'),
-    clientSecret: config.get('starategies.twitter.clientSecret'),
-    isSecure: config.get('starategies.twitter.isSecure'),
+    password: config.get('strategies.twitter.password'),
+    clientId: config.get('strategies.twitter.clientId'),
+    clientSecret: config.get('strategies.twitter.clientSecret'),
+    isSecure: config.get('strategies.twitter.isSecure'),
   });
 };
 

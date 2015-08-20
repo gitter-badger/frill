@@ -6,10 +6,10 @@ import config from 'config';
 const githubStrategy = (server) => {
   server.auth.strategy('github', 'bell', {
     provider: 'github',
-    password: config.get('starategies.github.password'),
-    clientId: config.get('starategies.github.clientId'),
-    clientSecret: config.get('starategies.github.clientSecret'),
-    isSecure: config.get('starategies.github.isSecure'),
+    password: config.get('strategies.github.password'),
+    clientId: config.get('strategies.github.clientId'),
+    clientSecret: config.get('strategies.github.clientSecret'),
+    isSecure: config.get('strategies.github.isSecure'),
   });
 };
 

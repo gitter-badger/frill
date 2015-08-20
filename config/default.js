@@ -23,7 +23,7 @@ export default {
   },
   strategies: {
     jwt: {
-      secretKey: 'never_share_your_secret',
+      secretKey: 'NeverShareYourSecret',
       algorithms: ['HS256'],
     },
     facebook: {

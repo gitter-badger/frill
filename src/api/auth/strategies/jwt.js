@@ -30,9 +30,9 @@ const jwtStrategy = (server) => {
     if (err) server.log(['error'], 'jwt-validator load error');
 
     server.auth.strategy('jwt', 'jwt', true, {
-      key: config.get('starategies.jwt.secretKey'),
+      key: config.get('strategies.jwt.secretKey'),
       validateFunc: validator,
-      verifyOptions: { algorithms: config.get('starategies.jwt.algorithms') },
+      verifyOptions: { algorithms: config.get('strategies.jwt.algorithms') },
     });
   });
 };

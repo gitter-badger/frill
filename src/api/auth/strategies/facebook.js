@@ -6,10 +6,10 @@ import config from 'config';
 const facebookStrategy = (server) => {
   server.auth.strategy('facebook', 'bell', {
     provider: 'facebook',
-    password: config.get('starategies.facebook.password'),
-    clientId: config.get('starategies.facebook.clientId'),
-    clientSecret: config.get('starategies.facebook.clientSecret'),
-    isSecure: config.get('starategies.facebook.isSecure'),
+    password: config.get('strategies.facebook.password'),
+    clientId: config.get('strategies.facebook.clientId'),
+    clientSecret: config.get('strategies.facebook.clientSecret'),
+    isSecure: config.get('strategies.facebook.isSecure'),
   });
 };
 

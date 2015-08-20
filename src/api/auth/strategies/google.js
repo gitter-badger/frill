@@ -6,10 +6,10 @@ import config from 'config';
 const googleStrategy = (server) => {
   server.auth.strategy('google', 'bell', {
     provider: 'google',
-    password: config.get('starategies.google.password'),
-    clientId: config.get('starategies.google.clientId'),
-    clientSecret: config.get('starategies.google.clientSecret'),
-    isSecure: config.get('starategies.google.isSecure'),
+    password: config.get('strategies.google.password'),
+    clientId: config.get('strategies.google.clientId'),
+    clientSecret: config.get('strategies.google.clientSecret'),
+    isSecure: config.get('strategies.google.isSecure'),
   });
 };
 
