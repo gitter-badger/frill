@@ -7,6 +7,7 @@ Yet another FLUX starter kit
 [![Test Coverage](https://codeclimate.com/github/nanopx/frill/badges/coverage.svg)](https://codeclimate.com/github/nanopx/frill/coverage)
 [![document coverage](https://rawgit.com/nanopx/frill/master/docs/badge.svg)](https://esdoc.org)
 [![HAPI 9.0.2](http://img.shields.io/badge/hapi-9.0.2-brightgreen.svg "Latest Hapi.js")](http://hapijs.com)
+
 [![dependencies](https://david-dm.org/nanopx/frill.svg)](https://david-dm.org/nanopx/frill)
 [![devDependency Status](https://david-dm.org/nanopx/frill/dev-status.svg)](https://david-dm.org/nanopx/frill#info=devDependencies)
 
