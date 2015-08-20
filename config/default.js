@@ -21,6 +21,36 @@ export default {
     secretAccessKey: 'secretKey',
     region: 'us-east-1',
   },
+  strategies: {
+    jwt: {
+      secretKey: 'never_share_your_secret',
+      algorithms: ['HS256'],
+    },
+    facebook: {
+      password: 'cookie_encryption_password',
+      clientId: 'YOUR_CLIENT_ID',
+      clientSecret: 'YOUR_CLIENT_SECRET',
+      isSecure: false,
+    },
+    github: {
+      password: 'cookie_encryption_password',
+      clientId: 'YOUR_CLIENT_ID',
+      clientSecret: 'YOUR_CLIENT_SECRET',
+      isSecure: false,
+    },
+    google: {
+      password: 'cookie_encryption_password',
+      clientId: 'YOUR_CLIENT_ID',
+      clientSecret: 'YOUR_CLIENT_SECRET',
+      isSecure: false,
+    },
+    twitter: {
+      password: 'cookie_encryption_password',
+      clientId: 'YOUR_CLIENT_ID',
+      clientSecret: 'YOUR_CLIENT_SECRET',
+      isSecure: false,
+    },
+  },
   /** server configurations  */
   server: {
     port: 3000,

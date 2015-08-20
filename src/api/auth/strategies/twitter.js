@@ -1,3 +1,4 @@
+import config from 'config';
 /**
  * Authentication strategy for Twitter
  * @see https://dev.twitter.com/
@@ -5,10 +6,10 @@
 const twitterStrategy = (server) => {
   server.auth.strategy('twitter', 'bell', {
     provider: 'twitter',
-    password: 'cookie_encryption_password',
-    clientId: 'YOUR_CLIENT_ID',
-    clientSecret: 'YOUR_CLIENT_SECRET',
-    isSecure: false, // set this to true on HTTPS
+    password: config.get('starategies.twitter.password'),
+    clientId: config.get('starategies.twitter.clientId'),
+    clientSecret: config.get('starategies.twitter.clientSecret'),
+    isSecure: config.get('starategies.twitter.isSecure'),
   });
 };
 

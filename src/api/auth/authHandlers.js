@@ -41,7 +41,7 @@ const authHandler = (request, reply) => {
     exp: new Date().getTime() + 30 * 60 * 1000, // expires in 30 minutes time
   };
 
-  // // create the session in Redis
+  // TODO: create the session in Redis
   // redisClient.set(session.id, JSON.stringify(session));
   request.session.set(session.id, session);
   // sign the session as a JWT

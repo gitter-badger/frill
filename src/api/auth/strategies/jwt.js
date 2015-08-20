@@ -1,3 +1,4 @@
+import config from 'config';
 import hapiAuthJwt from 'hapi-auth-jwt2';
 import {where as _where} from 'lodash';
 
@@ -29,10 +30,9 @@ const jwtStrategy = (server) => {
     if (err) server.log(['error'], 'jwt-validator load error');
 
     server.auth.strategy('jwt', 'jwt', true, {
-      key: 'NeverShareYourSecret',
-      // key: 'VQkdGKTWhA4FJHWYXkps7q8q8SNQGvdFjVob2hlEVjQ8AijsWAOdPxkThiDQsDg',
+      key: config.get('starategies.jwt.secretKey'),
       validateFunc: validator,
-      verifyOptions: { algorithms: ['HS256'] },
+      verifyOptions: { algorithms: config.get('starategies.jwt.algorithms') },
     });
   });
 };
