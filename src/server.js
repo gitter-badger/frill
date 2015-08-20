@@ -141,13 +141,14 @@ server.ext('onPreResponse', (request, reply) => {
     const _status = isFoundRoute ? 200 : 404;
 
     // create temporary output status
-    let status = { statusCode: _status, error: '', message: '' };
+    let status = { statusCode: _status };
 
     // if response is an Error
     if (response.isBoom && response.output.statusCode !== 404) {
       status = response.output.payload;
     } else {
       if (_status === 200) {
+        status.error = null;
         status.message = 'OK';
       } else if (_status === 404) {
         status.error = 'Not Found';
