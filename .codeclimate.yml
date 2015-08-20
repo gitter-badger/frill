@@ -8,13 +8,15 @@ exclude_paths:
 - ".db/*"
 - "docs/**/*"
 
-# --------------------------------------------------------------- #
-# Disabled, because babel-eslint parser does not work atm.        #
-# see https://github.com/codeclimate/codeclimate-eslint/issues/10 #
-# --------------------------------------------------------------- #
+# -------------------------------------------------------------------- #
+# Disabled, because the version of eslint used in Code Climate is old. #
+# babel-eslint parser does not work, and cannot use new rules.         #
+# see https://github.com/codeclimate/codeclimate-eslint/issues/10      #
+# -------------------------------------------------------------------- #
 # engines:
 #   eslint:
 #     enabled: true
+#
 # ratings:
 #   paths:
 #   - "src/**"
