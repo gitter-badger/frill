@@ -42,6 +42,28 @@ $ git clone -b master --single-branch https://github.com/nanopx/frill.git MyNewA
 $ cd MyNewApp && npm install
 ```
 
+### If you have your own repo...
+
+Rename remote from `origin` to `upstream`
+```bash
+$ git remote rename origin upstream
+```
+
+Set `origin` to your repo
+```bash
+$ git remote add origin YOUR_REPO.git
+```
+
+Fetch updates from your repo
+```bash
+$ git fetch origin
+```
+
+Finally, set `master` branch's remote to `origin/master`
+```bash
+$ git branch master -u origin/master
+```
+
 
 ## Run your app
 ```
@@ -70,6 +92,19 @@ or
 $ NODE_ENV=test gulp test
 ```
 > **IMPORTANT:** You should always use 'test' for your NODE_ENV environment variable to make sure that your production/development database will not be affected by tests
+
+## Updating frill
+Fetch changes from frill
+```bash
+$ git checkout master
+$ git fetch upstream
+$ git merge upstream/master
+```
+
+Dont't forget to install new or updated packages into your app
+```bash
+$ npm install
+```
 
 ## Directory structure
 ```
