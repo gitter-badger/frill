@@ -77,4 +77,35 @@ export default {
       },
     },
   },
+  /** deployments @see {Shipit} https://github.com/shipitjs/shipit */
+  // configurations for deployments should only exist on 'default.js' config, to avoid troubles
+  deployments: {
+    default: {
+      // DO NOT set workspace to project root. It will delete all files at initialization
+      workspace: './tmp/shipit',
+      deployTo: './tmp/deploy',
+      repositoryUrl: 'https://github.com/nanopx/frill',
+      ignores: ['.git', 'node_modules', 'docs', 'coverage', 'tmp'],
+      keepReleases: 2,
+      deleteOnRollback: false,
+      key: '/path/to/ssh_key',
+      // shallowClone: true,
+    },
+    // ssh configurations for production servers
+    production: {
+      servers: [{
+        host: 'app1.myproject.com',
+        user: 'user',
+      }, {
+        host: 'app2.myproject.com',
+        user: 'user',
+      }],
+      branch: 'deployment/production',
+    },
+    // ssh configurations for staging servers
+    staging: {
+      servers: 'user@staging.myproject.com',
+      branch: 'deployment/staging',
+    },
+  },
 };

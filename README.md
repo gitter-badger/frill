@@ -116,11 +116,19 @@ $ npm restart
 $ npm install -g shipit
 ```
 
-Configure `./shipitfile.babel.js` to your environment, then
+Configure `deployments` inside `./config/default.js` to your environment, then
 
+For production
 ```
-$ shipit (environment name) deploy
+$ shipit production deploy
 ```
+
+For staging
+```
+$ shipit staging deploy
+```
+
+`shipit (environment) pwd`, `shipit (environment) start`, `shipit (environment) stop`, `shipit (environment) restart` is configured by default.
 
 > See [shipit](https://github.com/shipitjs/shipit) and [shipit-deploy](https://github.com/shipitjs/shipit-deploy) for more information.
 

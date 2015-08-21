@@ -1,41 +1,25 @@
 import path from 'path';
+import config from 'config';
 import shipitDeploy from 'shipit-deploy';
 
 export default (shipit) => {
   shipitDeploy(shipit);
-  shipit.initConfig({
-    default: {
-      workspace: './tmp/shipit',
-      deployTo: './tmp/deploy',
-      repositoryUrl: 'https://github.com/nanopx/frill',
-      ignores: ['.git', 'node_modules'],
-      keepReleases: 2,
-      deleteOnRollback: false,
-      key: '/Users/nanopx/.ssh/estlab_ssh',
-      // shallowClone: true,
-    },
-    test: {
-      servers: 'nishino@192.168.1.4',
-    },
-  });
+  shipit.initConfig(config.get('deployments'));
 
   shipit.task('pwd', () => {
     return shipit.remote('pwd');
   });
 
   shipit.task('start', () => {
-    const dir = path.join(shipit.releasesPath, shipit.releaseDirname);
-    shipit.remote(`cd ${dir} && npm start`);
+    shipit.remote(`cd ${shipit.config.deployTo}/current && npm start`);
   });
 
   shipit.task('stop', () => {
-    const dir = path.join(shipit.releasesPath, shipit.releaseDirname);
-    shipit.remote(`cd ${dir} && npm stop`);
+    shipit.remote(`cd ${shipit.config.deployTo}/current && npm stop`);
   });
 
   shipit.task('restart', () => {
-    const dir = path.join(shipit.releasesPath, shipit.releaseDirname);
-    shipit.remote(`cd ${dir} && npm restart`);
+    shipit.remote(`cd ${shipit.config.deployTo}/current && npm restart`);
   });
 
   shipit.on('updated', () => {
