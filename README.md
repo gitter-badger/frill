@@ -75,15 +75,6 @@ If your cloning from your existing frill repo, you'll need to add `upstream`
 $ git remote add upstream https://github.com/nanopx/frill.git
 ```
 
-## Run your app
-```
-$ npm start
-```
-or
-```
-$ gulp
-```
-
 ## Building your app
 ```
 $ npm run build
@@ -93,15 +84,57 @@ or
 $ gulp build
 ```
 
+## Run app and watch for changes
+```
+$ npm run watch
+```
+or
+```
+$ gulp
+```
+
+## Run your app as a daemon
+Start app
+```
+$ npm start
+```
+Stop app
+```
+$ npm stop
+```
+Restart app
+```
+$ npm restart
+```
+
+> See [forever](https://github.com/foreverjs/forever) for more information.
+
+## Deploying your app
+
+### Install [shipit](https://github.com/shipitjs/shipit)
+```
+$ npm install -g shipit
+```
+
+Configure `./shipitfile.babel.js` to your environment, then
+
+```
+$ shipit (environment name) deploy
+```
+
+> See [shipit](https://github.com/shipitjs/shipit) and [shipit-deploy](https://github.com/shipitjs/shipit-deploy) for more information.
+
 ## Testing your app
 ```
 $ npm test
 ```
+> exports `NODE_ENV=test` automatically
+
 or
 ```
 $ NODE_ENV=test gulp test
 ```
-> **IMPORTANT:** You should always use 'test' for your NODE_ENV environment variable to make sure that your production/development database will not be affected by tests
+> **IMPORTANT:** You should always use `test` for your `NODE_ENV` environment variable to make sure that your production/development database will not be affected by tests
 
 ## Updating frill
 

@@ -1,3 +1,4 @@
+import path from 'path';
 import shipitDeploy from 'shipit-deploy';
 
 export default (shipit) => {
@@ -10,7 +11,7 @@ export default (shipit) => {
       ignores: ['.git', 'node_modules'],
       keepReleases: 2,
       deleteOnRollback: false,
-      // key: '/path/to/key',
+      key: '/Users/nanopx/.ssh/estlab_ssh',
       // shallowClone: true,
     },
     test: {
@@ -22,8 +23,25 @@ export default (shipit) => {
     return shipit.remote('pwd');
   });
 
+  shipit.task('start', () => {
+    const dir = path.join(shipit.releasesPath, shipit.releaseDirname);
+    shipit.remote(`cd ${dir} && npm start`);
+  });
+
+  shipit.task('stop', () => {
+    const dir = path.join(shipit.releasesPath, shipit.releaseDirname);
+    shipit.remote(`cd ${dir} && npm stop`);
+  });
+
+  shipit.task('restart', () => {
+    const dir = path.join(shipit.releasesPath, shipit.releaseDirname);
+    shipit.remote(`cd ${dir} && npm restart`);
+  });
+
   shipit.on('updated', () => {
     const dir = path.join(shipit.releasesPath, shipit.releaseDirname);
-    shipit.remote(`cd ${dir} && npm install && npm run build && node app.js`);
+    shipit.remote(
+      `cd ${dir} && npm install && npm run build && npm stop && npm start`
+    );
   });
 };
