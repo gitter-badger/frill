@@ -100,6 +100,7 @@ $ git checkout master
 $ git fetch upstream
 $ git merge upstream/master
 ```
+> NOTE: If any conflicts occur, fix them using your editor
 
 Dont't forget to install new or updated packages into your app
 ```bash
@@ -142,6 +143,25 @@ $ npm install
 ├─ package.json             # List of 3rd party libraries using NPM
 └─ webpack.config.js        # Webpack configuration for bundling client scripts
 ```
+
+## About [CircleCI](https://circleci.com) and [Code Climate](https://codeclimate.com)
+
+> NOTE: If your're using [Travis CI](https://travis-ci.org) or anything else, you might want to skip this part.
+
+If you're using [CircleCI](https://circleci.com), then you must check the configuration inside `./circle.yml`.
+By default, it uses `npm run test-cov` for testing, which measures the coverage of your code using [Istanbul](https://github.com/gotwarlost/istanbul), and sends statistics to [Code Climate](https://codeclimate.com) using `npm run code-climate` after the test.
+
+If you don't want to use [Code Climate](https://codeclimate.com), simply remove the following configurations inside `./circle.yml`.
+```yml
+test:
+  override:
+    - npm run test-cov
+  post:
+    - npm run code-climate
+```
+
+If you have decided to use both [CircleCI](https://circleci.com) and [Code Climate](https://codeclimate.com), don't forget to set the `CODECLIMATE_REPO_TOKEN` environment variable inside the CircleCI's repo settings.
+
 
 ## License
 MIT
