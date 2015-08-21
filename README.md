@@ -26,6 +26,7 @@ Yet another FLUX starter kit
 * Testing with [Mocha](mochajs.org), [Chai](chaijs.com), [Sinon.js](http://sinonjs.org/), and [jsdom](https://github.com/tmpvar/jsdom)
 * Styles using [Stylus](https://learnboost.github.io/stylus/)
 * Example of a model using [Sequelize](docs.sequelizejs.com/en/latest/)
+* Deployments using [Shipit](https://github.com/shipitjs/shipit)
 * and many more!
 
 You can always implement anything yourself.
@@ -111,7 +112,7 @@ $ npm restart
 
 ## Deploying your app
 
-### Install [shipit](https://github.com/shipitjs/shipit)
+### Install [Shipit](https://github.com/shipitjs/shipit)
 ```
 $ npm install -g shipit
 ```
@@ -130,7 +131,7 @@ $ shipit staging deploy
 
 `shipit (environment) pwd`, `shipit (environment) start`, `shipit (environment) stop`, `shipit (environment) restart` is configured by default.
 
-> See [shipit](https://github.com/shipitjs/shipit) and [shipit-deploy](https://github.com/shipitjs/shipit-deploy) for more information.
+> See [Shipit](https://github.com/shipitjs/shipit) and [shipit-deploy](https://github.com/shipitjs/shipit-deploy) for more information.
 
 ## Testing your app
 ```
