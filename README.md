@@ -70,7 +70,7 @@ Finally, push frill into your repo
 $ git push
 ```
 
-If your cloning from your existing frill repo, you'll need to add upstream
+If your cloning from your existing frill repo, you'll need to add `upstream`
 ```bash
 $ git remote add upstream https://github.com/nanopx/frill.git
 ```
