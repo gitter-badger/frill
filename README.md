@@ -58,12 +58,22 @@ Fetch updates from your repo
 ```bash
 $ git fetch origin
 ```
+> NOTE: If any conflicts occur, fix them using your editor
 
-Finally, set `master` branch's remote to `origin/master`
+Set `master` branch's remote to `origin/master`
 ```bash
 $ git branch master -u origin/master
 ```
 
+Finally, push frill into your repo
+```bash
+$ git push
+```
+
+If your cloning from your existing frill repo, you'll need to add upstream
+```bash
+$ git remote add upstream https://github.com/nanopx/frill.git
+```
 
 ## Run your app
 ```
@@ -94,6 +104,7 @@ $ NODE_ENV=test gulp test
 > **IMPORTANT:** You should always use 'test' for your NODE_ENV environment variable to make sure that your production/development database will not be affected by tests
 
 ## Updating frill
+
 Fetch changes from frill
 ```bash
 $ git checkout master
@@ -149,7 +160,7 @@ $ npm install
 > NOTE: If your're using [Travis CI](https://travis-ci.org) or anything else, you might want to skip this part.
 
 If you're using [CircleCI](https://circleci.com), then you must check the configuration inside `./circle.yml`.
-By default, it uses `npm run test-cov` for testing, which measures the coverage of your code using [Istanbul](https://github.com/gotwarlost/istanbul), and sends statistics to [Code Climate](https://codeclimate.com) using `npm run code-climate` after the test.
+By default, it uses `npm run test-cov` for testing, which executes tests and  measures the coverage of your code using [Istanbul](https://github.com/gotwarlost/istanbul), and sends statistics to [Code Climate](https://codeclimate.com) by running `npm run code-climate` after the test.
 
 If you don't want to use [Code Climate](https://codeclimate.com), simply remove the following configurations inside `./circle.yml`.
 ```yml
