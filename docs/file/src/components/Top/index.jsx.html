@@ -107,7 +107,7 @@
 <div class="content" data-ice="content"><h1 data-ice="title">src/components/Top/index.jsx</h1>
 <pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">import React from &apos;react&apos;;
 import {StoreWatchComponent} from &apos;frill-core&apos;;
-import ScrollBlock from &apos;../ScrollBlock&apos;;
+import ScrollBlock from &apos;../ScrollBlock/index.jsx&apos;;
 
 /**
  * Top component
@@ -190,8 +190,8 @@ class TopComponent extends new StoreWatchComponent([&apos;Example&apos;]) {
         &lt;section&gt;
           &lt;h3&gt;Button - counter&lt;/h3&gt;
           &lt;p className=&quot;count&quot;&gt;{this.state.count}&lt;/p&gt;
-          &lt;button onClick={this.onOne}&gt;+1&lt;/button&gt;
-          &lt;button onClick={this.onTen}&gt;+10&lt;/button&gt;
+          &lt;button key=&quot;onone-btn&quot; onClick={this.onOne}&gt;+1&lt;/button&gt;
+          &lt;button key=&quot;onten-btn&quot; onClick={this.onTen}&gt;+10&lt;/button&gt;
         &lt;/section&gt;
         &lt;section&gt;
           &lt;h3&gt;Infinite Scroll&lt;/h3&gt;

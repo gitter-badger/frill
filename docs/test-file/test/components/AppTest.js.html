@@ -2,8 +2,8 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <base data-ice="baseUrl" href="../../">
-  <title data-ice="title">src/server.js | FrillJS API Document</title>
+  <base data-ice="baseUrl" href="../../../">
+  <title data-ice="title">test/components/AppTest.js | FrillJS API Document</title>
   <link type="text/css" rel="stylesheet" href="css/style.css">
   <link type="text/css" rel="stylesheet" href="css/prettify-tomorrow.css">
   <script src="script/prettify/prettify.js"></script>
@@ -104,260 +104,115 @@
 </div>
 </nav>
 
-<div class="content" data-ice="content"><h1 data-ice="title">src/server.js</h1>
-<pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">import Frill from &apos;./bootstrap&apos;;
-import pack from &apos;../package&apos;;
-import api from &apos;./api&apos;;
-import routes from &apos;./routes&apos;;
-import Hapi from &apos;hapi&apos;;
-import React from &apos;react&apos;;
-import Router from &apos;react-router&apos;;
-import Vision from &apos;vision&apos;;
-import Inert from &apos;inert&apos;;
-import Redis from &apos;catbox-redis&apos;;
-import Session from &apos;yar&apos;;
-import Authentication from &apos;bell&apos;;
-import Jade from &apos;jade&apos;;
-import good from &apos;good&apos;;
-import goodConsole from &apos;good-console&apos;;
-import swagger from &apos;hapi-swagger&apos;;
-import _find from &apos;lodash/collection/find&apos;;
-import _extend from &apos;lodash/object/extend&apos;;
-import _isUndefined from &apos;lodash/lang/isUndefined&apos;;
-import _argv from &apos;minimist&apos;;
-import config from &apos;config&apos;;
-let argv = _argv;
-argv = _argv(process.argv.slice(2));
+<div class="content" data-ice="content"><h1 data-ice="title">test/components/AppTest.js</h1>
+<pre class="source-code line-number"><code class="prettyprint linenums" data-ice="content">import {createSandboxSpy} from &apos;../baseHelper&apos;;
+import App from &apos;../../src/components/App/index.jsx&apos;;
+// import {StoreWatchComponent} from &apos;frill-core&apos;;
+import ExeEnv from &apos;react/lib/ExecutionEnvironment&apos;;
+ExeEnv.canUseDOM = true;
 
-/**
- * Configure hapi.
- */
-const SERVER_PORT = config.get(&apos;server.port&apos;);
+let spy;
+let frillSpy;
+let component;
+let shallowRenderer;
 
-const cacheConfig = config.util.cloneDeep(config.get(&apos;server.cache&apos;));
-cacheConfig.engine = Redis;
-
-const server = new Hapi.Server({
-  cache: [
-    cacheConfig,
-  ],
-});
-// console.log(server);
-server.connection({port: SERVER_PORT});
-
-/**
- * Configure hapi views
- */
-server.register([
-  Inert,
-  Vision,
-], (err) =&gt; {
-  if (err) server.log([&apos;error&apos;], `view load error: ${err}`);
-  server.views({
-    engines: {
-      jade: Jade,
-    },
-    relativeTo: __dirname,
-    path: &apos;templates&apos;,
-  });
-});
-
-/**
- * Configure sessions
- */
-server.register({
-  register: Session,
-  options: config.get(&apos;server.session&apos;),
-}, (err) =&gt; {
-  if (err) server.log([&apos;error&apos;], `session load error: ${err}`);
-});
-
-/**
- * Configure authentication strategies
- */
-server.register([
-  Authentication,
-], (err) =&gt; {
-  if (err) server.log([&apos;error&apos;], `authentication load error: ${err}`);
-});
-
-/**
- * Attempt to serve static files
- */
-server.route({
-  method: &apos;*&apos;,
-  path: &apos;/{params*}&apos;,
-  // don&apos;t use authentication strategy
-  config: { auth: false },
-  handler: (request, reply) =&gt; {
-    if (request.path === &apos;/&apos;) {
-      return reply.continue();
-    }
-    reply.file(&apos;public&apos; + request.path);
-  },
-});
-
-
-/**
- * Mount all the APIs to hapi
- */
-api(server);
-
-/**
- * Configure hapi-swagger for API documentation.
- */
-const swaggerOptions = {
-  apiVersion: pack.version,
-  basePath: config.get(&apos;server.swagger.path&apos;),
-};
-
-server.register({
-  register: swagger,
-  options: swaggerOptions,
-}, (err) =&gt; {
-  if (err) server.log([&apos;error&apos;], `hapi-swagger load error: ${err}`);
-});
-
-/**
- * Catch requests to fire React Router
- */
-// create context
-const frillContext = Frill.attach(Frill._Stores, Frill._Actions);
-
-server.ext(&apos;onPreResponse&apos;, (request, reply) =&gt; {
-  const response = request.response;
-
-  // if API request
-  if (response.isBoom &amp;&amp; request.path.substring(0, 5) === &apos;/api/&apos;) {
-    return reply.continue();
-  }
-
-  // if status code exists and request.path set to &apos;/&apos;
-  if (!_isUndefined(request.response.statusCode) &amp;&amp; request.path !== &apos;/&apos;) {
-    return reply.continue();
-  }
-
-  // fire React Router
-  server.log([&apos;info&apos;], `Serving down to react-router with ${request.path}`);
-
-  Router.run(routes(), request.path, (Handler, state) =&gt; {
-    // find route from request.path
-    const isFoundRoute = _find(state.routes, { path: request.path });
-
-    // 200 if route found, else 404
-    const _status = isFoundRoute ? 200 : 404;
-
-    // create temporary output status
-    let status = { statusCode: _status };
-
-    // if response is an Error
-    if (response.isBoom &amp;&amp; response.output.statusCode !== 404) {
-      status = response.output.payload;
-    } else {
-      if (_status === 200) {
-        status.error = null;
-        status.message = &apos;OK&apos;;
-      } else if (_status === 404) {
-        status.error = &apos;Not Found&apos;;
-        status.message = &apos;Page not found.&apos;;
-      }
-    }
-
-    // set status to state
-    state.status = status;
-
-    // set auth token if exists
-    state.token = request.session.flash(&apos;token&apos;)[0];
-
-    // pass down frill context to handler
-    const patchedState = _extend({frill: frillContext}, state);
-
-    // create handler
-    const handler = React.createElement(Handler, patchedState);
-
-    // construct markup
-    const markup = React.renderToString(handler);
-
-    server.log([&apos;verbose&apos;], markup);
-    reply.view(&apos;default&apos;, {
-      initialData: JSON.stringify(state),
-      markup: markup,
-    }).code(status.statusCode);
-  });
-});
-
-
-/**
- * Configure good (for logging hapi)
- * TODO: disable at production
- */
-// define which log level outputs which tags
-const logLevels = {
-  silent: {},
-  error: {
-    error: &apos;*&apos;,
-    log: [&apos;error&apos;],
-    response: [&apos;error&apos;],
-  },
-  debug: {
-    error: &apos;*&apos;,
-    log: [&apos;debug&apos;, &apos;error&apos;],
-    response: [&apos;debug&apos;, &apos;error&apos;],
-  },
-  info: {
-    error: &apos;*&apos;,
-    log: [&apos;info&apos;, &apos;debug&apos;, &apos;error&apos;],
-    response: [&apos;info&apos;, &apos;debug&apos;, &apos;error&apos;],
-  },
-  verbose: {
-    log: &apos;*&apos;,
-    ops: &apos;*&apos;,
-    error: &apos;*&apos;,
-    request: &apos;*&apos;,
-    response: &apos;*&apos;,
+const dummyFrill = {
+  store: () =&gt; {
+    return {
+      user: {
+        user: {
+          displayName: &apos;user&apos;,
+        },
+      },
+      isLoggedIn: () =&gt; {
+        return true;
+      },
+    };
   },
 };
 
-let logEvents;
-if (argv.verbose) {
-  logEvents = logLevels.verbose;
-} else if (argv.info) {
-  logEvents = logLevels.info;
-} else if (argv.debug) {
-  logEvents = logLevels.debug;
-} else if (argv.error) {
-  logEvents = logLevels.error;
-} else if (argv.silent) {
-  logEvents = logLevels.silent;
-} else {
-  const configLogLevel = config.get(&apos;server.logging.level&apos;);
-  if (configLogLevel) {
-    logEvents = logLevels[configLogLevel] || logLevels.info;
-  } else {
-    logEvents = logLevels.info;
-  }
+function mountComponent(frill) {
+  shallowRenderer = TestUtils.createRenderer();
+
+  const _frill = frill || dummyFrill;
+  shallowRenderer.render(&lt;App frill={_frill} /&gt;);
+
+  component = shallowRenderer.getRenderOutput();
 }
 
-const goodOptions = {
-  reporters: [{
-    reporter: goodConsole,
-    events: logEvents,
-    config: config.get(&apos;server.logging.options&apos;),
-  }],
-};
+/**
+ * AppComponent
+ * @test {AppComponent}
+ */
+describe(&apos;AppComponent&apos;, () =&gt; {
+  beforeEach(() =&gt; {
+    spy = createSandboxSpy(App.prototype, [
+      &apos;getStateFromFrill&apos;,
+    ]);
 
-server.register({
-  register: good,
-  options: goodOptions,
-}, (err) =&gt; {
-  if (err) {
-    console.error(err);
-  } else {
-    // initialize server
-    server.start(() =&gt; {
-      server.log([&apos;info&apos;], `Server started at ${server.info.uri}`);
+    frillSpy = sandbox.spy(dummyFrill, &apos;store&apos;);
+
+    mountComponent();
+  });
+
+  /**
+   * @test {AppComponent#constructor}
+   */
+  // it(&apos;should be an instance of FrillCore.StoreWatchComponent&apos;, () =&gt; {
+  //   mountComponent();
+  // });
+
+  /**
+   * @test {AppComponent#constructor}
+   * @test {AppComponent#getStateFromFrill}
+   */
+  it(&apos;should have appropriate state&apos;, () =&gt; {
+    const returned = spy.getStateFromFrill.getCall(0).returnValue;
+    sinon.assert.calledOnce(spy.getStateFromFrill);
+    returned.isLoggedIn.should.equal(dummyFrill.store().isLoggedIn());
+    frillSpy.getCall(0).args[0].should.equal(&apos;Auth&apos;);
+    returned.user.should.eql(dummyFrill.store().user);
+    frillSpy.getCall(1).args[0].should.equal(&apos;Auth&apos;);
+  });
+
+  /**
+   * @test {AppComponent#render}
+   */
+  describe(&apos;AppComponent#render&apos;, () =&gt; {
+    /**
+     * @test {AppComponent#render}
+     */
+    it(&apos;should have className \&apos;App\&apos;&apos;, () =&gt; {
+      component.props.className.should.equal(&apos;App&apos;);
     });
-  }
+
+    /**
+     * @test {AppComponent#render}
+     */
+    it(&apos;should display different message depending on login status&apos;, () =&gt; {
+      const display = component.props.children[2].props.children.join(&apos;&apos;);
+      display.should.equal(&apos;Hello, user&apos;);
+    });
+
+    it(&apos;should display different message depending on login status 2&apos;, () =&gt; {
+      const anotherFrill = {
+        store: () =&gt; {
+          return {
+            user: {
+              user: {
+                displayName: &apos;user&apos;,
+              },
+            },
+            isLoggedIn: () =&gt; {
+              return false;
+            },
+          };
+        },
+      };
+      mountComponent(anotherFrill);
+      component.props.children[2].props.children.should.equal(&apos;Welcome, Guest&apos;);
+    });
+  });
 });
 </code></pre>
 </div>

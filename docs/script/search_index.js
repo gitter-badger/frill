@@ -474,6 +474,192 @@ window.esdocSearchIndex = [
     "variable"
   ],
   [
+    "appcomponent src/components/app/index.jsx~appcomponent,appcomponent",
+    "test-file/test/components/AppTest.js.html#lineNumber40",
+    "AppComponent",
+    "test"
+  ],
+  [
+    "appcomponent#render src/components/app/index.jsx~appcomponent#render,appcomponent#render",
+    "test-file/test/components/AppTest.js.html#lineNumber74",
+    "AppComponent AppComponent#render",
+    "test"
+  ],
+  [
+    "appcomponent#render src/components/app/index.jsx~appcomponent#render,appcomponent#render",
+    "test-file/test/components/AppTest.js.html#lineNumber85",
+    "AppComponent AppComponent#render should display different message depending on login status",
+    "test"
+  ],
+  [
+    "",
+    "test-file/test/components/AppTest.js.html#lineNumber90",
+    "AppComponent AppComponent#render should display different message depending on login status 2",
+    "test"
+  ],
+  [
+    "appcomponent#render src/components/app/index.jsx~appcomponent#render,appcomponent#render",
+    "test-file/test/components/AppTest.js.html#lineNumber78",
+    "AppComponent AppComponent#render should have className 'App'",
+    "test"
+  ],
+  [
+    "appcomponent#constructor appcomponent#getstatefromfrill src/components/app/index.jsx~appcomponent#constructor,appcomponent#constructor src/components/app/index.jsx~appcomponent#getstatefromfrill,appcomponent#getstatefromfrill",
+    "test-file/test/components/AppTest.js.html#lineNumber62",
+    "AppComponent should have appropriate state",
+    "test"
+  ],
+  [
+    "authaction src/actions/auth.js~authaction,authaction",
+    "test-file/test/actions/AuthActionTest.js.html#lineNumber10",
+    "AuthAction",
+    "test"
+  ],
+  [
+    "authaction#authenticate src/actions/auth.js~authaction#authenticate,authaction#authenticate",
+    "test-file/test/actions/AuthActionTest.js.html#lineNumber40",
+    "AuthAction AuthAction#authenticate",
+    "test"
+  ],
+  [
+    "authaction#authenticate src/actions/auth.js~authaction#authenticate,authaction#authenticate",
+    "test-file/test/actions/AuthActionTest.js.html#lineNumber51",
+    "AuthAction AuthAction#authenticate should dispatch AUTH_LOGIN at execution",
+    "test"
+  ],
+  [
+    "authaction#authenticate src/actions/auth.js~authaction#authenticate,authaction#authenticate",
+    "test-file/test/actions/AuthActionTest.js.html#lineNumber44",
+    "AuthAction AuthAction#authenticate should have an authenticate() method",
+    "test"
+  ],
+  [
+    "authaction#login src/actions/auth.js~authaction#login,authaction#login",
+    "test-file/test/actions/AuthActionTest.js.html#lineNumber28",
+    "AuthAction AuthAction#login",
+    "test"
+  ],
+  [
+    "authaction#login src/actions/auth.js~authaction#login,authaction#login",
+    "test-file/test/actions/AuthActionTest.js.html#lineNumber32",
+    "AuthAction AuthAction#login should have a login() method",
+    "test"
+  ],
+  [
+    "authaction#logout src/actions/auth.js~authaction#logout,authaction#logout",
+    "test-file/test/actions/AuthActionTest.js.html#lineNumber64",
+    "AuthAction AuthAction#logout",
+    "test"
+  ],
+  [
+    "authaction#logout src/actions/auth.js~authaction#logout,authaction#logout",
+    "test-file/test/actions/AuthActionTest.js.html#lineNumber75",
+    "AuthAction AuthAction#logout should dispatch AUTH_LOGOUT at execution",
+    "test"
+  ],
+  [
+    "authaction#logout src/actions/auth.js~authaction#logout,authaction#logout",
+    "test-file/test/actions/AuthActionTest.js.html#lineNumber68",
+    "AuthAction AuthAction#logout should have a logout() method",
+    "test"
+  ],
+  [
+    "authaction#constructor src/actions/auth.js~authaction#constructor,authaction#constructor",
+    "test-file/test/actions/AuthActionTest.js.html#lineNumber14",
+    "AuthAction should be an instance of FrillCore.BaseAction",
+    "test"
+  ],
+  [
+    "authaction#constructor src/actions/auth.js~authaction#constructor,authaction#constructor",
+    "test-file/test/actions/AuthActionTest.js.html#lineNumber21",
+    "AuthAction should have an access to a request() method",
+    "test"
+  ],
+  [
+    "authstore src/stores/auth.js~authstore,authstore",
+    "test-file/test/stores/AuthStoreTest.js.html#lineNumber9",
+    "AuthStore",
+    "test"
+  ],
+  [
+    "authstore#actions src/stores/auth.js~authstore#actions,authstore#actions",
+    "test-file/test/stores/AuthStoreTest.js.html#lineNumber28",
+    "AuthStore AuthStore#actions",
+    "test"
+  ],
+  [
+    "authstore#actions src/stores/auth.js~authstore#actions,authstore#actions",
+    "test-file/test/stores/AuthStoreTest.js.html#lineNumber32",
+    "AuthStore AuthStore#actions should handle AUTH_LOGIN",
+    "test"
+  ],
+  [
+    "authstore#actions src/stores/auth.js~authstore#actions,authstore#actions",
+    "test-file/test/stores/AuthStoreTest.js.html#lineNumber39",
+    "AuthStore AuthStore#actions should handle AUTH_LOGOUT",
+    "test"
+  ],
+  [
+    "authstore#isloggedin src/stores/auth.js~authstore#isloggedin,authstore#isloggedin",
+    "test-file/test/stores/AuthStoreTest.js.html#lineNumber89",
+    "AuthStore AuthStore#isLoggedIn",
+    "test"
+  ],
+  [
+    "authstore#isloggedin src/stores/auth.js~authstore#isloggedin,authstore#isloggedin",
+    "test-file/test/stores/AuthStoreTest.js.html#lineNumber93",
+    "AuthStore AuthStore#isLoggedIn should return false when user in not logged in",
+    "test"
+  ],
+  [
+    "authstore#login src/stores/auth.js~authstore#login,authstore#login",
+    "test-file/test/stores/AuthStoreTest.js.html#lineNumber47",
+    "AuthStore AuthStore#login",
+    "test"
+  ],
+  [
+    "authstore#login src/stores/auth.js~authstore#login,authstore#login",
+    "test-file/test/stores/AuthStoreTest.js.html#lineNumber58",
+    "AuthStore AuthStore#login should be able to handle dispatched actions",
+    "test"
+  ],
+  [
+    "authstore#login src/stores/auth.js~authstore#login,authstore#login",
+    "test-file/test/stores/AuthStoreTest.js.html#lineNumber51",
+    "AuthStore AuthStore#login should have a login() method",
+    "test"
+  ],
+  [
+    "authstore#logout src/stores/auth.js~authstore#logout,authstore#logout",
+    "test-file/test/stores/AuthStoreTest.js.html#lineNumber68",
+    "AuthStore AuthStore#logout",
+    "test"
+  ],
+  [
+    "authstore#logout src/stores/auth.js~authstore#logout,authstore#logout",
+    "test-file/test/stores/AuthStoreTest.js.html#lineNumber79",
+    "AuthStore AuthStore#logout should be able to handle dispatched actions",
+    "test"
+  ],
+  [
+    "authstore#logout src/stores/auth.js~authstore#logout,authstore#logout",
+    "test-file/test/stores/AuthStoreTest.js.html#lineNumber72",
+    "AuthStore AuthStore#logout should have a logout() method",
+    "test"
+  ],
+  [
+    "authstore#constructor src/stores/auth.js~authstore#constructor,authstore#constructor",
+    "test-file/test/stores/AuthStoreTest.js.html#lineNumber13",
+    "AuthStore should be an instance of FrillCore.BaseStore",
+    "test"
+  ],
+  [
+    "authstore#constructor src/stores/auth.js~authstore#constructor,authstore#constructor",
+    "test-file/test/stores/AuthStoreTest.js.html#lineNumber20",
+    "AuthStore should have appropriate properties and defaults",
+    "test"
+  ],
+  [
     "builtinexternal/ecmascriptexternal.js~array",
     "external/index.html",
     "BuiltinExternal/ECMAScriptExternal.js~Array",
@@ -978,6 +1164,36 @@ window.esdocSearchIndex = [
     "test"
   ],
   [
+    "logincomponent src/components/login/index.jsx~logincomponent,logincomponent",
+    "test-file/test/components/LoginTest.js.html#lineNumber36",
+    "LoginComponent",
+    "test"
+  ],
+  [
+    "logincomponent#onclick src/components/login/index.jsx~logincomponent#onclick,logincomponent#onclick",
+    "test-file/test/components/LoginTest.js.html#lineNumber61",
+    "LoginComponent LoginComponent#onClick",
+    "test"
+  ],
+  [
+    "logincomponent#onclick src/components/login/index.jsx~logincomponent#onclick,logincomponent#onclick",
+    "test-file/test/components/LoginTest.js.html#lineNumber72",
+    "LoginComponent LoginComponent#onClick should call a login() method of an Auth Action",
+    "test"
+  ],
+  [
+    "logincomponent#onclick src/components/login/index.jsx~logincomponent#onclick,logincomponent#onclick",
+    "test-file/test/components/LoginTest.js.html#lineNumber65",
+    "LoginComponent LoginComponent#onClick should have onClick() method",
+    "test"
+  ],
+  [
+    "logincomponent#constructor src/components/login/index.jsx~logincomponent#constructor,logincomponent#constructor",
+    "test-file/test/components/LoginTest.js.html#lineNumber53",
+    "LoginComponent should be an instance of React.Component",
+    "test"
+  ],
+  [
     "routeprefixer src/helpers/routeprefixer.js~routeprefixer,routeprefixer",
     "test-file/test/helpers/routePrefixerTest.js.html#lineNumber24",
     "Route prefixer",
@@ -1039,110 +1255,182 @@ window.esdocSearchIndex = [
   ],
   [
     "scrollblockcomponent src/components/scrollblock/index.jsx~scrollblockcomponent,scrollblockcomponent",
-    "test-file/test/components/ScrollBlockTest.js.html#lineNumber77",
+    "test-file/test/components/ScrollBlockTest.js.html#lineNumber75",
     "ScrollBlockComponent",
     "test"
   ],
   [
-    "examplestore#componentdidmount examplestore#componentdidmount,examplestore#componentdidmount",
-    "test-file/test/components/ScrollBlockTest.js.html#lineNumber116",
+    "scrollblockcomponent#componentdidmount src/components/scrollblock/index.jsx~scrollblockcomponent#componentdidmount,scrollblockcomponent#componentdidmount",
+    "test-file/test/components/ScrollBlockTest.js.html#lineNumber114",
     "ScrollBlockComponent ScrollBlockComponent#componentDidMount",
     "test"
   ],
   [
-    "examplestore#componentdidmount examplestore#componentdidmount,examplestore#componentdidmount",
-    "test-file/test/components/ScrollBlockTest.js.html#lineNumber127",
+    "scrollblockcomponent#componentdidmount src/components/scrollblock/index.jsx~scrollblockcomponent#componentdidmount,scrollblockcomponent#componentdidmount",
+    "test-file/test/components/ScrollBlockTest.js.html#lineNumber125",
     "ScrollBlockComponent ScrollBlockComponent#componentDidMount should fetch data when none are loaded",
     "test"
   ],
   [
-    "examplestore#componentdidmount examplestore#componentdidmount,examplestore#componentdidmount",
-    "test-file/test/components/ScrollBlockTest.js.html#lineNumber120",
+    "scrollblockcomponent#componentdidmount src/components/scrollblock/index.jsx~scrollblockcomponent#componentdidmount,scrollblockcomponent#componentdidmount",
+    "test-file/test/components/ScrollBlockTest.js.html#lineNumber118",
     "ScrollBlockComponent ScrollBlockComponent#componentDidMount should have been called",
     "test"
   ],
   [
-    "examplestore#componentdidmount examplestore#componentdidmount,examplestore#componentdidmount",
-    "test-file/test/components/ScrollBlockTest.js.html#lineNumber138",
+    "scrollblockcomponent#componentdidmount src/components/scrollblock/index.jsx~scrollblockcomponent#componentdidmount,scrollblockcomponent#componentdidmount",
+    "test-file/test/components/ScrollBlockTest.js.html#lineNumber136",
     "ScrollBlockComponent ScrollBlockComponent#componentDidMount should not fetch data when some are already loaded",
     "test"
   ],
   [
-    "examplestore#componentwillreceiveprops examplestore#componentwillreceiveprops,examplestore#componentwillreceiveprops",
-    "test-file/test/components/ScrollBlockTest.js.html#lineNumber151",
+    "scrollblockcomponent#componentwillreceiveprops src/components/scrollblock/index.jsx~scrollblockcomponent#componentwillreceiveprops,scrollblockcomponent#componentwillreceiveprops",
+    "test-file/test/components/ScrollBlockTest.js.html#lineNumber149",
     "ScrollBlockComponent ScrollBlockComponent#componentWillReceiveProps",
     "test"
   ],
   [
-    "examplestore#componentwillreceiveprops examplestore#componentwillreceiveprops,examplestore#componentwillreceiveprops",
-    "test-file/test/components/ScrollBlockTest.js.html#lineNumber155",
+    "scrollblockcomponent#componentwillreceiveprops src/components/scrollblock/index.jsx~scrollblockcomponent#componentwillreceiveprops,scrollblockcomponent#componentwillreceiveprops",
+    "test-file/test/components/ScrollBlockTest.js.html#lineNumber153",
     "ScrollBlockComponent ScrollBlockComponent#componentWillReceiveProps should have been called",
     "test"
   ],
   [
-    "examplestore#componentwillreceiveprops examplestore#componentwillreceiveprops,examplestore#componentwillreceiveprops",
-    "test-file/test/components/ScrollBlockTest.js.html#lineNumber162",
+    "scrollblockcomponent#componentwillreceiveprops src/components/scrollblock/index.jsx~scrollblockcomponent#componentwillreceiveprops,scrollblockcomponent#componentwillreceiveprops",
+    "test-file/test/components/ScrollBlockTest.js.html#lineNumber160",
     "ScrollBlockComponent ScrollBlockComponent#componentWillReceiveProps should set isLoading state to false when props has new children",
     "test"
   ],
   [
-    "examplestore#componentwillunmount examplestore#componentwillunmount,examplestore#componentwillunmount",
-    "test-file/test/components/ScrollBlockTest.js.html#lineNumber172",
+    "scrollblockcomponent#componentwillunmount src/components/scrollblock/index.jsx~scrollblockcomponent#componentwillunmount,scrollblockcomponent#componentwillunmount",
+    "test-file/test/components/ScrollBlockTest.js.html#lineNumber170",
     "ScrollBlockComponent ScrollBlockComponent#componentWillUnmount",
     "test"
   ],
   [
-    "examplestore#componentwillunmount examplestore#componentwillunmount,examplestore#componentwillunmount",
-    "test-file/test/components/ScrollBlockTest.js.html#lineNumber176",
+    "scrollblockcomponent#componentwillunmount src/components/scrollblock/index.jsx~scrollblockcomponent#componentwillunmount,scrollblockcomponent#componentwillunmount",
+    "test-file/test/components/ScrollBlockTest.js.html#lineNumber174",
     "ScrollBlockComponent ScrollBlockComponent#componentWillUnmount should have been called",
     "test"
   ],
   [
-    "examplestore#fetchdata examplestore#fetchdata,examplestore#fetchdata",
-    "test-file/test/components/ScrollBlockTest.js.html#lineNumber231",
+    "scrollblockcomponent#fetchdata src/components/scrollblock/index.jsx~scrollblockcomponent#fetchdata,scrollblockcomponent#fetchdata",
+    "test-file/test/components/ScrollBlockTest.js.html#lineNumber242",
     "ScrollBlockComponent ScrollBlockComponent#fetchData",
     "test"
   ],
   [
-    "examplestore#fetchdata examplestore#fetchdata,examplestore#fetchdata",
-    "test-file/test/components/ScrollBlockTest.js.html#lineNumber235",
+    "scrollblockcomponent#fetchdata src/components/scrollblock/index.jsx~scrollblockcomponent#fetchdata,scrollblockcomponent#fetchdata",
+    "test-file/test/components/ScrollBlockTest.js.html#lineNumber246",
     "ScrollBlockComponent ScrollBlockComponent#fetchData should set isLoading state to true",
     "test"
   ],
   [
-    "examplestore#onscroll examplestore#onscroll,examplestore#onscroll",
-    "test-file/test/components/ScrollBlockTest.js.html#lineNumber186",
+    "scrollblockcomponent#onscroll src/components/scrollblock/index.jsx~scrollblockcomponent#onscroll,scrollblockcomponent#onscroll",
+    "test-file/test/components/ScrollBlockTest.js.html#lineNumber184",
     "ScrollBlockComponent ScrollBlockComponent#onScroll",
     "test"
   ],
   [
-    "examplestore#onscroll examplestore#onscroll,examplestore#onscroll",
-    "test-file/test/components/ScrollBlockTest.js.html#lineNumber192",
+    "scrollblockcomponent#onscroll src/components/scrollblock/index.jsx~scrollblockcomponent#onscroll,scrollblockcomponent#onscroll",
+    "test-file/test/components/ScrollBlockTest.js.html#lineNumber190",
     "ScrollBlockComponent ScrollBlockComponent#onScroll should load the data when the scrollbar reaches the end",
     "test"
   ],
   [
-    "examplestore#onscroll examplestore#onscroll,examplestore#onscroll",
-    "test-file/test/components/ScrollBlockTest.js.html#lineNumber216",
+    "scrollblockcomponent#onscroll src/components/scrollblock/index.jsx~scrollblockcomponent#onscroll,scrollblockcomponent#onscroll",
+    "test-file/test/components/ScrollBlockTest.js.html#lineNumber214",
     "ScrollBlockComponent ScrollBlockComponent#onScroll should not load the data when all data are loaded",
     "test"
   ],
   [
-    "examplestore#onscroll examplestore#onscroll,examplestore#onscroll",
-    "test-file/test/components/ScrollBlockTest.js.html#lineNumber204",
+    "scrollblockcomponent#onscroll src/components/scrollblock/index.jsx~scrollblockcomponent#onscroll,scrollblockcomponent#onscroll",
+    "test-file/test/components/ScrollBlockTest.js.html#lineNumber202",
     "ScrollBlockComponent ScrollBlockComponent#onScroll should not load the data when the scrollbar is not at the end",
     "test"
   ],
   [
-    "examplestore#constructor src/stores/example.js~examplestore#constructor,examplestore#constructor",
-    "test-file/test/components/ScrollBlockTest.js.html#lineNumber97",
+    "scrollblockcomponent#render src/components/scrollblock/index.jsx~scrollblockcomponent#render,scrollblockcomponent#render",
+    "test-file/test/components/ScrollBlockTest.js.html#lineNumber229",
+    "ScrollBlockComponent ScrollBlockComponent#render",
+    "test"
+  ],
+  [
+    "scrollblockcomponent#render src/components/scrollblock/index.jsx~scrollblockcomponent#render,scrollblockcomponent#render",
+    "test-file/test/components/ScrollBlockTest.js.html#lineNumber233",
+    "ScrollBlockComponent ScrollBlockComponent#render should have a className 'ScrollBlock'",
+    "test"
+  ],
+  [
+    "scrollblockcomponent#constructor src/components/scrollblock/index.jsx~scrollblockcomponent#constructor,scrollblockcomponent#constructor",
+    "test-file/test/components/ScrollBlockTest.js.html#lineNumber95",
     "ScrollBlockComponent should be an instance of React.Component",
     "test"
   ],
   [
-    "examplestore#constructor src/stores/example.js~examplestore#constructor,examplestore#constructor",
-    "test-file/test/components/ScrollBlockTest.js.html#lineNumber104",
+    "scrollblockcomponent#constructor src/components/scrollblock/index.jsx~scrollblockcomponent#constructor,scrollblockcomponent#constructor",
+    "test-file/test/components/ScrollBlockTest.js.html#lineNumber102",
     "ScrollBlockComponent should have appropriate state and props",
+    "test"
+  ],
+  [
+    "topcomponent src/components/top/index.jsx~topcomponent,topcomponent",
+    "test-file/test/components/TopTest.js.html#lineNumber43",
+    "TopComponent",
+    "test"
+  ],
+  [
+    "topcomponent#render src/components/top/index.jsx~topcomponent#render,topcomponent#render",
+    "test-file/test/components/TopTest.js.html#lineNumber139",
+    "TopComponent AppComponent#render",
+    "test"
+  ],
+  [
+    "topcomponent#render src/components/top/index.jsx~topcomponent#render,topcomponent#render",
+    "test-file/test/components/TopTest.js.html#lineNumber143",
+    "TopComponent AppComponent#render should have className 'Top'",
+    "test"
+  ],
+  [
+    "topcomponent#onfetchitems src/components/top/index.jsx~topcomponent#onfetchitems,topcomponent#onfetchitems",
+    "test-file/test/components/TopTest.js.html#lineNumber117",
+    "TopComponent TopComponent#onFetchItems",
+    "test"
+  ],
+  [
+    "topcomponent#onfetchitems topcomponent#render src/components/top/index.jsx~topcomponent#onfetchitems,topcomponent#onfetchitems src/components/top/index.jsx~topcomponent#render,topcomponent#render",
+    "test-file/test/components/TopTest.js.html#lineNumber122",
+    "TopComponent TopComponent#onFetchItems should execute a loadScrollItems() method of an Example Action",
+    "test"
+  ],
+  [
+    "topcomponent#onone src/components/top/index.jsx~topcomponent#onone,topcomponent#onone",
+    "test-file/test/components/TopTest.js.html#lineNumber78",
+    "TopComponent TopComponent#onOne",
+    "test"
+  ],
+  [
+    "topcomponent#onone topcomponent#render src/components/top/index.jsx~topcomponent#onone,topcomponent#onone src/components/top/index.jsx~topcomponent#render,topcomponent#render",
+    "test-file/test/components/TopTest.js.html#lineNumber83",
+    "TopComponent TopComponent#onOne should execute a countUp() method of an Example Action",
+    "test"
+  ],
+  [
+    "topcomponent#onten src/components/top/index.jsx~topcomponent#onten,topcomponent#onten",
+    "test-file/test/components/TopTest.js.html#lineNumber97",
+    "TopComponent TopComponent#onTen",
+    "test"
+  ],
+  [
+    "topcomponent#onten topcomponent#render src/components/top/index.jsx~topcomponent#onten,topcomponent#onten src/components/top/index.jsx~topcomponent#render,topcomponent#render",
+    "test-file/test/components/TopTest.js.html#lineNumber102",
+    "TopComponent TopComponent#onTen should execute a countUpBy() method of an Example Action",
+    "test"
+  ],
+  [
+    "topcomponent#constructor topcomponent#getstatefromfrill src/components/top/index.jsx~topcomponent#constructor,topcomponent#constructor src/components/top/index.jsx~topcomponent#getstatefromfrill,topcomponent#getstatefromfrill",
+    "test-file/test/components/TopTest.js.html#lineNumber61",
+    "TopComponent should have appropriate state",
     "test"
   ],
   [
@@ -1764,6 +2052,12 @@ window.esdocSearchIndex = [
     "file"
   ],
   [
+    "test/actions/authactiontest.js",
+    "test-file/test/actions/AuthActionTest.js.html",
+    "test/actions/AuthActionTest.js",
+    "testFile"
+  ],
+  [
     "test/actions/exampleactiontest.js",
     "test-file/test/actions/ExampleActionTest.js.html",
     "test/actions/ExampleActionTest.js",
@@ -1788,9 +2082,27 @@ window.esdocSearchIndex = [
     "testFile"
   ],
   [
+    "test/components/apptest.js",
+    "test-file/test/components/AppTest.js.html",
+    "test/components/AppTest.js",
+    "testFile"
+  ],
+  [
+    "test/components/logintest.js",
+    "test-file/test/components/LoginTest.js.html",
+    "test/components/LoginTest.js",
+    "testFile"
+  ],
+  [
     "test/components/scrollblocktest.js",
     "test-file/test/components/ScrollBlockTest.js.html",
     "test/components/ScrollBlockTest.js",
+    "testFile"
+  ],
+  [
+    "test/components/toptest.js",
+    "test-file/test/components/TopTest.js.html",
+    "test/components/TopTest.js",
     "testFile"
   ],
   [
@@ -1803,6 +2115,12 @@ window.esdocSearchIndex = [
     "test/helpers/routercontainertest.js",
     "test-file/test/helpers/routerContainerTest.js.html",
     "test/helpers/routerContainerTest.js",
+    "testFile"
+  ],
+  [
+    "test/stores/authstoretest.js",
+    "test-file/test/stores/AuthStoreTest.js.html",
+    "test/stores/AuthStoreTest.js",
     "testFile"
   ],
   [
