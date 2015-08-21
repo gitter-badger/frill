@@ -14,7 +14,7 @@ import webpackConfig from '../webpack.config.js';
 
 export default (gulp, $) => {
   gulp.task('webpack', (cb) => {
-    webpackConfig.watch = true;
+    webpackConfig.watch = $._watchBuild || false;
     gulp.src('src/client.js')
     .pipe($.webpack(webpackConfig))
     .pipe(gulp.dest('./'))

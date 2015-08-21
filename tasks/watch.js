@@ -12,24 +12,9 @@
 export default (gulp, $) => {
   gulp.task('watch', (cb) => {
     $._watch = false;
+    $._watchBuild = true;
     const styles = ['src/styles/**/*.{css,styl}'];
     const assets = ['./src/assets/**/*'];
-
-    // const clients = [
-    //   './src/components/**/*',
-    //   './src/utils/**/*',
-    //   './src/actions/**/*',
-    //   './src/stores/**/*',
-    //   './src/routes.jsx',
-    //   './src/bootstrap.js',
-    //   './src/client.js',
-    // ];
-
-    // set specific files for performance improvements
-    // const checkFlowTypes = [
-    //   'src/**/*.js',
-    //   'src/**/*.jsx',
-    // ];
 
     // set specific files for performance improvements
     const checkLint = [
@@ -53,8 +38,6 @@ export default (gulp, $) => {
       $._watch = true;
       gulp.watch(assets, gazeOption, ['assets']);
       gulp.watch(styles, gazeOption, ['stylus']);
-      // gulp.watch(clients, gazeOption, ['webpack']);
-      // gulp.watch(checkFlowTypes, gazeOption, ['flowtype'])
       gulp.watch(checkLint, gazeOption, ['lint']);
       cb();
     });

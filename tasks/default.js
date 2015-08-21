@@ -12,6 +12,6 @@
  * Run tasks: "build", "serve", "sync",
  *
  */
-export default (gulp) => {
+export default (gulp, $) => {
   gulp.task('default', ['sync']);
 };

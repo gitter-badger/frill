@@ -12,6 +12,7 @@
  */
 export default (gulp, $, argv) => {
   gulp.task('assets', () => {
+    $._watch = $._watch || false;
     return gulp.src('src/assets/**/*')
       .pipe($.changed('public'))
       .pipe($.imagemin())
