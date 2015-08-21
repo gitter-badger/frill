@@ -1,5 +1,3 @@
-# molmo
-
 # <img src="frill-logo.png" alt="frill" title="frill logo" height="200" />
 
 Yet another FLUX starter kit
