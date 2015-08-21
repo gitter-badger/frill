@@ -157,7 +157,7 @@ $ npm install
 
 ## About [CircleCI](https://circleci.com) and [Code Climate](https://codeclimate.com)
 
-> NOTE: If your're using [Travis CI](https://travis-ci.org) or anything else, you might want to skip this part.
+> NOTE: If your're planning to use [Travis CI](https://travis-ci.org) or anything else, you might want to skip this part.
 
 If you're using [CircleCI](https://circleci.com), then you must check the configuration inside `./circle.yml`.
 By default, it uses `npm run test-cov` for testing, which executes tests and  measures the coverage of your code using [Istanbul](https://github.com/gotwarlost/istanbul), and sends statistics to [Code Climate](https://codeclimate.com) by running `npm run code-climate` after the test.
