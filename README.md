@@ -1,5 +1,7 @@
 # <img src="https://raw.githubusercontent.com/nanopx/frill/master/frill-logo.png" alt="frill" title="frill logo" height="200" />
 
+[![Join the chat at https://gitter.im/nanopx/frill](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/nanopx/frill?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Yet another FLUX starter kit
 
 [![Circle CI](https://circleci.com/gh/nanopx/frill/tree/master.svg?style=shield&circle-token=ea6665c989599be6eddc9ba5f7d8d849b525f83a)](https://circleci.com/gh/nanopx/frill/tree/master)
