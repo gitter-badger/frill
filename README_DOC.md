@@ -1,4 +1,4 @@
-# <img src="frill-logo.png" alt="frill" title="frill logo" height="200" />
+# <img src="https://raw.githubusercontent.com/nanopx/frill/master/frill-logo.png" alt="frill" title="frill logo" height="200" />
 
 Yet another FLUX starter kit
 
