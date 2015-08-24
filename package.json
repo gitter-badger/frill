@@ -9,6 +9,7 @@
     "restart": "$(npm bin)/forever restartall",
     "watch": "$(npm bin)/gulp",
     "build": "$(npm bin)/gulp build",
+    "build-release": "$(npm bin)/gulp build --release",
     "test": "NODE_ENV=test $(npm bin)/gulp test",
     "test-cov": "NODE_ENV=test $(npm bin)/istanbul cover -x **/tasks/** -x gulpfile.babel.js -x webpack.config.js $(npm bin)/gulp test",
     "code-climate": "$(npm bin)/codeclimate-test-reporter < ./coverage/lcov.info"

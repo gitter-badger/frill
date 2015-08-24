@@ -85,6 +85,15 @@ or
 $ gulp build
 ```
 
+building your app for release, use:
+```
+$ npm run build-release
+```
+or
+```
+$ gulp build --release
+```
+
 ## Run app and watch for changes
 ```
 $ npm run watch
@@ -190,11 +199,16 @@ $ npm install
 ├─ /tasks/                  # Gulp task scripts
 ├─ /test/                   # Test scripts (using Mocha)
 ├─ .eslintrc                # Configuration for ESLint
+├─ .codeclimate.yml         # Configuration for Code Climate
 ├─ esdoc.json               # Configuration for ESDoc
 ├─ app.js                   # Entrypoint for server-side without using gulp
 ├─ gulpfile.babel.js        # Used for configuring gulp (in ES6 syntax)
 ├─ package.json             # List of 3rd party libraries using NPM
-└─ webpack.config.js        # Webpack configuration for bundling client scripts
+├─ webpack.config.js        # Webpack configuration for bundling client scripts
+├─ circle.yml               # Configuration for Circle CI
+├─ shipitfile.js            # Enables ES6 syntax for shipitfile.babel.js
+└─ shipitfile.babel.js      # Configuration for deployment tasks
+
 ```
 
 ## About [CircleCI](https://circleci.com) and [Code Climate](https://codeclimate.com)
@@ -215,6 +229,8 @@ test:
 
 If you have decided to use both [CircleCI](https://circleci.com) and [Code Climate](https://codeclimate.com), don't forget to set the `CODECLIMATE_REPO_TOKEN` environment variable inside the CircleCI's repo settings.
 
+## Questions or Bugs?
+Please send us an [issue](https://github.com/nanopx/frill/issues).
 
 ## License
 MIT
